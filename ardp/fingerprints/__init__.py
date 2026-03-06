@@ -1,0 +1,1 @@
+"""AMOC collapse fingerprint computations."""
