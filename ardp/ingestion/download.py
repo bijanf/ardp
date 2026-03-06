@@ -17,6 +17,8 @@ def download_glorys12(
 ) -> Path:
     """Download GLORYS12V1 monthly reanalysis from Copernicus Marine.
 
+    Downloads year-by-year to avoid timeouts and enable resumption.
+
     Parameters
     ----------
     output_dir : str or Path
@@ -41,29 +43,43 @@ def download_glorys12(
     dest = Path(output_dir) / "glorys12"
     dest.mkdir(parents=True, exist_ok=True)
 
-    outfile = dest / f"glorys12_{start}_{end}.nc"
-    if outfile.exists():
-        print(f"Already exists: {outfile}")
-        return dest
+    # Parse start/end years
+    start_year = int(start.split("-")[0])
+    end_year = int(end.split("-")[0])
 
-    print(f"Downloading GLORYS12V1: {start} to {end}")
-    print(f"  Variables: {variables}")
-    print(f"  Region: lon [{lon_min}, {lon_max}], lat [{lat_min}, {lat_max}]")
+    for year in range(start_year, end_year + 1):
+        outfile = dest / f"glorys12_{year}.nc"
+        if outfile.exists():
+            print(f"Already exists: {outfile}")
+            continue
 
-    copernicusmarine.subset(
-        dataset_id="cmems_mod_glo_phy_my_0.083deg_P1M-m",
-        variables=variables,
-        minimum_longitude=lon_min,
-        maximum_longitude=lon_max,
-        minimum_latitude=lat_min,
-        maximum_latitude=lat_max,
-        start_datetime=f"{start}-01T00:00:00",
-        end_datetime=f"{end}-28T23:59:59",
-        output_filename=outfile.name,
-        output_directory=str(dest),
-    )
+        y_start = f"{year}-01"
+        y_end = f"{year}-12"
 
-    print(f"Saved: {outfile}")
+        print(f"Downloading GLORYS12V1 year {year}...")
+        print(f"  Variables: {variables}")
+        print(f"  Region: lon [{lon_min}, {lon_max}], lat [{lat_min}, {lat_max}]")
+
+        try:
+            copernicusmarine.subset(
+                dataset_id="cmems_mod_glo_phy_my_0.083deg_P1M-m",
+                variables=variables,
+                minimum_longitude=lon_min,
+                maximum_longitude=lon_max,
+                minimum_latitude=lat_min,
+                maximum_latitude=lat_max,
+                start_datetime=f"{y_start}-01T00:00:00",
+                end_datetime=f"{y_end}-28T23:59:59",
+                output_filename=outfile.name,
+                output_directory=str(dest),
+            )
+            print(f"  Saved: {outfile}")
+        except Exception as e:
+            print(f"  Failed for {year}: {e}")
+            # Clean up partial file
+            for f in dest.glob(f"glorys12_{year}.nc*"):
+                f.unlink()
+
     return dest
 
 
@@ -101,8 +117,8 @@ def download_oras5(
 
     if variables is None:
         variables = [
-            "sea_water_potential_temperature",
-            "sea_water_salinity",
+            "potential_temperature",
+            "salinity",
             "meridional_velocity",
             "zonal_velocity",
             "sea_surface_height",
@@ -115,26 +131,43 @@ def download_oras5(
     months = [f"{m:02d}" for m in range(1, 13)]
 
     for year in range(start_year, end_year + 1):
-        outfile = dest / f"oras5_{year}.nc"
-        if outfile.exists():
-            print(f"Already exists: {outfile}")
+        # Check if any file for this year already exists
+        existing = list(dest.glob(f"*{year}*"))
+        if existing:
+            print(f"Already exists for {year}: {existing[0].name}")
             continue
 
-        print(f"Downloading ORAS5 year {year}...")
-        client.retrieve(
-            "reanalysis-oras5",
-            {
-                "product_type": "consolidated",
-                "vertical_resolution": "all_levels",
-                "variable": variables,
-                "year": str(year),
-                "month": months,
-                "area": [lat_max, lon_min, lat_min, lon_max],
-                "format": "netcdf",
-            },
-            str(outfile),
-        )
-        print(f"Saved: {outfile}")
+        product = "consolidated" if year <= 2021 else "operational"
+        print(f"Downloading ORAS5 year {year} ({product})...")
+        outfile_zip = dest / f"oras5_{year}.zip"
+        try:
+            client.retrieve(
+                "reanalysis-oras5",
+                {
+                    "product_type": [product],
+                    "vertical_resolution": "all_levels",
+                    "variable": variables,
+                    "year": [str(year)],
+                    "month": months,
+                },
+                str(outfile_zip),
+            )
+        except Exception as e:
+            print(f"  Failed for {year}: {e}")
+            outfile_zip.unlink(missing_ok=True)
+            continue
+
+        # CDS delivers ORAS5 as zip — extract NetCDF files
+        import zipfile
+        if outfile_zip.exists() and zipfile.is_zipfile(outfile_zip):
+            with zipfile.ZipFile(outfile_zip, "r") as zf:
+                zf.extractall(dest)
+            outfile_zip.unlink()
+            print(f"  Extracted to: {dest}")
+        elif outfile_zip.exists():
+            # If it's actually a NetCDF, just rename
+            outfile_zip.rename(dest / f"oras5_{year}.nc")
+            print(f"  Saved: oras5_{year}.nc")
 
     return dest
 
