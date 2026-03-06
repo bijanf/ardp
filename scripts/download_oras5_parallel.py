@@ -36,6 +36,7 @@ def download_one_year(
     variables: list[str],
     vertical_resolution: str,
     tag: str,
+    months: list[str] | None = None,
 ) -> str:
     """Download a single year of ORAS5 data."""
     # Check for existing files
@@ -49,7 +50,8 @@ def download_one_year(
         return f"{year} ({tag}): already exists ({existing[0].name})"
 
     product = "consolidated" if year <= 2021 else "operational"
-    months = [f"{m:02d}" for m in range(1, 13)]
+    if months is None:
+        months = [f"{m:02d}" for m in range(1, 13)]
     outfile_zip = dest / f"oras5_{tag}_{year}.zip"
 
     try:
@@ -90,11 +92,13 @@ def run_phase(
     vertical_resolution: str,
     tag: str,
     workers: int,
+    months: list[str] | None = None,
 ) -> None:
     """Run parallel downloads for a phase."""
     print(f"\n{'='*60}")
     print(f"Phase: {tag} ({vertical_resolution})")
     print(f"Variables: {variables}")
+    print(f"Months: {months or 'all 12'}")
     print(f"Years: {years[0]}-{years[-1]} ({len(years)} years)")
     print(f"Workers: {workers}")
     print(f"{'='*60}\n")
@@ -102,7 +106,8 @@ def run_phase(
     with ThreadPoolExecutor(max_workers=workers) as pool:
         futures = {
             pool.submit(
-                download_one_year, y, dest, variables, vertical_resolution, tag
+                download_one_year, y, dest, variables, vertical_resolution, tag,
+                months,
             ): y
             for y in years
         }
@@ -123,12 +128,16 @@ def main() -> None:
     parser.add_argument("--phase", choices=["surface", "depth", "both"],
                         default="both",
                         help="Which phase to run (default: both)")
+    parser.add_argument("--months", type=str, default=None,
+                        help="Comma-separated months to download, e.g. '06' for "
+                        "June only, '01,04,07,10' for quarterly (default: all 12)")
     args = parser.parse_args()
 
     dest = Path(args.output_dir) / "oras5"
     dest.mkdir(parents=True, exist_ok=True)
 
     years = list(range(args.start, args.end + 1))
+    months = args.months.split(",") if args.months else None
 
     if args.phase in ("surface", "both"):
         run_phase(years, dest, SINGLE_LEVEL_VARS, "single_level",
@@ -136,7 +145,7 @@ def main() -> None:
 
     if args.phase in ("depth", "both"):
         run_phase(years, dest, ALL_LEVEL_VARS, "all_levels",
-                  "3d", args.workers)
+                  "3d", args.workers, months=months)
 
     print(f"\nDone. Files in {dest}:")
     for f in sorted(dest.iterdir()):
