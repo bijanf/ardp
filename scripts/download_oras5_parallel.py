@@ -49,7 +49,7 @@ def download_one_year(
     if existing:
         return f"{year} ({tag}): already exists ({existing[0].name})"
 
-    product = "consolidated" if year <= 2021 else "operational"
+    product = "consolidated" if year <= 2014 else "operational"
     if months is None:
         months = [f"{m:02d}" for m in range(1, 13)]
     outfile_zip = dest / f"oras5_{tag}_{year}.zip"
