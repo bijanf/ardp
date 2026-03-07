@@ -7,6 +7,7 @@ CP: float = 3992.0  # Specific heat capacity of seawater [J/(kg·K)]
 
 # Key latitudes
 SAMBA_LAT: float = -34.5  # SAMBA array latitude [degrees_north]
+RAPID_LAT: float = 26.5   # RAPID array latitude [degrees_north]
 
 # Region bounds (lon_min, lon_max, lat_min, lat_max)
 SUBTROPICAL_SOUTH_ATLANTIC: tuple[float, float, float, float] = (-60.0, 20.0, -35.0, -15.0)
