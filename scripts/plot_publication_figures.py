@@ -6,6 +6,7 @@ Produces:
   Figure 2: 2x2 fingerprint summary panel
   Figure 3: Gulf Stream destabilization spatial analysis
   Figure 4: Multi-product comparison (when multiple products available)
+  Figure 5: F_ovS vs Global Mean Temperature correlation
 """
 
 from __future__ import annotations
@@ -270,6 +271,127 @@ def figure4_multi_product(results_dir: Path, output_dir: Path) -> None:
     save_publication_figure(fig, output_dir / "fig4_multi_product")
 
 
+def figure5_gmt_correlation(results_dir: Path, output_dir: Path) -> None:
+    """Figure 5: F_ovS decline correlated with global warming (GMT)."""
+    fovs_path = results_dir / "f_ovs.nc"
+    gmt_path = Path("data/external/gmt_gistemp.nc")
+
+    if not fovs_path.exists():
+        print(f"Skipping Figure 5: {fovs_path} not found")
+        return
+    if not gmt_path.exists():
+        print(f"Skipping Figure 5: {gmt_path} not found")
+        print("  Run: python scripts/download_gmt.py")
+        return
+
+    f_ovs = xr.open_dataarray(fovs_path)
+    gmt = xr.open_dataarray(gmt_path)
+
+    # Convert F_ovS to annual means
+    fovs_years = _time_to_years(f_ovs["time"])
+    fovs_annual_year = np.floor(fovs_years).astype(int)
+    unique_years = np.unique(fovs_annual_year)
+    fovs_ann_vals = np.array([
+        float(f_ovs.values[fovs_annual_year == y].mean())
+        for y in unique_years
+    ])
+
+    # Convert to mSv if values are small (in Sv)
+    scale = 1e3 if np.nanmax(np.abs(fovs_ann_vals)) < 1 else 1.0
+    unit = "mSv" if scale == 1e3 else "Sv"
+    fovs_ann_vals *= scale
+
+    # Get GMT for overlapping years
+    gmt_years = _time_to_years(gmt["time"]).astype(int)
+    overlap = np.intersect1d(unique_years, gmt_years)
+    if len(overlap) < 5:
+        print("Skipping Figure 5: insufficient year overlap between F_ovS and GMT")
+        return
+
+    fovs_overlap = np.array([fovs_ann_vals[unique_years == y][0] for y in overlap])
+    gmt_overlap = np.array([float(gmt.values[gmt_years == y][0]) for y in overlap])
+
+    valid = np.isfinite(fovs_overlap) & np.isfinite(gmt_overlap)
+    fovs_overlap = fovs_overlap[valid]
+    gmt_overlap = gmt_overlap[valid]
+    overlap = overlap[valid]
+
+    # Trends
+    fovs_trend = stats.linregress(overlap, fovs_overlap)
+    gmt_trend = stats.linregress(overlap, gmt_overlap)
+    # Correlation
+    r, p_corr = stats.pearsonr(gmt_overlap, fovs_overlap)
+
+    # --- Plot ---
+    fig, (ax1, ax2) = figure_double_col(nrows=1, ncols=2, height_ratio=0.45)
+
+    # Panel (a): dual-axis time series
+    color_fovs = FINGERPRINT_COLORS["f_ovs"]
+    color_gmt = COLORS["red"]
+
+    ax1.plot(overlap, fovs_overlap, color=color_fovs, linewidth=0.8,
+             marker="o", markersize=2, label=f"$F_{{ovS}}$ [{unit}]")
+    ax1.plot(overlap, fovs_trend.slope * overlap + fovs_trend.intercept,
+             color=color_fovs, linewidth=1.0, linestyle="--", alpha=0.7)
+    ax1.set_ylabel(f"$F_{{ovS}}$ [{unit}]", color=color_fovs)
+    ax1.tick_params(axis="y", colors=color_fovs)
+    ax1.set_xlabel("")
+
+    ax1_r = ax1.twinx()
+    ax1_r.spines["right"].set_visible(True)
+    ax1_r.plot(overlap, gmt_overlap, color=color_gmt, linewidth=0.8,
+               marker="s", markersize=2, label="GMT anomaly")
+    ax1_r.plot(overlap, gmt_trend.slope * overlap + gmt_trend.intercept,
+               color=color_gmt, linewidth=1.0, linestyle="--", alpha=0.7)
+    ax1_r.set_ylabel("GMT anomaly [\u00b0C]", color=color_gmt)
+    ax1_r.tick_params(axis="y", colors=color_gmt)
+
+    # Combined legend
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax1_r.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left", fontsize=5)
+
+    add_panel_label(ax1, "a")
+
+    # Trend annotation for F_ovS
+    p_str = "p < 0.001" if fovs_trend.pvalue < 0.001 else f"p = {fovs_trend.pvalue:.3f}"
+    ax1.annotate(
+        f"$F_{{ovS}}$ trend: {fovs_trend.slope:+.2f} {unit}/yr ({p_str})",
+        xy=(0.03, 0.12), xycoords="axes fraction", fontsize=5,
+        color=color_fovs,
+        bbox={"boxstyle": "round,pad=0.3", "facecolor": "white",
+              "edgecolor": "0.7", "alpha": 0.9},
+    )
+
+    # Panel (b): scatter + regression
+    ax2.scatter(gmt_overlap, fovs_overlap, color=color_fovs, s=12,
+                edgecolors="none", alpha=0.7, zorder=3)
+
+    # Regression line
+    reg = stats.linregress(gmt_overlap, fovs_overlap)
+    gmt_range = np.linspace(gmt_overlap.min(), gmt_overlap.max(), 100)
+    ax2.plot(gmt_range, reg.slope * gmt_range + reg.intercept,
+             color=COLORS["red"], linewidth=1.0, linestyle="--")
+
+    ax2.set_xlabel("GMT anomaly [\u00b0C]")
+    ax2.set_ylabel(f"$F_{{ovS}}$ annual mean [{unit}]")
+
+    p_corr_str = "p < 0.001" if p_corr < 0.001 else (
+        f"p = {p_corr:.3f}" if p_corr < 0.01 else f"p = {p_corr:.2f}")
+    ax2.annotate(
+        f"r = {r:.2f} ({p_corr_str})",
+        xy=(0.03, 0.95), xycoords="axes fraction", fontsize=6,
+        va="top",
+        bbox={"boxstyle": "round,pad=0.3", "facecolor": "white",
+              "edgecolor": "0.7", "alpha": 0.9},
+    )
+
+    add_panel_label(ax2, "b")
+
+    fig.tight_layout(w_pad=2.5)
+    save_publication_figure(fig, output_dir / "fig5_gmt_correlation")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Generate Nature Communications publication figures."
@@ -287,6 +409,7 @@ def main() -> None:
     figure2_fingerprints(results_dir, output_dir)
     figure3_gulf_stream(results_dir, output_dir)
     figure4_multi_product(results_dir, output_dir)
+    figure5_gmt_correlation(results_dir, output_dir)
     print("Done.")
 
 

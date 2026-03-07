@@ -22,6 +22,14 @@ SINGLE_COL = 3.46  # inches
 DOUBLE_COL = 7.09  # inches
 MAX_HEIGHT = 9.72  # inches
 
+# GRL (Geophysical Research Letters) figure specifications:
+# - Single column: 8.4 cm (3.31 in)
+# - Full width: 17.1 cm (6.73 in)
+# - Max height: 23.7 cm (9.33 in)
+GRL_SINGLE_COL = 3.31  # inches
+GRL_FULL_WIDTH = 6.73  # inches
+GRL_MAX_HEIGHT = 9.33  # inches
+
 # Color palette — colorblind-safe, print-friendly
 # Based on Paul Tol's qualitative palette
 COLORS = {
@@ -111,6 +119,40 @@ def figure_double_col(
     fig, axes = plt.subplots(
         nrows, ncols,
         figsize=(DOUBLE_COL, min(h, MAX_HEIGHT)),
+        **kwargs,
+    )
+    return fig, axes
+
+
+def figure_grl_single(
+    nrows: int = 1,
+    ncols: int = 1,
+    height_ratio: float = 0.75,
+    **kwargs: Any,
+) -> tuple[Any, Any]:
+    """Create a single-column GRL figure."""
+    apply_nature_style()
+    h = GRL_SINGLE_COL * height_ratio * nrows
+    fig, axes = plt.subplots(
+        nrows, ncols,
+        figsize=(GRL_SINGLE_COL, min(h, GRL_MAX_HEIGHT)),
+        **kwargs,
+    )
+    return fig, axes
+
+
+def figure_grl_full(
+    nrows: int = 1,
+    ncols: int = 1,
+    height_ratio: float = 0.4,
+    **kwargs: Any,
+) -> tuple[Any, Any]:
+    """Create a full-width GRL figure."""
+    apply_nature_style()
+    h = GRL_FULL_WIDTH * height_ratio * nrows
+    fig, axes = plt.subplots(
+        nrows, ncols,
+        figsize=(GRL_FULL_WIDTH, min(h, GRL_MAX_HEIGHT)),
         **kwargs,
     )
     return fig, axes
