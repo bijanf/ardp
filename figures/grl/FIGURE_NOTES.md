@@ -7,7 +7,8 @@
 
 ### Panel (a): SSS trend map
 
-- **Method:** Per-pixel OLS linear regression of monthly SSS against fractional year. Vectorized via normal equations for all-valid pixels; scipy `linregress` fallback for partial-NaN coastal pixels.
+- **Deseasonalization:** Monthly climatology (mean January, mean February, ..., mean December) is computed and subtracted at each pixel before trend fitting. This removes the seasonal cycle from the residuals without affecting the slope (the seasonal cycle is periodic and orthogonal to a linear trend over complete years). The result is that the residual variance is reduced, yielding smaller standard errors and more powerful significance tests.
+- **Method:** Per-pixel OLS linear regression of **deseasonalized SSS anomalies** against fractional year. Vectorized via normal equations for all-valid pixels; scipy `linregress` fallback for partial-NaN coastal pixels.
 - **Units:** PSU/decade (slope × 10).
 - **Colormap:** RdBu_r (diverging), symmetric range from 98th percentile of |trend|, centered on zero.
 - **Contour lines:**
@@ -35,7 +36,7 @@
 - Land fraction: 33.5%.
 
 ### Suggested caption
-> **Figure X.** Geographic pattern of sea surface salinity (SSS) trends from GLORYS12 reanalysis (1993–2023). **(a)** Per-pixel linear SSS trend (PSU decade⁻¹) from OLS regression of 372 monthly fields. Red (blue) contours enclose regions with trends exceeding +0.08 (−0.08) PSU decade⁻¹ after Gaussian smoothing (σ = 8 grid cells). Cross-hatching marks areas where the trend is not significant at the 95% level. The dashed gray line marks the zero-trend contour. **(b)** Zonal-mean SSS trend across Atlantic longitudes (excluding Mediterranean, Baltic, Hudson Bay, and Gulf of Mexico). Shading shows the 95% confidence interval on the mean, adjusted for spatial autocorrelation using effective degrees of freedom (Bretherton et al., 1999). Solid (dashed) segments indicate latitudes where the zonal-mean trend is (is not) significantly different from zero.
+> **Figure X.** Geographic pattern of sea surface salinity (SSS) trends from GLORYS12 reanalysis (1993–2023). **(a)** Per-pixel linear SSS trend (PSU decade⁻¹) from OLS regression of deseasonalized monthly anomalies (372 months; monthly climatology removed at each grid point prior to fitting). Red (blue) contours enclose regions with trends exceeding +0.08 (−0.08) PSU decade⁻¹ after Gaussian smoothing (σ = 8 grid cells). Cross-hatching marks areas where the trend is not significant at the 95% level (two-sided t-test on the deseasonalized residuals). The dashed gray line marks the zero-trend contour. **(b)** Zonal-mean SSS trend across Atlantic longitudes (excluding Mediterranean, Baltic, Hudson Bay, and Gulf of Mexico). Shading shows the 95% confidence interval on the mean, adjusted for spatial autocorrelation using effective degrees of freedom (N_eff; Bretherton et al., 1999). Solid (dashed) segments indicate latitudes where the zonal-mean trend is (is not) significantly different from zero at the 95% level.
 
 ### References
 - Bretherton, C. S., Widmann, M., Dymnikov, V. P., Wallace, J. M., & Bladé, I. (1999). The effective number of spatial degrees of freedom of a time-varying field. *J. Climate*, 12, 1990–2009.
