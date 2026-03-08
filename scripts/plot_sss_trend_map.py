@@ -1,0 +1,473 @@
+#!/usr/bin/env python3
+"""Plot geographic SSS trend map with significance stippling.
+
+Loads GLORYS12 SSS data, computes per-pixel linear trends (PSU/decade),
+and produces a two-panel GRL figure:
+  (a) SSS trend map with significance stippling and salinity pile-up region boxes
+  (b) Zonal-mean SSS trend profile (latitude vs trend)
+"""
+
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+
+import cartopy.crs as ccrs
+import matplotlib.pyplot as plt
+import numpy as np
+import xarray as xr
+
+from scipy.ndimage import gaussian_filter
+
+from ardp.constants import SUBTROPICAL_SOUTH_ATLANTIC
+from ardp.viz.style import (
+    add_panel_label,
+    apply_nature_style,
+    save_publication_figure,
+)
+
+
+def load_glorys12_sss(data_dir: Path) -> xr.DataArray:
+    """Load GLORYS12 surface salinity (SSS).
+
+    Returns a DataArray with dims (time, y, x) and 1D lat/lon coords.
+    """
+    # Only open salinity variable, select surface depth to minimize memory
+    files = sorted(data_dir.glob("*.nc"))
+    chunks: list[xr.DataArray] = []
+    for f in files:
+        ds = xr.open_dataset(f)
+        sss_chunk = ds["so"].isel(depth=0).load()
+        chunks.append(sss_chunk)
+        ds.close()
+
+    sss = xr.concat(chunks, dim="time")
+
+    # Rename dims
+    if "latitude" in sss.dims:
+        sss = sss.rename({"latitude": "y"})
+    if "longitude" in sss.dims:
+        sss = sss.rename({"longitude": "x"})
+
+    return sss
+
+
+def compute_trend_field(
+    sss: xr.DataArray,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Compute per-pixel OLS trend and p-value (vectorized).
+
+    Parameters
+    ----------
+    sss : xr.DataArray
+        Surface salinity with dims (time, y, x).
+
+    Returns
+    -------
+    trend : ndarray (y, x)
+        Linear trend in PSU/decade.
+    pvalue : ndarray (y, x)
+        Two-sided p-value for the slope.
+    n_valid : ndarray (y, x)
+        Number of valid (non-NaN) timesteps per pixel.
+    """
+    from scipy import stats as sp_stats
+
+    # Convert time to fractional years
+    times = sss["time"].values
+    years = np.array([
+        t.year + (t.month - 1) / 12.0 + (t.day - 1) / 365.25
+        for t in times.astype("datetime64[us]").astype("object")
+    ])
+
+    data = sss.values  # (T, Y, X)
+    nt, ny, nx = data.shape
+
+    # Reshape to (T, N) where N = ny * nx
+    data_2d = data.reshape(nt, -1)
+
+    # Count valid observations per pixel
+    valid_mask = np.isfinite(data_2d)  # (T, N)
+    n_valid = valid_mask.sum(axis=0).reshape(ny, nx)
+
+    # Vectorized OLS via normal equations:
+    # y = a + b*t  =>  [1, t] @ [a, b]^T = y
+    # For pixels with all-valid data we can use matrix algebra directly.
+    # For pixels with some NaN, fall back to per-pixel computation.
+
+    trend = np.full(ny * nx, np.nan)
+    pvalue = np.full(ny * nx, np.nan)
+
+    # --- Fast path: pixels valid at all timesteps ---
+    all_valid = valid_mask.all(axis=0)  # (N,)
+    if all_valid.any():
+        Y = data_2d[:, all_valid]  # (T, M)
+        t = years
+        t_mean = t.mean()
+        y_mean = Y.mean(axis=0)  # (M,)
+
+        # Slope = sum((t - t_mean)*(y - y_mean)) / sum((t - t_mean)^2)
+        t_anom = t - t_mean  # (T,)
+        ss_tt = np.sum(t_anom ** 2)  # scalar
+        ss_ty = t_anom @ (Y - y_mean)  # (M,)
+        slopes = ss_ty / ss_tt  # (M,)
+
+        # Residuals and standard error of slope
+        predicted = np.outer(t_anom, slopes) + y_mean  # (T, M)
+        residuals = Y - predicted
+        dof = nt - 2
+        mse = np.sum(residuals ** 2, axis=0) / dof  # (M,)
+        se_slope = np.sqrt(mse / ss_tt)  # (M,)
+
+        # t-statistic and p-value
+        with np.errstate(divide="ignore", invalid="ignore"):
+            t_stat = slopes / se_slope
+        pvals = 2.0 * sp_stats.t.sf(np.abs(t_stat), dof)
+
+        trend[all_valid] = slopes * 10.0  # per decade
+        pvalue[all_valid] = pvals
+
+    # --- Slow path: pixels with some NaN ---
+    partial = (~all_valid) & (n_valid.ravel() >= 24)  # need >= 2 years
+    idx_partial = np.where(partial)[0]
+    if len(idx_partial) > 0:
+        for j in idx_partial:
+            mask_j = valid_mask[:, j]
+            t_j = years[mask_j]
+            y_j = data_2d[mask_j, j]
+            slope, intercept, r, p, se = sp_stats.linregress(t_j, y_j)
+            trend[j] = slope * 10.0
+            pvalue[j] = p
+
+    trend = trend.reshape(ny, nx)
+    pvalue = pvalue.reshape(ny, nx)
+
+    return trend, pvalue, n_valid
+
+
+def plot_sss_trend_figure(
+    trend: np.ndarray,
+    pvalue: np.ndarray,
+    lon: np.ndarray,
+    lat: np.ndarray,
+    outpath: Path,
+) -> None:
+    """Create two-panel GRL figure: trend map + zonal-mean profile.
+
+    Uses data-driven contours to highlight salinification/freshening hotspots
+    instead of rectangular boxes. Smooth Gaussian-filtered contours trace
+    the actual ocean signal organically.
+    """
+    import cartopy.feature as cfeature
+    import matplotlib.colors as mcolors
+    import matplotlib.patheffects as pe
+
+    apply_nature_style()
+
+    fig = plt.figure(figsize=(6.73, 5.0))
+    gs = fig.add_gridspec(
+        1, 2, width_ratios=[2.5, 1], wspace=0.08,
+        left=0.02, right=0.95, top=0.92, bottom=0.12,
+    )
+
+    proj = ccrs.PlateCarree()
+
+    # --- Panel (a): SSS trend map ---
+    ax_map = fig.add_subplot(gs[0], projection=proj)
+    ax_map.set_extent([-80, 30, -55, 70], crs=proj)
+
+    # Land and ocean features — dark land so ocean trends dominate
+    ax_map.add_feature(cfeature.LAND, facecolor="#a09e99", edgecolor="none", zorder=2)
+    ax_map.add_feature(cfeature.OCEAN, facecolor="#f7f9fc", edgecolor="none", zorder=0)
+    ax_map.coastlines(linewidth=0.3, color="0.45", zorder=3)
+
+    # Gridlines
+    gl = ax_map.gridlines(
+        draw_labels=True, linewidth=0.3, color="0.7", alpha=0.5,
+        linestyle=":", zorder=1,
+    )
+    gl.top_labels = False
+    gl.right_labels = False
+    gl.xlabel_style = {"size": 5, "color": "0.4"}
+    gl.ylabel_style = {"size": 5, "color": "0.4"}
+
+    # Symmetric color range from 98th percentile
+    vmax = np.nanpercentile(np.abs(trend), 98)
+    vmax = np.ceil(vmax * 20) / 20  # round to nearest 0.05
+
+    # Custom diverging colormap: more perceptually uniform
+    # Freshen (blue) -> white -> Salinify (red/amber)
+    cmap = plt.cm.RdBu_r.copy()
+    cmap.set_bad("#a09e99")  # land = same as land feature
+
+    # Trend field (pcolormesh for the base layer)
+    im = ax_map.pcolormesh(
+        lon, lat, trend,
+        transform=proj,
+        cmap=cmap,
+        vmin=-vmax,
+        vmax=vmax,
+        shading="auto",
+        zorder=1,
+    )
+
+    # --- Significance stippling: sparse dots where p >= 0.05 (NOT significant) ---
+    # Convention: stipple the NON-significant areas to de-emphasize them,
+    # leaving significant trends visually clean and prominent.
+    lon2d, lat2d = np.meshgrid(lon, lat)
+    nonsig_mask = ((pvalue >= 0.05) & np.isfinite(trend)).astype(float)
+    nonsig_smooth = gaussian_filter(nonsig_mask, sigma=1.5)
+    ax_map.contourf(
+        lon2d, lat2d, nonsig_smooth,
+        levels=[0.5, 1.5],
+        hatches=["xxx"],
+        colors="none",
+        transform=proj,
+        zorder=2,
+        alpha=0.0,
+    )
+    # Make hatch lines thin and subtle
+    for collection in ax_map.collections:
+        collection.set_linewidth(0.0)
+        collection.set_edgecolor("0.5")
+
+    # --- Data-driven hotspot contours ---
+    # Smooth the trend field for organic contour lines
+    trend_smooth = trend.copy()
+    trend_smooth[np.isnan(trend_smooth)] = 0
+    trend_smooth = gaussian_filter(trend_smooth, sigma=8)
+    # Re-mask land
+    trend_smooth[np.isnan(trend)] = np.nan
+
+    # Salinification hotspot contour (trend > +0.08 PSU/decade)
+    ax_map.contour(
+        lon2d, lat2d, trend_smooth,
+        levels=[0.08],
+        colors=["#c0392b"],
+        linewidths=[1.0],
+        linestyles=["solid"],
+        transform=proj,
+        zorder=4,
+    )
+
+    # Freshening hotspot contour (trend < -0.08 PSU/decade)
+    ax_map.contour(
+        lon2d, lat2d, trend_smooth,
+        levels=[-0.08],
+        colors=["#2471a3"],
+        linewidths=[1.0],
+        linestyles=["solid"],
+        transform=proj,
+        zorder=4,
+    )
+
+    # Thin zero contour for reference
+    ax_map.contour(
+        lon2d, lat2d, trend_smooth,
+        levels=[0],
+        colors=["0.4"],
+        linewidths=[0.6],
+        linestyles=["--"],
+        transform=proj,
+        zorder=3,
+    )
+
+    # Colorbar — horizontal below longitude tick labels
+    cax = fig.add_axes([0.05, 0.01, 0.52, 0.02])
+    cbar = fig.colorbar(im, cax=cax, orientation="horizontal", extend="both")
+    cbar.set_label("Sea surface salinity trend (PSU decade$^{-1}$)", fontsize=6)
+    cbar.ax.tick_params(labelsize=5)
+
+    ax_map.set_title(
+        "GLORYS12 SSS trend  1993\u20132023",
+        fontsize=8, fontweight="bold", pad=8,
+    )
+    add_panel_label(ax_map, "a", x=0.01, y=1.03)
+
+    # --- Panel (b): Zonal-mean SSS trend profile ---
+    ax_zonal = fig.add_subplot(gs[1])
+
+    # Build Atlantic-only mask: exclude Mediterranean, Baltic, Hudson Bay, etc.
+    # Use geographic polygons for the Atlantic basin
+    lon2d_full, lat2d_full = np.meshgrid(lon, lat)
+    atlantic_mask = np.ones_like(trend, dtype=bool)
+
+    # Start with broad Atlantic extent
+    atlantic_mask &= (lon2d_full >= -80) & (lon2d_full <= 20)
+
+    # Exclude Mediterranean (east of ~5°W, north of ~30°N, below ~46°N)
+    med_mask = (lon2d_full > -6) & (lat2d_full > 30) & (lat2d_full < 46)
+    atlantic_mask &= ~med_mask
+
+    # Exclude Baltic Sea (east of ~10°E, north of ~54°N)
+    baltic_mask = (lon2d_full > 10) & (lat2d_full > 54)
+    atlantic_mask &= ~baltic_mask
+
+    # Exclude Hudson Bay (west of ~75°W, north of ~50°N, or enclosed region)
+    hudson_mask = (lon2d_full < -75) & (lat2d_full > 50) & (lat2d_full < 66)
+    atlantic_mask &= ~hudson_mask
+
+    # Exclude Gulf of Mexico interior (west of ~82°W, lat 18-31°N)
+    gom_mask = (lon2d_full < -82) & (lat2d_full > 18) & (lat2d_full < 31)
+    atlantic_mask &= ~gom_mask
+
+    # Mask land (NaN in trend)
+    atlantic_mask &= np.isfinite(trend)
+
+    # Apply mask
+    trend_atlantic_masked = np.where(atlantic_mask, trend, np.nan)
+
+    # --- Rigorous zonal-mean uncertainty accounting for spatial autocorrelation ---
+    # At each latitude:
+    #   1. Compute zonal mean and std of trend across ocean longitudes
+    #   2. Estimate spatial decorrelation length from lag-autocorrelation
+    #   3. N_eff = ocean_width / (2 * decorrelation_length)
+    #   4. SE = std / sqrt(N_eff), then 95% CI = mean ± 1.96 * SE
+    ny = len(lat)
+    dlon = np.abs(lon[1] - lon[0])  # grid spacing in degrees
+
+    zonal_mean = np.full(ny, np.nan)
+    ci_lo = np.full(ny, np.nan)
+    ci_hi = np.full(ny, np.nan)
+    n_eff_profile = np.full(ny, np.nan)
+
+    for j in range(ny):
+        row = trend_atlantic_masked[j, :]
+        valid = np.isfinite(row)
+        n_ocean = valid.sum()
+        if n_ocean < 5:
+            continue
+
+        vals = row[valid]
+        zonal_mean[j] = np.mean(vals)
+        sigma = np.std(vals, ddof=1)
+
+        if sigma < 1e-12:
+            ci_lo[j] = zonal_mean[j]
+            ci_hi[j] = zonal_mean[j]
+            n_eff_profile[j] = n_ocean
+            continue
+
+        # Estimate decorrelation length from lag-1 autocorrelation
+        # Use the full row (with NaN gaps) — compute autocorrelation on
+        # contiguous ocean segments
+        anomaly = vals - zonal_mean[j]
+        if len(anomaly) > 2:
+            # Lag-1 autocorrelation
+            r1 = np.corrcoef(anomaly[:-1], anomaly[1:])[0, 1]
+            r1 = np.clip(r1, 0.0, 0.99)  # bound to [0, 1)
+
+            # Decorrelation length in grid points (Bretherton et al. 1999):
+            # N_eff = N * (1 - r1) / (1 + r1)
+            n_eff = max(2, n_ocean * (1 - r1) / (1 + r1))
+        else:
+            n_eff = n_ocean
+
+        n_eff_profile[j] = n_eff
+        se = sigma / np.sqrt(n_eff)
+        ci_lo[j] = zonal_mean[j] - 1.96 * se
+        ci_hi[j] = zonal_mean[j] + 1.96 * se
+
+    # --- Plot ---
+    # 95% CI shading
+    ax_zonal.fill_betweenx(
+        lat, ci_lo, ci_hi,
+        alpha=0.2, color="#4477AA", linewidth=0,
+        label="95% CI ($N_{eff}$-adjusted)",
+    )
+    # Significant segments: solid bold; non-significant: dashed
+    sig_lat = (ci_lo > 0) | (ci_hi < 0)
+    zonal_mean_sig = np.where(sig_lat, zonal_mean, np.nan)
+    zonal_mean_nonsig = np.where(~sig_lat, zonal_mean, np.nan)
+
+    ax_zonal.plot(
+        zonal_mean_sig, lat,
+        color="#4477AA", linewidth=1.5, solid_capstyle="round",
+        zorder=5, label="significant",
+    )
+    ax_zonal.plot(
+        zonal_mean_nonsig, lat,
+        color="#4477AA", linewidth=0.8, linestyle="--",
+        zorder=4, alpha=0.6, label="not significant",
+    )
+    ax_zonal.axvline(0, color="0.6", linewidth=0.5, linestyle="--", zorder=0)
+
+    ax_zonal.set_ylim(-55, 70)
+    ax_zonal.set_xlabel("SSS trend (PSU decade$^{-1}$)", fontsize=6)
+    ax_zonal.set_ylabel("Latitude (\u00b0N)", fontsize=6)
+    ax_zonal.set_title("Zonal mean\n(Atlantic)", fontsize=7, fontweight="bold")
+    ax_zonal.legend(fontsize=4, loc="upper left", framealpha=0.7)
+    ax_zonal.tick_params(labelsize=5)
+
+    # Subtle background coloring: positive = warm tint, negative = cool tint
+    ax_zonal.fill_betweenx(
+        lat,
+        np.where(zonal_mean > 0, 0, zonal_mean),
+        np.where(zonal_mean > 0, zonal_mean, 0),
+        where=(zonal_mean > 0),
+        alpha=0.06, color="#c0392b", linewidth=0,
+    )
+    ax_zonal.fill_betweenx(
+        lat,
+        np.where(zonal_mean < 0, zonal_mean, 0),
+        np.where(zonal_mean < 0, 0, zonal_mean),
+        where=(zonal_mean < 0),
+        alpha=0.06, color="#2471a3", linewidth=0,
+    )
+
+    # Clean up spines
+    ax_zonal.spines["top"].set_visible(False)
+    ax_zonal.spines["right"].set_visible(False)
+
+    add_panel_label(ax_zonal, "b", x=-0.3, y=1.03)
+
+    save_publication_figure(fig, outpath)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Plot SSS trend map from GLORYS12 data"
+    )
+    parser.add_argument(
+        "--data-dir",
+        type=Path,
+        default=Path("data/glorys12"),
+        help="Directory containing GLORYS12 NetCDF files",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=Path("figures/grl/fig_sss_trend_map"),
+        help="Output path (without extension)",
+    )
+    args = parser.parse_args()
+
+    print("Loading GLORYS12 SSS data...")
+    sss = load_glorys12_sss(args.data_dir)
+    print(f"  Shape: {sss.shape}, time range: {sss.time.values[0]} to {sss.time.values[-1]}")
+
+    lon = sss["x"].values
+    lat = sss["y"].values
+
+    print("Computing per-pixel trends (vectorized OLS)...")
+    trend, pvalue, n_valid = compute_trend_field(sss)
+
+    # Summary statistics
+    land_frac = np.isnan(trend).mean() * 100
+    sig_frac = (pvalue < 0.05).mean() * 100
+    print(f"  Land fraction: {land_frac:.1f}%")
+    print(f"  Significant pixels (p<0.05): {sig_frac:.1f}%")
+
+    # Check South Atlantic trend sign
+    lat_mask = (lat >= -35) & (lat <= -15)
+    lon_mask = (lon >= -60) & (lon <= 20)
+    stsa_trend = np.nanmean(trend[np.ix_(lat_mask, lon_mask)])
+    print(f"  STSA mean trend: {stsa_trend:+.4f} PSU/decade")
+
+    print("Plotting...")
+    plot_sss_trend_figure(trend, pvalue, lon, lat, args.output)
+    print("Done.")
+
+
+if __name__ == "__main__":
+    main()
