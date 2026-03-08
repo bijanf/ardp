@@ -52,10 +52,42 @@ def load_glorys12_sss(data_dir: Path) -> xr.DataArray:
     return sss
 
 
+def _deseasonalize(data_2d: np.ndarray, months: np.ndarray) -> np.ndarray:
+    """Remove monthly climatology from each pixel (in-place safe).
+
+    Parameters
+    ----------
+    data_2d : ndarray (T, N)
+        Raw values, may contain NaN.
+    months : ndarray (T,)
+        Month index 1–12 for each timestep.
+
+    Returns
+    -------
+    anomaly : ndarray (T, N)
+        Deseasonalized anomalies.
+    """
+    anomaly = data_2d.copy()
+    for m in range(1, 13):
+        mask = months == m
+        clim = np.nanmean(data_2d[mask, :], axis=0)  # (N,)
+        anomaly[mask, :] -= clim
+    return anomaly
+
+
 def compute_trend_field(
     sss: xr.DataArray,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Compute per-pixel OLS trend and p-value (vectorized).
+    """Compute per-pixel OLS trend and p-value on deseasonalized anomalies.
+
+    Methodology:
+      1. Remove monthly climatology at each pixel (mean Jan, mean Feb, ...),
+         producing anomalies that isolate interannual variability.
+      2. Fit OLS: anomaly(t) = a + b*t + ε, where t is fractional year.
+      3. The slope b is identical whether computed on raw or anomaly data
+         (seasonal cycle is periodic ⊥ linear trend over full years), but
+         removing the seasonal cycle reduces residual variance, yielding
+         smaller standard errors and more powerful significance tests.
 
     Parameters
     ----------
@@ -67,18 +99,20 @@ def compute_trend_field(
     trend : ndarray (y, x)
         Linear trend in PSU/decade.
     pvalue : ndarray (y, x)
-        Two-sided p-value for the slope.
+        Two-sided p-value for the slope (on deseasonalized residuals).
     n_valid : ndarray (y, x)
         Number of valid (non-NaN) timesteps per pixel.
     """
     from scipy import stats as sp_stats
 
-    # Convert time to fractional years
+    # Convert time to fractional years and extract month indices
     times = sss["time"].values
+    time_objs = times.astype("datetime64[us]").astype("object")
     years = np.array([
         t.year + (t.month - 1) / 12.0 + (t.day - 1) / 365.25
-        for t in times.astype("datetime64[us]").astype("object")
+        for t in time_objs
     ])
+    months = np.array([t.month for t in time_objs])
 
     data = sss.values  # (T, Y, X)
     nt, ny, nx = data.shape
@@ -86,22 +120,23 @@ def compute_trend_field(
     # Reshape to (T, N) where N = ny * nx
     data_2d = data.reshape(nt, -1)
 
+    # Deseasonalize: subtract monthly climatology at each pixel
+    print("  Removing seasonal cycle (monthly climatology)...")
+    anom_2d = _deseasonalize(data_2d, months)
+
     # Count valid observations per pixel
-    valid_mask = np.isfinite(data_2d)  # (T, N)
+    valid_mask = np.isfinite(anom_2d)  # (T, N)
     n_valid = valid_mask.sum(axis=0).reshape(ny, nx)
 
-    # Vectorized OLS via normal equations:
-    # y = a + b*t  =>  [1, t] @ [a, b]^T = y
-    # For pixels with all-valid data we can use matrix algebra directly.
-    # For pixels with some NaN, fall back to per-pixel computation.
-
+    # Vectorized OLS on anomalies via normal equations:
+    # anom = a + b*t  =>  slope is the interannual trend
     trend = np.full(ny * nx, np.nan)
     pvalue = np.full(ny * nx, np.nan)
 
     # --- Fast path: pixels valid at all timesteps ---
     all_valid = valid_mask.all(axis=0)  # (N,)
     if all_valid.any():
-        Y = data_2d[:, all_valid]  # (T, M)
+        Y = anom_2d[:, all_valid]  # (T, M)
         t = years
         t_mean = t.mean()
         y_mean = Y.mean(axis=0)  # (M,)
@@ -134,7 +169,7 @@ def compute_trend_field(
         for j in idx_partial:
             mask_j = valid_mask[:, j]
             t_j = years[mask_j]
-            y_j = data_2d[mask_j, j]
+            y_j = anom_2d[mask_j, j]
             slope, intercept, r, p, se = sp_stats.linregress(t_j, y_j)
             trend[j] = slope * 10.0
             pvalue[j] = p
