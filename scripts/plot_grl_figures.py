@@ -74,26 +74,32 @@ def _compute_trend(ts: xr.DataArray) -> dict:
     }
 
 
-def _annual_june_means(obs_ds: xr.Dataset | xr.DataArray, var: str | None = None
-                       ) -> tuple[np.ndarray, np.ndarray]:
-    """Extract June means from observational data for comparison with ORAS5 June values."""
-    if var is not None:
-        da = obs_ds[var]
-    else:
-        da = obs_ds
+def _align_monthly(
+    oras5: xr.DataArray, obs: xr.DataArray
+) -> tuple[np.ndarray, np.ndarray, np.ndarray] | None:
+    """Align ORAS5 and observational data on common months.
 
-    times = pd.DatetimeIndex(da.time.values)
-    june_mask = times.month == 6
-    if june_mask.sum() == 0:
-        # Fall back to annual means
-        years = np.unique(times.year)
-        vals = np.array([float(da.sel(time=da.time.dt.year == y).mean())
-                         for y in years])
-        return years, vals
+    Returns (oras5_vals, obs_vals, common_times) or None if < 3 overlap.
+    """
+    oras5_months = pd.DatetimeIndex(oras5.time.values).to_period("M")
+    obs_months = pd.DatetimeIndex(obs.time.values).to_period("M")
+    common = oras5_months.intersection(obs_months)
 
-    june_da = da.isel(time=june_mask)
-    years = pd.DatetimeIndex(june_da.time.values).year.values
-    return years, june_da.values.ravel()
+    if len(common) < 3:
+        return None
+
+    o_mask = np.isin(oras5_months, common)
+    s_mask = np.isin(obs_months, common)
+
+    o_vals = oras5.values.ravel()[o_mask]
+    s_vals = obs.values.ravel()[s_mask]
+    times = oras5.time.values[o_mask]
+
+    valid = np.isfinite(o_vals) & np.isfinite(s_vals)
+    if valid.sum() < 3:
+        return None
+
+    return o_vals[valid], s_vals[valid], times[valid]
 
 
 def figure1_fovs_rapid(results_dir: Path, output_dir: Path) -> None:
@@ -138,32 +144,19 @@ def figure1_fovs_rapid(results_dir: Path, output_dir: Path) -> None:
     add_panel_label(ax1, "a")
     add_trend_annotation(ax1, trend["slope"] * scale, unit, trend["pvalue"])
 
-    # --- Panel (b): ORAS5 vs RAPID MOC at 26.5N ---
+    # --- Panel (b): ORAS5 vs RAPID MOC at 26.5N (monthly) ---
     has_rapid = moc_26n_path.exists() and rapid_path.exists()
     if has_rapid:
         oras5_moc = xr.open_dataarray(moc_26n_path)
         rapid_ds = xr.open_dataset(rapid_path)
+        rapid_moc = rapid_ds["moc_mar_hc10"]
 
-        # Get ORAS5 years and values
-        oras5_years = _time_to_years(oras5_moc["time"])
-        oras5_yrs = np.floor(oras5_years).astype(int)
-        oras5_vals = oras5_moc.values.ravel()
+        aligned = _align_monthly(oras5_moc, rapid_moc)
+        if aligned is not None:
+            o_v, r_v, _ = aligned
 
-        # Get RAPID June means for matching years
-        rapid_yrs, rapid_vals = _annual_june_means(rapid_ds, "moc_mar_hc10")
-
-        # Find common years
-        common = np.intersect1d(oras5_yrs, rapid_yrs)
-        if len(common) >= 3:
-            o_vals = np.array([oras5_vals[oras5_yrs == y][0] for y in common])
-            r_vals = np.array([rapid_vals[rapid_yrs == y][0] for y in common])
-
-            valid = np.isfinite(o_vals) & np.isfinite(r_vals)
-            o_v, r_v, yrs = o_vals[valid], r_vals[valid], common[valid]
-
-            # Scatter
-            ax2.scatter(r_v, o_v, color=FINGERPRINT_COLORS["f_ovs"], s=20,
-                        edgecolors="none", alpha=0.8, zorder=3)
+            ax2.scatter(r_v, o_v, color=FINGERPRINT_COLORS["f_ovs"], s=8,
+                        edgecolors="none", alpha=0.5, zorder=3)
 
             # 1:1 line
             vmin = min(o_v.min(), r_v.min()) - 1
@@ -191,7 +184,7 @@ def figure1_fovs_rapid(results_dir: Path, output_dir: Path) -> None:
                 f"r = {r:.2f} ({p_str})\n"
                 f"bias = {bias:+.1f} Sv\n"
                 f"RMSE = {rmse:.1f} Sv\n"
-                f"n = {len(o_v)} years",
+                f"n = {len(o_v)} months",
                 xy=(0.03, 0.95), xycoords="axes fraction",
                 fontsize=5, va="top",
                 bbox={"boxstyle": "round,pad=0.3", "facecolor": "white",
@@ -405,23 +398,17 @@ def figure4_validation_summary(results_dir: Path, output_dir: Path) -> None:
     ax_samba = fig.add_axes([0.58, 0.55, 0.38, 0.40])
     ax_ts = fig.add_axes([0.08, 0.08, 0.88, 0.38])
 
-    # --- Panel (a): RAPID scatter ---
+    # --- Panel (a): RAPID scatter (monthly) ---
     if rapid_path.exists():
         rapid_ds = xr.open_dataset(rapid_path)
-        rapid_yrs, rapid_vals = _annual_june_means(rapid_ds, "moc_mar_hc10")
+        rapid_moc = rapid_ds["moc_mar_hc10"]
 
-        oras5_yrs = np.floor(_time_to_years(oras5_26n["time"])).astype(int)
-        oras5_vals = oras5_26n.values.ravel()
-
-        common = np.intersect1d(oras5_yrs, rapid_yrs)
-        if len(common) >= 3:
-            o_v = np.array([oras5_vals[oras5_yrs == y][0] for y in common])
-            r_v = np.array([rapid_vals[rapid_yrs == y][0] for y in common])
-            valid = np.isfinite(o_v) & np.isfinite(r_v)
-            o_v, r_v = o_v[valid], r_v[valid]
+        aligned = _align_monthly(oras5_26n, rapid_moc)
+        if aligned is not None:
+            o_v, r_v, _ = aligned
 
             ax_rapid.scatter(r_v, o_v, color=FINGERPRINT_COLORS["f_ovs"],
-                             s=18, edgecolors="none", alpha=0.8, zorder=3)
+                             s=6, edgecolors="none", alpha=0.4, zorder=3)
 
             vmin = min(o_v.min(), r_v.min()) - 1
             vmax = max(o_v.max(), r_v.max()) + 1
@@ -443,7 +430,7 @@ def figure4_validation_summary(results_dir: Path, output_dir: Path) -> None:
                 f"r = {r:.2f} ({p_str})\n"
                 f"bias = {bias:+.1f} Sv\n"
                 f"RMSE = {rmse:.1f} Sv\n"
-                f"n = {len(o_v)}",
+                f"n = {len(o_v)} mo",
                 xy=(0.03, 0.95), xycoords="axes fraction",
                 fontsize=5, va="top",
                 bbox={"boxstyle": "round,pad=0.3", "facecolor": "white",
@@ -455,52 +442,47 @@ def figure4_validation_summary(results_dir: Path, output_dir: Path) -> None:
     ax_rapid.set_title("26.5\u00b0N validation", fontsize=7)
     add_panel_label(ax_rapid, "a", x=-0.15)
 
-    # --- Panel (b): SAMBA scatter ---
+    # --- Panel (b): SAMBA scatter (monthly) ---
     if samba_path.exists():
         samba_ds = xr.open_dataset(samba_path)
-        samba_yrs, samba_vals = _annual_june_means(samba_ds, "upper_cell")
+        samba_moc = samba_ds["upper_cell"]
 
-        oras5_yrs_34 = np.floor(_time_to_years(oras5_34s["time"])).astype(int)
-        oras5_vals_34 = oras5_34s.values.ravel()
-
-        common = np.intersect1d(oras5_yrs_34, samba_yrs)
-        if len(common) >= 3:
-            o_v = np.array([oras5_vals_34[oras5_yrs_34 == y][0] for y in common])
-            s_v = np.array([samba_vals[samba_yrs == y][0] for y in common])
-            valid = np.isfinite(o_v) & np.isfinite(s_v)
-            o_v, s_v = o_v[valid], s_v[valid]
+        aligned = _align_monthly(oras5_34s, samba_moc)
+        if aligned is not None:
+            o_v, s_v, _ = aligned
 
             ax_samba.scatter(s_v, o_v, color=COLORS["green"],
-                             s=18, edgecolors="none", alpha=0.8, zorder=3)
+                             s=10, edgecolors="none", alpha=0.6, zorder=3)
 
             vmin = min(o_v.min(), s_v.min()) - 2
             vmax = max(o_v.max(), s_v.max()) + 2
             ax_samba.plot([vmin, vmax], [vmin, vmax], color="0.6",
                           linewidth=0.5, linestyle=":", zorder=1)
 
-            if len(o_v) >= 3:
-                reg = stats.linregress(s_v, o_v)
-                x_fit = np.linspace(vmin, vmax, 100)
-                ax_samba.plot(x_fit, reg.slope * x_fit + reg.intercept,
-                              color=COLORS["red"], linewidth=1.0, linestyle="--")
+            reg = stats.linregress(s_v, o_v)
+            x_fit = np.linspace(vmin, vmax, 100)
+            ax_samba.plot(x_fit, reg.slope * x_fit + reg.intercept,
+                          color=COLORS["red"], linewidth=1.0, linestyle="--")
 
-                r, p = stats.pearsonr(s_v, o_v)
-                bias = np.mean(o_v - s_v)
-                p_str = "p < 0.001" if p < 0.001 else f"p = {p:.3f}"
-                ax_samba.annotate(
-                    f"r = {r:.2f} ({p_str})\n"
-                    f"bias = {bias:+.1f} Sv\n"
-                    f"n = {len(o_v)}",
-                    xy=(0.03, 0.95), xycoords="axes fraction",
-                    fontsize=5, va="top",
-                    bbox={"boxstyle": "round,pad=0.3", "facecolor": "white",
-                          "edgecolor": "0.7", "alpha": 0.9},
-                )
+            r, p = stats.pearsonr(s_v, o_v)
+            bias = np.mean(o_v - s_v)
+            rmse = np.sqrt(np.mean((o_v - s_v) ** 2))
+            p_str = "p < 0.001" if p < 0.001 else f"p = {p:.3f}"
+            ax_samba.annotate(
+                f"r = {r:.2f} ({p_str})\n"
+                f"bias = {bias:+.1f} Sv\n"
+                f"RMSE = {rmse:.1f} Sv\n"
+                f"n = {len(o_v)} mo",
+                xy=(0.03, 0.95), xycoords="axes fraction",
+                fontsize=5, va="top",
+                bbox={"boxstyle": "round,pad=0.3", "facecolor": "white",
+                      "edgecolor": "0.7", "alpha": 0.9},
+            )
             ax_samba.set_xlim(vmin, vmax)
             ax_samba.set_ylim(vmin, vmax)
             ax_samba.set_aspect("equal", adjustable="box")
         else:
-            ax_samba.text(0.5, 0.5, f"Overlap: {len(common)} years",
+            ax_samba.text(0.5, 0.5, "Insufficient overlap",
                           transform=ax_samba.transAxes, ha="center")
     else:
         ax_samba.text(0.5, 0.5, "Run: download_samba.py",
