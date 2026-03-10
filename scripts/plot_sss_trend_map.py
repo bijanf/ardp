@@ -52,6 +52,38 @@ def load_glorys12_sss(data_dir: Path) -> xr.DataArray:
     return sss
 
 
+def load_oras5_sss(data_dir: Path) -> tuple[xr.DataArray, np.ndarray, np.ndarray]:
+    """Load ORAS5 2D surface salinity.
+
+    Returns (sss DataArray, nav_lon 2D, nav_lat 2D).
+    ORAS5 uses a curvilinear NEMO grid with 2D coordinates.
+    """
+    files = sorted(data_dir.glob("sosaline_control_monthly_highres_2D_*.nc"))
+    if not files:
+        raise FileNotFoundError(f"No ORAS5 SSS files in {data_dir}")
+    print(f"  Found {len(files)} monthly files")
+
+    ds0 = xr.open_dataset(files[0])
+    nav_lon = ds0["nav_lon"].values
+    nav_lat = ds0["nav_lat"].values
+    ds0.close()
+
+    chunks_list: list[np.ndarray] = []
+    times: list[np.datetime64] = []
+    for f in files:
+        ds = xr.open_dataset(f)
+        chunks_list.append(ds["sosaline"].values[0])
+        times.append(ds["time_counter"].values[0])
+        ds.close()
+
+    sss = xr.DataArray(
+        np.stack(chunks_list, axis=0),
+        dims=("time", "y", "x"),
+        coords={"time": np.array(times)},
+    )
+    return sss, nav_lon, nav_lat
+
+
 def _deseasonalize(data_2d: np.ndarray, months: np.ndarray) -> np.ndarray:
     """Remove monthly climatology from each pixel (in-place safe).
 
@@ -186,37 +218,60 @@ def plot_sss_trend_figure(
     lon: np.ndarray,
     lat: np.ndarray,
     outpath: Path,
+    title: str = "GLORYS12 SSS trend  1993\u20132025",
+    is_2d_coords: bool = False,
+    pileup_path: Path | None = None,
 ) -> None:
-    """Create two-panel GRL figure: trend map + zonal-mean profile.
+    """Create GRL figure: trend map + zonal-mean profile + optional pile-up.
 
-    Uses data-driven contours to highlight salinification/freshening hotspots
-    instead of rectangular boxes. Smooth Gaussian-filtered contours trace
-    the actual ocean signal organically.
+    If pileup_path is provided, adds a bottom panel (c) with the salinity
+    pile-up time series, creating a 3-panel figure. Otherwise 2-panel.
+
+    Parameters
+    ----------
+    lon, lat : 1D arrays (regular grid) or 2D arrays (curvilinear grid).
+    is_2d_coords : if True, lon/lat are already 2D (e.g. ORAS5 NEMO grid).
+    pileup_path : path to salinity_pileup.nc (optional).
     """
     import cartopy.feature as cfeature
     import matplotlib.colors as mcolors
-    import matplotlib.patheffects as pe
+    from scipy import stats as sp_stats
 
     apply_nature_style()
 
-    fig = plt.figure(figsize=(6.73, 5.0))
-    gs = fig.add_gridspec(
-        1, 2, width_ratios=[2.5, 1], wspace=0.08,
-        left=0.02, right=0.95, top=0.92, bottom=0.12,
-    )
+    has_pileup = pileup_path is not None and pileup_path.exists()
+
+    if has_pileup:
+        fig = plt.figure(figsize=(6.73, 6.5))
+        gs = fig.add_gridspec(
+            2, 2, width_ratios=[2.5, 1], height_ratios=[2.2, 1],
+            wspace=0.08, hspace=0.30,
+            left=0.02, right=0.95, top=0.95, bottom=0.07,
+        )
+    else:
+        fig = plt.figure(figsize=(6.73, 5.0))
+        gs = fig.add_gridspec(
+            1, 2, width_ratios=[2.5, 1], wspace=0.08,
+            left=0.02, right=0.95, top=0.92, bottom=0.12,
+        )
 
     proj = ccrs.PlateCarree()
 
+    # Build 2D coordinate arrays
+    if is_2d_coords:
+        lon2d = lon
+        lat2d = lat
+    else:
+        lon2d, lat2d = np.meshgrid(lon, lat)
+
     # --- Panel (a): SSS trend map ---
-    ax_map = fig.add_subplot(gs[0], projection=proj)
+    ax_map = fig.add_subplot(gs[0, 0] if has_pileup else gs[0], projection=proj)
     ax_map.set_extent([-80, 30, -55, 70], crs=proj)
 
-    # Land and ocean features — dark land so ocean trends dominate
     ax_map.add_feature(cfeature.LAND, facecolor="#a09e99", edgecolor="none", zorder=2)
     ax_map.add_feature(cfeature.OCEAN, facecolor="#f7f9fc", edgecolor="none", zorder=0)
     ax_map.coastlines(linewidth=0.3, color="0.45", zorder=3)
 
-    # Gridlines
     gl = ax_map.gridlines(
         draw_labels=True, linewidth=0.3, color="0.7", alpha=0.5,
         linestyle=":", zorder=1,
@@ -226,266 +281,310 @@ def plot_sss_trend_figure(
     gl.xlabel_style = {"size": 5, "color": "0.4"}
     gl.ylabel_style = {"size": 5, "color": "0.4"}
 
-    # Symmetric color range from 98th percentile
     vmax = np.nanpercentile(np.abs(trend), 98)
-    vmax = np.ceil(vmax * 20) / 20  # round to nearest 0.05
+    vmax = np.ceil(vmax * 20) / 20
 
-    # Custom diverging colormap: more perceptually uniform
-    # Freshen (blue) -> white -> Salinify (red/amber)
     cmap = plt.cm.RdBu_r.copy()
-    cmap.set_bad("#a09e99")  # land = same as land feature
+    cmap.set_bad(color="none")
+    n_levels = 12
+    bounds = np.linspace(-vmax, vmax, n_levels + 1)
+    norm = mcolors.BoundaryNorm(bounds, cmap.N)
 
-    # Trend field (pcolormesh for the base layer)
     im = ax_map.pcolormesh(
-        lon, lat, trend,
-        transform=proj,
-        cmap=cmap,
-        vmin=-vmax,
-        vmax=vmax,
-        shading="auto",
-        zorder=1,
+        lon2d, lat2d, trend,
+        transform=proj, cmap=cmap, norm=norm,
+        shading="auto", zorder=1,
     )
 
-    # --- Significance stippling: sparse dots where p >= 0.05 (NOT significant) ---
-    # Convention: stipple the NON-significant areas to de-emphasize them,
-    # leaving significant trends visually clean and prominent.
-    lon2d, lat2d = np.meshgrid(lon, lat)
+    # Significance stippling
     nonsig_mask = ((pvalue >= 0.05) & np.isfinite(trend)).astype(float)
     nonsig_smooth = gaussian_filter(nonsig_mask, sigma=1.5)
     ax_map.contourf(
         lon2d, lat2d, nonsig_smooth,
-        levels=[0.5, 1.5],
-        hatches=["xxx"],
-        colors="none",
-        transform=proj,
-        zorder=2,
-        alpha=0.0,
+        levels=[0.5, 1.5], hatches=["xxx"], colors="none",
+        transform=proj, zorder=2, alpha=0.0,
     )
-    # Make hatch lines thin and subtle
     for collection in ax_map.collections:
         collection.set_linewidth(0.0)
         collection.set_edgecolor("0.5")
 
-    # --- Data-driven hotspot contours ---
-    # Smooth the trend field for organic contour lines
+    # Data-driven hotspot contours
     trend_smooth = trend.copy()
     trend_smooth[np.isnan(trend_smooth)] = 0
     trend_smooth = gaussian_filter(trend_smooth, sigma=8)
-    # Re-mask land
     trend_smooth[np.isnan(trend)] = np.nan
 
-    # Salinification hotspot contour (trend > +0.08 PSU/decade)
     ax_map.contour(
-        lon2d, lat2d, trend_smooth,
-        levels=[0.08],
-        colors=["#c0392b"],
-        linewidths=[1.0],
-        linestyles=["solid"],
-        transform=proj,
-        zorder=4,
+        lon2d, lat2d, trend_smooth, levels=[0.08],
+        colors=["#c0392b"], linewidths=[1.0], linestyles=["solid"],
+        transform=proj, zorder=4,
+    )
+    ax_map.contour(
+        lon2d, lat2d, trend_smooth, levels=[-0.08],
+        colors=["#2471a3"], linewidths=[1.0], linestyles=["solid"],
+        transform=proj, zorder=4,
+    )
+    ax_map.contour(
+        lon2d, lat2d, trend_smooth, levels=[0],
+        colors=["0.4"], linewidths=[0.6], linestyles=["--"],
+        transform=proj, zorder=3,
     )
 
-    # Freshening hotspot contour (trend < -0.08 PSU/decade)
-    ax_map.contour(
-        lon2d, lat2d, trend_smooth,
-        levels=[-0.08],
-        colors=["#2471a3"],
-        linewidths=[1.0],
-        linestyles=["solid"],
-        transform=proj,
-        zorder=4,
-    )
-
-    # Thin zero contour for reference
-    ax_map.contour(
-        lon2d, lat2d, trend_smooth,
-        levels=[0],
-        colors=["0.4"],
-        linewidths=[0.6],
-        linestyles=["--"],
-        transform=proj,
-        zorder=3,
-    )
-
-    # Colorbar — horizontal below longitude tick labels
-    cax = fig.add_axes([0.05, 0.01, 0.52, 0.02])
+    # Colorbar below map
+    if has_pileup:
+        cax = fig.add_axes([0.05, 0.42, 0.52, 0.015])
+    else:
+        cax = fig.add_axes([0.05, 0.01, 0.52, 0.02])
     cbar = fig.colorbar(im, cax=cax, orientation="horizontal", extend="both")
-    cbar.set_label("Sea surface salinity trend (PSU decade$^{-1}$)", fontsize=6)
+    cbar.set_label("SSS trend (PSU decade$^{-1}$)", fontsize=6)
     cbar.ax.tick_params(labelsize=5)
 
-    ax_map.set_title(
-        "GLORYS12 SSS trend  1993\u20132023",
-        fontsize=8, fontweight="bold", pad=8,
-    )
+    ax_map.set_title(title, fontsize=8, pad=8)
     add_panel_label(ax_map, "a", x=0.01, y=1.03)
 
     # --- Panel (b): Zonal-mean SSS trend profile ---
-    ax_zonal = fig.add_subplot(gs[1])
+    ax_zonal = fig.add_subplot(gs[0, 1] if has_pileup else gs[1])
 
-    # Build Atlantic-only mask: exclude Mediterranean, Baltic, Hudson Bay, etc.
-    # Use geographic polygons for the Atlantic basin
-    lon2d_full, lat2d_full = np.meshgrid(lon, lat)
     atlantic_mask = np.ones_like(trend, dtype=bool)
-
-    # Start with broad Atlantic extent
-    atlantic_mask &= (lon2d_full >= -80) & (lon2d_full <= 20)
-
-    # Exclude Mediterranean (east of ~5°W, north of ~30°N, below ~46°N)
-    med_mask = (lon2d_full > -6) & (lat2d_full > 30) & (lat2d_full < 46)
-    atlantic_mask &= ~med_mask
-
-    # Exclude Baltic Sea (east of ~10°E, north of ~54°N)
-    baltic_mask = (lon2d_full > 10) & (lat2d_full > 54)
-    atlantic_mask &= ~baltic_mask
-
-    # Exclude Hudson Bay (west of ~75°W, north of ~50°N, or enclosed region)
-    hudson_mask = (lon2d_full < -75) & (lat2d_full > 50) & (lat2d_full < 66)
-    atlantic_mask &= ~hudson_mask
-
-    # Exclude Gulf of Mexico interior (west of ~82°W, lat 18-31°N)
-    gom_mask = (lon2d_full < -82) & (lat2d_full > 18) & (lat2d_full < 31)
-    atlantic_mask &= ~gom_mask
-
-    # Mask land (NaN in trend)
+    atlantic_mask &= (lon2d >= -80) & (lon2d <= 20)
+    atlantic_mask &= ~((lon2d > -6) & (lat2d > 30) & (lat2d < 46))
+    atlantic_mask &= ~((lon2d > 10) & (lat2d > 54))
+    atlantic_mask &= ~((lon2d < -75) & (lat2d > 50) & (lat2d < 66))
+    atlantic_mask &= ~((lon2d < -82) & (lat2d > 18) & (lat2d < 31))
     atlantic_mask &= np.isfinite(trend)
 
-    # Apply mask
     trend_atlantic_masked = np.where(atlantic_mask, trend, np.nan)
 
-    # --- Rigorous zonal-mean uncertainty accounting for spatial autocorrelation ---
-    # At each latitude:
-    #   1. Compute zonal mean and std of trend across ocean longitudes
-    #   2. Estimate spatial decorrelation length from lag-autocorrelation
-    #   3. N_eff = ocean_width / (2 * decorrelation_length)
-    #   4. SE = std / sqrt(N_eff), then 95% CI = mean ± 1.96 * SE
-    ny = len(lat)
-    dlon = np.abs(lon[1] - lon[0])  # grid spacing in degrees
+    lat_edges = np.arange(-55, 71, 0.25)
+    lat_centers = 0.5 * (lat_edges[:-1] + lat_edges[1:])
+    n_bins = len(lat_centers)
 
-    zonal_mean = np.full(ny, np.nan)
-    ci_lo = np.full(ny, np.nan)
-    ci_hi = np.full(ny, np.nan)
-    n_eff_profile = np.full(ny, np.nan)
+    zonal_mean = np.full(n_bins, np.nan)
+    ci_lo = np.full(n_bins, np.nan)
+    ci_hi = np.full(n_bins, np.nan)
 
-    for j in range(ny):
-        row = trend_atlantic_masked[j, :]
-        valid = np.isfinite(row)
-        n_ocean = valid.sum()
+    flat_trend = trend_atlantic_masked.ravel()
+    flat_lat = lat2d.ravel()
+
+    for j in range(n_bins):
+        in_band = (flat_lat >= lat_edges[j]) & (flat_lat < lat_edges[j + 1])
+        vals = flat_trend[in_band]
+        vals = vals[np.isfinite(vals)]
+        n_ocean = len(vals)
         if n_ocean < 5:
             continue
 
-        vals = row[valid]
         zonal_mean[j] = np.mean(vals)
         sigma = np.std(vals, ddof=1)
 
         if sigma < 1e-12:
             ci_lo[j] = zonal_mean[j]
             ci_hi[j] = zonal_mean[j]
-            n_eff_profile[j] = n_ocean
             continue
 
-        # Estimate decorrelation length from lag-1 autocorrelation
-        # Use the full row (with NaN gaps) — compute autocorrelation on
-        # contiguous ocean segments
         anomaly = vals - zonal_mean[j]
         if len(anomaly) > 2:
-            # Lag-1 autocorrelation
             r1 = np.corrcoef(anomaly[:-1], anomaly[1:])[0, 1]
-            r1 = np.clip(r1, 0.0, 0.99)  # bound to [0, 1)
-
-            # Decorrelation length in grid points (Bretherton et al. 1999):
-            # N_eff = N * (1 - r1) / (1 + r1)
+            r1 = np.clip(r1, 0.0, 0.99)
             n_eff = max(2, n_ocean * (1 - r1) / (1 + r1))
         else:
             n_eff = n_ocean
 
-        n_eff_profile[j] = n_eff
         se = sigma / np.sqrt(n_eff)
         ci_lo[j] = zonal_mean[j] - 1.96 * se
         ci_hi[j] = zonal_mean[j] + 1.96 * se
 
-    # --- Plot ---
-    # 95% CI shading
+    lat_plot = lat_centers
+
     ax_zonal.fill_betweenx(
-        lat, ci_lo, ci_hi,
+        lat_plot, ci_lo, ci_hi,
         alpha=0.2, color="#4477AA", linewidth=0,
-        label="95% CI ($N_{eff}$-adjusted)",
+        label="95% CI ($N_{eff}$-adj.)",
     )
-    # Significant segments: solid bold; non-significant: dashed
     sig_lat = (ci_lo > 0) | (ci_hi < 0)
     zonal_mean_sig = np.where(sig_lat, zonal_mean, np.nan)
     zonal_mean_nonsig = np.where(~sig_lat, zonal_mean, np.nan)
 
     ax_zonal.plot(
-        zonal_mean_sig, lat,
+        zonal_mean_sig, lat_plot,
         color="#4477AA", linewidth=1.5, solid_capstyle="round",
         zorder=5, label="significant",
     )
     ax_zonal.plot(
-        zonal_mean_nonsig, lat,
+        zonal_mean_nonsig, lat_plot,
         color="#4477AA", linewidth=0.8, linestyle="--",
         zorder=4, alpha=0.6, label="not significant",
     )
     ax_zonal.axvline(0, color="0.6", linewidth=0.5, linestyle="--", zorder=0)
 
     ax_zonal.set_ylim(-55, 70)
-    ax_zonal.set_xlabel("SSS trend (PSU decade$^{-1}$)", fontsize=6)
+    ax_zonal.set_xlabel("SSS trend\n(PSU decade$^{-1}$)", fontsize=6)
     ax_zonal.set_ylabel("Latitude (\u00b0N)", fontsize=6)
-    ax_zonal.set_title("Zonal mean\n(Atlantic)", fontsize=7, fontweight="bold")
+    ax_zonal.set_title("Zonal mean\n(Atlantic)", fontsize=7)
     ax_zonal.legend(fontsize=4, loc="upper left", framealpha=0.7)
     ax_zonal.tick_params(labelsize=5)
 
-    # Subtle background coloring: positive = warm tint, negative = cool tint
     ax_zonal.fill_betweenx(
-        lat,
+        lat_plot,
         np.where(zonal_mean > 0, 0, zonal_mean),
         np.where(zonal_mean > 0, zonal_mean, 0),
         where=(zonal_mean > 0),
         alpha=0.06, color="#c0392b", linewidth=0,
     )
     ax_zonal.fill_betweenx(
-        lat,
+        lat_plot,
         np.where(zonal_mean < 0, zonal_mean, 0),
         np.where(zonal_mean < 0, 0, zonal_mean),
         where=(zonal_mean < 0),
         alpha=0.06, color="#2471a3", linewidth=0,
     )
 
-    # Clean up spines
     ax_zonal.spines["top"].set_visible(False)
     ax_zonal.spines["right"].set_visible(False)
 
     add_panel_label(ax_zonal, "b", x=-0.3, y=1.03)
+
+    # --- Panel (c): Salinity pile-up time series ---
+    if has_pileup:
+        import xarray as xr
+        pileup = xr.open_dataarray(pileup_path)
+
+        ax_pu = fig.add_subplot(gs[1, :])
+
+        color = "#EE6677"
+        ax_pu.plot(pileup.time.values, pileup.values, color=color,
+                   linewidth=0.5, alpha=0.4)
+
+        # Trend
+        import pandas as pd
+        try:
+            ts = pd.DatetimeIndex(pileup.time.values)
+            yrs = np.array([t.year + (t.month - 1) / 12 for t in ts])
+        except Exception:
+            yrs = np.arange(len(pileup))
+        reg = sp_stats.linregress(yrs, pileup.values.ravel())
+        trend_line = reg.slope * yrs + reg.intercept
+        p_str = "p < 0.001" if reg.pvalue < 0.001 else f"p = {reg.pvalue:.3f}"
+        ax_pu.plot(pileup.time.values, trend_line,
+                   color="0.3", linewidth=1.0, linestyle="--",
+                   label=f"Trend: {reg.slope:+.4f} PSU/yr ({p_str})")
+
+        # 12-month rolling mean
+        if len(pileup) > 24:
+            rolling = pileup.rolling(time=12, center=True).mean()
+            ax_pu.plot(pileup.time.values, rolling.values, color=color,
+                       linewidth=1.5, label="12-month mean")
+
+        ax_pu.set_ylabel("Salinity pile-up [PSU]")
+        ax_pu.legend(loc="upper left", fontsize=5)
+        ax_pu.spines["top"].set_visible(False)
+        ax_pu.spines["right"].set_visible(False)
+
+        add_panel_label(ax_pu, "c", x=-0.04, y=1.10)
 
     save_publication_figure(fig, outpath)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Plot SSS trend map from GLORYS12 data"
+        description="Plot SSS trend map from reanalysis data"
+    )
+    parser.add_argument(
+        "--product",
+        choices=["glorys12", "oras5"],
+        default="glorys12",
+        help="Reanalysis product (default: glorys12)",
     )
     parser.add_argument(
         "--data-dir",
         type=Path,
-        default=Path("data/glorys12"),
-        help="Directory containing GLORYS12 NetCDF files",
+        default=None,
+        help="Directory containing NetCDF files (auto-detected from product)",
     )
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("figures/grl/fig_sss_trend_map"),
+        default=None,
         help="Output path (without extension)",
+    )
+    parser.add_argument(
+        "--start-year", type=int, default=None,
+        help="Start year for trend computation (e.g. 1993)",
+    )
+    parser.add_argument(
+        "--end-year", type=int, default=None,
+        help="End year for trend computation (e.g. 2023)",
+    )
+    parser.add_argument(
+        "--pileup", type=Path, default=None,
+        help="Path to salinity_pileup.nc to add time series panel (c)",
+    )
+    parser.add_argument(
+        "--cache-dir", type=Path, default=Path("data/results"),
+        help="Directory for caching trend fields",
     )
     args = parser.parse_args()
 
-    print("Loading GLORYS12 SSS data...")
-    sss = load_glorys12_sss(args.data_dir)
-    print(f"  Shape: {sss.shape}, time range: {sss.time.values[0]} to {sss.time.values[-1]}")
+    if args.data_dir is None:
+        args.data_dir = Path("data/glorys12") if args.product == "glorys12" \
+            else Path("data/oras5")
+    if args.output is None:
+        args.output = Path(f"figures/grl/fig_sss_trend_map{'_oras5' if args.product == 'oras5' else ''}")
 
-    lon = sss["x"].values
-    lat = sss["y"].values
+    is_2d = False
+    suffix = "_oras5" if args.product == "oras5" else "_glorys12"
+    cache_file = args.cache_dir / f"sss_trend_cache{suffix}.npz"
 
-    print("Computing per-pixel trends (vectorized OLS)...")
-    trend, pvalue, n_valid = compute_trend_field(sss)
+    if cache_file.exists():
+        print(f"Loading cached trend field from {cache_file}")
+        cached = np.load(cache_file, allow_pickle=True)
+        trend = cached["trend"]
+        pvalue = cached["pvalue"]
+        lon = cached["lon"]
+        lat = cached["lat"]
+        is_2d = bool(cached["is_2d"])
+        time_label = str(cached["time_label"])
+        print(f"  Shape: {trend.shape}, label: {time_label}")
+    else:
+        if args.product == "oras5":
+            print("Loading ORAS5 SSS data...")
+            sss, lon, lat = load_oras5_sss(args.data_dir)
+            is_2d = True
+        else:
+            print("Loading GLORYS12 SSS data...")
+            sss = load_glorys12_sss(args.data_dir)
+            lon = sss["x"].values
+            lat = sss["y"].values
+
+        # Filter by year range if requested
+        if args.start_year is not None or args.end_year is not None:
+            time_objs = sss["time"].values.astype("datetime64[us]").astype("object")
+            year_arr = np.array([t.year for t in time_objs])
+            keep = np.ones(len(year_arr), dtype=bool)
+            if args.start_year is not None:
+                keep &= year_arr >= args.start_year
+            if args.end_year is not None:
+                keep &= year_arr <= args.end_year
+            sss = sss.isel(time=keep)
+            print(f"  Filtered to {args.start_year or 'start'}-{args.end_year or 'end'}: {sss.shape[0]} months")
+
+        t0 = sss["time"].values[0]
+        t1 = sss["time"].values[-1]
+        t0_obj = np.datetime64(t0, "us").astype("object")
+        t1_obj = np.datetime64(t1, "us").astype("object")
+        time_label = f"{args.product.upper()} SSS trend  {t0_obj.year}\u2013{t1_obj.year}"
+        print(f"  Shape: {sss.shape}, time range: {t0} to {t1}")
+
+        print("Computing per-pixel trends (vectorized OLS)...")
+        trend, pvalue, n_valid = compute_trend_field(sss)
+
+        # Cache to disk
+        args.cache_dir.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(
+            cache_file, trend=trend, pvalue=pvalue,
+            lon=lon, lat=lat, is_2d=is_2d, time_label=time_label,
+        )
+        print(f"  Cached trend field to {cache_file}")
 
     # Summary statistics
     land_frac = np.isnan(trend).mean() * 100
@@ -494,13 +593,27 @@ def main() -> None:
     print(f"  Significant pixels (p<0.05): {sig_frac:.1f}%")
 
     # Check South Atlantic trend sign
-    lat_mask = (lat >= -35) & (lat <= -15)
-    lon_mask = (lon >= -60) & (lon <= 20)
-    stsa_trend = np.nanmean(trend[np.ix_(lat_mask, lon_mask)])
+    if is_2d:
+        stsa_mask = (lat >= -35) & (lat <= -15) & (lon >= -60) & (lon <= 20)
+        stsa_trend = np.nanmean(trend[stsa_mask])
+    else:
+        lat_mask = (lat >= -35) & (lat <= -15)
+        lon_mask = (lon >= -60) & (lon <= 20)
+        stsa_trend = np.nanmean(trend[np.ix_(lat_mask, lon_mask)])
     print(f"  STSA mean trend: {stsa_trend:+.4f} PSU/decade")
 
+    # Auto-detect pile-up file if not specified
+    pileup_path = args.pileup
+    if pileup_path is None:
+        default_pileup = Path("data/results/salinity_pileup.nc")
+        if default_pileup.exists():
+            pileup_path = default_pileup
+            print(f"  Auto-detected pile-up data: {pileup_path}")
+
     print("Plotting...")
-    plot_sss_trend_figure(trend, pvalue, lon, lat, args.output)
+    plot_sss_trend_figure(trend, pvalue, lon, lat, args.output,
+                          title=time_label, is_2d_coords=is_2d,
+                          pileup_path=pileup_path)
     print("Done.")
 
 
