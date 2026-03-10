@@ -51,7 +51,21 @@ where the NAWH region spans 50W-15W, 45N-60N. Following Keil et al. (2020), we n
 
 Following the Copernicus Ocean State Report methodology, we identify the Gulf Stream jet axis as the latitude of maximum SSH gradient magnitude at each longitude within the Gulf Stream region (80W-45W, 30N-45N). The destabilization point is defined as the easternmost longitude where the jet gradient exceeds 50% of its peak value. Beyond this point, the Gulf Stream loses coherence and transitions to a meandering regime. We track this longitude monthly.
 
-## 2.3 Statistical Methods
+## 2.3 SSS Trend Decomposition: Thermodynamic vs Dynamic Components
+
+To assess whether the observed Atlantic SSS trends are attributable to anthropogenic intensification of the hydrological cycle or to ocean circulation changes, we test the "salty gets saltier" amplification hypothesis (Held & Soden, 2006; Durack & Wijffels, 2010). Under greenhouse warming, enhanced atmospheric moisture transport amplifies the climatological evaporation-minus-precipitation (E-P) pattern, predicting that SSS trends should scale linearly with the mean SSS field: regions with high mean SSS (net evaporative) should salinify, while regions with low mean SSS (net precipitative) should freshen.
+
+We test this by regressing zonal-mean SSS trends against zonal-mean climatological SSS across 5° latitude bands spanning the Atlantic basin (55°S to 70°N, N = 25 bands). The zonal-mean approach averages out mesoscale noise and tests the large-scale meridional structure of the amplification relationship. The regression takes the form:
+
+trend_SSS(φ) = α + β × mean_SSS(φ)
+
+where φ denotes latitude. A positive and significant β would confirm that the amplification pattern dominates Atlantic SSS trends. Failure of this model (low R², non-significant β) would indicate that ocean dynamics — rather than the atmospheric water cycle — are the primary driver of the observed trend pattern.
+
+The pixel-level residual field (observed trend minus amplification-predicted trend at each grid point) isolates the ocean-dynamical component. Positive residuals identify regions where salinification exceeds what E-P changes predict (e.g., AMOC-driven salt accumulation), while negative residuals identify anomalous freshening beyond atmospheric expectations (e.g., changes in deep water formation or ITCZ position).
+
+The Atlantic basin mask excludes the Mediterranean Sea, Baltic Sea, Hudson Bay, and Gulf of Mexico to isolate the open Atlantic. The analysis uses GLORYS12V1 SSS (1993–2025, 396 monthly fields) and is repeated with ORAS5 (1958–2023, 708 fields) to test sensitivity to record length.
+
+## 2.4 Statistical Methods
 
 ### Trend Detection
 

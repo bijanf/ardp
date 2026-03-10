@@ -132,18 +132,12 @@ def _scatter_validation(
     ax.set_ylabel(f"{model_label} [Sv]")
 
     r, p = stats.pearsonr(obs_vals, model_vals)
-    bias = np.mean(model_vals - obs_vals)
-    rmse = np.sqrt(np.mean((model_vals - obs_vals) ** 2))
     p_str = "p < 0.001" if p < 0.001 else f"p = {p:.3f}"
-    ax.annotate(
-        f"r = {r:.2f} ({p_str})\n"
-        f"bias = {bias:+.1f} Sv\n"
-        f"RMSE = {rmse:.1f} Sv\n"
-        f"n = {len(obs_vals)} months",
-        xy=(0.03, 0.95), xycoords="axes fraction",
+    ax.text(
+        0.03, 0.97,
+        f"r = {r:.2f}\nn = {len(obs_vals)}",
+        transform=ax.transAxes,
         fontsize=5, va="top",
-        bbox={"boxstyle": "round,pad=0.3", "facecolor": "white",
-              "edgecolor": "0.7", "alpha": 0.9},
     )
 
 
@@ -152,13 +146,11 @@ def _scatter_validation(
 # ─────────────────────────────────────────────────────────────────────
 
 def figure1_fovs_multiproduct(results_dir: Path, output_dir: Path) -> None:
-    """Figure 1: ORAS5 F_ovS with full-record and sub-period trends.
+    """Figure 1: ORAS5 F_ovS — single panel, two trend lines.
 
-    (a) ORAS5 F_ovS full record (1958-2023) — long-term decline
-    (b) ORAS5 F_ovS 1993-2023 only — apples-to-apples with GLORYS12
-    Shows that the trend is period-dependent, not a robust ocean signal.
+    Full 1958-2025 record with both the full-record trend and the
+    satellite-era (1993+) trend overlaid in different colours.
     """
-    # Try ORAS5-specific path first
     fovs_path = results_dir / "oras5_f_ovs.nc"
     if not fovs_path.exists():
         fovs_path = results_dir / "f_ovs.nc"
@@ -173,73 +165,42 @@ def figure1_fovs_multiproduct(results_dir: Path, output_dir: Path) -> None:
     unit = "mSv" if scale == 1e3 else "Sv"
     data = f_ovs * scale
 
-    fig, (ax1, ax2) = figure_grl_full(nrows=1, ncols=2, height_ratio=0.45)
+    fig, ax = figure_grl_full(nrows=1, ncols=1, height_ratio=0.50)
 
-    # --- Panel (a): Full ORAS5 F_ovS record ---
-    ax1.plot(f_ovs.time.values, data.values, color=FINGERPRINT_COLORS["f_ovs"],
-             linewidth=0.5, alpha=0.4)
-    ax1.plot(f_ovs.time.values, trend_full["trend_line"] * scale,
-             color=COLORS["red"], linewidth=1.0, linestyle="--",
-             label="Full-record trend")
+    # Monthly data
+    ax.plot(f_ovs.time.values, data.values, color=FINGERPRINT_COLORS["f_ovs"],
+            linewidth=0.5, alpha=0.3)
 
+    # 12-month running mean
     if len(data) > 24:
         rolling = data.rolling(time=12, center=True).mean()
-        ax1.plot(f_ovs.time.values, rolling.values,
-                 color=FINGERPRINT_COLORS["f_ovs"], linewidth=1.5,
-                 label="12-month mean")
+        ax.plot(f_ovs.time.values, rolling.values,
+                color=FINGERPRINT_COLORS["f_ovs"], linewidth=1.5,
+                label="12-month mean")
 
-    ax1.set_ylabel(f"$F_{{ovS}}$ [{unit}]")
-    ax1.axhline(0, color="0.5", linewidth=0.3, linestyle=":")
-    ax1.legend(loc="lower left", fontsize=5)
-    ax1.set_title("ORAS5 full record", fontsize=7)
-    add_panel_label(ax1, "a")
-    add_trend_annotation(ax1, trend_full["slope"] * scale, unit,
-                         trend_full["pvalue"])
+    # Full-record trend (1958-2025)
+    slope_full = trend_full["slope"] * scale
+    p_full = trend_full["pvalue"]
+    p_str_full = "p < 0.001" if p_full < 0.001 else f"p = {p_full:.3f}"
+    ax.plot(f_ovs.time.values, trend_full["trend_line"] * scale,
+            color=COLORS["red"], linewidth=1.2, linestyle="--",
+            label=f"1958\u20132025: {slope_full:+.2f} {unit}/yr ({p_str_full})")
 
-    # --- Panel (b): 1993-2023 sub-period (GLORYS12 overlap) ---
+    # Satellite-era trend (1993-2025)
     f_ovs_sub = f_ovs.sel(time=slice("1993-01", None))
     if len(f_ovs_sub) > 3:
         trend_sub = _compute_trend(f_ovs_sub)
-        data_sub = f_ovs_sub * scale
-
-        ax2.plot(f_ovs_sub.time.values, data_sub.values,
-                 color=FINGERPRINT_COLORS["f_ovs"],
-                 linewidth=0.5, alpha=0.4)
-        ax2.plot(f_ovs_sub.time.values, trend_sub["trend_line"] * scale,
-                 color=COLORS["red"], linewidth=1.0, linestyle="--",
-                 label="1993+ trend")
-
-        if len(data_sub) > 24:
-            rolling_sub = data_sub.rolling(time=12, center=True).mean()
-            ax2.plot(f_ovs_sub.time.values, rolling_sub.values,
-                     color=FINGERPRINT_COLORS["f_ovs"], linewidth=1.5,
-                     label="12-month mean")
-
-        ax2.set_ylabel(f"$F_{{ovS}}$ [{unit}]")
-        ax2.axhline(0, color="0.5", linewidth=0.3, linestyle=":")
-        ax2.legend(loc="lower left", fontsize=5)
-        ax2.set_title("ORAS5 satellite era (1993+)", fontsize=7)
-        add_trend_annotation(ax2, trend_sub["slope"] * scale, unit,
-                             trend_sub["pvalue"])
-
-        # Annotate comparison
+        slope_sub = trend_sub["slope"] * scale
         p_sub = trend_sub["pvalue"]
-        sig = "significant" if p_sub < 0.05 else "NOT significant"
-        ax2.annotate(
-            f"cf. full: {trend_full['slope'] * scale:+.2f} {unit}/yr\n"
-            f"1993+: {trend_sub['slope'] * scale:+.2f} {unit}/yr ({sig})",
-            xy=(0.97, 0.05), xycoords="axes fraction",
-            fontsize=5, ha="right", va="bottom",
-            bbox={"boxstyle": "round,pad=0.3", "facecolor": "lightyellow",
-                  "edgecolor": "0.7", "alpha": 0.9},
-        )
-    else:
-        ax2.text(0.5, 0.5, "Insufficient post-1993 data",
-                 transform=ax2.transAxes, ha="center")
+        p_str_sub = "p < 0.001" if p_sub < 0.001 else f"p = {p_sub:.3f}"
+        ax.plot(f_ovs_sub.time.values, trend_sub["trend_line"] * scale,
+                color=COLORS["purple"], linewidth=1.2, linestyle="--",
+                label=f"1993\u20132025: {slope_sub:+.2f} {unit}/yr ({p_str_sub})")
 
-    add_panel_label(ax2, "b")
+    ax.axhline(0, color="0.5", linewidth=0.3, linestyle=":")
+    ax.set_ylabel(f"$F_{{ovS}}$ [{unit}]")
+    ax.legend(loc="lower left", fontsize=5)
 
-    fig.tight_layout(w_pad=1.5)
     save_publication_figure(fig, output_dir / "fig1_fovs_multiproduct")
 
 
@@ -248,68 +209,96 @@ def figure1_fovs_multiproduct(results_dir: Path, output_dir: Path) -> None:
 # ─────────────────────────────────────────────────────────────────────
 
 def figure2_rapid_validation(results_dir: Path, output_dir: Path) -> None:
-    """Figure 2: ORAS5 MOC validation at RAPID 26.5N.
+    """Figure 2: ORAS5 + GLORYS12 MOC validation at RAPID 26.5N.
 
-    (a) Time series overlay: ORAS5 vs RAPID monthly MOC
-    (b) Scatter plot with regression and statistics
-    This is the strongest result — r=0.74 proves ORAS5 captures MOC variability.
+    (a) Time series overlay: ORAS5 + GLORYS12 vs RAPID monthly MOC
+    (b) Scatter: ORAS5 vs RAPID
+    (c) Scatter: GLORYS12 vs RAPID
     """
-    moc_26n_path = results_dir / "oras5_moc_26N.nc"
+    moc_oras5_path = results_dir / "oras5_moc_26N.nc"
+    moc_glorys_path = results_dir / "glorys12_moc_26N.nc"
     rapid_path = Path("data/external/rapid_moc_monthly.nc")
 
-    if not moc_26n_path.exists() or not rapid_path.exists():
-        missing = []
-        if not moc_26n_path.exists():
-            missing.append("compute_oras5_moc.py")
-        if not rapid_path.exists():
-            missing.append("download_rapid.py")
-        print(f"Skipping Figure 2: run {', '.join(missing)}")
+    if not rapid_path.exists():
+        print("Skipping Figure 2: run download_rapid.py")
         return
 
-    oras5_moc = xr.open_dataarray(moc_26n_path)
     rapid_ds = xr.open_dataset(rapid_path)
     rapid_moc = rapid_ds["moc_mar_hc10"]
 
-    aligned = _align_monthly(oras5_moc, rapid_moc)
-    if aligned is None:
-        print("Skipping Figure 2: insufficient RAPID overlap")
+    has_oras5 = moc_oras5_path.exists()
+    has_glorys = moc_glorys_path.exists()
+
+    if not has_oras5 and not has_glorys:
+        print("Skipping Figure 2: no MOC data found")
         return
 
-    o_v, r_v, common_times = aligned
+    apply_nature_style()
+    fig = plt.figure(figsize=(6.73, 4.2))
 
-    fig, (ax1, ax2) = figure_grl_full(nrows=1, ncols=2, height_ratio=0.45)
+    # Layout: wide time series on top, two square scatters below
+    gs = fig.add_gridspec(
+        2, 2, height_ratios=[1.2, 1], wspace=0.35, hspace=0.40,
+        left=0.08, right=0.97, top=0.94, bottom=0.08,
+    )
+
+    ax_ts = fig.add_subplot(gs[0, :])  # top row, full width
+    ax_sc1 = fig.add_subplot(gs[1, 0])
+    ax_sc2 = fig.add_subplot(gs[1, 1])
 
     # --- Panel (a): Time series overlay ---
-    ax1.plot(oras5_moc.time.values, oras5_moc.values,
-             color=FINGERPRINT_COLORS["f_ovs"], linewidth=0.5, alpha=0.3)
-    # 12-month running mean of ORAS5
-    if len(oras5_moc) > 24:
-        rolling_o = oras5_moc.rolling(time=12, center=True).mean()
-        ax1.plot(oras5_moc.time.values, rolling_o.values,
-                 color=FINGERPRINT_COLORS["f_ovs"], linewidth=1.5,
-                 label="ORAS5 (12-mo mean)")
-
-    # RAPID overlay
-    ax1.plot(rapid_moc.time.values, rapid_moc.values,
-             color=COLORS["red"], linewidth=0.5, alpha=0.3)
+    # RAPID
+    ax_ts.plot(rapid_moc.time.values, rapid_moc.values,
+               color=COLORS["red"], linewidth=0.5, alpha=0.3)
     if len(rapid_moc) > 24:
         rolling_r = rapid_moc.rolling(time=12, center=True).mean()
-        ax1.plot(rapid_moc.time.values, rolling_r.values,
-                 color=COLORS["red"], linewidth=1.5,
-                 label="RAPID obs")
+        ax_ts.plot(rapid_moc.time.values, rolling_r.values,
+                   color=COLORS["red"], linewidth=1.5, label="RAPID obs")
 
-    ax1.set_ylabel("MOC at 26.5\u00b0N [Sv]")
-    ax1.legend(loc="lower left", fontsize=5)
-    ax1.set_title("ORAS5 captures MOC variability at 26.5\u00b0N", fontsize=7)
-    add_panel_label(ax1, "a")
+    # ORAS5
+    if has_oras5:
+        oras5_moc = xr.open_dataarray(moc_oras5_path)
+        ax_ts.plot(oras5_moc.time.values, oras5_moc.values,
+                   color=FINGERPRINT_COLORS["f_ovs"], linewidth=0.5, alpha=0.2)
+        if len(oras5_moc) > 24:
+            rolling_o = oras5_moc.rolling(time=12, center=True).mean()
+            ax_ts.plot(oras5_moc.time.values, rolling_o.values,
+                       color=FINGERPRINT_COLORS["f_ovs"], linewidth=1.5,
+                       label="ORAS5")
 
-    # --- Panel (b): Scatter ---
-    _scatter_validation(ax2, r_v, o_v, "RAPID MOC", "ORAS5 MOC",
-                        FINGERPRINT_COLORS["f_ovs"])
-    ax2.set_title("Monthly validation", fontsize=7)
-    add_panel_label(ax2, "b")
+    # GLORYS12
+    if has_glorys:
+        glorys_moc = xr.open_dataarray(moc_glorys_path)
+        ax_ts.plot(glorys_moc.time.values, glorys_moc.values,
+                   color=COLORS["green"], linewidth=0.5, alpha=0.2)
+        if len(glorys_moc) > 24:
+            rolling_g = glorys_moc.rolling(time=12, center=True).mean()
+            ax_ts.plot(glorys_moc.time.values, rolling_g.values,
+                       color=COLORS["green"], linewidth=1.5,
+                       label="GLORYS12")
 
-    fig.tight_layout(w_pad=1.5)
+    ax_ts.set_ylabel("MOC at 26.5\u00b0N [Sv]")
+    ax_ts.legend(loc="lower left", fontsize=5)
+    add_panel_label(ax_ts, "a", x=-0.06)
+
+    # --- Panel (b): ORAS5 scatter ---
+    if has_oras5:
+        aligned = _align_monthly(oras5_moc, rapid_moc)
+        if aligned is not None:
+            o_v, r_v, _ = aligned
+            _scatter_validation(ax_sc1, r_v, o_v, "RAPID [Sv]", "ORAS5 [Sv]",
+                                FINGERPRINT_COLORS["f_ovs"])
+    add_panel_label(ax_sc1, "b", x=-0.15)
+
+    # --- Panel (c): GLORYS12 scatter ---
+    if has_glorys:
+        aligned_g = _align_monthly(glorys_moc, rapid_moc)
+        if aligned_g is not None:
+            g_v, r_v_g, _ = aligned_g
+            _scatter_validation(ax_sc2, r_v_g, g_v, "RAPID [Sv]", "GLORYS12 [Sv]",
+                                COLORS["green"])
+    add_panel_label(ax_sc2, "c", x=-0.15)
+
     save_publication_figure(fig, output_dir / "fig2_rapid_validation")
 
 
@@ -353,7 +342,7 @@ def figure3_salinity_pileup(results_dir: Path, output_dir: Path) -> None:
 
     ax1.set_ylabel("Salinity pile-up [PSU]")
     ax1.legend(loc="upper left", fontsize=5)
-    ax1.set_title("Robust across products", fontsize=7)
+    ax1.set_title("Salinity pile-up index", fontsize=7)
     add_panel_label(ax1, "a")
     add_trend_annotation(ax1, trend["slope"], "PSU", trend["pvalue"],
                          position="lower right")
@@ -391,13 +380,11 @@ def figure3_salinity_pileup(results_dir: Path, output_dir: Path) -> None:
             ax2.plot(x_range, reg.slope * x_range + reg.intercept,
                      color=COLORS["red"], linewidth=1.0, linestyle="--")
 
-            p_str = "p < 0.001" if p < 0.001 else f"p = {p:.3f}"
-            ax2.annotate(
-                f"r = {r:.2f} ({p_str})\nn = {valid.sum()} yr",
-                xy=(0.03, 0.95), xycoords="axes fraction",
+            ax2.text(
+                0.03, 0.97,
+                f"r = {r:.2f}\nn = {valid.sum()} yr",
+                transform=ax2.transAxes,
                 fontsize=5, va="top",
-                bbox={"boxstyle": "round,pad=0.3", "facecolor": "white",
-                      "edgecolor": "0.7", "alpha": 0.9},
             )
 
             ax2.set_xlabel("Salinity pile-up [PSU]")
@@ -421,18 +408,10 @@ def figure3_salinity_pileup(results_dir: Path, output_dir: Path) -> None:
 # ─────────────────────────────────────────────────────────────────────
 
 def figure4_assessment_summary(results_dir: Path, output_dir: Path) -> None:
-    """Figure 4: Honest assessment — RAPID success + SAMBA failure + MOC overview.
-
-    (a) RAPID validation scatter (success: r=0.74 at 26.5N)
-    (b) SAMBA validation scatter (failure: r=0.03 at 34.5S)
-    (c) ORAS5 MOC time series at both latitudes
-    Shows: ORAS5 captures MOC where assimilation is strong (26.5N)
-    but fails at poorly observed latitudes (34.5S).
-    """
+    """Figure 4: ORAS5 MOC at 26.5N and 34.5S — long-term evolution."""
     moc_26n_path = results_dir / "oras5_moc_26N.nc"
     moc_34s_path = results_dir / "oras5_moc_34S.nc"
     rapid_path = Path("data/external/rapid_moc_monthly.nc")
-    samba_path = Path("data/external/samba_moc_monthly.nc")
 
     if not moc_26n_path.exists() or not moc_34s_path.exists():
         print("Skipping Figure 4: run compute_oras5_moc.py first")
@@ -441,110 +420,44 @@ def figure4_assessment_summary(results_dir: Path, output_dir: Path) -> None:
     oras5_26n = xr.open_dataarray(moc_26n_path)
     oras5_34s = xr.open_dataarray(moc_34s_path)
 
-    fig = plt.figure(figsize=(6.73, 4.5))
-    apply_nature_style()
+    fig, ax = figure_grl_full(nrows=1, ncols=1, height_ratio=0.50)
 
-    # Layout: top row = two scatters, bottom = full-width time series
-    ax_rapid = fig.add_axes([0.08, 0.55, 0.38, 0.40])
-    ax_samba = fig.add_axes([0.58, 0.55, 0.38, 0.40])
-    ax_ts = fig.add_axes([0.08, 0.08, 0.88, 0.38])
-
-    # --- Panel (a): RAPID scatter — the success ---
-    if rapid_path.exists():
-        rapid_ds = xr.open_dataset(rapid_path)
-        rapid_moc = rapid_ds["moc_mar_hc10"]
-        aligned = _align_monthly(oras5_26n, rapid_moc)
-        if aligned is not None:
-            o_v, r_v, _ = aligned
-            _scatter_validation(ax_rapid, r_v, o_v, "RAPID MOC", "ORAS5 MOC",
-                                FINGERPRINT_COLORS["f_ovs"])
-    else:
-        ax_rapid.text(0.5, 0.5, "Run: download_rapid.py",
-                      transform=ax_rapid.transAxes, ha="center", fontsize=6)
-
-    ax_rapid.set_title("26.5\u00b0N: ORAS5 captures MOC", fontsize=7)
-    add_panel_label(ax_rapid, "a", x=-0.15)
-
-    # --- Panel (b): SAMBA scatter — the failure ---
-    if samba_path.exists():
-        samba_ds = xr.open_dataset(samba_path)
-        samba_moc = samba_ds["upper_cell"]
-        aligned = _align_monthly(oras5_34s, samba_moc)
-        if aligned is not None:
-            o_v, s_v, _ = aligned
-            _scatter_validation(ax_samba, s_v, o_v, "SAMBA MOC", "ORAS5 MOC",
-                                COLORS["green"])
-
-            # Highlight the failure honestly
-            r, _ = stats.pearsonr(s_v, o_v)
-            if abs(r) < 0.3:
-                ax_samba.annotate(
-                    "ORAS5 does NOT capture\nMOC variability at 34.5\u00b0S",
-                    xy=(0.5, 0.03), xycoords="axes fraction",
-                    fontsize=5, ha="center", va="bottom",
-                    color=COLORS["red"], fontweight="bold",
-                    bbox={"boxstyle": "round,pad=0.3", "facecolor": "mistyrose",
-                          "edgecolor": COLORS["red"], "alpha": 0.9},
-                )
-        else:
-            ax_samba.text(0.5, 0.5, "Insufficient overlap",
-                          transform=ax_samba.transAxes, ha="center")
-    else:
-        ax_samba.text(0.5, 0.5, "Run: download_samba.py",
-                      transform=ax_samba.transAxes, ha="center", fontsize=6)
-
-    ax_samba.set_title("34.5\u00b0S: ORAS5 fails at SAMBA", fontsize=7)
-    add_panel_label(ax_samba, "b", x=-0.15)
-
-    # --- Panel (c): ORAS5 MOC at both latitudes ---
     years_26n = _time_to_years(oras5_26n["time"])
     years_34s = _time_to_years(oras5_34s["time"])
 
-    ax_ts.plot(years_26n, oras5_26n.values, color=FINGERPRINT_COLORS["f_ovs"],
-               linewidth=0.5, alpha=0.3)
-    ax_ts.plot(years_34s, oras5_34s.values, color=COLORS["green"],
-               linewidth=0.5, alpha=0.3)
+    # Monthly data (faint)
+    ax.plot(years_26n, oras5_26n.values, color=FINGERPRINT_COLORS["f_ovs"],
+            linewidth=0.5, alpha=0.2)
+    ax.plot(years_34s, oras5_34s.values, color=COLORS["green"],
+            linewidth=0.5, alpha=0.2)
 
-    # Rolling means
+    # 12-month rolling means
     if len(oras5_26n) > 24:
         roll_26n = pd.Series(oras5_26n.values).rolling(12, center=True).mean()
-        ax_ts.plot(years_26n, roll_26n.values, color=FINGERPRINT_COLORS["f_ovs"],
-                   linewidth=1.5, label="ORAS5 MOC 26.5\u00b0N")
+        ax.plot(years_26n, roll_26n.values, color=FINGERPRINT_COLORS["f_ovs"],
+                linewidth=1.5, label="26.5\u00b0N")
     if len(oras5_34s) > 24:
         roll_34s = pd.Series(oras5_34s.values).rolling(12, center=True).mean()
-        ax_ts.plot(years_34s, roll_34s.values, color=COLORS["green"],
-                   linewidth=1.5, label="ORAS5 MOC 34.5\u00b0S")
+        ax.plot(years_34s, roll_34s.values, color=COLORS["green"],
+                linewidth=1.5, label="34.5\u00b0S")
 
     # Trends
     trend_26n = _compute_trend(oras5_26n)
     trend_34s = _compute_trend(oras5_34s)
-    ax_ts.plot(years_26n, trend_26n["trend_line"], color=FINGERPRINT_COLORS["f_ovs"],
-               linewidth=1.0, linestyle="--", alpha=0.7)
-    ax_ts.plot(years_34s, trend_34s["trend_line"], color=COLORS["green"],
-               linewidth=1.0, linestyle="--", alpha=0.7)
+    ax.plot(years_26n, trend_26n["trend_line"], color=FINGERPRINT_COLORS["f_ovs"],
+            linewidth=1.0, linestyle="--", alpha=0.7)
+    ax.plot(years_34s, trend_34s["trend_line"], color=COLORS["green"],
+            linewidth=1.0, linestyle="--", alpha=0.7)
 
-    # RAPID observational mean for context
+    # RAPID mean for reference
     if rapid_path.exists():
         rapid_ds = xr.open_dataset(rapid_path)
         rapid_mean = float(rapid_ds["moc_mar_hc10"].mean())
-        ax_ts.axhline(rapid_mean, color="0.5", linewidth=0.5, linestyle=":",
-                       label=f"RAPID mean ({rapid_mean:.1f} Sv)")
+        ax.axhline(rapid_mean, color="0.5", linewidth=0.5, linestyle=":",
+                   label=f"RAPID mean ({rapid_mean:.1f} Sv)")
 
-    ax_ts.set_ylabel("MOC upper-cell transport [Sv]")
-    ax_ts.set_xlabel("Year")
-    ax_ts.legend(loc="upper right", fontsize=5)
-
-    p26 = "p < 0.001" if trend_26n["pvalue"] < 0.001 else f"p = {trend_26n['pvalue']:.3f}"
-    p34 = "p < 0.001" if trend_34s["pvalue"] < 0.001 else f"p = {trend_34s['pvalue']:.3f}"
-    ax_ts.annotate(
-        f"26.5\u00b0N trend: {trend_26n['slope']:+.3f} Sv/yr ({p26})\n"
-        f"34.5\u00b0S trend: {trend_34s['slope']:+.3f} Sv/yr ({p34})",
-        xy=(0.03, 0.05), xycoords="axes fraction",
-        fontsize=5, va="bottom",
-        bbox={"boxstyle": "round,pad=0.3", "facecolor": "white",
-              "edgecolor": "0.7", "alpha": 0.9},
-    )
-    add_panel_label(ax_ts, "c", x=-0.06)
+    ax.set_ylabel("ORAS5 MOC upper-cell transport [Sv]")
+    ax.legend(loc="upper right", fontsize=5)
 
     save_publication_figure(fig, output_dir / "fig4_assessment")
 
