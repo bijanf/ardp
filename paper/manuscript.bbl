@@ -60,6 +60,41 @@ Bonan, D\BPBI B.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Booth%
+, Dunstone%
+, Halloran%
+, Andrews%
+\BCBL {}\ \BBA {} Bellouin%
+}{%
+Booth%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2012}}%
+}]{%
+Booth2012}
+\APACinsertmetastar {%
+Booth2012}%
+\begin{APACrefauthors}%
+Booth, B\BPBI B\BPBI B.%
+, Dunstone, N\BPBI J.%
+, Halloran, P\BPBI R.%
+, Andrews, T.%
+\BCBL {}\ \BBA {} Bellouin, N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Aerosols implicated as a prime driver of
+  twentieth-century {North Atlantic} climate variability} {Aerosols implicated
+  as a prime driver of twentieth-century {North Atlantic} climate
+  variability}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature}{484}{7393}{228--232}.
+\newblock
+\begin{APACrefDOI} \doi{10.1038/nature10946} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Bretherton%
 , Widmann%
 , Dymnikov%
@@ -125,6 +160,74 @@ Buckley, M\BPBI W.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Caesar%
+, McCarthy%
+, Thornalley%
+, Cahill%
+\BCBL {}\ \BBA {} Rahmstorf%
+}{%
+Caesar%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2021}}%
+}]{%
+Caesar2021}
+\APACinsertmetastar {%
+Caesar2021}%
+\begin{APACrefauthors}%
+Caesar, L.%
+, McCarthy, G\BPBI D.%
+, Thornalley, D\BPBI J\BPBI R.%
+, Cahill, N.%
+\BCBL {}\ \BBA {} Rahmstorf, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Current {Atlantic Meridional Overturning Circulation}
+  weakest in last millennium} {Current {Atlantic Meridional Overturning
+  Circulation} weakest in last millennium}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature Geoscience}{14}{3}{118--120}.
+\newblock
+\begin{APACrefDOI} \doi{10.1038/s41561-021-00699-z} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Caesar%
+, Rahmstorf%
+, Robinson%
+, Feulner%
+\BCBL {}\ \BBA {} Saba%
+}{%
+Caesar%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+Caesar2018}
+\APACinsertmetastar {%
+Caesar2018}%
+\begin{APACrefauthors}%
+Caesar, L.%
+, Rahmstorf, S.%
+, Robinson, A.%
+, Feulner, G.%
+\BCBL {}\ \BBA {} Saba, V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Observed fingerprint of a weakening {Atlantic Ocean}
+  overturning circulation} {Observed fingerprint of a weakening {Atlantic
+  Ocean} overturning circulation}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature}{556}{7700}{191--196}.
+\newblock
+\begin{APACrefDOI} \doi{10.1038/s41586-018-0006-5} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Cunningham%
 \ \protect \BOthers {.}}{%
 Cunningham%
@@ -154,6 +257,66 @@ Cunningham, S\BPBI A.%
 \APACjournalVolNumPages{Science}{317}{5840}{935--938}.
 \newblock
 \begin{APACrefDOI} \doi{10.1126/science.1141304} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+de Vries%
+\ \BBA {} Weber%
+}{%
+de Vries%
+\ \BBA {} Weber%
+}{%
+{\protect \APACyear {2005}}%
+}]{%
+deVries2005}
+\APACinsertmetastar {%
+deVries2005}%
+\begin{APACrefauthors}%
+de Vries, P.%
+\BCBT {}\ \BBA {} Weber, S\BPBI L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2005}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The {Atlantic} freshwater budget as a diagnostic for the
+  existence of a stable shut down of the {North Atlantic} overturning
+  circulation} {The {Atlantic} freshwater budget as a diagnostic for the
+  existence of a stable shut down of the {North Atlantic} overturning
+  circulation}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Geophysical Research Letters}{32}{9}{L09606}.
+\newblock
+\begin{APACrefDOI} \doi{10.1029/2004GL021450} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Ditlevsen%
+\ \BBA {} Ditlevsen%
+}{%
+Ditlevsen%
+\ \BBA {} Ditlevsen%
+}{%
+{\protect \APACyear {2023}}%
+}]{%
+Ditlevsen2023}
+\APACinsertmetastar {%
+Ditlevsen2023}%
+\begin{APACrefauthors}%
+Ditlevsen, P.%
+\BCBT {}\ \BBA {} Ditlevsen, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Warning of a forthcoming collapse of the {Atlantic}
+  meridional overturning circulation} {Warning of a forthcoming collapse of the
+  {Atlantic} meridional overturning circulation}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature Communications}{14}{1}{4254}.
+\newblock
+\begin{APACrefDOI} \doi{10.1038/s41467-023-39810-w} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -276,6 +439,35 @@ Ganachaud, A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Garzoli%
+\ \BBA {} Matano%
+}{%
+Garzoli%
+\ \BBA {} Matano%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+GarzoliMatano2011}
+\APACinsertmetastar {%
+GarzoliMatano2011}%
+\begin{APACrefauthors}%
+Garzoli, S\BPBI L.%
+\BCBT {}\ \BBA {} Matano, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The {South Atlantic} and the {Atlantic Meridional
+  Overturning Circulation}} {The {South Atlantic} and the {Atlantic Meridional
+  Overturning Circulation}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Deep-Sea Research Part II}{58}{17--18}{1837--1847}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.dsr2.2010.10.063} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Held%
 \ \BBA {} Soden%
 }{%
@@ -302,36 +494,6 @@ Held, I\BPBI M.%
 \APACjournalVolNumPages{Journal of Climate}{19}{21}{5686--5699}.
 \newblock
 \begin{APACrefDOI} \doi{10.1175/JCLI3990.1} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Keil%
-\ \protect \BOthers {.}}{%
-Keil%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2020}}%
-}]{%
-Keil2020}
-\APACinsertmetastar {%
-Keil2020}%
-\begin{APACrefauthors}%
-Keil, P.%
-, Mauritsen, T.%
-, Jungclaus, J.%
-, Hedemann, C.%
-, Olonscheck, D.%
-\BCBL {}\ \BBA {} Ghosh, R.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2020}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Multiple drivers of the {North Atlantic} warming hole}
-  {Multiple drivers of the {North Atlantic} warming hole}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Nature Climate Change}{10}{7}{667--671}.
-\newblock
-\begin{APACrefDOI} \doi{10.1038/s41558-020-0819-8} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -433,6 +595,35 @@ Meinen, C\BPBI S.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Politis%
+\ \BBA {} Romano%
+}{%
+Politis%
+\ \BBA {} Romano%
+}{%
+{\protect \APACyear {1994}}%
+}]{%
+Politis1994}
+\APACinsertmetastar {%
+Politis1994}%
+\begin{APACrefauthors}%
+Politis, D\BPBI N.%
+\BCBT {}\ \BBA {} Romano, J\BPBI P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1994}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The stationary bootstrap} {The stationary
+  bootstrap}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of the American Statistical
+  Association}{89}{428}{1303--1313}.
+\newblock
+\begin{APACrefDOI} \doi{10.1080/01621459.1994.10476870} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Rahmstorf%
 }{%
 Rahmstorf%
@@ -484,6 +675,63 @@ Rahmstorf, S.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Stommel%
+}{%
+Stommel%
+}{%
+{\protect \APACyear {1961}}%
+}]{%
+Stommel1961}
+\APACinsertmetastar {%
+Stommel1961}%
+\begin{APACrefauthors}%
+Stommel, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1961}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Thermohaline convection with two stable regimes of flow}
+  {Thermohaline convection with two stable regimes of flow}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Tellus}{13}{2}{224--230}.
+\newblock
+\begin{APACrefDOI} \doi{10.3402/tellusa.v13i2.9491} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Swart%
+, Knutti%
+, Goosse%
+\BCBL {}\ \BBA {} {van den Broeke}%
+}{%
+Swart%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2025}}%
+}]{%
+Swart2025}
+\APACinsertmetastar {%
+Swart2025}%
+\begin{APACrefauthors}%
+Swart, N\BPBI C.%
+, Knutti, R.%
+, Goosse, H.%
+\BCBL {}\ \BBA {} {van den Broeke}, M\BPBI R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Sustained {AMOC} resilience maintained by {Southern
+  Ocean} upwelling} {Sustained {AMOC} resilience maintained by {Southern Ocean}
+  upwelling}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature}{}{}{}.
+\newblock
+\begin{APACrefDOI} \doi{10.1038/s41586-025-08880-7} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Terhaar%
 , Vogt%
 \BCBL {}\ \BBA {} Foukal%
@@ -515,6 +763,35 @@ Terhaar, J.%
 
 \bibitem [\protect \citeauthoryear {%
 van Westen%
+\ \BBA {} Dijkstra%
+}{%
+van Westen%
+\ \BBA {} Dijkstra%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+vanWestenDijkstra2024}
+\APACinsertmetastar {%
+vanWestenDijkstra2024}%
+\begin{APACrefauthors}%
+van Westen, R\BPBI M.%
+\BCBT {}\ \BBA {} Dijkstra, H\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {"; persistent"; overturning biases in {CMIP6} models and
+  consequences for {AMOC} stability} {"; persistent"; overturning biases in
+  {CMIP6} models and consequences for {AMOC} stability}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Ocean Science}{20}{}{549--567}.
+\newblock
+\begin{APACrefDOI} \doi{10.5194/os-20-549-2024} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+van Westen%
 , Kliphuis%
 \BCBL {}\ \BBA {} Dijkstra%
 }{%
@@ -541,6 +818,39 @@ van Westen, R\BPBI M.%
 \APACjournalVolNumPages{Science Advances}{10}{6}{eadk1189}.
 \newblock
 \begin{APACrefDOI} \doi{10.1126/sciadv.adk1189} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Weijer%
+\ \protect \BOthers {.}}{%
+Weijer%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+Weijer2019}
+\APACinsertmetastar {%
+Weijer2019}%
+\begin{APACrefauthors}%
+Weijer, W.%
+, Cheng, W.%
+, Drijfhout, S\BPBI S.%
+, Fedorov, A\BPBI V.%
+, Hu, A.%
+, Jackson, L\BPBI C.%
+\BDBL {}Zhang, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Stability of the {Atlantic Meridional Overturning
+  Circulation}: A review and synthesis} {Stability of the {Atlantic Meridional
+  Overturning Circulation}: A review and synthesis}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Geophysical Research:
+  Oceans}{124}{8}{5336--5375}.
+\newblock
+\begin{APACrefDOI} \doi{10.1029/2019JC015083} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -597,6 +907,39 @@ Zhu, C.%
 \APACjournalVolNumPages{Nature Climate Change}{10}{11}{998--1003}.
 \newblock
 \begin{APACrefDOI} \doi{10.1038/s41558-020-0897-7} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Zhu%
+, Liu%
+, Zhang%
+\BCBL {}\ \BBA {} Wu%
+}{%
+Zhu%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2023}}%
+}]{%
+Zhu2023}
+\APACinsertmetastar {%
+Zhu2023}%
+\begin{APACrefauthors}%
+Zhu, C.%
+, Liu, Z.%
+, Zhang, S.%
+\BCBL {}\ \BBA {} Wu, L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Likely accelerated weakening of {Atlantic} overturning
+  circulation emerges in optimal salinity fingerprint} {Likely accelerated
+  weakening of {Atlantic} overturning circulation emerges in optimal salinity
+  fingerprint}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature Communications}{14}{1}{1245}.
+\newblock
+\begin{APACrefDOI} \doi{10.1038/s41467-023-36288-4} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

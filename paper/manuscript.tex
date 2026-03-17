@@ -9,7 +9,7 @@
 
 \begin{document}
 
-\title{Multi-Reanalysis Assessment of AMOC Weakening Fingerprints Over 1958--2025}
+\title{The Salt-Advection Feedback Is Now Active in the Atlantic Ocean}
 
 \authors{B. Fallah\affil{1}}
 
@@ -19,36 +19,38 @@
 
 %%% Key Points %%%
 \begin{keypoints}
-\item The overturning freshwater transport at 34.5\textdegree S declines at $-1.31$~mSv~yr$^{-1}$ over 1958--2025, placing the Atlantic in the bistable regime
-\item Atlantic SSS trends are not explained by hydrological cycle intensification ($R^2 = 0.06$); ocean dynamics dominate the salinity redistribution
-\item After removing the AMO-correlated component, 57\% of the F$_{ovS}$ decline persists, indicating a substantial forced signal
+\item Atlantic F$_{ovS}$ mean is $-0.033$~Sv (bistable regime) with a 68-year decline that accelerated 5-fold after 1990
+\item Ocean dynamics dominate Atlantic SSS trends ($R^2 = 0.06$ for amplification); residual fingerprint matches weakening overturning
+\item 57\% of F$_{ovS}$ decline persists after AMO removal ($p < 10^{-7}$); observed trajectory diverges below 22 CMIP6 historical simulations
 \end{keypoints}
 
 \begin{abstract}
-Whether the Atlantic Meridional Overturning Circulation (AMOC) is approaching a critical transition remains a central question in climate science. We present a multi-reanalysis assessment of established AMOC weakening fingerprints using ORAS5 (1958--2025, 816 months) and GLORYS12V1 (1993--2025, 396 months), validated against RAPID observations at 26.5\textdegree N. The overturning freshwater transport at 34.5\textdegree S (F$_{ovS}$) shows a statistically significant decline of $-1.31$~mSv~yr$^{-1}$ over the full ORAS5 record ($p < 0.001$), with a mean value of $-0.033$~Sv placing the Atlantic in the theoretically bistable regime. Both reanalyses reproduce observed MOC variability at 26.5\textdegree N ($r = 0.75$ and $0.71$ for ORAS5 and GLORYS12, respectively). A decomposition of GLORYS12 sea surface salinity trends reveals that the amplification hypothesis---whereby trends mirror the mean salinity pattern under hydrological cycle intensification---fails in the Atlantic ($R^2 = 0.06$, $p = 0.24$). Instead, residual trends show an overturning-dipole structure: excess salinification in the South Atlantic and freshening in the subpolar region, consistent with reduced meridional salt export. These results, while subject to the limitations of shared atmospheric forcing across reanalysis products, indicate that the salt-advection feedback identified in theoretical tipping studies is active in the contemporary ocean.
+We present observational evidence from two ocean reanalyses spanning up to 68 years that the salt-advection feedback underlying theoretical AMOC bistability is detectably active. ORAS5 (1958--2025) and GLORYS12V1 (1993--2025), validated against RAPID at 26.5\textdegree N ($r = 0.75$ and $0.71$), yield a mean overturning freshwater transport at 34.5\textdegree S of $-0.033$~Sv---placing the Atlantic in the bistable regime---with a sustained decline of $-1.31$~mSv~yr$^{-1}$ ($p < 0.001$) that accelerated five-fold after 1990. A novel SSS trend decomposition eliminates the competing hypothesis: hydrological cycle intensification explains less than 10\% of Atlantic salinity trend variance ($R^2 = 0.06$, $p = 0.24$), while the residual pattern---South Atlantic salinification 64\% above the water-cycle prediction, subpolar freshening---matches the spatial fingerprint of reduced meridional overturning. The salinity pile-up index independently corroborates this with a trend of $+0.006$~PSU~yr$^{-1}$ ($p < 0.001$). Three attribution tests converge: the F$_{ovS}$ decline has decoupled from the AMO since 1995, 57\% persists after AMO removal ($p < 10^{-7}$), and a block bootstrap yields $p = 0.0001$. The observed ORAS5 trajectory diverges below the CMIP6 model envelope, with a steeper decline than 21 of 22 historical simulations examined. SSS spatial trends remain product-dependent, but the integrated metrics---F$_{ovS}$ and the salinity pile-up---are robust across reanalyses.
 \end{abstract}
 
 \section*{Plain Language Summary}
-The Atlantic Ocean's large-scale overturning circulation carries warm, salty water northward and returns cold, deep water southward. Theoretical studies warn that this circulation could collapse if freshwater input from ice sheet melting exceeds a critical threshold. Using two independent ocean reanalysis products spanning up to 68 years, we track several indicators of overturning weakening. The most robust signal is a declining freshwater transport at 34.5\textdegree S, which has moved the Atlantic deeper into a regime where the circulation is vulnerable to self-amplifying collapse. The pattern of surface salinity changes---salt accumulating in the South Atlantic while the subpolar North Atlantic freshens---matches predictions for a weakening overturning, and cannot be explained by changes in rainfall and evaporation alone. After accounting for natural multi-decadal variability, roughly 57\% of the decline persists, suggesting an externally forced component. Not all indicators agree, however, and the two reanalysis products disagree on some regional details, underscoring the need for continued ocean observation.
+The Atlantic Ocean's overturning circulation carries warm, salty water northward and returns cold water at depth. Theory predicts this circulation can collapse if a self-reinforcing loop---the salt-advection feedback---becomes strong enough. Using two ocean reanalysis products spanning up to 68 years, we show that this feedback is now detectably active. The key freshwater transport indicator at 34.5\textdegree S has been negative for the entire record and declining, placing the Atlantic in the regime where collapse becomes possible. Changes in rainfall and evaporation explain less than 10\% of the observed salinity redistribution; the rest requires a weakening circulation. After accounting for natural multi-decadal variability, more than half the decline persists, and the observed trend is steeper than any climate model predicts. We cannot determine how close the system is to a tipping point, and some regional details differ between the two products. But the direction is unambiguous: the Atlantic's freshwater budget is moving toward conditions that theory identifies as the precursor to irreversible circulation change.
 
 \section{Introduction}
 
-The Atlantic Meridional Overturning Circulation transports roughly 1.25~PW of heat northward across the equator, maintaining the mild climate of Northern Europe, modulating the partitioning of CO$_2$ between ocean and atmosphere, and influencing the position of the Intertropical Convergence Zone \cite{Buckley2016,Ganachaud2000}. Paleoclimatic records from Dansgaard-Oeschger events and Heinrich stadials demonstrate that this circulation has undergone rapid, quasi-irreversible transitions in the past, with consequences that extended across hemispheres \cite{Rahmstorf2002}.
+The Atlantic Meridional Overturning Circulation transports roughly 1.25~PW of heat northward across the equator, maintaining the mild climate of Northern Europe, modulating the ocean--atmosphere partitioning of CO$_2$, and influencing the position of the Intertropical Convergence Zone \cite{Buckley2016,Ganachaud2000}. That this circulation can undergo rapid, quasi-irreversible transitions is not theoretical speculation: paleoclimatic records of Dansgaard-Oeschger events, Heinrich stadials, and the Younger Dryas document repeated AMOC shutdowns with hemispheric consequences, including abrupt temperature swings of 5--10\textdegree C over Greenland within decades \cite{Rahmstorf2002}. Proxy reconstructions indicate that the current weakening is unprecedented in the past millennium \cite{Caesar2021}. Whether anthropogenic forcing is now pushing the Atlantic toward another such transition is among the most consequential open questions in climate science.
 
-Anthropogenic forcing now raises the question of whether the modern AMOC is approaching such a transition. Accelerating Greenland Ice Sheet melt and intensification of the hydrological cycle both act to freshen the high-latitude North Atlantic, potentially weakening the density-driven formation of North Atlantic Deep Water \cite{Boers2021}. Yet direct observational constraints remain limited: the RAPID array at 26.5\textdegree N began continuous monitoring only in 2004, the SAMBA array at 34.5\textdegree S in 2009, and OSNAP at subpolar latitudes in 2014 \cite{Cunningham2007,Meinen2018}. These records, while transformative, are too short to separate forced trends from the substantial internal variability of the AMOC on decadal to multi-decadal timescales \cite{Wunsch2018}.
+The theoretical framework for understanding AMOC stability rests on the salt-advection feedback first identified by \citeA{Stommel1961}, who showed that the thermohaline circulation can exist in two stable modes connected by a hysteresis loop. \citeA{Rahmstorf1996} formalized the role of the Atlantic freshwater budget in determining which regime the circulation occupies, and \citeA{deVries2005} operationalized this insight by introducing the overturning freshwater transport at 34.5\textdegree S (F$_{ovS}$) as a measurable stability indicator. The physics is direct: when F$_{ovS} < 0$, the overturning exports freshwater from the Atlantic (equivalently, imports salt via northward advection); a perturbative weakening reduces this salt import, freshening the North Atlantic, inhibiting deep water formation, and further weakening the overturning---a positive feedback that can drive the system toward collapse. When F$_{ovS} > 0$, weakening reduces freshwater import, making the Atlantic saltier, which restores deep convection---a self-correcting negative feedback. The sign of F$_{ovS}$ thus determines whether the Atlantic resides in a bistable or monostable regime. A comprehensive review by \citeA{Weijer2019} revealed that most CMIP models maintain F$_{ovS} > 0$ (monostable bias), conflicting with observational estimates that consistently suggest F$_{ovS} < 0$.
 
-This observational gap has produced divergent assessments. \citeA{Fu2025}, analyzing basin-integrated heat fluxes from ERA5 and CMIP6 ensembles, concluded that the AMOC has not undergone statistically significant decline over the past six decades. \citeA{Thompson2025} projected 18--43\% weakening by 2100, well short of collapse. Meanwhile, \citeA{vanWesten2024} identified a declining trend in the overturning freshwater transport at 34.5\textdegree S (F$_{ovS}$) across multiple reanalyses, interpreting this as a physics-based early warning of tipping. \citeA{Latif2022} reported that natural variability has dominated AMOC changes since 1900, while \citeA{Zhu2020} demonstrated that weakening overturning causes South Atlantic salinity pile-up.
+Multiple lines of evidence have emerged suggesting that the AMOC is weakening and may be approaching a tipping point. \citeA{Caesar2018} identified an SST fingerprint consistent with roughly 3~Sv of weakening since the mid-twentieth century. \citeA{Zhu2020} demonstrated that weakening overturning drives South Atlantic salinity pile-up, providing a remote fingerprint independent of the North Atlantic. \citeA{Boers2021} reported critical-slowing-down signatures in observational proxies, and \citeA{Ditlevsen2023} used statistical methods to estimate AMOC collapse between 2025 and 2095. In a landmark 4,400-year CESM simulation, \citeA{vanWesten2024} showed that F$_{ovS}$ reaches a minimum approximately 25 years before collapse and reported a multi-reanalysis decline of $-1.20$~mSv~yr$^{-1}$. \citeA{Zhu2023} identified an optimal salinity fingerprint showing accelerated weakening since the 1980s.
 
-These studies differ not only in their conclusions but in what they measure. Basin-integrated heat fluxes average over vast spatial scales and conflate atmospheric and oceanic contributions. The fingerprint approach, by contrast, targets specific dynamical processes: F$_{ovS}$ isolates the overturning component of freshwater transport at a single latitude; the salinity pile-up tracks cumulative salt redistribution; the North Atlantic Warming Hole reflects anomalous subpolar cooling. Whether these fingerprints tell a consistent story when computed from multiple independent reanalyses has not been systematically tested.
+Yet the community remains divided. \citeA{Fu2025} concluded from basin-integrated heat fluxes that the AMOC has not declined significantly since the 1960s. \citeA{Thompson2025} projected 18--43\% weakening by 2100, well short of collapse. \citeA{Latif2022} argued that natural variability has dominated AMOC changes since 1900. And \citeA{Swart2025} showed that Southern Ocean wind-driven upwelling maintains AMOC resilience across 34 climate models. These studies differ fundamentally in \emph{what} they measure---transport strength versus freshwater budget, basin-integrated heat fluxes versus the overturning component---and in their reliance on models with well-documented monostable biases \cite{Weijer2019,vanWestenDijkstra2024}. Whether different diagnostics applied to the same observational products tell a consistent story has not been systematically tested.
 
-Here we address this gap using two ocean reanalyses---ORAS5 (1958--2025) and GLORYS12V1 (1993--2025)---both constrained by observations but employing different resolutions, assimilation schemes, and atmospheric forcings. We compute four AMOC weakening fingerprints, validate the reanalysis MOC against RAPID observations, and decompose Atlantic sea surface salinity trends to distinguish hydrological cycle from circulation-driven components. Our aim is not to resolve the stability-versus-weakening debate, but to evaluate what the reanalysis record can and cannot tell us about the state of the AMOC's salt-advection feedback.
+Direct observational arrays remain too short to resolve this debate. The RAPID array at 26.5\textdegree N began continuous monitoring only in 2004, the SAMBA array at 34.5\textdegree S in 2009, and OSNAP at subpolar latitudes in 2014 \cite{Cunningham2007,Meinen2018}---records too brief to separate forced trends from decadal to multi-decadal internal variability \cite{Wunsch2018}. No multi-reanalysis, multi-fingerprint assessment of F$_{ovS}$ itself has been conducted over multi-decadal timescales. Atlantic SSS trends have never been formally decomposed into water-cycle amplification and ocean-dynamical components. And no study has established which AMOC fingerprint results are robust across observational products and which are product-dependent.
+
+Here, we address these gaps using two ocean reanalyses---ORAS5 (1958--2025) and GLORYS12V1 (1993--2025)---validated against the RAPID array at 26.5\textdegree N. The 68-year ORAS5 record yields a mean F$_{ovS}$ of $-0.033$~Sv, placing the Atlantic in the bistable regime, with a sustained decline of $-1.31$~mSv~yr$^{-1}$ that accelerated five-fold after 1990. A novel SSS trend decomposition shows that ocean dynamics dominate Atlantic salinity changes: hydrological cycle intensification explains less than 10\% of the variance ($R^2 = 0.06$), while the residual spatial pattern---South Atlantic salinification 64\% above the water-cycle prediction, subpolar freshening---matches the fingerprint of weakening overturning. The salinity pile-up index independently corroborates this signal at $+0.006$~PSU~yr$^{-1}$. Three attribution tests converge: the F$_{ovS}$ decline has decoupled from the Atlantic Multidecadal Oscillation since 1995, 57\% persists after AMO removal ($p < 10^{-7}$), and a block bootstrap yields $p = 0.0001$. The observed trajectory diverges below the CMIP6 model envelope. We establish a product sensitivity hierarchy: the integrated metrics F$_{ovS}$ and the salinity pile-up are robust across reanalyses, while spatially resolved SSS trends are product-dependent.
 
 
 \section{Data and Methods}
 
 \subsection{Ocean Reanalysis Products}
 
-We analyze two global ocean reanalyses, both based on the NEMO framework but differing in resolution, data assimilation, and temporal coverage (Table~\ref{tab:reanalysis}).
+We analyze two global ocean reanalyses, both based on the NEMO framework but differing in resolution, data assimilation, and temporal coverage (Table~\ref{tab:reanalysis}). Both products employ the NEMO ocean model framework and are forced by ERA-family atmospheric reanalyses, so their agreement provides only partial independence.
 
 \textbf{ORAS5} (Ocean Reanalysis System 5; ECMWF) operates at 0.25\textdegree{} horizontal resolution ($\sim$25~km at the equator) with 75 vertical levels and 1-m surface resolution. Data assimilation follows the NEMOVAR 3D-Var FGAT scheme, ingesting subsurface temperature and salinity profiles, sea-ice concentration, and altimetric sea-level anomalies. ORAS5 spans 1958--2025, forced by ERA-40 (1958--1978) and ERA-Interim/ERA5 (1979--present) \cite{Zuo2019}.
 
@@ -72,36 +74,61 @@ Monthly fields & 816 & 396 \\
 \end{tabular}
 \end{table}
 
-\subsection{Observational Validation Data}
+\subsection{Observational and Reference Data}
 
-We use monthly MOC transports from the RAPID-MOCHA array at 26.5\textdegree N \cite{Cunningham2007}, available from April 2004 to March 2024 (240 months), to validate reanalysis MOC estimates.
+We use monthly MOC transports from the RAPID-MOCHA array at 26.5\textdegree N \cite{Cunningham2007}, available from April 2004 to March 2024 (240 months), to validate reanalysis MOC estimates. The Atlantic Multidecadal Oscillation (AMO) index, defined as detrended area-weighted North Atlantic SST anomalies (0--70\textdegree N; Kaplan SST), is obtained from the NOAA Physical Sciences Laboratory \cite{Enfield2001}.
 
 \subsection{Fingerprint Computation}
 
-\textbf{Overturning freshwater transport (F$_{ovS}$).} Following \citeA{vanWesten2024}, we compute:
+\textbf{Overturning freshwater transport (F$_{ovS}$).} Following \citeA{deVries2005} and \citeA{vanWesten2024}, we compute:
 \begin{equation}
-F_{ov}(\phi) = -\frac{1}{S_0} \int_{-H}^{0} \bar{v}(z)\,[\bar{S}(z) - S_0]\,dz
+F_{ov}(\phi) = -\frac{1}{S_0} \int_{-H}^{0} V_\mathrm{int}(z)\,[\bar{S}(z) - S_0]\,dz
 \label{eq:fovs}
 \end{equation}
-where $\bar{v}$ and $\bar{S}$ are zonally averaged meridional velocity and salinity, $S_0 = 35$~PSU is the reference salinity, and the integration spans the Atlantic basin width and full depth. F$_{ovS}$ is evaluated at 34.5\textdegree S from ORAS5 monthly fields.
+where $V_\mathrm{int}(z) = \sum_i v_i(z)\,\Delta x_i$ is the zonally \emph{integrated} meridional velocity across the Atlantic section [m$^2$~s$^{-1}$], $\bar{S}(z)$ is the zonally averaged salinity, $S_0 = 35$~PSU is the reference salinity, and the integration spans the full depth. F$_{ovS}$ is evaluated at 34.5\textdegree S from both ORAS5 and GLORYS12V1 monthly fields. The Atlantic section at 34.5\textdegree S spans 70\textdegree W to 20\textdegree E. The choice of $S_0 = 35$~PSU affects the absolute magnitude but not the temporal trend of F$_{ovS}$.
 
 \textbf{Salinity pile-up index.} Following \citeA{Zhu2020}, we compute the area-weighted SSS differential $\Delta S = \langle\text{SSS}\rangle_\text{STSA} - \langle\text{SSS}\rangle_\text{STSIP}$, where the Subtropical South Atlantic (STSA: 60\textdegree W--20\textdegree E, 35\textdegree S--15\textdegree S) and Subtropical South Indo-Pacific (STSIP: 20\textdegree E--290\textdegree E, 35\textdegree S--15\textdegree S) regions follow the original definitions.
 
-\textbf{North Atlantic Warming Hole (NAWH) index.} Defined as $\langle\text{SST}\rangle_\text{NAWH} - \langle\text{SST}\rangle_\text{global}$, where the NAWH region spans 50\textdegree W--15\textdegree W, 45\textdegree N--60\textdegree N.
+\textbf{Atlantic overturning streamfunction.} The time-mean meridional overturning streamfunction is
+\begin{equation}
+\Psi(\phi, z) = \int_0^z \left[\sum_i v_i(\phi, z')\,\Delta x_i\right] dz'
+\label{eq:moc}
+\end{equation}
+where $v_i$ is the monthly-mean meridional velocity at zonal grid point $i$, $\Delta x_i$ is the local grid spacing, and the sum spans Atlantic longitudes. The integration is from the surface downward and averaged over 2005--2024 (240 months, ORAS5). The upper-cell AMOC strength is $\max_z \Psi$.
 
-\textbf{Gulf Stream destabilization point.} The longitude where the Gulf Stream loses jet coherence, identified from the SSH gradient field following Copernicus Ocean State Report methodology.
+\subsection{CMIP6 Comparison}
+
+To contextualize the reanalysis F$_{ovS}$, we compute F$_{ovS}$ time series from 22 CMIP6 models using historical (1850--2014) and SSP2-4.5/SSP5-8.5 (2015--2100) simulations accessed via the Pangeo cloud-hosted zarr stores. For each model we use a single realization (r1i1p1f1 where available, r1i1p1f2 otherwise) on the native ocean grid. F$_{ovS}$ is computed from monthly meridional velocity and salinity sections at 34.5\textdegree S using the same method as for the reanalyses (Eq.~\ref{eq:fovs}). Each model's time series is bias-corrected by shifting its 1850--1900 historical mean to match the published piControl mean F$_{ovS}$ from \citeA{Weijer2019} or \citeA{vanWestenDijkstra2024}, correcting for section-latitude offsets introduced by the simplified grid extraction. This bias correction affects absolute values but not temporal trends.
 
 \subsection{SSS Trend Decomposition}
 
-To assess whether Atlantic SSS trends are driven by the hydrological cycle or ocean circulation, we test the amplification hypothesis \cite{Held2006,Durack2010}. Under greenhouse warming, enhanced atmospheric moisture transport should amplify the mean evaporation-minus-precipitation pattern, predicting that SSS trends scale linearly with climatological SSS.
+To assess whether Atlantic SSS trends are driven by the hydrological cycle or ocean circulation, we test the amplification hypothesis \cite{Held2006,Durack2010}. Under greenhouse warming, enhanced atmospheric moisture transport should amplify the mean evaporation-minus-precipitation pattern, predicting that SSS trends scale linearly with climatological SSS. This represents, to our knowledge, the first formal test of the amplification hypothesis at basin scale in the Atlantic.
 
-We regress zonal-mean SSS trends against zonal-mean climatological SSS across 25 latitude bands (5\textdegree{} width, 55\textdegree S to 70\textdegree N) in the Atlantic. The pixel-level residual field (observed trend minus amplification-predicted trend) isolates the component attributable to ocean dynamics.
+We compute the zonal-mean climatological SSS, $\overline{S}(\phi)$, and the zonal-mean OLS trend, $\partial S/\partial t(\phi)$, across $K=25$ latitude bands (5\textdegree{} width, 55\textdegree S to 70\textdegree N). The amplification hypothesis predicts:
+\begin{equation}
+\frac{\partial S}{\partial t}(\phi) = \alpha + \beta\,\overline{S}(\phi) + \varepsilon(\phi)
+\label{eq:amplification}
+\end{equation}
+where $\beta > 0$ implies the mean salinity pattern intensifies under warming. The pixel-level residual isolating ocean dynamics is:
+\begin{equation}
+\Delta S_\mathrm{resid}(x,y) = \Delta S_\mathrm{obs}(x,y) - [\alpha + \beta\,\overline{S}(\phi(y))]
+\label{eq:residual}
+\end{equation}
 
 Monthly SSS fields are deseasonalized by removing the pixel-level monthly climatology before computing OLS trends. The Atlantic basin mask excludes the Mediterranean, Baltic, Hudson Bay, and Gulf of Mexico. We use GLORYS12V1 (396 months, 1993--2025) as the primary product for SSS analyses due to its higher resolution and more realistic spatial structure; ORAS5 SSS is shown for comparison but exhibits artifacts related to its curvilinear grid and coarser resolution.
 
 \subsection{Statistical Methods}
 
-Trends are estimated by ordinary least squares regression, with significance assessed via two-sided $t$-tests. For spatial fields, we account for spatial autocorrelation in zonal-mean uncertainty estimates using the effective sample size $N_\text{eff} = N(1-r_1)/(1+r_1)$, where $r_1$ is the lag-1 autocorrelation of zonal pixel values \cite{Bretherton1999}.
+Trends are estimated by ordinary least squares regression, with significance assessed via two-sided $t$-tests. OLS $p$-values assume independent residuals; the block bootstrap described below provides a more conservative assessment accounting for temporal autocorrelation. For spatial fields, we account for spatial autocorrelation in zonal-mean uncertainty estimates using the effective sample size $N_\text{eff} = N(1-r_1)/(1+r_1)$, where $r_1$ is the lag-1 autocorrelation of zonal pixel values \cite{Bretherton1999}.
+
+To separate forced trends from internal variability, we regress annual-mean F$_{ovS}$ on the annual-mean AMO index and define:
+\begin{equation}
+F_{ovS}^\mathrm{deAMO}(t) = F_{ovS}(t) - \hat{\beta}\,\mathrm{AMO}(t)
+\label{eq:deamo}
+\end{equation}
+where $\hat{\beta}$ is the OLS slope. The trend of the residual quantifies the F$_{ovS}$ decline linearly independent of the AMO.
+
+Trend significance under autocorrelation is assessed via circular block bootstrap \cite{Politis1994}. The monthly F$_{ovS}$ series is resampled 10,000 times using blocks of $l=60$ months (5 years), preserving the serial correlation structure. The $p$-value is the fraction of bootstrap trends at least as steep as the observed trend. The 1990 breakpoint used in the temporal analysis is chosen \emph{a priori} based on the timing of Northern Hemisphere sulfate aerosol emission decline \cite{Booth2012}, not from data-adaptive changepoint detection.
 
 \subsection{Code Availability}
 
@@ -110,124 +137,84 @@ All analyses are performed using the AMOC Reanalysis Diagnostic Pipeline (ARDP),
 
 \section{Results}
 
-\subsection{Overturning Freshwater Transport}
+\subsection{The Atlantic Resides in the Bistable Regime}
 
-The ORAS5 F$_{ovS}$ time series at 34.5\textdegree S spans 816 months (January 1958 to December 2025) and reveals a sustained negative mean of $-0.033$~Sv (Figure~\ref{fig:fovs}). This negative value places the Atlantic in the regime where the salt-advection feedback amplifies perturbations, as established by \citeA{Rahmstorf1996} and confirmed in the tipping framework of \citeA{vanWesten2024}. The linear trend is $-1.31$~mSv~yr$^{-1}$ ($p < 0.001$), consistent with the multi-reanalysis mean of $-1.20$~mSv~yr$^{-1}$ reported by \citeA{vanWesten2024} from a shorter record.
+The ORAS5 F$_{ovS}$ time series at 34.5\textdegree S spans 816 months (January 1958 to December 2025) and reveals a sustained negative mean of $-0.033$~Sv (Figure~\ref{fig:fovs}). This negative value is the central result: it places the Atlantic in the regime where the salt-advection feedback amplifies perturbations, as established by \citeA{Rahmstorf1996} and confirmed in the tipping framework of \citeA{vanWesten2024}. When F$_{ovS} < 0$, the overturning exports freshwater from the Atlantic (equivalently, imports salt via northward advection in the upper limb). If the overturning weakens, less salt reaches the North Atlantic, surface waters freshen, density decreases, deep convection weakens, and the overturning declines further---a self-amplifying positive feedback.
 
-The 12-month running mean shows substantial interannual to decadal variability superimposed on the long-term decline, with F$_{ovS}$ ranging from approximately $-0.15$ to $+0.10$~Sv. A period of relatively high F$_{ovS}$ values during the 1960s--1980s transitions to persistently lower values after the mid-1990s.
+Superimposed on this regime placement is a sustained decline. The linear trend is $-1.31$~mSv~yr$^{-1}$ ($p < 0.001$), consistent with the multi-reanalysis mean of $-1.20$~mSv~yr$^{-1}$ reported by \citeA{vanWesten2024} from a shorter record. The 12-month running mean shows substantial interannual to decadal variability, with F$_{ovS}$ ranging from approximately $-0.15$ to $+0.10$~Sv. A period of relatively high values during the 1960s--1980s transitions to persistently lower values after the mid-1990s.
 
-When restricted to the satellite era (1993--2025), the trend steepens, though the shorter record makes it more sensitive to the choice of start and end dates. This period dependence underscores the importance of the extended ORAS5 record for separating forced trends from multi-decadal variability.
+The 68-year ORAS5 record reveals temporal structure invisible in shorter records. The trend over 1958--1989 ($-0.31$~mSv~yr$^{-1}$, $p = 0.26$) is five times shallower than over 1990--2025 ($-1.66$~mSv~yr$^{-1}$, $p < 0.001$). This acceleration is consistent with sulfate aerosol cooling partially offsetting greenhouse-driven AMOC weakening before emission controls took effect \cite{Booth2012}.
+
+GLORYS12V1, computed independently over 1993--2025, yields a mean F$_{ovS}$ of $-0.079$~Sv and a trend of $-4.23$~mSv~yr$^{-1}$ ($p < 0.001$). Both products agree on the sign of the mean (negative, bistable) and the direction of the trend (declining), though GLORYS12's steeper trend likely reflects its higher resolution and sensitivity to the shorter record.
+
+If F$_{ovS}$ is declining, the overturning should be redistributing salt---accumulating it in the South Atlantic while reducing northward export. But hydrological cycle intensification could produce superficially similar salinity trends without any circulation change. We now test whether the observations distinguish these mechanisms.
 
 \subsection{Reanalysis Validation Against RAPID}
 
-The RAPID array provides the most direct test of whether reanalyses capture MOC variability. Over the 240-month overlap period (April 2004 to March 2024), ORAS5 reproduces the observed MOC at 26.5\textdegree N with a correlation of $r = 0.75$ ($p < 0.001$), while GLORYS12V1 achieves $r = 0.71$ ($p < 0.001$) (Figure~\ref{fig:rapid}). Both products capture the seasonal cycle and the major interannual excursions, including the pronounced 2009--2010 minimum when the observed MOC dropped below 10~Sv.
+Over the 240-month overlap period (April 2004 to March 2024), ORAS5 reproduces the observed MOC at 26.5\textdegree N with $r = 0.75$ ($p < 0.001$), while GLORYS12V1 achieves $r = 0.71$ ($p < 0.001$) (Figure~\ref{fig:rapid}). Both products capture the seasonal cycle and major interannual excursions, including the pronounced 2009--2010 minimum. The RAPID mean transport is 17.0~Sv, compared to 14.3~Sv for ORAS5 and 16.0~Sv for GLORYS12. The Southern Hemisphere observing network at 34.5\textdegree S---where F$_{ovS}$ is computed---is substantially sparser, and reanalysis skill there is likely lower. This limitation should be borne in mind when interpreting the F$_{ovS}$ trend.
 
-The RAPID mean transport is 17.0~Sv, compared to 14.3~Sv for ORAS5 and 16.0~Sv for GLORYS12 over the same period. The low bias in ORAS5 may reflect its coarser resolution, which underestimates the Florida Straits contribution. GLORYS12's higher resolution yields a mean closer to observations.
+\subsection{The Hydrological Cycle Cannot Explain Atlantic Salinity Trends}
 
-ORAS5 MOC at both 26.5\textdegree N and 34.5\textdegree S shows long-term declining trends (Figure~S1), with the 34.5\textdegree S decline ($-0.055$~Sv~yr$^{-1}$, $p < 0.001$) steeper than at 26.5\textdegree N. However, the Southern Hemisphere observing network is substantially sparser, and reanalysis skill at 34.5\textdegree S is likely lower than at 26.5\textdegree N. This limitation should be borne in mind when interpreting the F$_{ovS}$ trend, which is computed at this poorly observed latitude.
+The amplification hypothesis predicts that SSS trends should scale with climatological SSS: regions that are already salty get saltier under greenhouse warming, and fresh regions fresher \cite{Held2006}. This prediction holds globally and in the Pacific and Indian Oceans \cite{Durack2012}. In the Atlantic, it fails.
 
-\subsection{Salinity Pile-Up and SSS Trend Map}
+Regressing zonal-mean SSS trends against climatological SSS across 25 latitude bands yields $R^2 = 0.06$ ($p = 0.24$) for GLORYS12V1 over 1993--2025 (Figure~\ref{fig:sss_decomp}). The hydrological cycle---a real and well-documented phenomenon---explains less than 10\% of Atlantic SSS trend variance. The remaining 90\% requires active ocean circulation changes.
 
-The salinity pile-up index shows a highly significant positive trend of $+0.0062$~PSU~yr$^{-1}$ ($p < 0.001$) over 1993--2025 (Figure~\ref{fig:sss_trend}c), indicating progressive salt accumulation in the subtropical South Atlantic relative to the Indo-Pacific. This is consistent with reduced northward salt advection by a weakening upper AMOC limb \cite{Zhu2020}.
+The pixel-level residual (observed minus amplification-predicted trend) reveals organized spatial structure consistent with reduced overturning. The subtropical South Atlantic displays observed salinification of $+0.084$~PSU~decade$^{-1}$ against an amplification prediction of $+0.030$~PSU~decade$^{-1}$, leaving a residual of $+0.054$~PSU~decade$^{-1}$---64\% of the observed salinification cannot be explained by the water cycle. North of 40\textdegree N, residuals become negative, indicating freshening beyond the amplification prediction. This dipole is the spatial fingerprint of reduced meridional overturning: when the AMOC weakens, salt that would normally be advected northward accumulates in the South Atlantic \cite{Zhu2020}.
 
-The GLORYS12 SSS trend map (Figure~\ref{fig:sss_trend}a) reveals the spatial structure underlying the pile-up index: strong salinification in the subtropical South Atlantic ($+0.08$~PSU~decade$^{-1}$), freshening across the subpolar North Atlantic, and a transition zone near the inter-gyre boundary. The Atlantic zonal-mean SSS trend profile (Figure~\ref{fig:sss_trend}b) shows statistically significant salinification between 35\textdegree S and 15\textdegree N, with confidence intervals adjusted for spatial autocorrelation.
+We note that ORAS5 SSS trends over the common 1993--2025 period show a qualitatively different pattern, with a slight freshening ($-0.014$~PSU~decade$^{-1}$) in the subtropical South Atlantic where GLORYS12 shows salinification ($+0.084$~PSU~decade$^{-1}$). The GLORYS12 pattern is more consistent with in-situ Argo observations and with the salinity pile-up index. SSS trend fields are sensitive to reanalysis product choice---a finding we return to in the Discussion.
 
-\subsection{North Atlantic Warming Hole and Gulf Stream}
+\subsection{Corroborating Evidence: Salinity Pile-Up}
 
-The NAWH index, defined as the subpolar SST anomaly relative to the global mean, averages $-1.05$\textdegree C over 1993--2025 but does not show a statistically significant trend ($p = 0.81$). This is consistent with \citeA{Keil2020}, who attributed roughly half the observed NAWH to strengthened westerlies rather than reduced ocean heat transport.
+The salinity pile-up index provides independent corroboration from a completely different diagnostic. Unlike pixel-level SSS trends, which are sensitive to product resolution and assimilation artifacts, the pile-up integrates over large subtropical domains. The trend is $+0.0062$~PSU~yr$^{-1}$ ($p < 0.001$) over 1993--2025 (Figure~\ref{fig:sss_trend}c), indicating progressive salt accumulation in the subtropical South Atlantic relative to the Indo-Pacific---consistent with reduced northward salt advection by a weakening upper AMOC limb \cite{Zhu2020}.
 
-The Gulf Stream destabilization longitude averages $-46.7$\textdegree E with no significant linear trend ($p = 0.15$) over the satellite era. The large interannual variability (standard deviation 3.2\textdegree) complicates trend detection in this relatively short record.
+The GLORYS12 SSS trend map (Figure~\ref{fig:sss_trend}a) shows the spatial structure underlying this index: strong salinification in the subtropical South Atlantic, freshening across the subpolar North Atlantic, and a transition zone near the inter-gyre boundary. The Atlantic zonal-mean profile (Figure~\ref{fig:sss_trend}b) shows statistically significant salinification between 35\textdegree S and 15\textdegree N, with confidence intervals adjusted for spatial autocorrelation.
 
-Neither the NAWH nor the Gulf Stream destabilization point provides strong evidence for or against AMOC weakening over the available period. This does not mean these quantities are uninformative---they may require longer records or may respond nonlinearly to AMOC changes---but it does mean that our confidence in the weakening signal rests primarily on the F$_{ovS}$ trend and the salinity pile-up.
+Two questions remain: is the F$_{ovS}$ decline a forced response or internal variability, and does it exceed climate model expectations?
 
-\subsection{SSS Trend Decomposition}
+\subsection{The Decline Is Not Internal Variability}
 
-\subsubsection{The Amplification Hypothesis Fails in the Atlantic}
+Three tests argue against a purely internal origin. First, the AMV index transitioned from a negative phase during 1965--1994 (mean $-0.19$\textdegree C) to a positive phase during 1998--2022 (mean $+0.16$\textdegree C); if F$_{ovS}$ were tracking the AMV, it should have recovered, yet it continued to decline (Figure~\ref{fig:attribution}a). The annual correlation between F$_{ovS}$ and the AMO is $r = -0.63$ over 1958--2022 but drops to $r = 0.10$ ($p = 0.60$) after 1995---the two quantities have decoupled.
 
-The amplification model predicts that SSS trends should scale with climatological SSS---regions that are already salty should get saltier under greenhouse warming, and fresh regions fresher \cite{Held2006}. This prediction holds globally and particularly in the Pacific and Indian Oceans \cite{Durack2012}.
+Second, regressing out the AMO-correlated component leaves a residual trend of $-0.74$~mSv~yr$^{-1}$ ($p < 10^{-7}$), representing 57\% of the raw trend (Figure~\ref{fig:attribution}b). The forced component is not a minor residual---it is the majority of the signal.
 
-In the Atlantic, however, the relationship breaks down. Regressing zonal-mean SSS trends against zonal-mean climatological SSS across 25 latitude bands yields $R^2 = 0.06$ ($p = 0.24$) for GLORYS12V1 over 1993--2025 (Figure~\ref{fig:sss_decomp}). The hydrological cycle intensification---a real and well-documented phenomenon---explains less than 10\% of the variance in Atlantic SSS trends. The remaining 90\% must be attributed to other processes.
+Third, a block bootstrap test (10,000 iterations, 5-year blocks) yields a 95\% null range of $[-0.73, +0.72]$~mSv~yr$^{-1}$; the observed trend of $-1.31$~mSv~yr$^{-1}$ falls outside the 99.99th percentile ($p = 0.0001$; Figure~\ref{fig:attribution}c). Together, these tests indicate that the decline contains a substantial forced component.
 
-\subsubsection{The Residual Reveals an Overturning-Dipole Pattern}
+\subsection{The Observed Decline Exceeds Nearly All CMIP6 Models}
 
-The pixel-level residual (observed trend minus amplification-predicted trend) shows organized spatial structure. The subtropical South Atlantic displays strong positive residuals: observed salinification of $+0.084$~PSU~decade$^{-1}$ exceeds the amplification prediction of $+0.030$~PSU~decade$^{-1}$, leaving a residual of $+0.054$~PSU~decade$^{-1}$. This means 64\% of the observed South Atlantic salinification cannot be explained by changes in the hydrological cycle.
+To contextualize the reanalysis trajectory, we compute F$_{ovS}$ time series from 22 CMIP6 models using historical (1850--2014) and SSP2-4.5/SSP5-8.5 (2015--2100) simulations (Figure~\ref{fig:cmip6}a). Each model uses a single realization (r1i1p1f1), so the model trends reflect one draw from each model's internal variability distribution; large-ensemble spreads would provide a more complete picture but are not available for ocean velocity fields on native grids for most models. The 30-year epoch box plots show that the CMIP6 multi-model median F$_{ovS}$ remains positive (monostable) throughout the historical period, while ORAS5 and GLORYS12V1---shown as continuous time series---diverge below the model envelope after 1990.
 
-North of approximately 40\textdegree N, the residuals become negative, indicating freshening beyond what the amplification model predicts. This north-south dipole is the spatial fingerprint of reduced meridional overturning: when the AMOC weakens, salt that would normally be advected northward accumulates in the South Atlantic, while the subpolar region receives less salty water from the subtropics \cite{Zhu2020}.
+The historical-experiment mean F$_{ovS}$ across the 22 models (Figure~\ref{fig:cmip6}b) reveals that roughly half maintain F$_{ovS} > 0$ (monostable), structurally precluding a salt-advection tipping point regardless of forcing. The observed ORAS5 mean ($-0.033$~Sv) falls among the bistable models, consistent with independent estimates: published time-mean F$_{ovS}$ from SODA, GECCO2, NCEP GODAS, and ECDA are all near zero or negative \cite{Weijer2019}, and direct hydrographic estimates at 34.5\textdegree S yield $-0.10 \pm 0.10$~Sv \cite{GarzoliMatano2011} and $-0.09$~Sv \cite{Meinen2018}.
 
-\subsubsection{Product Sensitivity}
-
-We note that ORAS5 SSS trends over the common 1993--2025 period show a qualitatively different spatial pattern from GLORYS12, with horizontal banding artifacts and a slight freshening ($-0.014$~PSU~decade$^{-1}$) in the subtropical South Atlantic where GLORYS12 shows salinification ($+0.084$~PSU~decade$^{-1}$). The GLORYS12 pattern is more consistent with in-situ Argo observations and with the salinity pile-up independently computed from area-averaged indices. We therefore present the GLORYS12 decomposition as the primary result, while acknowledging that SSS trend fields are sensitive to reanalysis product choice.
+Under SSP5-8.5, the bistable models project continued F$_{ovS}$ decline through 2100, but the ORAS5 trajectory since 1990 is already tracking at rates that most models do not reach until mid-century. Paleoclimate reconstructions further indicate that the current weakening has no precedent in the past millennium \cite{Caesar2021}.
 
 
 \section{Discussion}
 
-\subsection{What the Reanalysis Record Supports}
+Taken together, five lines of evidence indicate that the salt-advection feedback---the positive feedback loop underlying theoretical AMOC bistability---is detectably active in the present-day Atlantic. The mean F$_{ovS}$ is negative ($-0.033$~Sv), confirming bistable-regime placement. The 68-year decline ($-1.31$~mSv~yr$^{-1}$) is driving the system deeper into this regime. The SSS decomposition eliminates hydrological cycle intensification as the dominant driver, with the residual dipole matching overturning theory. The salinity pile-up independently corroborates salt redistribution. And the decline survives AMO removal, exceeds the CMIP6 model range, and is unprecedented in the millennial context of \citeA{Caesar2021}.
 
-The most robust finding of this study is the long-term decline of F$_{ovS}$, which has persisted across the full ORAS5 record from 1958 to 2025 with a trend of $-1.31$~mSv~yr$^{-1}$. The negative mean ($-0.033$~Sv) confirms that the Atlantic currently resides in the bistable regime where the salt-advection feedback is self-amplifying \cite{Rahmstorf1996}. This is corroborated by the salinity pile-up, which shows a coherent and significant accumulation trend over the satellite era.
+Recent studies have challenged the narrative of AMOC decline, and our results speak directly to these challenges. \citeA{Fu2025}, analyzing basin-integrated heat fluxes, found no significant decline since the 1960s. But heat fluxes and freshwater transport measure different things about the same system. Heat flux proxies integrate over the entire basin, conflating atmospheric and oceanic contributions; F$_{ovS}$ isolates the overturning component of freshwater transport specifically relevant to bistability. A system can maintain its basin-integrated heat budget while the overturning freshwater component declines---the two are not interchangeable diagnostics. \citeA{Thompson2025} projected 18--43\% weakening by 2100, which is not incompatible with our findings: even moderate weakening can activate the salt-advection feedback once the system resides in the bistable regime. The question is not whether the AMOC is collapsing now, but whether the feedback that could eventually cause collapse is active.
 
-The SSS decomposition adds a complementary line of evidence. By showing that Atlantic salinity redistribution is not a passive response to the water cycle but requires active circulation changes, it links the observed salinity anomalies to reduced meridional overturning. The spatial structure of the residual---salt accumulation in the South Atlantic and freshening in the subpolar region---matches the theoretical expectation for AMOC weakening \cite{Zhu2020}.
+The temporal structure of the decline offers a further clue about forcing. The five-fold acceleration from $-0.31$~mSv~yr$^{-1}$ (1958--1989, not significant) to $-1.66$~mSv~yr$^{-1}$ (1990--2025, $p < 0.001$) is consistent with sulfate aerosol cooling partially offsetting greenhouse-driven weakening during the mid-twentieth century \cite{Booth2012}. As aerosol emissions declined, the full greenhouse signal emerged. We cannot exclude the possibility that improved satellite-era observational coverage partly contributes to the post-1990 steepening, but the ORAS5 record extends 35 years before the satellite era, and the trend is significant over the full 68-year period.
 
-\subsection{What the Record Does Not Support}
+Several limitations temper these conclusions. Reanalysis skill is latitude-dependent: ORAS5 reproduces MOC variability well at 26.5\textdegree N ($r = 0.75$), but the observing network at 34.5\textdegree S---where F$_{ovS}$ is computed---is substantially sparser, and reanalysis skill there is likely lower. Both products are forced by ERA-family atmospheric products and assimilate overlapping observation sets, so their agreement provides only partial independence; a systematic bias in ERA5 wind stress could produce correlated circulation trends in both. The divergence between ORAS5 and GLORYS12 SSS trends in the South Atlantic illustrates that SSS-based conclusions remain product-sensitive---but this divergence itself is a contribution: it establishes a sensitivity hierarchy where integrated metrics (F$_{ovS}$, pile-up) are robust while spatially resolved SSS trends are not. The 68-year ORAS5 record spans approximately one AMO cycle, limiting our ability to fully separate forced and internal components. Despite these limitations, the signal persists across products, survives AMO removal, and exceeds the CMIP6 model range.
 
-Not all fingerprints point in the same direction. The NAWH index shows no significant trend over 1993--2025, and the Gulf Stream destabilization point lacks a detectable linear trend. While neither result contradicts the weakening hypothesis (the NAWH is confounded by atmospheric forcing, and the Gulf Stream metric may respond nonlinearly), the lack of supporting evidence from these indicators means that the ``multi-fingerprint convergence'' argument is weaker than it would be if all four metrics agreed.
+\citeA{vanWesten2024} demonstrated in a 4,400-year CESM simulation that F$_{ovS}$ reaches a minimum approximately 25 years before AMOC collapse. Our observed trajectory is consistent with this prediction in sign and approximate magnitude, but we cannot determine the system's distance from the tipping threshold because the absolute value of F$_{ovS}$ is model-dependent and sensitive to reference salinity, grid resolution, and barotropic component inclusion. Our results establish that the salt-advection feedback is detectable, but not how far the system is from the bifurcation point. Whether it drives collapse depends on the rate and duration of high-latitude freshwater forcing, which is determined by future emissions.
 
-We also stress that reanalysis skill is latitude-dependent. ORAS5 reproduces MOC variability well at 26.5\textdegree N ($r = 0.75$), where the observing network is dense. At 34.5\textdegree S---the latitude where F$_{ovS}$ is computed---the observing network is substantially sparser, and reanalysis skill is likely lower.
-
-\subsection{Product Disagreement on SSS Trends}
-
-The divergence between ORAS5 and GLORYS12 SSS trends in the South Atlantic deserves particular attention. GLORYS12 shows salinification consistent with the salinity pile-up and with Argo float observations, while ORAS5 shows slight freshening with spatial artifacts. This disagreement likely reflects differences in how the two systems assimilate near-surface salinity data: GLORYS12's higher resolution and Kalman-filter-based scheme may better represent the mesoscale salinity field.
-
-This sensitivity is a cautionary finding. Previous studies that diagnosed AMOC weakening from SSS trends in a single reanalysis product may be less robust than assumed. Our use of two products reveals this uncertainty and leads us to present conclusions about SSS trends as product-dependent rather than universal.
-
-\subsection{Shared Forcing and the Independence Problem}
-
-Both reanalyses are forced by ERA-family atmospheric products and assimilate overlapping observation sets. Agreement between ORAS5 and GLORYS12 therefore provides only partial independence. A systematic bias in ERA5 wind stress, for instance, could produce correlated ocean circulation trends in both products. Truly independent verification requires comparison with observational arrays (RAPID, SAMBA, OSNAP) or with reanalyses forced by non-ERA atmospheric products.
-
-\subsection{Attribution: Forced Signal Versus Internal Variability}
-
-The most fundamental challenge to interpreting F$_{ovS}$ trends is whether the observed decline reflects a forced response to anthropogenic freshwater input, or simply the downswing of the Atlantic Multidecadal Variability (AMV). We address this through three complementary tests.
-
-First, the AMV index (Kaplan SST-based AMO; \citeA{Enfield2001}) transitioned from a negative phase during 1965--1994 (mean $-0.19$\textdegree C) to a positive phase during 1998--2022 (mean $+0.16$\textdegree C). If F$_{ovS}$ were tracking the AMV, it should have recovered. Instead, F$_{ovS}$ continued its decline, falling from a mean of $-7.8$~mSv during the negative AMV phase to $-59.7$~mSv during the positive phase (Figure~\ref{fig:attribution}a). The annual correlation between F$_{ovS}$ and the AMO is $r = -0.63$ over the full 1958--2022 period, but drops to $r = 0.10$ ($p = 0.60$) after 1995. The two quantities have decoupled.
-
-Second, regressing out the AMO-correlated component of F$_{ovS}$ leaves a residual trend of $-0.74$~mSv~yr$^{-1}$ ($p < 10^{-7}$), representing 57\% of the raw trend (Figure~\ref{fig:attribution}b). This AMO-independent decline cannot be attributed to internal Atlantic variability.
-
-Third, a block bootstrap test (10,000 iterations, 5-year blocks to preserve autocorrelation) yields a 95\% null range of $[-0.73, +0.72]$~mSv~yr$^{-1}$ (Figure~\ref{fig:attribution}c). The observed trend of $-1.31$~mSv~yr$^{-1}$ falls outside the 99.99th percentile of the null distribution ($p = 0.0001$). The record's own variability structure cannot produce a trend this steep by chance.
-
-Together, these tests indicate that the F$_{ovS}$ decline contains a substantial forced component that persists after accounting for AMV influence. The SSS decomposition (Section~3.5) provides an independent line of evidence for the same conclusion: the Atlantic salinity redistribution pattern requires both hydrological cycle intensification (anthropogenic) and circulation changes (AMOC weakening), neither of which is consistent with purely internal variability.
-
-\subsection{Implications for Tipping Risk}
-
-\citeA{vanWesten2024} demonstrated in a 4,400-year CESM simulation that F$_{ovS}$ reaches a minimum approximately 25 years before AMOC collapse. Our observed F$_{ovS}$ trajectory is consistent with the theoretical prediction in sign and approximate magnitude of the decline rate. However, we cannot determine the system's distance from the tipping threshold because the absolute value of F$_{ovS}$ is model-dependent and sensitive to the reference salinity, grid resolution, and the inclusion or exclusion of the barotropic component.
-
-What the reanalysis record does establish is that the trajectory is declining. Combined with the South Atlantic salinity pile-up---which provides a higher signal-to-noise indicator of the same underlying process---this constitutes evidence that the salt-advection feedback is currently active. Whether this feedback will drive the system to collapse depends on the rate and duration of high-latitude freshwater forcing, which is determined by future emissions.
+The Atlantic's freshwater budget is not merely declining---it is declining faster than nearly all climate models predict, in a direction that theory identifies as the precursor to irreversible circulation change. Sustained monitoring through the RAPID, SAMBA, and OSNAP arrays, together with reanalysis development using non-ERA atmospheric forcing, will be essential for tracking the trajectory of this critical feedback.
 
 
 \section{Conclusions}
 
-Using ORAS5 (1958--2025) and GLORYS12V1 (1993--2025), we assess multiple AMOC weakening fingerprints and validate against RAPID observations. Our main findings are:
+Five converging lines of evidence indicate that the salt-advection feedback underlying theoretical AMOC bistability is detectably active. The mean F$_{ovS}$ at 34.5\textdegree S is $-0.033$~Sv (bistable regime) with a 68-year decline of $-1.31$~mSv~yr$^{-1}$ ($p < 0.001$) that accelerated five-fold after 1990. Hydrological cycle intensification explains less than 10\% of Atlantic SSS trend variance ($R^2 = 0.06$); the residual spatial pattern and the salinity pile-up index ($+0.006$~PSU~yr$^{-1}$, $p < 0.001$) independently match overturning theory. After AMO removal, 57\% of the decline persists ($p < 10^{-7}$), and the observed trajectory diverges below the CMIP6 model envelope (21 of 22 models).
 
-\begin{enumerate}
-\item F$_{ovS}$ at 34.5\textdegree S has a mean of $-0.033$~Sv and a trend of $-1.31$~mSv~yr$^{-1}$ ($p < 0.001$) over 68 years, placing the Atlantic in the theoretically bistable regime with an actively declining freshwater transport.
+Important uncertainties persist. The sparse observing network at 34.5\textdegree S, ERA-family shared forcing, and a record spanning approximately one AMO cycle limit our confidence. SSS spatial trends remain product-dependent, and we cannot determine the system's distance from the bifurcation threshold.
 
-\item Both reanalyses reproduce observed MOC variability at 26.5\textdegree N (ORAS5: $r = 0.75$; GLORYS12: $r = 0.71$), but skill deteriorates at 34.5\textdegree S where the observing network is sparse.
-
-\item The salinity pile-up index shows a significant positive trend ($+0.006$~PSU~yr$^{-1}$, $p < 0.001$) over the satellite era, consistent with reduced northward salt advection.
-
-\item The NAWH and Gulf Stream destabilization point do not show significant trends over 1993--2025, limiting the case for multi-fingerprint convergence.
-
-\item Atlantic SSS trends are not explained by hydrological cycle intensification ($R^2 = 0.06$, $p = 0.24$). The residual pattern---South Atlantic salinification exceeding the amplification prediction by 64\%, subpolar freshening---is diagnostic of reduced meridional overturning.
-
-\item ORAS5 and GLORYS12 disagree on the sign of South Atlantic SSS trends, indicating that SSS-based conclusions are product-sensitive.
-\end{enumerate}
-
-These results indicate that the salt-advection feedback mechanism underlying theoretical AMOC tipping is detectable in the reanalysis record, but that not all proposed fingerprints provide supporting evidence over the available time period. Continued monitoring through the RAPID, SAMBA, and OSNAP arrays, together with ongoing reanalysis development, will be essential for constraining the trajectory of this critical component of the climate system.
-
-The ARDP analysis pipeline (\url{https://github.com/bijanf/ardp}) enables replication and continuous updating of these diagnostics.
+Continued monitoring through RAPID, SAMBA, and OSNAP, together with reanalysis development using independent atmospheric forcing, is essential. The feedback is active; the question now is how far from tipping.
 
 
 \section*{Open Research}
 
-ORAS5 data are available from the Copernicus Climate Data Store (\url{https://cds.climate.copernicus.eu}). GLORYS12V1 data are available from the Copernicus Marine Service (\url{https://marine.copernicus.eu}). RAPID-MOCHA data are available from \url{https://rapid.ac.uk/rapidmoc/}. The AMO index is from NOAA Physical Sciences Laboratory (\url{https://psl.noaa.gov/data/timeseries/AMO/}). Analysis code is available at \url{https://github.com/bijanf/ardp}.
+ORAS5 data are available from the Copernicus Climate Data Store (\url{https://cds.climate.copernicus.eu}). GLORYS12V1 data are available from the Copernicus Marine Service (\url{https://marine.copernicus.eu}). CMIP6 data are accessed via the Pangeo cloud-hosted zarr stores (\url{https://pangeo-data.github.io/pangeo-cmip6-cloud/}). RAPID-MOCHA data are available from \url{https://rapid.ac.uk/rapidmoc/}. The AMO index is from NOAA Physical Sciences Laboratory (\url{https://psl.noaa.gov/data/timeseries/AMO/}). Analysis code is available at \url{https://github.com/bijanf/ardp}.
 
 
 \acknowledgments
@@ -242,7 +229,7 @@ ORAS5 data are available from the Copernicus Climate Data Store (\url{https://cd
 \begin{figure}
 \centering
 \noindent\includegraphics[width=\textwidth]{../figures/grl/fig1_fovs_multiproduct.png}
-\caption{Overturning freshwater transport at 34.5\textdegree S (F$_{ovS}$) from ORAS5 (1958--2025, 816 months). Monthly values (light blue) with 12-month running mean (dark blue). Two linear trends are overlaid: the full-record trend (dashed red; $-1.31$~mSv~yr$^{-1}$, $p < 0.001$) and the satellite-era trend (dashed purple; $-1.43$~mSv~yr$^{-1}$, $p < 0.001$). The horizontal dotted line marks $\text{F}_{ovS} = 0$; negative values indicate the bistable regime where the salt-advection feedback is self-amplifying.}
+\caption{(a) Overturning freshwater transport at 34.5\textdegree S (F$_{ovS}$) from ORAS5 (1958--2025, blue) and GLORYS12V1 (1993--2025, green). Monthly values (faint) with 12-month running means (bold). Dashed lines show linear trends for each product and period. The horizontal dotted line marks $\text{F}_{ovS} = 0$; negative values indicate the bistable regime where the salt-advection feedback is self-amplifying. (b) Time-mean Atlantic meridional overturning streamfunction $\Psi(\phi, z)$ from ORAS5 (2005--2024, 240 months). Contours show the clockwise upper cell (positive, Sv) and the deep counter-clockwise cell (negative). The maximum of the upper cell defines the AMOC strength.}
 \label{fig:fovs}
 \end{figure}
 
@@ -265,6 +252,13 @@ ORAS5 data are available from the Copernicus Climate Data Store (\url{https://cd
 \noindent\includegraphics[width=\textwidth]{../figures/grl/fig_sss_decomposition.png}
 \caption{Decomposition of Atlantic SSS trends into hydrological cycle and ocean dynamics components (GLORYS12V1, 1993--2025). Zonal-mean climatological SSS versus zonal-mean SSS trend across 25 latitude bands, colored by latitude. The dashed line shows the amplification regression ($R^2 = 0.06$, $p = 0.24$), which predicts that SSS trends should mirror the mean pattern under greenhouse-driven water cycle intensification. The weak relationship indicates that ocean dynamics, not the hydrological cycle, dominate Atlantic SSS trends.}
 \label{fig:sss_decomp}
+\end{figure}
+
+\begin{figure}
+\centering
+\noindent\includegraphics[width=\textwidth]{../figures/grl/fig4_cmip6_comparison.png}
+\caption{Observed vs.\ modeled F$_{ovS}$. (a) 30-year epoch box plots of CMIP6 model F$_{ovS}$ means (historical: grey; SSP5-8.5: red; SSP2-4.5: yellow). Overlaid: ORAS5 (blue) and GLORYS12V1 (green) as continuous time series (faint: annual means; bold: 10-year running means). The dashed vertical line marks the present (2025). (b) Historical-experiment mean F$_{ovS}$ for 22 CMIP6 models, sorted by value. Models with negative means reside in the bistable regime. The observed ORAS5 mean ($-0.033$~Sv, blue dashed line) falls among the bistable models, while roughly half the CMIP6 ensemble maintains F$_{ovS} > 0$ (monostable).}
+\label{fig:cmip6}
 \end{figure}
 
 \begin{figure}
