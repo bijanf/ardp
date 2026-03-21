@@ -278,8 +278,8 @@ def plot_sss_trend_figure(
     )
     gl.top_labels = False
     gl.right_labels = False
-    gl.xlabel_style = {"size": 5, "color": "0.4"}
-    gl.ylabel_style = {"size": 5, "color": "0.4"}
+    gl.xlabel_style = {"size": 6, "color": "0.4"}
+    gl.ylabel_style = {"size": 6, "color": "0.4"}
 
     vmax = np.nanpercentile(np.abs(trend), 98)
     vmax = np.ceil(vmax * 20) / 20
@@ -332,14 +332,14 @@ def plot_sss_trend_figure(
 
     # Colorbar below map
     if has_pileup:
-        cax = fig.add_axes([0.05, 0.42, 0.52, 0.015])
+        cax = fig.add_axes([0.05, 0.38, 0.52, 0.015])
     else:
         cax = fig.add_axes([0.05, 0.01, 0.52, 0.02])
     cbar = fig.colorbar(im, cax=cax, orientation="horizontal", extend="both")
-    cbar.set_label("SSS trend (PSU decade$^{-1}$)", fontsize=6)
-    cbar.ax.tick_params(labelsize=5)
+    cbar.set_label("SSS trend (PSU decade$^{-1}$)", fontsize=7)
+    cbar.ax.tick_params(labelsize=6)
 
-    ax_map.set_title(title, fontsize=8, pad=8)
+    ax_map.set_title(title, fontsize=9, pad=8)
     add_panel_label(ax_map, "a", x=0.01, y=1.03)
 
     # --- Panel (b): Zonal-mean SSS trend profile ---
@@ -418,11 +418,11 @@ def plot_sss_trend_figure(
     ax_zonal.axvline(0, color="0.6", linewidth=0.5, linestyle="--", zorder=0)
 
     ax_zonal.set_ylim(-55, 70)
-    ax_zonal.set_xlabel("SSS trend\n(PSU decade$^{-1}$)", fontsize=6)
-    ax_zonal.set_ylabel("Latitude (\u00b0N)", fontsize=6)
-    ax_zonal.set_title("Zonal mean\n(Atlantic)", fontsize=7)
-    ax_zonal.legend(fontsize=4, loc="upper left", framealpha=0.7)
-    ax_zonal.tick_params(labelsize=5)
+    ax_zonal.set_xlabel("SSS trend\n(PSU decade$^{-1}$)", fontsize=7)
+    ax_zonal.set_ylabel("Latitude (\u00b0N)", fontsize=7)
+    ax_zonal.set_title("Zonal mean\n(Atlantic)", fontsize=8)
+    ax_zonal.legend(fontsize=5, loc="upper left", framealpha=0.7)
+    ax_zonal.tick_params(labelsize=6)
 
     ax_zonal.fill_betweenx(
         lat_plot,
@@ -444,25 +444,35 @@ def plot_sss_trend_figure(
 
     add_panel_label(ax_zonal, "b", x=-0.3, y=1.03)
 
-    # --- Panel (c): Salinity pile-up time series ---
+    # --- Panel (c): Salinity pile-up time series (deseasonalized) ---
     if has_pileup:
         import xarray as xr
         pileup = xr.open_dataarray(pileup_path)
 
-        ax_pu = fig.add_subplot(gs[1, :])
-
-        color = "#EE6677"
-        ax_pu.plot(pileup.time.values, pileup.values, color=color,
-                   linewidth=0.5, alpha=0.4)
-
-        # Trend
+        # Deseasonalize: remove monthly climatology
         import pandas as pd
         try:
             ts = pd.DatetimeIndex(pileup.time.values)
+            months_pu = np.array([t.month for t in ts])
             yrs = np.array([t.year + (t.month - 1) / 12 for t in ts])
         except Exception:
+            months_pu = np.tile(np.arange(1, 13), len(pileup) // 12 + 1)[:len(pileup)]
             yrs = np.arange(len(pileup))
-        reg = sp_stats.linregress(yrs, pileup.values.ravel())
+        pu_vals = pileup.values.ravel().copy()
+        for m in range(1, 13):
+            mask_m = months_pu == m
+            pu_vals[mask_m] -= np.nanmean(pu_vals[mask_m])
+        # Add back the grand mean so the y-axis shows absolute PSU
+        pu_vals += np.nanmean(pileup.values)
+
+        ax_pu = fig.add_subplot(gs[1, :])
+
+        color = "#EE6677"
+        ax_pu.plot(pileup.time.values, pu_vals, color=color,
+                   linewidth=0.5, alpha=0.4)
+
+        # Trend on deseasonalized values
+        reg = sp_stats.linregress(yrs, pu_vals)
         trend_line = reg.slope * yrs + reg.intercept
         p_str = "p < 0.001" if reg.pvalue < 0.001 else f"p = {reg.pvalue:.3f}"
         ax_pu.plot(pileup.time.values, trend_line,
@@ -470,13 +480,18 @@ def plot_sss_trend_figure(
                    label=f"Trend: {reg.slope:+.4f} PSU/yr ({p_str})")
 
         # 12-month rolling mean
-        if len(pileup) > 24:
-            rolling = pileup.rolling(time=12, center=True).mean()
-            ax_pu.plot(pileup.time.values, rolling.values, color=color,
+        if len(pu_vals) > 24:
+            kernel = np.ones(12) / 12
+            rolling = np.convolve(pu_vals, kernel, mode="same")
+            # Mask edges
+            rolling[:6] = np.nan
+            rolling[-6:] = np.nan
+            ax_pu.plot(pileup.time.values, rolling, color=color,
                        linewidth=1.5, label="12-month mean")
 
-        ax_pu.set_ylabel("Salinity pile-up [PSU]")
-        ax_pu.legend(loc="upper left", fontsize=5)
+        ax_pu.set_ylabel("Salinity pile-up [PSU]", fontsize=7)
+        ax_pu.legend(loc="upper left", fontsize=6)
+        ax_pu.tick_params(labelsize=6)
         ax_pu.spines["top"].set_visible(False)
         ax_pu.spines["right"].set_visible(False)
 

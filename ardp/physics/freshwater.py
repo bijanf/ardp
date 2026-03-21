@@ -20,9 +20,10 @@ def freshwater_transport_overturning(
 ) -> xr.DataArray:
     r"""Compute overturning freshwater transport F_ov.
 
-    F_ov(y) = -(1/S_0) \int <v>(z) * (<S>(z) - S_0) dz
+    F_ov(y) = -(1/S_0) \int V_int(z) * (<S>(z) - S_0) dz
 
-    where <.> denotes the zonal mean weighted by e1 (zonal grid spacing).
+    where V_int = sum(v * e1, x) is the zonally INTEGRATED velocity [m²/s]
+    and <S> is the zonally averaged salinity, following de Vries & Weber (2005).
 
     Parameters
     ----------
@@ -50,14 +51,14 @@ def freshwater_transport_overturning(
         v = v.where(mask == 1, 0.0)
         salinity = salinity.where(mask == 1, np.nan)
 
-    # Zonal-mean velocity: <v>(z) = sum(v * e1, x) / sum(e1, x)
-    v_zonal_mean = (v * e1).sum(dim=x_dim) / e1.sum(dim=x_dim)
+    # Zonally INTEGRATED velocity: V_int(z) = sum(v * e1, x) [m²/s]
+    v_zonal_int = (v * e1).sum(dim=x_dim)
 
-    # Zonal-mean salinity: <S>(z)
+    # Zonally averaged salinity: <S>(z) = sum(S * e1, x) / sum(e1, x)
     s_zonal_mean = (salinity * e1).sum(dim=x_dim) / e1.sum(dim=x_dim)
 
-    # Vertical integration: F_ov = -(1/S0) * integral(<v> * (<S> - S0) * dz)
-    integrand = v_zonal_mean * (s_zonal_mean - s0) * e3
+    # Vertical integration: F_ov = -(1/S0) * integral(V_int * (<S> - S0) * dz)
+    integrand = v_zonal_int * (s_zonal_mean - s0) * e3
     f_ov = -(1.0 / s0) * integrand.sum(dim=z_dim)
 
     # Convert m^3/s to Sv
