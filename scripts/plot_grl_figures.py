@@ -146,11 +146,13 @@ def _scatter_validation(
 # ─────────────────────────────────────────────────────────────────────
 
 def figure1_fovs_multiproduct(results_dir: Path, output_dir: Path) -> None:
-    """Figure 1: ORAS5 F_ovS — single panel, two trend lines.
+    """Figure 1: (a) ORAS5 + GLORYS12 F_ovS time series, (b) MOC streamfunction.
 
-    Full 1958-2025 record with both the full-record trend and the
-    satellite-era (1993+) trend overlaid in different colours.
+    Two-panel figure: F_ovS with both products and trend lines on top, and
+    the mean Atlantic overturning streamfunction Ψ(lat, depth) below.
     """
+    import matplotlib.colors as mcolors
+
     fovs_path = results_dir / "oras5_f_ovs.nc"
     if not fovs_path.exists():
         fovs_path = results_dir / "f_ovs.nc"
@@ -165,41 +167,145 @@ def figure1_fovs_multiproduct(results_dir: Path, output_dir: Path) -> None:
     unit = "mSv" if scale == 1e3 else "Sv"
     data = f_ovs * scale
 
-    fig, ax = figure_grl_full(nrows=1, ncols=1, height_ratio=0.50)
+    # Load GLORYS12 F_ovS if available
+    glorys_fovs_path = results_dir / "glorys12_f_ovs.nc"
+    has_glorys = glorys_fovs_path.exists()
+    if has_glorys:
+        glorys_fovs = xr.open_dataarray(glorys_fovs_path)
+        glorys_data = glorys_fovs * scale
 
-    # Monthly data
+    # Check for MOC streamfunction cache
+    psi_path = results_dir / "moc_streamfunction_2005_2024.npz"
+    has_psi = psi_path.exists()
+
+    apply_nature_style()
+
+    if has_psi:
+        fig = plt.figure(figsize=(6.73, 5.5))
+        gs = fig.add_gridspec(
+            2, 1, height_ratios=[1, 1.3], hspace=0.32,
+            left=0.10, right=0.95, top=0.96, bottom=0.08,
+        )
+        ax = fig.add_subplot(gs[0])
+    else:
+        fig, ax = figure_grl_full(nrows=1, ncols=1, height_ratio=0.50)
+
+    # --- Panel (a): F_ovS time series ---
+    # ORAS5
     ax.plot(f_ovs.time.values, data.values, color=FINGERPRINT_COLORS["f_ovs"],
             linewidth=0.5, alpha=0.3)
 
-    # 12-month running mean
     if len(data) > 24:
         rolling = data.rolling(time=12, center=True).mean()
         ax.plot(f_ovs.time.values, rolling.values,
                 color=FINGERPRINT_COLORS["f_ovs"], linewidth=1.5,
-                label="12-month mean")
+                label="ORAS5 12-month mean")
 
-    # Full-record trend (1958-2025)
     slope_full = trend_full["slope"] * scale
     p_full = trend_full["pvalue"]
     p_str_full = "p < 0.001" if p_full < 0.001 else f"p = {p_full:.3f}"
     ax.plot(f_ovs.time.values, trend_full["trend_line"] * scale,
             color=COLORS["red"], linewidth=1.2, linestyle="--",
-            label=f"1958\u20132025: {slope_full:+.2f} {unit}/yr ({p_str_full})")
+            label=f"ORAS5 1958\u20132025: {slope_full:+.2f} {unit}/yr ({p_str_full})")
 
-    # Satellite-era trend (1993-2025)
-    f_ovs_sub = f_ovs.sel(time=slice("1993-01", None))
-    if len(f_ovs_sub) > 3:
-        trend_sub = _compute_trend(f_ovs_sub)
-        slope_sub = trend_sub["slope"] * scale
-        p_sub = trend_sub["pvalue"]
-        p_str_sub = "p < 0.001" if p_sub < 0.001 else f"p = {p_sub:.3f}"
-        ax.plot(f_ovs_sub.time.values, trend_sub["trend_line"] * scale,
-                color=COLORS["purple"], linewidth=1.2, linestyle="--",
-                label=f"1993\u20132025: {slope_sub:+.2f} {unit}/yr ({p_str_sub})")
+    # GLORYS12 overlay
+    if has_glorys:
+        ax.plot(glorys_fovs.time.values, glorys_data.values,
+                color=COLORS["green"], linewidth=0.5, alpha=0.3)
+
+        if len(glorys_data) > 24:
+            glorys_rolling = glorys_data.rolling(time=12, center=True).mean()
+            ax.plot(glorys_fovs.time.values, glorys_rolling.values,
+                    color=COLORS["green"], linewidth=1.5,
+                    label="GLORYS12 12-month mean")
+
+        glorys_trend = _compute_trend(glorys_fovs)
+        glorys_slope = glorys_trend["slope"] * scale
+        glorys_p = glorys_trend["pvalue"]
+        glorys_p_str = "p < 0.001" if glorys_p < 0.001 else f"p = {glorys_p:.3f}"
+        ax.plot(glorys_fovs.time.values, glorys_trend["trend_line"] * scale,
+                color=COLORS["green"], linewidth=1.2, linestyle="--",
+                alpha=0.8,
+                label=f"GLORYS12 1993\u20132025: {glorys_slope:+.2f} {unit}/yr ({glorys_p_str})")
+    else:
+        # Fall back to ORAS5 sub-period trend if no GLORYS12
+        f_ovs_sub = f_ovs.sel(time=slice("1993-01", None))
+        if len(f_ovs_sub) > 3:
+            trend_sub = _compute_trend(f_ovs_sub)
+            slope_sub = trend_sub["slope"] * scale
+            p_sub = trend_sub["pvalue"]
+            p_str_sub = "p < 0.001" if p_sub < 0.001 else f"p = {p_sub:.3f}"
+            ax.plot(f_ovs_sub.time.values, trend_sub["trend_line"] * scale,
+                    color=COLORS["purple"], linewidth=1.2, linestyle="--",
+                    label=f"1993\u20132025: {slope_sub:+.2f} {unit}/yr ({p_str_sub})")
 
     ax.axhline(0, color="0.5", linewidth=0.3, linestyle=":")
     ax.set_ylabel(f"$F_{{ovS}}$ [{unit}]")
     ax.legend(loc="lower left", fontsize=5)
+    if has_psi:
+        add_panel_label(ax, "a", x=-0.08, y=1.05)
+
+    # --- Panel (b): MOC streamfunction cross-section ---
+    if has_psi:
+        cached = np.load(psi_path)
+        psi = cached["psi"]
+        lat_psi = cached["lat"]
+        depth_psi = cached["depth"]
+
+        ax_psi = fig.add_subplot(gs[1])
+
+        # Limit to Atlantic latitudes
+        lat_mask = (lat_psi >= -35) & (lat_psi <= 70)
+        psi_plot = psi[:, lat_mask]
+        lat_plot = lat_psi[lat_mask]
+
+        # Discrete contour levels
+        levels = np.arange(-6, 20, 2)
+        cmap = plt.cm.RdBu_r.copy()
+        norm = mcolors.BoundaryNorm(levels, cmap.N, extend="both")
+
+        cf = ax_psi.contourf(
+            lat_plot, depth_psi, psi_plot,
+            levels=levels, cmap=cmap, norm=norm, extend="both",
+        )
+        # Contour lines
+        ax_psi.contour(
+            lat_plot, depth_psi, psi_plot,
+            levels=levels, colors="0.4", linewidths=0.3,
+        )
+        # Zero contour (thicker)
+        ax_psi.contour(
+            lat_plot, depth_psi, psi_plot,
+            levels=[0], colors="k", linewidths=0.8,
+        )
+
+        ax_psi.set_ylim(5500, 0)  # depth increases downward
+        ax_psi.set_xlim(-35, 70)
+        ax_psi.set_xlabel("Latitude (\u00b0N)", fontsize=7)
+        ax_psi.set_ylabel("Depth (m)", fontsize=7)
+        ax_psi.tick_params(labelsize=6)
+
+        # Mark RAPID (26.5N) and SAMBA (34.5S) latitudes
+        ax_psi.axvline(26.5, color="0.3", linewidth=0.5, linestyle=":",
+                       zorder=5)
+        ax_psi.axvline(-34.5, color="0.3", linewidth=0.5, linestyle=":",
+                       zorder=5)
+        ax_psi.text(27.5, 200, "RAPID", fontsize=5, color="0.3", rotation=90,
+                    va="top")
+        ax_psi.text(-33.5, 200, "34.5\u00b0S", fontsize=5, color="0.3",
+                    rotation=90, va="top")
+
+        # Colorbar
+        cbar = fig.colorbar(cf, ax=ax_psi, orientation="vertical",
+                            shrink=0.85, pad=0.02, aspect=25)
+        cbar.set_label("$\\Psi$ (Sv)", fontsize=7)
+        cbar.ax.tick_params(labelsize=5)
+
+        ax_psi.set_title(
+            "ORAS5 mean Atlantic overturning streamfunction (2005\u20132024)",
+            fontsize=8, pad=6,
+        )
+        add_panel_label(ax_psi, "b", x=-0.08, y=1.05)
 
     save_publication_figure(fig, output_dir / "fig1_fovs_multiproduct")
 
@@ -404,62 +510,160 @@ def figure3_salinity_pileup(results_dir: Path, output_dir: Path) -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────
-# Figure 4: Assessment summary — what reanalyses capture vs miss
+# Figure 4: CMIP6 comparison — observed vs model F_ovS trends
 # ─────────────────────────────────────────────────────────────────────
 
-def figure4_assessment_summary(results_dir: Path, output_dir: Path) -> None:
-    """Figure 4: ORAS5 MOC at 26.5N and 34.5S — long-term evolution."""
-    moc_26n_path = results_dir / "oras5_moc_26N.nc"
-    moc_34s_path = results_dir / "oras5_moc_34S.nc"
-    rapid_path = Path("data/external/rapid_moc_monthly.nc")
+def figure4_cmip6_comparison(results_dir: Path, output_dir: Path) -> None:
+    """Figure 4: Observed vs CMIP6 F_ovS trends and piControl means.
 
-    if not moc_26n_path.exists() or not moc_34s_path.exists():
-        print("Skipping Figure 4: run compute_oras5_moc.py first")
+    Two-panel figure:
+      (a) F_ovS historical trends: reanalyses (diamonds) vs CMIP6 (circles)
+      (b) piControl mean F_ovS: where each model sits on the bistability axis
+
+    All CMIP6 values are from Weijer et al. (2019) and van Westen et al. (2024).
+    """
+    cmip6_dir = results_dir / "cmip6"
+    ref_path = cmip6_dir / "cmip6_fovs_reference.nc"
+
+    if not ref_path.exists():
+        print("Skipping Figure 4: run compute_cmip6_fovs.py first")
         return
 
-    oras5_26n = xr.open_dataarray(moc_26n_path)
-    oras5_34s = xr.open_dataarray(moc_34s_path)
+    fovs_oras5_path = results_dir / "oras5_f_ovs.nc"
+    fovs_glorys_path = results_dir / "glorys12_f_ovs.nc"
 
-    fig, ax = figure_grl_full(nrows=1, ncols=1, height_ratio=0.50)
+    ref_ds = xr.open_dataset(ref_path)
 
-    years_26n = _time_to_years(oras5_26n["time"])
-    years_34s = _time_to_years(oras5_34s["time"])
+    apply_nature_style()
+    fig, (ax_trend, ax_mean) = plt.subplots(
+        1, 2, figsize=(6.73, 4.2),
+        gridspec_kw={"width_ratios": [1.2, 1], "wspace": 0.45},
+    )
 
-    # Monthly data (faint)
-    ax.plot(years_26n, oras5_26n.values, color=FINGERPRINT_COLORS["f_ovs"],
-            linewidth=0.5, alpha=0.2)
-    ax.plot(years_34s, oras5_34s.values, color=COLORS["green"],
-            linewidth=0.5, alpha=0.2)
+    # ── Panel (a): Historical F_ovS trends ──
+    labels = []
+    trends_msv = []
+    colors_list = []
+    markers = []
 
-    # 12-month rolling means
-    if len(oras5_26n) > 24:
-        roll_26n = pd.Series(oras5_26n.values).rolling(12, center=True).mean()
-        ax.plot(years_26n, roll_26n.values, color=FINGERPRINT_COLORS["f_ovs"],
-                linewidth=1.5, label="26.5\u00b0N")
-    if len(oras5_34s) > 24:
-        roll_34s = pd.Series(oras5_34s.values).rolling(12, center=True).mean()
-        ax.plot(years_34s, roll_34s.values, color=COLORS["green"],
-                linewidth=1.5, label="34.5\u00b0S")
+    # Reanalysis trends
+    if fovs_oras5_path.exists():
+        fovs = xr.open_dataarray(fovs_oras5_path)
+        trend = _compute_trend(fovs)
+        labels.append("ORAS5 (1958\u20132025)")
+        trends_msv.append(trend["slope"] * 1e3)
+        colors_list.append(FINGERPRINT_COLORS["f_ovs"])
+        markers.append("D")
 
-    # Trends
-    trend_26n = _compute_trend(oras5_26n)
-    trend_34s = _compute_trend(oras5_34s)
-    ax.plot(years_26n, trend_26n["trend_line"], color=FINGERPRINT_COLORS["f_ovs"],
-            linewidth=1.0, linestyle="--", alpha=0.7)
-    ax.plot(years_34s, trend_34s["trend_line"], color=COLORS["green"],
-            linewidth=1.0, linestyle="--", alpha=0.7)
+        fovs_sub = fovs.sel(time=slice("1993-01", None))
+        if len(fovs_sub) > 12:
+            trend_sub = _compute_trend(fovs_sub)
+            labels.append("ORAS5 (1993\u20132025)")
+            trends_msv.append(trend_sub["slope"] * 1e3)
+            colors_list.append(FINGERPRINT_COLORS["f_ovs"])
+            markers.append("D")
 
-    # RAPID mean for reference
-    if rapid_path.exists():
-        rapid_ds = xr.open_dataset(rapid_path)
-        rapid_mean = float(rapid_ds["moc_mar_hc10"].mean())
-        ax.axhline(rapid_mean, color="0.5", linewidth=0.5, linestyle=":",
-                   label=f"RAPID mean ({rapid_mean:.1f} Sv)")
+    if fovs_glorys_path.exists():
+        glorys_fovs = xr.open_dataarray(fovs_glorys_path)
+        glorys_trend = _compute_trend(glorys_fovs)
+        labels.append("GLORYS12 (1993\u20132025)")
+        trends_msv.append(glorys_trend["slope"] * 1e3)
+        colors_list.append(COLORS["green"])
+        markers.append("D")
 
-    ax.set_ylabel("ORAS5 MOC upper-cell transport [Sv]")
-    ax.legend(loc="upper right", fontsize=5)
+    # CMIP6 historical trends (published values)
+    for model in ref_ds["model"].values:
+        model_str = str(model)
+        trend_val = float(ref_ds["historical_trend"].sel(model=model))
+        labels.append(model_str)
+        trends_msv.append(trend_val)
+        colors_list.append(COLORS["grey"])
+        markers.append("o")
 
-    save_publication_figure(fig, output_dir / "fig4_assessment")
+    if len(labels) == 0:
+        print("Skipping Figure 4: no F_ovS data found")
+        plt.close(fig)
+        return
+
+    y_pos = np.arange(len(labels))
+    ax_trend.axvline(0, color="0.7", linewidth=0.5, linestyle=":", zorder=1)
+
+    for i, (label, trend_val, color, marker) in enumerate(
+        zip(labels, trends_msv, colors_list, markers)
+    ):
+        size = 40 if marker == "D" else 25
+        edgecolor = "k" if marker == "D" else "0.4"
+        ax_trend.scatter(
+            trend_val, i, s=size, color=color, marker=marker,
+            edgecolors=edgecolor, linewidths=0.5, zorder=5,
+        )
+
+    ax_trend.set_yticks(y_pos)
+    ax_trend.set_yticklabels(labels, fontsize=5.5)
+    ax_trend.set_xlabel("F$_{ovS}$ trend [mSv yr$^{-1}$]")
+    ax_trend.set_ylim(-0.5, len(labels) - 0.5)
+    ax_trend.invert_yaxis()
+    add_panel_label(ax_trend, "a", x=-0.30, y=1.05)
+
+    # ── Panel (b): piControl mean F_ovS (bistability diagnostic) ──
+    model_names = [str(m) for m in ref_ds["model"].values]
+    pi_means = ref_ds["picontrol_mean"].values
+
+    y_pos_models = np.arange(len(model_names))
+
+    # Color by regime
+    regime_colors = []
+    for val in pi_means:
+        if val < -0.01:
+            regime_colors.append(COLORS["red"])     # bistable
+        elif val > 0.01:
+            regime_colors.append(COLORS["blue"])    # monostable
+        else:
+            regime_colors.append(COLORS["yellow"])  # near-zero
+
+    ax_mean.axvline(0, color="0.3", linewidth=0.8, linestyle="-", zorder=1)
+
+    for i, (name, val, color) in enumerate(
+        zip(model_names, pi_means, regime_colors)
+    ):
+        ax_mean.scatter(
+            val * 1e3, i, s=30, color=color,
+            edgecolors="0.3", linewidths=0.5, zorder=5,
+        )
+
+    # Mark observed ORAS5 mean
+    if fovs_oras5_path.exists():
+        fovs = xr.open_dataarray(fovs_oras5_path)
+        obs_mean = float(fovs.mean()) * 1e3
+        ax_mean.axvline(
+            obs_mean, color=FINGERPRINT_COLORS["f_ovs"],
+            linewidth=1.2, linestyle="--", zorder=3,
+            label=f"ORAS5 mean: {obs_mean:.0f} mSv",
+        )
+
+    # Shade bistable region
+    xlim = ax_mean.get_xlim()
+    ax_mean.axvspan(min(xlim[0], -200), 0, color=COLORS["red"],
+                    alpha=0.06, zorder=0)
+    ax_mean.text(
+        -5, len(model_names) - 0.3, "bistable",
+        fontsize=5, color=COLORS["red"], ha="right", style="italic",
+    )
+    ax_mean.text(
+        5, len(model_names) - 0.3, "monostable",
+        fontsize=5, color=COLORS["blue"], ha="left", style="italic",
+    )
+
+    ax_mean.set_yticks(y_pos_models)
+    ax_mean.set_yticklabels(model_names, fontsize=5.5)
+    ax_mean.set_xlabel("piControl mean F$_{ovS}$ [mSv]")
+    ax_mean.set_ylim(-0.5, len(model_names) - 0.5)
+    ax_mean.invert_yaxis()
+    ax_mean.legend(loc="lower left", fontsize=5)
+    add_panel_label(ax_mean, "b", x=-0.20, y=1.05)
+
+    fig.tight_layout()
+    save_publication_figure(fig, output_dir / "fig4_cmip6_comparison")
 
 
 def main() -> None:
@@ -481,14 +685,14 @@ def main() -> None:
     figure1_fovs_multiproduct(results_dir, output_dir)
     figure2_rapid_validation(results_dir, output_dir)
     figure3_salinity_pileup(results_dir, output_dir)
-    figure4_assessment_summary(results_dir, output_dir)
+    figure4_cmip6_comparison(results_dir, output_dir)
 
     print("\nDone. Figures saved to:", output_dir)
     print("\nFigure summary:")
     print("  Fig 1: F_ovS full vs satellite-era trends (product-dependence)")
     print("  Fig 2: RAPID validation at 26.5N (success story)")
     print("  Fig 3: Salinity pile-up (robust across products)")
-    print("  Fig 4: Assessment — RAPID success vs SAMBA failure")
+    print("  Fig 4: CMIP6 F_ovS comparison + piControl null distribution")
 
 
 if __name__ == "__main__":
