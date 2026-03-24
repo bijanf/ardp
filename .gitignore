@@ -15,3 +15,5 @@ build/
 .pytest_cache/
 .ruff_cache/
 *.ipynb_checkpoints/
+CLAUDE.md
+gemini.md
