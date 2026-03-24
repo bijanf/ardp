@@ -53,6 +53,7 @@ CMIP6_PI_MEAN = {
     "CESM2-WACCM": +0.17,
     "NorESM2-LM": +0.23,
     "GISS-E2-1-G": +0.24,
+    "MRI-ESM2-0": -0.05,   # estimated from historical mean
     # --- New models (historical mean as proxy) ---
     "NESM3": -0.17,
     "CNRM-ESM2-1": -0.10,  # similar to CNRM-CM6-1
@@ -218,7 +219,11 @@ def _epoch_model_means(
     means = []
     for model in models:
         # Pick the best available series for this epoch
-        if epoch_end <= 2014:
+        if epoch_start >= 2100:
+            key = f"{model}_{ssp}ext"
+            if key not in cmip6:
+                continue
+        elif epoch_end <= 2014:
             key = f"{model}_historical"
         else:
             key = f"{model}_hist_{ssp}"

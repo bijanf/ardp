@@ -200,7 +200,7 @@ def main() -> None:
         if so_file.exists():
             # Parse model and experiment
             # model name may contain hyphens, experiment is last segment
-            for exp in ["historical", "ssp245", "ssp585", "piControl"]:
+            for exp in ["historical", "ssp245", "ssp585", "ssp585ext", "piControl"]:
                 if model_exp.endswith(f"_{exp}"):
                     model = model_exp[: -len(f"_{exp}")]
                     if model not in models_exps:
