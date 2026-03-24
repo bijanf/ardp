@@ -270,12 +270,16 @@ def process_model(model: str, output_dir: Path, force: bool = False) -> bool:
 
     # Normalize time coordinate to avoid mixed cftime types
     # Convert all times to simple numeric (days since 1850-01-01)
-    import cftime
+    import cftime as _cftime
     time_nums = []
     for t in times_all:
-        if hasattr(t, 'year'):
-            # cftime or datetime object
+        if isinstance(t, _cftime.datetime):
             days = (t.year - 1850) * 365.25 + (t.month - 1) * 30.44 + t.day
+            time_nums.append(days)
+        elif hasattr(t, 'astype'):
+            # numpy datetime64 — convert via Python datetime
+            dt = t.astype('datetime64[us]').astype('object')
+            days = (dt.year - 1850) * 365.25 + (dt.month - 1) * 30.44 + dt.day
             time_nums.append(days)
         else:
             time_nums.append(float(t))

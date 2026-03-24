@@ -50,12 +50,15 @@ def freshwater_transport_overturning(
     if mask is not None:
         v = v.where(mask == 1, 0.0)
         salinity = salinity.where(mask == 1, np.nan)
+        e1_ocean = e1.where(mask == 1, 0.0)
+    else:
+        e1_ocean = e1
 
     # Zonally INTEGRATED velocity: V_int(z) = sum(v * e1, x) [m²/s]
-    v_zonal_int = (v * e1).sum(dim=x_dim)
+    v_zonal_int = (v * e1_ocean).sum(dim=x_dim)
 
     # Zonally averaged salinity: <S>(z) = sum(S * e1, x) / sum(e1, x)
-    s_zonal_mean = (salinity * e1).sum(dim=x_dim) / e1.sum(dim=x_dim)
+    s_zonal_mean = (salinity * e1_ocean).sum(dim=x_dim) / e1_ocean.sum(dim=x_dim)
 
     # Vertical integration: F_ov = -(1/S0) * integral(V_int * (<S> - S0) * dz)
     integrand = v_zonal_int * (s_zonal_mean - s0) * e3
@@ -98,10 +101,13 @@ def freshwater_transport_gyre(
     if mask is not None:
         v = v.where(mask == 1, 0.0)
         salinity = salinity.where(mask == 1, np.nan)
+        e1_ocean = e1.where(mask == 1, 0.0)
+    else:
+        e1_ocean = e1
 
     # Zonal means
-    v_zonal_mean = (v * e1).sum(dim=x_dim) / e1.sum(dim=x_dim)
-    s_zonal_mean = (salinity * e1).sum(dim=x_dim) / e1.sum(dim=x_dim)
+    v_zonal_mean = (v * e1_ocean).sum(dim=x_dim) / e1_ocean.sum(dim=x_dim)
+    s_zonal_mean = (salinity * e1_ocean).sum(dim=x_dim) / e1_ocean.sum(dim=x_dim)
 
     # Deviations
     v_prime = v - v_zonal_mean
