@@ -296,11 +296,57 @@ def plot_sss_trend_figure(
         shading="auto", zorder=1,
     )
 
-    # Significance stippling
-    nonsig_mask = ((pvalue >= 0.05) & np.isfinite(trend)).astype(float)
+    # For contours on curvilinear grids, regrid to regular lat/lon
+    # to avoid artifacts from longitude wraps and tripolar fold
+    if is_2d_coords:
+        from scipy.interpolate import griddata
+        reg_lon = np.arange(-80, 31, 0.5)
+        reg_lat = np.arange(-55, 71, 0.5)
+        reg_lon2d, reg_lat2d = np.meshgrid(reg_lon, reg_lat)
+
+        # Flatten source coords, masking invalid points
+        src_lon = lon2d.ravel()
+        src_lat = lat2d.ravel()
+        # Only use points within the map extent
+        in_extent = ((src_lon >= -85) & (src_lon <= 35)
+                     & (src_lat >= -60) & (src_lat <= 75))
+        pts = np.column_stack([src_lon[in_extent], src_lat[in_extent]])
+
+        trend_flat = trend.ravel()[in_extent]
+        valid = np.isfinite(trend_flat)
+        trend_reg = griddata(pts[valid], trend_flat[valid],
+                             (reg_lon2d, reg_lat2d), method="linear")
+
+        pval_flat = pvalue.ravel()[in_extent]
+        valid_p = np.isfinite(pval_flat)
+        pval_reg = griddata(pts[valid_p], pval_flat[valid_p],
+                            (reg_lon2d, reg_lat2d), method="linear")
+
+        # Apply land mask: use nearest-neighbor count to detect land
+        # Points far from any ocean data point are land
+        from scipy.spatial import cKDTree
+        tree = cKDTree(pts[valid])
+        dist, _ = tree.query(
+            np.column_stack([reg_lon2d.ravel(), reg_lat2d.ravel()]))
+        land_mask = dist.reshape(reg_lon2d.shape) > 1.0  # >1 degree from ocean
+        trend_reg[land_mask] = np.nan
+        pval_reg[land_mask] = np.nan
+
+        contour_lon = reg_lon2d
+        contour_lat = reg_lat2d
+        contour_trend = trend_reg
+        contour_pval = pval_reg
+    else:
+        contour_lon = lon2d
+        contour_lat = lat2d
+        contour_trend = trend
+        contour_pval = pvalue
+
+    # Significance stippling (on regular grid for clean contours)
+    nonsig_mask = ((contour_pval >= 0.05) & np.isfinite(contour_trend)).astype(float)
     nonsig_smooth = gaussian_filter(nonsig_mask, sigma=1.5)
     ax_map.contourf(
-        lon2d, lat2d, nonsig_smooth,
+        contour_lon, contour_lat, nonsig_smooth,
         levels=[0.5, 1.5], hatches=["xxx"], colors="none",
         transform=proj, zorder=2, alpha=0.0,
     )
@@ -309,23 +355,23 @@ def plot_sss_trend_figure(
         collection.set_edgecolor("0.5")
 
     # Data-driven hotspot contours
-    trend_smooth = trend.copy()
+    trend_smooth = contour_trend.copy()
     trend_smooth[np.isnan(trend_smooth)] = 0
     trend_smooth = gaussian_filter(trend_smooth, sigma=8)
-    trend_smooth[np.isnan(trend)] = np.nan
+    trend_smooth[np.isnan(contour_trend)] = np.nan
 
     ax_map.contour(
-        lon2d, lat2d, trend_smooth, levels=[0.08],
+        contour_lon, contour_lat, trend_smooth, levels=[0.08],
         colors=["#c0392b"], linewidths=[1.0], linestyles=["solid"],
         transform=proj, zorder=4,
     )
     ax_map.contour(
-        lon2d, lat2d, trend_smooth, levels=[-0.08],
+        contour_lon, contour_lat, trend_smooth, levels=[-0.08],
         colors=["#2471a3"], linewidths=[1.0], linestyles=["solid"],
         transform=proj, zorder=4,
     )
     ax_map.contour(
-        lon2d, lat2d, trend_smooth, levels=[0],
+        contour_lon, contour_lat, trend_smooth, levels=[0],
         colors=["0.4"], linewidths=[0.6], linestyles=["--"],
         transform=proj, zorder=3,
     )
