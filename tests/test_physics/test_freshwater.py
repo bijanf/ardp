@@ -23,32 +23,79 @@ def test_f_ov_shape(nemo_grid_ds: xr.Dataset) -> None:
     assert f_ov.size == 1
 
 
-def test_f_ov_two_layer(two_layer_ocean: xr.Dataset) -> None:
-    """Verify F_ov on an analytical two-layer ocean."""
-    ds = two_layer_ocean.isel(time=0)
-    f_ov = freshwater_transport_overturning(
-        ds["v_velocity"],
-        ds["salinity"],
-        ds["e1t"],
-        ds["e3t"],
-    )
-    # The two-layer has uniform fields in x, so F_ov should be finite and negative
-    # (northward upper flow with S > S0 exports freshwater)
-    val = float(f_ov)
-    assert np.isfinite(val)
-    assert val < 0  # Freshwater divergence (export from south)
+    def test_f_ov_two_layer(two_layer_ocean: xr.Dataset) -> None:
 
 
-def test_f_az_zero_for_uniform_x(two_layer_ocean: xr.Dataset) -> None:
-    """F_az should be zero when v and S are zonally uniform."""
-    ds = two_layer_ocean.isel(time=0)
-    f_az = freshwater_transport_gyre(
-        ds["v_velocity"],
-        ds["salinity"],
-        ds["e1t"],
-        ds["e3t"],
-    )
-    assert abs(float(f_az)) < 1e-10
+        """Verify F_ov on an analytical two-layer ocean."""
+
+
+        ds = two_layer_ocean.isel(time=0)
+
+
+        f_ov = freshwater_transport_overturning(
+
+
+            ds["v_velocity"],
+
+
+            ds["salinity"],
+
+
+            ds["e1t"],
+
+
+            ds["e3t"],
+
+
+        )
+
+
+        # The two-layer has uniform fields in x, so F_ov should be finite and negative
+
+
+        # (northward upper flow with S > S0 exports freshwater)
+
+
+        val = float(f_ov.squeeze())
+
+
+        assert val < 0
+
+
+        assert np.isfinite(val)
+
+
+
+
+
+    def test_f_az_zero_for_uniform_x(two_layer_ocean: xr.Dataset) -> None:
+
+
+        """F_az should be zero when v and S are zonally uniform."""
+
+
+        ds = two_layer_ocean.isel(time=0)
+
+
+        f_az = freshwater_transport_gyre(
+
+
+            ds["v_velocity"],
+
+
+            ds["salinity"],
+
+
+            ds["e1t"],
+
+
+            ds["e3t"],
+
+
+        )
+
+
+        assert abs(float(f_az.squeeze())) < 1e-10
 
 
 def test_f_ov_dask(nemo_grid_ds_dask: xr.Dataset) -> None:

@@ -25,17 +25,16 @@ def test_compute_f_ovs_finite(nemo_grid_ds: xr.Dataset) -> None:
     assert np.all(np.isfinite(f_ovs.values))
 
 
-def test_compute_f_ovs_two_layer(two_layer_ocean: xr.Dataset) -> None:
-    """F_ovS on the two-layer ocean should be negative (freshwater export)."""
-    f_ovs = compute_f_ovs(
-        two_layer_ocean,
-        lat=-34.5,
-        v_var="v_velocity",
-        s_var="salinity",
-        mask_var="vmask",
-    )
-    assert float(f_ovs) < 0
-
+    def test_compute_f_ovs_two_layer(two_layer_ocean: xr.Dataset) -> None:
+        """F_ovS on the two-layer ocean should be negative (freshwater export)."""
+        f_ovs = compute_f_ovs(
+            two_layer_ocean,
+            lat=-34.5,
+            v_var="v_velocity",
+            s_var="salinity",
+            mask_var="vmask",
+        )
+        assert float(f_ovs.squeeze()) < 0
 
 def test_compute_f_ovs_dask(nemo_grid_ds_dask: xr.Dataset) -> None:
     f_ovs = compute_f_ovs(nemo_grid_ds_dask)

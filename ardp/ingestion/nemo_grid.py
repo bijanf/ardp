@@ -45,6 +45,7 @@ def build_nemo_grid(
         ds,
         coords=coords,
         periodic=periodic,
+        autoparse_metadata=False,
     )
     return grid
 
@@ -82,10 +83,12 @@ def add_nemo_metrics(
         metrics[("Z",)] = [e3t]
 
     if metrics:
+        periodic_axes = [ax for ax, axis in grid.axes.items() if getattr(axis, "_boundary", None) == "periodic"]
         grid = xgcm.Grid(
             ds,
             coords=grid._coords,
-            periodic=list(grid._periodic),
+            periodic=periodic_axes,
             metrics=metrics,
+            autoparse_metadata=False,
         )
     return grid

@@ -43,11 +43,13 @@ def compute_salinity_pileup(
 
     # Subtropical South Atlantic
     mask_stsa = create_region_mask(lon, lat, *stsa_bounds)
-    sss_stsa = (sss * area).where(mask_stsa).sum(dim=["y", "x"]) / area.where(mask_stsa).sum(dim=["y", "x"])
+    valid_stsa = mask_stsa & sss.notnull()
+    sss_stsa = (sss * area).where(valid_stsa).sum(dim=["y", "x"]) / area.where(valid_stsa).sum(dim=["y", "x"])
 
     # Subtropical South Indo-Pacific
     mask_stsip = create_region_mask(lon, lat, *stsip_bounds)
-    sss_stsip = (sss * area).where(mask_stsip).sum(dim=["y", "x"]) / area.where(mask_stsip).sum(dim=["y", "x"])
+    valid_stsip = mask_stsip & sss.notnull()
+    sss_stsip = (sss * area).where(valid_stsip).sum(dim=["y", "x"]) / area.where(valid_stsip).sum(dim=["y", "x"])
 
     delta_s = sss_stsa - sss_stsip
     delta_s.name = "salinity_pileup"

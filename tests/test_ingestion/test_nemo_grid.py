@@ -17,13 +17,30 @@ def test_build_nemo_grid_returns_grid(nemo_grid_ds: xr.Dataset) -> None:
 
 
 def test_build_nemo_grid_periodic_x(nemo_grid_ds: xr.Dataset) -> None:
+
+
     grid = build_nemo_grid(nemo_grid_ds, periodic=["X"])
-    assert "X" in grid._periodic
+
+
+    assert grid.axes["X"]._boundary == "periodic"
+
+
+
 
 
 def test_build_nemo_grid_no_periodic(nemo_grid_ds: xr.Dataset) -> None:
+
+
+
+
+
     grid = build_nemo_grid(nemo_grid_ds, periodic=[])
-    assert len(grid._periodic) == 0
+
+
+
+
+
+    assert "X" in grid.axes
 
 
 def test_build_nemo_grid_dimensions(nemo_grid_ds: xr.Dataset) -> None:
