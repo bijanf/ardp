@@ -19,7 +19,6 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 
-
 URL = "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv"
 OUTPUT = Path("data/external/gmt_gistemp.nc")
 

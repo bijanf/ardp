@@ -138,11 +138,11 @@ def extract_section_from_opendap(
         print(f"  Already exists: {outfile.name}")
         return True
 
-    print(f"  Searching ESGF...")
+    print("  Searching ESGF...")
     dap_urls = find_esgf_opendap_urls(model, experiment, variable)
 
     if not dap_urls:
-        print(f"  NOT FOUND (no OPeNDAP URLs)")
+        print("  NOT FOUND (no OPeNDAP URLs)")
         return False
 
     node = dap_urls[0].split("/")[2]
@@ -228,11 +228,11 @@ def extract_section_from_opendap(
             failed += 1
             print(f"    [{i+1}/{len(dap_urls)}] {fname}: FAILED ({e})")
             if failed > 5:
-                print(f"  Too many failures, stopping")
+                print("  Too many failures, stopping")
                 break
 
     if not sections:
-        print(f"  FAILED: no data loaded")
+        print("  FAILED: no data loaded")
         return False
 
     # Concatenate all sections

@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import functools
-import sys
 import time
 from pathlib import Path
 
@@ -167,7 +166,7 @@ def process_model(model: str, output_dir: Path, force: bool = False) -> bool:
         print(f"  Already exists: {outfile.name}")
         return True
 
-    print(f"  Querying ESGF for post-2100 files...")
+    print("  Querying ESGF for post-2100 files...")
     file_urls = find_extension_files(model)
     if not file_urls:
         print(f"  No extension files found for {model}")
@@ -178,7 +177,7 @@ def process_model(model: str, output_dir: Path, force: bool = False) -> bool:
 
     # Open first file to get grid info
     url0 = file_urls[0]
-    print(f"  Opening first file via OPeNDAP...")
+    print("  Opening first file via OPeNDAP...")
     try:
         ds0 = xr.open_dataset(url0, decode_times=True)
     except Exception as e:

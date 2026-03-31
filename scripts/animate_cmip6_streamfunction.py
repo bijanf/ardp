@@ -17,7 +17,6 @@ from pathlib import Path
 import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import numpy as np
-import xarray as xr
 from matplotlib.animation import FuncAnimation, PillowWriter
 
 from ardp.constants import RAPID_LAT, SAMBA_LAT

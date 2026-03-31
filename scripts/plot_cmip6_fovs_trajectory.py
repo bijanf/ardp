@@ -19,22 +19,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import xarray as xr
-from scipy import stats
 
 from ardp.models import (
-    HYDRO_ESTIMATES,
-    PUBLISHED_REANALYSIS_FOVS,
-    SSP_LABELS,
     model_colors,
     picontrol_means,
 )
 from ardp.viz.style import (
     COLORS,
+    GRL_FULL_WIDTH,
     add_panel_label,
     apply_nature_style,
     save_publication_figure,
-    GRL_FULL_WIDTH,
-    GRL_MAX_HEIGHT,
 )
 
 CMIP6_PI_MEAN = picontrol_means()
@@ -313,8 +308,8 @@ def plot_trajectory_figure(
                    f"n={n_total}", fontsize=3.5, ha="center", va="bottom", color="0.5")
 
     # Legend
-    from matplotlib.patches import Patch
     from matplotlib.lines import Line2D
+    from matplotlib.patches import Patch
     legend_elements = [
         Patch(facecolor=COLORS["grey"], alpha=0.35, edgecolor="0.5",
               label="CMIP6 Historical"),

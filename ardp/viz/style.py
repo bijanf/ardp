@@ -7,8 +7,6 @@ from typing import Any
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-import numpy as np
-
 
 # Nature Communications figure specifications:
 # - Single column: 88 mm (3.46 in)

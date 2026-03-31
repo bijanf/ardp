@@ -96,8 +96,8 @@ def main() -> None:
     n_mono = sum(1 for m in models if CMIP6_FOVS[m][0] > 0.01)
     n_near = len(models) - n_bistable - n_mono
     print(f"\nRegime spread: {n_bistable} bistable, {n_near} near-zero, {n_mono} monostable")
-    print(f"Observed ORAS5 mean: -0.033 Sv (bistable)")
-    print(f"Observed ORAS5 trend: -1.31 mSv/yr (steeper than all CMIP6 models)")
+    print("Observed ORAS5 mean: -0.033 Sv (bistable)")
+    print("Observed ORAS5 trend: -1.31 mSv/yr (steeper than all CMIP6 models)")
 
 
 if __name__ == "__main__":

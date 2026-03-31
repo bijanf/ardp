@@ -275,7 +275,7 @@ def make_figure(name: str, force: bool = False) -> None:
     # Check if output already exists
     if not force and exists(fig["output"]):
         print(f"  [SKIP] Output already exists: {fig['output']}")
-        print(f"  Use --force to regenerate")
+        print("  Use --force to regenerate")
         return
 
     # Ensure all data dependencies
@@ -311,7 +311,7 @@ def main():
         for name, fig in sorted(FIGURES.items()):
             status = "[exists]" if exists(fig["output"]) else "[missing]"
             print(f"  {name:25s} {status:10s} {fig['description']}")
-        print(f"\nUsage: python scripts/make_figure.py <name> [--force]")
+        print("\nUsage: python scripts/make_figure.py <name> [--force]")
         return
 
     targets = args.figures

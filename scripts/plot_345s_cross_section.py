@@ -15,14 +15,13 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.colors import BoundaryNorm
 import xarray as xr
+from matplotlib.colors import BoundaryNorm
 
 from ardp.constants import SAMBA_LAT
 from ardp.viz.style import (
     add_panel_label,
     apply_nature_style,
-    figure_grl_full,
     save_publication_figure,
 )
 

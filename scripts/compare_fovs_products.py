@@ -19,7 +19,6 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import xarray as xr
@@ -29,7 +28,6 @@ from ardp.viz.style import (
     COLORS,
     FINGERPRINT_COLORS,
     add_panel_label,
-    add_trend_annotation,
     figure_grl_full,
     save_publication_figure,
 )
@@ -312,7 +310,7 @@ def _single_product_analysis(
     trend = _compute_trend(years, vals)
     p_str = "p < 0.001" if trend["pvalue"] < 0.001 else f"p = {trend['pvalue']:.3f}"
     print(f"  Full trend: {trend['slope']:+.2f} {unit}/yr ({p_str})")
-    print(f"  Only one product available — run compute_fingerprints.py for other products")
+    print("  Only one product available — run compute_fingerprints.py for other products")
 
 
 def main() -> None:

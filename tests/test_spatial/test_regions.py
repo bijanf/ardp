@@ -5,7 +5,11 @@ from __future__ import annotations
 import numpy as np
 import xarray as xr
 
-from ardp.spatial.regions import atlantic_basin_mask, create_region_mask, extract_section_at_latitude
+from ardp.spatial.regions import (
+    atlantic_basin_mask,
+    create_region_mask,
+    extract_section_at_latitude,
+)
 
 
 def test_create_region_mask_basic() -> None:

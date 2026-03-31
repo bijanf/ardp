@@ -34,7 +34,6 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 
-
 FTP_HOST = "ftp.aoml.noaa.gov"
 FTP_DIR = "/phod/pub/SAM/2020_Kersale_etal_ScienceAdvances/"
 OUTPUT_DIR = Path("data/external")
@@ -80,7 +79,7 @@ def _parse_transport(text: str) -> xr.Dataset:
         data_lines.append(stripped)
 
     # Show sample
-    print(f"\nFirst 5 data lines:")
+    print("\nFirst 5 data lines:")
     for line in data_lines[:5]:
         print(f"  {line}")
 

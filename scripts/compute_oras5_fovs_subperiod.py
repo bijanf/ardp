@@ -157,7 +157,7 @@ def main() -> None:
         full_slope = full.iloc[0]["slope_msv_yr"]
         overlap_slope = glorys_overlap.iloc[0]["slope_msv_yr"]
         overlap_p = glorys_overlap.iloc[0]["pvalue"]
-        print(f"\nKey comparison:")
+        print("\nKey comparison:")
         print(f"  Full record trend:    {full_slope:+.2f} mSv/yr")
         print(f"  1993-{last_year} trend:     {overlap_slope:+.2f} mSv/yr (p={overlap_p:.3f})")
         if abs(overlap_slope) < abs(full_slope) * 0.5:

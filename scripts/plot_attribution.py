@@ -1,13 +1,20 @@
 """Attribution analysis: Is the F_ovS decline forced or internal variability?"""
+import sys
+
+import matplotlib.pyplot as plt
 import numpy as np
 import xarray as xr
 from scipy import stats
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-import sys
+
 sys.path.insert(0, ".")
-from ardp.viz.style import (COLORS, FINGERPRINT_COLORS, apply_nature_style,
-                             add_panel_label, save_publication_figure, GRL_FULL_WIDTH)
+from ardp.viz.style import (
+    COLORS,
+    FINGERPRINT_COLORS,
+    GRL_FULL_WIDTH,
+    add_panel_label,
+    apply_nature_style,
+    save_publication_figure,
+)
 
 # ── Load F_ovS ──
 f_ovs = xr.open_dataarray("data/results/oras5_f_ovs.nc")
@@ -191,6 +198,7 @@ color_amo = COLORS["red"]
 # F_ovS (left axis)
 ax1.plot(common_yrs, fovs_ann, color=color_fovs, linewidth=0.8, alpha=0.4)
 from scipy.ndimage import uniform_filter1d
+
 fovs_smooth = uniform_filter1d(fovs_ann, size=10)
 ax1.plot(common_yrs, fovs_smooth, color=color_fovs, linewidth=2, label="$F_{ovS}$ (10-yr mean)")
 ax1.set_ylabel("$F_{ovS}$ [mSv]", color=color_fovs)
