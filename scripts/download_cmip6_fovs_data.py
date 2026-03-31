@@ -185,7 +185,7 @@ def extract_section(
             break
 
     if not batches:
-        print(f"  FAILED: no data loaded")
+        print("  FAILED: no data loaded")
         return False
 
     # Concatenate batches

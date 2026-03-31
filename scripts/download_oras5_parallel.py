@@ -17,7 +17,6 @@ from pathlib import Path
 
 import cdsapi
 
-
 SINGLE_LEVEL_VARS = [
     "sea_surface_temperature",
     "sea_surface_salinity",

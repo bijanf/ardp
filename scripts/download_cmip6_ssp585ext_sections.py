@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import functools
-import sys
 import time
 from pathlib import Path
 
@@ -107,7 +106,7 @@ def download_sections(model: str, variable: str, output_dir: Path, force: bool =
     print(f"  Querying ESGF for post-2100 {variable} files...")
     file_urls = find_extension_files(model, variable)
     if not file_urls:
-        print(f"  No extension files found")
+        print("  No extension files found")
         return False
     print(f"  Found {len(file_urls)} files")
 
@@ -148,7 +147,7 @@ def download_sections(model: str, variable: str, output_dir: Path, force: bool =
             continue
 
     if not all_sections:
-        print(f"  No data downloaded")
+        print("  No data downloaded")
         return False
 
     # Concatenate
@@ -156,7 +155,6 @@ def download_sections(model: str, variable: str, output_dir: Path, force: bool =
     times_all = np.concatenate(all_times)
 
     # Fix time coordinate
-    import cftime as _cftime
     time_nums = []
     for t in times_all:
         time_nums.append(float(t))

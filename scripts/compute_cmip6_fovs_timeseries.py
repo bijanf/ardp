@@ -19,7 +19,7 @@ from pathlib import Path
 import numpy as np
 import xarray as xr
 
-from ardp.constants import ATLANTIC_LON_MIN, ATLANTIC_LON_MAX, S0
+from ardp.constants import ATLANTIC_LON_MAX, ATLANTIC_LON_MIN, S0
 
 
 def _get_lon_and_depth(ds: xr.Dataset) -> tuple[np.ndarray, np.ndarray]:

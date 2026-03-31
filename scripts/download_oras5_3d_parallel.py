@@ -20,7 +20,6 @@ from pathlib import Path
 
 import cdsapi
 
-
 DEST = Path("data/oras5")
 VARIABLES = ["meridional_velocity", "salinity"]
 VARIABLE_PREFIXES = ["vomecrty", "vosaline"]
@@ -132,7 +131,7 @@ def main() -> None:
     total_months = (args.end - args.start + 1) * 12
     existing = total_months - len(missing)
 
-    print(f"ORAS5 3D parallel download")
+    print("ORAS5 3D parallel download")
     print(f"  Range: {args.start}-{args.end} ({total_months} months)")
     print(f"  Existing: {existing}")
     print(f"  Missing: {len(missing)}")

@@ -19,6 +19,7 @@ import numpy as np
 import xarray as xr
 
 from ardp.models import CMIP6_FULLFIELD_MODELS as TARGET_MODELS
+
 WINDOW_YEARS = 30
 STEP_YEARS = 5
 

@@ -33,7 +33,6 @@ from ardp.viz.style import (
     save_publication_figure,
 )
 
-
 # ---------------------------------------------------------------------------
 # Data loading
 # ---------------------------------------------------------------------------
@@ -433,7 +432,7 @@ def main() -> None:
         mean_sss, trend, lat2d, atlantic_mask
     )
     slope, intercept, r, p, se = sp_stats.linregress(zm_sss, zm_trend)
-    print(f"\n  Zonal-mean amplification regression:")
+    print("\n  Zonal-mean amplification regression:")
     print(f"    beta = {slope:.4f}, alpha = {intercept:.4f}")
     print(f"    R\u00b2 = {r**2:.4f}, p = {p:.4f}")
 
@@ -450,7 +449,7 @@ def main() -> None:
         stsa_obs = np.nanmean(trend[stsa_mask])
         stsa_pred = np.nanmean(trend_pred[stsa_mask])
         stsa_resid = stsa_obs - stsa_pred
-        print(f"\n  Subtropical South Atlantic:")
+        print("\n  Subtropical South Atlantic:")
         print(f"    Observed:      {stsa_obs:+.4f} PSU/dec")
         print(f"    Amplification: {stsa_pred:+.4f} PSU/dec")
         print(f"    Deviation:     {stsa_resid:+.4f} PSU/dec ({stsa_resid/stsa_obs*100:.0f}% unexplained)")

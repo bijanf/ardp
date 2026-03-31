@@ -21,7 +21,7 @@ from pathlib import Path
 import numpy as np
 import xarray as xr
 
-from ardp.constants import ATLANTIC_LON_MIN, ATLANTIC_LON_MAX, S0, SAMBA_LAT
+from ardp.constants import ATLANTIC_LON_MAX, ATLANTIC_LON_MIN, S0, SAMBA_LAT
 
 
 def find_j_index(
