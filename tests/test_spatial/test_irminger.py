@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import numpy as np
 import xarray as xr
 
 from ardp.spatial.irminger import irminger_mask, mixed_layer_depth

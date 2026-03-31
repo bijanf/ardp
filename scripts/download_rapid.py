@@ -47,8 +47,8 @@ def main() -> None:
         except Exception as e:
             print(f"Download failed: {e}")
             print("\nManual download:")
-            print(f"  1. Visit https://rapid.ac.uk/data/data-download")
-            print(f"  2. Download MOC transports (NetCDF)")
+            print("  1. Visit https://rapid.ac.uk/data/data-download")
+            print("  2. Download MOC transports (NetCDF)")
             print(f"  3. Save as {OUTPUT_RAW}")
             return
 
@@ -56,7 +56,7 @@ def main() -> None:
     ds = xr.open_dataset(OUTPUT_RAW)
     moc = ds["moc_mar_hc10"]
     n_valid = int(np.isfinite(moc).sum())
-    print(f"\nRAPID MOC data:")
+    print("\nRAPID MOC data:")
     print(f"  Time range: {ds.time.values[0]} to {ds.time.values[-1]}")
     print(f"  N records: {len(ds.time)} ({n_valid} valid)")
     print(f"  MOC mean: {float(moc.mean()):.1f} Sv")

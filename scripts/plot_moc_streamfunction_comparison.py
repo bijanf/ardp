@@ -22,7 +22,6 @@ from ardp.viz.style import (
     save_publication_figure,
 )
 
-
 # ── Atlantic basin longitude bounds (same as compute_moc_streamfunction.py) ──
 
 def atlantic_lon_bounds(lat: float) -> tuple[float, float]:

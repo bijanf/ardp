@@ -26,7 +26,6 @@ from ardp.viz.style import (
     add_trend_annotation,
     figure_double_col,
     figure_single_col,
-    format_year_axis,
     save_publication_figure,
 )
 
@@ -189,6 +188,7 @@ def figure3_gulf_stream(results_dir: Path, output_dir: Path) -> None:
 
     # Left: Atlantic map with Gulf Stream region
     import cartopy.crs as ccrs
+
     from ardp.constants import GULF_STREAM_REGION
     from ardp.viz.maps import plot_region_box
     from ardp.viz.style import apply_nature_style

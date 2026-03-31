@@ -30,7 +30,6 @@ import xarray as xr
 
 from ardp.constants import RAPID_LAT, SAMBA_LAT
 
-
 # Atlantic basin longitude bounds (latitude-dependent)
 ATLANTIC_BOUNDS: dict[str, tuple[float, float]] = {
     "26N": (-100.0, 0.0),   # Florida Straits through to Africa

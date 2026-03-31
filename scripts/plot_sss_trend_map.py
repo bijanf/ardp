@@ -16,10 +16,8 @@ import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
 import numpy as np
 import xarray as xr
-
 from scipy.ndimage import gaussian_filter
 
-from ardp.constants import SUBTROPICAL_SOUTH_ATLANTIC
 from ardp.viz.style import (
     add_panel_label,
     apply_nature_style,

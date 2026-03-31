@@ -13,7 +13,6 @@ from pathlib import Path
 import numpy as np
 import xarray as xr
 
-
 WINDOW_YEARS = 10
 STEP_YEARS = 3
 

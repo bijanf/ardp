@@ -31,7 +31,13 @@ import xarray as xr
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-from ardp.constants import ATLANTIC_LON_MIN, ATLANTIC_LON_MAX, PANGEO_CATALOG_URL, S0, SAMBA_LAT
+from ardp.constants import (
+    ATLANTIC_LON_MAX,
+    ATLANTIC_LON_MIN,
+    PANGEO_CATALOG_URL,
+    S0,
+    SAMBA_LAT,
+)
 from ardp.models import CMIP6_CLOUD_MODELS as TARGET_MODELS
 
 EXPERIMENTS = ["historical", "ssp245", "ssp585"]
@@ -380,7 +386,7 @@ def compute_model_experiment(
             break
 
     if not all_fovs:
-        print(f"  FAILED: no data computed")
+        print("  FAILED: no data computed")
         return False
 
     fovs_values = np.concatenate(all_fovs)

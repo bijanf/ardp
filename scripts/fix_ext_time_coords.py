@@ -6,9 +6,10 @@ for some time types. This script reconstructs correct time coordinates
 from the known file metadata (model, start year, number of timesteps).
 """
 
+from pathlib import Path
+
 import numpy as np
 import xarray as xr
-from pathlib import Path
 
 EXT_DIR = Path("data/cmip6_fullfield")
 
