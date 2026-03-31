@@ -17,3 +17,4 @@ build/
 *.ipynb_checkpoints/
 CLAUDE.md
 gemini.md
+AMOC Analysis Pipeline Blueprint.md
