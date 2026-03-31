@@ -31,36 +31,10 @@ import xarray as xr
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-from ardp.constants import S0, SAMBA_LAT
-
-# ── Target models ──
-TARGET_MODELS = [
-    # Original 9 (already computed locally)
-    "CESM2",
-    "MPI-ESM1-2-LR",
-    "MPI-ESM1-2-HR",
-    "IPSL-CM6A-LR",
-    "CNRM-CM6-1",
-    "UKESM1-0-LL",
-    "CanESM5",
-    "EC-Earth3",
-    "ACCESS-ESM1-5",
-    # New models
-    "NorESM2-LM",
-    "NorESM2-MM",
-    "MIROC6",
-    "GISS-E2-1-G",
-    "HadGEM3-GC31-LL",
-    "CMCC-CM2-SR5",
-    "ACCESS-CM2",
-    "CESM2-WACCM",
-    "GFDL-ESM4",
-]
+from ardp.constants import ATLANTIC_LON_MIN, ATLANTIC_LON_MAX, PANGEO_CATALOG_URL, S0, SAMBA_LAT
+from ardp.models import CMIP6_CLOUD_MODELS as TARGET_MODELS
 
 EXPERIMENTS = ["historical", "ssp245", "ssp585"]
-ATLANTIC_LON_MIN = -70.0
-ATLANTIC_LON_MAX = 20.0
-PANGEO_CATALOG_URL = "https://storage.googleapis.com/cmip6/pangeo-cmip6.json"
 BATCH_SIZE = 120  # timesteps per .compute() batch to limit memory
 
 # Note on performance: Pangeo CMIP6 zarr stores are chunked with full spatial

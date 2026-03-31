@@ -19,16 +19,10 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 from scipy.stats import linregress
 
+from ardp.models import models_sorted_by_fovs
 from ardp.viz.style import apply_nature_style
 
-CMIP6_MODELS = [
-    ("NESM3", -0.187), ("IPSL-CM6A-LR", -0.171), ("CNRM-CM6-1", -0.119),
-    ("MIROC6", -0.093), ("MPI-ESM1-2-HR", -0.044), ("CanESM5", -0.040),
-    ("UKESM1-0-LL", +0.051), ("CMCC-CM2-SR5", +0.052), ("GFDL-CM4", +0.062),
-    ("ACCESS-CM2", +0.072), ("MPI-ESM1-2-LR", +0.093), ("HadGEM3-GC31-LL", +0.095),
-    ("CESM2", +0.162), ("FIO-ESM-2-0", +0.186), ("GISS-E2-1-G", +0.240),
-    ("FGOALS-g3", +0.347),
-]
+CMIP6_MODELS = models_sorted_by_fovs()
 
 
 def compute_rate(years, values, y0, y1):

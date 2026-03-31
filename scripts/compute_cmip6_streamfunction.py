@@ -18,14 +18,7 @@ from pathlib import Path
 import numpy as np
 import xarray as xr
 
-
-TARGET_MODELS = [
-    "NESM3", "IPSL-CM6A-LR", "CNRM-CM6-1", "MIROC6",
-    "MPI-ESM1-2-HR", "CanESM5",
-    "UKESM1-0-LL", "CMCC-CM2-SR5", "GFDL-CM4", "ACCESS-CM2",
-    "MPI-ESM1-2-LR", "HadGEM3-GC31-LL", "CESM2", "FIO-ESM-2-0",
-    "GISS-E2-1-G", "FGOALS-g3",
-]
+from ardp.models import CMIP6_FULLFIELD_MODELS as TARGET_MODELS
 WINDOW_YEARS = 30
 STEP_YEARS = 5
 

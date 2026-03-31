@@ -25,26 +25,13 @@ import xarray as xr
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-# Target models: broad spread of AMOC regimes
-TARGET_MODELS = [
-    "CESM2",
-    "MPI-ESM1-2-LR",
-    "MPI-ESM1-2-HR",
-    "UKESM1-0-LL",
-    "CNRM-CM6-1",
-    "EC-Earth3",
-    "GFDL-ESM4",
-    "CanESM5",
-]
+from ardp.constants import PANGEO_CATALOG_URL
+from ardp.models import CMIP6_FULLFIELD_MODELS as TARGET_MODELS
 
 TARGET_EXPERIMENTS = ["historical", "piControl"]
 TARGET_VARIABLES = ["vo", "so"]
 TARGET_LAT = -34.5
 BATCH_SIZE = 120  # timesteps per batch (~10 years of monthly data)
-
-PANGEO_CATALOG_URL = (
-    "https://storage.googleapis.com/cmip6/pangeo-cmip6.json"
-)
 
 
 def open_pangeo_catalog() -> intake.Catalog:

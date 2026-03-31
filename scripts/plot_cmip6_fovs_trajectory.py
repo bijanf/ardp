@@ -21,6 +21,13 @@ import pandas as pd
 import xarray as xr
 from scipy import stats
 
+from ardp.models import (
+    HYDRO_ESTIMATES,
+    PUBLISHED_REANALYSIS_FOVS,
+    SSP_LABELS,
+    model_colors,
+    picontrol_means,
+)
 from ardp.viz.style import (
     COLORS,
     add_panel_label,
@@ -30,96 +37,8 @@ from ardp.viz.style import (
     GRL_MAX_HEIGHT,
 )
 
-# Published piControl F_ovS means (Weijer et al., 2019; van Westen et al., 2024)
-# For models without published piControl, we use their 1850-1900 historical mean.
-CMIP6_PI_MEAN = {
-    # --- Published piControl (Weijer et al. 2019) ---
-    "CESM2": -0.05,
-    "MPI-ESM1-2-LR": -0.10,
-    "MPI-ESM1-2-HR": -0.02,
-    "UKESM1-0-LL": +0.15,
-    "CNRM-CM6-1": -0.08,
-    "EC-Earth3": +0.01,
-    "GFDL-ESM4": +0.05,
-    "CanESM5": +0.12,
-    "IPSL-CM6A-LR": -0.15,
-    "ACCESS-ESM1-5": +0.08,
-    # --- Published (van Westen & Dijkstra 2024, Ocean Science) ---
-    "MIROC6": -0.10,
-    "GFDL-CM4": +0.06,
-    "ACCESS-CM2": +0.08,
-    "CMCC-CM2-SR5": +0.09,
-    "HadGEM3-GC31-LL": +0.11,
-    "CESM2-WACCM": +0.17,
-    "NorESM2-LM": +0.23,
-    "GISS-E2-1-G": +0.24,
-    "MRI-ESM2-0": -0.05,   # estimated from historical mean
-    # --- New models (historical mean as proxy) ---
-    "NESM3": -0.17,
-    "CNRM-ESM2-1": -0.10,  # similar to CNRM-CM6-1
-    "CanESM5-CanOE": +0.10,  # similar to CanESM5
-    "EC-Earth3-AerChem": -0.03,
-    "FGOALS-g3": +0.36,
-    "FIO-ESM-2-0": +0.19,
-    "GISS-E2-1-G-CC": +0.25,
-    "SAM0-UNICON": +0.15,
-    "TaiESM1": +0.28,
-}
-
-# Model colors — bistable (warm), near-zero (grey), monostable (cool)
-MODEL_COLORS = {
-    # Bistable (F_ovS < 0)
-    "IPSL-CM6A-LR": "#ff7f0e",   # orange
-    "NESM3": "#e6550d",          # dark orange
-    "CNRM-CM6-1": "#d62728",     # red
-    "CNRM-ESM2-1": "#e45756",    # light red
-    "MPI-ESM1-2-LR": "#e377c2",  # pink
-    "MIROC6": "#8c564b",         # brown
-    "CESM2": "#d62728",          # red
-    "CanESM5": "#1f77b4",        # blue
-    # Near-zero
-    "MPI-ESM1-2-HR": "#999999",  # grey
-    "EC-Earth3": "#7f7f7f",      # dark grey
-    "EC-Earth3-AerChem": "#636363", # darker grey
-    "CMCC-CM2-SR5": "#c5b0d5",  # light purple
-    # Monostable (F_ovS > 0)
-    "UKESM1-0-LL": "#17becf",   # cyan
-    "GFDL-ESM4": "#9467bd",     # purple
-    "ACCESS-ESM1-5": "#2ca02c", # green
-    "ACCESS-CM2": "#98df8a",    # light green
-    "GFDL-CM4": "#aec7e8",     # light blue
-    "HadGEM3-GC31-LL": "#c49c94", # light brown
-    "CESM2-WACCM": "#f7b6d2",  # light pink
-    "CanESM5-CanOE": "#6baed6", # medium blue
-    "SAM0-UNICON": "#74c476",   # medium green
-    "NorESM2-LM": "#c7c7c7",   # silver
-    "FIO-ESM-2-0": "#fdae6b",  # peach
-    "GISS-E2-1-G": "#dbdb8d",  # light olive
-    "GISS-E2-1-G-CC": "#b5cf6b", # yellow-green
-    "TaiESM1": "#9e9ac8",      # lavender
-    "FGOALS-g3": "#e7cb94",    # tan
-}
-
-# Published reanalysis F_ovS estimates (Weijer et al. 2019 and individual papers)
-# (mean F_ovS in Sv, approx coverage start, approx coverage end, source)
-PUBLISHED_REANALYSIS_FOVS = {
-    "SODA 2.2.4":  (+0.02, 1980, 2010, "Weijer2019"),
-    "GECCO2":      (-0.16, 1952, 2001, "Weijer2019"),
-    "NCEP GODAS":  (-0.11, 1980, 2020, "Weijer2019"),
-    "ECDA (GFDL)": (-0.20, 1961, 2010, "Weijer2019"),
-}
-
-# Published hydrographic point estimates at ~34.5°S
-# (F_ovS Sv, error Sv or None, approx year, source)
-HYDRO_ESTIMATES = {
-    "Garzoli et al. 2011": (-0.10, 0.10, 2005, "GarzoliMatano2011"),
-    "Meinen et al. 2018":  (-0.09, None, 2015, "Meinen2018"),
-}
-
-SSP_LABELS = {
-    "ssp245": "SSP2-4.5",
-    "ssp585": "SSP5-8.5",
-}
+CMIP6_PI_MEAN = picontrol_means()
+MODEL_COLORS = model_colors()
 
 
 def _to_annual(da: xr.DataArray, window: int = 12) -> tuple[np.ndarray, np.ndarray]:

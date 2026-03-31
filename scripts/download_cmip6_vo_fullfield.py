@@ -25,36 +25,12 @@ import xarray as xr
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-PANGEO_CATALOG_URL = "https://storage.googleapis.com/cmip6/pangeo-cmip6.json"
-TARGET_MODELS = [
-    # Bistable (F_ovS < 0)
-    "NESM3", "IPSL-CM6A-LR", "CNRM-CM6-1", "MIROC6",
-    "MPI-ESM1-2-HR", "CanESM5",
-    # Monostable (F_ovS > 0)
-    "UKESM1-0-LL", "CMCC-CM2-SR5", "GFDL-CM4", "ACCESS-CM2",
-    "MPI-ESM1-2-LR", "HadGEM3-GC31-LL", "CESM2", "FIO-ESM-2-0",
-    "GISS-E2-1-G", "FGOALS-g3",
-]
+from ardp.constants import PANGEO_CATALOG_URL
+from ardp.models import CMIP6_FULLFIELD_MODELS as TARGET_MODELS
+from ardp.spatial.regions import atlantic_lon_bounds
+
 EXPERIMENTS = ["historical", "ssp585"]
 BATCH_SIZE = 12  # months per batch (~400 MB peak memory)
-
-
-def atlantic_lon_bounds(lat: float) -> tuple[float, float]:
-    """Return (lon_min, lon_max) for Atlantic at given latitude."""
-    if lat < -34:
-        return (-70.0, 20.0)
-    elif lat < 0:
-        return (-70.0, 20.0)
-    elif lat < 10:
-        return (-90.0, 10.0)
-    elif lat < 30:
-        return (-100.0, 0.0)
-    elif lat < 45:
-        return (-82.0, -5.0)
-    elif lat < 65:
-        return (-70.0, 0.0)
-    else:
-        return (-60.0, 10.0)
 
 
 def find_zstore(cat_df, source_id: str, experiment_id: str, variable_id: str) -> str | None:

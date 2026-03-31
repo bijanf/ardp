@@ -29,7 +29,9 @@ import xarray as xr
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-# Models with known bistable/monostable regime classification
+from ardp.constants import PANGEO_CATALOG_URL
+
+# Original 6-model subset for F_ovS sections
 TARGET_MODELS = [
     "CESM2",
     "MPI-ESM1-2-LR",
@@ -43,8 +45,6 @@ TARGET_EXPERIMENTS = ["historical", "ssp245", "ssp585"]
 TARGET_VARIABLES = ["vo", "so"]
 TARGET_LAT = -34.5
 BATCH_SIZE = 120  # timesteps per batch
-
-PANGEO_CATALOG_URL = "https://storage.googleapis.com/cmip6/pangeo-cmip6.json"
 
 
 def find_nearest_lat_idx(lat: np.ndarray, target: float) -> int:
