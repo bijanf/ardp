@@ -21,11 +21,7 @@ from pathlib import Path
 import numpy as np
 import xarray as xr
 
-from ardp.constants import S0, SAMBA_LAT
-
-# Atlantic basin longitude bounds at ~34.5S
-ATLANTIC_LON_MIN = -70.0
-ATLANTIC_LON_MAX = 20.0
+from ardp.constants import ATLANTIC_LON_MIN, ATLANTIC_LON_MAX, S0, SAMBA_LAT
 
 
 def find_j_index(

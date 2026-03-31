@@ -21,11 +21,11 @@ import numpy as np
 import requests
 import xarray as xr
 
-BATCH_SIZE = 12  # months per batch
+from ardp.constants import ESGF_NODE_DKRZ as ESGF_NODE
+from ardp.models import CMIP6_SSP585_EXT_MODELS as MODELS
 
-MODELS = ["ACCESS-CM2", "ACCESS-ESM1-5", "MRI-ESM2-0", "CESM2-WACCM", "IPSL-CM6A-LR"]
+BATCH_SIZE = 12  # months per batch
 MEMBER = "r1i1p1f1"
-ESGF_NODE = "https://esgf-data.dkrz.de/esg-search/search"
 
 
 def find_extension_files(model: str) -> list[str]:

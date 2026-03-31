@@ -21,27 +21,11 @@ import xarray as xr
 from matplotlib.animation import FuncAnimation, PillowWriter
 
 from ardp.constants import RAPID_LAT, SAMBA_LAT
+from ardp.models import models_sorted_by_fovs
 from ardp.viz.style import apply_nature_style
 
 # Models sorted by F_ovS (most bistable first)
-MODELS_SORTED = [
-    ("NESM3", -0.187),
-    ("IPSL-CM6A-LR", -0.171),
-    ("CNRM-CM6-1", -0.119),
-    ("MIROC6", -0.093),
-    ("MPI-ESM1-2-HR", -0.044),
-    ("CanESM5", -0.040),
-    ("UKESM1-0-LL", +0.051),
-    ("CMCC-CM2-SR5", +0.052),
-    ("GFDL-CM4", +0.062),
-    ("ACCESS-CM2", +0.072),
-    ("MPI-ESM1-2-LR", +0.093),
-    ("HadGEM3-GC31-LL", +0.095),
-    ("CESM2", +0.162),
-    ("FIO-ESM-2-0", +0.186),
-    ("GISS-E2-1-G", +0.240),
-    ("FGOALS-g3", +0.347),
-]
+MODELS_SORTED = models_sorted_by_fovs()
 
 LEVELS = np.arange(-6, 20, 2)
 LAT_RANGE = (-40, 70)

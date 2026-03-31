@@ -15,15 +15,8 @@ from pathlib import Path
 import numpy as np
 import xarray as xr
 
-
-def atlantic_lon_bounds(lat):
-    if lat < -34: return (-70.0, 20.0)
-    elif lat < 0: return (-70.0, 20.0)
-    elif lat < 10: return (-90.0, 10.0)
-    elif lat < 30: return (-100.0, 0.0)
-    elif lat < 45: return (-82.0, -5.0)
-    elif lat < 65: return (-70.0, 0.0)
-    else: return (-60.0, 10.0)
+from ardp.models import models_sorted_by_fovs
+from ardp.spatial.regions import atlantic_lon_bounds
 
 
 def psi_max_from_vzonal(v_zonal_annual, depth, lat):
@@ -164,14 +157,7 @@ def compute_cmip6_yearly(data_dir, model):
     return np.array(all_years), np.array(all_psimax)
 
 
-CMIP6_MODELS = [
-    ("NESM3", -0.187), ("IPSL-CM6A-LR", -0.171), ("CNRM-CM6-1", -0.119),
-    ("MIROC6", -0.093), ("MPI-ESM1-2-HR", -0.044), ("CanESM5", -0.040),
-    ("UKESM1-0-LL", +0.051), ("CMCC-CM2-SR5", +0.052), ("GFDL-CM4", +0.062),
-    ("ACCESS-CM2", +0.072), ("MPI-ESM1-2-LR", +0.093), ("HadGEM3-GC31-LL", +0.095),
-    ("CESM2", +0.162), ("FIO-ESM-2-0", +0.186), ("GISS-E2-1-G", +0.240),
-    ("FGOALS-g3", +0.347),
-]
+CMIP6_MODELS = models_sorted_by_fovs()
 
 
 def main():
