@@ -39,6 +39,28 @@ def create_region_mask(
     return mask
 
 
+def atlantic_lon_bounds(lat: float) -> tuple[float, float]:
+    """Return (lon_min, lon_max) for Atlantic basin at a given latitude.
+
+    Latitude-dependent bounds that approximate the Atlantic coastlines.
+    Used for zonal integration of meridional velocity and salinity.
+    """
+    if lat < -34:
+        return (-70.0, 20.0)
+    elif lat < 0:
+        return (-70.0, 20.0)
+    elif lat < 10:
+        return (-90.0, 10.0)
+    elif lat < 30:
+        return (-100.0, 0.0)
+    elif lat < 45:
+        return (-82.0, -5.0)
+    elif lat < 65:
+        return (-70.0, 0.0)
+    else:
+        return (-60.0, 10.0)
+
+
 def atlantic_basin_mask(
     lon: xr.DataArray,
     lat: xr.DataArray,
