@@ -45,51 +45,75 @@ def main() -> None:
     oras5 = np.load(args.results_dir / "yearly_amoc26n_oras5.npz")
     glorys12 = np.load(args.results_dir / "yearly_amoc26n_glorys12.npz")
     rapid = np.load(args.results_dir / "rapid_amoc26n.npz")
-    cmip6 = np.load(args.results_dir / "yearly_amoc26n_cmip6.npz", allow_pickle=True)
+    cmip6_585 = np.load(args.results_dir / "yearly_amoc26n_cmip6.npz", allow_pickle=True)
+    cmip6_245_path = args.results_dir / "yearly_amoc26n_cmip6_ssp245.npz"
+    cmip6_245 = np.load(cmip6_245_path, allow_pickle=True) if cmip6_245_path.exists() else None
 
-    models = cmip6["models"]
-    print(f"CMIP6 models: {len(models)}")
+    models = cmip6_585["models"]
+    print(f"CMIP6 models (SSP585): {len(models)}")
+    if cmip6_245 is not None:
+        print(f"CMIP6 models (SSP245): {len(cmip6_245['models'])}")
 
-    # ── Build CMIP6 envelope on a common year grid ──
-    all_years = set()
-    for m in models:
-        all_years.update(cmip6[f"{m}_years"].tolist())
-    year_grid = np.array(sorted(all_years))
+    def build_envelope(cmip6_data):
+        mods = cmip6_data["models"]
+        all_years = set()
+        for m in mods:
+            all_years.update(cmip6_data[f"{m}_years"].tolist())
+        year_grid = np.array(sorted(all_years))
+        matrix = np.full((len(mods), len(year_grid)), np.nan)
+        for i, m in enumerate(mods):
+            yrs = cmip6_data[f"{m}_years"]
+            vals = cmip6_data[f"{m}_amoc"]
+            for j, y in enumerate(yrs):
+                idx = np.searchsorted(year_grid, y)
+                if idx < len(year_grid) and year_grid[idx] == y:
+                    matrix[i, idx] = vals[j]
+        with np.errstate(all="ignore"):
+            n_valid = np.sum(np.isfinite(matrix), axis=0)
+            median = np.nanmedian(matrix, axis=0)
+            p25 = np.nanpercentile(matrix, 25, axis=0)
+            p75 = np.nanpercentile(matrix, 75, axis=0)
+            mn = np.nanmin(matrix, axis=0)
+            mx = np.nanmax(matrix, axis=0)
+        enough = n_valid >= 5
+        return year_grid, median, p25, p75, mn, mx, enough
 
-    # Interpolate each model onto the common grid
-    model_matrix = np.full((len(models), len(year_grid)), np.nan)
-    for i, m in enumerate(models):
-        yrs = cmip6[f"{m}_years"]
-        vals = cmip6[f"{m}_amoc"]
-        for j, y in enumerate(yrs):
-            idx = np.searchsorted(year_grid, y)
-            if idx < len(year_grid) and year_grid[idx] == y:
-                model_matrix[i, idx] = vals[j]
-
-    # Compute envelope statistics (ignoring NaN)
-    with np.errstate(all="ignore"):
-        n_valid = np.sum(np.isfinite(model_matrix), axis=0)
-        model_median = np.nanmedian(model_matrix, axis=0)
-        model_p25 = np.nanpercentile(model_matrix, 25, axis=0)
-        model_p75 = np.nanpercentile(model_matrix, 75, axis=0)
-        model_min = np.nanmin(model_matrix, axis=0)
-        model_max = np.nanmax(model_matrix, axis=0)
-
-    # Only show where we have >= 5 models
-    enough = n_valid >= 5
+    year_585, med_585, p25_585, p75_585, min_585, max_585, ok_585 = build_envelope(cmip6_585)
 
     # ── Plot ──
     fig, ax = plt.subplots(figsize=(6.73, 3.5))
 
-    # CMIP6 envelope
-    ax.fill_between(year_grid[enough], model_min[enough], model_max[enough],
-                     color="0.85", alpha=0.5, linewidth=0, zorder=1,
-                     label=f"CMIP6 range (n={len(models)})")
-    ax.fill_between(year_grid[enough], model_p25[enough], model_p75[enough],
-                     color="0.7", alpha=0.5, linewidth=0, zorder=2,
-                     label="CMIP6 25th\u201375th pctl")
-    ax.plot(year_grid[enough], model_median[enough],
-            color="0.5", lw=0.8, zorder=3, label="CMIP6 median")
+    # SSP585 envelope (future only)
+    fut_585 = ok_585 & (year_585 > 2014)
+    ax.fill_between(year_585[fut_585], min_585[fut_585], max_585[fut_585],
+                     color="#FFCCCC", alpha=0.4, linewidth=0, zorder=1,
+                     label=f"SSP5-8.5 range (n={len(models)})")
+    ax.fill_between(year_585[fut_585], p25_585[fut_585], p75_585[fut_585],
+                     color="#FF9999", alpha=0.4, linewidth=0, zorder=2)
+    ax.plot(year_585[fut_585], med_585[fut_585],
+            color="#CC3333", lw=0.8, zorder=3, label="SSP5-8.5 median")
+
+    # SSP245 envelope
+    if cmip6_245 is not None:
+        year_245, med_245, p25_245, p75_245, min_245, max_245, ok_245 = build_envelope(cmip6_245)
+        # Only show SSP245 for future (>2014) to avoid overlap with historical
+        future_245 = ok_245 & (year_245 > 2014)
+        ax.fill_between(year_245[future_245], min_245[future_245], max_245[future_245],
+                         color="#CCDDFF", alpha=0.4, linewidth=0, zorder=1,
+                         label=f"SSP2-4.5 range (n={len(cmip6_245['models'])})")
+        ax.fill_between(year_245[future_245], p25_245[future_245], p75_245[future_245],
+                         color="#99BBFF", alpha=0.4, linewidth=0, zorder=2)
+        ax.plot(year_245[future_245], med_245[future_245],
+                color="#3366AA", lw=0.8, zorder=3, label="SSP2-4.5 median")
+
+    # Historical part (grey, shared between scenarios)
+    hist = ok_585 & (year_585 <= 2014)
+    ax.fill_between(year_585[hist], min_585[hist], max_585[hist],
+                     color="0.85", alpha=0.5, linewidth=0, zorder=0)
+    ax.fill_between(year_585[hist], p25_585[hist], p75_585[hist],
+                     color="0.7", alpha=0.5, linewidth=0, zorder=0)
+    ax.plot(year_585[hist], med_585[hist],
+            color="0.5", lw=0.8, zorder=1)
 
     # ORAS5
     o_yr, o_val = oras5["years"], oras5["amoc"]
