@@ -1,232 +1,203 @@
 #!/usr/bin/env python3
-"""Plot the Atlantic cross-section at 34.5°S showing velocity and salinity.
+"""Visualize freshwater transport structure at 34.5S from ORAS5.
 
-Visualises the two ingredients of the F_ovS calculation:
-  (a) Meridional velocity — northward upper limb vs southward deep return
-  (b) Salinity — saltier surface layer vs fresher deep water
+Three-panel figure:
+  (a) Early period (1960-1990): v*(S-S0) cross-section — the F_ovS integrand
+  (b) Late period (2005-2025): same quantity
+  (c) Difference (late - early): where freshwater transport changed
 
-Uses a time-mean over the GLORYS12 record (1993–2024) for a clean picture.
+Shows the physical mechanism: northward surface flow carrying fresh water
+into the Atlantic (negative F_ovS = freshwater import).
 """
 
 from __future__ import annotations
 
 import argparse
+import re
 from pathlib import Path
 
+import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import numpy as np
 import xarray as xr
-from matplotlib.colors import BoundaryNorm
 
-from ardp.constants import SAMBA_LAT
-from ardp.viz.style import (
-    add_panel_label,
-    apply_nature_style,
-    save_publication_figure,
-)
-
-ATLANTIC_LON_MIN = -70.0
-ATLANTIC_LON_MAX = 20.0
+from ardp.constants import ATLANTIC_LON_MAX, ATLANTIC_LON_MIN, S0, SAMBA_LAT
+from ardp.viz.style import apply_nature_style, save_publication_figure
 
 
 def load_mean_section(
     data_dir: Path,
-    target_lat: float = SAMBA_LAT,
-) -> dict:
-    """Load time-mean velocity and salinity sections at target latitude."""
-    files = sorted(data_dir.glob("glorys12_*.nc"))
-    if not files:
-        raise FileNotFoundError(f"No GLORYS12 files in {data_dir}")
+    j_idx: int,
+    atlantic_mask: np.ndarray,
+    year_start: int,
+    year_end: int,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Load and average v and S sections over a year range.
 
-    # Get grid info from first file
-    ds0 = xr.open_dataset(files[0])
-    lat = ds0["latitude"].values
-    lon = ds0["longitude"].values
-    depth = ds0["depth"].values
-    j_idx = int(np.abs(lat - target_lat).argmin())
-    actual_lat = float(lat[j_idx])
-
-    # Atlantic mask
-    atl_mask = (lon >= ATLANTIC_LON_MIN) & (lon <= ATLANTIC_LON_MAX)
-    lon_atl = lon[atl_mask]
-    ds0.close()
-
-    print(f"Section at j={j_idx}, lat={actual_lat:.2f}°")
-    print(f"Atlantic points: {atl_mask.sum()}, lon range: {lon_atl[0]:.1f} to {lon_atl[-1]:.1f}")
-
-    # Accumulate time-mean
-    v_sum = np.zeros((len(depth), atl_mask.sum()), dtype=np.float64)
-    s_sum = np.zeros_like(v_sum)
-    v_count = np.zeros_like(v_sum)
-    s_count = np.zeros_like(v_sum)
-
-    for i, f in enumerate(files):
-        print(f"  {i+1}/{len(files)}: {f.name}")
-        ds = xr.open_dataset(f)
-        n_times = ds.sizes["time"]
-
-        for t in range(n_times):
-            v_slice = ds["vo"].isel(time=t, latitude=j_idx).values[:, atl_mask]
-            s_slice = ds["so"].isel(time=t, latitude=j_idx).values[:, atl_mask]
-
-            v_valid = np.isfinite(v_slice)
-            s_valid = np.isfinite(s_slice)
-
-            v_sum[v_valid] += v_slice[v_valid]
-            v_count[v_valid] += 1
-            s_sum[s_valid] += s_slice[s_valid]
-            s_count[s_valid] += 1
-
-        ds.close()
-
-    v_mean = np.where(v_count > 0, v_sum / v_count, np.nan)
-    s_mean = np.where(s_count > 0, s_sum / s_count, np.nan)
-
-    return {
-        "v": v_mean,
-        "s": s_mean,
-        "lon": lon_atl,
-        "depth": depth,
-        "lat": actual_lat,
-        "n_months": int(v_count.max()),
+    Returns (v_mean, s_mean) arrays of shape (nz, n_atlantic).
+    """
+    v_files = sorted(data_dir.glob("vomecrty_*_3D_*.nc"))
+    s_files = {
+        re.search(r"_3D_(\d{6})_", f.name).group(1): f
+        for f in sorted(data_dir.glob("vosaline_*_3D_*.nc"))
     }
 
+    v_sum = None
+    s_sum = None
+    count = 0
 
-def plot_cross_section(section: dict, output_dir: Path) -> None:
-    """Plot 2-panel cross-section: velocity + salinity."""
-    apply_nature_style()
+    for vf in v_files:
+        m = re.search(r"_3D_(\d{6})_", vf.name)
+        if not m:
+            continue
+        yyyymm = m.group(1)
+        year = int(yyyymm[:4])
+        if year < year_start or year > year_end:
+            continue
+        if yyyymm not in s_files:
+            continue
 
-    fig, (ax_v, ax_s) = plt.subplots(
-        2, 1, figsize=(6.73, 5.5), sharex=True,
-        gridspec_kw={"hspace": 0.15},
-    )
+        ds_v = xr.open_dataset(vf)
+        ds_s = xr.open_dataset(s_files[yyyymm])
 
-    lon = section["lon"]
-    depth = section["depth"]
-    v = section["v"] * 100  # convert m/s to cm/s for readability
-    s = section["s"]
+        v = ds_v["vomecrty"].isel(time_counter=0, y=j_idx).values[:, atlantic_mask]
+        s = ds_s["vosaline"].isel(time_counter=0, y=j_idx).values[:, atlantic_mask]
 
-    # ── Panel (a): Meridional velocity ──────────────────────────────
-    v_levels = np.array([-8, -6, -4, -2, -1, -0.5, 0, 0.5, 1, 2, 4, 6, 8])
-    v_cmap = plt.get_cmap("RdBu_r")
-    v_norm = BoundaryNorm(v_levels, v_cmap.N)
+        ds_v.close()
+        ds_s.close()
 
-    cf_v = ax_v.pcolormesh(
-        lon, depth, v,
-        cmap=v_cmap, norm=v_norm, shading="nearest",
-    )
-    # Zero contour
-    ax_v.contour(lon, depth, v, levels=[0], colors="k", linewidths=0.8)
+        v = np.where(np.isfinite(v) & (np.abs(v) < 10), v, 0.0)
+        s = np.where(np.isfinite(s) & (s > 0) & (s < 50), s, np.nan)
 
-    ax_v.set_ylim(5500, 0)
-    ax_v.set_ylabel("Depth (m)", fontsize=7)
-    ax_v.set_title(
-        f"GLORYS12 time-mean meridional velocity at {abs(section['lat']):.1f}°S",
-        fontsize=8, pad=6,
-    )
-    ax_v.tick_params(labelsize=6)
+        if v_sum is None:
+            v_sum = np.zeros_like(v, dtype=np.float64)
+            s_sum = np.zeros_like(s, dtype=np.float64)
 
-    cbar_v = fig.colorbar(cf_v, ax=ax_v, orientation="vertical",
-                          shrink=0.85, pad=0.02, aspect=20)
-    cbar_v.set_label("v (cm/s)", fontsize=7)
-    cbar_v.ax.tick_params(labelsize=5)
-    add_panel_label(ax_v, "a", x=-0.08, y=1.08)
+        v_sum += v
+        s_sum += np.nan_to_num(s, nan=0.0)
+        count += 1
 
-    # Annotate upper/deep limbs with background boxes
-    bbox_props = dict(boxstyle="round,pad=0.3", facecolor="white",
-                      edgecolor="none", alpha=0.85)
-    ax_v.text(
-        -25, 300, "Northward (upper limb)",
-        fontsize=6, ha="center", va="center", color="#AA3377",
-        fontweight="bold", bbox=bbox_props,
-    )
-    ax_v.text(
-        -25, 2200, "Southward (deep return)",
-        fontsize=6, ha="center", va="center", color="#4477AA",
-        fontweight="bold", bbox=bbox_props,
-    )
+        if count % 60 == 0:
+            print(f"    {count} months processed ({year})", flush=True)
 
-    # ── Panel (b): Salinity ─────────────────────────────────────────
-    # Mask out near-zero values (land/fill artifacts)
-    s_plot = np.where(s > 30, s, np.nan)
-    s_levels = np.arange(34.0, 36.01, 0.2)
-    s_cmap = plt.get_cmap("YlOrRd")
-    s_norm = BoundaryNorm(s_levels, s_cmap.N)
-
-    cf_s = ax_s.pcolormesh(
-        lon, depth, s_plot,
-        cmap=s_cmap, norm=s_norm, shading="nearest",
-    )
-    # S0 reference contour
-    ax_s.contour(lon, depth, s_plot, levels=[35.0], colors="k",
-                 linewidths=0.8, linestyles="--")
-
-    ax_s.set_ylim(5500, 0)
-    ax_s.set_xlabel("Longitude (°E)", fontsize=7)
-    ax_s.set_ylabel("Depth (m)", fontsize=7)
-    ax_s.set_title(
-        f"GLORYS12 time-mean salinity at {abs(section['lat']):.1f}°S",
-        fontsize=8, pad=6,
-    )
-    ax_s.tick_params(labelsize=6)
-
-    cbar_s = fig.colorbar(cf_s, ax=ax_s, orientation="vertical",
-                          shrink=0.85, pad=0.02, aspect=20)
-    cbar_s.set_label("Salinity (PSU)", fontsize=7)
-    cbar_s.ax.tick_params(labelsize=5)
-    add_panel_label(ax_s, "b", x=-0.08, y=1.08)
-
-    # Annotate salinity structure with background boxes
-    ax_s.text(
-        -25, 300, "Salty upper water (carried north by AMOC)",
-        fontsize=6, ha="center", va="center", color="0.2",
-        fontweight="bold", bbox=bbox_props,
-    )
-    ax_s.text(
-        -25, 2200, "Fresher deep water (returns south)",
-        fontsize=6, ha="center", va="center", color="0.2",
-        fontweight="bold", bbox=bbox_props,
-    )
-
-    save_publication_figure(fig, output_dir / "fig_345s_cross_section")
+    print(f"    Total: {count} months for {year_start}-{year_end}", flush=True)
+    return v_sum / count, s_sum / count
 
 
-def main() -> None:
+def main():
     parser = argparse.ArgumentParser(
-        description="Plot Atlantic cross-section at 34.5°S"
+        description="Visualize freshwater transport at 34.5S."
     )
-    parser.add_argument("--data-dir", type=Path, default=Path("data/glorys12"))
-    parser.add_argument("--output-dir", type=Path, default=Path("figures/grl"))
-    parser.add_argument("--cache-dir", type=Path, default=Path("data/results"))
+    parser.add_argument("--data-dir", type=Path, default=Path("data/oras5"))
+    parser.add_argument("--output", type=Path,
+                        default=Path("figures/grl/fig_345s_cross_section"))
     args = parser.parse_args()
 
-    cache_file = args.cache_dir / "glorys12_345s_section_mean.npz"
+    apply_nature_style()
 
-    if cache_file.exists():
-        print(f"Loading cached section: {cache_file}")
-        cached = np.load(cache_file, allow_pickle=True)
-        section = {k: cached[k] for k in cached.files}
-        # Scalars stored as 0-d arrays
-        section["lat"] = float(section["lat"])
-        section["n_months"] = int(section["n_months"])
-    else:
-        print("Computing time-mean section (this takes a while)...")
-        section = load_mean_section(args.data_dir)
+    # Get grid info
+    v0 = sorted(args.data_dir.glob("vomecrty_*_3D_*.nc"))[0]
+    ds = xr.open_dataset(v0)
+    nav_lat = ds["nav_lat"].values
+    nav_lon = ds["nav_lon"].values
+    depth = ds["depthv"].values
+    lat_1d = np.nanmean(nav_lat, axis=1)
+    j_idx = int(np.abs(lat_1d - SAMBA_LAT).argmin())
+    actual_lat = lat_1d[j_idx]
+    lon = nav_lon[j_idx, :]
+    atlantic_mask = (lon >= ATLANTIC_LON_MIN) & (lon <= ATLANTIC_LON_MAX)
+    lon_atl = lon[atlantic_mask]
+    ds.close()
 
-        args.cache_dir.mkdir(parents=True, exist_ok=True)
-        np.savez_compressed(
-            cache_file,
-            v=section["v"], s=section["s"],
-            lon=section["lon"], depth=section["depth"],
-            lat=section["lat"], n_months=section["n_months"],
-        )
-        print(f"Cached to: {cache_file}")
+    nz = len(depth)
+    print(f"Section at j={j_idx}, lat={actual_lat:.2f}, {atlantic_mask.sum()} Atlantic points")
 
-    print(f"Section: lat={section['lat']:.2f}°, {section['n_months']} months averaged")
-    print(f"Velocity range: {np.nanmin(section['v']):.4f} to {np.nanmax(section['v']):.4f} m/s")
-    print(f"Salinity range: {np.nanmin(section['s']):.2f} to {np.nanmax(section['s']):.2f} PSU")
+    # Load two periods
+    print("Loading early period (1960-1990)...")
+    v_early, s_early = load_mean_section(args.data_dir, j_idx, atlantic_mask, 1960, 1990)
+    print("Loading late period (2005-2025)...")
+    v_late, s_late = load_mean_section(args.data_dir, j_idx, atlantic_mask, 2005, 2025)
 
-    plot_cross_section(section, args.output_dir)
+    # Compute F_ovS integrand: v * (S - S0)
+    integrand_early = v_early * (s_early - S0)
+    integrand_late = v_late * (s_late - S0)
+    integrand_diff = integrand_late - integrand_early
+
+    # Depth limit for plotting (upper 2000m shows the action)
+    depth_max = 2000
+    z_mask = depth <= depth_max
+    depth_plot = depth[z_mask]
+
+    # Create meshgrid for pcolormesh
+    lon_2d, depth_2d = np.meshgrid(lon_atl, depth_plot)
+
+    # Symmetric colorbar
+    vmax = np.nanpercentile(np.abs(integrand_early[z_mask, :]), 98)
+    vmax = np.ceil(vmax * 100) / 100
+    vmax_diff = np.nanpercentile(np.abs(integrand_diff[z_mask, :]), 95)
+    vmax_diff = np.ceil(vmax_diff * 1000) / 1000
+
+    # Figure
+    fig, axes = plt.subplots(3, 1, figsize=(6.73, 8.0), sharex=True)
+
+    cmap = plt.cm.RdBu_r.copy()
+    cmap.set_bad("0.85")
+
+    for ax, data, title, vm in [
+        (axes[0], integrand_early[z_mask, :], "Early period (1960\u20131990)", vmax),
+        (axes[1], integrand_late[z_mask, :], "Late period (2005\u20132025)", vmax),
+        (axes[2], integrand_diff[z_mask, :], "Difference (late \u2212 early)", vmax_diff),
+    ]:
+        n_levels = 16
+        bounds = np.linspace(-vm, vm, n_levels + 1)
+        norm = mcolors.BoundaryNorm(bounds, cmap.N)
+
+        im = ax.pcolormesh(lon_2d, depth_2d, data, cmap=cmap, norm=norm, shading="auto")
+        ax.set_ylim(depth_max, 0)
+        ax.set_ylabel("Depth (m)", fontsize=8)
+        ax.set_title(title, fontsize=9)
+        cb = fig.colorbar(im, ax=ax, extend="both", shrink=0.8, pad=0.02)
+        cb.set_label("$v \\cdot (S - S_0)$ [m/s \u00b7 PSU]", fontsize=7)
+        cb.ax.tick_params(labelsize=6)
+
+        # Add contour at v=0 (level of no motion)
+        if "Difference" not in title:
+            v_data = v_early[z_mask, :] if "Early" in title else v_late[z_mask, :]
+            ax.contour(lon_2d, depth_2d, v_data, levels=[0],
+                       colors="black", linewidths=0.8, linestyles="--")
+
+    axes[2].set_xlabel("Longitude (\u00b0E)", fontsize=8)
+
+    # Panel labels
+    for ax, label in zip(axes, ["a", "b", "c"]):
+        ax.text(0.02, 0.95, f"({label})", transform=ax.transAxes,
+                fontsize=10, fontweight="bold", va="top")
+
+    fig.suptitle(f"Freshwater transport structure at {actual_lat:.1f}\u00b0S (ORAS5)",
+                 fontsize=11, fontweight="bold", y=0.98)
+
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
+    save_publication_figure(fig, args.output)
+
+    # Print summary: compute actual F_ovS for each period
+    print("\nSummary:")
+    dz = np.diff(depth, prepend=0)
+    dx = np.abs(np.diff(lon_atl, append=lon_atl[-1])) * 111000 * np.cos(np.deg2rad(actual_lat))
+
+    for label, v, s in [("Early", v_early, s_early), ("Late", v_late, s_late)]:
+        fovs = 0.0
+        for k in range(nz):
+            ocean = np.isfinite(s[k, :]) & (s[k, :] > 0)
+            if ocean.sum() == 0:
+                continue
+            v_k = np.where(ocean, v[k, :], 0.0)
+            v_int = (v_k * dx).sum()
+            dx_ocean = np.where(ocean, dx, 0.0)
+            s_k = np.where(ocean, s[k, :], 0.0)
+            s_mean = (s_k * dx_ocean).sum() / dx_ocean.sum()
+            fovs += v_int * (s_mean - S0) * dz[k]
+        fovs = -(1.0 / S0) * fovs / 1e6
+        print(f"  {label}: F_ovS = {fovs:.4f} Sv")
 
 
 if __name__ == "__main__":
