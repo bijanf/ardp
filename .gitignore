@@ -15,3 +15,4 @@ build/
 .pytest_cache/
 .ruff_cache/
 *.ipynb_checkpoints/
+figures/grl/fig_freshwater_flux_maps.pdf
