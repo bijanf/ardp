@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import xarray as xr
 
-from ardp.viz.style import apply_nature_style, save_publication_figure
+from ardp.viz.style import apply_nature_style
 
 
 # ── van Westen & Dijkstra 2024, Table A1 (1994–2020) ──

@@ -39,7 +39,6 @@ _plot_mod = importlib.util.module_from_spec(_spec_plot)
 _spec_plot.loader.exec_module(_plot_mod)
 
 load_cmip6_timeseries = _plot_mod.load_cmip6_timeseries
-CMIP6_PI_MEAN = _plot_mod.CMIP6_PI_MEAN
 
 
 # ---------------------------------------------------------------------------
@@ -479,54 +478,42 @@ class TestConcatAndBias:
         concat_ds.attrs["key"] = f"{model}_hist_ssp585"
         concat_ds.to_netcdf(cmip6_dir / f"fovs_{model}_hist_ssp585.nc")
 
-        # Load with bias correction
+        # Load raw (no bias correction)
         series = load_cmip6_timeseries(results_dir)
 
-        published_mean = CMIP6_PI_MEAN[model]  # -0.05
-        expected_offset = published_mean - raw_mean  # -0.05 - 0.10 = -0.15
-
-        # The corrected historical mean should equal the published piControl mean
-        corrected = series[f"{model}_historical"]
-        corrected_mean = float(corrected.mean())
-        np.testing.assert_allclose(corrected_mean, published_mean, atol=1e-6)
-
-        # The concatenated series should also be shifted
-        corrected_concat = series[f"{model}_hist_ssp585"]
-        np.testing.assert_allclose(
-            float(corrected_concat.mean()),
-            raw_mean + expected_offset,
-            atol=1e-6,
-        )
+        # Raw values should be unchanged
+        loaded = series[f"{model}_historical"]
+        loaded_mean = float(loaded.mean())
+        np.testing.assert_allclose(loaded_mean, raw_mean, atol=1e-6)
 
 
 # ===================================================================
 # Section F: Regression tests (require data/)
 # ===================================================================
 
-# These are BIAS-CORRECTED historical means (after load_cmip6_timeseries applies
-# the piControl offset). They differ from raw computed means.
+# Raw computed historical means (no bias correction).
 EXPECTED_HIST_MEANS = {
-    "ACCESS-CM2": +0.085,
-    "ACCESS-ESM1-5": +0.078,
-    "CESM2": -0.027,
-    "CMCC-CM2-SR5": +0.163,
-    "CNRM-CM6-1": -0.089,
-    "CanESM5": +0.123,
-    "EC-Earth3": +0.018,
-    "EC-Earth3-AerChem": +0.017,
-    "FGOALS-g3": +0.361,
-    "FIO-ESM-2-0": +0.197,
-    "GFDL-CM4": +0.066,
-    "GISS-E2-1-G": +0.261,
-    "GISS-E2-1-G-CC": +0.289,
-    "IPSL-CM6A-LR": -0.154,
-    "MIROC6": -0.107,
-    "MPI-ESM1-2-HR": -0.028,
-    "MPI-ESM1-2-LR": -0.096,
-    "NESM3": -0.193,
-    "SAM0-UNICON": +0.164,
-    "TaiESM1": +0.302,
-    "UKESM1-0-LL": +0.170,
+    "ACCESS-CM2": +0.067,
+    "ACCESS-ESM1-5": +0.083,
+    "CESM2": +0.143,
+    "CMCC-CM2-SR5": -0.008,
+    "CNRM-CM6-1": -0.108,
+    "CanESM5": -0.047,
+    "EC-Earth3": -0.029,
+    "EC-Earth3-AerChem": -0.030,
+    "FGOALS-g3": +0.360,
+    "FIO-ESM-2-0": +0.192,
+    "GFDL-CM4": +0.052,
+    "GISS-E2-1-G": +0.224,
+    "GISS-E2-1-G-CC": +0.252,
+    "IPSL-CM6A-LR": -0.165,
+    "MIROC6": -0.088,
+    "MPI-ESM1-2-HR": -0.038,
+    "MPI-ESM1-2-LR": +0.088,
+    "NESM3": -0.173,
+    "SAM0-UNICON": +0.154,
+    "TaiESM1": +0.285,
+    "UKESM1-0-LL": +0.032,
 }
 
 
