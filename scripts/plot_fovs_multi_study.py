@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Compare F_ovS model rankings across three studies.
+"""Compare F_ovS model rankings across studies and time periods.
 
-Three-panel figure:
+Four-panel figure:
   (a) van Westen & Dijkstra 2024 — 39 CMIP6 models, 1994–2020
-  (b) This study — 22 CMIP6 models, 1850–2014 (raw, no bias correction)
-  (c) Sgubin et al. 2022 — 10 CMIP5 models, piControl
+  (b) This study — CMIP6 models, 1994–2014 (same period as van Westen)
+  (c) This study — CMIP6 models, 1850–2014 (full historical)
+  (d) Sgubin et al. 2022 — 10 CMIP5 models, piControl
 """
 
 from __future__ import annotations
@@ -35,7 +36,7 @@ VAN_WESTEN_2024 = {
     "MRI-ESM2-0": -0.21, "NESM3": -0.24, "NorESM2-LM": +0.23,
     "NorESM2-MM": +0.19, "TaiESM1": +0.34, "UKESM1-0-LL": +0.08,
 }
-VAN_WESTEN_REANALYSIS = -0.10  # Sv (their reanalysis value)
+VAN_WESTEN_REANALYSIS = -0.10
 
 # ── Sgubin et al. 2022, Table 1 (piControl, mSv → Sv) ──
 SGUBIN_2022 = {
@@ -46,21 +47,32 @@ SGUBIN_2022 = {
 }
 
 
-def load_this_study(results_dir: Path) -> dict[str, float]:
-    """Load raw historical-mean F_ovS from our computed results."""
+def load_this_study(results_dir: Path, year_start: int | None = None,
+                    year_end: int | None = None) -> dict[str, float]:
+    """Load F_ovS means from our computed results, optionally for a sub-period."""
     cmip6_dir = results_dir / "cmip6"
     model_means = {}
     for f in sorted(cmip6_dir.glob("fovs_*_historical.nc")):
         model = f.stem.replace("fovs_", "").replace("_historical", "")
         da = xr.open_dataarray(f)
+
+        if year_start is not None or year_end is not None:
+            try:
+                s = str(year_start) if year_start else None
+                e = str(year_end) if year_end else None
+                da = da.sel(time=slice(s, e))
+            except Exception:
+                pass
+
         vals = da.values[np.isfinite(da.values)]
-        if len(vals) > 20:
+        if len(vals) > 10:
             model_means[model] = float(np.mean(vals))
         da.close()
     return model_means
 
 
-def plot_panel(ax, data: dict[str, float], title: str, reanalysis_val: float | None,
+def plot_panel(ax, data: dict[str, float], title: str,
+               reanalysis_val: float | None = None,
                reanalysis_label: str = "ORAS5"):
     """Plot one horizontal bar chart panel."""
     sorted_models = sorted(data.keys(), key=lambda m: data[m])
@@ -78,19 +90,19 @@ def plot_panel(ax, data: dict[str, float], title: str, reanalysis_val: float | N
 
     if reanalysis_val is not None:
         ax.axvline(reanalysis_val, color="#228833", lw=1.5, ls="--", zorder=5)
-        ax.text(reanalysis_val + 0.01, len(sorted_models) - 0.5,
-                reanalysis_label, fontsize=4.5, color="#228833", va="top")
+        ax.text(reanalysis_val, len(sorted_models) + 0.3,
+                f"{reanalysis_label} ({reanalysis_val:+.2f})",
+                fontsize=4, color="#228833", ha="center", va="bottom")
 
     ax.set_yticks(y_pos)
-    ax.set_yticklabels(sorted_models, fontsize=4)
-    ax.set_title(title, fontsize=7, fontweight="bold", pad=6)
+    ax.set_yticklabels(sorted_models, fontsize=3.5)
+    ax.set_title(title, fontsize=6.5, fontweight="bold", pad=6)
     ax.invert_yaxis()
     ax.grid(axis="x", alpha=0.2, linewidth=0.3)
 
-    # Bistable/monostable count
     ax.text(0.98, 0.02,
             f"{n_neg} bistable / {n_pos} monostable",
-            transform=ax.transAxes, fontsize=4.5, ha="right", va="bottom",
+            transform=ax.transAxes, fontsize=4, ha="right", va="bottom",
             color="0.4")
 
 
@@ -105,59 +117,96 @@ def main():
 
     apply_nature_style()
 
-    # Load our data
-    this_study = load_this_study(args.results_dir)
-    print(f"This study: {len(this_study)} models")
-    print(f"van Westen: {len(VAN_WESTEN_2024)} models")
-    print(f"Sgubin:     {len(SGUBIN_2022)} models")
+    # Load our data for two periods
+    this_study_present = load_this_study(args.results_dir, 1994, 2014)
+    this_study_full = load_this_study(args.results_dir)
 
-    # ORAS5 mean
+    # ORAS5
     oras5_path = args.results_dir / "oras5_f_ovs.nc"
     oras5_mean = None
+    oras5_present = None
     if oras5_path.exists():
         da = xr.open_dataarray(oras5_path)
         oras5_mean = float(da.mean())
+        try:
+            oras5_present = float(da.sel(time=slice("1994", "2014")).mean())
+        except Exception:
+            oras5_present = oras5_mean
         da.close()
-        print(f"ORAS5 mean: {oras5_mean:.3f} Sv")
+
+    print(f"van Westen 2024:       {len(VAN_WESTEN_2024)} models (1994-2020)")
+    print(f"This study (1994-2014): {len(this_study_present)} models")
+    print(f"This study (1850-2014): {len(this_study_full)} models")
+    print(f"Sgubin 2022:           {len(SGUBIN_2022)} models (piControl)")
+    if oras5_mean:
+        print(f"ORAS5 full mean: {oras5_mean:.3f} Sv, present-day: {oras5_present:.3f} Sv")
+
+    # Check for piControl data
+    picontrol = {}
+    picontrol_dir = Path("data/cmip6_fullfield")
+    for f in sorted(picontrol_dir.glob("*_piControl_vo_zonal.nc")):
+        model = f.name.replace("_piControl_vo_zonal.nc", "")
+        picontrol[model] = f
+    has_picontrol = len(picontrol) > 0
+    if has_picontrol:
+        print(f"piControl data:        {len(picontrol)} models")
 
     # Shared x-axis range
-    all_vals = list(VAN_WESTEN_2024.values()) + list(this_study.values()) + list(SGUBIN_2022.values())
+    all_vals = (list(VAN_WESTEN_2024.values()) + list(this_study_full.values())
+                + list(SGUBIN_2022.values()))
     x_max = max(abs(min(all_vals)), abs(max(all_vals))) * 1.15
 
-    # Figure
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(6.73, 7.0),
-                                         sharey=False)
+    # Figure — 4 panels (or 5 if piControl available)
+    n_panels = 5 if has_picontrol else 4
+    fig, axes = plt.subplots(1, n_panels, figsize=(6.73, 7.5), sharey=False)
 
-    plot_panel(ax1, VAN_WESTEN_2024,
-               "van Westen & Dijkstra 2024\nCMIP6, 1994\u20132020",
+    idx = 0
+
+    # (a) van Westen
+    plot_panel(axes[idx], VAN_WESTEN_2024,
+               "(a) van Westen & Dijkstra 2024\nCMIP6, 1994\u20132020",
                VAN_WESTEN_REANALYSIS, "Reanalysis")
+    idx += 1
 
-    plot_panel(ax2, this_study,
-               "This study\nCMIP6, 1850\u20132014 (raw)",
+    # (b) This study, same period
+    plot_panel(axes[idx], this_study_present,
+               "(b) This study\nCMIP6, 1994\u20132014",
+               oras5_present, "ORAS5")
+    idx += 1
+
+    # (c) This study, full historical
+    plot_panel(axes[idx], this_study_full,
+               "(c) This study\nCMIP6, 1850\u20132014",
                oras5_mean, "ORAS5")
+    idx += 1
 
-    plot_panel(ax3, SGUBIN_2022,
-               "Sgubin et al. 2022\nCMIP5, piControl",
+    # (d) or (e) Sgubin CMIP5
+    if has_picontrol:
+        # (d) Our piControl
+        # TODO: compute piControl F_ovS means when data is ready
+        plot_panel(axes[idx], {},
+                   "(d) This study\nCMIP6, piControl",
+                   None)
+        idx += 1
+
+    plot_panel(axes[idx], SGUBIN_2022,
+               f"({chr(ord('a') + idx)}) Sgubin et al. 2022\nCMIP5, piControl",
                None)
 
-    for ax in [ax1, ax2, ax3]:
+    for ax in axes:
         ax.set_xlim(-x_max, x_max)
-        ax.set_xlabel("F$_{ovS}$ (Sv)", fontsize=6)
+        ax.set_xlabel("F$_{ovS}$ (Sv)", fontsize=5)
 
-    # Panel labels
-    for ax, label in zip([ax1, ax2, ax3], "abc"):
-        ax.text(0.03, 1.02, f"({label})", transform=ax.transAxes,
-                fontsize=10, fontweight="bold", va="bottom")
-
-    fig.tight_layout(w_pad=1.0)
+    fig.tight_layout(w_pad=0.5)
     save_publication_figure(fig, args.output)
 
     # Summary
-    for name, data in [("van Westen", VAN_WESTEN_2024),
-                       ("This study", this_study),
-                       ("Sgubin", SGUBIN_2022)]:
+    for name, data in [("van Westen 2024", VAN_WESTEN_2024),
+                       ("This study 1994-2014", this_study_present),
+                       ("This study 1850-2014", this_study_full),
+                       ("Sgubin 2022", SGUBIN_2022)]:
         n_neg = sum(1 for v in data.values() if v < 0)
-        print(f"{name}: {n_neg}/{len(data)} bistable")
+        print(f"  {name}: {n_neg}/{len(data)} bistable")
 
 
 if __name__ == "__main__":
