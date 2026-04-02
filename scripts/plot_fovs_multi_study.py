@@ -133,7 +133,7 @@ def plot_panel(ax, data: dict[str, float], title: str,
                 fontweight="bold")
 
     ax.set_yticks(y_pos)
-    ax.set_yticklabels(labels, fontsize=3.5)
+    ax.set_yticklabels(labels, fontsize=5, fontweight="bold")
     ax.set_ylim(max(len(sorted_models), 39) - 0.5, -2)
     ax.set_title(title, fontsize=6, fontweight="bold", pad=4)
     ax.grid(axis="x", alpha=0.2, linewidth=0.3)
