@@ -73,8 +73,9 @@ def load_this_study(results_dir: Path, year_start: int | None = None,
 
 def plot_panel(ax, data: dict[str, float], title: str,
                reanalysis_val: float | None = None,
-               reanalysis_label: str = "ORAS5"):
-    """Plot one horizontal bar chart panel."""
+               reanalysis_label: str = "ORAS5",
+               max_models: int = 40):
+    """Plot one horizontal bar chart panel with fixed bar width."""
     sorted_models = sorted(data.keys(), key=lambda m: data[m])
     values = [data[m] for m in sorted_models]
     colors = ["#CC3333" if v < 0 else "#3366AA" for v in values]
@@ -82,26 +83,30 @@ def plot_panel(ax, data: dict[str, float], title: str,
     n_neg = sum(1 for v in values if v < 0)
     n_pos = sum(1 for v in values if v >= 0)
 
-    y_pos = np.arange(len(sorted_models))
-    ax.barh(y_pos, values, height=0.7, color=colors, edgecolor="white",
-            linewidth=0.3, zorder=3)
+    # Fixed bar width regardless of number of models
+    bar_height = 0.8
+    y_pos = np.arange(len(sorted_models)) * (max_models / max(len(sorted_models), 1)) * bar_height
+    y_pos = np.linspace(0, max_models - 1, len(sorted_models))
+
+    ax.barh(y_pos, values, height=bar_height * (max_models / max(len(sorted_models), 1)) * 0.8,
+            color=colors, edgecolor="white", linewidth=0.3, zorder=3)
 
     ax.axvline(0, color="black", lw=0.5, ls=":", zorder=2)
 
     if reanalysis_val is not None:
         ax.axvline(reanalysis_val, color="#228833", lw=1.5, ls="--", zorder=5)
-        ax.text(reanalysis_val, len(sorted_models) + 0.3,
-                f"{reanalysis_label} ({reanalysis_val:+.2f})",
-                fontsize=4, color="#228833", ha="center", va="bottom")
+        ax.text(reanalysis_val + 0.01, -1.5,
+                f"{reanalysis_label}\n({reanalysis_val:+.2f})",
+                fontsize=3.5, color="#228833", ha="left", va="bottom")
 
     ax.set_yticks(y_pos)
     ax.set_yticklabels(sorted_models, fontsize=3.5)
-    ax.set_title(title, fontsize=6.5, fontweight="bold", pad=6)
-    ax.invert_yaxis()
+    ax.set_ylim(max_models, -1)
+    ax.set_title(title, fontsize=6, fontweight="bold", pad=4)
     ax.grid(axis="x", alpha=0.2, linewidth=0.3)
 
-    ax.text(0.98, 0.02,
-            f"{n_neg} bistable / {n_pos} monostable",
+    ax.text(0.98, 0.01,
+            f"{n_neg}/{len(data)} bistable",
             transform=ax.transAxes, fontsize=4, ha="right", va="bottom",
             color="0.4")
 
@@ -117,10 +122,9 @@ def main():
 
     apply_nature_style()
 
-    # Load our data for three periods
+    # Load our data for two periods
     this_study_preindustrial = load_this_study(args.results_dir, 1850, 1900)
     this_study_present = load_this_study(args.results_dir, 1994, 2014)
-    this_study_full = load_this_study(args.results_dir)
 
     # ORAS5
     oras5_path = args.results_dir / "oras5_f_ovs.nc"
@@ -138,7 +142,6 @@ def main():
     print(f"van Westen 2024:       {len(VAN_WESTEN_2024)} models (1994-2020)")
     print(f"This study (1850-1900): {len(this_study_preindustrial)} models")
     print(f"This study (1994-2014): {len(this_study_present)} models")
-    print(f"This study (1850-2014): {len(this_study_full)} models")
     print(f"Sgubin 2022:           {len(SGUBIN_2022)} models (piControl)")
     if oras5_mean:
         print(f"ORAS5 full mean: {oras5_mean:.3f} Sv, present-day: {oras5_present:.3f} Sv")
@@ -154,51 +157,32 @@ def main():
         print(f"piControl data:        {len(picontrol)} models")
 
     # Shared x-axis range
-    all_vals = (list(VAN_WESTEN_2024.values()) + list(this_study_full.values())
+    all_vals = (list(VAN_WESTEN_2024.values()) + list(this_study_present.values())
                 + list(SGUBIN_2022.values()))
     x_max = max(abs(min(all_vals)), abs(max(all_vals))) * 1.15
+    max_models = max(len(VAN_WESTEN_2024), len(this_study_present),
+                     len(this_study_preindustrial), len(SGUBIN_2022))
 
-    # Figure — 5 panels (or 6 if piControl available)
-    n_panels = 6 if has_picontrol else 5
-    fig, axes = plt.subplots(1, n_panels, figsize=(6.73, 7.5), sharey=False)
+    # Figure — 4 panels
+    fig, axes = plt.subplots(1, 4, figsize=(6.73, 8.0), sharey=False)
 
-    idx = 0
-
-    # (a) van Westen
-    plot_panel(axes[idx], VAN_WESTEN_2024,
+    plot_panel(axes[0], VAN_WESTEN_2024,
                "(a) van Westen & Dijkstra 2024\nCMIP6, 1994\u20132020",
-               VAN_WESTEN_REANALYSIS, "Reanalysis")
-    idx += 1
+               VAN_WESTEN_REANALYSIS, "Reanalysis",
+               max_models=max_models)
 
-    # (b) This study, same period as van Westen
-    plot_panel(axes[idx], this_study_present,
+    plot_panel(axes[1], this_study_present,
                "(b) This study\nCMIP6, 1994\u20132014",
-               oras5_present, "ORAS5")
-    idx += 1
+               oras5_present, "ORAS5",
+               max_models=max_models)
 
-    # (c) This study, pre-industrial
-    plot_panel(axes[idx], this_study_preindustrial,
+    plot_panel(axes[2], this_study_preindustrial,
                "(c) This study\nCMIP6, 1850\u20131900",
-               None)
-    idx += 1
+               None, max_models=max_models)
 
-    # (d) This study, full historical
-    plot_panel(axes[idx], this_study_full,
-               "(d) This study\nCMIP6, 1850\u20132014",
-               oras5_mean, "ORAS5")
-    idx += 1
-
-    # (e) or (f) piControl if available
-    if has_picontrol:
-        plot_panel(axes[idx], {},
-                   f"({chr(ord('a') + idx)}) This study\nCMIP6, piControl",
-                   None)
-        idx += 1
-
-    # Sgubin CMIP5
-    plot_panel(axes[idx], SGUBIN_2022,
-               f"({chr(ord('a') + idx)}) Sgubin et al. 2022\nCMIP5, piControl",
-               None)
+    plot_panel(axes[3], SGUBIN_2022,
+               "(d) Sgubin et al. 2022\nCMIP5, piControl",
+               None, max_models=max_models)
 
     for ax in axes:
         ax.set_xlim(-x_max, x_max)
@@ -211,7 +195,6 @@ def main():
     for name, data in [("van Westen 2024", VAN_WESTEN_2024),
                        ("This study 1994-2014", this_study_present),
                        ("This study 1850-1900", this_study_preindustrial),
-                       ("This study 1850-2014", this_study_full),
                        ("Sgubin 2022", SGUBIN_2022)]:
         n_neg = sum(1 for v in data.values() if v < 0)
         print(f"  {name}: {n_neg}/{len(data)} bistable")
