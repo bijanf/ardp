@@ -49,11 +49,21 @@ SGUBIN_2022 = {
 
 def load_this_study(results_dir: Path, year_start: int | None = None,
                     year_end: int | None = None) -> dict[str, float]:
-    """Load F_ovS means from our computed results, optionally for a sub-period."""
+    """Load F_ovS means from our computed results, optionally for a sub-period.
+
+    If year_end > 2014, uses hist+ssp585 concatenated files to extend beyond
+    the historical period.
+    """
     cmip6_dir = results_dir / "cmip6"
     model_means = {}
-    for f in sorted(cmip6_dir.glob("fovs_*_historical.nc")):
-        model = f.stem.replace("fovs_", "").replace("_historical", "")
+
+    # Use hist+ssp585 if we need years beyond 2014
+    use_ssp = year_end is not None and year_end > 2014
+    pattern = "fovs_*_hist_ssp585.nc" if use_ssp else "fovs_*_historical.nc"
+    suffix = "_hist_ssp585" if use_ssp else "_historical"
+
+    for f in sorted(cmip6_dir.glob(pattern)):
+        model = f.stem.replace("fovs_", "").replace(suffix, "")
         da = xr.open_dataarray(f)
 
         if year_start is not None or year_end is not None:
@@ -91,20 +101,23 @@ def plot_panel(ax, data: dict[str, float], title: str,
 
     if reanalysis_val is not None:
         ax.axvline(reanalysis_val, color="#228833", lw=1.5, ls="--", zorder=5)
-        ax.text(reanalysis_val + 0.01, -1.5,
-                f"{reanalysis_label}\n({reanalysis_val:+.2f})",
-                fontsize=3.5, color="#228833", ha="left", va="bottom")
+        # Place reanalysis label at the bottom of the data, not at top
+        ax.text(reanalysis_val, len(sorted_models) + 1,
+                f"{reanalysis_label} ({reanalysis_val:+.2f} Sv)",
+                fontsize=5, color="#228833", ha="center", va="top",
+                fontweight="bold")
 
     ax.set_yticks(y_pos)
     ax.set_yticklabels(sorted_models, fontsize=3.5)
-    ax.set_ylim(max(len(sorted_models), 39) - 0.5, -0.5)
+    ax.set_ylim(max(len(sorted_models), 39) - 0.5, -2)
     ax.set_title(title, fontsize=6, fontweight="bold", pad=4)
     ax.grid(axis="x", alpha=0.2, linewidth=0.3)
 
-    ax.text(0.98, 0.01,
-            f"{n_neg}/{len(data)} bistable",
-            transform=ax.transAxes, fontsize=4, ha="right", va="bottom",
-            color="0.4")
+    # Bistable count — large, near the top
+    ax.text(0.5, 0.02,
+            f"{n_neg}/{len(data)} bistable (F$_{{ovS}}$ < 0)",
+            transform=ax.transAxes, fontsize=6, ha="center", va="bottom",
+            color="#CC3333", fontweight="bold")
 
 
 def main():
@@ -120,7 +133,7 @@ def main():
 
     # Load our data for two periods
     this_study_preindustrial = load_this_study(args.results_dir, 1850, 1900)
-    this_study_present = load_this_study(args.results_dir, 1994, 2014)
+    this_study_present = load_this_study(args.results_dir, 1994, 2020)
 
     # ORAS5
     oras5_path = args.results_dir / "oras5_f_ovs.nc"
@@ -130,14 +143,14 @@ def main():
         da = xr.open_dataarray(oras5_path)
         oras5_mean = float(da.mean())
         try:
-            oras5_present = float(da.sel(time=slice("1994", "2014")).mean())
+            oras5_present = float(da.sel(time=slice("1994", "2020")).mean())
         except Exception:
             oras5_present = oras5_mean
         da.close()
 
     print(f"van Westen 2024:       {len(VAN_WESTEN_2024)} models (1994-2020)")
     print(f"This study (1850-1900): {len(this_study_preindustrial)} models")
-    print(f"This study (1994-2014): {len(this_study_present)} models")
+    print(f"This study (1994-2020): {len(this_study_present)} models")
     print(f"Sgubin 2022:           {len(SGUBIN_2022)} models (piControl)")
     if oras5_mean:
         print(f"ORAS5 full mean: {oras5_mean:.3f} Sv, present-day: {oras5_present:.3f} Sv")
@@ -167,10 +180,10 @@ def main():
 
     plot_panel(axes[0], VAN_WESTEN_2024,
                "(a) van Westen & Dijkstra 2024\nCMIP6, 1994\u20132020",
-               VAN_WESTEN_REANALYSIS, "Reanalysis")
+               VAN_WESTEN_REANALYSIS, "GLORYS12")
 
     plot_panel(axes[1], this_study_present,
-               "(b) This study\nCMIP6, 1994\u20132014",
+               "(b) This study\nCMIP6, 1994\u20132020 (hist+SSP585)",
                oras5_present, "ORAS5")
 
     plot_panel(axes[2], this_study_preindustrial,
@@ -185,7 +198,7 @@ def main():
 
     # Summary
     for name, data in [("van Westen 2024", VAN_WESTEN_2024),
-                       ("This study 1994-2014", this_study_present),
+                       ("This study 1994-2020", this_study_present),
                        ("This study 1850-1900", this_study_preindustrial)]:
         n_neg = sum(1 for v in data.values() if v < 0)
         print(f"  {name}: {n_neg}/{len(data)} bistable")
