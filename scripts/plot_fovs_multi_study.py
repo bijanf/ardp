@@ -208,11 +208,11 @@ def main():
                VAN_WESTEN_REANALYSIS, "GLORYS12")
 
     plot_panel(axes[1], this_study_present,
-               "(b) This study\nCMIP6, 1994\u20132020 (hist+SSP585)",
+               "(b) Fallah et al.\nCMIP6, 1994\u20132020 (hist+SSP585)",
                starred=fallback_models)
 
     plot_panel(axes[2], this_study_preindustrial,
-               "(c) This study\nCMIP6, 1850\u20131900")
+               "(c) Fallah et al.\nCMIP6, 1850\u20131900")
 
     for ax in axes:
         ax.set_xlim(-x_max, x_max)
