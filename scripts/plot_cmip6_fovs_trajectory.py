@@ -21,8 +21,8 @@ import pandas as pd
 import xarray as xr
 
 from ardp.models import (
+    CMIP6_REGISTRY,
     model_colors,
-    picontrol_means,
 )
 from ardp.viz.style import (
     COLORS,
@@ -32,7 +32,6 @@ from ardp.viz.style import (
     save_publication_figure,
 )
 
-CMIP6_PI_MEAN = picontrol_means()
 MODEL_COLORS = model_colors()
 
 
@@ -86,33 +85,6 @@ def load_cmip6_timeseries(results_dir: Path) -> dict[str, xr.DataArray]:
         ds = xr.open_dataset(f)
         series[key] = ds["F_ovS"]
         ds.close()
-
-    # Bias-correct: shift so early-historical mean matches published piControl
-    for key, da in list(series.items()):
-        # Find model name
-        model = None
-        for m in CMIP6_PI_MEAN:
-            if key.startswith(m):
-                model = m
-                break
-        if model is None:
-            continue
-
-        # Compute early-historical mean (1850-1900) from the historical series
-        hist_key = f"{model}_historical"
-        if hist_key not in series:
-            continue
-
-        hist_da = series[hist_key]
-        try:
-            early = hist_da.sel(time=slice(None, "1900"))
-            if len(early) > 0:
-                computed_mean = float(early.mean())
-                published_mean = CMIP6_PI_MEAN[model]
-                offset = published_mean - computed_mean
-                series[key] = da + offset
-        except Exception:
-            pass
 
     return series
 
@@ -182,7 +154,7 @@ def plot_trajectory_figure(
         return
 
     # Identify available CMIP6 models
-    known_models = set(CMIP6_PI_MEAN.keys())
+    known_models = set(CMIP6_REGISTRY.keys())
     models = set()
     for key in cmip6:
         for m in known_models:
