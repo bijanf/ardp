@@ -208,11 +208,11 @@ def main():
                VAN_WESTEN_REANALYSIS, "GLORYS12")
 
     plot_panel(axes[1], this_study_present,
-               "(b) Fallah et al.\nCMIP6, 1994\u20132020 (hist+SSP585)",
+               "(b) CMIP6, 1994\u20132020\n(hist+SSP585)",
                starred=fallback_models)
 
     plot_panel(axes[2], this_study_preindustrial,
-               "(c) Fallah et al.\nCMIP6, 1850\u20131900")
+               "(c) CMIP6, 1850\u20131900")
 
     for ax in axes:
         ax.set_xlim(-x_max, x_max)
@@ -225,7 +225,13 @@ def main():
                  ha="center", fontsize=5, color="0.4", style="italic")
 
     fig.tight_layout(w_pad=0.5, rect=[0, 0.02, 1, 1])
-    save_publication_figure(fig, args.output)
+    # Save at high resolution (600 DPI)
+    out = Path(args.output)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out.with_suffix(".png"), dpi=600, bbox_inches="tight")
+    fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight")
+    print(f"Saved: {out.with_suffix('.png')} (600 DPI)")
+    print(f"Saved: {out.with_suffix('.pdf')}")
 
     # Summary
     for name, data in [("van Westen 2024", VAN_WESTEN_2024),
