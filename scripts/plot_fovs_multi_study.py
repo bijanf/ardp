@@ -48,46 +48,71 @@ SGUBIN_2022 = {
 
 
 def load_this_study(results_dir: Path, year_start: int | None = None,
-                    year_end: int | None = None) -> dict[str, float]:
+                    year_end: int | None = None,
+) -> tuple[dict[str, float], set[str]]:
     """Load F_ovS means from our computed results, optionally for a sub-period.
 
-    If year_end > 2014, uses hist+ssp585 concatenated files to extend beyond
-    the historical period.
+    If year_end > 2014, uses hist+ssp585 where available, falls back to
+    historical-only for models without SSP data.
+
+    Returns (model_means dict, set of models that used historical-only fallback).
     """
     cmip6_dir = results_dir / "cmip6"
     model_means = {}
+    fallback_models = set()
 
-    # Use hist+ssp585 if we need years beyond 2014
     use_ssp = year_end is not None and year_end > 2014
-    pattern = "fovs_*_hist_ssp585.nc" if use_ssp else "fovs_*_historical.nc"
-    suffix = "_hist_ssp585" if use_ssp else "_historical"
 
-    for f in sorted(cmip6_dir.glob(pattern)):
-        model = f.stem.replace("fovs_", "").replace(suffix, "")
-        da = xr.open_dataarray(f)
-
-        if year_start is not None or year_end is not None:
+    # First pass: try hist+ssp585 for full coverage
+    if use_ssp:
+        for f in sorted(cmip6_dir.glob("fovs_*_hist_ssp585.nc")):
+            model = f.stem.replace("fovs_", "").replace("_hist_ssp585", "")
+            da = xr.open_dataarray(f)
             try:
-                s = str(year_start) if year_start else None
-                e = str(year_end) if year_end else None
-                da = da.sel(time=slice(s, e))
+                da = da.sel(time=slice(str(year_start), str(year_end)))
             except Exception:
                 pass
+            vals = da.values[np.isfinite(da.values)]
+            if len(vals) > 10:
+                model_means[model] = float(np.mean(vals))
+            da.close()
 
+    # Second pass: fill in missing models from historical-only (up to 2014)
+    for f in sorted(cmip6_dir.glob("fovs_*_historical.nc")):
+        model = f.stem.replace("fovs_", "").replace("_historical", "")
+        if model in model_means:
+            continue  # already have this model from hist+ssp
+        da = xr.open_dataarray(f)
+        s = str(year_start) if year_start else None
+        e = str(min(year_end, 2014)) if year_end else None
+        try:
+            da = da.sel(time=slice(s, e))
+        except Exception:
+            pass
         vals = da.values[np.isfinite(da.values)]
         if len(vals) > 10:
             model_means[model] = float(np.mean(vals))
+            if use_ssp:
+                fallback_models.add(model)
         da.close()
-    return model_means
+
+    return model_means, fallback_models
 
 
 def plot_panel(ax, data: dict[str, float], title: str,
                reanalysis_val: float | None = None,
-               reanalysis_label: str = "ORAS5"):
-    """Plot one horizontal bar chart panel with fixed bar width."""
+               reanalysis_label: str = "ORAS5",
+               starred: set[str] | None = None):
+    """Plot one horizontal bar chart panel with fixed bar width.
+
+    Models in `starred` get a star (*) appended to their name.
+    """
+    if starred is None:
+        starred = set()
     sorted_models = sorted(data.keys(), key=lambda m: data[m])
     values = [data[m] for m in sorted_models]
     colors = ["#CC3333" if v < 0 else "#3366AA" for v in values]
+    labels = [f"{m} *" if m in starred else m for m in sorted_models]
 
     n_neg = sum(1 for v in values if v < 0)
 
@@ -108,7 +133,7 @@ def plot_panel(ax, data: dict[str, float], title: str,
                 fontweight="bold")
 
     ax.set_yticks(y_pos)
-    ax.set_yticklabels(sorted_models, fontsize=3.5)
+    ax.set_yticklabels(labels, fontsize=3.5)
     ax.set_ylim(max(len(sorted_models), 39) - 0.5, -2)
     ax.set_title(title, fontsize=6, fontweight="bold", pad=4)
     ax.grid(axis="x", alpha=0.2, linewidth=0.3)
@@ -132,8 +157,8 @@ def main():
     apply_nature_style()
 
     # Load our data for two periods
-    this_study_preindustrial = load_this_study(args.results_dir, 1850, 1900)
-    this_study_present = load_this_study(args.results_dir, 1994, 2020)
+    this_study_preindustrial, _ = load_this_study(args.results_dir, 1850, 1900)
+    this_study_present, fallback_models = load_this_study(args.results_dir, 1994, 2020)
 
     # ORAS5
     oras5_path = args.results_dir / "oras5_f_ovs.nc"
@@ -184,7 +209,7 @@ def main():
 
     plot_panel(axes[1], this_study_present,
                "(b) This study\nCMIP6, 1994\u20132020 (hist+SSP585)",
-               oras5_present, "ORAS5")
+               starred=fallback_models)
 
     plot_panel(axes[2], this_study_preindustrial,
                "(c) This study\nCMIP6, 1850\u20131900")
@@ -193,7 +218,13 @@ def main():
         ax.set_xlim(-x_max, x_max)
         ax.set_xlabel("F$_{ovS}$ (Sv)", fontsize=5)
 
-    fig.tight_layout(w_pad=0.5)
+    # Footnote for starred models
+    if fallback_models:
+        fig.text(0.5, 0.005,
+                 "* historical only (1994\u20132014), no SSP585 data available",
+                 ha="center", fontsize=5, color="0.4", style="italic")
+
+    fig.tight_layout(w_pad=0.5, rect=[0, 0.02, 1, 1])
     save_publication_figure(fig, args.output)
 
     # Summary
