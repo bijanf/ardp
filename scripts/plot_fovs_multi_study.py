@@ -117,7 +117,8 @@ def main():
 
     apply_nature_style()
 
-    # Load our data for two periods
+    # Load our data for three periods
+    this_study_preindustrial = load_this_study(args.results_dir, 1850, 1900)
     this_study_present = load_this_study(args.results_dir, 1994, 2014)
     this_study_full = load_this_study(args.results_dir)
 
@@ -135,6 +136,7 @@ def main():
         da.close()
 
     print(f"van Westen 2024:       {len(VAN_WESTEN_2024)} models (1994-2020)")
+    print(f"This study (1850-1900): {len(this_study_preindustrial)} models")
     print(f"This study (1994-2014): {len(this_study_present)} models")
     print(f"This study (1850-2014): {len(this_study_full)} models")
     print(f"Sgubin 2022:           {len(SGUBIN_2022)} models (piControl)")
@@ -156,8 +158,8 @@ def main():
                 + list(SGUBIN_2022.values()))
     x_max = max(abs(min(all_vals)), abs(max(all_vals))) * 1.15
 
-    # Figure — 4 panels (or 5 if piControl available)
-    n_panels = 5 if has_picontrol else 4
+    # Figure — 5 panels (or 6 if piControl available)
+    n_panels = 6 if has_picontrol else 5
     fig, axes = plt.subplots(1, n_panels, figsize=(6.73, 7.5), sharey=False)
 
     idx = 0
@@ -168,27 +170,32 @@ def main():
                VAN_WESTEN_REANALYSIS, "Reanalysis")
     idx += 1
 
-    # (b) This study, same period
+    # (b) This study, same period as van Westen
     plot_panel(axes[idx], this_study_present,
                "(b) This study\nCMIP6, 1994\u20132014",
                oras5_present, "ORAS5")
     idx += 1
 
-    # (c) This study, full historical
+    # (c) This study, pre-industrial
+    plot_panel(axes[idx], this_study_preindustrial,
+               "(c) This study\nCMIP6, 1850\u20131900",
+               None)
+    idx += 1
+
+    # (d) This study, full historical
     plot_panel(axes[idx], this_study_full,
-               "(c) This study\nCMIP6, 1850\u20132014",
+               "(d) This study\nCMIP6, 1850\u20132014",
                oras5_mean, "ORAS5")
     idx += 1
 
-    # (d) or (e) Sgubin CMIP5
+    # (e) or (f) piControl if available
     if has_picontrol:
-        # (d) Our piControl
-        # TODO: compute piControl F_ovS means when data is ready
         plot_panel(axes[idx], {},
-                   "(d) This study\nCMIP6, piControl",
+                   f"({chr(ord('a') + idx)}) This study\nCMIP6, piControl",
                    None)
         idx += 1
 
+    # Sgubin CMIP5
     plot_panel(axes[idx], SGUBIN_2022,
                f"({chr(ord('a') + idx)}) Sgubin et al. 2022\nCMIP5, piControl",
                None)
@@ -203,6 +210,7 @@ def main():
     # Summary
     for name, data in [("van Westen 2024", VAN_WESTEN_2024),
                        ("This study 1994-2014", this_study_present),
+                       ("This study 1850-1900", this_study_preindustrial),
                        ("This study 1850-2014", this_study_full),
                        ("Sgubin 2022", SGUBIN_2022)]:
         n_neg = sum(1 for v in data.values() if v < 0)

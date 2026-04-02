@@ -297,8 +297,8 @@ def plot_trajectory_figure(
 
     add_panel_label(ax_ts, "(a)")
 
-    # ── Panel (b): Historical mean F_ovS — regime classification ──
-    # Compute mean and std of annual F_ovS over the full historical period
+    # ── Panel (b): Pre-industrial F_ovS (1850–1900) — regime classification ──
+    # Use 1850–1900 to minimize anthropogenic forcing influence
     model_means = {}
     model_stds = {}
     for model in models:
@@ -307,8 +307,10 @@ def plot_trajectory_figure(
             continue
         da = cmip6[hist_key]
         years, vals = _to_annual(da)
-        finite = vals[np.isfinite(vals)]
-        if len(finite) > 20:
+        early_mask = (years >= 1850) & (years <= 1900)
+        early_vals = vals[early_mask]
+        finite = early_vals[np.isfinite(early_vals)]
+        if len(finite) > 10:
             model_means[model] = float(finite.mean())
             model_stds[model] = float(finite.std())
 
@@ -330,7 +332,7 @@ def plot_trajectory_figure(
 
     ax_bar.set_yticks(y_pos)
     ax_bar.set_yticklabels(sorted_models_b, fontsize=4)
-    ax_bar.set_xlabel("Historical mean F$_{ovS}$ (Sv)")
+    ax_bar.set_xlabel("F$_{ovS}$ 1850\u20131900 mean (Sv)")
     ax_bar.axvline(0, color="black", lw=0.5, ls=":")
 
     # Mark observed ORAS5 mean
