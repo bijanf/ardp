@@ -73,23 +73,19 @@ def load_this_study(results_dir: Path, year_start: int | None = None,
 
 def plot_panel(ax, data: dict[str, float], title: str,
                reanalysis_val: float | None = None,
-               reanalysis_label: str = "ORAS5",
-               max_models: int = 40):
+               reanalysis_label: str = "ORAS5"):
     """Plot one horizontal bar chart panel with fixed bar width."""
     sorted_models = sorted(data.keys(), key=lambda m: data[m])
     values = [data[m] for m in sorted_models]
     colors = ["#CC3333" if v < 0 else "#3366AA" for v in values]
 
     n_neg = sum(1 for v in values if v < 0)
-    n_pos = sum(1 for v in values if v >= 0)
 
-    # Fixed bar width regardless of number of models
-    bar_height = 0.8
-    y_pos = np.arange(len(sorted_models)) * (max_models / max(len(sorted_models), 1)) * bar_height
-    y_pos = np.linspace(0, max_models - 1, len(sorted_models))
+    # Fixed bar height = 0.8, spacing = 1.0 per model (same in every panel)
+    y_pos = np.arange(len(sorted_models), dtype=float)
 
-    ax.barh(y_pos, values, height=bar_height * (max_models / max(len(sorted_models), 1)) * 0.8,
-            color=colors, edgecolor="white", linewidth=0.3, zorder=3)
+    ax.barh(y_pos, values, height=0.8, color=colors, edgecolor="white",
+            linewidth=0.3, zorder=3)
 
     ax.axvline(0, color="black", lw=0.5, ls=":", zorder=2)
 
@@ -101,7 +97,7 @@ def plot_panel(ax, data: dict[str, float], title: str,
 
     ax.set_yticks(y_pos)
     ax.set_yticklabels(sorted_models, fontsize=3.5)
-    ax.set_ylim(max_models, -1)
+    ax.set_ylim(max(len(sorted_models), 39) - 0.5, -0.5)
     ax.set_title(title, fontsize=6, fontweight="bold", pad=4)
     ax.grid(axis="x", alpha=0.2, linewidth=0.3)
 
@@ -158,31 +154,27 @@ def main():
 
     # Shared x-axis range
     all_vals = (list(VAN_WESTEN_2024.values()) + list(this_study_present.values())
-                + list(SGUBIN_2022.values()))
+                + list(this_study_preindustrial.values()))
     x_max = max(abs(min(all_vals)), abs(max(all_vals))) * 1.15
-    max_models = max(len(VAN_WESTEN_2024), len(this_study_present),
-                     len(this_study_preindustrial), len(SGUBIN_2022))
 
-    # Figure — 4 panels
-    fig, axes = plt.subplots(1, 4, figsize=(6.73, 8.0), sharey=False)
+    # 3 panels, equal size — bars will have same physical height
+    # Panel (a) has 39 models, (b,c) have 22 — set shared ylim to 39
+    max_n = max(len(VAN_WESTEN_2024), len(this_study_present),
+                len(this_study_preindustrial))
+
+    fig, axes = plt.subplots(1, 3, figsize=(6.73, max_n * 0.22 + 1.5),
+                              sharey=False)
 
     plot_panel(axes[0], VAN_WESTEN_2024,
                "(a) van Westen & Dijkstra 2024\nCMIP6, 1994\u20132020",
-               VAN_WESTEN_REANALYSIS, "Reanalysis",
-               max_models=max_models)
+               VAN_WESTEN_REANALYSIS, "Reanalysis")
 
     plot_panel(axes[1], this_study_present,
                "(b) This study\nCMIP6, 1994\u20132014",
-               oras5_present, "ORAS5",
-               max_models=max_models)
+               oras5_present, "ORAS5")
 
     plot_panel(axes[2], this_study_preindustrial,
-               "(c) This study\nCMIP6, 1850\u20131900",
-               None, max_models=max_models)
-
-    plot_panel(axes[3], SGUBIN_2022,
-               "(d) Sgubin et al. 2022\nCMIP5, piControl",
-               None, max_models=max_models)
+               "(c) This study\nCMIP6, 1850\u20131900")
 
     for ax in axes:
         ax.set_xlim(-x_max, x_max)
@@ -194,8 +186,7 @@ def main():
     # Summary
     for name, data in [("van Westen 2024", VAN_WESTEN_2024),
                        ("This study 1994-2014", this_study_present),
-                       ("This study 1850-1900", this_study_preindustrial),
-                       ("Sgubin 2022", SGUBIN_2022)]:
+                       ("This study 1850-1900", this_study_preindustrial)]:
         n_neg = sum(1 for v in data.values() if v < 0)
         print(f"  {name}: {n_neg}/{len(data)} bistable")
 
