@@ -73,10 +73,7 @@ def _running_mean(values: np.ndarray, window: int) -> np.ndarray:
 def load_cmip6_timeseries(results_dir: Path) -> dict[str, xr.DataArray]:
     """Load all CMIP6 F_ovS time series from results directory.
 
-    Applies bias correction: shifts each model's time series so that its
-    early-historical mean (1850-1900) matches the published piControl mean
-    from Weijer et al. (2019). This corrects for section-latitude offsets
-    introduced by our simplified grid extraction.
+    Returns raw computed values with no bias correction applied.
     """
     cmip6_dir = results_dir / "cmip6"
     series = {}
