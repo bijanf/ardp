@@ -180,27 +180,34 @@ def main():
     if oras5_mean:
         print(f"ORAS5 full mean: {oras5_mean:.3f} Sv, present-day: {oras5_present:.3f} Sv")
 
-    # Check for piControl data
-    picontrol = {}
-    picontrol_dir = Path("data/cmip6_fullfield")
-    for f in sorted(picontrol_dir.glob("*_piControl_vo_zonal.nc")):
-        model = f.name.replace("_piControl_vo_zonal.nc", "")
-        picontrol[model] = f
-    has_picontrol = len(picontrol) > 0
+    # Check for piControl F_ovS results
+    picontrol_fovs = {}
+    cmip6_dir = args.results_dir / "cmip6"
+    for f in sorted(cmip6_dir.glob("fovs_*_piControl.nc")):
+        model = f.stem.replace("fovs_", "").replace("_piControl", "")
+        da = xr.open_dataarray(f)
+        vals = da.values[np.isfinite(da.values)]
+        if len(vals) > 10:
+            picontrol_fovs[model] = float(np.mean(vals))
+        da.close()
+    has_picontrol = len(picontrol_fovs) > 0
     if has_picontrol:
-        print(f"piControl data:        {len(picontrol)} models")
+        print(f"piControl F_ovS:       {len(picontrol_fovs)} models")
 
     # Shared x-axis range
     all_vals = (list(VAN_WESTEN_2024.values()) + list(this_study_present.values())
                 + list(this_study_preindustrial.values()))
     x_max = max(abs(min(all_vals)), abs(max(all_vals))) * 1.15
 
-    # 3 panels, equal size — bars will have same physical height
-    # Panel (a) has 39 models, (b,c) have 22 — set shared ylim to 39
-    max_n = max(len(VAN_WESTEN_2024), len(this_study_present),
-                len(this_study_preindustrial))
+    # Panels: 3 or 4 depending on piControl availability
+    n_panels = 4 if has_picontrol else 3
+    all_datasets = [VAN_WESTEN_2024, this_study_present, this_study_preindustrial]
+    if has_picontrol:
+        all_datasets.append(picontrol_fovs)
 
-    fig, axes = plt.subplots(1, 3, figsize=(6.73, max_n * 0.22 + 1.5),
+    max_n = max(len(d) for d in all_datasets)
+
+    fig, axes = plt.subplots(1, n_panels, figsize=(6.73, max_n * 0.22 + 1.5),
                               sharey=False)
 
     plot_panel(axes[0], VAN_WESTEN_2024,
@@ -213,6 +220,10 @@ def main():
 
     plot_panel(axes[2], this_study_preindustrial,
                "(c) CMIP6, 1850\u20131900")
+
+    if has_picontrol:
+        plot_panel(axes[3], picontrol_fovs,
+                   "(d) CMIP6, piControl")
 
     for ax in axes:
         ax.set_xlim(-x_max, x_max)
@@ -234,9 +245,12 @@ def main():
     print(f"Saved: {out.with_suffix('.pdf')}")
 
     # Summary
-    for name, data in [("van Westen 2024", VAN_WESTEN_2024),
-                       ("This study 1994-2020", this_study_present),
-                       ("This study 1850-1900", this_study_preindustrial)]:
+    datasets_summary = [("van Westen 2024", VAN_WESTEN_2024),
+                        ("1994-2020", this_study_present),
+                        ("1850-1900", this_study_preindustrial)]
+    if has_picontrol:
+        datasets_summary.append(("piControl", picontrol_fovs))
+    for name, data in datasets_summary:
         n_neg = sum(1 for v in data.values() if v < 0)
         print(f"  {name}: {n_neg}/{len(data)} bistable")
 
