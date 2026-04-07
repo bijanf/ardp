@@ -88,6 +88,7 @@ def extract_section(
     experiment_id: str,
     variable_id: str,
     output_dir: Path,
+    max_timesteps: int | None = None,
 ) -> bool:
     """Extract 34.5S section for one model/experiment/variable.
 
@@ -148,6 +149,10 @@ def extract_section(
     da = ds[variable_id]
     section_lazy = da.isel({j_dim: j_idx})
     n_times = section_lazy.sizes["time"]
+    if max_timesteps is not None and n_times > max_timesteps:
+        print(f"  Limiting from {n_times} to {max_timesteps} timesteps")
+        section_lazy = section_lazy.isel(time=slice(0, max_timesteps))
+        n_times = max_timesteps
     print(f"  Section shape: {dict(section_lazy.sizes)} ({n_times} timesteps)")
 
     # Download in batches
@@ -226,6 +231,8 @@ def main() -> None:
     parser.add_argument("--output-dir", default="data/cmip6_sections")
     parser.add_argument("--models", nargs="+", default=TARGET_MODELS)
     parser.add_argument("--experiments", nargs="+", default=TARGET_EXPERIMENTS)
+    parser.add_argument("--max-timesteps", type=int, default=None,
+                        help="Limit to first N timesteps (e.g., 1200 for 100 years)")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -251,7 +258,8 @@ def main() -> None:
         for experiment in args.experiments:
             for variable in TARGET_VARIABLES:
                 print(f"[{model}] {experiment}/{variable}:")
-                ok = extract_section(cat, model, experiment, variable, output_dir)
+                ok = extract_section(cat, model, experiment, variable, output_dir,
+                                     max_timesteps=args.max_timesteps)
                 if ok:
                     successes += 1
                 else:
