@@ -5,7 +5,7 @@
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-A Python framework for analyzing Atlantic Meridional Overturning Circulation (AMOC) weakening indicators using ocean reanalysis products (ORAS5, GLORYS12V1) and CMIP6 model output.
+A Python framework for analyzing Atlantic Meridional Overturning Circulation (AMOC) weakening indicators using ocean reanalysis products (ORAS5, GLORYS12V1, SODA3.15.2, ECCO-V4r4) and CMIP6 model output.
 
 ## Installation
 
@@ -98,6 +98,19 @@ python scripts/plot_sss_trend_map.py --product glorys12
 python scripts/plot_sss_trend_map.py --product oras5
 ```
 
+## Reproduction: AMOC Anomalies (Multi-Reanalysis, Rahmstorf-style)
+
+```bash
+# Compute AMOC at 26.5°N from SODA3.15.2 and ECCO-V4r4
+python scripts/compute_reanalysis_amoc.py --product all
+
+# Plot anomalies relative to 1950-2009 climatology (ORAS5 anchor)
+# Trend significance uses Santer et al. (2000) N_eff autocorrelation correction
+python scripts/plot_amoc_reanalysis_anomalies.py
+```
+
+Output: `figures/grl/fig_amoc_reanalysis_anomalies_santer.{png,pdf}`
+
 ## GRL Figure Set
 
 ```bash
@@ -112,6 +125,7 @@ data/
 ├── oras5/              # ORAS5 monthly NetCDF (3D velocity + salinity + 2D SSS)
 ├── glorys12/           # GLORYS12V1 monthly NetCDF (Atlantic domain)
 ├── glorys12_global_sss/ # GLORYS12V1 global SSS (for pile-up computation)
+├── soda/               # SODA3.15.2 5-day NetCDF (1980-2022)
 ├── external/           # RAPID array observations
 ├── cmip6_fullfield/    # CMIP6 zonally-integrated vo (16 models)
 ├── cmip6_sections/     # CMIP6 34.5°S sections (vo + so)
