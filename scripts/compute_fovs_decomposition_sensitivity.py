@@ -154,12 +154,14 @@ def main() -> None:
                    label=f"{labels[p]} (n={len(x)})")
         ax.axhline(i, color="0.8", lw=0.4, zorder=1)
 
-    ax.axvline(60, color="#56B4E9", ls=":", lw=0.6, alpha=0.7)
-    ax.axvline(100 - 60, color="#E69F00", ls=":", lw=0.6, alpha=0.7)
-    ax.text(62, -0.5, "s-dominant >60%",
-            fontsize=6, color="#56B4E9", style="italic")
-    ax.text(38, -0.5, "v-dominant >60%",
-            fontsize=6, color="#E69F00", style="italic", ha="right")
+    # Velocity-share > 60 → v-dominant (right side).
+    # Velocity-share < 40 → salinity-share > 60 → s-dominant (left side).
+    ax.axvline(60, color="#E69F00", ls=":", lw=0.6, alpha=0.7)
+    ax.axvline(40, color="#56B4E9", ls=":", lw=0.6, alpha=0.7)
+    ax.text(62, -0.5, "v-dominant (v-share > 60%)",
+            fontsize=6, color="#E69F00", style="italic")
+    ax.text(38, -0.5, "s-dominant (s-share > 60%)",
+            fontsize=6, color="#56B4E9", style="italic", ha="right")
 
     ax.set_yticks(range(len(args.products)))
     ax.set_yticklabels([labels[p] for p in args.products], fontsize=7)
