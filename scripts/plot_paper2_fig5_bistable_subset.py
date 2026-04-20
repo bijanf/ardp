@@ -102,11 +102,6 @@ def main():
         patch.set_alpha(0.55)
     ax1.fill_between([-0.5, 2.5], 43, 59, color="#CC3333", alpha=0.12, zorder=1)
     ax1.axhline(51, color="#CC3333", lw=1.3, zorder=2)
-    ax1.text(0.02, 0.98, r"$\!$Portmann et al.$\,$2026: 51 $\pm$ 8%",
-             transform=ax1.transAxes, fontsize=6.5, color="#CC3333",
-             ha="left", va="top", fontweight="bold",
-             bbox={"boxstyle": "round,pad=0.25", "facecolor": "white",
-                   "edgecolor": "#CC3333", "linewidth": 0.5, "alpha": 0.85})
     ax1.set_ylabel("AMOC weakening by 2100 (%, 2081–2100 vs 1950–1980)")
     ax1.set_title("(a) Full forced-weakening ensemble (n=12)",
                   fontweight="bold")
@@ -134,11 +129,6 @@ def main():
 
     ax2.fill_between([-0.5, 2.5], 43, 59, color="#CC3333", alpha=0.12, zorder=1)
     ax2.axhline(51, color="#CC3333", lw=1.3, zorder=2)
-    ax2.text(0.02, 0.98, r"$\!$Portmann et al.$\,$2026: 51 $\pm$ 8%",
-             transform=ax2.transAxes, fontsize=6.5, color="#CC3333",
-             ha="left", va="top", fontweight="bold",
-             bbox={"boxstyle": "round,pad=0.25", "facecolor": "white",
-                   "edgecolor": "#CC3333", "linewidth": 0.5, "alpha": 0.85})
     ax2.set_xticks(positions)
     ax2.set_xticklabels(labels_bis)
     ax2.set_ylabel("AMOC weakening by 2100 (%)")
