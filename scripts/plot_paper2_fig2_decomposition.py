@@ -87,19 +87,35 @@ def main() -> None:
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels, rotation=15, ha="right", fontsize=6.5)
     ax1.set_ylabel(r"$\Delta\mathrm{F}_{ovS}$ (mSv, late − early period)")
-    ax1.set_title("(a) Mechanism decomposition",
-                  fontweight="bold")
-    ax1.legend(loc="best", fontsize=6, frameon=False, ncol=2)
+    ax1.set_title("(a) Mechanism decomposition", fontweight="bold")
+    # Legend OUTSIDE the axes (below the title, above the plot area) so it
+    # never overlaps bars. Horizontal single row.
+    ax1.legend(loc="lower center", bbox_to_anchor=(0.5, -0.38),
+               fontsize=6, frameon=False, ncol=3, handlelength=1.5,
+               columnspacing=1.2)
+    # Extend y-axis to -90 as requested, keep top modest
+    ax1.set_ylim(-95, 25)
 
-    # Annotate percentages
+    # Annotate percentages INSIDE the bar for downward (negative) bars,
+    # just below x-axis for upward (positive) bars, with enough margin
+    # to avoid overlapping the legend and the bar edges.
     for i, lab in enumerate(labels):
-        if abs(dtot[i]) > 1e-6:
-            v_pct = 100 * dv[i] / dtot[i]
-            s_pct = 100 * ds_[i] / dtot[i]
-            ax1.text(i, dtot[i] * 1.15 if dtot[i] < 0 else dtot[i] * 0.85,
-                     f"v:{v_pct:+.0f}%\ns:{s_pct:+.0f}%",
-                     ha="center", va="top" if dtot[i] < 0 else "bottom",
-                     fontsize=5.5, color="0.3")
+        if abs(dtot[i]) < 10:  # ill-defined — label "no trend"
+            ax1.text(i, -2, "no\ntrend", ha="center", va="top",
+                     fontsize=5.5, color="0.3", style="italic")
+            continue
+        v_pct = 100 * dv[i] / dtot[i]
+        s_pct = 100 * ds_[i] / dtot[i]
+        if dtot[i] < 0:
+            # place label a few units ABOVE the bar top (which is 0)
+            yy = 3
+            va = "bottom"
+        else:
+            # place label a few units BELOW the bar bottom (which is 0)
+            yy = -3
+            va = "top"
+        ax1.text(i, yy, f"v:{v_pct:+.0f}%\ns:{s_pct:+.0f}%",
+                 ha="center", va=va, fontsize=5.5, color="0.3")
 
     # ── Panel (b): depth profiles ──
     for lab in labels:
@@ -115,7 +131,10 @@ def main() -> None:
     ax2.set_xlabel(r"Per-depth $\Delta F$ (mSv)")
     ax2.set_ylabel("Depth (m)")
     ax2.set_title("(b) Depth distribution", fontweight="bold")
-    ax2.legend(loc="lower right", fontsize=5.5, frameon=False, ncol=2)
+    # Move legend OUT of the data area — to the right of the axes.
+    ax2.legend(loc="center left", bbox_to_anchor=(1.02, 0.5),
+               fontsize=5.5, frameon=False, ncol=1,
+               handlelength=1.5)
     ax2.set_ylim(5500, 0)
 
     fig.tight_layout()

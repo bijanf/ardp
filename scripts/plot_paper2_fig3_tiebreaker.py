@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import xarray as xr
+from adjustText import adjust_text
 
 from ardp.viz.style import apply_nature_style, save_publication_figure
 
@@ -107,18 +108,8 @@ def main():
             label=f"CMIP6 {cls} (n={len(sub)})",
         )
 
-    # CMIP6 labels — lightweight, only for readable-ratio models (|ΔF| > 20 mSv)
-    for _, row in cmip6.iterrows():
-        if abs(row["delta_total"]) < 0.020:
-            continue
-        name = row["model"].replace("-CM6-1", "").replace("-0-LL", "").replace("-GC31-LL", "")[:10]
-        ax1.annotate(
-            name, xy=(row["velocity_share_pct"], row["salinity_share_pct"]),
-            xytext=(4, 4), textcoords="offset points",
-            fontsize=4.8, color="0.3", zorder=5,
-        )
-
     # Reanalyses: FIXED-size diamond markers (NOT scaled by ΔF)
+    rean_scatter = []
     for label, dtot, v_pct, s_pct, has_trend, color in reanalysis_points:
         if not has_trend:
             continue
@@ -126,12 +117,35 @@ def main():
             v_pct, s_pct, s=110, c=color, edgecolor="black",
             linewidth=0.9, zorder=8, marker="D",
         )
-        ax1.annotate(
-            label, xy=(v_pct, s_pct), xytext=(8, -2),
-            textcoords="offset points",
-            fontsize=7, fontweight="bold", color=color, zorder=9,
-            va="center",
+        rean_scatter.append((label, v_pct, s_pct, color))
+
+    # Collect all labels in one text list so adjust_text can avoid overlap
+    # globally across CMIP6 models + reanalyses.
+    texts = []
+    for _, row in cmip6.iterrows():
+        name = (
+            row["model"]
+            .replace("-CM6-1", "")
+            .replace("-0-LL", "")
+            .replace("-GC31-LL", "")
+            .replace("-ESM1-2-", "-")
         )
+        texts.append(ax1.text(
+            row["velocity_share_pct"], row["salinity_share_pct"],
+            name, fontsize=4.8, color="0.25", zorder=5,
+        ))
+    for label, v_pct, s_pct, color in rean_scatter:
+        texts.append(ax1.text(
+            v_pct, s_pct, label,
+            fontsize=7, fontweight="bold", color=color, zorder=9,
+        ))
+
+    # Non-overlapping layout — draws thin arrows back to each point.
+    adjust_text(
+        texts, ax=ax1,
+        expand=(1.2, 1.4),
+        arrowprops={"arrowstyle": "-", "color": "0.55", "lw": 0.35},
+    )
 
     # Zone guides
     ax1.text(100, 80, "s-dominant", color="#56B4E9",
@@ -148,10 +162,15 @@ def main():
 
     # Clarifying note bottom-right of panel (a)
     ax1.text(0.98, 0.02,
-             "Symbol size fixed — not scaled by ΔF$_\\mathrm{total}$.\n"
-             "Reanalyses with |ΔF$_\\mathrm{total}$| < 10 mSv excluded.",
-             transform=ax1.transAxes, fontsize=5.0, color="0.4",
-             ha="right", va="bottom", style="italic")
+             "Shares can exceed 100% or be negative — the three\n"
+             "components (v, s, cross) sum to exactly 100% but can\n"
+             "oppose each other. |share| > 100% indicates that Δv and ΔS\n"
+             "are anti-correlated (large cross term) or that ΔF$_\\mathrm{total}$\n"
+             "is small (ratio ill-conditioned).",
+             transform=ax1.transAxes, fontsize=4.8, color="0.4",
+             ha="right", va="bottom", style="italic",
+             bbox={"boxstyle": "round,pad=0.2", "facecolor": "white",
+                   "edgecolor": "0.7", "linewidth": 0.3, "alpha": 0.9})
 
     # ── Panel (b): velocity-share histogram across weakening models ──
     weakening = cmip6[cmip6["class"] != "increasing"]
@@ -172,16 +191,6 @@ def main():
     ax2.set_ylabel("Number of CMIP6 models")
     ax2.set_title("(b) Distribution of CMIP6 velocity shares", fontweight="bold")
     ax2.legend(loc="upper right", fontsize=5.8, frameon=False)
-
-    # Summary line under both panels
-    cls_counts = {c: int((weakening["class"] == c).sum())
-                  for c in ("v-dominant", "s-dominant", "mixed")}
-    fig.text(0.5, -0.03,
-             f"CMIP6 forced-weakening ensemble (n={len(weakening)}):  "
-             f"{cls_counts['v-dominant']} v-dominant, "
-             f"{cls_counts['s-dominant']} s-dominant, "
-             f"{cls_counts['mixed']} mixed.",
-             ha="center", fontsize=7, color="0.3")
 
     fig.tight_layout()
     save_publication_figure(fig, args.output)
