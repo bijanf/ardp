@@ -61,9 +61,25 @@ def main() -> None:
     dtot = dv + ds_ + dc
 
     width = 0.55
-    ax1.bar(x, dv, width=width, color="#E69F00", label=r"$\Delta F_v$  (velocity)")
-    ax1.bar(x, ds_, width=width, bottom=dv, color="#56B4E9", label=r"$\Delta F_s$  (salinity)")
-    ax1.bar(x, dc, width=width, bottom=dv + ds_, color="0.6", label=r"$\Delta F_\mathrm{cross}$")
+    # Flag products with near-zero trend (|ΔF_total| < 10 mSv): mechanism
+    # decomposition is ill-defined there.
+    trend_threshold = 10.0  # mSv
+    has_trend = np.abs(dtot) >= trend_threshold
+
+    # Bars (with hatching if no trend)
+    ax1.bar(x[has_trend], dv[has_trend], width=width, color="#E69F00",
+            label=r"$\Delta F_v$  (velocity)")
+    ax1.bar(x[has_trend], ds_[has_trend], width=width,
+            bottom=dv[has_trend], color="#56B4E9",
+            label=r"$\Delta F_s$  (salinity)")
+    ax1.bar(x[has_trend], dc[has_trend], width=width,
+            bottom=dv[has_trend] + ds_[has_trend], color="0.6",
+            label=r"$\Delta F_\mathrm{cross}$")
+    if (~has_trend).any():
+        ax1.bar(x[~has_trend], dtot[~has_trend], width=width,
+                color="0.8", edgecolor="0.4", hatch="///",
+                label=r"$|\Delta F_\mathrm{total}| < 10$ mSv (mechanism ill-defined)")
+
     ax1.scatter(x, dtot, color="black", s=25, marker="D", zorder=5,
                 label=r"$\Delta F_\mathrm{total}$")
 

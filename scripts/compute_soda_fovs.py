@@ -186,14 +186,49 @@ def ensure_ref_file() -> Path:
     return ref_file
 
 
-def download_snapshot(year: int, month: int, tmp: Path) -> bool:
-    """Try 5-day file candidates for (year, month); return True on success.
+# Server file catalogue is fetched once and cached for the whole run
+_SODA_FILE_CATALOG: dict[tuple[int, int], list[int]] | None = None
 
-    SODA 3.15.2 5-day files start on days aligned with a recurring
-    5-day schedule; try sensible candidates for each month.
+
+def _get_file_catalog() -> dict[tuple[int, int], list[int]]:
+    """Return {(year, month): [day, day, ...]} of all 5-day files on the server.
+
+    Cached after first call. Uses the Apache mod_autoindex HTML listing of
+    the UMD mirror. Each year has a predictable 5-day cadence but the
+    start-day offset varies; parsing the listing is more robust than
+    guessing.
     """
-    # 5-day starts commonly appear on days 1, 6, 11, 16, 21, 26, 28, 31
-    for day in (11, 16, 6, 21, 1, 26, 13, 8, 18, 23, 28):
+    global _SODA_FILE_CATALOG
+    if _SODA_FILE_CATALOG is not None:
+        return _SODA_FILE_CATALOG
+
+    import re
+    import urllib.request
+
+    log.info("Fetching SODA server catalogue...")
+    with urllib.request.urlopen(BASE_URL, timeout=120) as r:
+        html = r.read().decode("utf-8", errors="replace")
+
+    catalog: dict[tuple[int, int], list[int]] = {}
+    pat = re.compile(r"soda3\.15\.2_5dy_ocean_reg_(\d{4})_(\d{2})_(\d{2})\.nc")
+    for m in pat.finditer(html):
+        y, mo, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        catalog.setdefault((y, mo), []).append(d)
+    for k in catalog:
+        catalog[k].sort()
+
+    log.info(f"  Catalogue: {sum(len(v) for v in catalog.values())} files across {len(catalog)} months")
+    _SODA_FILE_CATALOG = catalog
+    return catalog
+
+
+def download_snapshot(year: int, month: int, tmp: Path) -> bool:
+    """Download one 5-day snapshot for (year, month) using the server catalogue."""
+    catalog = _get_file_catalog()
+    days = catalog.get((year, month), [])
+    # Prefer mid-month days (less boundary effect) but fall back to any
+    ordered = sorted(days, key=lambda d: abs(d - 15))
+    for day in ordered:
         fname = f"soda3.15.2_5dy_ocean_reg_{year}_{month:02d}_{day:02d}.nc"
         try:
             r = subprocess.run(
