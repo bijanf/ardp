@@ -42,18 +42,22 @@ REANALYSIS_PRODUCTS = [
 ]
 
 
-def _load_reanalysis_shares(path: Path) -> tuple[float, float, float] | None:
+def _load_reanalysis_shares(path: Path) -> tuple[float, float, float, bool] | None:
+    """Return (|ΔF_mSv|, v_pct, s_pct, has_trend).
+
+    has_trend=False when |ΔF_total| < 10 mSv (ratios unreliable).
+    """
     if not path.exists():
         return None
     ds = xr.open_dataset(path)
     dtot = float(ds.attrs["delta_total_Sv"])
-    if abs(dtot) < 1e-6:
-        ds.close()
-        return None
     dv = float(ds.attrs["delta_v_Sv"])
     dsal = float(ds.attrs["delta_s_Sv"])
     ds.close()
-    return dtot * 1000, 100 * dv / dtot, 100 * dsal / dtot  # mSv, %, %
+    has_trend = abs(dtot) >= 0.010  # 10 mSv threshold
+    v_pct = 100 * dv / dtot if has_trend else np.nan
+    s_pct = 100 * dsal / dtot if has_trend else np.nan
+    return dtot * 1000, v_pct, s_pct, has_trend
 
 
 def main() -> None:
@@ -77,8 +81,8 @@ def main() -> None:
     for label, fname, color in REANALYSIS_PRODUCTS:
         r = _load_reanalysis_shares(args.results_dir / fname)
         if r is not None:
-            dtot_mSv, v_pct, s_pct = r
-            reanalysis_points.append((label, dtot_mSv, v_pct, s_pct, color))
+            dtot_mSv, v_pct, s_pct, has_trend = r
+            reanalysis_points.append((label, dtot_mSv, v_pct, s_pct, has_trend, color))
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.5, 3.8))
 
@@ -99,8 +103,10 @@ def main() -> None:
             fontsize=4.5, color="0.3", zorder=5,
         )
 
-    # Reanalyses as coloured markers
-    for label, dtot, v_pct, s_pct, color in reanalysis_points:
+    # Reanalyses as coloured markers (skip no-trend products from this panel)
+    for label, dtot, v_pct, s_pct, has_trend, color in reanalysis_points:
+        if not has_trend:
+            continue
         ax1.scatter(
             v_pct, s_pct, s=abs(dtot) * 8, c=color, edgecolor="black",
             linewidth=0.8, zorder=8, marker="D",
@@ -130,7 +136,9 @@ def main() -> None:
     bins = np.arange(-60, 201, 15)
     ax2.hist(x_cmip, bins=bins, color="0.65", edgecolor="0.2", linewidth=0.4,
              alpha=0.8, label=f"CMIP6 weakening (n={len(forced)})")
-    for label, _, v_pct, _, color in reanalysis_points:
+    for label, _, v_pct, _, has_trend, color in reanalysis_points:
+        if not has_trend:
+            continue
         ax2.axvline(v_pct, color=color, lw=2, zorder=5,
                     label=f"{label}: {v_pct:+.0f}%")
     ax2.axvline(60, color="#E69F00", lw=0.6, ls=":", alpha=0.7)
