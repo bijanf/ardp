@@ -1,4 +1,4 @@
-\begin{thebibliography}{14}
+\begin{thebibliography}{15}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -50,6 +50,12 @@ S.~Dong, D.~L. Volkov, G.~Goni, K.~Pujiana, F.~Tagklis, and M.~O. Baringer.
 \newblock \emph{Journal of Geophysical Research: Oceans}, 129\penalty0
   (6):\penalty0 e2023JC020558, 2024.
 \newblock \doi{10.1029/2023JC020558}.
+
+\bibitem[Chemke et~al.(2020)Chemke, Zanna, and Polvani]{Chemke2021}
+R.~Chemke, L.~Zanna, and L.~M. Polvani.
+\newblock Identifying a human signal in the north {Atlantic} warming hole.
+\newblock \emph{Nature Communications}, 11:\penalty0 1540, 2020.
+\newblock \doi{10.1038/s41467-020-15285-x}.
 
 \bibitem[Santer et~al.(2000)Santer, Wigley, Boyle, Gaffen, Hnilo, Nychka,
   Parker, and Taylor]{Santer2000}

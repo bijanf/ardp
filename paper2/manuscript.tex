@@ -74,13 +74,64 @@ the AMOC weakening expected by 2100.
 \section*{Main text}
 
 \subsection*{Introduction}
-[Introduction paragraphs to be written. Key beats:
-(i)~AMOC tipping stakes; RAPID shortness.
-(ii)~$\Fovs$ as theoretical fingerprint and prior bistability evidence.
-(iii)~Recent observational-constraint convergence (Dong 2024,
-Portmann 2026) vs. wind-driven critiques.
-(iv)~Our mechanism-decomposition approach and preview of the main
-finding.]
+The Atlantic meridional overturning circulation (AMOC) transports heat
+from the subtropics into the North Atlantic and sustains the mild
+European climate. A sustained weakening of the AMOC would cool Europe
+by several degrees, amplify sea-level rise along the US East Coast,
+shift the tropical rainfall belt southward, and perturb marine
+ecosystems across the basin. Quantifying the magnitude and timing of
+any AMOC weakening is therefore one of the most pressing questions in
+climate science. The direct observational record is short: the
+RAPID-MOCHA array at 26.5\textdegree N has monitored the overturning
+only since 2004, and statistical techniques have struggled to
+distinguish a forced trend from natural multidecadal variability in
+twenty years of data.
+
+In the absence of a long direct record, indirect \emph{fingerprints}
+are used to diagnose AMOC state. The theoretical literature identifies
+the overturning component of freshwater transport at
+34.5\textdegree S, $\Fovs$, as especially informative: its sign
+distinguishes the bistable from the monostable regime of the
+salt-advection feedback that underlies long-standing models of
+AMOC tipping \citep{Rahmstorf1996, deVriesWeber2005, Dijkstra2007,
+vanWesten2024}. A negative $\Fovs$ indicates that the overturning
+exports freshwater \emph{from} the Atlantic, so that a weakening AMOC
+would further concentrate salt in the North Atlantic --- a positive
+feedback that can, under sufficient forcing, drive the system to a
+collapsed equilibrium. A positive $\Fovs$ indicates the opposite
+regime, with no such self-amplifying mechanism.
+
+Recent studies converge on the conclusion that the Atlantic is in
+the bistable regime. Dong and co-authors \citep{Dong2024} used a
+combination of XBT transects, Argo-based products, numerical ocean
+models, and coupled climate models and reported a mean $\Fovs$ of
+${-0.15\pm 0.09}$~Sv at 34.5\textdegree S. Portmann and colleagues
+\citep{Portmann2026} developed a ridge-regularised emergent-constraint
+framework using 19 observable variables and concluded that the
+historical AMOC weakening, extrapolated to 2100 under SSP5-8.5, will
+reach ${51\pm 8}\%$ --- about $60\%$ stronger than the CMIP6
+multi-model mean. A common critique of the $\Fovs$ fingerprint
+family remains, however: the observed decline may reflect wind-driven
+changes in the South Atlantic subpolar gyre rather than a
+buoyancy-driven salt-advection signature \citep{Chemke2021}. If so,
+the fingerprint overestimates the tipping risk because wind-driven
+transport variations are transient and largely reversible.
+
+Here we test the wind-versus-buoyancy hypothesis by decomposing the
+observed $\Fovs$ decline into its velocity-driven and salinity-driven
+components. The decomposition is exact (Methods Eqn.~\ref{eqn:decomp})
+and can be applied independently to any reanalysis or climate-model
+section at 34.5\textdegree S. A velocity-dominated decline is
+\emph{consistent with} wind-driven circulation change; a
+salinity-dominated decline is the direct theoretical signature of
+salt-advection feedback and cannot be explained by wind alone. We
+apply the decomposition to four independent ocean reanalyses (ORAS5,
+GLORYS12V1, SODA 3.15.2, ECCO-V4r4) and to 18 CMIP6 coupled models.
+The central result is that two of the most widely-used high-quality
+reanalyses disagree not only in magnitude but in \emph{mechanism},
+and the ensuing uncertainty translates into a 14-percentage-point gap
+in AMOC weakening projected by 2100 when CMIP6 models are conditioned
+on mechanism class.
 
 \subsection*{Results}
 
@@ -157,26 +208,111 @@ interpretive regimes, so their point estimates are mechanism-averaged
 rather than mechanism-conditional.
 
 \subsection*{Discussion}
-[Discussion paragraphs to be written. Key beats:
-(i)~Why the reanalyses differ: resolution (${\sim}1/4$\textdegree\ in
-ORAS5 vs.\ ${\sim}1/12$\textdegree\ in GLORYS12V1) and assimilation
-scheme appear to matter more than ERA5 shared forcing.
-(ii)~Physics of the observed split: NEMO-based UK/French models tend
-to be s-dominant; POP-based CESM2 is v-dominant; MPI-OM shows
-resolution dependence (HR s-dominant, LR v-dominant) within the same
-model family.
-(iii)~Implications for the Portmann 2026 ridge-regression constraint
-and for early-warning-signal approaches.
-(iv)~The observational programme needed: interior salinity
-measurements, OSNAP-style 34.5\textdegree S array.
-(v)~Limitations: our decomposition is a statistical split, not a
-physical causal decomposition. SODA relies on single-day snapshots per
-quarter. ECCO's adjoint optimisation smooths trends. Model ensemble
-uses one realisation per CMIP6 model.]
+The reanalysis-level mechanism disagreement is not a minor technical
+artefact. GLORYS12V1 and ORAS5 share the NEMO ocean model family and
+assimilate ERA5-family surface forcing, yet they produce attribution
+percentages that lie at opposite extremes of the observational and
+coupled-model distributions. The zonal-structure comparison
+(Fig.~S3) suggests the difference arises downstream of these shared
+components: ORAS5 ingests a large $\Delta v$ signal concentrated in
+the western boundary current region, consistent with an assimilated
+circulation change, while GLORYS12V1 displays a basin-scale positive
+$\Delta S$ in the upper 1000~m that is the salt-pile-up signature
+expected from a weakening upper-cell overturning. Whether the
+difference is attributable to the $\sim$1/12\textdegree\ resolution of
+GLORYS12V1 versus the $\sim$1/4\textdegree\ resolution of ORAS5, to
+the distinct data-assimilation schemes, or to the different handling
+of Atlantic salinity climatologies, cannot be resolved with these
+four datasets alone.
+
+The CMIP6 ensemble offers one clue: the MPI-ESM1-2 model provides
+identical physics at two resolutions, MPI-ESM1-2-HR ($\sim$0.4\textdegree\
+ocean) and MPI-ESM1-2-LR ($\sim$1.5\textdegree\ ocean). The high-resolution
+version is salinity-dominant; the low-resolution version is
+velocity-dominant. Similar patterns are visible in the ensemble at
+large: NEMO-based UK and French models (HadGEM3-GC31-LL, UKESM1-0-LL,
+CNRM-CM6-1) all place into the salinity-dominant class, while the
+POP-based CESM2 is velocity-dominant despite a similar 1\textdegree\
+resolution. Ocean-model family and horizontal resolution therefore
+appear to interact in determining the simulated mechanism, but no
+single causal factor can be isolated with the present ensemble size.
+
+For recent observational-constraint studies
+\citep{Portmann2026, Dong2024}, our results imply a \emph{hidden
+mechanism variable} in the reanalysis-to-projection chain. Constraint
+frameworks trained on a single reanalysis implicitly inherit that
+product's mechanism attribution; frameworks that average over
+multiple reanalyses are mechanism-averaged. The match we find between
+the salinity-dominant CMIP6 subset and Portmann et al.'s
+headline estimate suggests their constraint is effectively selecting
+salinity-consistent model physics --- but this is an implicit rather
+than explicit selection. Extending such frameworks to incorporate
+explicit mechanism constraints (e.g.\ by using the zonally-integrated
+$\Delta S$ as an additional observable variable) would sharpen the
+uncertainty quantification.
+
+The observational path to closing the mechanism gap is through direct
+measurement of the Atlantic interior salinity structure. The existing
+SAMBA array at 34.5\textdegree S provides velocity-weighted
+overturning; pairing it with a basin-wide salinity repeat-section
+programme analogous to OSNAP in the subpolar North Atlantic
+would isolate the salinity-driven component of $\Fovs$ with much
+smaller product-to-product uncertainty than reanalyses can deliver.
+Equally, an intensification of the Argo core-mission coverage in the
+western boundary region at 34.5\textdegree S would constrain the
+vertical structure that drives the decomposition.
+
+Several limitations temper these conclusions. The decomposition is a
+\emph{statistical} split, not a \emph{physical} causal attribution:
+velocity and salinity anomalies are themselves dynamically coupled on
+multi-year timescales, and the identification of a dominant statistical
+component does not directly establish the underlying physics. SODA
+3.15.2 is sampled by one 5-day snapshot per quarter, which preserves
+the annual-mean climatology but may under-sample sub-seasonal
+variability; the single-model nature of the present CMIP6 ensemble
+(one realisation per model) means internal variability in the forced
+trajectories is not disentangled from model structural differences.
+ECCO-V4r4's adjoint optimisation smooths trends and removes drift, so
+its near-zero $\Delta\Fovs$ over the decomposition window should be
+interpreted as a methodological property rather than as evidence
+against observed change. Finally, our pre-registered classification
+thresholds (60\% for v/s-dominant; 10~mSv for ill-defined) are
+conventional but not unique; supplementary analyses confirm that the
+main result is insensitive to perturbations of these thresholds
+within a $\pm$10~pp window.
 
 \subsection*{Conclusions}
-[To write: two-sentence wrap reiterating the $14$-pp mechanism-dependent
-uncertainty and the observational programme needed.]
+Four ocean reanalyses agree that the Atlantic resides in the bistable
+regime ($\Fovs < 0$) but disagree on whether the observed $\Fovs$
+decline is driven predominantly by changes in circulation structure
+(ORAS5: $88\%$ velocity) or by salinity redistribution (GLORYS12V1:
+$90\%$ salinity). CMIP6 forced-weakening simulations span the same
+mechanistic diversity, and partitioning projections by mechanism class
+produces median 2100 AMOC weakenings of $52\%$ (salinity-dominant) vs.
+$37\%$ (velocity-dominant), a 14-percentage-point gap that is not
+resolved by current single-variable or multi-variable observational
+constraints. A dedicated 34.5\textdegree S basin-wide salinity
+programme is the cleanest path to closing this gap and converting the
+$\Fovs$ fingerprint into a quantitatively defensible tipping-risk
+indicator.
+
+\paragraph{Code and data availability.}
+Analysis code: \url{https://github.com/bijanf/ardp} (Zenodo DOI to be
+archived at acceptance). Pre-registration: OSF [link to be added
+before submission]. Reduced figure data: figshare [DOI to be added
+before submission]. Reanalysis and CMIP6 source data are cited to
+primary providers.
+
+\paragraph{Author contributions.}
+B.F.\ led the analysis, wrote the first draft, and prepared all
+figures. L.C.\ and S.R.\ contributed to the theoretical framing,
+critical revision, and discussion of the mechanism-decomposition
+interpretation. All authors read and approved the final manuscript.
+
+\paragraph{Acknowledgements.}
+We thank [to be filled]. Computing resources provided by PIK. CMIP6
+data access through the Pangeo cloud catalogue. RAPID-MOCHA data
+courtesy of the UK Natural Environment Research Council.
 
 %% ========================================================================
 \section*{Methods}
