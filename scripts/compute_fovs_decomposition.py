@@ -256,7 +256,10 @@ def _soda_period_mean(period: tuple[int, int]) -> tuple[np.ndarray, np.ndarray, 
     s_sum = np.zeros((len(grid["depth"]), n_atl))
     s_count = np.zeros((len(grid["depth"]), n_atl))
     n_samples = 0
-    tmp = Path("data/soda/_tmp_decomp.nc")
+    # Per-process tempfile so concurrent decomp runs (e.g. main + postargo)
+    # do not race on the same download path.
+    import os as _os
+    tmp = Path(f"data/soda/_tmp_decomp_{_os.getpid()}_{y0}_{y1}.nc")
 
     for year in range(y0, y1 + 1):
         for month in (1, 4, 7, 10):
