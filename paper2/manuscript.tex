@@ -159,30 +159,42 @@ placing the observational estimate firmly in the bistable regime
 Mean values over their respective periods are:
 ORAS5 ${-0.024}$~Sv (1958--2025, $n=68$);
 GLORYS12V1 ${-0.071}$~Sv (1993--2025, $n=33$);
-SODA 3.15.2 [TBD]~Sv (1980--2022, $n=42$ after excluding the
-1998 data artefact described below);
-ECCO-V4r4 ${-0.116}$~Sv (1992--2017, $n=26$). All four lie below the
-direct-hydrography estimate of ${-0.15\pm 0.09}$~Sv from 49 XBT
-transects \citep{Dong2024}. Trends, computed under three independent
-methods (naive OLS, \citet{Santer2000} $N_\mathrm{eff}$, GLS
-Prais-Winsten AR(1); full Table~S1), however, disagree on direction:
+SODA 3.15.2 ${-0.009}$~Sv (1980--2022, $n=43$; see below for the
+fate of the pre-registered $|\Fovs|>0.3$~Sv outlier rule);
+ECCO-V4r4 ${-0.116}$~Sv (1992--2017, $n=26$). ORAS5, GLORYS12V1 and
+ECCO all lie within the band implied by the direct-hydrography
+estimate of ${-0.15\pm 0.09}$~Sv from 49 XBT transects
+\citep{Dong2024}; SODA 3.15.2 lies near zero, at the monostable
+end of the observational spread. Trends, computed under three
+independent methods (naive OLS, \citet{Santer2000} $N_\mathrm{eff}$,
+GLS Prais-Winsten AR(1); full Table~S1), disagree on direction:
 ORAS5 is declining at ${-1.4\pm 0.1}$~mSv\,yr$^{-1}$ and GLORYS12V1 at
-${-4.4\pm 0.4}$~mSv\,yr$^{-1}$ (both significant under all three
-methods), while SODA 3.15.2 ([TBD]~mSv\,yr$^{-1}$) and ECCO-V4r4
-($+0.1$~mSv\,yr$^{-1}$) show weakly positive, non-significant trends.
-Only two of the four products therefore support the
-\citet{Portmann2026} narrative of an observationally constrained
-decline.
+${-4.4\pm 1.1}$~mSv\,yr$^{-1}$ (both significant under all three
+methods), while SODA 3.15.2 ($+0.6\pm 0.4$~mSv\,yr$^{-1}$) and
+ECCO-V4r4 ($+0.09\pm 0.3$~mSv\,yr$^{-1}$) show weakly positive,
+non-significant trends. Only two of the four products therefore
+support the \citet{Portmann2026} narrative of an observationally
+constrained decline.
 
-\emph{Outlier handling.} The SODA 3.15.2 annual mean for 1998 is
-$-1.77$~Sv, an order of magnitude beyond any other year and
-physically implausible at 34.5\textdegree S; a direct probe of the
-underlying 5-day file shows anomalously low salinity values (13--17~PSU
-in some grid cells vs.\ the regional climatology of 34--37~PSU),
-consistent with a corrupted upload on the UMD mirror. We pre-register
-a threshold of $|\Fovs| > 0.3$~Sv to flag such artefacts; the 1998
-SODA value is the only annual point flagged across the four
-reanalyses and is excluded from all reported means and trends.
+\emph{Outlier handling.} Under the \emph{uncorrected} F_ovS formula
+the SODA 3.15.2 annual mean for 1998 is $-1.77$~Sv, an order of
+magnitude beyond any other year and physically implausible at
+34.5\textdegree S; a direct probe of the underlying 5-day file
+shows anomalously low salinity values (13--17~PSU in some grid cells
+vs.\ the regional climatology of 34--37~PSU), consistent with a
+corrupted upload on the UMD mirror. We pre-registered a threshold of
+$|\Fovs| > 0.3$~Sv to flag such artefacts. However, under the
+\emph{barotropic-corrected} kernel adopted throughout this paper,
+the 1998 value collapses to $-0.018$~Sv and is no longer an
+outlier: the artefact was largely a uniform-salinity-bias ×
+non-zero-net-transport coupling which the baroclinic decomposition
+inherently filters out. The pre-registered outlier rule therefore
+does not trigger for any SODA year, and all 43 annual values
+1980--2022 are retained in the mean, trend, and decomposition.
+This is an informative side-effect of the fix: it provides an
+independent diagnostic that apparent data artefacts in
+DA-reanalysis-derived $\Fovs$ can be inflated by the common but
+incorrect omission of the barotropic subtraction.
 
 \paragraph{Reanalyses disagree on mechanism (Fig.~\ref{fig:fig2}).}
 An exact decomposition of the period-to-period change in $\Fovs$ into
@@ -196,9 +208,16 @@ attributions:
 \item \textbf{GLORYS12V1}: $\Delta\Fovs = -91$~mSv; $\dFv = -13$~mSv
       (${+14\%}$), $\dFs = -80$~mSv (${+87\%}$); class:
       \emph{s-dominant}.
-\item \textbf{SODA 3.15.2}: $\Delta\Fovs = $~[TBD]~mSv; class:
-      [TBD --- decomposition re-running with corrected kernel, to
-      be finalised before submission].
+\item \textbf{SODA 3.15.2}: $\Delta\Fovs = +13$~mSv;
+      $\dFv = +6$~mSv (${+45\%}$), $\dFs = +6$~mSv (${+46\%}$);
+      class: \emph{mixed}. $|\Delta\Fovs|$ is $2.0\times$ the
+      piControl internal-variability median but well below its 95th
+      percentile, so the mechanism attribution is formally below
+      the pre-registered signal-to-noise threshold
+      (Supplementary Fig.~S4). Notably the sign of $\Delta\Fovs$
+      \emph{reverses} in the fully-post-Argo window (see
+      Supplementary Fig.~S6 and the Discussion), underscoring
+      SODA's sensitivity to observing-system coverage.
 \item \textbf{ECCO-V4r4}: $\Delta\Fovs = -2$~mSv, below the
       pre-registered $|\Delta\Fovs| \ge 10$~mSv threshold; the
       mechanism is therefore \emph{ill-defined} for ECCO by
@@ -369,12 +388,13 @@ background state.
 
 We test alternative (ii) directly by repeating the decomposition
 on post-Argo windows only: 2006--2012 vs.\ 2018--2024 for ORAS5
-and GLORYS12V1, and 2006--2011 vs.\ 2012--2017 for ECCO (whose
-record ends in 2017). Both endpoints of each pair are
-fully-Argo-sampled, so any residual mechanism disagreement between
-products cannot reflect an Argo-era observing-system shock alone.
-The result is reported in Supplementary Fig.~S6 and
-Table~S2; its implications are mixed and informative:
+and GLORYS12V1, 2006--2012 vs.\ 2018--2022 for SODA 3.15.2, and
+2006--2011 vs.\ 2012--2017 for ECCO (whose record ends in 2017).
+Both endpoints of each pair are fully-Argo-sampled, so any
+residual mechanism disagreement between products cannot reflect an
+Argo-era observing-system shock alone. The result is reported in
+Supplementary Fig.~S6 and Table~S2; its implications differ by
+product:
 
 (a)~GLORYS12V1 remains strongly salinity-dominant in the post-Argo
 window (v-share $+6\%$, s-share $+90\%$, $\Delta\Fovs = -35$~mSv).
@@ -387,11 +407,22 @@ robust: the v-share drops from $+89\%$ (main window) to $+44\%$
 (post-Argo window) and the product shifts from velocity-dominant
 to mixed ($\Delta\Fovs = -38$~mSv, salinity-share $+57\%$). Part
 of the pre-Argo vs.\ post-Argo contrast in ORAS5 is therefore
-plausibly attributable to the observing-system shock --- consistent
-with ORAS5's larger net-volume-transport drift between the two
-windows (Table~S2).
+plausibly attributable to the observing-system shock.
 
-(c)~ECCO-V4r4 remains ill-defined ($|\Delta\Fovs| < 10$~mSv) in
+(c)~SODA 3.15.2 \emph{reverses the sign of its trend} between
+the two windows: $\Delta\Fovs = +13$~mSv in the main window
+(1993--2005 vs.\ 2013--2020) becomes $\Delta\Fovs = -14$~mSv in
+the post-Argo window (2006--2012 vs.\ 2018--2022), and the
+mechanism shifts from mixed ($v/s \approx 45/46$) to
+salinity-dominant ($v/s = -18/+129$). This is the strongest
+single indicator of observing-system sensitivity in our ensemble
+and is consistent with SODA's exceptionally large net-volume-%
+transport drift of $\sim 3$--$5$~Sv across the section
+(Table~S2), an order of magnitude larger than any other product.
+We therefore caution against treating SODA 3.15.2 at 34.5\textdegree S
+as an independent observational anchor at decadal timescales.
+
+(d)~ECCO-V4r4 remains ill-defined ($|\Delta\Fovs| < 10$~mSv) in
 the post-Argo window (v-share $+85\%$, s-share $+15\%$, but with
 only $-6$~mSv of total signal the shares carry no physical
 weight).
@@ -399,16 +430,16 @@ weight).
 The reanalysis-level mechanism disagreement therefore survives
 the Argo-shock test, but in an attenuated form: rather than
 ``$+89\%$ v-dominant vs.\ $+87\%$ s-dominant'', the post-Argo
-picture is ``mixed (ORAS5) vs.\ strongly s-dominant (GLORYS12V1)
-vs.\ null (ECCO)''. The physical question the paper poses ---
-whether the observed $\Fovs$ decline is circulation-structure
-driven or salinity-redistribution driven --- remains unresolved at
-the reanalysis level, and the salt-advection-feedback signature
-in GLORYS12V1 is strengthened rather than weakened by the Argo-era
-restriction. This directly informs the interpretation of
-\citet{Portmann2026} and \citet{Dong2024}: the reanalysis input on
-which any observational constraint is trained must now include an
-explicit post-Argo-window sensitivity test.
+picture is ``mixed (ORAS5) vs.\ strongly s-dominant (GLORYS12V1
+and SODA) vs.\ null (ECCO)''. Of the four reanalyses, two
+(GLORYS12V1, SODA post-Argo) now agree on salinity-dominance;
+one (ORAS5) is mixed; one (ECCO) is null. The salt-advection-%
+feedback signature in the two s-dominant products is strengthened
+rather than weakened by the Argo-era restriction. This directly
+informs the interpretation of \citet{Portmann2026} and
+\citet{Dong2024}: the reanalysis input on which any observational
+constraint is trained must now include an explicit post-Argo-window
+sensitivity test.
 
 \paragraph{The ECCO-V4r4 null trend.}
 ECCO-V4r4 is the only product in our ensemble that is produced by a
@@ -640,13 +671,15 @@ eliminates the volume-drift artefact. The subtraction is applied
 independently to each monthly snapshot of each product (so the
 correction tracks the DA increments in time) and is enforced
 identically on all four reanalyses, on all CMIP6 models, and on the
-\texttt{piControl} null ensemble. For ORAS5, GLORYS12V1, SODA and
-ECCO respectively the root-mean-square of $V_\mathrm{net}$ across
-their full records is $[\,\star, \star, \star, \star\,]$~Sv
-(Table~S1), confirming that the barotropic artefact would be of
-order $\sim 10$--$30$~mSv if the correction were omitted
-(supplementary: comparison of corrected vs raw $\Fovs$ time series
-in Fig.~S5). An independent unit test in
+\texttt{piControl} null ensemble. Across the two decomposition
+windows reported here the magnitude of $V_\mathrm{net}$ is
+$\sim 0.9$--$1.4$~Sv for ORAS5 and GLORYS12V1, $\sim 1.1$--$1.3$~Sv
+for ECCO-V4r4, and $\sim 3.8$--$5.0$~Sv for SODA 3.15.2
+(Table~S2); the $\sim 10$-$40$~mSv spurious contribution that the
+correction removes is therefore of the same order as the
+$|\Delta\Fovs|$ signals that drive the mechanism classification,
+and its omission would have qualitatively flipped the classification
+in several cases. An independent unit test in
 \texttt{tests/test\_fovs\_decomposition.py} verifies the
 $\Delta\Fovs = 0$ identity for a pure uniform-velocity drift
 between the two periods.
