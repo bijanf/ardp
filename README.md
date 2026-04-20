@@ -111,6 +111,41 @@ python scripts/plot_amoc_reanalysis_anomalies.py
 
 Output: `figures/grl/fig_amoc_reanalysis_anomalies_santer.{png,pdf}`
 
+## Reproduction: Paper 2 (F_ovS mechanism decomposition, Nature Comms target)
+
+Novel contribution: decompose the F_ovS trend into velocity-driven
+(Δv·S̄) and salinity-driven (v̄·ΔS) components across four reanalyses
+and 18 CMIP6 models to identify which mechanism corresponds to forced
+AMOC weakening. Headline finding: CMIP6 models with salinity-dominant
+mechanism (matching GLORYS12) project 52% AMOC weakening by 2100,
+recovering Portmann et al. (2026, Sci Adv) — while velocity-dominant
+models (matching ORAS5) project only 37%.
+
+```bash
+# Step 1: compute F_ovS time series from each reanalysis
+python scripts/compute_oras5_fovs.py
+python scripts/compute_glorys12_fovs.py
+python scripts/compute_soda_fovs.py     # uses UMD 5-day server catalogue
+python scripts/compute_ecco_fovs.py     # uses NASA Earthdata earthaccess
+
+# Step 2: mechanism decomposition of the trend (ΔF_v + ΔF_s + ΔF_cross)
+python scripts/compute_fovs_decomposition.py --product all
+python scripts/compute_cmip6_fovs_decomposition.py          # forced hist→ssp585
+python scripts/compute_cmip6_picontrol_null.py --n-bootstrap 200  # null test
+
+# Step 3: emergent-constraint regression and mechanism-conditional projections
+python scripts/compute_emergent_constraint.py --predictor mean --forecast-end 2100
+python scripts/compute_cmip6_fovs_amoc_leadlag.py             # CMIP6 CCF
+
+# Step 4: four publication figures
+python scripts/plot_paper2_fig1_multiprod_fovs.py              # 4-product F_ovS
+python scripts/plot_paper2_fig2_decomposition.py               # v/s decomposition
+python scripts/plot_paper2_fig3_tiebreaker.py                  # CMIP6 tie-breaker
+python scripts/plot_paper2_fig4_mechanism_conditional.py       # headline finding
+```
+
+Outputs: `figures/paper2/fig{1,2,3,4}_*.{png,pdf}`
+
 ## GRL Figure Set
 
 ```bash

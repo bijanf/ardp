@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import numpy as np
-import pytest
 
 from ardp.physics.fovs import compute_fovs_from_section
 from ardp.physics.fovs_decomposition import decompose_fovs_trend

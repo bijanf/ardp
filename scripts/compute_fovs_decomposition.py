@@ -33,7 +33,6 @@ import xarray as xr
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from ardp.constants import ATLANTIC_LON_MAX, ATLANTIC_LON_MIN, S0, SAMBA_LAT
 from ardp.physics.fovs_decomposition import decompose_fovs_trend
-import warnings
 
 logging.basicConfig(
     level=logging.INFO,
