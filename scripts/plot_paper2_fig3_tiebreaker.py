@@ -149,9 +149,12 @@ def main():
         ))
 
     # Non-overlapping layout — draws thin arrows back to each point.
+    # Limit repulsion to keep labels within the panel so the saved
+    # bounding box doesn't get bloated into a near-square shape.
     adjust_text(
         texts, ax=ax1,
-        expand=(1.2, 1.4),
+        expand=(1.05, 1.15),
+        force_text=(0.3, 0.4),
         arrowprops={"arrowstyle": "-", "color": "0.55", "lw": 0.35},
     )
 
@@ -183,7 +186,10 @@ def main():
     ax2.legend(loc="upper right", fontsize=5.8, frameon=False)
 
     fig.tight_layout()
-    save_publication_figure(fig, args.output)
+    # bbox_inches=None: preserve the intended 10.5 x 4 landscape aspect.
+    # adjustText leader lines that escape the axes will be clipped rather
+    # than bloating the canvas vertically.
+    save_publication_figure(fig, args.output, bbox_inches=None)
 
 
 if __name__ == "__main__":
