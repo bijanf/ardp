@@ -137,14 +137,23 @@ python scripts/compute_cmip6_picontrol_null.py --n-bootstrap 200  # null test
 python scripts/compute_emergent_constraint.py --predictor mean --forecast-end 2100
 python scripts/compute_cmip6_fovs_amoc_leadlag.py             # CMIP6 CCF
 
-# Step 4: four publication figures
+# Step 4: four main publication figures
 python scripts/plot_paper2_fig1_multiprod_fovs.py              # 4-product F_ovS
 python scripts/plot_paper2_fig2_decomposition.py               # v/s decomposition
 python scripts/plot_paper2_fig3_tiebreaker.py                  # CMIP6 tie-breaker
 python scripts/plot_paper2_fig4_mechanism_conditional.py       # headline finding
+
+# Step 5: supplementary figures and table
+python scripts/plot_paper2_figS1_leadlag.py                    # CCF supplementary
+python scripts/compute_fovs_decomposition_sensitivity.py        # -> figS2
+python scripts/plot_paper2_figS3_zonal_structure.py            # Δv/ΔS maps
+python scripts/plot_paper2_figS4_signal_noise.py               # forced vs piControl
+python scripts/compute_paper2_tableS1.py                        # trend table (CSV + TeX)
 ```
 
-Outputs: `figures/paper2/fig{1,2,3,4}_*.{png,pdf}`
+Outputs: `figures/paper2/fig{1,2,3,4}_*.{png,pdf}`,
+`figures/paper2/figS{1,2,3,4}_*.{png,pdf}`,
+`data/results/paper2_tableS1_trends.{csv,tex}`
 
 ## GRL Figure Set
 
