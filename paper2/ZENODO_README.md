@@ -3,7 +3,7 @@
 **Title:** Mechanistic ambiguity in the Atlantic freshwater
 fingerprint: reconciling observational constraints on AMOC weakening
 
-**Authors:** B. Fallah, L. Caesar, S. Rahmstorf
+**Author:** B. Fallah
 
 **DOI:** [to be assigned at archive time]
 
@@ -125,7 +125,7 @@ Reduced data products: CC-BY-4.0.
 
 If you use this code or the reduced data, please cite:
 
-> Fallah, B., Caesar, L., Rahmstorf, S. (2026). Mechanistic ambiguity
-> in the Atlantic freshwater fingerprint: reconciling observational
-> constraints on AMOC weakening. *Nature Communications* [vol, pages],
-> doi:[TBD]. Code archived at Zenodo: doi:[TBD].
+> Fallah, B. (2026). Mechanistic ambiguity in the Atlantic freshwater
+> fingerprint: reconciling observational constraints on AMOC weakening.
+> *Nature Communications* [vol, pages], doi:[TBD].
+> Code archived at Zenodo: doi:[TBD].
