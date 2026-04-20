@@ -231,6 +231,72 @@ def _ecco_period_mean(ecco_cache: Path, period: tuple[int, int]) -> tuple[np.nda
 
 
 # ═══════════════════════════════════════════════════════════════════════
+# SODA 3.15.2 period-mean section (downloads quarterly snapshots)
+# ═══════════════════════════════════════════════════════════════════════
+
+def _soda_period_mean(period: tuple[int, int]) -> tuple[np.ndarray, np.ndarray, dict]:
+    """Download SODA quarterly 5-day files for a period; compute (v, s) section mean.
+
+    Reuses the helpers in compute_soda_fovs.py so we stay consistent with
+    the F_ovS time-series pipeline.
+    """
+    from compute_soda_fovs import (
+        build_section_grid,
+        download_snapshot,
+        ensure_ref_file,
+    )
+    y0, y1 = period
+    ref = ensure_ref_file()
+    grid = build_section_grid(ref)
+
+    # Accumulate v and salt sections (Atlantic-masked) at the v j-row
+    # (using t-grid salt aligned by length, matching the F_ovS kernel).
+    n_atl = min(grid["n_atl_v"], grid["n_atl_t"])
+    v_sum = np.zeros((len(grid["depth"]), n_atl))
+    s_sum = np.zeros((len(grid["depth"]), n_atl))
+    s_count = np.zeros((len(grid["depth"]), n_atl))
+    n_samples = 0
+    tmp = Path("data/soda/_tmp_decomp.nc")
+
+    for year in range(y0, y1 + 1):
+        for month in (1, 4, 7, 10):
+            if not download_snapshot(year, month, tmp):
+                continue
+            try:
+                ds = xr.open_dataset(tmp, decode_timedelta=False)
+                v = ds["v"].isel(time=0, yu_ocean=grid["j_v"]).values
+                s = ds["salt"].isel(time=0, yt_ocean=grid["j_t"]).values
+                ds.close()
+                v_a = v[:, grid["atl_v"]][:, :n_atl]
+                s_a = s[:, grid["atl_t"]][:, :n_atl]
+                ocean = ~np.isnan(s_a)
+                v_sum += np.where(np.isnan(v_a), 0.0, v_a)
+                s_sum += np.where(ocean, s_a, 0.0)
+                s_count += ocean.astype(float)
+                n_samples += 1
+            except Exception as e:
+                log.warning(f"  SODA {year}-{month:02d}: {e}")
+            finally:
+                tmp.unlink(missing_ok=True)
+
+    if n_samples == 0:
+        raise RuntimeError(f"No SODA snapshots acquired for {y0}-{y1}")
+
+    v_mean = v_sum / n_samples
+    with np.errstate(invalid="ignore", divide="ignore"):
+        s_mean = np.where(s_count > 0, s_sum / s_count, np.nan)
+
+    log.info(f"SODA {y0}-{y1}: {n_samples} quarterly snapshots")
+    return v_mean, s_mean, {
+        "e1t_atl": grid["e1t_v_atl"][:n_atl],
+        "e3t": grid["e3t"],
+        "depth": grid["depth"],
+        "actual_lat": grid["lat_v"],
+        "atl_count": n_atl,
+    }
+
+
+# ═══════════════════════════════════════════════════════════════════════
 # Per-product decomposition
 # ═══════════════════════════════════════════════════════════════════════
 
@@ -249,6 +315,12 @@ def process_product(product: str) -> None:
         late = (2013, 2017)  # ECCO ends 2017
         v1, s1, grid = _ecco_period_mean(Path("data/ecco"), early)
         v2, s2, _ = _ecco_period_mean(Path("data/ecco"), late)
+    elif product == "soda":
+        # SODA 1980-2022: early 1993-2005 vs late 2013-2020 (SODA data ends 2022)
+        early = EARLY  # 1993-2005
+        late = (2013, 2020)
+        v1, s1, grid = _soda_period_mean(early)
+        v2, s2, _ = _soda_period_mean(late)
     else:
         raise ValueError(f"Unknown product: {product}")
 
@@ -313,7 +385,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    products = ["oras5", "glorys12", "ecco"] if args.product == "all" else [args.product]
+    products = ["oras5", "glorys12", "ecco", "soda"] if args.product == "all" else [args.product]
     for p in products:
         try:
             process_product(p)
