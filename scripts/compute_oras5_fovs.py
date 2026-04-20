@@ -22,6 +22,7 @@ import numpy as np
 import xarray as xr
 
 from ardp.constants import ATLANTIC_LON_MAX, ATLANTIC_LON_MIN, S0, SAMBA_LAT
+from ardp.physics.fovs import compute_fovs_from_section
 
 
 def find_j_index(
@@ -100,10 +101,10 @@ def process_one_month(
 ) -> tuple[np.datetime64, float]:
     """Open 2 files, extract j-slice, compute F_ovS, return (timestamp, scalar).
 
-    Uses the standard de Vries & Weber (2005) formula:
-      F_ov = -(1/S0) * integral_z { V_bar(z) * (S_bar(z) - S0) * dz }
-    where V_bar = integral_x(v * dx) is zonally INTEGRATED velocity [m²/s]
-    and S_bar is zonally AVERAGED salinity [PSU], both over Atlantic only.
+    Delegates to ardp.physics.fovs.compute_fovs_from_section which
+    applies the de Vries & Weber (2005) formula WITH the mandatory
+    barotropic (section-mean) velocity subtraction required for
+    non-mass-conserving Boussinesq reanalysis products.
 
     Peak memory: ~900 KB (two 2D slices of shape (75, 1442)).
     """
@@ -118,31 +119,9 @@ def process_one_month(
     s_section = ds_s["vosaline"].isel(time_counter=0, y=j_idx).values[:, atlantic_mask]
     ds_s.close()
 
-    # Pure numpy F_ovS computation over Atlantic basin
-    nz = v_section.shape[0]
-    e1t_2d = e1t_atl[np.newaxis, :]  # (1, n_atl)
-
-    total = 0.0
-    for k in range(nz):
-        ocean = ~np.isnan(s_section[k, :])
-        n_ocean = ocean.sum()
-        if n_ocean == 0:
-            continue
-
-        # V_bar: zonally integrated velocity over ocean points [m²/s]
-        v_k = np.where(ocean, np.nan_to_num(v_section[k, :], nan=0.0), 0.0)
-        v_int = (v_k * e1t_atl).sum()
-
-        # S_bar: zonally averaged salinity over ocean points [PSU]
-        e1t_ocean = np.where(ocean, e1t_atl, 0.0)
-        s_k = np.nan_to_num(s_section[k, :], nan=0.0)
-        s_mean = (s_k * e1t_ocean).sum() / e1t_ocean.sum()
-
-        total += v_int * (s_mean - S0) * e3t[k]
-
-    # F_ov = -(1/S0) * total  [m³/s -> Sv]
-    f_ov = -(1.0 / S0) * total / 1e6
-
+    f_ov = compute_fovs_from_section(
+        v_section, s_section, e1t_atl, e3t, s0=S0,
+    )
     return (timestamp, float(f_ov))
 
 

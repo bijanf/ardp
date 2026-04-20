@@ -20,17 +20,24 @@ def freshwater_transport_overturning(
 ) -> xr.DataArray:
     r"""Compute overturning freshwater transport F_ov.
 
-    F_ov(y) = -(1/S_0) \int V_int(z) * (<S>(z) - S_0) dz
+    F_ov(y) = -(1/S_0) \int V_int^{bc}(z) * (<S>(z) - S_0) dz
 
-    where V_int = sum(v * e1, x) is the zonally INTEGRATED velocity [m²/s]
-    and <S> is the zonally averaged salinity, following de Vries & Weber (2005).
+    where V_int^{bc}(z) = V_int(z) - v_bar * A_xy(z) is the
+    *baroclinic* (section-mean-subtracted) zonally-integrated
+    meridional velocity, so that \int V_int^{bc}(z) dz = 0 by
+    construction. The barotropic subtraction is required in
+    data-assimilating Boussinesq products where the net volume
+    transport across the section generally drifts between
+    timesteps; without it, a few-Sv net-transport artefact
+    injects a spurious ~10 mSv signal into F_ov. See de Vries &
+    Weber (2005), Mecking et al. (2017), Weijer et al. (2019).
 
     Parameters
     ----------
     v : xr.DataArray
-        Meridional velocity [m/s], dims including (z, y, x).
+        Meridional velocity [m/s], dims including (z, x).
     salinity : xr.DataArray
-        Salinity [PSU], dims including (z, y, x).
+        Salinity [PSU], dims including (z, x).
     e1 : xr.DataArray
         Zonal grid spacing [m] at the section.
     e3 : xr.DataArray
@@ -52,16 +59,30 @@ def freshwater_transport_overturning(
         salinity = salinity.where(mask == 1, np.nan)
         e1_ocean = e1.where(mask == 1, 0.0)
     else:
-        e1_ocean = e1
+        # Infer ocean mask from non-NaN salinity (land = NaN in S).
+        ocean = ~salinity.isnull()
+        v = v.where(ocean, 0.0)
+        e1_ocean = e1.where(ocean, 0.0)
 
     # Zonally INTEGRATED velocity: V_int(z) = sum(v * e1, x) [m²/s]
     v_zonal_int = (v * e1_ocean).sum(dim=x_dim)
 
+    # Wet-cell width at each depth: A_xy(z) = sum(e1, x) [m] over ocean only
+    a_xy = e1_ocean.sum(dim=x_dim)
+
+    # Section-mean velocity (barotropic): v_bar = V_net / A_total
+    v_net = (v_zonal_int * e3).sum(dim=z_dim)
+    a_total = (a_xy * e3).sum(dim=z_dim)
+    v_bar = xr.where(a_total > 0, v_net / a_total, 0.0)
+
+    # Baroclinic (overturning) component: V_int^bc(z) = V_int(z) - v_bar * A_xy(z)
+    v_zonal_int_bc = v_zonal_int - v_bar * a_xy
+
     # Zonally averaged salinity: <S>(z) = sum(S * e1, x) / sum(e1, x)
     s_zonal_mean = (salinity * e1_ocean).sum(dim=x_dim) / e1_ocean.sum(dim=x_dim)
 
-    # Vertical integration: F_ov = -(1/S0) * integral(V_int * (<S> - S0) * dz)
-    integrand = v_zonal_int * (s_zonal_mean - s0) * e3
+    # Vertical integration: F_ov = -(1/S0) * integral(V_int^bc * (<S> - S0) * dz)
+    integrand = v_zonal_int_bc * (s_zonal_mean - s0) * e3
     f_ov = -(1.0 / s0) * integrand.sum(dim=z_dim)
 
     # Convert m^3/s to Sv

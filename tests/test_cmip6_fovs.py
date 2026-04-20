@@ -247,11 +247,11 @@ class TestGridMetrics:
 
 class TestComputeFovsSection:
     def test_two_layer_analytical(self, cmip6_section_two_layer):
-        """Matches hand-calculated value within tolerance."""
+        """Matches hand-calculated value including barotropic subtraction."""
         vo_ds, so_ds = cmip6_section_two_layer
         result = compute_fovs_section(vo_ds, so_ds)
 
-        # Analytical calculation
+        # Grid metrics
         lon = np.linspace(-60, 10, 20)
         dlon = np.diff(lon)
         dlon = np.append(dlon, dlon[-1])
@@ -264,8 +264,24 @@ class TestComputeFovsSection:
         e3t = np.diff(depth, prepend=0.0)  # [500, 2000]
 
         sum_e1t = e1t.sum()
-        upper = 0.1 * sum_e1t * (35.5 - S0) * e3t[0]
-        lower = (-1.0 / 30.0) * sum_e1t * (34.8 - S0) * e3t[1]
+        v_up, v_lo = 0.1, -1.0 / 30.0
+        s_up, s_lo = 35.5, 34.8
+
+        # Zonally-integrated velocity per layer (m²/s)
+        v_int_up = v_up * sum_e1t
+        v_int_lo = v_lo * sum_e1t
+
+        # Section-mean velocity (barotropic)
+        v_net = v_int_up * e3t[0] + v_int_lo * e3t[1]            # m³/s
+        a_total = sum_e1t * (e3t[0] + e3t[1])                    # m²
+        v_bar = v_net / a_total
+
+        # Baroclinic (overturning) component per layer
+        v_int_bc_up = v_int_up - v_bar * sum_e1t
+        v_int_bc_lo = v_int_lo - v_bar * sum_e1t
+
+        upper = v_int_bc_up * (s_up - S0) * e3t[0]
+        lower = v_int_bc_lo * (s_lo - S0) * e3t[1]
         expected = -(1.0 / S0) * (upper + lower) / 1e6
 
         np.testing.assert_allclose(float(result.values[0]), expected, atol=1e-6)
@@ -364,41 +380,26 @@ class TestCrossValidation:
                                        err_msg=f"Mismatch at timestep {t}")
 
     def test_vectorized_vs_loop_with_land(self):
-        """Both agree when NaN land mask is present.
+        """Both agree on the full section when NaN land is present.
 
-        The loop version (compute_fovs_from_section) masks e1t per-level based
-        on NaN in salinity, so we replicate that by zeroing v at land and
-        supplying per-level masked e1 via a 2D array. We call the vectorized
-        function level-by-level to match the loop's per-level ocean mask.
+        Barotropic subtraction couples depths together (v_bar depends on
+        the column-integrated transport), so per-level summation is no
+        longer valid — we compare full-section calls.
         """
         v, s, e1t, e3t = self._build_section(add_land=True)
 
         for t in range(v.shape[0]):
             loop_val = compute_fovs_from_section(v[t], s[t], e1t, e3t)
 
-            # Replicate the loop logic level-by-level with the vectorized fn
-            nz = v.shape[1]
-            total = 0.0
-            for k in range(nz):
-                ocean = ~np.isnan(s[t, k, :])
-                if ocean.sum() == 0:
-                    continue
-                # Mask e1 to ocean-only for this level
-                e1_masked = np.where(ocean, e1t, 0.0)
-                v_k = np.where(ocean, v[t, k, :], 0.0)
-                s_k = np.where(ocean, s[t, k, :], 0.0)
+            v_da = xr.DataArray(v[t], dims=["z", "x"])
+            s_da = xr.DataArray(s[t], dims=["z", "x"])
+            e1_da = xr.DataArray(e1t, dims=["x"])
+            e3_da = xr.DataArray(e3t, dims=["z"])
+            vec_val = float(freshwater_transport_overturning(
+                v_da, s_da, e1_da, e3_da, x_dim="x", z_dim="z"
+            ).values)
 
-                v_da = xr.DataArray(v_k[np.newaxis, :], dims=["z", "x"])
-                s_da = xr.DataArray(s_k[np.newaxis, :], dims=["z", "x"])
-                e1_da = xr.DataArray(e1_masked, dims=["x"])
-                e3_da = xr.DataArray(np.array([e3t[k]]), dims=["z"])
-
-                val = float(freshwater_transport_overturning(
-                    v_da, s_da, e1_da, e3_da, x_dim="x", z_dim="z"
-                ).values)
-                total += val
-
-            np.testing.assert_allclose(loop_val, total, atol=1e-10,
+            np.testing.assert_allclose(loop_val, vec_val, atol=1e-10,
                                        err_msg=f"Mismatch at timestep {t}")
 
 
@@ -491,29 +492,30 @@ class TestConcatAndBias:
 # Section F: Regression tests (require data/)
 # ===================================================================
 
-# Raw computed historical means (no bias correction).
+# Raw computed historical means (no bias correction) — recomputed with
+# the barotropic-corrected kernel. See ardp.physics.fovs for the correction.
 EXPECTED_HIST_MEANS = {
-    "ACCESS-CM2": +0.067,
-    "ACCESS-ESM1-5": +0.083,
-    "CESM2": +0.143,
-    "CMCC-CM2-SR5": -0.008,
-    "CNRM-CM6-1": -0.108,
-    "CanESM5": -0.047,
-    "EC-Earth3": -0.029,
-    "EC-Earth3-AerChem": -0.030,
-    "FGOALS-g3": +0.360,
-    "FIO-ESM-2-0": +0.192,
-    "GFDL-CM4": +0.052,
-    "GISS-E2-1-G": +0.224,
-    "GISS-E2-1-G-CC": +0.252,
-    "IPSL-CM6A-LR": -0.165,
-    "MIROC6": -0.088,
-    "MPI-ESM1-2-HR": -0.038,
-    "MPI-ESM1-2-LR": +0.088,
+    "ACCESS-CM2": +0.072,
+    "ACCESS-ESM1-5": +0.089,
+    "CESM2": +0.151,
+    "CMCC-CM2-SR5": +0.009,
+    "CNRM-CM6-1": -0.094,
+    "CanESM5": -0.059,
+    "EC-Earth3": -0.018,
+    "EC-Earth3-AerChem": -0.018,
+    "FGOALS-g3": +0.328,
+    "FIO-ESM-2-0": +0.200,
+    "GFDL-CM4": +0.047,
+    "GISS-E2-1-G": +0.233,
+    "GISS-E2-1-G-CC": +0.261,
+    "IPSL-CM6A-LR": -0.159,
+    "MIROC6": -0.079,
+    "MPI-ESM1-2-HR": -0.028,
+    "MPI-ESM1-2-LR": +0.122,
     "NESM3": -0.173,
-    "SAM0-UNICON": +0.154,
-    "TaiESM1": +0.285,
-    "UKESM1-0-LL": +0.032,
+    "SAM0-UNICON": +0.162,
+    "TaiESM1": +0.293,
+    "UKESM1-0-LL": +0.043,
 }
 
 
