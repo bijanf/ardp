@@ -82,7 +82,9 @@ def _load_section(path: Path, var: str) -> tuple[xr.DataArray, np.ndarray, np.nd
     ds = xr.open_dataset(path, decode_times=True, use_cftime=True)
     da = ds[var]
     # Determine x dimension
-    x_dim = next((d for d in da.dims if d in ("i", "x", "nlon")), None)
+    # Note: some models name the Atlantic-section zonal index 'j' (CMCC)
+    # or 'lon' (GISS) after j-index selection.
+    x_dim = next((d for d in da.dims if d in ("i", "x", "nlon", "j", "lon")), None)
     lev_dim = next((d for d in da.dims if d in ("lev", "olevel", "depth", "z_t")), None)
     if x_dim is None or lev_dim is None:
         ds.close()
