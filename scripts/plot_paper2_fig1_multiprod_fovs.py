@@ -55,8 +55,16 @@ DIRECT_HYDRO = [
 ]
 
 
-def _load_annual(path: Path) -> tuple[np.ndarray, np.ndarray] | None:
-    """Return (years, F_ovS_annual) from monthly or annual NetCDF."""
+OUTLIER_THRESHOLD = 0.30  # |F_ovS| > 0.3 Sv is physically implausible for
+# 34.5S Atlantic — flag as data artefact (e.g. corrupt source file).
+
+
+def _load_annual(path: Path, flag_outliers: bool = True) -> tuple[np.ndarray, np.ndarray] | None:
+    """Return (years, F_ovS_annual) from monthly or annual NetCDF.
+
+    If flag_outliers, replace values with |F_ovS| > OUTLIER_THRESHOLD by NaN
+    so they appear as gaps in the time series and don't pollute the trend.
+    """
     if not path.exists():
         return None
     ds = xr.open_dataset(path)
@@ -77,6 +85,15 @@ def _load_annual(path: Path) -> tuple[np.ndarray, np.ndarray] | None:
         ds.close()
         return None
     ds.close()
+
+    if flag_outliers:
+        bad = np.abs(vals) > OUTLIER_THRESHOLD
+        if bad.any():
+            vals = vals.copy().astype(float)
+            for yr, v in zip(years[bad], vals[bad]):
+                print(f"    [outlier filter] {path.name}: year {int(yr)} F_ovS={v:+.3f} Sv → NaN")
+            vals[bad] = np.nan
+
     return years, vals
 
 
@@ -111,9 +128,10 @@ def main() -> None:
             continue
         yrs, vals = ts
         loaded.append((label, yrs, vals, color))
+        n_valid = int(np.isfinite(vals).sum())
         print(
-            f"  {label}: {int(yrs[0])}-{int(yrs[-1])}, mean={float(np.mean(vals)):+.4f} Sv, "
-            f"n={len(yrs)}"
+            f"  {label}: {int(yrs[0])}-{int(yrs[-1])}, mean={float(np.nanmean(vals)):+.4f} Sv, "
+            f"n={len(yrs)} ({n_valid} valid)"
         )
 
         # Trends (Sv/decade)
