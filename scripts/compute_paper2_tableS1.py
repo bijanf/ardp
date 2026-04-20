@@ -37,7 +37,10 @@ PRODUCTS = [
 ]
 
 
-def _load_annual(path: Path) -> tuple[np.ndarray, np.ndarray] | None:
+OUTLIER_THRESHOLD = 0.30  # |F_ovS| > this is flagged as data artefact
+
+
+def _load_annual(path: Path, flag_outliers: bool = True) -> tuple[np.ndarray, np.ndarray] | None:
     if not path.exists():
         return None
     ds = xr.open_dataset(path)
@@ -55,6 +58,9 @@ def _load_annual(path: Path) -> tuple[np.ndarray, np.ndarray] | None:
         ds.close()
         return None
     ds.close()
+    if flag_outliers:
+        vals = vals.astype(float).copy()
+        vals[np.abs(vals) > OUTLIER_THRESHOLD] = np.nan
     return years, vals
 
 
@@ -90,15 +96,19 @@ def main() -> None:
         if ts is None:
             print(f"  {label}: no file, skipping")
             continue
-        yrs, vals = ts
+        yrs_all, vals_all = ts
+        # Drop NaN (outlier-flagged) years from trend computation
+        ok = np.isfinite(vals_all)
+        yrs, vals = yrs_all[ok], vals_all[ok]
         sl_ols, p_ols, n_ols = _linear_trend_ols(yrs, vals)
         sl_san, p_san, neff_san = _linear_trend_santer(yrs, vals)
         sl_gls, p_gls, neff_gls = _linear_trend_gls(yrs, vals)
 
         rows.append({
             "product": label,
-            "period": f"{int(yrs[0])}–{int(yrs[-1])}",
-            "N": len(yrs),
+            "period": f"{int(yrs_all[0])}–{int(yrs_all[-1])}",
+            "N": int(ok.sum()),
+            "N_flagged": int((~ok).sum()),
             "mean_Sv": float(np.mean(vals)),
             "std_Sv": float(np.std(vals)),
             "ols_trend_mSv_yr": sl_ols * 100,
