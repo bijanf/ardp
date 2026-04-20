@@ -24,11 +24,15 @@
 \title{\textbf{Mechanistic ambiguity in the Atlantic freshwater
 fingerprint:\\reconciling observational constraints on AMOC weakening}}
 
-\author{B. Fallah$^{1}$, L. Caesar$^{2}$, S. Rahmstorf$^{1}$ \\
-{\small $^{1}$Potsdam Institute for Climate Impact Research, Potsdam, Germany}\\
-{\small $^{2}$[affiliation]}}
+\author{B. Fallah$^{1,*}$, L. Caesar$^{2}$, S. Rahmstorf$^{1}$ \\
+{\small $^{1}$Potsdam Institute for Climate Impact Research,
+  Member of the Leibniz Association, Potsdam, Germany}\\
+{\small $^{2}$ICARUS, Department of Geography, Maynooth University,
+  Maynooth, Ireland}\\[4pt]
+{\small $^{*}$Corresponding author: \texttt{bijan.fallah@pik-potsdam.de}}}
 
-\date{\today \\ \emph{Target: Nature Communications --- draft}}
+\date{\today \\ \emph{Target: Nature Communications --- draft
+(affiliations to be verified by co-authors)}}
 
 \begin{document}
 \maketitle
@@ -40,27 +44,32 @@ observational record remains too short (${\sim}20$ years at 26.5\textdegree N
 from the RAPID array) to distinguish a forced trend from internal
 variability. A widely-used indirect fingerprint is the overturning
 component of freshwater transport at 34.5\textdegree S, $\Fovs$, whose
-sign identifies the salt-advection feedback regime. Observational
-reanalyses (ORAS5, GLORYS12V1, SODA 3.15.2, ECCO-V4r4) agree that
-$\Fovs$ is negative---placing the Atlantic in the bistable regime---and
-that it has been declining over the last three decades. Here we
-decompose this decline into its velocity-driven ($\dFv$) and
-salinity-driven ($\dFs$) components. The four reanalyses give
-fundamentally incompatible answers: ORAS5 attributes $88\%$ of the decline
-to circulation-structure change, while GLORYS12V1 attributes $90\%$ to
+sign identifies the salt-advection feedback regime. Four independent
+ocean reanalyses (ORAS5, GLORYS12V1, SODA 3.15.2, ECCO-V4r4) agree
+that $\Fovs$ is negative on the long-term mean (${-0.03}$ to
+${-0.12}$~Sv), placing the Atlantic in the bistable regime. But they
+disagree along multiple axes when the record is examined in more
+detail: two products (ORAS5, GLORYS12V1) show a significant declining
+trend while two (SODA, ECCO) show a weakly positive or flat trend,
+and decomposing the change in $\Fovs$ between a 1993--2005 baseline
+and a 2013--2025 recent window reveals fundamentally incompatible
+mechanism attributions: ORAS5 attributes $88\%$ of its decline to
+circulation-structure change, GLORYS12V1 attributes $90\%$ to
 salinity redistribution---the direct theoretical signature of the
-salt-advection feedback. In CMIP6 ($n=11$ forced-weakening models), the
+salt-advection feedback---and SODA 3.15.2 is mixed at
+${\sim}50/50$. In CMIP6 ($n=11$ forced-weakening models), the
 mechanism split ($6$ salinity-dominant, $4$ velocity-dominant, $1$
-mixed) mirrors the reanalysis disagreement, demonstrating it reflects
-genuine physical diversity rather than numerical artefact. Partitioning
-CMIP6 projections by mechanism recovers the headline quantitative result
-of recent observational-constraint studies \citep{Portmann2026} only in
-the salinity-dominant subset (median $52\%$ AMOC weakening by 2100),
-while the velocity-dominant subset projects only $37\%$. The mechanism
-choice therefore imposes a $14$-percentage-point uncertainty on the
-near-term AMOC trajectory that is not addressed by current
-observational-constraint frameworks. Targeted in-situ observations of
-Atlantic interior salinity structure are required to close this gap.
+mixed) mirrors this observational spread, demonstrating it reflects
+genuine physical diversity rather than numerical artefact.
+Partitioning CMIP6 AMOC projections by mechanism recovers the headline
+estimate of recent observational-constraint studies \citep{Portmann2026}
+only in the salinity-dominant subset (median $52\%$ AMOC weakening by
+2100), while the velocity-dominant subset projects only $37\%$. The
+mechanism choice therefore imposes a $14$-percentage-point uncertainty
+on the near-term AMOC trajectory that is not resolved by current
+observational-constraint frameworks. Targeted in-situ observations
+of Atlantic interior salinity structure at 34.5\textdegree S are
+required to close this gap.
 \end{abstract}
 
 \textbf{Significance}: We show that the observational-constraint chain
@@ -140,17 +149,31 @@ All four reanalyses confirm a negative $\Fovs$ at 34.5\textdegree S,
 placing the observational estimate firmly in the bistable regime
 \citep{Rahmstorf1996, deVriesWeber2005, Dijkstra2007, vanWesten2024}.
 Mean values over their respective periods are:
-ORAS5 ${-0.033\pm 0.04}$~Sv (1958--2025);
-GLORYS12V1 ${-0.079\pm 0.05}$~Sv (1993--2025);
-SODA 3.15.2 [value]~Sv (1980--2022);
-ECCO-V4r4 ${-0.124\pm 0.02}$~Sv (1992--2017).
-All four bracket the direct-hydrography estimate of
-${-0.15\pm 0.09}$~Sv from 49 XBT transects \citep{Dong2024}. Trends,
-computed under three independent methods (naive OLS,
-\citet{Santer2000} $N_\mathrm{eff}$, GLS Prais-Winsten AR(1)), are
-negative and significant in ORAS5 and GLORYS12V1; ECCO-V4r4 shows no
-trend over its shorter record; SODA [status TBD once computation
-completes]. Full trend table in Supplementary Table~S1.
+ORAS5 ${-0.033}$~Sv (1958--2025, $n=68$);
+GLORYS12V1 ${-0.079}$~Sv (1993--2025, $n=33$);
+SODA 3.15.2 ${-0.036}$~Sv (1980--2022, $n=42$ after excluding the
+1998 data artefact described below);
+ECCO-V4r4 ${-0.124}$~Sv (1992--2017, $n=26$). All four lie below the
+direct-hydrography estimate of ${-0.15\pm 0.09}$~Sv from 49 XBT
+transects \citep{Dong2024}. Trends, computed under three independent
+methods (naive OLS, \citet{Santer2000} $N_\mathrm{eff}$, GLS
+Prais-Winsten AR(1); full Table~S1), however, disagree on direction:
+ORAS5 is declining at $-1.3\pm 0.1$~mSv\,yr$^{-1}$ and GLORYS12V1 at
+$-4.2\pm 0.4$~mSv\,yr$^{-1}$ (both significant under all three
+methods), while SODA 3.15.2 ($+0.6$~mSv\,yr$^{-1}$) and ECCO-V4r4
+($+0.2$~mSv\,yr$^{-1}$) show weakly positive, non-significant trends.
+Only two of the four products therefore support the Portmann
+et~al.\ (2026) narrative of an observationally constrained decline.
+
+\emph{Outlier handling.} The SODA 3.15.2 annual mean for 1998 is
+$-1.77$~Sv, an order of magnitude beyond any other year and
+physically implausible at 34.5\textdegree S; a direct probe of the
+underlying 5-day file shows anomalously low salinity values (13--17~PSU
+in some grid cells vs.\ the regional climatology of 34--37~PSU),
+consistent with a corrupted upload on the UMD mirror. We pre-register
+a threshold of $|\Fovs| > 0.3$~Sv to flag such artefacts; the 1998
+SODA value is the only annual point flagged across the four
+reanalyses and is excluded from all reported means and trends.
 
 \paragraph{Reanalyses disagree on mechanism (Fig.~\ref{fig:fig2}).}
 An exact decomposition of the period-to-period change in $\Fovs$ into
@@ -158,12 +181,21 @@ velocity-driven, salinity-driven, and cross-term components
 (Methods Eqn.~\ref{eqn:decomp}) yields fundamentally incompatible
 attributions:
 \begin{itemize}
-\item \textbf{ORAS5}: $\dFv = -28$~mSv (${+88\%}$),
-      $\dFs = -5$~mSv (${+15\%}$).
-\item \textbf{GLORYS12V1}: $\dFv = -9$~mSv (${+11\%}$),
-      $\dFs = -79$~mSv (${+90\%}$).
-\item \textbf{ECCO-V4r4}: $|\dFv + \dFs + \dFc| < 10$~mSv
-      (mechanism ill-defined, no trend to decompose).
+\item \textbf{ORAS5}: $\Delta\Fovs = -32$~mSv; $\dFv = -28$~mSv
+      (${+88\%}$), $\dFs = -5$~mSv (${+15\%}$); class:
+      \emph{v-dominant}.
+\item \textbf{GLORYS12V1}: $\Delta\Fovs = -87$~mSv; $\dFv = -9$~mSv
+      (${+11\%}$), $\dFs = -79$~mSv (${+90\%}$); class:
+      \emph{s-dominant}.
+\item \textbf{SODA 3.15.2}: $\Delta\Fovs = +14$~mSv; $\dFv = +7$~mSv
+      (${+49\%}$), $\dFs = +6$~mSv (${+43\%}$); class: \emph{mixed}.
+      $|\Delta\Fovs|$ sits above the piControl internal-variability
+      median ($2.5\times$) but below its 95th percentile, so the
+      mechanism attribution is formally below the pre-registered
+      signal-to-noise threshold (Supplementary Fig.~S4).
+\item \textbf{ECCO-V4r4}: $|\Delta\Fovs| < 10$~mSv
+      (mechanism \emph{ill-defined}, no resolvable trend to
+      decompose).
 \end{itemize}
 The disagreement is robust to the choice of early/late period windows
 (Supplementary Fig.~S2): across $25$ period-pair choices the ORAS5
