@@ -223,6 +223,7 @@ def save_publication_figure(
     fig: Any,
     path: str | Path,
     formats: list[str] | None = None,
+    bbox_inches: str | None = "tight",
 ) -> None:
     """Save figure in publication-quality formats.
 
@@ -233,6 +234,15 @@ def save_publication_figure(
         Base path (without extension for multi-format).
     formats : list[str]
         File formats to save. Default: ["png", "pdf"].
+    bbox_inches : str or None
+        Passed through to ``fig.savefig``. Defaults to ``"tight"``, which
+        expands the saved canvas to include any artists drawn outside the
+        axes (titles, legends, leader lines from ``adjustText``, ...). Set
+        to ``None`` to preserve the ``figsize`` aspect ratio exactly, at
+        the cost of clipping anything outside the figure bounds. Use
+        ``None`` for figures whose aspect is critical (otherwise leader
+        lines can bloat the canvas into a near-square and LaTeX will
+        render the figure tiny at ``width=0.9\\linewidth``).
     """
     if formats is None:
         formats = ["png", "pdf"]
@@ -240,9 +250,16 @@ def save_publication_figure(
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
 
+    # Resolve special sentinels: None and the string "fixed" both mean
+    # "use the figure's own canvas, don't recompute a tight bbox".
+    if bbox_inches in (None, "fixed"):
+        from matplotlib.transforms import Bbox
+        w, h = fig.get_size_inches()
+        bbox_inches = Bbox([[0, 0], [w, h]])
+
     for fmt in formats:
         out = path.with_suffix(f".{fmt}")
-        fig.savefig(out, format=fmt, dpi=300, bbox_inches="tight")
+        fig.savefig(out, format=fmt, dpi=300, bbox_inches=bbox_inches)
         print(f"Saved: {out}")
 
     plt.close(fig)
