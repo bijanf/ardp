@@ -131,6 +131,11 @@ def main() -> None:
         "--forecast-end", type=int, default=2040,
         help="End year of forecast period (mean over forecast-end-10 to forecast-end)",
     )
+    parser.add_argument(
+        "--fractional", action="store_true",
+        help="Use ΔAMOC/AMOC_baseline as predictand (dimensionless) to remove "
+        "CMIP6 baseline-AMOC bias confounding.",
+    )
     args = parser.parse_args()
     # Adjust forecast period based on --forecast-end
     global FORECAST_PERIOD
@@ -189,7 +194,8 @@ def main() -> None:
         A_fore = _period_mean(a_years, a_vals, FORECAST_PERIOD)
         if not (np.isfinite(X_i) and np.isfinite(A_base) and np.isfinite(A_fore)):
             continue
-        Y_i = A_fore - A_base
+        dY = A_fore - A_base
+        Y_i = (dY / A_base) if args.fractional and A_base > 0 else dY
         rows.append({
             "model": model, "X_i": X_i,
             "A_baseline": A_base, "A_forecast": A_fore, "Y_i": Y_i,
