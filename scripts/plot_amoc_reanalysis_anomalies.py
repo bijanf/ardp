@@ -75,9 +75,11 @@ def _linear_trend_santer(years: np.ndarray, values: np.ndarray) -> tuple[float, 
     # Lag-1 autocorrelation of OLS residuals
     residuals = v - (res.slope * y + res.intercept)
     r1 = _estimate_rho(residuals)
-    # Guard: clip r1 to [0, 0.99] — negative r1 means no correction needed
-    r1 = max(r1, 0.0)
-    # Santer et al. 2000: N_eff = N * (1 - r1) / (1 + r1)
+    # Santer et al. 2000 Eq. 6: N_eff = N * (1 - r1) / (1 + r1).
+    # Negative r1 legitimately yields N_eff > N (series less persistent
+    # than white noise); we follow Santer exactly and do NOT clip to
+    # zero. _estimate_rho already clips r1 to [-0.99, 0.99] to avoid
+    # division blow-up.
     n_eff = max(3, int(n * (1 - r1) / (1 + r1)))
 
     # Re-compute t-statistic with N_eff degrees of freedom (Santer "AdjSE + AdjDF")
@@ -149,9 +151,9 @@ def _linear_trend_gls(years: np.ndarray, values: np.ndarray) -> tuple[float, flo
 
     slope_decade = slope_gls * 10.0
 
-    # Report equivalent N_eff for comparison (using converged rho, clipped ≥ 0)
-    rho_pos = max(rho, 0.0)
-    n_eff = max(3, int(n * (1 - rho_pos) / (1 + rho_pos)))
+    # Report equivalent N_eff for comparison, using the converged rho.
+    # Consistent with Santer et al. 2000 Eq. 6 — no zero-clip on rho.
+    n_eff = max(3, int(n * (1 - rho) / (1 + rho)))
 
     return slope_decade, p_gls, n_eff
 

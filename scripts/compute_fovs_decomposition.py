@@ -300,25 +300,37 @@ def _soda_period_mean(period: tuple[int, int]) -> tuple[np.ndarray, np.ndarray, 
 # Per-product decomposition
 # ═══════════════════════════════════════════════════════════════════════
 
-def process_product(product: str) -> None:
-    log.info(f"=== {product.upper()} F_ovS decomposition ===")
+def process_product(
+    product: str,
+    early_override: tuple[int, int] | None = None,
+    late_override: tuple[int, int] | None = None,
+    tag: str = "",
+) -> None:
+    log.info(f"=== {product.upper()} F_ovS decomposition{' [' + tag + ']' if tag else ''} ===")
+
+    # Per-product window clipping: ECCO ends 2017, SODA ends 2022.
+    product_max = {"oras5": 2025, "glorys12": 2025, "soda": 2022, "ecco": 2017}[product]
+
+    def _clip(window: tuple[int, int]) -> tuple[int, int]:
+        y0, y1 = window
+        return (y0, min(y1, product_max))
+
+    early = _clip(early_override if early_override is not None else EARLY)
+    late = _clip(late_override if late_override is not None else
+                 (2013, 2017) if product == "ecco" else
+                 (2013, 2020) if product == "soda" else
+                 LATE)
 
     if product == "oras5":
-        v1, s1, grid = _oras5_period_mean(Path("data/oras5"), EARLY)
-        v2, s2, _ = _oras5_period_mean(Path("data/oras5"), LATE)
+        v1, s1, grid = _oras5_period_mean(Path("data/oras5"), early)
+        v2, s2, _ = _oras5_period_mean(Path("data/oras5"), late)
     elif product == "glorys12":
-        v1, s1, grid = _glorys12_period_mean(Path("data/glorys12"), EARLY)
-        v2, s2, _ = _glorys12_period_mean(Path("data/glorys12"), LATE)
+        v1, s1, grid = _glorys12_period_mean(Path("data/glorys12"), early)
+        v2, s2, _ = _glorys12_period_mean(Path("data/glorys12"), late)
     elif product == "ecco":
-        # ECCO 1992-2017: early 1993-2005 vs late 2013-2017 (truncated)
-        early = EARLY  # 1993-2005
-        late = (2013, 2017)  # ECCO ends 2017
         v1, s1, grid = _ecco_period_mean(Path("data/ecco"), early)
         v2, s2, _ = _ecco_period_mean(Path("data/ecco"), late)
     elif product == "soda":
-        # SODA 1980-2022: early 1993-2005 vs late 2013-2020 (SODA data ends 2022)
-        early = EARLY  # 1993-2005
-        late = (2013, 2020)
         v1, s1, grid = _soda_period_mean(early)
         v2, s2, _ = _soda_period_mean(late)
     else:
@@ -335,13 +347,15 @@ def process_product(product: str) -> None:
         e1t_atl=grid["e1t_atl"], e3t=grid["e3t"], s0=S0,
     )
 
-    log.info(f"F_ov({EARLY[0]}-{EARLY[1]}) = {result['F_ov_1']:+.4f} Sv")
-    log.info(f"F_ov({LATE[0]}-{LATE[1]})  = {result['F_ov_2']:+.4f} Sv")
+    log.info(f"F_ov({early[0]}-{early[1]}) = {result['F_ov_1']:+.4f} Sv")
+    log.info(f"F_ov({late[0]}-{late[1]})  = {result['F_ov_2']:+.4f} Sv")
     log.info(f"ΔF_total   = {result['delta_total']:+.4f} Sv")
     log.info(f"  ΔF_v     = {result['delta_v']:+.4f} Sv  (velocity-driven)")
     log.info(f"  ΔF_s     = {result['delta_s']:+.4f} Sv  (salinity-driven)")
     log.info(f"  ΔF_cross = {result['delta_cross']:+.4f} Sv  (covariance)")
     log.info(f"  residual = {result['residual']:.2e} Sv  (~0 = decomposition exact)")
+    log.info(f"  v_bar    = {result['v_bar_1']:+.5f} / {result['v_bar_2']:+.5f} m/s")
+    log.info(f"  V_net    = {result['V_net_1_Sv']:+.3f} / {result['V_net_2_Sv']:+.3f} Sv")
 
     # Which mechanism dominates?
     v_frac = 100 * result['delta_v'] / result['delta_total'] if result['delta_total'] != 0 else 0
@@ -350,7 +364,8 @@ def process_product(product: str) -> None:
 
     # Save
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULTS_DIR / f"fovs_decomposition_{product}.nc"
+    suffix = f"_{tag}" if tag else ""
+    out = RESULTS_DIR / f"fovs_decomposition_{product}{suffix}.nc"
 
     ds = xr.Dataset(
         data_vars={
@@ -361,8 +376,9 @@ def process_product(product: str) -> None:
         coords={"depth": grid["depth"]},
         attrs={
             "product": product,
-            "early_period": f"{EARLY[0]}-{EARLY[1]}",
-            "late_period": f"{LATE[0]}-{LATE[1]}",
+            "window_tag": tag,
+            "early_period": f"{early[0]}-{early[1]}",
+            "late_period": f"{late[0]}-{late[1]}",
             "section_latitude": grid["actual_lat"],
             "F_ov_early_Sv": result["F_ov_1"],
             "F_ov_late_Sv": result["F_ov_2"],
@@ -371,6 +387,10 @@ def process_product(product: str) -> None:
             "delta_s_Sv": result["delta_s"],
             "delta_cross_Sv": result["delta_cross"],
             "residual_Sv": result["residual"],
+            "v_bar_early_ms": result["v_bar_1"],
+            "v_bar_late_ms": result["v_bar_2"],
+            "V_net_early_Sv": result["V_net_1_Sv"],
+            "V_net_late_Sv": result["V_net_2_Sv"],
             "reference_salinity_PSU": S0,
         },
     )
@@ -378,17 +398,39 @@ def process_product(product: str) -> None:
     log.info(f"Saved: {out}")
 
 
+def _parse_window(s: str | None) -> tuple[int, int] | None:
+    if s is None:
+        return None
+    y0, y1 = s.split("-")
+    return (int(y0), int(y1))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--product", choices=["oras5", "glorys12", "ecco", "soda", "all"], default="all",
     )
+    parser.add_argument(
+        "--early", default=None,
+        help="Override early period, e.g. '2006-2012'. Per-product end-year clipping still applies.",
+    )
+    parser.add_argument(
+        "--late", default=None,
+        help="Override late period, e.g. '2018-2024'. Per-product end-year clipping still applies.",
+    )
+    parser.add_argument(
+        "--tag", default="",
+        help="Suffix for output files (e.g. 'postargo'). Leave blank for the default pre-registered window.",
+    )
     args = parser.parse_args()
+
+    early = _parse_window(args.early)
+    late = _parse_window(args.late)
 
     products = ["oras5", "glorys12", "ecco", "soda"] if args.product == "all" else [args.product]
     for p in products:
         try:
-            process_product(p)
+            process_product(p, early_override=early, late_override=late, tag=args.tag)
         except Exception as e:
             log.error(f"{p}: {e}")
 

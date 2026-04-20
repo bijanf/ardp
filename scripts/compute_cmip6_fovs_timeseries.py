@@ -20,6 +20,7 @@ import numpy as np
 import xarray as xr
 
 from ardp.constants import ATLANTIC_LON_MAX, ATLANTIC_LON_MIN, S0
+from ardp.physics.fovs import compute_fovs_from_section
 
 
 def _get_lon_and_depth(ds: xr.Dataset) -> tuple[np.ndarray, np.ndarray]:
@@ -141,24 +142,9 @@ def compute_fovs_section(
             v_section = v_full[:, atlantic_mask]
             s_section = s_full[:, atlantic_mask]
 
-            nz = v_section.shape[0]
-            total = 0.0
-
-            for k in range(nz):
-                ocean = ~np.isnan(s_section[k, :])
-                if ocean.sum() == 0:
-                    continue
-
-                v_k = np.where(ocean, np.nan_to_num(v_section[k, :], nan=0.0), 0.0)
-                v_int = (v_k * e1t_atl).sum()
-
-                e1t_ocean = np.where(ocean, e1t_atl, 0.0)
-                s_k = np.nan_to_num(s_section[k, :], nan=0.0)
-                s_mean = (s_k * e1t_ocean).sum() / e1t_ocean.sum()
-
-                total += v_int * (s_mean - S0) * e3t[k]
-
-            fovs_values[t] = -(1.0 / S0) * total / 1e6
+            fovs_values[t] = compute_fovs_from_section(
+                v_section, s_section, e1t_atl, e3t, s0=S0,
+            )
 
         except Exception:
             continue
