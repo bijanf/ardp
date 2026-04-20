@@ -89,6 +89,51 @@ def test_land_mask_respected():
     assert abs(result["residual"]) < 1e-10
 
 
+def test_pure_barotropic_drift_gives_zero_delta():
+    """Uniform velocity offset between periods (pure barotropic drift)
+    must give ΔF_ov = 0 after barotropic correction.
+
+    This is the test that distinguishes the physically-correct kernel
+    (with section-mean subtraction) from the naive formulation that
+    injects a spurious trend whenever a DA product's net volume
+    transport drifts between periods.
+    """
+    v1, s = _make_section(seed=42)
+    e1t, e3t = _grid()
+
+    # Uniform 1 cm/s velocity offset added everywhere (barotropic drift)
+    v2 = v1 + 0.01
+
+    # Direct kernel: F_ov_1 == F_ov_2 once barotropic is removed
+    f1 = compute_fovs_from_section(v1, s, e1t, e3t)
+    f2 = compute_fovs_from_section(v2, s, e1t, e3t)
+    assert abs(f2 - f1) < 1e-12, (
+        f"Pure barotropic drift should give ΔF=0 but got {f2 - f1:.6e} Sv"
+    )
+
+    # Decomposition: all three components individually must be zero
+    result = decompose_fovs_trend(v1, s, v2, s, e1t, e3t)
+    assert abs(result["delta_total"]) < 1e-12
+    assert abs(result["delta_v"]) < 1e-12
+    assert abs(result["delta_s"]) < 1e-12
+    assert abs(result["delta_cross"]) < 1e-12
+
+    # The diagnostic v_bar fields should record the drift
+    assert abs(result["v_bar_2"] - result["v_bar_1"] - 0.01) < 1e-12
+
+
+def test_barotropic_correction_diagnostic_fields():
+    """Decomposition output exposes v_bar and V_net per period."""
+    v1, s1 = _make_section(seed=11)
+    v2, s2 = _make_section(seed=12, v_scale=0.03)
+    e1t, e3t = _grid()
+
+    result = decompose_fovs_trend(v1, s1, v2, s2, e1t, e3t)
+    for key in ("v_bar_1", "v_bar_2", "V_net_1_Sv", "V_net_2_Sv"):
+        assert key in result
+        assert np.isfinite(result[key])
+
+
 def test_profile_shapes():
     """per-depth profiles have the expected shape (nz,)."""
     nz = 15

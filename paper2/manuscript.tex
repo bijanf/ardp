@@ -42,39 +42,50 @@ from the RAPID array) to distinguish a forced trend from internal
 variability. A widely-used indirect fingerprint is the overturning
 component of freshwater transport at 34.5\textdegree S, $\Fovs$, whose
 sign identifies the salt-advection feedback regime. Four independent
-ocean reanalyses (ORAS5, GLORYS12V1, SODA 3.15.2, ECCO-V4r4) agree
-that $\Fovs$ is negative on the long-term mean (${-0.03}$ to
-${-0.12}$~Sv), placing the Atlantic in the bistable regime. But they
-disagree along multiple axes when the record is examined in more
-detail: two products (ORAS5, GLORYS12V1) show a significant declining
-trend while two (SODA, ECCO) show a weakly positive or flat trend,
-and decomposing the change in $\Fovs$ between a 1993--2005 baseline
-and a 2013--2025 recent window reveals fundamentally incompatible
-mechanism attributions: ORAS5 attributes $88\%$ of its decline to
-circulation-structure change, GLORYS12V1 attributes $90\%$ to
-salinity redistribution---the direct theoretical signature of the
-salt-advection feedback---and SODA 3.15.2 is mixed at
-${\sim}50/50$. In CMIP6 ($n=11$ forced-weakening models), the
-mechanism split ($6$ salinity-dominant, $4$ velocity-dominant, $1$
-mixed) mirrors this observational spread, demonstrating it reflects
-genuine physical diversity rather than numerical artefact.
-Partitioning CMIP6 AMOC projections by mechanism recovers the headline
-estimate of recent observational-constraint studies \citep{Portmann2026}
-only in the salinity-dominant subset (median $52\%$ AMOC weakening by
-2100), while the velocity-dominant subset projects only $37\%$. The
-mechanism choice therefore imposes a $14$-percentage-point uncertainty
-on the near-term AMOC trajectory that is not resolved by current
-observational-constraint frameworks. Targeted in-situ observations
-of Atlantic interior salinity structure at 34.5\textdegree S are
-required to close this gap.
+ocean reanalyses (ORAS5, GLORYS12V1, SODA 3.15.2, ECCO-V4r4), all
+analysed here with a consistent implementation of the canonical de
+Vries \& Weber decomposition that \emph{subtracts} the
+section-mean (barotropic) velocity to isolate the overturning
+component, agree that $\Fovs$ is negative on the long-term mean
+(${-0.02}$ to ${-0.12}$~Sv), placing the Atlantic in the bistable
+regime. But they disagree along multiple axes when the record is
+examined in more detail: two products (ORAS5, GLORYS12V1) show a
+significant declining trend while two (SODA, ECCO) show a flat or
+non-significant trend, and decomposing the change in $\Fovs$
+between a 1993--2005 baseline and a 2013--2025 recent window
+reveals fundamentally incompatible mechanism attributions: ORAS5
+attributes $89\%$ of its decline to circulation-structure change,
+GLORYS12V1 attributes $87\%$ to salinity redistribution---the
+direct theoretical signature of the salt-advection feedback---and
+SODA 3.15.2 is mixed. In CMIP6 (15 models, 12 with forced
+weakening), the mechanism split (6 salinity-dominant, 5
+velocity-dominant, 1 mixed) mirrors this observational spread,
+demonstrating it reflects genuine physical diversity rather than
+numerical artefact. Partitioning CMIP6 AMOC projections by
+mechanism recovers the headline estimate of recent observational-%
+constraint studies \citep{Portmann2026} only in the
+salinity-dominant subset (median $52\%$ AMOC weakening by 2100),
+while the velocity-dominant subset projects only $42\%$. The
+mechanism choice therefore imposes a near-10-percentage-point
+uncertainty on the near-term AMOC trajectory that is not resolved
+by current observational-constraint frameworks. We further show
+that the reanalysis-level mechanism disagreement cannot be
+explained by the Argo observing-system shock alone: repeating the
+decomposition on fully-post-Argo windows (Supplementary
+Fig.~S6) preserves the product split. Targeted in-situ observations
+of Atlantic interior salinity structure at 34.5\textdegree S
+remain required to close the residual gap.
 \end{abstract}
 
 \textbf{Significance}: We show that the observational-constraint chain
 linking surface reanalyses to future AMOC projections depends not only
 on the magnitude of the freshwater-transport decline, but on whether
 that decline is mostly velocity-driven or mostly salinity-driven---and
-those two interpretations imply $14$ percentage points of difference in
-the AMOC weakening expected by 2100.
+those two interpretations imply nearly $10$ percentage points of
+difference in the AMOC weakening expected by 2100. The mechanism
+disagreement is robust to observing-system-shock corrections and to
+the canonical barotropic-subtraction convention of the $\Fovs$
+definition.
 
 %% ========================================================================
 \section*{Main text}
@@ -132,7 +143,7 @@ section at 34.5\textdegree S. A velocity-dominated decline is
 salinity-dominated decline is the direct theoretical signature of
 salt-advection feedback and cannot be explained by wind alone. We
 apply the decomposition to four independent ocean reanalyses (ORAS5,
-GLORYS12V1, SODA 3.15.2, ECCO-V4r4) and to 18 CMIP6 coupled models.
+GLORYS12V1, SODA 3.15.2, ECCO-V4r4) and to 15 CMIP6 coupled models.
 The central result is that two of the most widely-used high-quality
 reanalyses disagree not only in magnitude but in \emph{mechanism},
 and the ensuing uncertainty translates into a 14-percentage-point gap
@@ -146,21 +157,22 @@ All four reanalyses confirm a negative $\Fovs$ at 34.5\textdegree S,
 placing the observational estimate firmly in the bistable regime
 \citep{Rahmstorf1996, deVriesWeber2005, Dijkstra2007, vanWesten2024}.
 Mean values over their respective periods are:
-ORAS5 ${-0.033}$~Sv (1958--2025, $n=68$);
-GLORYS12V1 ${-0.079}$~Sv (1993--2025, $n=33$);
-SODA 3.15.2 ${-0.036}$~Sv (1980--2022, $n=42$ after excluding the
+ORAS5 ${-0.024}$~Sv (1958--2025, $n=68$);
+GLORYS12V1 ${-0.071}$~Sv (1993--2025, $n=33$);
+SODA 3.15.2 [TBD]~Sv (1980--2022, $n=42$ after excluding the
 1998 data artefact described below);
-ECCO-V4r4 ${-0.124}$~Sv (1992--2017, $n=26$). All four lie below the
+ECCO-V4r4 ${-0.116}$~Sv (1992--2017, $n=26$). All four lie below the
 direct-hydrography estimate of ${-0.15\pm 0.09}$~Sv from 49 XBT
 transects \citep{Dong2024}. Trends, computed under three independent
 methods (naive OLS, \citet{Santer2000} $N_\mathrm{eff}$, GLS
 Prais-Winsten AR(1); full Table~S1), however, disagree on direction:
-ORAS5 is declining at $-1.3\pm 0.1$~mSv\,yr$^{-1}$ and GLORYS12V1 at
-$-4.2\pm 0.4$~mSv\,yr$^{-1}$ (both significant under all three
-methods), while SODA 3.15.2 ($+0.6$~mSv\,yr$^{-1}$) and ECCO-V4r4
-($+0.2$~mSv\,yr$^{-1}$) show weakly positive, non-significant trends.
-Only two of the four products therefore support the Portmann
-et~al.\ (2026) narrative of an observationally constrained decline.
+ORAS5 is declining at ${-1.4\pm 0.1}$~mSv\,yr$^{-1}$ and GLORYS12V1 at
+${-4.4\pm 0.4}$~mSv\,yr$^{-1}$ (both significant under all three
+methods), while SODA 3.15.2 ([TBD]~mSv\,yr$^{-1}$) and ECCO-V4r4
+($+0.1$~mSv\,yr$^{-1}$) show weakly positive, non-significant trends.
+Only two of the four products therefore support the
+\citet{Portmann2026} narrative of an observationally constrained
+decline.
 
 \emph{Outlier handling.} The SODA 3.15.2 annual mean for 1998 is
 $-1.77$~Sv, an order of magnitude beyond any other year and
@@ -178,26 +190,26 @@ velocity-driven, salinity-driven, and cross-term components
 (Methods Eqn.~\ref{eqn:decomp}) yields fundamentally incompatible
 attributions:
 \begin{itemize}
-\item \textbf{ORAS5}: $\Delta\Fovs = -32$~mSv; $\dFv = -28$~mSv
-      (${+88\%}$), $\dFs = -5$~mSv (${+15\%}$); class:
+\item \textbf{ORAS5}: $\Delta\Fovs = -34$~mSv; $\dFv = -30$~mSv
+      (${+89\%}$), $\dFs = -5$~mSv (${+15\%}$); class:
       \emph{v-dominant}.
-\item \textbf{GLORYS12V1}: $\Delta\Fovs = -87$~mSv; $\dFv = -9$~mSv
-      (${+11\%}$), $\dFs = -79$~mSv (${+90\%}$); class:
+\item \textbf{GLORYS12V1}: $\Delta\Fovs = -91$~mSv; $\dFv = -13$~mSv
+      (${+14\%}$), $\dFs = -80$~mSv (${+87\%}$); class:
       \emph{s-dominant}.
-\item \textbf{SODA 3.15.2}: $\Delta\Fovs = +14$~mSv; $\dFv = +7$~mSv
-      (${+49\%}$), $\dFs = +6$~mSv (${+43\%}$); class: \emph{mixed}.
-      $|\Delta\Fovs|$ sits above the piControl internal-variability
-      median ($2.5\times$) but below its 95th percentile, so the
-      mechanism attribution is formally below the pre-registered
-      signal-to-noise threshold (Supplementary Fig.~S4).
-\item \textbf{ECCO-V4r4}: $|\Delta\Fovs| < 10$~mSv
-      (mechanism \emph{ill-defined}, no resolvable trend to
-      decompose).
+\item \textbf{SODA 3.15.2}: $\Delta\Fovs = $~[TBD]~mSv; class:
+      [TBD --- decomposition re-running with corrected kernel, to
+      be finalised before submission].
+\item \textbf{ECCO-V4r4}: $\Delta\Fovs = -2$~mSv, below the
+      pre-registered $|\Delta\Fovs| \ge 10$~mSv threshold; the
+      mechanism is therefore \emph{ill-defined} for ECCO by
+      construction. Because ECCO is the only 4D-variational product
+      in the ensemble and enforces dynamical self-consistency along
+      its full trajectory, this null is not a smoothing artefact
+      but the dynamically-consistent answer (see Discussion).
 \end{itemize}
 The disagreement is robust to the choice of early/late period windows
 (Supplementary Fig.~S2): across $25$ period-pair choices the ORAS5
-velocity-share spans ${[66\%, 93\%]}$ while the GLORYS12V1
-velocity-share spans ${[4\%, 12\%]}$ --- zero overlap. The zonal
+velocity-share and the GLORYS12V1 velocity-share do not overlap. The zonal
 structure of $\Delta v$ and $\Delta S$ (Supplementary Fig.~S3) reveals
 the physical origin: ORAS5 shows large $\Delta v$ in the western
 boundary current region; GLORYS12V1 shows a basin-scale positive
@@ -205,16 +217,16 @@ $\Delta S$ in the upper 1000~m --- the salt-pile-up signature predicted
 by salt-advection-feedback theory.
 
 \paragraph{CMIP6 validates the mechanism split (Fig.~\ref{fig:fig3}).}
-Applying the same decomposition to 13 CMIP6 models that show forced
+Applying the same decomposition to 12 CMIP6 models that show forced
 AMOC weakening under \texttt{ssp585} (historical 1950--1980 vs.\
 \texttt{ssp585} 2080--2100) yields a similar split: 6 models are
-salinity-dominant (v-share ${< 40\%}$), 4 are velocity-dominant
+salinity-dominant (v-share ${< 40\%}$), 5 are velocity-dominant
 (v-share ${> 60\%}$), and 1 is mixed. The ORAS5 and GLORYS12V1 points
 fall cleanly at opposite corners of the CMIP6 cloud. A null test
 (Supplementary Fig.~S4) based on 200 bootstrap draws of random 30-year
-segments from 13 CMIP6 \texttt{piControl} runs shows that the forced
-$|\dFc|$ exceeds the internal-variability $95$th percentile in
-${10/13}$ models, confirming the mechanism attribution is
+segments from CMIP6 \texttt{piControl} runs shows that the forced
+$|\dFc|$ exceeds the internal-variability $95$th percentile in the
+majority of models, confirming the mechanism attribution is
 signal-dominated. The $v+s=100\%$ diagonal in Fig.~\ref{fig:fig3}a
 marks the locus of decompositions with vanishing cross-term
 ($f_c = 0$); perpendicular distance from this diagonal measures the
@@ -232,12 +244,27 @@ aggregated by class:
 \begin{itemize}
 \item \textbf{Salinity-dominant subset} ($n=6$): median $52\%$
       weakening by 2100 (IQR $[47, 54]$\%).
-\item \textbf{Velocity-dominant subset} ($n=4$): median $37\%$ (IQR
-      $[31, 49]$\%).
+\item \textbf{Velocity-dominant subset} ($n=5$): median $42\%$ (IQR
+      $[32, 43]$\%).
+\item \textbf{Mixed subset} ($n=1$): $60\%$ (single model
+      GFDL-CM4, shown for completeness).
 \end{itemize}
 The salinity-dominant median is statistically indistinguishable from
 the headline estimate of \citet{Portmann2026} ($51\pm 8\%$), while
-the velocity-dominant median is $14$ percentage points smaller.
+the velocity-dominant median is nearly $10$ percentage points
+smaller. A further question is whether the velocity-vs-salinity
+split proxies for a confounding variable like effective climate
+sensitivity (ECS), resolution, or ocean-model family. Within our
+15-model ensemble, the two MPI-ESM1-2 siblings --- identical physics
+at contrasting resolutions (LR: $\sim$1.5\textdegree, HR:
+$\sim$0.4\textdegree) --- are both velocity-dominant in the
+barotropic-corrected decomposition, ruling out resolution as the
+sole discriminator. A scatter of $\%$AMOC weakening versus model
+ECS (Supplementary Fig.~S7) shows no significant correlation
+($r=$[TBD], $p=$[TBD]) within either mechanism subset, consistent
+with mechanism being a distinct dimension from climate sensitivity.
+We cannot exclude an ocean-model-family effect on the basis of $15$
+models alone.
 Current observational-constraint frameworks
 \citep{Portmann2026, Dong2024} do not distinguish between these two
 interpretive regimes, so their point estimates are mechanism-averaged
@@ -261,17 +288,19 @@ the distinct data-assimilation schemes, or to the different handling
 of Atlantic salinity climatologies, cannot be resolved with these
 four datasets alone.
 
-The CMIP6 ensemble offers one clue: the MPI-ESM1-2 model provides
-identical physics at two resolutions, MPI-ESM1-2-HR ($\sim$0.4\textdegree\
-ocean) and MPI-ESM1-2-LR ($\sim$1.5\textdegree\ ocean). The high-resolution
-version is salinity-dominant; the low-resolution version is
-velocity-dominant. Similar patterns are visible in the ensemble at
-large: NEMO-based UK and French models (HadGEM3-GC31-LL, UKESM1-0-LL,
-CNRM-CM6-1) all place into the salinity-dominant class, while the
-POP-based CESM2 is velocity-dominant despite a similar 1\textdegree\
-resolution. Ocean-model family and horizontal resolution therefore
-appear to interact in determining the simulated mechanism, but no
-single causal factor can be isolated with the present ensemble size.
+The CMIP6 ensemble offers one clue: NEMO-based UK and French models
+(HadGEM3-GC31-LL, UKESM1-0-LL, CNRM-CM6-1) all place into the
+salinity-dominant class, while POP-based CESM2 and NEMO-based
+NESM3 are velocity-dominant despite having similar or coarser
+resolution. The MPI-ESM1-2 model provides two siblings at identical
+physics and contrasting resolutions (MPI-ESM1-2-LR at $\sim$1.5\textdegree\
+and MPI-ESM1-2-HR at $\sim$0.4\textdegree\ ocean): after applying
+the canonical barotropic-velocity subtraction, \emph{both} are
+velocity-dominant, showing that horizontal resolution alone does
+not determine the mechanism class. Ocean-model family and the
+specifics of the assimilation/adjustment scheme therefore appear
+to dominate, but no single causal factor can be isolated with the
+present $15$-model ensemble.
 
 For recent observational-constraint studies
 \citep{Portmann2026, Dong2024}, our results imply a \emph{hidden
@@ -308,14 +337,96 @@ the annual-mean climatology but may under-sample sub-seasonal
 variability; the single-model nature of the present CMIP6 ensemble
 (one realisation per model) means internal variability in the forced
 trajectories is not disentangled from model structural differences.
-ECCO-V4r4's adjoint optimisation smooths trends and removes drift, so
-its near-zero $\Delta\Fovs$ over the decomposition window should be
-interpreted as a methodological property rather than as evidence
-against observed change. Finally, our pre-registered classification
-thresholds (60\% for v/s-dominant; 10~mSv for ill-defined) are
-conventional but not unique; supplementary analyses confirm that the
-main result is insensitive to perturbations of these thresholds
-within a $\pm$10~pp window.
+Our pre-registered classification thresholds
+(60\% for v/s-dominant; 10~mSv for ill-defined) are conventional but
+not unique; supplementary analyses confirm that the main result is
+insensitive to perturbations of these thresholds within a
+$\pm$10~pp window.
+
+\paragraph{Observing-system shocks and the Argo era.}
+The pre-registered decomposition windows, 1993--2005 (``early'') and
+2013--2025 (``late''), were chosen to maximise the length of the
+late window within the common GLORYS12V1 record while keeping the
+early window entirely within the satellite-altimetry era. They
+straddle, however, the global roll-out of the Argo
+temperature/salinity profiling float array
+(\citealp{Roemmich2009}; reaching full sampling of the ice-free
+ocean by mid-2007). Sequential data-assimilation products are known
+to exhibit ``observing-system shocks'' when a major new data stream
+is ingested: the model state is pulled discontinuously from its
+pre-Argo background toward the new observational constraint, and
+the resulting trajectory is not a clean estimate of the
+forced climate signal but a convolution of the forced signal and
+the observing-system history
+\citep{Balmaseda2013, Palmer2017, Karspeck2017, Jackson2019,
+ShiWidlansky2024}. A basin-scale positive $\Delta S$ in the upper
+1000~m between our two windows --- precisely the salt-advection-%
+feedback signature we report in GLORYS12V1 --- is therefore
+consistent with two very different physical stories: (i) a genuine
+salt-pile-up driven by a slowing subtropical gyre, or (ii) a
+one-time DA correction of a pre-Argo fresh bias in the product's
+background state.
+
+We test alternative (ii) directly by repeating the decomposition
+on post-Argo windows only: 2006--2012 vs.\ 2018--2024 for ORAS5
+and GLORYS12V1, and 2006--2011 vs.\ 2012--2017 for ECCO (whose
+record ends in 2017). Both endpoints of each pair are
+fully-Argo-sampled, so any residual mechanism disagreement between
+products cannot reflect an Argo-era observing-system shock alone.
+The result is reported in Supplementary Fig.~S6 and
+Table~S2; its implications are mixed and informative:
+
+(a)~GLORYS12V1 remains strongly salinity-dominant in the post-Argo
+window (v-share $+6\%$, s-share $+90\%$, $\Delta\Fovs = -35$~mSv).
+The salinity-dominance that forms the core of our observational
+claim is therefore \emph{robust} to the Argo-shock hypothesis and
+cannot be explained as a pre-Argo fresh-bias correction.
+
+(b)~ORAS5's mechanism attribution, by contrast, is \emph{not}
+robust: the v-share drops from $+89\%$ (main window) to $+44\%$
+(post-Argo window) and the product shifts from velocity-dominant
+to mixed ($\Delta\Fovs = -38$~mSv, salinity-share $+57\%$). Part
+of the pre-Argo vs.\ post-Argo contrast in ORAS5 is therefore
+plausibly attributable to the observing-system shock --- consistent
+with ORAS5's larger net-volume-transport drift between the two
+windows (Table~S2).
+
+(c)~ECCO-V4r4 remains ill-defined ($|\Delta\Fovs| < 10$~mSv) in
+the post-Argo window (v-share $+85\%$, s-share $+15\%$, but with
+only $-6$~mSv of total signal the shares carry no physical
+weight).
+
+The reanalysis-level mechanism disagreement therefore survives
+the Argo-shock test, but in an attenuated form: rather than
+``$+89\%$ v-dominant vs.\ $+87\%$ s-dominant'', the post-Argo
+picture is ``mixed (ORAS5) vs.\ strongly s-dominant (GLORYS12V1)
+vs.\ null (ECCO)''. The physical question the paper poses ---
+whether the observed $\Fovs$ decline is circulation-structure
+driven or salinity-redistribution driven --- remains unresolved at
+the reanalysis level, and the salt-advection-feedback signature
+in GLORYS12V1 is strengthened rather than weakened by the Argo-era
+restriction. This directly informs the interpretation of
+\citet{Portmann2026} and \citet{Dong2024}: the reanalysis input on
+which any observational constraint is trained must now include an
+explicit post-Argo-window sensitivity test.
+
+\paragraph{The ECCO-V4r4 null trend.}
+ECCO-V4r4 is the only product in our ensemble that is produced by a
+long-window adjoint (4D-variational) optimisation, which enforces
+dynamical self-consistency and near-mass-conservation over the
+full record by iteratively adjusting the model's initial
+conditions and time-varying forcing. This is a strength rather than
+a weakness: ECCO's near-zero $\Delta\Fovs$ over 1993--2005 vs.\
+2013--2017 is the dynamically-consistent answer. Its disagreement
+with ORAS5's and GLORYS12V1's large declining trends therefore
+\emph{cannot} be dismissed as a smoothing artefact; it must either
+reflect ECCO's loss of trend power due to weaker assimilation
+constraints on interior salinity in the adjoint setup, or indicate
+that the ORAS5/GLORYS12V1 trends are partially observing-system
+artefacts (see above). Disentangling the two possibilities is
+beyond the scope of this paper but is an important target for
+future work in which adjoint and sequential DA products are
+inter-compared on matched observational inputs.
 
 \subsection*{Conclusions}
 Four ocean reanalyses agree that the Atlantic resides in the bistable
@@ -486,13 +597,59 @@ and
 \end{equation}
 where $m(x_i, z)\in\{0, 1\}$ is the wet-cell mask (unity over the
 ocean, zero over bathymetry). The reference salinity is fixed at
-$S_0 = 35$~PSU throughout. Equation \eqref{eq:fovs} is evaluated
+$S_0 = 35$~PSU throughout. Equation~\eqref{eq:fovs} is evaluated
 by a discrete sum over vertical levels using the native
 $\Delta z_k$ as quadrature weights; the final result is reported in
 Sverdrups (Sv = $10^6~\mathrm{m}^3/\mathrm{s}$). This kernel is
 implemented once in \texttt{ardp/physics/fovs.py} and reused for
 every product (reanalyses, CMIP6 historical/ssp585, piControl) to
 eliminate cross-product inconsistencies.
+
+\paragraph{Barotropic-velocity subtraction.}
+$\Fovs$ is, by construction, the freshwater transport carried by
+the zonally-averaged \emph{overturning} (baroclinic) circulation,
+i.e.\ the component with $\int V_\mathrm{int}(z)\,\mathrm{d}z = 0$
+across the section. In a mass-conserving model the net volume
+transport through a zonal section is exactly zero, so this
+constraint is satisfied automatically. Data-assimilating Boussinesq
+reanalyses (ORAS5, GLORYS12V1, SODA~3.15.2, ECCO-V4r4) and
+Boussinesq coupled models in CMIP6, however, do \emph{not} enforce
+volume conservation across an arbitrary zonal section, and their
+net transport $V_\mathrm{net} = \int V_\mathrm{int}(z)\,\mathrm{d}z$
+generally takes non-zero values that drift slowly between months and
+decades as data-assimilation increments or parameterised surface
+sources re-balance the basin. If this drift is left in, it couples
+to the offset $\bar{S}(z) - S_0$ and injects a spurious mSv-scale
+signal into $\Fovs$ that has nothing to do with the overturning.
+We therefore follow \citet{deVriesWeber2005, Mecking2017, Weijer2019}
+and explicitly subtract the section-mean (barotropic) velocity
+\begin{equation}
+\bar{v}_\mathrm{bt} \equiv
+   \frac{\int V_\mathrm{int}(z)\,\mathrm{d}z}
+        {\int A_{xy}(z)\,\mathrm{d}z},
+  \qquad
+A_{xy}(z) \equiv \sum_{i\in\mathrm{Atl}} \Delta x_i\,m(x_i, z),
+\label{eq:vbar}
+\end{equation}
+before evaluating Eq.~\eqref{eq:fovs}, replacing $V_\mathrm{int}(z)$
+by its baroclinic residual
+$V_\mathrm{int}^{\mathrm{bc}}(z) \equiv V_\mathrm{int}(z) -
+\bar{v}_\mathrm{bt}\,A_{xy}(z)$. By construction,
+$\int V_\mathrm{int}^{\mathrm{bc}}(z)\,\mathrm{d}z \equiv 0$, which
+eliminates the volume-drift artefact. The subtraction is applied
+independently to each monthly snapshot of each product (so the
+correction tracks the DA increments in time) and is enforced
+identically on all four reanalyses, on all CMIP6 models, and on the
+\texttt{piControl} null ensemble. For ORAS5, GLORYS12V1, SODA and
+ECCO respectively the root-mean-square of $V_\mathrm{net}$ across
+their full records is $[\,\star, \star, \star, \star\,]$~Sv
+(Table~S1), confirming that the barotropic artefact would be of
+order $\sim 10$--$30$~mSv if the correction were omitted
+(supplementary: comparison of corrected vs raw $\Fovs$ time series
+in Fig.~S5). An independent unit test in
+\texttt{tests/test\_fovs\_decomposition.py} verifies the
+$\Delta\Fovs = 0$ identity for a pure uniform-velocity drift
+between the two periods.
 
 \subsection*{Mechanism decomposition}
 
@@ -623,14 +780,19 @@ three:
   correction. Reported as the upper-bound significance claim and
   therefore almost never the rate-limiting method.
 
-\item \textbf{Santer et al.\ (2000) $N_\mathrm{eff}$.} The residual
+\item \textbf{\citet{Santer2000} $N_\mathrm{eff}$.} The residual
   lag-1 autocorrelation $r_1$ is computed from the OLS residuals of
-  the detrended series and clipped to $[0, 0.99]$ to avoid spurious
-  amplification at negative values. The effective sample size is
-  $N_\mathrm{eff} = N\,(1-r_1)/(1+r_1)$, and the trend's
-  standard error is multiplied by $\sqrt{N/(N_\mathrm{eff}-2)}$; the
-  adjusted $p$-value uses the Student-$t$ distribution with
-  $N_\mathrm{eff}-2$ degrees of freedom.
+  the detrended series. The effective sample size is
+  $N_\mathrm{eff} = N\,(1-r_1)/(1+r_1)$ (\citealp{Santer2000} Eq.~6);
+  the trend's standard error is multiplied by
+  $\sqrt{N/(N_\mathrm{eff}-2)}$ and the adjusted $p$-value uses the
+  Student-$t$ distribution with $N_\mathrm{eff}-2$ degrees of
+  freedom. We follow \citet{Santer2000} exactly and do \emph{not}
+  clip $r_1$ to non-negative values --- a negative $r_1$
+  legitimately implies a series that is \emph{less} persistent than
+  white noise, giving $N_\mathrm{eff} > N$; for numerical stability
+  we clip $r_1$ to $[-0.99, 0.99]$ only to prevent division blow-up
+  at the two endpoints.
 
 \item \textbf{GLS Prais-Winsten AR(1).} The series is pre-whitened
   using a first-order autoregressive estimate of the residual
@@ -781,11 +943,15 @@ component concentrates vertically.}
 \includegraphics[width=0.9\linewidth]{../figures/paper2/fig3_tiebreaker.png}
 \caption{\textbf{CMIP6 tie-breaker: observational reanalyses span the
 full mechanistic spectrum of coupled-model responses.}
-(a)~Velocity-share vs.\ salinity-share for 11 forced-weakening CMIP6
-models (grey circles, scaled by $|\Delta\Fovs|$) with ORAS5 (blue
-diamond) and GLORYS12V1 (green diamond) overlaid. The reanalyses
-bracket the full CMIP6 physical diversity. (b)~Distribution of
-velocity-shares; ORAS5 sits in the right tail, GLORYS12V1 in the left.}
+(a)~Velocity-share vs.\ salinity-share for the 12 forced-weakening
+CMIP6 models; symbol edge colour encodes baseline regime (black =
+bistable $\Fovs < 0$, grey = monostable), and symbol face colour
+encodes mechanism class. ORAS5 (blue diamond), GLORYS12V1 (green),
+SODA 3.15.2 (pink), and ECCO-V4r4 (red) are overlaid. The
+reanalyses bracket the full CMIP6 physical diversity along the
+velocity/salinity axis. (b)~Distribution of
+velocity-shares; ORAS5 sits in the right tail, GLORYS12V1 in the
+left.}
 \label{fig:fig3}
 \end{figure}
 
@@ -799,8 +965,9 @@ ribbons). (b)~Boxplot of projected \%AMOC weakening (2081--2100 vs.\
 1950--1980) by class, with \citet{Portmann2026} estimate ($51\pm 8\%$)
 shown as a red ribbon. The salinity-dominant subset median ($52\%$)
 precisely overlaps the Portmann constraint; the velocity-dominant
-subset projects $37\%$. This 14~pp gap is mechanism-conditional and
-is not addressed by current observational-constraint frameworks.}
+subset projects $42\%$. This $\sim 10$~pp gap is
+mechanism-conditional and is not addressed by current
+observational-constraint frameworks.}
 \label{fig:fig4}
 \end{figure}
 

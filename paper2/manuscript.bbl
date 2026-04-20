@@ -1,4 +1,4 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{24}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -67,6 +67,62 @@ B.~D. Santer, T.~M.~L. Wigley, J.~S. Boyle, D.~J. Gaffen, J.~J. Hnilo,
   7337--7356, 2000.
 \newblock \doi{10.1029/1999JD901105}.
 
+\bibitem[Roemmich et~al.(2009)Roemmich, Johnson, Riser, Davis, Gilson, Owens,
+  Garzoli, Schmid, and Ignaszewski]{Roemmich2009}
+D.~Roemmich, G.~C. Johnson, S.~Riser, R.~Davis, J.~Gilson, W.~B. Owens, S.~L.
+  Garzoli, C.~Schmid, and M.~Ignaszewski.
+\newblock The {Argo} {Program}: Observing the global ocean with profiling
+  floats.
+\newblock \emph{Oceanography}, 22\penalty0 (2):\penalty0 34--43, 2009.
+\newblock \doi{10.5670/oceanog.2009.36}.
+
+\bibitem[Balmaseda et~al.(2013)Balmaseda, Mogensen, and Weaver]{Balmaseda2013}
+M.~A. Balmaseda, K.~Mogensen, and A.~T. Weaver.
+\newblock Evaluation of the {ECMWF} ocean reanalysis system {ORAS4}.
+\newblock \emph{Quarterly Journal of the Royal Meteorological Society},
+  139\penalty0 (674):\penalty0 1132--1161, 2013.
+\newblock \doi{10.1002/qj.2063}.
+
+\bibitem[Palmer et~al.(2017)Palmer, Roberts, Balmaseda, Chang, Chepurin, Ferry,
+  Fujii, Good, Guinehut, Haines, Hernandez, Koehl, Lee, Martin, Masina, Masuda,
+  Peterson, Storto, Toyoda, Valdivieso, Vernieres, Wang, and Xue]{Palmer2017}
+M.~D. Palmer, C.~D. Roberts, M.~Balmaseda, Y.-S. Chang, G.~Chepurin, N.~Ferry,
+  Y.~Fujii, S.~A. Good, S.~Guinehut, K.~Haines, F.~Hernandez, A.~Koehl, T.~Lee,
+  M.~J. Martin, S.~Masina, S.~Masuda, K.~A. Peterson, A.~Storto, T.~Toyoda,
+  M.~Valdivieso, G.~Vernieres, O.~Wang, and Y.~Xue.
+\newblock Ocean heat content variability and change in an ensemble of ocean
+  reanalyses.
+\newblock \emph{Climate Dynamics}, 49:\penalty0 909--930, 2017.
+\newblock \doi{10.1007/s00382-015-2801-0}.
+
+\bibitem[Karspeck et~al.(2017)Karspeck, Stammer, K{\"o}hl, Danabasoglu,
+  Balmaseda, Smith, Fujii, Zhang, Giese, Tsujino, and Rosati]{Karspeck2017}
+A.~R. Karspeck, D.~Stammer, A.~K{\"o}hl, G.~Danabasoglu, M.~Balmaseda, D.~M.
+  Smith, Y.~Fujii, S.~Zhang, B.~Giese, H.~Tsujino, and A.~Rosati.
+\newblock Comparison of the {Atlantic} meridional overturning circulation
+  between 1960 and 2007 in six ocean reanalysis products.
+\newblock \emph{Climate Dynamics}, 49:\penalty0 957--982, 2017.
+\newblock \doi{10.1007/s00382-015-2787-7}.
+
+\bibitem[Jackson et~al.(2019)Jackson, Dubois, Forget, Haines, Harrison, Iovino,
+  K{\"o}hl, Mignac, Masina, Peterson, Piecuch, Roberts, Robson, Storto, Toyoda,
+  Valdivieso, Wilson, Wang, and Zuo]{Jackson2019}
+L.~C. Jackson, C.~Dubois, G.~Forget, K.~Haines, M.~Harrison, D.~Iovino,
+  A.~K{\"o}hl, D.~Mignac, S.~Masina, K.~A. Peterson, C.~G. Piecuch, C.~D.
+  Roberts, J.~Robson, A.~Storto, T.~Toyoda, M.~Valdivieso, C.~Wilson, Y.~Wang,
+  and H.~Zuo.
+\newblock The mean state and variability of the {North} {Atlantic} circulation:
+  a perspective from ocean reanalyses.
+\newblock \emph{Journal of Geophysical Research: Oceans}, 124\penalty0
+  (12):\penalty0 9141--9170, 2019.
+\newblock \doi{10.1029/2019JC015210}.
+
+\bibitem[Shi and Widlansky(2024)]{ShiWidlansky2024}
+L.~Shi and M.~J. Widlansky.
+\newblock Sensitivity of ocean reanalyses to observing-system changes.
+\newblock \emph{Climate Dynamics}, 62:\penalty0 6821--6843, 2024.
+\newblock \doi{10.1007/s00382-024-07262-7}.
+
 \bibitem[Zuo et~al.(2019)Zuo, Balmaseda, Tietsche, Mogensen, and
   Mayer]{Zuo2019}
 H.~Zuo, M.~A. Balmaseda, S.~Tietsche, K.~Mogensen, and M.~Mayer.
@@ -131,5 +187,30 @@ M.~Kersal{\'e}, C.~S. Meinen, R.~C. Perez, M.~Le~H{\'e}naff, D.~Valla,
   {Atlantic}.
 \newblock \emph{Science Advances}, 6\penalty0 (32):\penalty0 eaba7573, 2020.
 \newblock \doi{10.1126/sciadv.aba7573}.
+
+\bibitem[Drijfhout et~al.(2011)Drijfhout, Weber, and van~der
+  Swaluw]{Drijfhout2011}
+S.~S. Drijfhout, S.~L. Weber, and E.~van~der Swaluw.
+\newblock The stability of the {MOC} as diagnosed from model projections for
+  pre-industrial, present and future climates.
+\newblock \emph{Climate Dynamics}, 37:\penalty0 1575--1586, 2011.
+\newblock \doi{10.1007/s00382-010-0930-z}.
+
+\bibitem[Mecking et~al.(2017)Mecking, Drijfhout, Jackson, and
+  Graham]{Mecking2017}
+J.~V. Mecking, S.~S. Drijfhout, L.~C. Jackson, and T.~Graham.
+\newblock Stable {AMOC} off state in an eddy-permitting coupled climate model.
+\newblock \emph{Climate Dynamics}, 49:\penalty0 2025--2043, 2017.
+\newblock \doi{10.1007/s00382-016-3438-3}.
+
+\bibitem[Weijer et~al.(2019)Weijer, Cheng, Drijfhout, Fedorov, Hu, Jackson,
+  Liu, McDonagh, Mecking, and Zhang]{Weijer2019}
+W.~Weijer, W.~Cheng, S.~S. Drijfhout, A.~V. Fedorov, A.~Hu, L.~C. Jackson,
+  W.~Liu, E.~L. McDonagh, J.~V. Mecking, and J.~Zhang.
+\newblock Stability of the {Atlantic} {Meridional} {Overturning} {Circulation}:
+  a review and synthesis.
+\newblock \emph{Journal of Geophysical Research: Oceans}, 124\penalty0
+  (8):\penalty0 5336--5375, 2019.
+\newblock \doi{10.1029/2019JC015083}.
 
 \end{thebibliography}

@@ -21,6 +21,7 @@ import numpy as np
 import xarray as xr
 
 from ardp.constants import S0, SAMBA_LAT
+from ardp.physics.fovs import compute_fovs_from_section
 
 # Atlantic basin longitude bounds at ~34.5S
 ATLANTIC_LON_MIN = -70.0
@@ -91,28 +92,11 @@ def process_one_year(
         v_section = ds["vo"].isel(time=t, latitude=j_idx).values[:, atlantic_mask]
         s_section = ds["so"].isel(time=t, latitude=j_idx).values[:, atlantic_mask]
 
-        # F_ovS computation using de Vries & Weber (2005)
-        nz = v_section.shape[0]
-        total = 0.0
-
-        for k in range(nz):
-            ocean = ~np.isnan(s_section[k, :])
-            if ocean.sum() == 0:
-                continue
-
-            # V_int: zonally INTEGRATED velocity over ocean points [m²/s]
-            v_k = np.where(ocean, np.nan_to_num(v_section[k, :], nan=0.0), 0.0)
-            v_int = (v_k * e1t_atl).sum()
-
-            # S_mean: zonally AVERAGED salinity over ocean points [PSU]
-            e1t_ocean = np.where(ocean, e1t_atl, 0.0)
-            s_k = np.nan_to_num(s_section[k, :], nan=0.0)
-            s_mean = (s_k * e1t_ocean).sum() / e1t_ocean.sum()
-
-            total += v_int * (s_mean - S0) * e3t[k]
-
-        # F_ov = -(1/S0) * total  [m³/s -> Sv]
-        f_ov = -(1.0 / S0) * total / 1e6
+        # Shared kernel applies the de Vries & Weber (2005) formula
+        # with the mandatory barotropic-velocity subtraction.
+        f_ov = compute_fovs_from_section(
+            v_section, s_section, e1t_atl, e3t, s0=S0,
+        )
         results.append((timestamp, float(f_ov)))
 
     ds.close()
