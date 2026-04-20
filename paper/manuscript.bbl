@@ -675,6 +675,39 @@ Rahmstorf, S.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Santer%
+\ \protect \BOthers {.}}{%
+Santer%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2000}}%
+}]{%
+Santer2000}
+\APACinsertmetastar {%
+Santer2000}%
+\begin{APACrefauthors}%
+Santer, B\BPBI D.%
+, Wigley, T\BPBI M\BPBI L.%
+, Boyle, J\BPBI S.%
+, Gaffen, D\BPBI J.%
+, Hnilo, J\BPBI J.%
+, Nychka, D.%
+\BDBL {}Taylor, K\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2000}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Statistical significance of trends and trend differences
+  in layer-average atmospheric temperature time series} {Statistical
+  significance of trends and trend differences in layer-average atmospheric
+  temperature time series}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Geophysical Research}{105}{D6}{7337--7356}.
+\newblock
+\begin{APACrefDOI} \doi{10.1029/1999JD901105} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Stommel%
 }{%
 Stommel%

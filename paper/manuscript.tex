@@ -153,6 +153,10 @@ If F$_{ovS}$ is declining, the overturning should be redistributing salt---accum
 
 Over the 240-month overlap period (April 2004 to March 2024), ORAS5 reproduces the observed MOC at 26.5\textdegree N with $r = 0.75$ ($p < 0.001$), while GLORYS12V1 achieves $r = 0.71$ ($p < 0.001$) (Figure~\ref{fig:rapid}). Both products capture the seasonal cycle and major interannual excursions, including the pronounced 2009--2010 minimum. The RAPID mean transport is 17.0~Sv, compared to 14.3~Sv for ORAS5 and 16.0~Sv for GLORYS12. The Southern Hemisphere observing network at 34.5\textdegree S---where F$_{ovS}$ is computed---is substantially sparser, and reanalysis skill there is likely lower. This limitation should be borne in mind when interpreting the F$_{ovS}$ trend.
 
+\subsection{Reanalysis AMOC Trends Do Not Converge}
+
+Extending the monthly validation of Figure~\ref{fig:rapid} to decadal trends across a wider reanalysis ensemble exposes a fundamental limitation. Figure~\ref{fig:amoc_anom} shows AMOC anomalies at 26.5\textdegree N from ORAS5 (1958--2025), GLORYS12V1 (1993--2025), SODA3.15.2 (1980--2020), and ECCO-V4r4 (1992--2017), together with RAPID (2005--2022), all expressed relative to the ORAS5 1958--2009 climatology. The four products fundamentally disagree on decadal change: ORAS5 and ECCO-V4r4 show weakening at $-1.4$ and $-1.1$~Sv\,decade$^{-1}$, SODA3.15.2 shows a \emph{positive} trend of $+1.0$~Sv\,decade$^{-1}$, and GLORYS12V1 is essentially flat ($-0.3$~Sv\,decade$^{-1}$). After correcting for strong lag-1 autocorrelation (ORAS5: $r_1 \approx 0.86$, $N_{\text{eff}} = 5$ from 68 years) via the Santer et al.\ \cite{Santer2000} method, only ECCO-V4r4 retains a significant trend ($p = 0.04$). A full GLS Prais-Winsten regression with AR(1) errors, which jointly estimates the slope and autocorrelation structure and yields independent residuals (full $N-2$ degrees of freedom), recovers significance for ORAS5 ($p = 0.005$) but leaves SODA, GLORYS12, and RAPID non-significant. This sensitivity to both reanalysis choice and statistical method motivates our emphasis on the F$_{ovS}$ fingerprint, which is physically grounded in salt-advection feedback theory and robust across the two products we use.
+
 \subsection{The Hydrological Cycle Cannot Explain Atlantic Salinity Trends}
 
 The amplification hypothesis predicts that SSS trends should scale with climatological SSS: regions that are already salty get saltier under greenhouse warming, and fresh regions fresher \cite{Held2006}. This prediction holds globally and in the Pacific and Indian Oceans \cite{Durack2012}. In the Atlantic, it fails.
@@ -240,6 +244,13 @@ ORAS5 data are available from the Copernicus Climate Data Store (\url{https://cd
 \noindent\includegraphics[width=\textwidth]{../figures/grl/fig2_rapid_validation.png}
 \caption{Validation of reanalysis MOC against RAPID observations at 26.5\textdegree N. (a) Monthly time series of upper-cell MOC transport: RAPID observations (red), ORAS5 (blue), and GLORYS12V1 (green). Thin lines show monthly values; thick lines show 12-month running means. (b) ORAS5 versus RAPID scatter ($r = 0.75$, $n = 240$ months). (c) GLORYS12 versus RAPID scatter ($r = 0.71$, $n = 240$ months). Dashed lines show the regression fit; dotted lines show the 1:1 line.}
 \label{fig:rapid}
+\end{figure}
+
+\begin{figure}
+\centering
+\noindent\includegraphics[width=\textwidth]{../figures/grl/fig_amoc_reanalysis_anomalies_santer.png}
+\caption{AMOC anomalies at 26.5\textdegree N across four ocean reanalyses (ORAS5, GLORYS12V1, SODA3.15.2, ECCO-V4r4) plus RAPID observations, relative to the ORAS5 1958--2009 climatology (20.04~Sv). Shorter records are offset to match ORAS5 over their respective overlap windows; RAPID is anchored to 2005--2022. Thin lines show annual values, thick lines 5-year running means. Linear trends (Sv\,decade$^{-1}$) with significance from the Santer et al.\ \cite{Santer2000} effective-sample-size correction ($N_{\text{eff}} = N(1-r_1)/(1+r_1)$) are listed in the lower left; only ECCO-V4r4 retains a significant weakening trend once autocorrelation is accounted for ($p = 0.04$). SODA3.15.2 shows a positive trend and GLORYS12V1 is flat, underscoring the disagreement between modern reanalyses on AMOC decadal change.}
+\label{fig:amoc_anom}
 \end{figure}
 
 \begin{figure}
