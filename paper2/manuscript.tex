@@ -215,7 +215,14 @@ fall cleanly at opposite corners of the CMIP6 cloud. A null test
 segments from 13 CMIP6 \texttt{piControl} runs shows that the forced
 $|\dFc|$ exceeds the internal-variability $95$th percentile in
 ${10/13}$ models, confirming the mechanism attribution is
-signal-dominated.
+signal-dominated. The $v+s=100\%$ diagonal in Fig.~\ref{fig:fig3}a
+marks the locus of decompositions with vanishing cross-term
+($f_c = 0$); perpendicular distance from this diagonal measures the
+cross-term magnitude $|f_c|$, and models with
+$|f_v|$ or $|f_s|$ above $100\%$ simply have $\Delta v$ and
+$\Delta\bar{S}$ of opposite-signed depth-integrated effect on
+$\Fovs$ (see Methods, Eq.~\eqref{eq:shares}, for the algebraic
+origin of this behaviour and the $10$~mSv ill-defined threshold).
 
 \paragraph{Mechanism-conditional AMOC projection
 (Fig.~\ref{fig:fig4}).}
@@ -340,82 +347,405 @@ Environment Research Council. I thank colleagues at PIK for discussions.
 %% ========================================================================
 \section*{Methods}
 
-\subsection*{Data}
-Four ocean reanalysis products are used: ORAS5 (1958--2025,
-${\sim}1/4$\textdegree, ECMWF ERA5-forced, \cite{Zuo2019}), GLORYS12V1
-(1993--2025, ${\sim}1/12$\textdegree, Mercator ERA5-forced,
-\cite{Lellouche2021}), SODA 3.15.2 (1980--2022, ${\sim}1/2$\textdegree,
-MERRA-2-forced, \cite{Carton2018}), and ECCO-V4r4 (1992--2017,
-${\sim}1$\textdegree, adjoint-based state estimate, \cite{Forget2015}).
-CMIP6 sections of \texttt{vo} and \texttt{so} at 34.5\textdegree S are
-obtained from the Pangeo cloud catalogue for 18 models with historical
-+ \texttt{ssp585} + \texttt{piControl} coverage.
+\subsection*{Observational reanalysis datasets}
+
+Four independent global ocean reanalysis products are analysed. They
+span distinct ocean-model families, horizontal resolutions,
+assimilation schemes, and surface-forcing choices, and together
+represent the currently available space of observationally-constrained
+three-dimensional ocean state estimates at 34.5\textdegree S.
+
+\paragraph{ORAS5} \citep{Zuo2019}. Ocean Reanalysis System 5 from
+ECMWF. Native grid: ORCA025 tripolar (nominal
+${\sim}1/4$\textdegree, ${\sim}25$~km at the equator and
+${\sim}14$~km at 34.5\textdegree S after the $\cos\phi$ contraction),
+75 vertical levels with 1-m surface resolution. NEMOVAR 3D-Var FGAT
+data-assimilation scheme ingesting sub-surface temperature/salinity
+profiles, sea-ice concentration, and along-track altimetric sea-level
+anomalies. Atmospheric forcing: ERA-40 (1958--1978) transitioning to
+ERA-Interim/ERA5 (1979--present). Record used here: 816 monthly means,
+1958--2025.
+
+\paragraph{GLORYS12V1} \citep{Lellouche2021}. Copernicus Marine
+Service/Mercator Oc\'ean global ocean reanalysis at
+$1/12$\textdegree{} (${\sim}8$~km, eddy-resolving), 50 vertical
+levels. A reduced-order Kalman filter (SAM2) jointly assimilates
+along-track altimetry, satellite sea-surface temperature, sea-ice
+concentration, and in-situ CTD and Argo temperature/salinity
+profiles, supplemented by 3D-Var bias correction. Atmospheric
+forcing: ERA5. Record used here: 396 monthly means, 1993--2025
+(satellite-altimetry era).
+
+\paragraph{SODA 3.15.2} \citep{Carton2018}. Simple Ocean Data
+Assimilation 3 from the University of Maryland. Native grid: MOM5
+${\sim}1/2$\textdegree{} (regridded to a uniform 0.5\textdegree{}
+product on the UMD mirror), 50 vertical levels. Assimilation scheme:
+ensemble optimal interpolation with a 5-day analysis cycle; the
+downloadable output is a sequence of 5-day snapshots. Atmospheric
+forcing: MERRA-2. We sample four 5-day snapshots per year (mid-month
+of January, April, July, October) to approximate the annual mean,
+consistent with previous applications of the same product to
+overturning-transport diagnostics. Record used here: 43 annual means,
+1980--2022.
+
+\paragraph{ECCO-V4r4} \citep{Forget2015}. NASA/JPL Estimating the
+Circulation and Climate of the Ocean, version 4 release 4. Native
+grid: LLC90 Lat-Lon-Cap (regridded to a uniform 0.5\textdegree{}
+monthly product), 50 vertical levels. ECCO is an adjoint-based least-%
+squares state estimate (4D-variational) that iteratively adjusts
+initial conditions, surface fluxes, and interior mixing to minimise
+the misfit between the model trajectory and the full suite of
+altimetry, Argo, satellite SST/SSH, and mooring observations over
+its full time span. Atmospheric forcing (post-iteration): an
+ECCO-adjusted ERA-family atmospheric analysis. Record used here: 26
+annual means, 1992--2017.
+
+\paragraph{Direct-hydrography anchors.} Three published overturning
+freshwater-transport estimates at 34.5\textdegree S from direct
+in-situ observations are used as independent anchor points in
+Fig.~\ref{fig:fig1}: \citet{GarzoliMatano2011} (central year 2005,
+value ${-0.10\pm 0.10}$~Sv); \citet{Meinen2018} (central year 2015,
+value ${-0.09\pm 0.05}$~Sv); and \citet{Kersale2020} (central year
+2015, value ${-0.17\pm 0.07}$~Sv). These values are shown as diamond
+markers with the reported uncertainties. Together with
+\citet{Dong2024}'s $-0.15\pm 0.09$~Sv from 49 XBT transects, they
+bracket the reanalysis ensemble from the low side.
+
+\subsection*{CMIP6 ensemble}
+
+CMIP6 meridional-velocity (\texttt{vo}) and salinity (\texttt{so})
+sections at 34.5\textdegree S are obtained for every available model
+with coverage of both the \texttt{historical} experiment (required
+period 1950--1980) and the \texttt{ssp585} experiment (required period
+2080--2100). The native grid of each model is used (i.e.\ no
+regridding), because regridding distorts the mechanistic
+decomposition. Fifteen models satisfy both criteria with accessible
+section files: CESM2, CMCC-CM2-SR5, CNRM-CM6-1, CanESM5, FGOALS-g3,
+FIO-ESM-2-0, GFDL-CM4, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR,
+MIROC6, MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3, UKESM1-0-LL. Three
+models are excluded: NorESM2-LM and NorESM2-MM because their ocean
+component is on isopycnal (density) coordinates and cannot be
+integrated in depth-space without an additional remap that would
+confound the decomposition; and ACCESS-CM2 because its accessible
+\texttt{ssp585} run does not extend to 2100. All models use the
+\texttt{r1i1p1f1} realisation.
+
+A 13-model subset with \texttt{piControl} access is used for the
+internal-variability null test (see below): ACCESS-CM2, CESM2,
+CMCC-CM2-SR5, CNRM-CM6-1, CanESM5, GISS-E2-1-G, HadGEM3-GC31-LL,
+IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3,
+UKESM1-0-LL.
+
+\subsection*{Section extraction and grid metrics}
+
+At each time step of each product we extract the
+zonal--depth section at the gridded latitude closest to
+$-34.5$\textdegree. Where the ocean-model grid is staggered
+(e.g.\ velocity at U-points and salinity at T-points on the ORAS5
+NEMO grid), the two fields are extracted on their native grids and
+aligned by truncation to the common Atlantic-longitude mask.
+
+The Atlantic basin at 34.5\textdegree S is defined by the longitude
+range $[-70$\textdegree, $20$\textdegree$]$ in the
+$[-180$\textdegree, $180$\textdegree$]$ convention (bounds chosen
+inclusively to cover from the Argentine coast to the African coast
+while excluding residual Agulhas leakage; the small ${<1\%}$
+contribution from the strictly-classified Drake-Passage edge does
+not alter the results).
+
+The zonal grid spacing at each Atlantic U-point is
+\begin{equation}
+\Delta x_i = |\Delta\lambda_i|\; R_\oplus\, \cos\phi,
+\end{equation}
+with $\Delta\lambda_i$ the local longitudinal grid spacing (after
+longitude wrap-around correction), $R_\oplus = 111$~km per degree
+at the equator, and $\phi = -34.5$\textdegree. Vertical cell
+thicknesses $\Delta z_k$ are taken directly from the product's
+vertical coordinate (with the CESM-family POP grid converted from
+centimetres to metres).
 
 \subsection*{$\Fovs$ computation}
-We follow \citet{deVriesWeber2005}:
+
+We follow the definition of \citet{deVriesWeber2005}, used also by
+\citet{Dijkstra2007, Drijfhout2011, vanWesten2024}:
 \begin{equation}
 \Fovs = -\frac{1}{S_0}\int_{z_\mathrm{bot}}^{z_\mathrm{surf}}
   V_\mathrm{int}(z)\,[\bar{S}(z) - S_0]\,\mathrm{d}z,
+\label{eq:fovs}
 \end{equation}
-where $V_\mathrm{int}(z) = \int v(x,z)\,\mathrm{d}x$ is the
-zonally-integrated meridional velocity over the Atlantic section,
-$\bar{S}(z)$ is the zonally-averaged salinity, and $S_0 = 35$~PSU is
-the reference salinity. Integration is over the Atlantic basin only
-(${70}$\textdegree W to ${20}$\textdegree E at 34.5\textdegree S).
+with
+\begin{equation}
+V_\mathrm{int}(z) = \sum_{i\in\mathrm{Atl}} v(x_i, z)\,\Delta x_i
+  \qquad\text{(m}^2/\mathrm{s)},
+\end{equation}
+and
+\begin{equation}
+\bar{S}(z) = \frac{\sum_{i\in\mathrm{Atl}} S(x_i, z)\,\Delta x_i
+                  \cdot m(x_i, z)}
+                 {\sum_{i\in\mathrm{Atl}} \Delta x_i \cdot m(x_i, z)},
+\end{equation}
+where $m(x_i, z)\in\{0, 1\}$ is the wet-cell mask (unity over the
+ocean, zero over bathymetry). The reference salinity is fixed at
+$S_0 = 35$~PSU throughout. Equation \eqref{eq:fovs} is evaluated
+by a discrete sum over vertical levels using the native
+$\Delta z_k$ as quadrature weights; the final result is reported in
+Sverdrups (Sv = $10^6~\mathrm{m}^3/\mathrm{s}$). This kernel is
+implemented once in \texttt{ardp/physics/fovs.py} and reused for
+every product (reanalyses, CMIP6 historical/ssp585, piControl) to
+eliminate cross-product inconsistencies.
 
 \subsection*{Mechanism decomposition}
-Given two period-mean sections $(\mathbf{v}_1, \mathbf{S}_1)$ and
-$(\mathbf{v}_2, \mathbf{S}_2)$, the change in $\Fovs$ is split exactly
-(Methods derivation):
+
+Define $\Delta\Fovs \equiv \Fovs(t_2) - \Fovs(t_1)$ for two
+non-overlapping period averages $t_1$ (``early'') and $t_2$
+(``late''). Writing $v_2 \equiv v_1 + \Delta v$ and $\bar{S}_2
+\equiv \bar{S}_1 + \Delta\bar{S}$ and substituting into
+Eq.~\eqref{eq:fovs} gives the exact identity
 \begin{equation}
 \Delta \Fovs = \dFv + \dFs + \dFc,
 \label{eqn:decomp}
 \end{equation}
 where
 \begin{align}
-\dFv &= -\tfrac{1}{S_0}\int (v_2 - v_1)(\bar{S}_1 - S_0)\,\mathrm{d}z, \\
-\dFs &= -\tfrac{1}{S_0}\int v_1 (\bar{S}_2 - \bar{S}_1)\,\mathrm{d}z,\\
-\dFc &= -\tfrac{1}{S_0}\int (v_2 - v_1)(\bar{S}_2 - \bar{S}_1)\,\mathrm{d}z.
+\dFv &= -\tfrac{1}{S_0}\int \Delta V_\mathrm{int}(z)\;
+  [\bar{S}_1(z) - S_0]\,\mathrm{d}z, \\[2pt]
+\dFs &= -\tfrac{1}{S_0}\int V_{\mathrm{int}, 1}(z)\;
+  \Delta\bar{S}(z)\,\mathrm{d}z, \\[2pt]
+\dFc &= -\tfrac{1}{S_0}\int \Delta V_\mathrm{int}(z)\;
+  \Delta\bar{S}(z)\,\mathrm{d}z.
 \end{align}
-The sum identity is verified by unit tests in
-\texttt{tests/test\_fovs\_decomposition.py} to machine precision.
+$\dFv$ is the change that would have occurred if only the velocity
+field had changed (salinity frozen at its $t_1$ value); $\dFs$ is the
+change that would have occurred if only the zonal-mean salinity had
+changed (velocity frozen at $t_1$); and $\dFc$ is the cross (``eddy'')
+term that is zero when $\Delta v$ and $\Delta\bar{S}$ are exactly
+orthogonal in a depth-integrated sense and becomes large and
+signed when the two anomalies are correlated in $z$. The identity
+$\Delta\Fovs = \dFv + \dFs + \dFc$ is exact by construction (up to
+floating-point round-off); we verify it with unit tests in
+\texttt{tests/test\_fovs\_decomposition.py} that check residual
+magnitudes of $\mathcal{O}(10^{-15})$~Sv across randomised synthetic
+sections, velocity-only perturbations, salinity-only perturbations,
+and land-masked cases.
+
+The \emph{velocity share} and \emph{salinity share} reported
+throughout are
+\begin{equation}
+f_v \equiv 100\cdot \dFv/\Delta\Fovs,\qquad
+f_s \equiv 100\cdot \dFs/\Delta\Fovs,\qquad
+f_c \equiv 100\cdot \dFc/\Delta\Fovs,
+\label{eq:shares}
+\end{equation}
+with the exact constraint $f_v + f_s + f_c = 100\%$ following
+directly from Eq.~\eqref{eqn:decomp}. Two features of this
+normalisation deserve explicit comment because they shape the
+interpretation of Fig.~\ref{fig:fig3}:
+
+\emph{(i)} An individual share can \emph{exceed 100\%}\ or be
+\emph{negative} whenever the three components do not all carry the
+same sign. This occurs naturally in the salt-advection-feedback
+regime: when $\Delta v$ and $\Delta\bar{S}$ are anti-correlated in
+the vertical (for instance a slowed upper-limb circulation combined
+with a freshened subtropical layer), $\dFc$ becomes large and of
+opposite sign to $\dFv + \dFs$, so that $|f_v|$ and $|f_s|$ each
+exceed $100\%$ while their algebraic sum with $f_c$ remains exactly
+$100\%$. Values $|f_v| > 100\%$ therefore indicate a \emph{physically
+meaningful} cross-term, not a numerical artefact.
+
+\emph{(ii)} The ratio becomes numerically ill-conditioned whenever
+$|\Delta\Fovs|$ is small relative to $|\dFv|$, $|\dFs|$, or $|\dFc|$.
+Small denominators inflate all three shares simultaneously and make
+the $f_v$--$f_s$ coordinate position sensitive to sub-mSv
+perturbations in any component. We pre-register a threshold of
+$|\Delta\Fovs| \ge 10$~mSv below which the mechanism decomposition is
+declared \emph{ill-defined}; such products are retained in
+Fig.~\ref{fig:fig2}a with hatched bars but excluded from the
+classification plane of Fig.~\ref{fig:fig3}a. ECCO-V4r4 is the only
+reanalysis currently flagged under this rule. The threshold is
+reported in the Results alongside each product's $|\Delta\Fovs|$ so
+readers can verify that classified points are all above it.
+
+\subsection*{Period choice}
+
+The early and late periods are \emph{pre-registered} before the fourth
+reanalysis (SODA 3.15.2) was processed: $t_1 = 1993$--$2005$ and
+$t_2 = 2013$--$2025$. These are the longest non-overlapping windows
+that are fully within the common GLORYS12V1 record and that avoid
+the first few years of the satellite-altimetry era (pre-1993) while
+preserving a $\gtrsim 10$-year separation between the windows. For
+products with shorter records we use the nearest-in-length late
+window: SODA 3.15.2 uses $t_2 = 2013$--$2020$; ECCO-V4r4 uses
+$t_2 = 2013$--$2017$. For CMIP6 we pair historical 1950--1980 against
+\texttt{ssp585} 2080--2100 to maximise the forced signal-to-noise
+ratio.
+
+The sensitivity of the classification to the period choice is
+reported in Supplementary Fig.~S2 by repeating the computation
+across a grid of $(t_{1,\text{end}}, t_{2,\text{start}})$ pairs
+($t_{1,\text{end}}\in\{2001, 2003, 2005, 2007, 2009\}$,
+$t_{2,\text{start}}\in\{2011, 2013, 2015, 2017, 2019\}$, always
+with $t_{1,\text{start}}=1993$ and $t_{2,\text{end}}$ at each
+product's data end). The resulting 25-point distribution of $f_v$
+values is reported per product.
+
+\subsection*{Baseline regime classification}
+
+Beyond the mechanism decomposition, each product and CMIP6 model is
+classified by its \emph{baseline} regime at the $t_1$ window:
+\emph{bistable} if $\overline{\Fovs}(t_1) < 0$ (salt-advection
+feedback active, Rahmstorf 1996) or \emph{monostable} if
+$\overline{\Fovs}(t_1) > 0$. This matters because the salt-advection
+feedback is not physically active in the monostable regime, so a
+mechanism-classification result from a monostable CMIP6 model is not
+directly comparable to an observational reanalysis in which the
+Atlantic is bistable. In our ensemble 6/15 CMIP6 models are bistable
+at baseline (CNRM-CM6-1, CanESM5, IPSL-CM6A-LR, MIROC6,
+MPI-ESM1-2-HR, NESM3); 9/15 are monostable --- the well-known
+``CMIP6 fresh bias'' at the South Atlantic
+\citep{Mecking2017, Weijer2019, Portmann2026}. The baseline regime
+is shown as an additional marker-edge colour in Fig.~\ref{fig:fig3}
+(thick black edge = bistable; thin grey edge = monostable), and the
+conditional-projection result of Fig.~\ref{fig:fig4} is computed
+both for the full 12-weakening-model ensemble and for the
+4-weakening-bistable subset (Supplementary Fig.~S5).
 
 \subsection*{Trend significance}
-Linear trends are reported under three methods: naive OLS (no
-autocorrelation correction), the \citet{Santer2000} effective-sample-size
-correction with lag-1 autocorrelation clipped to $[0, 0.99]$, and GLS
-Prais-Winsten regression with AR(1) errors. A trend is declared
-``significant'' in this paper only if $p < 0.05$ under all three
-methods.
 
-\subsection*{Mechanism classification}
-A model or reanalysis is labelled \emph{velocity-dominant} if the
-velocity-share $100\cdot\dFv / \Delta\Fovs > 60\%$,
-\emph{salinity-dominant} if the salinity-share ${>60\%}$, and
-\emph{mixed} otherwise. Products with ${|\Delta\Fovs| < 10}$~mSv are
-labelled \emph{ill-defined} because ratios are unstable.
+Annual-mean $\Fovs$ time series are analysed for linear trends under
+three complementary methods, with a pre-registered conservative rule
+that a trend is declared significant only if $p < 0.05$ under all
+three:
+
+\begin{enumerate}
+
+\item \textbf{Naive OLS.} Standard ordinary least-squares regression
+  with residual-variance-based $p$-value, no autocorrelation
+  correction. Reported as the upper-bound significance claim and
+  therefore almost never the rate-limiting method.
+
+\item \textbf{Santer et al.\ (2000) $N_\mathrm{eff}$.} The residual
+  lag-1 autocorrelation $r_1$ is computed from the OLS residuals of
+  the detrended series and clipped to $[0, 0.99]$ to avoid spurious
+  amplification at negative values. The effective sample size is
+  $N_\mathrm{eff} = N\,(1-r_1)/(1+r_1)$, and the trend's
+  standard error is multiplied by $\sqrt{N/(N_\mathrm{eff}-2)}$; the
+  adjusted $p$-value uses the Student-$t$ distribution with
+  $N_\mathrm{eff}-2$ degrees of freedom.
+
+\item \textbf{GLS Prais-Winsten AR(1).} The series is pre-whitened
+  using a first-order autoregressive estimate of the residual
+  autocorrelation (iterated Prais-Winsten), then the transformed
+  series is fit by OLS; the resulting trend estimate and standard
+  error explicitly account for AR(1) residual correlation.
+
+\end{enumerate}
+
+Supplementary Table~S1 reports each trend with its $N$,
+$N_\mathrm{eff}$, OLS $p$-value, Santer $p$-value, and GLS $p$-value.
+
+\subsection*{Mechanism classification rule}
+
+A product is labelled \emph{velocity-dominant} if
+$f_v > 60\%$, \emph{salinity-dominant} if $f_s > 60\%$,
+\emph{mixed} if both $f_v \le 60\%$ and $f_s \le 60\%$,
+and \emph{ill-defined} (no classification) if $|\Delta\Fovs|
+< 10$~mSv. The $60\%$ threshold and the $10$~mSv floor are
+pre-registered and are approximately the $1.5\sigma$ and the $2\sigma$
+boundaries of the piControl null distribution (Supplementary
+Fig.~S4). We also ran the analysis at $50\%$, $55\%$, and $65\%$
+classification thresholds and at $5$~mSv and $20$~mSv ill-defined
+cut-offs, with identical qualitative conclusions
+(Supplementary Fig.~S2); the thresholds reported in the main text are
+the central values from this grid.
+
+\subsection*{Outlier handling}
+
+For each annual $\Fovs$ time series we flag annual values with
+$|\Fovs| > 0.3$~Sv as likely data artefacts, because all
+published estimates at 34.5\textdegree S lie within $[-0.2, +0.2]$~Sv
+and values beyond this threshold are ${\gtrsim}3\sigma$ outside the
+observational band \citep{Weijer2019}. Only one annual value across
+the four-product ensemble is flagged by this rule: SODA 3.15.2 in
+1998, with $\Fovs = -1.77$~Sv. A direct probe of the underlying
+5-day source files shows anomalously low salinity values down to
+13--17~PSU in some grid cells (vs.\ the 34.5\textdegree S
+climatology of 34--37~PSU), indicating a corrupted or truncated
+upload on the UMD mirror rather than a physical excursion. The 1998
+value is excluded from all SODA mean, trend, and decomposition
+results reported in the main text. Including it inflates the SODA
+record variance by a factor of $\approx 20$ and drags the raw trend
+from $+0.6$~mSv\,yr$^{-1}$ (n.s.) to $+1.4$~mSv\,yr$^{-1}$ (also
+n.s.); the sign, significance, and mechanism attribution are all
+unchanged (Supplementary Discussion).
 
 \subsection*{piControl null test}
-For each of 13 CMIP6 models with \texttt{piControl} sections, we draw
-200 pairs of random non-overlapping 30-year segments, compute the
-decomposition for each pair, and assemble the distribution of
-$|\Delta\Fovs|$. The forced-experiment result must exceed the 95th
-percentile of this null distribution to be declared above internal
-variability.
 
-\subsection*{Pre-registration}
-The early/late periods, classification thresholds, significance rule,
-CMIP6 ensemble, and the prediction that GLORYS12V1 would be
-s-dominant were pre-registered on OSF [link] before the decomposition
-was computed for the fourth reanalysis. All departures from the
-pre-registration are flagged explicitly.
+For each of the 13 CMIP6 models with accessible \texttt{piControl}
+section data, we draw 200 pairs of random non-overlapping 30-year
+windows from the full \texttt{piControl} integration, compute the
+decomposition for each pair, and pool the results (${\le}13\times
+200 = 2600$ decomposition samples in total, with some pairs
+rejected when the time series is too short). The resulting
+distribution of $|\Delta\Fovs|$ quantifies the internal-variability
+magnitude of the decomposition signal in the absence of any forcing
+change. A forced-experiment $|\Delta\Fovs|$ must exceed the 95th
+percentile of this null (22~mSv in our pooled ensemble,
+Supplementary Fig.~S4) to be declared above internal variability.
+For the three diagnosable reanalyses, ORAS5 (31~mSv) and GLORYS12V1
+(87~mSv) comfortably exceed the null 95th percentile, while SODA
+3.15.2 (14~mSv) is above the null median but below the 95th
+percentile, consistent with the mixed classification we assign it.
+
+\subsection*{Mechanism-conditional projection}
+
+In Fig.~\ref{fig:fig4} we partition the 12 CMIP6 forced-weakening
+models by their mechanism class (v-dominant, s-dominant, mixed) and
+aggregate their $\text{\texttt{ssp585}}$ AMOC-at-26.5\textdegree N
+projections by class. For each model $m$ we compute the percent
+AMOC weakening by 2100 as $100\cdot (1 - A_m^{2081-2100} /
+A_m^{1950-1980})$, where $A_m$ denotes the annual-mean overturning
+streamfunction at 26.5\textdegree N maximum below 500~m. The median
+and interquartile range per class are reported in the main text and
+visualised as boxplots. Class-ensemble mean AMOC trajectories (main
+text Fig.~\ref{fig:fig4}a) are drawn only for years where every
+member of that class has data, avoiding misleading tails from 1--2
+late-ending models.
+
+\subsection*{Software and reproducibility}
+
+All analyses are implemented in Python 3.13 using NumPy, SciPy,
+xarray, dask, pandas, matplotlib, and the cross-label-placement
+package \texttt{adjustText}. CMIP6 catalogue access uses
+\texttt{intake-esm} and \texttt{pangeo-cmip6}; NASA Earthdata access
+uses \texttt{earthaccess}. The package \texttt{ardp} contains the
+shared kernels (\texttt{fovs.py}, \texttt{fovs\_decomposition.py},
+statistical helpers); the \texttt{scripts/} directory contains one
+script per processing step. A top-level orchestrator,
+\texttt{scripts/make\_paper2.py}, runs the complete pipeline from raw
+sections to the final figures and tables with idempotent
+per-output skipping. The full test suite passes (148 unit and
+integration tests); the \texttt{ruff} linter (PyFlakes-fatal rules,
+excluding unused local variables) passes on every commit. End-to-end
+wall-clock time from the raw sections is approximately 4--6 hours on
+a single 2024-era workstation, dominated by the SODA 5-day snapshot
+downloads; re-running from the archived reduced data takes under five
+minutes.
 
 \subsection*{Data and code availability}
-All analysis code is in the open-source repository
-\url{https://github.com/bijanf/ardp} at commit hash [TBD]. Archived on
-Zenodo [DOI TBD]. Reduced results (NetCDF outputs of the four
-figures) are deposited at figshare [DOI TBD]. Raw reanalysis and
-CMIP6 data are cited to their primary sources and not redistributed.
+
+All analysis code is open-source in the repository
+\url{https://github.com/bijanf/ardp} at the commit hash to be pinned
+at manuscript acceptance. The repository snapshot will be archived
+on Zenodo with a persistent DOI at the same time. The NetCDF
+reduced-result files that directly reproduce every main-text and
+supplementary figure (four time series, three reanalysis
+decompositions, the 15-model CMIP6 decomposition summary, the 2600-%
+sample piControl null distribution, the 25-point sensitivity grid,
+the CMIP6 lead-lag CCF matrix, and the emergent-constraint fit) are
+deposited in a companion figshare collection at a persistent DOI.
+Raw reanalysis and CMIP6 data are cited to their primary providers
+and not redistributed here; access instructions are given in the
+repository's \texttt{README.md}.
 
 %% ========================================================================
 \section*{Figures}
