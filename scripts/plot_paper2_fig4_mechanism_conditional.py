@@ -111,9 +111,7 @@ def main() -> None:
         ax1.fill_between(common_years, mean_a - std_a, mean_a + std_a,
                          color=CLASS_COLORS[cls], alpha=0.15, zorder=4)
 
-    ax1.axvline(2014, color="0.5", lw=0.4, ls=":", zorder=1)
-    ax1.text(2014, ax1.get_ylim()[1] if ax1.get_ylim()[1] else 25,
-             " hist→ssp585", fontsize=5.5, color="0.4", va="top")
+    ax1.axvline(2014, color="0.35", lw=0.8, ls="--", zorder=1)
     ax1.set_xlim(1850, 2100)
     ax1.set_xlabel("Year")
     ax1.set_ylabel("AMOC at 26.5°N  (Sv)")
@@ -148,22 +146,26 @@ def main() -> None:
         patch.set_facecolor(CLASS_COLORS[cls])
         patch.set_alpha(0.65)
 
-    # Overlay Portmann et al. 2026 constraint
+    # Overlay Portmann et al. 2026 constraint as a subtle horizontal band
     port_central = 51
     port_err = 8
-    ax2.axhline(port_central, color="#CC3333", lw=1.5, zorder=5)
     ax2.fill_between([-0.5, len(bp_data) - 0.5],
                      port_central - port_err, port_central + port_err,
-                     color="#CC3333", alpha=0.15, zorder=4)
-    ax2.text(len(bp_data) - 0.55, port_central + 1,
-             "Portmann et al. 2026\n51 ± 8%",
-             fontsize=5.8, color="#CC3333", ha="right", va="bottom")
+                     color="#CC3333", alpha=0.12, zorder=1)
+    ax2.axhline(port_central, color="#CC3333", lw=1.3, zorder=2)
 
     ax2.set_ylabel("AMOC weakening by 2100  (%, 2081–2100 vs 1950–1980)")
     ax2.set_title("(b) Projected weakening conditional on mechanism",
                   fontweight="bold")
     ax2.set_ylim(None, 95)
     ax2.grid(axis="y", alpha=0.3, lw=0.3)
+
+    # Portmann label: place in upper-right of the panel, away from boxes
+    ax2.text(0.02, 0.98, r"$\!$Portmann et al.$\,$2026: 51 $\pm$ 8%",
+             transform=ax2.transAxes, fontsize=6.5, color="#CC3333",
+             ha="left", va="top", fontweight="bold",
+             bbox={"boxstyle": "round,pad=0.25", "facecolor": "white",
+                   "edgecolor": "#CC3333", "linewidth": 0.5, "alpha": 0.85})
 
     fig.tight_layout()
     save_publication_figure(fig, args.output)
