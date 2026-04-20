@@ -96,17 +96,25 @@ def main():
     ax1.axhline(60, color="#56B4E9", lw=0.5, ls=":", alpha=0.7, zorder=1)
     ax1.axvline(60, color="#E69F00", lw=0.5, ls=":", alpha=0.7, zorder=1)
 
-    # CMIP6 circles, one per class for a clean legend
+    # Add baseline-regime flag: bistable (F_ov_baseline < 0) vs monostable.
+    cmip6["bistable"] = cmip6["F_ov_baseline"] < 0
+
+    # CMIP6 circles, one per class. Marker edge colour encodes baseline
+    # regime: BLACK = bistable baseline, GREY = monostable baseline.
     for cls in CLASS_ORDER:
-        sub = cmip6[cmip6["class"] == cls]
-        if len(sub) == 0:
-            continue
-        ax1.scatter(
-            sub["velocity_share_pct"], sub["salinity_share_pct"],
-            s=45, color=CLASS_COLORS[cls], alpha=0.7,
-            edgecolor="0.2", linewidth=0.5, zorder=4,
-            label=f"CMIP6 {cls} (n={len(sub)})",
-        )
+        for bistable, edge_color, edge_lw in [(True, "black", 1.2),
+                                              (False, "0.75", 0.5)]:
+            sub = cmip6[(cmip6["class"] == cls) & (cmip6["bistable"] == bistable)]
+            if len(sub) == 0:
+                continue
+            label_tag = "bistable" if bistable else "monostable"
+            label = f"CMIP6 {cls}, {label_tag} (n={len(sub)})"
+            ax1.scatter(
+                sub["velocity_share_pct"], sub["salinity_share_pct"],
+                s=55, color=CLASS_COLORS[cls], alpha=0.75,
+                edgecolor=edge_color, linewidth=edge_lw, zorder=4,
+                label=label,
+            )
 
     # Reanalyses: FIXED-size diamond markers (NOT scaled by ΔF)
     rean_scatter = []
@@ -147,30 +155,12 @@ def main():
         arrowprops={"arrowstyle": "-", "color": "0.55", "lw": 0.35},
     )
 
-    # Zone guides
-    ax1.text(100, 80, "s-dominant", color="#56B4E9",
-             fontsize=6, style="italic", ha="right", va="top")
-    ax1.text(100, 10, "v-dominant", color="#E69F00",
-             fontsize=6, style="italic", ha="right", va="top")
-
     ax1.set_xlabel(r"Velocity share: $100 \cdot \Delta F_v / \Delta F_\mathrm{total}$ (%)")
     ax1.set_ylabel(r"Salinity share: $100 \cdot \Delta F_s / \Delta F_\mathrm{total}$ (%)")
     ax1.set_title("(a) Mechanism classification plane", fontweight="bold")
     ax1.set_xlim(-80, 220)
     ax1.set_ylim(-150, 220)
     ax1.legend(loc="lower left", fontsize=5.5, frameon=False)
-
-    # Clarifying note bottom-right of panel (a)
-    ax1.text(0.98, 0.02,
-             "Shares can exceed 100% or be negative — the three\n"
-             "components (v, s, cross) sum to exactly 100% but can\n"
-             "oppose each other. |share| > 100% indicates that Δv and ΔS\n"
-             "are anti-correlated (large cross term) or that ΔF$_\\mathrm{total}$\n"
-             "is small (ratio ill-conditioned).",
-             transform=ax1.transAxes, fontsize=4.8, color="0.4",
-             ha="right", va="bottom", style="italic",
-             bbox={"boxstyle": "round,pad=0.2", "facecolor": "white",
-                   "edgecolor": "0.7", "linewidth": 0.3, "alpha": 0.9})
 
     # ── Panel (b): velocity-share histogram across weakening models ──
     weakening = cmip6[cmip6["class"] != "increasing"]
