@@ -164,6 +164,7 @@ def main() -> None:
     ax.text(
         1958.5, -0.28, "bistable regime   (F$_{ovS}$ < 0)",
         fontsize=6.5, color="#CC5500", style="italic", va="bottom",
+        zorder=2,
     )
 
     for label, yrs, vals, color in loaded:
@@ -180,10 +181,11 @@ def main() -> None:
                     textcoords="offset points", fontsize=5.2,
                     color="0.3", zorder=11)
 
+    # Legend placed ABOVE the axes, separated from the trend table below
     ax.legend(
-        loc="upper center", bbox_to_anchor=(0.5, 1.04),
-        ncol=4, frameon=False, fontsize=6.8, handlelength=1.8,
-        columnspacing=1.4,
+        loc="upper center", bbox_to_anchor=(0.5, 1.10),
+        ncol=4, frameon=False, fontsize=7, handlelength=1.8,
+        columnspacing=1.8,
     )
 
     # Trend table
@@ -193,17 +195,21 @@ def main() -> None:
         if p < 0.05: return "*"
         return ""
 
-    tx, ty = 0.015, 0.30
+    # Table placed in lower-LEFT corner, well below the data lines.
+    tx, ty = 0.015, 0.36
     ax.text(
-        tx, ty, "Linear trends (mSv/yr)   Santer / GLS",
+        tx, ty, "Linear trends (mSv/yr, Santer / GLS)",
         transform=ax.transAxes, fontsize=7, fontweight="bold",
         va="top", ha="left",
     )
+    header_y = ty - 0.055
     ax.text(
-        tx, ty - 0.055, f"{'product':<11s}   N   santer   GLS",
+        tx, header_y,
+        f"{'product':<12s} {'N':>4s}  {'Santer':>7s}  {'GLS':>7s}",
         transform=ax.transAxes, fontsize=5.5, family="monospace",
         color="0.4", va="top", ha="left",
     )
+    line_dy = 0.050
     for i, row in enumerate(trend_rows):
         lab = row["product"]
         n = row["n_years"]
@@ -211,20 +217,21 @@ def main() -> None:
         gls_str = f"{row['gls_slope_Sv_dec'] * 100:+.2f}{_stars(row['gls_p']):s}"
         color = next(c for lbl, _, _, c in loaded if lbl == lab)
         ax.text(
-            tx, ty - 0.09 - i * 0.048,
-            f"{lab:<11s}  {n:>3d}  {san_str:>6s}  {gls_str:>6s}",
+            tx, header_y - 0.04 - i * line_dy,
+            f"{lab:<12s} {n:>4d}  {san_str:>7s}  {gls_str:>7s}",
             transform=ax.transAxes, fontsize=6, color=color,
             family="monospace", va="top", ha="left",
         )
     ax.text(
-        tx, ty - 0.09 - len(trend_rows) * 0.048 - 0.01,
-        "** p<0.01  * p<0.05   (Santer N$_{eff}$, GLS Prais-Winsten AR1)",
-        transform=ax.transAxes, fontsize=5.2, color="0.4",
+        tx, header_y - 0.04 - len(trend_rows) * line_dy - 0.005,
+        "** p<0.01   * p<0.05",
+        transform=ax.transAxes, fontsize=5.5, color="0.4",
         va="top", ha="left",
     )
 
     ax.set_xlim(1958, 2026)
-    ax.set_ylim(-0.3, 0.15)
+    # User requested: limit top to 0.05 Sv (was 0.15). Keep bottom at -0.3.
+    ax.set_ylim(-0.30, 0.05)
     ax.set_xlabel("Year")
     ax.set_ylabel(r"$\mathrm{F}_{ovS}$  at 34.5°S (Sv)")
     fig.suptitle(

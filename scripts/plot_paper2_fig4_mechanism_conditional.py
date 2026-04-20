@@ -91,8 +91,12 @@ def main() -> None:
             ax1.plot(y, a, color=CLASS_COLORS[cls], alpha=0.25, lw=0.5, zorder=2)
             trajectories[cls].append((y, a))
 
-    # Ensemble means (interpolate to common grid 1850-2100)
+    # Ensemble means (interpolate to common grid, but only show where the
+    # full class has data — avoid tails supported by 1-2 models).
     common_years = np.arange(1850, 2101)
+    # Require at least this fraction of the class to have data at a given
+    # year before the ensemble mean is drawn.
+    FULL_ENSEMBLE_FRACTION = 1.0  # i.e. all class members must reach that year
     for cls in ("v-dominant", "s-dominant", "mixed"):
         if not trajectories[cls]:
             continue
@@ -102,10 +106,15 @@ def main() -> None:
                 idx = np.where(y == yr)[0]
                 if idx.size:
                     matrix[j, k] = a[idx[0]]
+        n = len(trajectories[cls])
         with np.errstate(all="ignore"):
+            n_valid = np.sum(np.isfinite(matrix), axis=0)
             mean_a = np.nanmean(matrix, axis=0)
             std_a = np.nanstd(matrix, axis=0)
-        n = len(trajectories[cls])
+        # Mask years where the class is not fully sampled
+        keep = n_valid >= int(np.ceil(FULL_ENSEMBLE_FRACTION * n))
+        mean_a = np.where(keep, mean_a, np.nan)
+        std_a = np.where(keep, std_a, np.nan)
         ax1.plot(common_years, mean_a, color=CLASS_COLORS[cls], lw=2.2, zorder=6,
                  label=f"{cls}  (n={n})")
         ax1.fill_between(common_years, mean_a - std_a, mean_a + std_a,
