@@ -33,6 +33,7 @@ import xarray as xr
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from ardp.constants import ATLANTIC_LON_MAX, ATLANTIC_LON_MIN, S0, SAMBA_LAT
 from ardp.physics.fovs_decomposition import decompose_fovs_trend
+import warnings
 
 logging.basicConfig(
     level=logging.INFO,
@@ -179,6 +180,58 @@ def _glorys12_period_mean(data_dir: Path, period: tuple[int, int]) -> tuple[np.n
 
 
 # ═══════════════════════════════════════════════════════════════════════
+# ECCO-V4r4 period-mean section (reuses downloaded monthly granules)
+# ═══════════════════════════════════════════════════════════════════════
+
+def _ecco_period_mean(ecco_cache: Path, period: tuple[int, int]) -> tuple[np.ndarray, np.ndarray, dict]:
+    """Read local ECCO monthly granules for a period, compute (v, s) section means."""
+    y0, y1 = period
+    vel_files = []
+    sal_files = []
+    for year in range(y0, y1 + 1):
+        v_dir = ecco_cache / "vel" / str(year)
+        s_dir = ecco_cache / "sal" / str(year)
+        if v_dir.exists():
+            vel_files.extend(sorted(v_dir.glob("*.nc")))
+        if s_dir.exists():
+            sal_files.extend(sorted(s_dir.glob("*.nc")))
+    if not vel_files or not sal_files:
+        raise RuntimeError(f"ECCO {y0}-{y1}: no local files (run compute_ecco_fovs.py first)")
+    log.info(f"ECCO {y0}-{y1}: {len(vel_files)} vel files, {len(sal_files)} sal files")
+
+    # Open multi-file datasets
+    ds_v = xr.open_mfdataset(vel_files, combine="by_coords", parallel=False)
+    ds_s = xr.open_mfdataset(sal_files, combine="by_coords", parallel=False)
+
+    lat = ds_v["latitude"].values
+    lon = ds_v["longitude"].values
+    z = np.abs(ds_v["Z"].values.astype(float))
+    j_idx = int(np.abs(lat - SAMBA_LAT).argmin())
+    actual_lat = float(lat[j_idx])
+    atl = (lon >= ATLANTIC_LON_MIN) & (lon <= ATLANTIC_LON_MAX)
+    dlon = np.diff(lon)
+    dlon = np.append(dlon, dlon[-1])
+    e1t = np.abs(dlon) * 111000.0 * np.cos(np.deg2rad(actual_lat))
+    e1t = np.clip(e1t, 1.0, None)
+    order = np.argsort(z)
+    z_sorted = z[order]
+    e3t_sorted = np.diff(z_sorted, prepend=0.0)
+    e3t = np.empty_like(e3t_sorted)
+    e3t[order] = e3t_sorted
+
+    # Time-mean section at j-row, Atlantic x-points
+    v_mean = ds_v["NVEL"].mean(dim="time").isel(latitude=j_idx).load().values[:, atl]
+    s_mean = ds_s["SALT"].mean(dim="time").isel(latitude=j_idx).load().values[:, atl]
+    s_mean = np.where(s_mean > 0, s_mean, np.nan)  # ECCO land uses 0
+    ds_v.close(); ds_s.close()
+
+    return v_mean, s_mean, {
+        "e1t_atl": e1t[atl], "e3t": e3t, "depth": z, "actual_lat": actual_lat,
+        "atl_count": int(atl.sum()),
+    }
+
+
+# ═══════════════════════════════════════════════════════════════════════
 # Per-product decomposition
 # ═══════════════════════════════════════════════════════════════════════
 
@@ -189,9 +242,14 @@ def process_product(product: str) -> None:
         v1, s1, grid = _oras5_period_mean(Path("data/oras5"), EARLY)
         v2, s2, _ = _oras5_period_mean(Path("data/oras5"), LATE)
     elif product == "glorys12":
-        # GLORYS starts 1993, so EARLY = 1993-2005 already
         v1, s1, grid = _glorys12_period_mean(Path("data/glorys12"), EARLY)
         v2, s2, _ = _glorys12_period_mean(Path("data/glorys12"), LATE)
+    elif product == "ecco":
+        # ECCO 1992-2017: early 1993-2005 vs late 2013-2017 (truncated)
+        early = EARLY  # 1993-2005
+        late = (2013, 2017)  # ECCO ends 2017
+        v1, s1, grid = _ecco_period_mean(Path("data/ecco"), early)
+        v2, s2, _ = _ecco_period_mean(Path("data/ecco"), late)
     else:
         raise ValueError(f"Unknown product: {product}")
 
@@ -252,11 +310,11 @@ def process_product(product: str) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--product", choices=["oras5", "glorys12", "all"], default="all",
+        "--product", choices=["oras5", "glorys12", "ecco", "soda", "all"], default="all",
     )
     args = parser.parse_args()
 
-    products = ["oras5", "glorys12"] if args.product == "all" else [args.product]
+    products = ["oras5", "glorys12", "ecco"] if args.product == "all" else [args.product]
     for p in products:
         try:
             process_product(p)

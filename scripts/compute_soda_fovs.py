@@ -187,8 +187,13 @@ def ensure_ref_file() -> Path:
 
 
 def download_snapshot(year: int, month: int, tmp: Path) -> bool:
-    """Try 5-day file candidates for (year, month); return True on success."""
-    for day in (13, 8, 18, 3, 23, 28):
+    """Try 5-day file candidates for (year, month); return True on success.
+
+    SODA 3.15.2 5-day files start on days aligned with a recurring
+    5-day schedule; try sensible candidates for each month.
+    """
+    # 5-day starts commonly appear on days 1, 6, 11, 16, 21, 26, 28, 31
+    for day in (11, 16, 6, 21, 1, 26, 13, 8, 18, 23, 28):
         fname = f"soda3.15.2_5dy_ocean_reg_{year}_{month:02d}_{day:02d}.nc"
         try:
             r = subprocess.run(
