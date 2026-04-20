@@ -28,7 +28,6 @@ import argparse
 import logging
 import shlex
 import subprocess
-import sys
 from pathlib import Path
 
 logging.basicConfig(
