@@ -156,7 +156,7 @@ def main() -> None:
                      port_central - port_err, port_central + port_err,
                      color="#CC3333", alpha=0.15, zorder=4)
     ax2.text(len(bp_data) - 0.55, port_central + 1,
-             f"Portmann et al. 2026\n51 ± 8%",
+             "Portmann et al. 2026\n51 ± 8%",
              fontsize=5.8, color="#CC3333", ha="right", va="bottom")
 
     ax2.set_ylabel("AMOC weakening by 2100  (%, 2081–2100 vs 1950–1980)")
