@@ -28,6 +28,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from adjustText import adjust_text
 
 from ardp.viz.style import apply_nature_style, save_publication_figure
 
@@ -147,16 +148,26 @@ def main():
     ax2.set_xlim(-0.5, 2.5)
     ax2.grid(axis="y", alpha=0.3, lw=0.3)
 
-    # Annotate bistable models directly
+    # Annotate bistable models directly. Use adjust_text so that
+    # ties (e.g. two s-dominant models with nearly identical
+    # projected weakening) do not stack on top of each other.
+    bis_texts = []
     for pos, vals, cls, models in zip(
         positions, bis_data, ("v-dominant", "s-dominant", "mixed"),
         [bistable_weak[bistable_weak["class"] == c]["model"].tolist()
          for c in ("v-dominant", "s-dominant", "mixed")]):
         for v, m in zip(vals, models):
             short = m.replace("-CM6-1", "").replace("-0-LL", "").replace("-GC31-LL", "")
-            ax2.annotate(short, xy=(pos, v), xytext=(6, 2),
-                         textcoords="offset points",
-                         fontsize=5.5, color="0.35", zorder=7)
+            bis_texts.append(ax2.text(pos, v, short,
+                                      fontsize=5.5, color="0.2",
+                                      zorder=7))
+    if bis_texts:
+        adjust_text(
+            bis_texts, ax=ax2,
+            expand=(1.3, 1.6),
+            only_move={"text": "xy", "static": "xy"},
+            arrowprops={"arrowstyle": "-", "color": "0.55", "lw": 0.35},
+        )
 
     fig.suptitle("Mechanism-conditional AMOC weakening: full vs bistable-only ensemble",
                  y=1.00, fontsize=9, fontweight="bold")
