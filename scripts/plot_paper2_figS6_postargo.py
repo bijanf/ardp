@@ -128,7 +128,9 @@ def main() -> None:
                            fontsize=6.5)
         ax.set_ylabel(r"$\Delta\mathrm{F}_{ovS}$ (mSv, late − early)" if tag == 0
                       else "")
-        ax.set_title(title, fontweight="bold")
+        # Title removed — LaTeX provides the panel label.
+        # (Original title was: f"{title}")
+        _ = title  # keep parameter referenced; intentionally unused
         ax.set_ylim(-100, 25)
         ax.grid(axis="y", alpha=0.3, lw=0.3)
 

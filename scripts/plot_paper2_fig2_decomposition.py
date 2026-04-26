@@ -87,7 +87,7 @@ def main() -> None:
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels, rotation=15, ha="right", fontsize=6.5)
     ax1.set_ylabel(r"$\Delta\mathrm{F}_{ovS}$ (mSv, late − early period)")
-    ax1.set_title("(a) Mechanism decomposition", fontweight="bold")
+    # Title removed — LaTeX provides the (a) label.
     # Legend OUTSIDE the axes (below the title, above the plot area) so it
     # never overlaps bars. Horizontal single row.
     ax1.legend(loc="lower center", bbox_to_anchor=(0.5, -0.38),
@@ -130,7 +130,7 @@ def main() -> None:
     ax2.invert_yaxis()
     ax2.set_xlabel(r"Per-depth $\Delta F$ (mSv)")
     ax2.set_ylabel("Depth (m)")
-    ax2.set_title("(b) Depth distribution", fontweight="bold")
+    # Title removed — LaTeX provides the (b) label.
     # Move legend OUT of the data area — to the right of the axes.
     ax2.legend(loc="center left", bbox_to_anchor=(1.02, 0.5),
                fontsize=5.5, frameon=False, ncol=1,

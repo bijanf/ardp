@@ -83,44 +83,58 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--products", nargs="+",
                         default=["oras5", "glorys12"])
+    parser.add_argument(
+        "--from-cache", action="store_true",
+        help="Skip the period-pair recompute and just regenerate Fig S2 "
+             "from the cached fovs_decomposition_sensitivity.csv.",
+    )
     args = parser.parse_args()
 
     apply_nature_style()
 
-    # Sensitivity grid: early ending year (9 cases from 2001 to 2009),
-    # late starting year (9 cases from 2011 to 2019). Early always starts
-    # at 1993 (GLORYS12 data range); late always ends at 2025.
-    # For ORAS5 we could use 1958 start but keep 1993 for comparability.
-    early_ends = [2001, 2003, 2005, 2007, 2009]
-    late_starts = [2011, 2013, 2015, 2017, 2019]
+    csv_path = RESULTS_DIR / "fovs_decomposition_sensitivity.csv"
 
-    rows = []
-    for product in args.products:
-        log.info(f"=== {product.upper()} sensitivity grid ===")
-        for e_end in early_ends:
-            for l_start in late_starts:
-                if e_end >= l_start - 1:
-                    continue
-                early = (1993, e_end)
-                late = (l_start, 2025 if product != "ecco" else 2017)
-                row = _compute_one(product, early, late)
-                if row is None:
-                    continue
-                log.info(
-                    f"  early {early[0]}-{early[1]}  late {late[0]}-{late[1]}  "
-                    f"ΔF={row['delta_total'] * 1000:+.1f} mSv  "
-                    f"v:{row['velocity_share_pct']:+.0f}%  "
-                    f"s:{row['salinity_share_pct']:+.0f}%"
-                )
-                rows.append(row)
+    if args.from_cache:
+        if not csv_path.exists():
+            log.error(f"--from-cache: {csv_path} not found.")
+            return
+        df = pd.read_csv(csv_path)
+        log.info(f"Loaded {len(df)} cached rows from {csv_path}")
+    else:
+        # Sensitivity grid: early ending year (9 cases from 2001 to 2009),
+        # late starting year (9 cases from 2011 to 2019). Early always starts
+        # at 1993 (GLORYS12 data range); late always ends at 2025.
+        # For ORAS5 we could use 1958 start but keep 1993 for comparability.
+        early_ends = [2001, 2003, 2005, 2007, 2009]
+        late_starts = [2011, 2013, 2015, 2017, 2019]
 
-    if not rows:
-        log.error("No rows computed.")
-        return
+        rows = []
+        for product in args.products:
+            log.info(f"=== {product.upper()} sensitivity grid ===")
+            for e_end in early_ends:
+                for l_start in late_starts:
+                    if e_end >= l_start - 1:
+                        continue
+                    early = (1993, e_end)
+                    late = (l_start, 2025 if product != "ecco" else 2017)
+                    row = _compute_one(product, early, late)
+                    if row is None:
+                        continue
+                    log.info(
+                        f"  early {early[0]}-{early[1]}  late {late[0]}-{late[1]}  "
+                        f"ΔF={row['delta_total'] * 1000:+.1f} mSv  "
+                        f"v:{row['velocity_share_pct']:+.0f}%  "
+                        f"s:{row['salinity_share_pct']:+.0f}%"
+                    )
+                    rows.append(row)
 
-    df = pd.DataFrame(rows)
-    df.to_csv(RESULTS_DIR / "fovs_decomposition_sensitivity.csv", index=False)
-    log.info(f"Saved: {RESULTS_DIR / 'fovs_decomposition_sensitivity.csv'}")
+        if not rows:
+            log.error("No rows computed.")
+            return
+
+        df = pd.DataFrame(rows)
+        df.to_csv(csv_path, index=False)
+        log.info(f"Saved: {csv_path}")
 
     # Summary per product
     for p in args.products:
@@ -166,8 +180,7 @@ def main() -> None:
     ax.set_yticks(range(len(args.products)))
     ax.set_yticklabels([labels[p] for p in args.products], fontsize=7)
     ax.set_xlabel("Velocity share (%) across period choices")
-    ax.set_title("Fig. S2 — Sensitivity to period choice",
-                 fontweight="bold")
+    # Title removed — Nature/Science style relies on the LaTeX caption.
     ax.legend(loc="lower right", fontsize=6, frameon=False)
     ax.set_xlim(-100, 200)
     fig.tight_layout()

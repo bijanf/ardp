@@ -234,10 +234,7 @@ def main() -> None:
     ax.set_ylim(-0.30, 0.05)
     ax.set_xlabel("Year")
     ax.set_ylabel(r"$\mathrm{F}_{ovS}$  at 34.5°S (Sv)")
-    fig.suptitle(
-        r"Overturning freshwater transport at 34.5°S: four reanalyses + direct hydrography",
-        y=0.99, fontsize=9, fontweight="bold",
-    )
+    # suptitle removed — Nature/Science style relies on the LaTeX caption.
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 

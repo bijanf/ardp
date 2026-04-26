@@ -56,8 +56,13 @@ def _load_pair(product: str) -> tuple[dict, np.ndarray, np.ndarray] | None:
     return grid, dv, ds
 
 
-def _plot_panel(ax, grid, field, cmap, vmax, title):
-    """Draw one Δv or ΔS panel on the supplied axis. Returns the QuadMesh."""
+def _plot_panel(ax, grid, field, cmap, vmax, title=""):
+    """Draw one Δv or ΔS panel on the supplied axis. Returns the QuadMesh.
+
+    The ``title`` argument is retained for backward compatibility but is
+    intentionally not rendered — Nature/Science style provides the panel
+    label via LaTeX (\\textbf{(a)} etc.) below the figure.
+    """
     e1t = grid["e1t_atl"]
     n_x = field.shape[1]
     x_km = np.concatenate([[0.0], np.cumsum(e1t[:-1]) / 1000.0])[:n_x]
@@ -66,7 +71,7 @@ def _plot_panel(ax, grid, field, cmap, vmax, title):
     im = ax.pcolormesh(x_km, depth, field, cmap=cmap, vmin=-vmax, vmax=vmax,
                        shading="auto")
     ax.invert_yaxis()
-    ax.set_title(title, fontweight="bold", fontsize=8)
+    _ = title  # kept for API compatibility, not drawn
     ax.set_xlabel("Distance from western boundary  (km)")
     ax.set_ylabel("Depth  (m)")
     return im
@@ -135,11 +140,7 @@ def main() -> None:
     cbar1.set_label(r"$\Delta v$  (m s$^{-1}$)")
     cbar3 = fig.colorbar(im3, ax=axes[1, :], pad=0.015, shrink=0.85, location="right")
     cbar3.set_label(r"$\Delta S$  (PSU)")
-    fig.suptitle(
-        r"Fig. S3 — Zonal structure of $\Delta v$ and $\Delta S$ at 34.5°S "
-        rf"({EARLY[0]}-{EARLY[1]} vs {LATE[0]}-{LATE[1]})",
-        fontweight="bold", fontsize=9, y=0.99,
-    )
+    # suptitle removed — Nature/Science style relies on the LaTeX caption.
     save_publication_figure(fig, args.output)
 
     # ── Optional: 4 standalone panels for the new Main.tex (Fig 5) ──

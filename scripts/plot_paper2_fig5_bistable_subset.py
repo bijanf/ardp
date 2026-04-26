@@ -103,8 +103,7 @@ def main():
     ax1.fill_between([-0.5, 2.5], 43, 59, color="#CC3333", alpha=0.12, zorder=1)
     ax1.axhline(51, color="#CC3333", lw=1.3, zorder=2)
     ax1.set_ylabel("AMOC weakening by 2100 (%, 2081–2100 vs 1950–1980)")
-    ax1.set_title("(a) Full forced-weakening ensemble (n=12)",
-                  fontweight="bold")
+    # Title removed — LaTeX provides the (a) label.
     ax1.set_ylim(None, 95)
     ax1.grid(axis="y", alpha=0.3, lw=0.3)
 
@@ -132,8 +131,7 @@ def main():
     ax2.set_xticks(positions)
     ax2.set_xticklabels(labels_bis)
     ax2.set_ylabel("AMOC weakening by 2100 (%)")
-    ax2.set_title("(b) Bistable-baseline subset only (n=4)",
-                  fontweight="bold")
+    # Title removed — LaTeX provides the (b) label.
     ax2.set_ylim(ax1.get_ylim())
     ax2.set_xlim(-0.5, 2.5)
     ax2.grid(axis="y", alpha=0.3, lw=0.3)
@@ -159,8 +157,7 @@ def main():
             arrowprops={"arrowstyle": "-", "color": "0.55", "lw": 0.35},
         )
 
-    fig.suptitle("Mechanism-conditional AMOC weakening: full vs bistable-only ensemble",
-                 y=1.00, fontsize=9, fontweight="bold")
+    # suptitle removed — Nature/Science style relies on the LaTeX caption.
     fig.tight_layout()
     save_publication_figure(fig, args.output)
 

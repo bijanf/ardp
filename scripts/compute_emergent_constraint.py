@@ -305,7 +305,7 @@ def main() -> None:
             rf"(mean {FORECAST_PERIOD[0]}-{FORECAST_PERIOD[1]} "
             rf"− {BASELINE_PERIOD[0]}-{BASELINE_PERIOD[1]}), Sv"
         )
-        ax1.set_title("(a) CMIP6 emergent constraint", fontweight="bold")
+        # Title removed — LaTeX provides the (a) label.
         ax1.axhline(0, color="0.6", lw=0.4)
         ax1.legend(loc="best", fontsize=6, frameon=False)
 
@@ -324,7 +324,7 @@ def main() -> None:
             rf"Forecast $\Delta$AMOC "
             rf"({FORECAST_PERIOD[0]}-{FORECAST_PERIOD[1]} vs {BASELINE_PERIOD[0]}-{BASELINE_PERIOD[1]}), Sv"
         )
-        ax2.set_title("(b) Narrowed forecast envelope", fontweight="bold")
+        # Title removed — LaTeX provides the (b) label.
 
         # Annotate the narrowing
         ax2.annotate(

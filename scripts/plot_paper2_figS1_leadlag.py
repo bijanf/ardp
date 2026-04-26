@@ -76,7 +76,7 @@ def main() -> None:
     ax1.axhline(0, color="0.6", lw=0.6, zorder=1)
     ax1.set_xlabel("Lag τ  (years)   — positive = F$_{ovS}$ leads AMOC")
     ax1.set_ylabel(r"$r(\mathrm{F}_{ovS}(t),\ \mathrm{AMOC}(t+\tau))$")
-    ax1.set_title("(a) Cross-correlation curves", fontweight="bold")
+    # Title removed — LaTeX provides the (a) label.
     ax1.set_xlim(lags[0], lags[-1])
     ax1.set_ylim(-1, 1)
     ax1.legend(loc="upper right", fontsize=5.8, frameon=False)
@@ -89,7 +89,7 @@ def main() -> None:
     ax2.axvline(0, color="0.6", lw=0.6, zorder=1)
     ax2.set_xlabel("Peak lag τ* (years)")
     ax2.set_ylabel(r"Peak |r|")
-    ax2.set_title("(b) Per-model CCF peak", fontweight="bold")
+    # Title removed — LaTeX provides the (b) label.
     ax2.set_xlim(lags[0], lags[-1])
     ax2.set_ylim(0, 1)
     cbar = fig.colorbar(sc, ax=ax2, pad=0.02, shrink=0.85)
@@ -114,7 +114,7 @@ def main() -> None:
                     label=f"Median (collapsing) = {med:+.0f}y")
     ax3.set_xlabel("Peak lag τ* (years)")
     ax3.set_ylabel("Number of models")
-    ax3.set_title("(c) Distribution of peak lags", fontweight="bold")
+    # Title removed — LaTeX provides the (c) label.
     ax3.set_xlim(-50, 50)
     ax3.legend(loc="upper left", fontsize=5.8, frameon=False)
 
