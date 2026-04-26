@@ -160,7 +160,7 @@ def main():
 
     ax1.set_xlabel(r"Velocity share: $100 \cdot \Delta F_v / \Delta F_\mathrm{total}$ (%)")
     ax1.set_ylabel(r"Salinity share: $100 \cdot \Delta F_s / \Delta F_\mathrm{total}$ (%)")
-    ax1.set_title("(a) Mechanism classification plane", fontweight="bold")
+    # Title removed — Nature/Science style relies on LaTeX \textbf{(a)}.
     ax1.set_xlim(-80, 220)
     ax1.set_ylim(-150, 220)
     ax1.legend(loc="lower left", fontsize=5.5, frameon=False)
@@ -182,7 +182,7 @@ def main():
     ax2.axvline(40, color="#56B4E9", lw=0.6, ls=":", alpha=0.7)
     ax2.set_xlabel("Velocity share (%)")
     ax2.set_ylabel("Number of CMIP6 models")
-    ax2.set_title("(b) Distribution of CMIP6 velocity shares", fontweight="bold")
+    # Title removed — LaTeX provides the (b) label.
     ax2.legend(loc="upper right", fontsize=5.8, frameon=False)
 
     fig.tight_layout()

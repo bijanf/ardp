@@ -92,8 +92,7 @@ def main() -> None:
 
     ax.set_xlabel(r"$|\Delta F_{ovS}|$  between baseline and forced periods (mSv)")
     ax.set_ylabel("Density")
-    ax.set_title("Fig. S4 — Signal-to-noise: forced ΔF$_{ovS}$ vs internal-variability null",
-                 fontweight="bold")
+    # Title removed — Nature/Science style relies on the LaTeX caption.
     ax.legend(loc="upper right", fontsize=6, frameon=False)
     ax.set_xlim(0, None)
 
