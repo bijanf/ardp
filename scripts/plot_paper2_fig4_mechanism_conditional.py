@@ -124,8 +124,7 @@ def main() -> None:
     ax1.set_xlim(1850, 2100)
     ax1.set_xlabel("Year")
     ax1.set_ylabel("AMOC at 26.5°N  (Sv)")
-    ax1.set_title("(a) AMOC trajectories by F$_{ovS}$ mechanism class",
-                  fontweight="bold")
+    # Title removed — LaTeX provides the (a) label.
     ax1.legend(loc="lower left", fontsize=6, frameon=False)
 
     # ── Panel (b): boxplot of % weakening by class ──
@@ -164,8 +163,7 @@ def main() -> None:
     ax2.axhline(port_central, color="#CC3333", lw=1.3, zorder=2)
 
     ax2.set_ylabel("AMOC weakening by 2100  (%, 2081–2100 vs 1950–1980)")
-    ax2.set_title("(b) Projected weakening conditional on mechanism",
-                  fontweight="bold")
+    # Title removed — LaTeX provides the (b) label.
     ax2.set_ylim(None, 95)
     ax2.grid(axis="y", alpha=0.3, lw=0.3)
 
