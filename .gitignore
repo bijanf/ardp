@@ -23,7 +23,9 @@ ideas/
 paper/manuscript.aux
 paper/manuscript.log
 paper/manuscript.blg
-paper2/manuscript.aux
-paper2/manuscript.log
-paper2/manuscript.blg
-paper2/manuscript.out
+paper2/*.aux
+paper2/*.bbl
+paper2/*.blg
+paper2/*.log
+paper2/*.out
+paper2/*.pdf

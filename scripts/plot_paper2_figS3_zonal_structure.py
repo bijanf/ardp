@@ -56,10 +56,46 @@ def _load_pair(product: str) -> tuple[dict, np.ndarray, np.ndarray] | None:
     return grid, dv, ds
 
 
+def _plot_panel(ax, grid, field, cmap, vmax, title):
+    """Draw one Δv or ΔS panel on the supplied axis. Returns the QuadMesh."""
+    e1t = grid["e1t_atl"]
+    n_x = field.shape[1]
+    x_km = np.concatenate([[0.0], np.cumsum(e1t[:-1]) / 1000.0])[:n_x]
+    depth = grid["depth"][: field.shape[0]]
+
+    im = ax.pcolormesh(x_km, depth, field, cmap=cmap, vmin=-vmax, vmax=vmax,
+                       shading="auto")
+    ax.invert_yaxis()
+    ax.set_title(title, fontweight="bold", fontsize=8)
+    ax.set_xlabel("Distance from western boundary  (km)")
+    ax.set_ylabel("Depth  (m)")
+    return im
+
+
+def _save_single_panel(grid, field, cmap, vmax, title, cbar_label, out_path):
+    """Save a single panel (one Δv or ΔS subplot) as standalone PNG+PDF."""
+    fig, ax = plt.subplots(figsize=(4.8, 3.6))
+    im = _plot_panel(ax, grid, field, cmap, vmax, title)
+    cbar = fig.colorbar(im, ax=ax, pad=0.02, shrink=0.95)
+    cbar.set_label(cbar_label)
+    fig.tight_layout()
+    save_publication_figure(fig, out_path, formats=["png", "pdf"])
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path,
                         default=Path("figures/paper2/figS3_zonal_structure"))
+    parser.add_argument(
+        "--split-panels", action="store_true",
+        help="Also emit four standalone panels as figures/paper2/Fig5a.{png,pdf}"
+             "...Fig5d.{png,pdf} for the new Main.tex zonal-structure figure.",
+    )
+    parser.add_argument(
+        "--split-output-dir", type=Path,
+        default=Path("figures/paper2"),
+        help="Directory for split panel files (Fig5a..Fig5d).",
+    )
     args = parser.parse_args()
 
     apply_nature_style()
@@ -71,26 +107,8 @@ def main() -> None:
         print("Need both ORAS5 and GLORYS12 sections.")
         return
 
-    fig, axes = plt.subplots(2, 2, figsize=(10.0, 6.0),
-                             gridspec_kw={"wspace": 0.20, "hspace": 0.28})
-
-    def _plot(ax, grid, field, cmap, vmax, title):
-        # Build longitude coordinate of Atlantic points
-        e1t = grid["e1t_atl"]
-        n_x = field.shape[1]
-        # x-coordinate: cumulative distance (km) from westernmost Atlantic point
-        x_km = np.concatenate([[0.0], np.cumsum(e1t[:-1]) / 1000.0])[:n_x]
-        depth = grid["depth"][: field.shape[0]]
-
-        im = ax.pcolormesh(x_km, depth, field, cmap=cmap, vmin=-vmax, vmax=vmax,
-                           shading="auto")
-        ax.invert_yaxis()
-        ax.set_title(title, fontweight="bold", fontsize=8)
-        ax.set_xlabel("Distance from western boundary  (km)")
-        ax.set_ylabel("Depth  (m)")
-        return im
-
-    # Compute shared colour scales
+    # Compute shared colour scales (used for both combined and split figures
+    # so that the four individual panels keep a comparable scale).
     dv_vmax = max(
         float(np.nanpercentile(np.abs(oras5[1]), 99)),
         float(np.nanpercentile(np.abs(glorys12[1]), 99)),
@@ -102,27 +120,47 @@ def main() -> None:
     print(f"Δv saturation: ±{dv_vmax:.4f} m/s")
     print(f"ΔS saturation: ±{ds_vmax:.4f} PSU")
 
-    im1 = _plot(axes[0, 0], oras5[0], oras5[1], "RdBu_r", dv_vmax,
-                "(a) ORAS5  Δv  (late − early)")
-    im2 = _plot(axes[0, 1], glorys12[0], glorys12[1], "RdBu_r", dv_vmax,
+    # ── Combined 2x2 figure (legacy figS3) ──
+    fig, axes = plt.subplots(2, 2, figsize=(10.0, 6.0),
+                             gridspec_kw={"wspace": 0.20, "hspace": 0.28})
+    im1 = _plot_panel(axes[0, 0], oras5[0], oras5[1], "RdBu_r", dv_vmax,
+                      "(a) ORAS5  Δv  (late − early)")
+    _plot_panel(axes[0, 1], glorys12[0], glorys12[1], "RdBu_r", dv_vmax,
                 "(b) GLORYS12V1  Δv")
-    im3 = _plot(axes[1, 0], oras5[0], oras5[2], "PiYG_r", ds_vmax,
-                "(c) ORAS5  ΔS")
-    im4 = _plot(axes[1, 1], glorys12[0], glorys12[2], "PiYG_r", ds_vmax,
+    im3 = _plot_panel(axes[1, 0], oras5[0], oras5[2], "PiYG_r", ds_vmax,
+                     "(c) ORAS5  ΔS")
+    _plot_panel(axes[1, 1], glorys12[0], glorys12[2], "PiYG_r", ds_vmax,
                 "(d) GLORYS12V1  ΔS")
-
-    # Colourbars
     cbar1 = fig.colorbar(im1, ax=axes[0, :], pad=0.015, shrink=0.85, location="right")
     cbar1.set_label(r"$\Delta v$  (m s$^{-1}$)")
     cbar3 = fig.colorbar(im3, ax=axes[1, :], pad=0.015, shrink=0.85, location="right")
     cbar3.set_label(r"$\Delta S$  (PSU)")
-
     fig.suptitle(
         r"Fig. S3 — Zonal structure of $\Delta v$ and $\Delta S$ at 34.5°S "
         rf"({EARLY[0]}-{EARLY[1]} vs {LATE[0]}-{LATE[1]})",
         fontweight="bold", fontsize=9, y=0.99,
     )
     save_publication_figure(fig, args.output)
+
+    # ── Optional: 4 standalone panels for the new Main.tex (Fig 5) ──
+    if args.split_panels:
+        out_dir = args.split_output_dir
+        _save_single_panel(oras5[0], oras5[1], "RdBu_r", dv_vmax,
+                           "ORAS5  Δv  (late − early)",
+                           r"$\Delta v$  (m s$^{-1}$)",
+                           out_dir / "Fig5a")
+        _save_single_panel(glorys12[0], glorys12[1], "RdBu_r", dv_vmax,
+                           "GLORYS12V1  Δv  (late − early)",
+                           r"$\Delta v$  (m s$^{-1}$)",
+                           out_dir / "Fig5b")
+        _save_single_panel(oras5[0], oras5[2], "PiYG_r", ds_vmax,
+                           "ORAS5  ΔS  (late − early)",
+                           r"$\Delta S$  (PSU)",
+                           out_dir / "Fig5c")
+        _save_single_panel(glorys12[0], glorys12[2], "PiYG_r", ds_vmax,
+                           "GLORYS12V1  ΔS  (late − early)",
+                           r"$\Delta S$  (PSU)",
+                           out_dir / "Fig5d")
 
 
 if __name__ == "__main__":
