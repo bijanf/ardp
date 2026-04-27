@@ -43,6 +43,9 @@ log = logging.getLogger(__name__)
 CMIP6_DIR = Path("data/cmip6_sections")
 RESULTS_DIR = Path("data/results")
 
+# Default windows. Can be overridden on the command line via
+# --baseline-years and --forced-years for the timescale-consistency
+# diagnostic (decadal 1993-2005 vs 2013-2025).
 BASELINE_YEARS = (1950, 1980)
 FORCED_YEARS = (2080, 2100)
 
@@ -141,8 +144,20 @@ def _grid_metrics(lon_180: np.ndarray, depth: np.ndarray, lat: float) -> tuple[n
     return atl, e1t, e3t
 
 
-def process_model(model: str) -> dict | None:
-    """Run decomposition for one model. Returns summary dict or None if error."""
+def process_model(
+    model: str,
+    baseline_years: tuple[int, int] = BASELINE_YEARS,
+    forced_years: tuple[int, int] = FORCED_YEARS,
+    write_per_model_nc: bool = True,
+) -> dict | None:
+    """Run decomposition for one model. Returns summary dict or None if error.
+
+    The decadal window pair (1993-2005 vs 2013-2025) requires that BOTH
+    sample years come from concatenated historical+ssp585 records — the
+    historical experiment only runs to 2014. We therefore concatenate
+    the two records when at least one of the requested windows extends
+    past 2014.
+    """
     try:
         vo_hist_da, depth, lon_180, x_dim, lev_dim = _load_section(
             CMIP6_DIR / f"{model}_historical_vo.nc", "vo"
@@ -151,11 +166,29 @@ def process_model(model: str) -> dict | None:
         vo_ssp_da, *_ = _load_section(CMIP6_DIR / f"{model}_ssp585_vo.nc", "vo")
         so_ssp_da, *_ = _load_section(CMIP6_DIR / f"{model}_ssp585_so.nc", "so")
 
-        # Period-mean sections
-        v1 = _period_mean(vo_hist_da, BASELINE_YEARS)
-        s1 = _period_mean(so_hist_da, BASELINE_YEARS)
-        v2 = _period_mean(vo_ssp_da, FORCED_YEARS)
-        s2 = _period_mean(so_ssp_da, FORCED_YEARS)
+        def _maybe_concat(hist_da, ssp_da):
+            """Concat hist+ssp into one time series, deduplicating."""
+            combined = xr.concat([hist_da, ssp_da], dim="time")
+            t_year = combined["time"].dt.year.values
+            t_month = combined["time"].dt.month.values
+            tag = t_year * 100 + t_month
+            _, unique = np.unique(tag, return_index=True)
+            return combined.isel(time=sorted(unique))
+
+        # Pick source da per window: historical if window ends ≤2014,
+        # else concat(hist+ssp).
+        def _choose(hist_da, ssp_da, years):
+            return hist_da if years[1] <= 2014 else _maybe_concat(hist_da, ssp_da)
+
+        vo_for_baseline = _choose(vo_hist_da, vo_ssp_da, baseline_years)
+        so_for_baseline = _choose(so_hist_da, so_ssp_da, baseline_years)
+        vo_for_forced = _choose(vo_hist_da, vo_ssp_da, forced_years)
+        so_for_forced = _choose(so_hist_da, so_ssp_da, forced_years)
+
+        v1 = _period_mean(vo_for_baseline, baseline_years)
+        s1 = _period_mean(so_for_baseline, baseline_years)
+        v2 = _period_mean(vo_for_forced, forced_years)
+        s2 = _period_mean(so_for_forced, forced_years)
 
         # Ensure (lev, x) order
         for name, arr in [("v1", v1), ("s1", s1), ("v2", v2), ("s2", s2)]:
@@ -191,31 +224,33 @@ def process_model(model: str) -> dict | None:
             f"ΔF={result['delta_total']:+.3f} Sv   v:{v_frac:+.0f}%  s:{s_frac:+.0f}%"
         )
 
-        # Save per-model netCDF
-        out_path = RESULTS_DIR / f"fovs_decomposition_cmip6_{model}.nc"
-        ds_out = xr.Dataset(
-            data_vars={
-                "depth_Sv_v": ("depth", result["depth_Sv_v"]),
-                "depth_Sv_s": ("depth", result["depth_Sv_s"]),
-                "depth_Sv_cross": ("depth", result["depth_Sv_cross"]),
-            },
-            coords={"depth": depth},
-            attrs={
-                "model": model,
-                "baseline_period": f"{BASELINE_YEARS[0]}-{BASELINE_YEARS[1]}",
-                "forced_period": f"{FORCED_YEARS[0]}-{FORCED_YEARS[1]}",
-                "F_ov_baseline_Sv": result["F_ov_1"],
-                "F_ov_forced_Sv": result["F_ov_2"],
-                "delta_total_Sv": result["delta_total"],
-                "delta_v_Sv": result["delta_v"],
-                "delta_s_Sv": result["delta_s"],
-                "delta_cross_Sv": result["delta_cross"],
-                "residual_Sv": result["residual"],
-                "velocity_share_pct": float(v_frac),
-                "salinity_share_pct": float(s_frac),
-            },
-        )
-        ds_out.to_netcdf(out_path)
+        # Save per-model netCDF (only for the default centennial run;
+        # the diagnostic decadal run skips this to avoid clobbering).
+        if write_per_model_nc:
+            out_path = RESULTS_DIR / f"fovs_decomposition_cmip6_{model}.nc"
+            ds_out = xr.Dataset(
+                data_vars={
+                    "depth_Sv_v": ("depth", result["depth_Sv_v"]),
+                    "depth_Sv_s": ("depth", result["depth_Sv_s"]),
+                    "depth_Sv_cross": ("depth", result["depth_Sv_cross"]),
+                },
+                coords={"depth": depth},
+                attrs={
+                    "model": model,
+                    "baseline_period": f"{baseline_years[0]}-{baseline_years[1]}",
+                    "forced_period": f"{forced_years[0]}-{forced_years[1]}",
+                    "F_ov_baseline_Sv": result["F_ov_1"],
+                    "F_ov_forced_Sv": result["F_ov_2"],
+                    "delta_total_Sv": result["delta_total"],
+                    "delta_v_Sv": result["delta_v"],
+                    "delta_s_Sv": result["delta_s"],
+                    "delta_cross_Sv": result["delta_cross"],
+                    "residual_Sv": result["residual"],
+                    "velocity_share_pct": float(v_frac),
+                    "salinity_share_pct": float(s_frac),
+                },
+            )
+            ds_out.to_netcdf(out_path)
 
         return {
             "model": model,
@@ -238,21 +273,52 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--models", nargs="+", default=None,
                         help="Subset of models (default: all with both sections)")
+    parser.add_argument("--baseline-years", nargs=2, type=int,
+                        default=list(BASELINE_YEARS), metavar=("Y0", "Y1"),
+                        help="Inclusive baseline window (default: 1950 1980)")
+    parser.add_argument("--forced-years", nargs=2, type=int,
+                        default=list(FORCED_YEARS), metavar=("Y0", "Y1"),
+                        help="Inclusive forced window (default: 2080 2100)")
+    parser.add_argument("--output", type=Path, default=None,
+                        help="Summary CSV path (default: "
+                             "data/results/fovs_decomposition_cmip6_summary.csv "
+                             "for the centennial windows; otherwise must be "
+                             "supplied explicitly)")
     args = parser.parse_args()
 
+    baseline = tuple(args.baseline_years)
+    forced = tuple(args.forced_years)
+    is_default_window = baseline == BASELINE_YEARS and forced == FORCED_YEARS
+
+    if args.output is not None:
+        out_csv = args.output
+    elif is_default_window:
+        out_csv = RESULTS_DIR / "fovs_decomposition_cmip6_summary.csv"
+    else:
+        parser.error("--output must be specified when using non-default "
+                     "windows so the centennial CSV is not overwritten")
+        return
+
     models = args.models if args.models else _find_models()
-    log.info(f"Decomposing {len(models)} CMIP6 models: hist({BASELINE_YEARS[0]}-{BASELINE_YEARS[1]}) → ssp585({FORCED_YEARS[0]}-{FORCED_YEARS[1]})")
+    log.info(f"Decomposing {len(models)} CMIP6 models: "
+             f"baseline({baseline[0]}-{baseline[1]}) → "
+             f"forced({forced[0]}-{forced[1]})")
 
     rows = []
     for model in models:
-        row = process_model(model)
+        row = process_model(
+            model,
+            baseline_years=baseline,
+            forced_years=forced,
+            write_per_model_nc=is_default_window,
+        )
         if row is not None:
             rows.append(row)
 
     # Summary CSV
     df = pd.DataFrame(rows)
-    df.to_csv(RESULTS_DIR / "fovs_decomposition_cmip6_summary.csv", index=False)
-    log.info(f"Saved: {RESULTS_DIR / 'fovs_decomposition_cmip6_summary.csv'}")
+    df.to_csv(out_csv, index=False)
+    log.info(f"Saved: {out_csv}")
 
     if rows:
         # Classify models
