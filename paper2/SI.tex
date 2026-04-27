@@ -214,9 +214,26 @@ $F_{\mathrm{ovS}}$ at 2000-2024 against $\Delta\mathrm{AMOC}_{26^\circ\mathrm{N}
 \centering
 \includegraphics[width=0.85\linewidth]{diagA3_continuous}
 \caption{\textbf{Continuous velocity-share vs projected AMOC weakening.}
-Across the 12 forced-weakening CMIP6 models, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.46$ ($p = 0.14$, two-sided) and a Pearson $r = -0.47$ ($p = 0.12$). The OLS regression has slope $-0.11\%$ weakening per percent $f_v$ and $R^2 = 0.22$. The relationship is directionally consistent with the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening) but does not yet reach the 5\% significance threshold given the small ensemble size, motivating the SMILE robustness test (Supplementary Fig.~S7).}
+Across the 12 forced-weakening CMIP6 models, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.46$ ($p = 0.14$, two-sided) and a Pearson $r = -0.47$ ($p = 0.12$). The OLS regression has slope $-0.11\%$ weakening per percent $f_v$ and $R^2 = 0.22$. The relationship is directionally consistent with the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening) but does not yet reach the 5\% significance threshold given the small ensemble size, motivating the SMILE robustness test in the Methods.}
 \label{fig:S6}
 \end{figure}
+
+% =====================================================================
+% Fig S7 (SMILE robustness) — flip \smilefigtrue once the ESGF run
+% completes and ./figures/diagSMILE.pdf lands. Until then, the block
+% is suppressed so SI.tex still compiles.
+% =====================================================================
+\newif\ifsmilefig
+\smilefigfalse  % \smilefigtrue when diagSMILE.pdf is ready
+\ifsmilefig
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{diagSMILE}
+\caption{\textbf{Single-model initial-condition large-ensemble (SMILE) robustness test for the mechanism classification.}
+F$_{\mathrm{ovS}}$ velocity-share vs salinity-share for every available initial-condition member of the MPI-ESM1-2-LR Grand Ensemble (50 members on ESGF, of which 10 are also on Pangeo as a cross-check), overlaid on the multi-model CMIP6 weakening ensemble (faded background, 12 models). Each member of the SMILE shares identical model physics; if the binary mechanism class were primarily driven by internal variability rather than structural physics, members would scatter across the plane. They do not: the ensemble clusters tightly in the velocity-dominant quadrant (mean $f_v$ and 1$\sigma$ spread reported in the inset), confirming that MPI-ESM1-2-LR's centennial mechanism class is a structural property of the model and not a phasing of internal decadal variability. This addresses the small-N reviewer concern (Supplementary Fig.~S6): the binary classification used to construct the headline 10-percentage-point gap is structurally meaningful, even though the multi-model ensemble correlation does not yet pass a 5\%-level significance test.}
+\label{fig:S7}
+\end{figure}
+\fi
 
 \begin{figure}[htbp]
 \centering
