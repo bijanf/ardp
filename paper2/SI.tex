@@ -52,6 +52,35 @@ CMIP6 meridional-velocity (\texttt{vo}) and salinity (\texttt{so}) sections at 3
 
 A 13-model subset with \texttt{piControl} access is used for the internal-variability null test: ACCESS-CM2, CESM2, CMCC-CM2-SR5, CNRM-CM6-1, CanESM5, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3, UKESM1-0-LL.
 
+\paragraph{Ocean component reference per weakening model.} Table~\ref{tab:smile_components} lists the ocean and atmospheric components of each CMIP6 weakening model, grouped by mechanism class as classified from the centennial F$_{\mathrm{ovS}}$ decomposition. We provide this as an audit reference rather than a causal claim: the discriminating physics between the velocity-dominant and salinity-dominant clusters appears to be an emergent feature of the full coupled response (Southern-Hemisphere wind sensitivity vs NADW-buoyancy sensitivity, see main-text Discussion), not a single ocean-component feature. NEMO, in particular, appears in both classes (NESM3 velocity-dominant; CNRM-CM6-1, HadGEM3-GC31-LL, UKESM1-0-LL salinity-dominant), confirming that ocean code identity is not the discriminant.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Ocean and atmospheric model components of the 12 weakening CMIP6 models, grouped by mechanism class. Sources: each model's primary CMIP6 description paper (DOIs in references). The table is provided to allow reviewers to audit which physical infrastructure underlies each cluster; it is not used to make a causal attribution.}
+\label{tab:smile_components}
+\begin{tabular}{l l l l l}
+\toprule
+\textbf{Class} & \textbf{Model} & \textbf{Ocean component} & \textbf{Ocean res.} & \textbf{Atmosphere} \\
+\midrule
+v-dom & CESM2          & POP2          & $1^\circ$    & CAM6 \\
+v-dom & FIO-ESM-2-0    & POP2          & $1^\circ$    & CAM5 \\
+v-dom & MPI-ESM1-2-LR  & MPIOM (GR15)  & $1.5^\circ$  & ECHAM6.3 \\
+v-dom & MPI-ESM1-2-HR  & MPIOM (TP04)  & $0.4^\circ$  & ECHAM6.3 \\
+v-dom & NESM3          & NEMO 3.4      & $1^\circ$    & ECHAM6.3 \\
+\midrule
+s-dom & CNRM-CM6-1       & NEMO 3.6        & $1^\circ$    & ARPEGE 6.3 \\
+s-dom & FGOALS-g3        & LICOM3          & $1^\circ$    & GAMIL2 \\
+s-dom & GFDL-CM4         & MOM6            & $0.25^\circ$ & AM4 \\
+s-dom & HadGEM3-GC31-LL  & NEMO 3.6 (ORCA1)& $1^\circ$    & UM-GA7.1 \\
+s-dom & MIROC6           & COCO 4.9        & $1^\circ$    & MIROC AGCM \\
+s-dom & UKESM1-0-LL      & NEMO 3.6 (ORCA1)& $1^\circ$    & UM-GA7.1 \\
+\midrule
+mixed & GISS-E2-1-G    & GISS Ocean    & $1^\circ$    & GISS ModelE \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \paragraph{Ensemble size used per analysis.} Different downstream analyses retain different subsets of the 15-model decomposition ensemble:
 
 \begin{itemize}
