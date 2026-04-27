@@ -56,27 +56,27 @@ A 13-model subset with \texttt{piControl} access is used for the internal-variab
 
 \begin{table}[h]
 \centering
-\small
-\caption{Ocean and atmospheric model components of the 12 weakening CMIP6 models, grouped by mechanism class. Sources: each model's primary CMIP6 description paper (DOIs in references). The table is provided to allow reviewers to audit which physical infrastructure underlies each cluster; it is not used to make a causal attribution.}
+\footnotesize
+\caption{Ocean numerical infrastructure per weakening CMIP6 model, grouped by mechanism class. Vertical mixing schemes: KPP = K-Profile Parameterization \citep{Large1994}; PP = \citet{PacanowskiPhilander1981}; TKE = Turbulent Kinetic Energy closure (NEMO standard); ePBL = energetic Planetary Boundary Layer \citep{ReichlHallberg2018}; NIW = Near-Inertial Wave parameterization. Mesoscale eddy: GM = \citet{GentMcWilliams1990} thickness-diffusion + \citet{Redi1982} isopycnal diffusion; MEKE = Mesoscale-Eddy Kinetic Energy parameterization \citep{Jansen2015}. The table demonstrates that \emph{no single ocean parameterization} covaries with mechanism class --- e.g. TKE-NEMO appears in BOTH camps (NESM3 v-dom; CNRM, HadGEM, UKESM s-dom), and PP-based schemes appear in BOTH (MPI-ESM1-2 v-dom; FGOALS-g3 s-dom). The wind-vs-buoyancy split discussed in the main text is therefore an \emph{emergent feature of the full coupled response} (atmospheric SH-westerly response, sea-ice/AMOC coupling, NADW formation sensitivity) rather than a property of any single ocean numerical scheme.}
 \label{tab:smile_components}
-\begin{tabular}{l l l l l}
+\begin{tabular}{l l l l l l}
 \toprule
-\textbf{Class} & \textbf{Model} & \textbf{Ocean component} & \textbf{Ocean res.} & \textbf{Atmosphere} \\
+\textbf{Class} & \textbf{Model} & \textbf{Ocean (res.)} & \textbf{Vert.\ mixing} & \textbf{Mesoscale eddy} & \textbf{Atmosphere} \\
 \midrule
-v-dom & CESM2          & POP2          & $1^\circ$    & CAM6 \\
-v-dom & FIO-ESM-2-0    & POP2          & $1^\circ$    & CAM5 \\
-v-dom & MPI-ESM1-2-LR  & MPIOM (GR15)  & $1.5^\circ$  & ECHAM6.3 \\
-v-dom & MPI-ESM1-2-HR  & MPIOM (TP04)  & $0.4^\circ$  & ECHAM6.3 \\
-v-dom & NESM3          & NEMO 3.4      & $1^\circ$    & ECHAM6.3 \\
+v-dom & CESM2          & POP2 ($1^\circ$)    & KPP + Langmuir & GM + Redi & CAM6 \\
+v-dom & FIO-ESM-2-0    & POP2 ($1^\circ$)    & KPP            & GM + Redi & CAM5 \\
+v-dom & MPI-ESM1-2-LR  & MPIOM ($1.5^\circ$) & PP + wind decay& GM + Redi & ECHAM6.3 \\
+v-dom & MPI-ESM1-2-HR  & MPIOM ($0.4^\circ$) & PP + wind decay& GM + Redi & ECHAM6.3 \\
+v-dom & NESM3          & NEMO 3.4 ($1^\circ$) & TKE           & GM + Redi & ECHAM6.3 \\
 \midrule
-s-dom & CNRM-CM6-1       & NEMO 3.6        & $1^\circ$    & ARPEGE 6.3 \\
-s-dom & FGOALS-g3        & LICOM3          & $1^\circ$    & GAMIL2 \\
-s-dom & GFDL-CM4         & MOM6            & $0.25^\circ$ & AM4 \\
-s-dom & HadGEM3-GC31-LL  & NEMO 3.6 (ORCA1)& $1^\circ$    & UM-GA7.1 \\
-s-dom & MIROC6           & COCO 4.9        & $1^\circ$    & MIROC AGCM \\
-s-dom & UKESM1-0-LL      & NEMO 3.6 (ORCA1)& $1^\circ$    & UM-GA7.1 \\
+s-dom & CNRM-CM6-1       & NEMO 3.6 ($1^\circ$)        & TKE        & GM + Redi    & ARPEGE 6.3 \\
+s-dom & FGOALS-g3        & LICOM3 ($1^\circ$)          & PP         & GM + Redi    & GAMIL2 \\
+s-dom & GFDL-CM4         & MOM6 ($0.25^\circ$)         & ePBL + KPP shear & MEKE + GM & AM4 \\
+s-dom & HadGEM3-GC31-LL  & NEMO 3.6 ORCA1 ($1^\circ$)  & TKE        & GM + Redi    & UM-GA7.1 \\
+s-dom & MIROC6           & COCO 4.9 ($1^\circ$)        & NIW + Tsujino & GM + Redi & MIROC AGCM \\
+s-dom & UKESM1-0-LL      & NEMO 3.6 ORCA1 ($1^\circ$)  & TKE        & GM + Redi    & UM-GA7.1 \\
 \midrule
-mixed & GISS-E2-1-G    & GISS Ocean    & $1^\circ$    & GISS ModelE \\
+mixed & GISS-E2-1-G    & GISS Ocean ($1^\circ$) & KPP-like   & GM + Redi    & GISS ModelE \\
 \bottomrule
 \end{tabular}
 \end{table}
