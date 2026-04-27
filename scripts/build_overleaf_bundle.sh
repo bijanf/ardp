@@ -93,9 +93,13 @@ so figures resolve relative to the bundle root, and (3) copies just
 the six combined Main figures into `figures/`.
 EOF
 
-# Build a zip alongside the folder for one-click Overleaf upload.
+# Build a flat zip alongside the folder for one-click Overleaf upload.
+# `cd` INTO the bundle so the archive entries are Main.tex, SI.tex,
+# figures/, etc. at top level — no paper2_overleaf/ parent directory
+# inside the archive. That matches Overleaf's "New Project → Upload"
+# expectation and avoids post-upload reorganisation.
 rm -f "$ZIP"
-( cd "$REPO_ROOT" && zip -qr "$(basename "$ZIP")" "$(basename "$DST")" )
+( cd "$DST" && zip -qr "$ZIP" . )
 
 echo "wrote: $DST"
 echo "wrote: $ZIP"
