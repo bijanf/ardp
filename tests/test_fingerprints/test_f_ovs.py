@@ -44,7 +44,7 @@ def test_compute_f_ovs_dask(nemo_grid_ds_dask: xr.Dataset) -> None:
 
 def test_validate_trend() -> None:
     """Validate trend detection with a synthetic linear time series."""
-    time = xr.cftime_range("1980-01", periods=480, freq="MS")
+    time = xr.date_range("1980-01", periods=480, freq="MS", use_cftime=True)
     years = np.arange(480) / 12.0
     # -1.2 mSv/yr = -1.2e-3 Sv/yr
     values = 0.5 + (-1.2e-3) * years + np.random.default_rng(42).normal(0, 1e-4, 480)
