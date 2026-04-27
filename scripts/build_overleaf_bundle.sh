@@ -62,12 +62,14 @@ for diag in diagA1_timescale diagA2_within_class diagA3_continuous; do
     cp "$src" "$DST/figures/${diag}.pdf"
 done
 
-# Optional: copy SMILE robustness figure if it exists. SI.tex hides
-# its block behind \ifsmilefig so a missing PDF does not break the
-# build during the in-flight 50-member ESGF run.
-if [[ -f "$SRC_FIG_DIR/diagSMILE.pdf" ]]; then
-    cp "$SRC_FIG_DIR/diagSMILE.pdf" "$DST/figures/diagSMILE.pdf"
-fi
+# Optional: SMILE robustness figures (S7 mechanism class, S9 AMOC
+# trajectory). SI.tex hides each block behind a \newif toggle so a
+# missing PDF does not break the build.
+for diag in diagSMILE diagSMILE_amoc; do
+    if [[ -f "$SRC_FIG_DIR/${diag}.pdf" ]]; then
+        cp "$SRC_FIG_DIR/${diag}.pdf" "$DST/figures/${diag}.pdf"
+    fi
+done
 
 # README — full canonical version is written inline so the bundle is
 # fully reproducible from this script alone.
