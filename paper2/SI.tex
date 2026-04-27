@@ -131,7 +131,7 @@ The decomposition becomes numerically ill-conditioned when $|\Delta\Fovs|$ is sm
 
 The early and late periods were pre‑registered before processing the fourth reanalysis (SODA 3.15.2): $t_1 = 1993$--$2005$ and $t_2 = 2013$--$2025$. These are the longest non-overlapping windows fully within the common GLORYS12V1 record, avoiding the first few years of the satellite-altimetry era (pre‑1993) while preserving a $\gtrsim10$-year separation. For products with shorter records we use the nearest-in-length late window: SODA 3.15.2 uses $t_2 = 2013$--$2020$; ECCO-V4r4 uses $t_2 = 2013$--$2017$. For CMIP6 we pair historical 1950--1980 against \texttt{ssp585} 2080--2100 to maximise the forced signal-to-noise ratio.
 
-The sensitivity of the classification to the period choice is reported in Supplementary Fig.~S2 by repeating the computation across a grid of $(t_{1,\mathrm{end}}, t_{2,\mathrm{start}})$ pairs ($t_{1,\mathrm{end}}\in\{2001,2003,2005,2007,2009\}$, $t_{2,\mathrm{start}}\in\{2011,2013,2015,2017,2019\}$, always with $t_{1,\mathrm{start}}=1993$ and $t_{2,\mathrm{end}}$ at each product's data end). The resulting 25-point distribution of $f_v$ values is reported per product.
+The sensitivity of the classification to the period choice is reported in Fig.~4\textbf{(b)} of the main text by repeating the computation across a grid of $(t_{1,\mathrm{end}}, t_{2,\mathrm{start}})$ pairs ($t_{1,\mathrm{end}}\in\{2001,2003,2005,2007,2009\}$, $t_{2,\mathrm{start}}\in\{2011,2013,2015,2017,2019\}$, always with $t_{1,\mathrm{start}}=1993$ and $t_{2,\mathrm{end}}$ at each product's data end). The resulting 25-point distribution of $f_v$ values is reported per product.
 
 \subsection*{Baseline regime classification}
 
@@ -149,7 +149,7 @@ Annual-mean $\Fovs$ time series are analysed for linear trends under three compl
 
 \subsection*{Mechanism classification rule}
 
-A product is labelled \emph{velocity-dominant} if $f_v > 60\%$, \emph{salinity-dominant} if $f_s > 60\%$, \emph{mixed} if both $f_v \le 60\%$ and $f_s \le 60\%$, and \emph{ill-defined} (no classification) if $|\Delta\Fovs| < 10$~mSv. The $60\%$ threshold and the $10$~mSv floor are pre‑registered and are approximately the $1.5\sigma$ and $2\sigma$ boundaries of the piControl null distribution (Supplementary Fig.~S4). We also ran the analysis at $50\%$, $55\%$, and $65\%$ classification thresholds and at $5$~mSv and $20$~mSv ill-defined cut-offs, with identical qualitative conclusions (Supplementary Fig.~S2).
+A product is labelled \emph{velocity-dominant} if $f_v > 60\%$, \emph{salinity-dominant} if $f_s > 60\%$, \emph{mixed} if both $f_v \le 60\%$ and $f_s \le 60\%$, and \emph{ill-defined} (no classification) if $|\Delta\Fovs| < 10$~mSv. The $60\%$ threshold and the $10$~mSv floor are pre‑registered and are approximately the $1.5\sigma$ and $2\sigma$ boundaries of the piControl null distribution (Fig.~4\textbf{(c)} of the main text). We also ran the analysis at $50\%$, $55\%$, and $65\%$ classification thresholds and at $5$~mSv and $20$~mSv ill-defined cut-offs, with identical qualitative conclusions (Fig.~4\textbf{(b)} of the main text).
 
 \subsection*{Outlier handling}
 
@@ -157,7 +157,7 @@ For each annual $\Fovs$ time series we flag annual values with $|\Fovs| > 0.3$~S
 
 \subsection*{piControl null test}
 
-For each of the 13 CMIP6 models with accessible \texttt{piControl} section data, we draw 200 pairs of random non-overlapping 30-year windows from the full \texttt{piControl} integration, compute the decomposition for each pair, and pool the results ($\le 13\times200 = 2600$ decomposition samples in total, with some pairs rejected when the time series is too short). The resulting distribution of $|\Delta\Fovs|$ quantifies the internal-variability magnitude of the decomposition signal in the absence of any forcing change. A forced-experiment $|\Delta\Fovs|$ must exceed the 95th percentile of this null (22~mSv in our pooled ensemble, Supplementary Fig.~S4) to be declared above internal variability. For the three diagnosable reanalyses, ORAS5 (31~mSv) and GLORYS12V1 (87~mSv) comfortably exceed the null 95th percentile, while SODA 3.15.2 (14~mSv) is above the null median but below the 95th percentile, consistent with the mixed classification we assign it.
+For each of the 13 CMIP6 models with accessible \texttt{piControl} section data, we draw 200 pairs of random non-overlapping 30-year windows from the full \texttt{piControl} integration, compute the decomposition for each pair, and pool the results ($\le 13\times200 = 2600$ decomposition samples in total, with some pairs rejected when the time series is too short). The resulting distribution of $|\Delta\Fovs|$ quantifies the internal-variability magnitude of the decomposition signal in the absence of any forcing change. A forced-experiment $|\Delta\Fovs|$ must exceed the 95th percentile of this null (22~mSv in our pooled ensemble, Fig.~4\textbf{(c)} of the main text) to be declared above internal variability. For the three diagnosable reanalyses, ORAS5 (31~mSv) and GLORYS12V1 (87~mSv) comfortably exceed the null 95th percentile, while SODA 3.15.2 (14~mSv) is above the null median but below the 95th percentile, consistent with the mixed classification we assign it.
 
 \subsection*{Mechanism-conditional projection}
 
@@ -175,30 +175,12 @@ We follow the standard emergent constraint approach \citep{Portmann2026, Dong202
 
 All analyses are implemented in Python 3.13 using NumPy, SciPy, xarray, dask, pandas, matplotlib, and the cross-label-placement package \texttt{adjustText}. CMIP6 catalogue access uses \texttt{intake-esm} and \texttt{pangeo-cmip6}; NASA Earthdata access uses \texttt{earthaccess}. The package \texttt{ardp} contains the shared kernels (\texttt{fovs.py}, \texttt{fovs\_decomposition.py}, statistical helpers); the \texttt{scripts/} directory contains one script per processing step. A top-level orchestrator, \texttt{scripts/make\_paper2.py}, runs the complete pipeline from raw sections to the final figures and tables with idempotent per-output skipping. The full test suite passes (148 unit and integration tests); the \texttt{ruff} linter (PyFlakes-fatal rules, excluding unused local variables) passes on every commit. End-to-end wall-clock time from the raw sections is approximately 4--6 hours on a single 2024-era workstation, dominated by the SODA 5-day snapshot downloads; re-running from the archived reduced data takes under five minutes.
 
-\clearpage
-\section*{Supplementary Figures}
-
-% Renumber figures S1, S2, ... (manual setcounter below skips numbers
-% reserved for figures that were promoted into the main text).
-\renewcommand{\thefigure}{S\arabic{figure}}
-
-% Skip S1 (lead-lag, kept in main text Fig 6a). The next figure is S2.
-\setcounter{figure}{1}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.85\linewidth]{figS2_decomposition_sensitivity.pdf}
-\caption{\textbf{Sensitivity of the mechanism classification to the choice of decomposition windows.} Velocity-share ($f_v$) distributions across 25 early/late period pairs spanning $t_{1,\mathrm{end}}\in\{2001,2003,2005,2007,2009\}$ and $t_{2,\mathrm{start}}\in\{2011,2013,2015,2017,2019\}$, always with $t_{1,\mathrm{start}}=1993$ and $t_{2,\mathrm{end}}$ at each product's data end. The ORAS5 and GLORYS12V1 distributions never overlap; the mechanism disagreement between the two products survives every reasonable window choice and is not an artefact of the pre-registered $1993$--$2005$ versus $2013$--$2025$ pair used in the main text.}
-\label{fig:S2}
-\end{figure}
-
-% Skip S3 (post-Argo, kept in main text Fig 4a). The next figure is S4.
-\setcounter{figure}{3}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.85\linewidth]{figS4_signal_noise.pdf}
-\caption{\textbf{Signal-to-noise test against piControl internal variability.} Pooled distribution of $|\Delta\Fovs|$ from 2600 random pairs of non-overlapping 30-year windows drawn from the \texttt{piControl} runs of 13 CMIP6 models (200 pairs per model). The $95$th percentile is $22$~mSv (vertical line). The forced reanalysis values for ORAS5 ($31$~mSv) and GLORYS12V1 ($87$~mSv) both exceed the $95$th percentile, demonstrating that their mechanism attributions are signal-dominated rather than internal-variability artefacts. SODA 3.15.2 ($14$~mSv) sits between the median and the $95$th percentile, consistent with the mixed classification it receives.}
-\label{fig:S4}
-\end{figure}
+% NOTE: The previous draft embedded standalone copies of the
+% sensitivity-to-period-choice figure and the piControl signal-to-noise
+% figure here as Supplementary Figs.~S2 and S4. Both are now panels
+% (b) and (c) of Main Fig.~4, so the SI versions have been removed to
+% avoid duplication. Cross-references in the Methods section above
+% point to the Main-text panels directly.
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
