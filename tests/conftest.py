@@ -19,7 +19,7 @@ def nemo_grid_ds() -> xr.Dataset:
     lon_vals = np.linspace(-80, -20, nx)
     lat_vals = np.linspace(-60, 70, ny)
     depth_vals = np.array([5, 15, 30, 50, 100, 200, 500, 1000, 2000, 4000], dtype=float)
-    time_vals = xr.cftime_range("2000-01", periods=nt, freq="MS")
+    time_vals = xr.date_range("2000-01", periods=nt, freq="MS", use_cftime=True)
 
     lon2d, lat2d = np.meshgrid(lon_vals, lat_vals)
 
@@ -143,7 +143,7 @@ def two_layer_ocean() -> xr.Dataset:
             "y": np.arange(1),
             "z": np.arange(nz),
             "depth": ("z", depth_vals),
-            "time": xr.cftime_range("2000-01", periods=1, freq="MS"),
+            "time": xr.date_range("2000-01", periods=1, freq="MS", use_cftime=True),
         },
     )
     return ds

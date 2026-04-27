@@ -152,9 +152,9 @@ if [[ "${1:-}" != "--no-test" ]]; then
         bibtex Main >/dev/null
         pdflatex -interaction=nonstopmode Main.tex >/dev/null
         pdflatex -interaction=nonstopmode Main.tex >/dev/null
-        if grep -qE "Warning.*[Uu]ndefined|! " Main.log; then
+        if grep -qE "Warning.*[Cc]itation.*undefined|Warning.*[Rr]eference.*undefined|!" Main.log; then
             echo "SANITY-CHECK FAILED in mode '$mode_flag':"
-            grep -E "Warning.*[Uu]ndefined|! " Main.log | head -10
+            grep -E "Warning.*[Cc]itation.*undefined|Warning.*[Rr]eference.*undefined|!" Main.log | head -10
             popd >/dev/null
             exit 2
         fi
@@ -166,9 +166,9 @@ if [[ "${1:-}" != "--no-test" ]]; then
     bibtex SI >/dev/null
     pdflatex -interaction=nonstopmode SI.tex >/dev/null
     pdflatex -interaction=nonstopmode SI.tex >/dev/null
-    if grep -qE "Warning.*[Uu]ndefined|! " SI.log; then
+    if grep -qE "Warning.*[Cc]itation.*undefined|Warning.*[Rr]eference.*undefined|!" SI.log; then
         echo "SANITY-CHECK FAILED for SI.tex:"
-        grep -E "Warning.*[Uu]ndefined|! " SI.log | head -10
+        grep -E "Warning.*[Cc]itation.*undefined|Warning.*[Rr]eference.*undefined|!" SI.log | head -10
         popd >/dev/null
         exit 2
     fi

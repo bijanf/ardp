@@ -66,7 +66,7 @@ def _make_section_datasets(
 
     lon_vals = np.linspace(lon_range[0], lon_range[1], n_lon)
     depth_vals = np.array(depths[:n_depth], dtype=float)
-    times = xr.cftime_range("2000-01", periods=n_time, freq="MS")
+    times = xr.date_range("2000-01", periods=n_time, freq="MS", use_cftime=True)
 
     v = np.zeros((n_time, n_depth, n_lon))
     s = np.zeros((n_time, n_depth, n_lon))
@@ -153,7 +153,7 @@ class TestGetLonAndDepth:
         ds = xr.Dataset(
             {"vo": (["time", "rho", "x"], np.zeros((1, 5, 20)))},
             coords={
-                "time": xr.cftime_range("2000-01", periods=1, freq="MS"),
+                "time": xr.date_range("2000-01", periods=1, freq="MS", use_cftime=True),
                 "rho": np.linspace(1020, 1028, 5),
                 "longitude": ("x", np.linspace(-60, 10, 20)),
             },
@@ -166,7 +166,7 @@ class TestGetLonAndDepth:
         ds = xr.Dataset(
             {"vo": (["time", "lev", "x"], np.zeros((1, 2, 20)))},
             coords={
-                "time": xr.cftime_range("2000-01", periods=1, freq="MS"),
+                "time": xr.date_range("2000-01", periods=1, freq="MS", use_cftime=True),
                 "lev": [500.0, 2500.0],
                 # No longitude coord at all
             },
@@ -179,7 +179,7 @@ class TestGetLonAndDepth:
         ds = xr.Dataset(
             {"vo": (["time", "z_unnamed", "x"], np.zeros((1, 2, 20)))},
             coords={
-                "time": xr.cftime_range("2000-01", periods=1, freq="MS"),
+                "time": xr.date_range("2000-01", periods=1, freq="MS", use_cftime=True),
                 "longitude": ("x", np.linspace(-60, 10, 20)),
                 # No depth/lev coord
             },
@@ -410,8 +410,8 @@ class TestCrossValidation:
 class TestConcatAndBias:
     def test_hist_ssp_concat_no_overlap(self):
         """historical(1850-2014) + ssp(2015-2100) -> no duplicates."""
-        hist_times = xr.cftime_range("1850-01", "2014-12", freq="MS")
-        ssp_times = xr.cftime_range("2015-01", "2100-12", freq="MS")
+        hist_times = xr.date_range("1850-01", "2014-12", freq="MS", use_cftime=True)
+        ssp_times = xr.date_range("2015-01", "2100-12", freq="MS", use_cftime=True)
 
         hist = xr.DataArray(np.random.randn(len(hist_times)), dims="time",
                             coords={"time": hist_times}, name="F_ovS")
@@ -430,8 +430,8 @@ class TestConcatAndBias:
 
     def test_hist_ssp_concat_with_overlap(self):
         """1-year overlap -> deduplication removes extra months."""
-        hist_times = xr.cftime_range("1850-01", "2015-12", freq="MS")  # 1 year overlap
-        ssp_times = xr.cftime_range("2015-01", "2100-12", freq="MS")
+        hist_times = xr.date_range("1850-01", "2015-12", freq="MS", use_cftime=True)  # 1 year overlap
+        ssp_times = xr.date_range("2015-01", "2100-12", freq="MS", use_cftime=True)
 
         hist = xr.DataArray(np.random.randn(len(hist_times)), dims="time",
                             coords={"time": hist_times}, name="F_ovS")
@@ -443,7 +443,7 @@ class TestConcatAndBias:
         combined = combined.isel(time=sorted(idx))
 
         # Should have no more months than non-overlapping
-        no_overlap_len = len(xr.cftime_range("1850-01", "2100-12", freq="MS"))
+        no_overlap_len = len(xr.date_range("1850-01", "2100-12", freq="MS", use_cftime=True))
         assert len(combined) == no_overlap_len
 
     def test_bias_correction_offset(self, tmp_path):
@@ -454,7 +454,7 @@ class TestConcatAndBias:
         cmip6_dir.mkdir(parents=True)
 
         # Create a fake historical time series
-        hist_times = xr.cftime_range("1850-01", "2014-12", freq="MS")
+        hist_times = xr.date_range("1850-01", "2014-12", freq="MS", use_cftime=True)
         raw_mean = 0.10  # Computed early-historical mean
         hist_da = xr.DataArray(
             np.full(len(hist_times), raw_mean),
@@ -467,8 +467,8 @@ class TestConcatAndBias:
         hist_ds.to_netcdf(cmip6_dir / f"fovs_{model}_historical.nc")
 
         # Create a fake ssp585 concatenated series
-        ssp_times = xr.cftime_range("2015-01", "2100-12", freq="MS")
-        concat_times = xr.cftime_range("1850-01", "2100-12", freq="MS")
+        ssp_times = xr.date_range("2015-01", "2100-12", freq="MS", use_cftime=True)
+        concat_times = xr.date_range("1850-01", "2100-12", freq="MS", use_cftime=True)
         concat_da = xr.DataArray(
             np.full(len(concat_times), raw_mean),
             dims="time",
