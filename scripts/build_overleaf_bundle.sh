@@ -32,11 +32,26 @@ cp "$SRC_TEX_DIR/references.bib"  "$DST/references.bib"
 # root rather than the parent repo's figures/paper2/ directory.
 sed -i 's|{\.\./figures/paper2/}|{./figures/}|' "$DST/Main.tex" "$DST/SI.tex"
 
-# Copy the six combined Main-text figure PDFs.
+# Copy the six combined Main-text figure PDFs (used when
+# \splitfigsfalse — the submission-ready default).
 for n in 1 2 3 4 5 6; do
     src="$SRC_FIG_DIR/Figure${n}.pdf"
     [[ -f "$src" ]] || { echo "missing figure: $src"; exit 1; }
     cp "$src" "$DST/figures/Figure${n}.pdf"
+done
+
+# Copy the per-panel split PDFs (used when \splitfigstrue — the
+# editing-friendly mode where each subfigure is its own file).
+# Panel layouts: 1: a/b/c   2: a/b/c   3: a/b   4: a/b/c
+#                5: a/b/c/d 6: a/b
+declare -A PANEL_LETTERS=( [1]="abc" [2]="abc" [3]="ab"
+                            [4]="abc" [5]="abcd" [6]="ab" )
+for n in 1 2 3 4 5 6; do
+    for letter in $(echo "${PANEL_LETTERS[$n]}" | grep -o .); do
+        src="$SRC_FIG_DIR/Figure${n}${letter}.pdf"
+        [[ -f "$src" ]] || { echo "missing split panel: $src"; exit 1; }
+        cp "$src" "$DST/figures/Figure${n}${letter}.pdf"
+    done
 done
 
 # README — full canonical version is written inline so the bundle is
@@ -54,17 +69,34 @@ and `SI.tex` without further setup.
 ```
 paper2_overleaf/
 ├── Main.tex          main manuscript (15 pages, 6 figures)
-├── SI.tex            supplementary methods (6 pages, no figures)
+├── SI.tex            supplementary methods (7 pages, no figures)
 ├── references.bib    34 cited refs across Main + SI
 ├── README.md         this file
 └── figures/
-    ├── Figure1.pdf   timeseries + decomposition + depth profiles
-    ├── Figure2.pdf   tiebreaker + AMOC trajectories + boxplot
-    ├── Figure3.pdf   bistable-only subset
-    ├── Figure4.pdf   post-Argo + period sensitivity + S/N
-    ├── Figure5.pdf   2x2 zonal Δv / ΔS
-    └── Figure6.pdf   lead-lag + emergent regression
+    ├── Figure1.pdf            combined PDF (used by default)
+    ├── Figure1{a,b,c}.pdf     split panels (used when \splitfigstrue)
+    ├── Figure2.pdf            and Figure2{a,b,c}.pdf
+    ├── Figure3.pdf            and Figure3{a,b}.pdf
+    ├── Figure4.pdf            and Figure4{a,b,c}.pdf
+    ├── Figure5.pdf            and Figure5{a,b,c,d}.pdf
+    └── Figure6.pdf            and Figure6{a,b}.pdf
 ```
+
+## Two figure-layout modes
+
+Main.tex has a single-line toggle near the top of the preamble:
+
+```latex
+\newif\ifsplitfigs
+\splitfigsfalse   % flip to \splitfigstrue for split-panel mode
+```
+
+| Mode | What it does | When to use |
+|------|--------------|-------------|
+| `\splitfigsfalse` (default) | Each `\begin{figure}` includes one combined `FigureN.pdf`. Layout is baked into the matplotlib output. | **Submission.** Cleanest visual result, matches what the journal will print. |
+| `\splitfigstrue` | Each `\begin{figure}` glues together `FigureNa.pdf`, `FigureNb.pdf`, … via `\begin{subfigure}` blocks. | **Editing.** Swap a single panel without re-rendering the others; reviewer comments map directly to file names. |
+
+Both modes compile out-of-the-box on Overleaf — all required PDFs ship in the bundle.
 
 ## Build
 
@@ -105,26 +137,43 @@ echo "wrote: $DST"
 echo "wrote: $ZIP"
 
 # Optional sanity-compile the bundle in a scratch dir so we fail loud
-# if Overleaf would also fail. Skip with --no-test.
+# if Overleaf would also fail. We test BOTH figure modes — combined
+# (\splitfigsfalse) and split (\splitfigstrue) — so a missing
+# split-panel PDF cannot slip through unnoticed. Skip with --no-test.
 if [[ "${1:-}" != "--no-test" ]]; then
     TMP="$(mktemp -d)"
     cp -r "$DST" "$TMP/test"
     pushd "$TMP/test" >/dev/null
-    pdflatex -interaction=nonstopmode Main.tex >/dev/null
-    bibtex Main >/dev/null
-    pdflatex -interaction=nonstopmode Main.tex >/dev/null
-    pdflatex -interaction=nonstopmode Main.tex >/dev/null
+    for mode_flag in "splitfigsfalse" "splitfigstrue"; do
+        # Force the mode at the top of Main.tex.
+        sed -i "s|\\\\splitfigs[a-z]*|\\\\${mode_flag}|" Main.tex
+        rm -f Main.aux Main.bbl Main.log Main.toc Main.out
+        pdflatex -interaction=nonstopmode Main.tex >/dev/null
+        bibtex Main >/dev/null
+        pdflatex -interaction=nonstopmode Main.tex >/dev/null
+        pdflatex -interaction=nonstopmode Main.tex >/dev/null
+        if grep -qE "Warning.*[Uu]ndefined|! " Main.log; then
+            echo "SANITY-CHECK FAILED in mode '$mode_flag':"
+            grep -E "Warning.*[Uu]ndefined|! " Main.log | head -10
+            popd >/dev/null
+            exit 2
+        fi
+    done
+    # Restore default (combined) for the bundled file the user uploads.
+    sed -i 's|\\splitfigstrue|\\splitfigsfalse|' Main.tex
+    cp Main.tex "$DST/Main.tex"  # reflect the restored default
     pdflatex -interaction=nonstopmode SI.tex >/dev/null
     bibtex SI >/dev/null
     pdflatex -interaction=nonstopmode SI.tex >/dev/null
     pdflatex -interaction=nonstopmode SI.tex >/dev/null
-    if grep -qE "Warning.*[Uu]ndefined|! " Main.log SI.log; then
-        echo "SANITY-CHECK FAILED: undefined refs or LaTeX errors found"
-        grep -E "Warning.*[Uu]ndefined|! " Main.log SI.log | head -10
+    if grep -qE "Warning.*[Uu]ndefined|! " SI.log; then
+        echo "SANITY-CHECK FAILED for SI.tex:"
+        grep -E "Warning.*[Uu]ndefined|! " SI.log | head -10
         popd >/dev/null
         exit 2
     fi
     popd >/dev/null
     rm -rf "$TMP"
-    echo "sanity-compile OK ($DST/Main.tex and SI.tex compile clean)"
+    echo "sanity-compile OK (Main.tex passes in BOTH combined and split"
+    echo "                   modes; SI.tex compiles clean)"
 fi
