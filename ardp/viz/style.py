@@ -54,12 +54,12 @@ def apply_nature_style() -> None:
         # Font
         "font.family": "sans-serif",
         "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
-        "font.size": 7,
-        "axes.titlesize": 8,
-        "axes.labelsize": 7,
-        "xtick.labelsize": 6,
-        "ytick.labelsize": 6,
-        "legend.fontsize": 6,
+        "font.size": 9,
+        "axes.titlesize": 10,
+        "axes.labelsize": 9,
+        "xtick.labelsize": 8,
+        "ytick.labelsize": 8,
+        "legend.fontsize": 8,
         # Lines
         "lines.linewidth": 1.0,
         "lines.markersize": 3,
