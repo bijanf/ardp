@@ -1,20 +1,17 @@
 #!/usr/bin/env python3
 """Paper 2 Figure 1: Atlantic bistability and opposing mechanisms.
 
-Combined into a single PDF with three panels:
+Three panels:
 
   (a) Long-term F_ovS time series at 34.5°S for ORAS5, GLORYS12V1,
       SODA 3.15.2, ECCO-V4r4, plus direct-hydrography anchors.
   (b) Mechanism decomposition (ΔF_v + ΔF_s + ΔF_cross) per reanalysis
-      between 1993-2005 and 2013-2025. Hatched bar = ill-defined
-      (|ΔF_total| < 10 mSv).
+      between 1993-2005 and 2013-2025.
   (c) Vertical profiles of the per-depth ΔF_v and ΔF_s integrands.
 
-Reads the same NetCDF files used by the atomic plot scripts in
-``scripts/plot_paper2_fig1_multiprod_fovs.py`` and
-``scripts/plot_paper2_fig2_decomposition.py``.
-
-Outputs: figures/paper2/Figure1.{png,pdf}
+Outputs (default --mode both):
+  figures/paper2/Figure1.{png,pdf}            single combined PDF
+  figures/paper2/Figure1{a,b,c}.{png,pdf}     three standalone panels
 """
 
 from __future__ import annotations
@@ -53,7 +50,7 @@ DIRECT_HYDRO = [
 OUTLIER_THRESHOLD = 0.30
 
 
-def _load_annual(path: Path) -> tuple[np.ndarray, np.ndarray] | None:
+def _load_annual(path: Path):
     if not path.exists():
         return None
     ds = xr.open_dataset(path)
@@ -106,27 +103,10 @@ def _panel_label(ax, label: str, x: float = 0.02, y: float = 0.97) -> None:
             fontweight="bold", va="top", ha="left")
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--results-dir", type=Path, default=Path("data/results"))
-    parser.add_argument("--output", type=Path,
-                        default=Path("figures/paper2/Figure1"))
-    args = parser.parse_args()
-
-    apply_nature_style()
-
-    fig = plt.figure(figsize=(7.0, 7.5))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.05],
-                          hspace=0.32, wspace=0.32)
-    ax_a = fig.add_subplot(gs[0, :])
-    ax_b = fig.add_subplot(gs[1, 0])
-    ax_c = fig.add_subplot(gs[1, 1])
-
-    # ── Panel (a): F_ovS time series ──
-    loaded: list[tuple[str, np.ndarray, np.ndarray, str]] = []
-    trend_rows = []
+def _load_data(results_dir: Path):
+    loaded = []
     for label, _key, fname, color in PRODUCTS:
-        ts = _load_annual(args.results_dir / fname)
+        ts = _load_annual(results_dir / fname)
         if ts is None:
             continue
         yrs, vals = ts
@@ -134,53 +114,44 @@ def main() -> None:
         sl_san, p_san, _ = _linear_trend_santer(yrs, vals)
         sl_gls, p_gls, _ = _linear_trend_gls(yrs, vals)
         sl_ols, p_ols, _ = _linear_trend_ols(yrs, vals)
-        _ = (sl_ols, p_ols)
-        trend_rows.append({
-            "product": label, "n_years": len(yrs),
-            "santer_slope_Sv_dec": sl_san, "santer_p": p_san,
-            "gls_slope_Sv_dec": sl_gls, "gls_p": p_gls,
-            "color": color,
-        })
-
-    ax_a.axhline(0.0, color="0.6", lw=0.6, zorder=1)
-    ax_a.axhspan(-1.0, 0.0, color="#FFF3E0", alpha=0.5, zorder=0)
-    ax_a.text(1958.5, -0.28,
-              "bistable regime  (F$_{ovS}$ < 0)",
-              fontsize=8, color="#CC5500", style="italic", va="bottom",
-              zorder=2)
-    for label, yrs, vals, color in loaded:
-        ax_a.plot(yrs, vals, color=color, alpha=0.25, lw=0.5, zorder=3)
-        rm = _running_mean(vals, window=5)
-        ax_a.plot(yrs, rm, color=color, lw=1.8, zorder=6, label=label)
-    for val, err, tag, yr in DIRECT_HYDRO:
-        ax_a.errorbar(yr, val, yerr=err, color="black", marker="D",
-                      markersize=4, capsize=2, lw=1.0, zorder=10,
-                      markeredgecolor="white", markeredgewidth=0.5)
-        ax_a.annotate(tag, xy=(yr, val), xytext=(5, 2),
-                      textcoords="offset points", fontsize=7,
-                      color="0.3", zorder=11)
-    ax_a.legend(loc="upper center", bbox_to_anchor=(0.5, 1.14),
-                ncol=4, frameon=False, fontsize=9, handlelength=1.8,
-                columnspacing=1.8)
-    # Trend table intentionally moved out of the figure — keeping the
-    # trend numbers in the Main.tex prose instead, per user feedback
-    # that the in-axes table overlapped with the bistable-regime
-    # annotation in panel (a).
-    _ = trend_rows
-    ax_a.set_xlim(1958, 2026)
-    ax_a.set_ylim(-0.30, 0.05)
-    ax_a.set_xlabel("Year")
-    ax_a.set_ylabel(r"$\mathrm{F}_{ovS}$  at 34.5°S (Sv)")
-    ax_a.spines["top"].set_visible(False)
-    ax_a.spines["right"].set_visible(False)
-    _panel_label(ax_a, "(a)")
-
-    # ── Panel (b): stacked bar decomposition ──
+        _ = (sl_ols, p_ols, sl_san, p_san, sl_gls, p_gls)
     deco = {}
     for label, key, _, color in PRODUCTS:
-        path = args.results_dir / f"fovs_decomposition_{key}.nc"
+        path = results_dir / f"fovs_decomposition_{key}.nc"
         if path.exists():
             deco[label] = (xr.open_dataset(path), color)
+    return loaded, deco
+
+
+def _draw_panel_a(ax, loaded):
+    ax.axhline(0.0, color="0.6", lw=0.6, zorder=1)
+    ax.axhspan(-1.0, 0.0, color="#FFF3E0", alpha=0.5, zorder=0)
+    ax.text(1958.5, -0.28, "bistable regime  (F$_{ovS}$ < 0)",
+            fontsize=8, color="#CC5500", style="italic", va="bottom",
+            zorder=2)
+    for label, yrs, vals, color in loaded:
+        ax.plot(yrs, vals, color=color, alpha=0.25, lw=0.5, zorder=3)
+        rm = _running_mean(vals, window=5)
+        ax.plot(yrs, rm, color=color, lw=1.8, zorder=6, label=label)
+    for val, err, tag, yr in DIRECT_HYDRO:
+        ax.errorbar(yr, val, yerr=err, color="black", marker="D",
+                    markersize=4, capsize=2, lw=1.0, zorder=10,
+                    markeredgecolor="white", markeredgewidth=0.5)
+        ax.annotate(tag, xy=(yr, val), xytext=(5, 2),
+                    textcoords="offset points", fontsize=7,
+                    color="0.3", zorder=11)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.14),
+              ncol=4, frameon=False, fontsize=9, handlelength=1.8,
+              columnspacing=1.8)
+    ax.set_xlim(1958, 2026)
+    ax.set_ylim(-0.30, 0.05)
+    ax.set_xlabel("Year")
+    ax.set_ylabel(r"$\mathrm{F}_{ovS}$  at 34.5°S (Sv)")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+
+def _draw_panel_b(ax, deco, *, legend_anchor=(0.5, -0.55)):
     labels = list(deco.keys())
     x = np.arange(len(labels))
     dv = np.array([float(deco[lab][0].attrs["delta_v_Sv"]) * 1000 for lab in labels])
@@ -189,36 +160,33 @@ def main() -> None:
     dtot = dv + ds_ + dc
     has_trend = np.abs(dtot) >= 10.0
     width = 0.55
-    ax_b.bar(x[has_trend], dv[has_trend], width=width, color="#E69F00",
-             label=r"$\Delta F_v$  (velocity)")
-    ax_b.bar(x[has_trend], ds_[has_trend], width=width,
-             bottom=dv[has_trend], color="#56B4E9",
-             label=r"$\Delta F_s$  (salinity)")
-    ax_b.bar(x[has_trend], dc[has_trend], width=width,
-             bottom=dv[has_trend] + ds_[has_trend], color="0.6",
-             label=r"$\Delta F_\mathrm{cross}$")
+    ax.bar(x[has_trend], dv[has_trend], width=width, color="#E69F00",
+           label=r"$\Delta F_v$  (velocity)")
+    ax.bar(x[has_trend], ds_[has_trend], width=width,
+           bottom=dv[has_trend], color="#56B4E9",
+           label=r"$\Delta F_s$  (salinity)")
+    ax.bar(x[has_trend], dc[has_trend], width=width,
+           bottom=dv[has_trend] + ds_[has_trend], color="0.6",
+           label=r"$\Delta F_\mathrm{cross}$")
     if (~has_trend).any():
-        ax_b.bar(x[~has_trend], dtot[~has_trend], width=width,
-                 color="0.85", edgecolor="0.4", hatch="///",
-                 label=r"ill-defined ($|\Delta F| < 10$ mSv)")
-    ax_b.scatter(x, dtot, color="black", s=30, marker="D", zorder=5,
-                 label=r"$\Delta F_\mathrm{total}$")
-    ax_b.axhline(0, color="0.6", lw=0.6)
-    ax_b.set_xticks(x)
-    ax_b.set_xticklabels(labels, rotation=15, ha="right", fontsize=8)
-    ax_b.set_ylabel(r"$\Delta\mathrm{F}_{ovS}$ (mSv, late − early)")
-    ax_b.legend(loc="lower center", bbox_to_anchor=(0.5, -0.55),
-                fontsize=8, frameon=False, ncol=2, handlelength=1.5,
-                columnspacing=1.2)
-    ax_b.set_ylim(-100, 28)
-    # Annotate v/s percentage on bars
+        ax.bar(x[~has_trend], dtot[~has_trend], width=width,
+               color="0.85", edgecolor="0.4", hatch="///",
+               label=r"ill-defined ($|\Delta F| < 10$ mSv)")
+    ax.scatter(x, dtot, color="black", s=30, marker="D", zorder=5,
+               label=r"$\Delta F_\mathrm{total}$")
+    ax.axhline(0, color="0.6", lw=0.6)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, rotation=15, ha="right", fontsize=8)
+    ax.set_ylabel(r"$\Delta\mathrm{F}_{ovS}$ (mSv, late − early)")
+    ax.legend(loc="lower center", bbox_to_anchor=legend_anchor,
+              fontsize=8, frameon=False, ncol=2, handlelength=1.5,
+              columnspacing=1.2)
+    ax.set_ylim(-100, 28)
     for i, _lab in enumerate(labels):
         if abs(dtot[i]) < 10:
-            # Move label well above zero so it does NOT overlap the
-            # ill-defined hatched bar interior (user feedback).
-            ax_b.text(i, 14, "no\ntrend", ha="center", va="bottom",
-                      fontsize=8, color="0.3", style="italic",
-                      fontweight="bold")
+            ax.text(i, 14, "no\ntrend", ha="center", va="bottom",
+                    fontsize=8, color="0.3", style="italic",
+                    fontweight="bold")
             continue
         v_pct = 100 * dv[i] / dtot[i]
         s_pct = 100 * ds_[i] / dtot[i]
@@ -226,32 +194,84 @@ def main() -> None:
             yy, va = 4, "bottom"
         else:
             yy, va = -4, "top"
-        ax_b.text(i, yy, f"v:{v_pct:+.0f}%\ns:{s_pct:+.0f}%",
-                  ha="center", va=va, fontsize=8, color="0.2",
-                  fontweight="bold")
-    _panel_label(ax_b, "(b)")
+        ax.text(i, yy, f"v:{v_pct:+.0f}%\ns:{s_pct:+.0f}%",
+                ha="center", va=va, fontsize=8, color="0.2",
+                fontweight="bold")
 
-    # ── Panel (c): depth profiles ──
+
+def _draw_panel_c(ax, deco, *, legend_anchor=(1.02, 0.5)):
+    labels = list(deco.keys())
     for lab in labels:
         ds_obj, color = deco[lab]
         depth = ds_obj["depth"].values
         v_prof = ds_obj["depth_Sv_v"].values * 1000
         s_prof = ds_obj["depth_Sv_s"].values * 1000
-        ax_c.plot(v_prof, depth, color=color, lw=1.5, label=f"{lab} (v)")
-        ax_c.plot(s_prof, depth, color=color, lw=1.5, ls="--",
-                  label=f"{lab} (s)")
-    ax_c.axvline(0, color="0.6", lw=0.6)
-    ax_c.invert_yaxis()
-    ax_c.set_xlabel(r"Per-depth $\Delta F$ (mSv)")
-    ax_c.set_ylabel("Depth (m)")
-    ax_c.legend(loc="center left", bbox_to_anchor=(1.02, 0.5),
-                fontsize=7.5, frameon=False, ncol=1,
-                handlelength=1.5)
-    ax_c.set_ylim(5500, 0)
-    _panel_label(ax_c, "(c)")
+        ax.plot(v_prof, depth, color=color, lw=1.5, label=f"{lab} (v)")
+        ax.plot(s_prof, depth, color=color, lw=1.5, ls="--",
+                label=f"{lab} (s)")
+    ax.axvline(0, color="0.6", lw=0.6)
+    ax.invert_yaxis()
+    ax.set_xlabel(r"Per-depth $\Delta F$ (mSv)")
+    ax.set_ylabel("Depth (m)")
+    ax.legend(loc="center left", bbox_to_anchor=legend_anchor,
+              fontsize=7.5, frameon=False, ncol=1, handlelength=1.5)
+    ax.set_ylim(5500, 0)
 
+
+def _render_combined(loaded, deco, output: Path):
+    fig = plt.figure(figsize=(7.0, 7.5))
+    gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.05],
+                          hspace=0.32, wspace=0.32)
+    ax_a = fig.add_subplot(gs[0, :])
+    ax_b = fig.add_subplot(gs[1, 0])
+    ax_c = fig.add_subplot(gs[1, 1])
+    _draw_panel_a(ax_a, loaded)
+    _panel_label(ax_a, "(a)")
+    _draw_panel_b(ax_b, deco)
+    _panel_label(ax_b, "(b)")
+    _draw_panel_c(ax_c, deco)
+    _panel_label(ax_c, "(c)")
     fig.tight_layout()
-    save_publication_figure(fig, args.output)
+    save_publication_figure(fig, output)
+
+
+def _render_split(loaded, deco, output: Path):
+    base = output.parent / output.name
+    # Panel (a) — wide, full-row aspect
+    fig, ax = plt.subplots(figsize=(7.0, 3.5))
+    _draw_panel_a(ax, loaded)
+    fig.tight_layout()
+    save_publication_figure(fig, base.with_name(base.name + "a"))
+    # Panel (b) — half-row, legend INSIDE so the standalone PDF is
+    # self-explanatory (the combined version puts the legend below
+    # the bars, anchored to the figure).
+    fig, ax = plt.subplots(figsize=(4.2, 4.0))
+    _draw_panel_b(ax, deco, legend_anchor=(0.5, -0.45))
+    fig.tight_layout()
+    save_publication_figure(fig, base.with_name(base.name + "b"))
+    # Panel (c) — half-row; legend on the right of the axes.
+    fig, ax = plt.subplots(figsize=(4.6, 4.0))
+    _draw_panel_c(ax, deco, legend_anchor=(1.02, 0.5))
+    fig.tight_layout()
+    save_publication_figure(fig, base.with_name(base.name + "c"))
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--results-dir", type=Path, default=Path("data/results"))
+    parser.add_argument("--output", type=Path,
+                        default=Path("figures/paper2/Figure1"))
+    parser.add_argument("--mode", choices=["combined", "split", "both"],
+                        default="both")
+    args = parser.parse_args()
+
+    apply_nature_style()
+    loaded, deco = _load_data(args.results_dir)
+
+    if args.mode in ("combined", "both"):
+        _render_combined(loaded, deco, args.output)
+    if args.mode in ("split", "both"):
+        _render_split(loaded, deco, args.output)
 
     for ds_obj, _ in deco.values():
         ds_obj.close()

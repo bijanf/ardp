@@ -10,17 +10,34 @@ and `SI.tex` without further setup.
 ```
 paper2_overleaf/
 ├── Main.tex          main manuscript (15 pages, 6 figures)
-├── SI.tex            supplementary methods (6 pages, no figures)
+├── SI.tex            supplementary methods (7 pages, no figures)
 ├── references.bib    34 cited refs across Main + SI
 ├── README.md         this file
 └── figures/
-    ├── Figure1.pdf   timeseries + decomposition + depth profiles
-    ├── Figure2.pdf   tiebreaker + AMOC trajectories + boxplot
-    ├── Figure3.pdf   bistable-only subset
-    ├── Figure4.pdf   post-Argo + period sensitivity + S/N
-    ├── Figure5.pdf   2x2 zonal Δv / ΔS
-    └── Figure6.pdf   lead-lag + emergent regression
+    ├── Figure1.pdf            combined PDF (used by default)
+    ├── Figure1{a,b,c}.pdf     split panels (used when \splitfigstrue)
+    ├── Figure2.pdf            and Figure2{a,b,c}.pdf
+    ├── Figure3.pdf            and Figure3{a,b}.pdf
+    ├── Figure4.pdf            and Figure4{a,b,c}.pdf
+    ├── Figure5.pdf            and Figure5{a,b,c,d}.pdf
+    └── Figure6.pdf            and Figure6{a,b}.pdf
 ```
+
+## Two figure-layout modes
+
+Main.tex has a single-line toggle near the top of the preamble:
+
+```latex
+\newif\ifsplitfigs
+\splitfigsfalse   % flip to \splitfigstrue for split-panel mode
+```
+
+| Mode | What it does | When to use |
+|------|--------------|-------------|
+| `\splitfigsfalse` (default) | Each `\begin{figure}` includes one combined `FigureN.pdf`. Layout is baked into the matplotlib output. | **Submission.** Cleanest visual result, matches what the journal will print. |
+| `\splitfigstrue` | Each `\begin{figure}` glues together `FigureNa.pdf`, `FigureNb.pdf`, … via `\begin{subfigure}` blocks. | **Editing.** Swap a single panel without re-rendering the others; reviewer comments map directly to file names. |
+
+Both modes compile out-of-the-box on Overleaf — all required PDFs ship in the bundle.
 
 ## Build
 

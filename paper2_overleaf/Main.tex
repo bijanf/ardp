@@ -17,7 +17,23 @@
 \usepackage[super]{natbib}
 \usepackage{lineno}
 \usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
 \usepackage{authblk}
+
+% =====================================================================
+% Figure layout toggle
+% ---------------------------------------------------------------------
+% \splitfigsfalse  -> use the single combined PDF per figure
+%                     (FigureN.pdf). RECOMMENDED for journal submission.
+% \splitfigsfalse   -> include each panel as a separate PDF
+%                     (FigureNa.pdf, FigureNb.pdf, ...) glued together
+%                     with subcaption. RECOMMENDED for editing — you
+%                     can swap a single panel without re-rendering the
+%                     others, and reviewers' panel-specific comments
+%                     map cleanly to file names.
+% =====================================================================
+\newif\ifsplitfigs
+\splitfigsfalse
 
 \newcommand{\Fovs}{F_\mathrm{ovS}}
 \newcommand{\dFv}{\Delta F_v}
@@ -71,7 +87,22 @@ To resolve this ambiguity, we introduce an exact decomposition that separates th
 % =========================================================================
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{Figure1.pdf}
+\ifsplitfigs
+  \begin{subfigure}{\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure1a.pdf}
+    \caption{}\label{fig:f1a}
+  \end{subfigure}\\[4pt]
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure1b.pdf}
+    \caption{}\label{fig:f1b}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure1c.pdf}
+    \caption{}\label{fig:f1c}
+  \end{subfigure}
+\else
+  \includegraphics[width=\linewidth]{Figure1.pdf}
+\fi
 \caption{\textbf{Atlantic bistability and opposing mechanisms for freshening.}
 \textbf{(a)} Long-term \(F_{\mathrm{ovS}}\) time series at 34.5°S. The shaded region (\(F_{\mathrm{ovS}}<0\)) indicates the bistable regime of the salt-advection feedback, where a weakening AMOC would increase North Atlantic salinity -- a positive feedback that can lead to a collapsed overturning state. Diamonds denote direct hydrography estimates. All four reanalyses have negative mean values, confirming that the Atlantic resides in the bistable regime.
 \textbf{(b)} Mechanism decomposition of the \(F_{\mathrm{ovS}}\) change between 1993-2005 and 2013-2025. The change \(\Delta F_{\mathrm{ovS}}\) is split into a velocity-driven part \(\Delta F_v\) (due to circulation changes only), a salinity-driven part \(\Delta F_s\) (due to salinity redistribution only), and a cross term \(\Delta F_{\mathrm{cross}}\) (correlations). ORAS5 is 89\% velocity-driven (circulation change dominates), whereas GLORYS12V1 is 87\% salinity-driven -- the direct fingerprint of active salt-advection feedback. ECCO-V4r4 has \(|\Delta F_{\mathrm{ovS}}|<10\) mSv (mechanism ill-defined, hatched bar).
@@ -101,7 +132,22 @@ The mechanism split is not an artefact of model resolution. Within our ensemble,
 % =========================================================================
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{Figure2.pdf}
+\ifsplitfigs
+  \begin{subfigure}{0.33\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure2a.pdf}
+    \caption{}\label{fig:f2a}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.33\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure2b.pdf}
+    \caption{}\label{fig:f2b}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.32\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure2c.pdf}
+    \caption{}\label{fig:f2c}
+  \end{subfigure}
+\else
+  \includegraphics[width=\linewidth]{Figure2.pdf}
+\fi
 \caption{\textbf{CMIP6 mirrors the reanalysis split and reveals a hidden 10\% uncertainty in AMOC weakening.}
 \textbf{(a)} Velocity-share vs salinity-share for 12 CMIP6 models with forced AMOC weakening. Symbol edge: black = bistable baseline, grey = monostable. ORAS5 (blue) and GLORYS12V1 (green) lie at opposite corners of the CMIP6 cloud. CMIP6 model identities are documented in the Supplementary Information; only the four reanalyses are labelled here for clarity.
 \textbf{(b)} Mechanism-conditional historical and future AMOC at 26.5°N for salinity-dominant (blue), velocity-dominant (orange) and mixed (green) models. Vertical dashed line marks the historical $\rightarrow$ SSP5-8.5 transition (2014).
@@ -114,7 +160,18 @@ The mechanism split is not an artefact of model resolution. Within our ensemble,
 % =========================================================================
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{Figure3.pdf}
+\ifsplitfigs
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure3a.pdf}
+    \caption{}\label{fig:f3a}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure3b.pdf}
+    \caption{}\label{fig:f3b}
+  \end{subfigure}
+\else
+  \includegraphics[width=\linewidth]{Figure3.pdf}
+\fi
 \caption{\textbf{AMOC projections for the bistable-only subset.}
 Same as Figure~\ref{fig:cmip6_projection}(c) but restricted to models that are bistable at baseline (\(F_{\mathrm{ovS}}<0\)). Panel~(a) shows the full ensemble for reference; panel~(b) shows only the bistable-baseline subset. The median AMOC weakening remains 52\% for salinity-dominant models (\(n=4\)) and 42\% for velocity-dominant models (\(n=2\)). The persistence of the \(\sim\)10-percentage-point gap rules out the possibility that the mechanism-conditional difference is driven by the well-known CMIP6 fresh bias in the South Atlantic (monostable baseline). Red horizontal line and shaded band: \citet{Portmann2026} constraint.}
 \label{fig:bistable_subset}
@@ -133,7 +190,22 @@ Taken together, the robustness tests (Figure~\ref{fig:robustness}(b) and (c)) co
 % =========================================================================
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{Figure4.pdf}
+\ifsplitfigs
+  \begin{subfigure}{\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure4a.pdf}
+    \caption{}\label{fig:f4a}
+  \end{subfigure}\\[4pt]
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure4b.pdf}
+    \caption{}\label{fig:f4b}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure4c.pdf}
+    \caption{}\label{fig:f4c}
+  \end{subfigure}
+\else
+  \includegraphics[width=\linewidth]{Figure4.pdf}
+\fi
 \caption{\textbf{Robustness of the mechanism disagreement.}
 \textbf{(a)} Post-Argo robustness test (early 2006--2012 versus late 2018--2024). GLORYS12V1 remains strongly salinity-dominant ($+90\%$ salinity share); ORAS5 shifts from velocity-dominant (in the main windows) to mixed -- indicating part of its signal may be an observing-system shock.
 \textbf{(b)} Sensitivity to period choice. Velocity-share ($f_v$) distributions across 25 early/late window pairs. ORAS5 and GLORYS12V1 distributions never overlap -- the mechanism disagreement is robust.
@@ -154,7 +226,26 @@ Thus, the spatial patterns independently confirm that ORAS5's velocity-driven at
 % =========================================================================
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{Figure5.pdf}
+\ifsplitfigs
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure5a.pdf}
+    \caption{}\label{fig:f5a}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure5b.pdf}
+    \caption{}\label{fig:f5b}
+  \end{subfigure}\\[4pt]
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure5c.pdf}
+    \caption{}\label{fig:f5c}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure5d.pdf}
+    \caption{}\label{fig:f5d}
+  \end{subfigure}
+\else
+  \includegraphics[width=\linewidth]{Figure5.pdf}
+\fi
 \caption{\textbf{Zonal structure of \(\Delta v\) and \(\Delta S\) at 34.5°S.}
 ORAS5 (\textbf{a}, \textbf{c}) shows large velocity changes (\(\Delta v\)) concentrated in the western boundary current region, consistent with a circulation-driven freshening. In contrast, GLORYS12V1 (\textbf{b}, \textbf{d}) displays a basin-scale positive salinity change (\(\Delta S\)) in the upper 1000 m -- the salt-pile-up signature predicted by active salt-advection feedback. Land and sub-bottom topography are shown in grey. Colour scales are saturated at the 95th percentile of the absolute anomaly to highlight basin-scale structure. These distinct spatial patterns provide direct observational evidence for the opposite mechanism attributions shown in Figure~\ref{fig:reanalysis_mechanism}.}
 \label{fig:zonal_structure}
@@ -202,7 +293,18 @@ Taken together, these supporting analyses reinforce the value of \(F_{\mathrm{ov
 % =========================================================================
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{Figure6.pdf}
+\ifsplitfigs
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure6a.pdf}
+    \caption{}\label{fig:f6a}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.49\linewidth}\centering
+    \includegraphics[width=\linewidth]{Figure6b.pdf}
+    \caption{}\label{fig:f6b}
+  \end{subfigure}
+\else
+  \includegraphics[width=\linewidth]{Figure6.pdf}
+\fi
 \caption{\textbf{Supporting analyses: lead-lag relationships and emergent constraint.}
 \textbf{(a)} Cross-correlation curves between $F_{\mathrm{ovS}}$ and AMOC for individual CMIP6 models (positive lag $\tau$ = $F_{\mathrm{ovS}}$ leads AMOC). Solid red: collapsing-class ensemble mean ($\pm 1\sigma$ ribbon). Dashed blue: stable-class ensemble mean. Most models show $F_{\mathrm{ovS}}$ as a leading indicator.
 \textbf{(b)} CMIP6 emergent regression of $F_{\mathrm{ovS}}$ at 34.5°S (2000-2024) against $\Delta\mathrm{AMOC}_{26°\mathrm{N}}$ over the 2030-2040 forecast window. Slope $a = +0.70$, intercept $b = -1.73$, $R^2 = 0.01$, $\sigma_\mathrm{res} = 1.05$~Sv. Blue band: observational $F_{\mathrm{ovS}}$ ($-0.078\pm0.024$~Sv) propagated through the regression. The constrained $\Delta\mathrm{AMOC}$ forecast is $-1.77$~Sv (95\% CI $[-3.83, +0.29]$~Sv); the very low $R^2$ shows that, in this CMIP6 ensemble, single-variable $F_{\mathrm{ovS}}$ at 2000-2024 explains almost none of the inter-model spread in 2030-2040 $\Delta\mathrm{AMOC}$ -- consistent with our argument that the emergent constraint is mechanism-blind and conditioning on velocity/salinity dominance is required for a tighter prediction.}
