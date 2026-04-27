@@ -32,9 +32,9 @@ cp "$SRC_TEX_DIR/references.bib"  "$DST/references.bib"
 # root rather than the parent repo's figures/paper2/ directory.
 sed -i 's|{\.\./figures/paper2/}|{./figures/}|' "$DST/Main.tex" "$DST/SI.tex"
 
-# Copy the six combined Main-text figure PDFs (used when
+# Copy the seven combined Main-text figure PDFs (used when
 # \splitfigsfalse — the submission-ready default).
-for n in 1 2 3 4 5 6; do
+for n in 1 2 3 4 5 6 7; do
     src="$SRC_FIG_DIR/Figure${n}.pdf"
     [[ -f "$src" ]] || { echo "missing figure: $src"; exit 1; }
     cp "$src" "$DST/figures/Figure${n}.pdf"
@@ -45,8 +45,8 @@ done
 # Panel layouts: 1: a/b/c   2: a/b/c   3: a/b   4: a/b/c
 #                5: a/b/c/d 6: a/b
 declare -A PANEL_LETTERS=( [1]="abc" [2]="abc" [3]="ab"
-                            [4]="abc" [5]="abcd" [6]="ab" )
-for n in 1 2 3 4 5 6; do
+                            [4]="abc" [5]="abcd" [6]="ab" [7]="ab" )
+for n in 1 2 3 4 5 6 7; do
     for letter in $(echo "${PANEL_LETTERS[$n]}" | grep -o .); do
         src="$SRC_FIG_DIR/Figure${n}${letter}.pdf"
         [[ -f "$src" ]] || { echo "missing split panel: $src"; exit 1; }
