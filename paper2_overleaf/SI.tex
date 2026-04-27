@@ -214,7 +214,7 @@ We follow the standard emergent constraint approach \citep{Portmann2026, Dong202
 
 \subsection*{Software and reproducibility}
 
-All analyses are implemented in Python 3.13 using NumPy, SciPy, xarray, dask, pandas, matplotlib, and the cross-label-placement package \texttt{adjustText}. CMIP6 catalogue access uses \texttt{intake-esm} and \texttt{pangeo-cmip6}; NASA Earthdata access uses \texttt{earthaccess}. The package \texttt{ardp} contains the shared kernels (\texttt{fovs.py}, \texttt{fovs\_decomposition.py}, statistical helpers); the \texttt{scripts/} directory contains one script per processing step. A top-level orchestrator, \texttt{scripts/make\_paper2.py}, runs the complete pipeline from raw sections to the final figures and tables with idempotent per-output skipping. The full test suite passes (148 unit and integration tests); the \texttt{ruff} linter (PyFlakes-fatal rules, excluding unused local variables) passes on every commit. End-to-end wall-clock time from the raw sections is approximately 4--6 hours on a single 2024-era workstation, dominated by the SODA 5-day snapshot downloads; re-running from the archived reduced data takes under five minutes.
+All analyses are implemented in Python using NumPy, SciPy, xarray, pandas and matplotlib; CMIP6 access uses \texttt{intake-esm} and \texttt{pangeo-cmip6}. The complete analysis code -- including the F$_{\mathrm{ovS}}$ decomposition kernel, statistical helpers and figure-rendering scripts -- is openly available; see the Data and Code Availability statement in the main text for the repository link.
 
 % NOTE: The previous draft embedded standalone copies of the
 % sensitivity-to-period-choice figure and the piControl signal-to-noise
@@ -243,47 +243,22 @@ $F_{\mathrm{ovS}}$ at 2000-2024 against $\Delta\mathrm{AMOC}_{26^\circ\mathrm{N}
 \centering
 \includegraphics[width=0.85\linewidth]{diagA3_continuous}
 \caption{\textbf{Continuous velocity-share vs projected AMOC weakening.}
-Across the 12 forced-weakening CMIP6 models, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.46$ ($p = 0.14$, two-sided) and a Pearson $r = -0.47$ ($p = 0.12$). The OLS regression has slope $-0.11\%$ weakening per percent $f_v$ and $R^2 = 0.22$. The relationship is directionally consistent with the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening) but does not yet reach the 5\% significance threshold given the small ensemble size, motivating the SMILE robustness test (Supplementary Fig.~\ref{fig:S7}).}
+Across the 12 forced-weakening CMIP6 models, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.46$ ($p = 0.14$, two-sided) and a Pearson $r = -0.47$ ($p = 0.12$). The OLS regression has slope $-0.11\%$ weakening per percent $f_v$ and $R^2 = 0.22$. The relationship is directionally consistent with the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening) but does not yet reach the 5\% significance threshold given the small ensemble size, motivating the SMILE robustness test (Main Fig.~7).}
 \label{fig:S6}
 \end{figure}
 
-% =====================================================================
-% Fig S7 (SMILE robustness) — flip \smilefigtrue once the ESGF run
-% completes and ./figures/diagSMILE.pdf lands. Until then, the block
-% is suppressed so SI.tex still compiles.
-% =====================================================================
-\newif\ifsmilefig
-\smilefigtrue  % flipped on 2026-04-27 after the 50-member ESGF run completed
-\ifsmilefig
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.85\linewidth]{diagSMILE}
-\caption{\textbf{Single-model initial-condition large-ensemble (SMILE) robustness test for the mechanism classification.}
-F$_{\mathrm{ovS}}$ velocity-share ($f_v$) vs salinity-share ($f_s$) for all 50 initial-condition members of the MPI-ESM1-2-LR CMIP6 contribution (orange crosses, downloaded via DKRZ ESGF), overlaid on the multi-model CMIP6 weakening ensemble (faded coloured circles, 12 models classified by mechanism class). The black diamond marks the SMILE ensemble mean. Vertical and horizontal dotted lines mark the $f_v=60\%$ and $f_s=60\%$ classification thresholds. Dashed grey line: $f_v+f_s=100\%$ (no cross-term). All 50 SMILE members share identical model physics (MPIOM ocean with Pacanowski--Philander vertical mixing and Gent--McWilliams isopycnal mixing, ECHAM6.3 atmosphere; see Table~\ref{tab:smile_components}); the only inter-member difference is the phase of internal variability at simulation start. \textbf{50 of 50 SMILE members fall in the velocity-dominant quadrant} ($f_v>60\%$), with ensemble-mean $f_v=+93\%$, standard deviation $\sigma=15\%$, and minimum $f_v=+73\%$. The classification threshold at $60\%$ sits $2.2\sigma$ below the cluster mean; under a Gaussian assumption the probability that a hypothetical 51st member would cross the threshold is below $2\%$. The ensemble-mean $\Delta F_{ovS}$ is $-39.6$~mSv with internal-variability spread $\pm7.2$~mSv (1$\sigma$), so internal variability fails to flip the class even at $\pm3\sigma$ of the forced signal. This rules out the small-N + internal-variability concern (Supplementary Fig.~\ref{fig:S6}): MPI-ESM1-2-LR's centennial mechanism class is a structural property of the coupled-response physics, not a phasing of internal decadal variability.}
-\label{fig:S7}
-\end{figure}
-\fi
-
-% Fig S9 (SMILE AMOC trajectory band) — flipped on once
-% diagSMILE_amoc.pdf lands.
-\newif\ifsmileamocfig
-\smileamocfigtrue  % flipped on after diagSMILE_amoc.pdf landed
-\ifsmileamocfig
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{diagSMILE_amoc}
-\caption{\textbf{SMILE AMOC trajectory band at 26.5°N.}
-50-member MPI-ESM1-2-LR Grand Ensemble AMOC time series at 26.5°N (max of $\mathtt{msftmz}$ below 500~m, the standard RAPID-equivalent definition), assembled from concatenated historical+ssp585 records. Orange spaghetti: per-member trajectories. Dark-orange line: ensemble mean. Orange envelope: $\pm 1\sigma$ across members. Vertical dashed line: hist$\rightarrow$ssp585 transition (2014). Grey vertical bands: the 1950-1980 baseline and 2081-2100 forced windows used for percent-weakening. Right inset: histogram of per-member weakening 2081-2100 vs 1950-1980, with the ensemble-mean horizontal line. Quantitative summary: 1950-1980 ensemble-mean AMOC = $+18.8 \pm 0.4$~Sv (1$\sigma$); 2081-2100 ensemble-mean AMOC = $+14.4 \pm 0.3$~Sv; per-member weakening = $+23.3\% \pm 2.4\%$ (1$\sigma$), range $[+18.0\%, +29.4\%]$. The SMILE bracket falls firmly within the velocity-dominant CMIP6 subset's projection range (Main Fig.~2\textbf{(c)}, IQR 32-43\%), confirming MPI-ESM1-2-LR's AMOC trajectory as a low-end member of the v-dominant family. Together with Supp Fig.~\ref{fig:S7} (mechanism class) this confirms that the MPI-ESM1-2-LR projection is internally consistent across initial-condition realisations both in mechanism (50/50 v-dominant) and in magnitude (1$\sigma$ internal-variability spread of only 2.4 percentage points on the projected weakening).}
-\label{fig:S9}
-\end{figure}
-\fi
+% NOTE: The 50-member SMILE robustness figures (mechanism class +
+% AMOC trajectory) are now Main Figure 7 (\ref{fig:smile_robustness}),
+% so the previous Supp Figs S7 and S9 have been removed. The
+% timescale-consistency figure that used to sit at S8 has been
+% promoted to S7 in their place to keep numbering contiguous.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\linewidth]{diagA1_timescale}
 \caption{\textbf{Timescale consistency of the CMIP6 mechanism class.}
 Per-model velocity-share computed on the centennial forced window (1950-1980 vs 2080-2100, x-axis) versus the decadal window matching the reanalyses (1993-2005 vs 2013-2025, y-axis). Models are coloured by their centennial mechanism class. Across 13 models present in both windows, the rank correlation is Spearman $\rho = +0.79$ ($p = 0.001$); restricted to the 9 models that are weakening in both windows, $\rho = +0.87$ ($p = 0.003$). Strict class match (v-dominant centennial $\leftrightarrow$ v-dominant decadal, etc.) is 6/9 = 67\%; allowing a `mixed' bridge between v- and s-dominant raises this to 8/9 = 89\%. MPI-ESM1-2-LR is the only weakening-in-both model that flips class outright (v-dominant centennially, s-dominant decadally). Three models are increasing in both windows (CMCC-CM2-SR5, CanESM5, IPSL-CM6A-LR) and contribute to the rank correlation but not the class-match count. CNRM-CM6-1 and MIROC6 are present centennially but not decadally because their hist+ssp585 records produce non-contiguous coverage of 2013-2025 at 34.5°S; ACCESS-CM2 is in the decadal ensemble only.}
-\label{fig:S8}
+\label{fig:S7}
 \end{figure}
 
 \bibliographystyle{unsrtnat}
