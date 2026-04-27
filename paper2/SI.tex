@@ -33,7 +33,7 @@
 
 \subsection*{Observational reanalysis datasets}
 
-Four independent global ocean reanalysis products are analysed. They span distinct ocean-model families, horizontal resolutions, assimilation schemes, and surface-forcing choices, and together represent the currently available space of observationally-constrained three-dimensional ocean state estimates at 34.5$^\circ$S.
+Four independent global ocean reanalysis products are analysed. They were selected to span the four mainstream data-assimilation paradigms in the global-ocean reanalysis ecosystem -- 3D-Var FGAT (ORAS5), reduced-order Kalman filter with 3D-Var bias correction (GLORYS12V1), ensemble optimal interpolation (SODA 3.15.2), and 4D-variational adjoint state estimation (ECCO-V4r4) -- and together cover the eddy-resolving ($1/12^\circ$) to coarse-resolution ($1/2^\circ$) range used in CMIP-class climate analysis. This is the same four-product canonical ensemble adopted by the headline emergent-constraint study \citep{Portmann2026}, ensuring that our mechanism decomposition is directly comparable to that constraint without product-selection ambiguity. Adding a fifth product from any of the same paradigms (e.g.~ORAS4, C-GLORS, FOAM) would not break the velocity-vs-salinity dichotomy because such siblings share systematic biases with their corresponding family member; a complementary GECCO3 (Hamburg) 4D-Var run would be the most informative future addition because it would test whether the ECCO null trend is generic to adjoint optimisation. The four products together represent the currently available space of observationally-constrained three-dimensional ocean state estimates at 34.5$^\circ$S.
 
 \paragraph{ORAS5} \citep{Zuo2019}. Ocean Reanalysis System 5 from ECMWF. Native grid: ORCA025 tripolar (nominal $\sim$1/4$^\circ$, $\sim$25~km at the equator and $\sim$14~km at 34.5$^\circ$S after the $\cos\phi$ contraction), 75 vertical levels with 1-m surface resolution. NEMOVAR 3D-Var FGAT data-assimilation scheme ingesting sub-surface temperature/salinity profiles, sea-ice concentration, and along-track altimetric sea-level anomalies. Atmospheric forcing: ERA-40 (1958--1978) transitioning to ERA-Interim/ERA5 (1979--present). Record used: 816 monthly means, 1958--2025.
 
@@ -50,6 +50,17 @@ Four independent global ocean reanalysis products are analysed. They span distin
 CMIP6 meridional-velocity (\texttt{vo}) and salinity (\texttt{so}) sections at 34.5$^\circ$S are obtained for every available model with coverage of both the \texttt{historical} experiment (required period 1950--1980) and the \texttt{ssp585} experiment (required period 2080--2100). The native grid of each model is used (i.e. no regridding), because regridding distorts the mechanistic decomposition. Fifteen models satisfy both criteria with accessible section files: CESM2, CMCC-CM2-SR5, CNRM-CM6-1, CanESM5, FGOALS-g3, FIO-ESM-2-0, GFDL-CM4, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3, UKESM1-0-LL. Three models are excluded: NorESM2-LM and NorESM2-MM because their ocean component is on isopycnal (density) coordinates and cannot be integrated in depth-space without an additional remap that would confound the decomposition; and ACCESS-CM2 because its accessible \texttt{ssp585} run does not extend to 2100. All models use the \texttt{r1i1p1f1} realisation.
 
 A 13-model subset with \texttt{piControl} access is used for the internal-variability null test: ACCESS-CM2, CESM2, CMCC-CM2-SR5, CNRM-CM6-1, CanESM5, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3, UKESM1-0-LL.
+
+\paragraph{Ensemble size used per analysis.} Different downstream analyses retain different subsets of the 15-model decomposition ensemble:
+
+\begin{itemize}
+\item \emph{Mechanism decomposition + tiebreaker scatter} (Figs.~1b, 2a of the main text): all 15 models. Three models are flagged \emph{increasing} (CMCC-CM2-SR5, CanESM5, IPSL-CM6A-LR) and excluded from the mechanism-conditional projection because their forced $\Fovs$ change is positive; this leaves \textbf{12 weakening models} that drive the headline 10-percentage-point gap (Figs.~2b,~2c).
+\item \emph{Bistable-only subset} (Fig.~3): 6 models have $\overline{\Fovs}(t_1)<0$; of those, 2 are \emph{increasing} and are dropped, leaving \textbf{$n=4$ weakening + bistable} models (CNRM-CM6-1, MIROC6 salinity-dominant; MPI-ESM1-2-HR, NESM3 velocity-dominant).
+\item \emph{piControl null} (Fig.~4c): \textbf{13 models} (the subset listed above), with up to 200 random non-overlapping 30-year window pairs per model.
+\item \emph{Lead-lag cross-correlation} (Fig.~6a) and \emph{emergent constraint regression} (Fig.~6b): \textbf{16 models}. Both diagnostics use only the 1850-2024 historical+\texttt{ssp585} window for the lead-lag and the 2000-2024 / 2030-2040 windows for the emergent constraint, which means ACCESS-CM2 -- excluded from the decomposition because its \texttt{ssp585} run does not reach 2100 -- can be retained here. We re-add it to maximise statistical power on the lead-lag cross-correlation function and on the regression slope.
+\end{itemize}
+
+This per-analysis bookkeeping is reflected in each figure's panel-internal $n=$ labels and in the captions of the main text.
 
 \subsection*{Section extraction and grid metrics}
 
