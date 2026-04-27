@@ -1,25 +1,18 @@
 #!/usr/bin/env python3
 """Paper 2 Figure 4: robustness of the mechanism disagreement.
 
-Combined into a single PDF with three panels:
+Three panels:
 
-  (a) Post-Argo robustness test (single bar chart, post-Argo window
-      pair only — the redundant main-window panel that duplicated
-      Figure 1b has been dropped).
+  (a) Post-Argo decomposition bars (single window pair).
   (b) Sensitivity to period choice: velocity-share distributions
       across 25 early/late window pairs per product.
   (c) Signal-to-noise test: histogram of |ΔF_ovS| from 2600 piControl
       30-year segments, with reanalysis values marked as vertical
-      lines (rotated labels to avoid overlap).
+      lines.
 
-Reads:
-  data/results/fovs_decomposition_{oras5,glorys12,soda,ecco}_postargo.nc
-  data/results/fovs_decomposition_sensitivity.csv
-  data/results/fovs_decomposition_cmip6_null.csv
-  data/results/fovs_decomposition_cmip6_summary.csv
-  data/results/fovs_decomposition_{product}.nc
-
-Outputs: figures/paper2/Figure4.{png,pdf}
+Outputs (default --mode both):
+  figures/paper2/Figure4.{png,pdf}            single combined PDF
+  figures/paper2/Figure4{a,b,c}.{png,pdf}     three standalone panels
 """
 
 from __future__ import annotations
@@ -69,28 +62,28 @@ def _panel_label(ax, label: str, x: float = 0.02, y: float = 0.97) -> None:
             fontweight="bold", va="top", ha="left")
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--results-dir", type=Path, default=Path("data/results"))
-    parser.add_argument("--output", type=Path,
-                        default=Path("figures/paper2/Figure4"))
-    args = parser.parse_args()
-
-    apply_nature_style()
-
-    fig = plt.figure(figsize=(7.0, 6.2))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.05],
-                          hspace=0.45, wspace=0.34)
-    ax_a = fig.add_subplot(gs[0, :])
-    ax_b = fig.add_subplot(gs[1, 0])
-    ax_c = fig.add_subplot(gs[1, 1])
-
-    # ── Panel (a): Post-Argo decomposition only ──
+def _load_data(results_dir: Path):
     rows = []
     for label, key, color in PRODUCTS:
-        post = _load_postargo(args.results_dir, key)
+        post = _load_postargo(results_dir, key)
         rows.append((label, key, color, post))
+    sens = pd.read_csv(results_dir / "fovs_decomposition_sensitivity.csv")
+    null_df = pd.read_csv(results_dir / "fovs_decomposition_cmip6_null.csv")
+    forced_df = pd.read_csv(results_dir / "fovs_decomposition_cmip6_summary.csv")
+    rean_vals = []
+    for label, key, color in PRODUCTS:
+        path = results_dir / f"fovs_decomposition_{key}.nc"
+        if not path.exists():
+            continue
+        ds = xr.open_dataset(path)
+        rean_vals.append((label, abs(float(ds.attrs["delta_total_Sv"]) * 1000),
+                          color))
+        ds.close()
+    return rows, sens, null_df, forced_df, rean_vals
 
+
+def _draw_panel_a(ax, rows, *, legend_loc: str = "lower center",
+                  legend_anchor=(0.5, -0.32), legend_ncol: int = 5):
     x = np.arange(len(rows))
     dv = np.array([r[3]["delta_v"] * 1000 if r[3] else np.nan for r in rows])
     ds_ = np.array([r[3]["delta_s"] * 1000 if r[3] else np.nan for r in rows])
@@ -99,54 +92,53 @@ def main() -> None:
     has_data = np.array([r[3] is not None for r in rows])
     has_trend = np.abs(dt) >= 10.0
     width = 0.55
-    ax_a.bar(x[has_trend], dv[has_trend], width=width, color="#E69F00",
-             label=r"$\Delta F_v$  (velocity)")
-    ax_a.bar(x[has_trend], ds_[has_trend], width=width,
-             bottom=dv[has_trend], color="#56B4E9",
-             label=r"$\Delta F_s$  (salinity)")
-    ax_a.bar(x[has_trend], dc[has_trend], width=width,
-             bottom=dv[has_trend] + ds_[has_trend], color="0.6",
-             label=r"$\Delta F_\mathrm{cross}$")
+    ax.bar(x[has_trend], dv[has_trend], width=width, color="#E69F00",
+           label=r"$\Delta F_v$  (velocity)")
+    ax.bar(x[has_trend], ds_[has_trend], width=width,
+           bottom=dv[has_trend], color="#56B4E9",
+           label=r"$\Delta F_s$  (salinity)")
+    ax.bar(x[has_trend], dc[has_trend], width=width,
+           bottom=dv[has_trend] + ds_[has_trend], color="0.6",
+           label=r"$\Delta F_\mathrm{cross}$")
     no_trend_mask = has_data & ~has_trend
     if no_trend_mask.any():
-        ax_a.bar(x[no_trend_mask], dt[no_trend_mask], width=width,
-                 color="0.85", edgecolor="0.4", hatch="///",
-                 label=r"ill-defined ($|\Delta F| < 10$ mSv)")
+        ax.bar(x[no_trend_mask], dt[no_trend_mask], width=width,
+               color="0.85", edgecolor="0.4", hatch="///",
+               label=r"ill-defined ($|\Delta F| < 10$ mSv)")
     no_data_mask = ~has_data
     if no_data_mask.any():
         for xi in x[no_data_mask]:
-            ax_a.text(xi, 0.0, "pending", ha="center", va="center",
-                      fontsize=8, color="0.45", style="italic")
-    ax_a.scatter(x[has_data], dt[has_data], color="black", s=30,
-                 marker="D", zorder=5, label=r"$\Delta F_\mathrm{total}$")
-    ax_a.axhline(0, color="0.6", lw=0.6)
-    ax_a.set_xticks(x)
-    ax_a.set_xticklabels([r[0] for r in rows], rotation=15, ha="right",
-                         fontsize=8)
-    ax_a.set_ylabel(r"$\Delta\mathrm{F}_{ovS}$ (mSv, late − early, post-Argo)")
-    ax_a.set_ylim(-100, 30)
-    ax_a.grid(axis="y", alpha=0.3, lw=0.3)
+            ax.text(xi, 0.0, "pending", ha="center", va="center",
+                    fontsize=8, color="0.45", style="italic")
+    ax.scatter(x[has_data], dt[has_data], color="black", s=30,
+               marker="D", zorder=5, label=r"$\Delta F_\mathrm{total}$")
+    ax.axhline(0, color="0.6", lw=0.6)
+    ax.set_xticks(x)
+    ax.set_xticklabels([r[0] for r in rows], rotation=15, ha="right",
+                       fontsize=8)
+    ax.set_ylabel(r"$\Delta\mathrm{F}_{ovS}$ (mSv, late − early, post-Argo)")
+    ax.set_ylim(-100, 30)
+    ax.grid(axis="y", alpha=0.3, lw=0.3)
     for i, r in enumerate(rows):
         result = r[3]
         if result is None:
             continue
         fv, fs = _shares(result)
         if not np.isfinite(fv):
-            ax_a.text(i, 14, "no\ntrend", ha="center", va="bottom",
-                      fontsize=8, color="0.3", style="italic",
-                      fontweight="bold")
+            ax.text(i, 14, "no\ntrend", ha="center", va="bottom",
+                    fontsize=8, color="0.3", style="italic",
+                    fontweight="bold")
             continue
         yy, va = (4, "bottom") if dt[i] < 0 else (-4, "top")
-        ax_a.text(i, yy, f"v:{fv:+.0f}%\ns:{fs:+.0f}%",
-                  ha="center", va=va, fontsize=8, color="0.2",
-                  fontweight="bold")
-    ax_a.legend(loc="lower center", bbox_to_anchor=(0.5, -0.32),
-                fontsize=8, frameon=False, ncol=5, handlelength=1.4,
-                columnspacing=1.2)
-    _panel_label(ax_a, "(a)")
+        ax.text(i, yy, f"v:{fv:+.0f}%\ns:{fs:+.0f}%",
+                ha="center", va=va, fontsize=8, color="0.2",
+                fontweight="bold")
+    ax.legend(loc=legend_loc, bbox_to_anchor=legend_anchor,
+              fontsize=8, frameon=False, ncol=legend_ncol,
+              handlelength=1.4, columnspacing=1.2)
 
-    # ── Panel (b): sensitivity to period choice ──
-    sens = pd.read_csv(args.results_dir / "fovs_decomposition_sensitivity.csv")
+
+def _draw_panel_b(ax, sens, *, legend_loc: str = "upper right"):
     product_colors = {"oras5": "#1f77b4", "glorys12": "#2ca02c",
                       "soda": "#e377c2", "ecco": "#d62728"}
     labels_map = {"oras5": "ORAS5", "glorys12": "GLORYS12V1",
@@ -159,66 +151,105 @@ def main() -> None:
             continue
         x = sub["velocity_share_pct"].values
         y = np.full(len(x), i, dtype=float) + rng.normal(0, 0.1, len(x))
-        ax_b.scatter(x, y, color=product_colors.get(p, "0.3"), alpha=0.65,
-                     s=35, edgecolor="0.2", linewidth=0.3, zorder=4,
-                     label=f"{labels_map.get(p, p)} (n={len(x)})")
-        ax_b.axhline(i, color="0.85", lw=0.4, zorder=1)
-    ax_b.axvline(60, color="#E69F00", ls=":", lw=0.7, alpha=0.7)
-    ax_b.axvline(40, color="#56B4E9", ls=":", lw=0.7, alpha=0.7)
-    ax_b.set_yticks(range(len(products_in_sens)))
-    ax_b.set_yticklabels([labels_map.get(p, p) for p in products_in_sens],
-                         fontsize=8)
-    ax_b.set_xlabel(r"Velocity share $f_v$ (%)")
-    ax_b.set_xlim(-100, 220)
-    ax_b.legend(loc="upper right", fontsize=7, frameon=False)
-    _panel_label(ax_b, "(b)")
+        ax.scatter(x, y, color=product_colors.get(p, "0.3"), alpha=0.65,
+                   s=35, edgecolor="0.2", linewidth=0.3, zorder=4,
+                   label=f"{labels_map.get(p, p)} (n={len(x)})")
+        ax.axhline(i, color="0.85", lw=0.4, zorder=1)
+    ax.axvline(60, color="#E69F00", ls=":", lw=0.7, alpha=0.7)
+    ax.axvline(40, color="#56B4E9", ls=":", lw=0.7, alpha=0.7)
+    ax.set_yticks(range(len(products_in_sens)))
+    ax.set_yticklabels([labels_map.get(p, p) for p in products_in_sens],
+                       fontsize=8)
+    ax.set_xlabel(r"Velocity share $f_v$ (%)")
+    ax.set_xlim(-100, 220)
+    ax.legend(loc=legend_loc, fontsize=7, frameon=False)
 
-    # ── Panel (c): signal-to-noise vs piControl null ──
-    null_df = pd.read_csv(args.results_dir / "fovs_decomposition_cmip6_null.csv")
-    forced_df = pd.read_csv(args.results_dir / "fovs_decomposition_cmip6_summary.csv")
+
+def _draw_panel_c(ax, null_df, forced_df, rean_vals):
     null_abs = np.abs(null_df["delta_total"].values) * 1000
     forced_abs = np.abs(forced_df["delta_total"].values) * 1000
-    rean_vals = []
-    for label, key, color in PRODUCTS:
-        path = args.results_dir / f"fovs_decomposition_{key}.nc"
-        if not path.exists():
-            continue
-        ds = xr.open_dataset(path)
-        rean_vals.append((label, abs(float(ds.attrs["delta_total_Sv"]) * 1000),
-                          color))
-        ds.close()
     bins = np.linspace(0, max(null_abs.max(), forced_abs.max()) + 10, 40)
-    ax_c.hist(null_abs, bins=bins, color="0.55", alpha=0.7, edgecolor="0.25",
-              linewidth=0.3, density=True, zorder=3,
-              label=f"piControl null (n={len(null_abs)})")
-    ax_c.hist(forced_abs, bins=bins, color="#CC3333", alpha=0.55,
-              edgecolor="0.25", linewidth=0.3, density=True, zorder=4,
-              label=f"CMIP6 forced (n={len(forced_abs)})")
+    ax.hist(null_abs, bins=bins, color="0.55", alpha=0.7, edgecolor="0.25",
+            linewidth=0.3, density=True, zorder=3,
+            label=f"piControl null (n={len(null_abs)})")
+    ax.hist(forced_abs, bins=bins, color="#CC3333", alpha=0.55,
+            edgecolor="0.25", linewidth=0.3, density=True, zorder=4,
+            label=f"CMIP6 forced (n={len(forced_abs)})")
     null_p95 = float(np.percentile(null_abs, 95))
-    ax_c.axvline(null_p95, color="0.3", ls=":", lw=0.9, zorder=2,
-                 label=f"piControl p95 = {null_p95:.0f} mSv")
-    # Reanalysis markers: vertical lines plus a compact bullet legend
-    # in the upper-left so labels never overlap the lines or each
-    # other (user feedback on a previous draft).
+    ax.axvline(null_p95, color="0.3", ls=":", lw=0.9, zorder=2,
+               label=f"piControl p95 = {null_p95:.0f} mSv")
     for _label, val, color in rean_vals:
-        ax_c.axvline(val, color=color, lw=2.0, zorder=6)
-    ax_c.set_xlabel(r"$|\Delta F_{ovS}|$ (mSv)")
-    ax_c.set_ylabel("Density")
-    ax_c.set_xlim(0, None)
-    base_handles, base_labels = ax_c.get_legend_handles_labels()
+        ax.axvline(val, color=color, lw=2.0, zorder=6)
+    ax.set_xlabel(r"$|\Delta F_{ovS}|$ (mSv)")
+    ax.set_ylabel("Density")
+    ax.set_xlim(0, None)
+    base_handles, base_labels = ax.get_legend_handles_labels()
     rean_handles = [
         plt.Line2D([], [], color=color, lw=2.0,
                    label=f"{label}: {val:.0f} mSv")
         for label, val, color in rean_vals
     ]
-    ax_c.legend(base_handles + rean_handles,
-                base_labels + [h.get_label() for h in rean_handles],
-                loc="upper right", fontsize=7, frameon=False,
-                handlelength=1.6)
-    _panel_label(ax_c, "(c)")
+    ax.legend(base_handles + rean_handles,
+              base_labels + [h.get_label() for h in rean_handles],
+              loc="upper right", fontsize=7, frameon=False,
+              handlelength=1.6)
 
+
+def _render_combined(rows, sens, null_df, forced_df, rean_vals, output: Path):
+    fig = plt.figure(figsize=(7.0, 6.2))
+    gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.05],
+                          hspace=0.45, wspace=0.34)
+    ax_a = fig.add_subplot(gs[0, :])
+    ax_b = fig.add_subplot(gs[1, 0])
+    ax_c = fig.add_subplot(gs[1, 1])
+    _draw_panel_a(ax_a, rows)
+    _panel_label(ax_a, "(a)")
+    _draw_panel_b(ax_b, sens)
+    _panel_label(ax_b, "(b)")
+    _draw_panel_c(ax_c, null_df, forced_df, rean_vals)
+    _panel_label(ax_c, "(c)")
     fig.tight_layout()
-    save_publication_figure(fig, args.output)
+    save_publication_figure(fig, output)
+
+
+def _render_split(rows, sens, null_df, forced_df, rean_vals, output: Path):
+    base = output.parent / output.name
+    # Panel (a) — wider since it's the full-width subfigure when used in
+    # LaTeX. Move the legend INSIDE the axes (lower-center inside) so
+    # the standalone version still shows the legend.
+    fig, ax = plt.subplots(figsize=(7.0, 3.4))
+    _draw_panel_a(ax, rows, legend_loc="lower center",
+                  legend_anchor=(0.5, -0.32), legend_ncol=5)
+    fig.tight_layout()
+    save_publication_figure(fig, base.with_name(base.name + "a"))
+    # Panel (b)
+    fig, ax = plt.subplots(figsize=(4.2, 3.4))
+    _draw_panel_b(ax, sens)
+    fig.tight_layout()
+    save_publication_figure(fig, base.with_name(base.name + "b"))
+    # Panel (c)
+    fig, ax = plt.subplots(figsize=(4.2, 3.4))
+    _draw_panel_c(ax, null_df, forced_df, rean_vals)
+    fig.tight_layout()
+    save_publication_figure(fig, base.with_name(base.name + "c"))
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--results-dir", type=Path, default=Path("data/results"))
+    parser.add_argument("--output", type=Path,
+                        default=Path("figures/paper2/Figure4"))
+    parser.add_argument("--mode", choices=["combined", "split", "both"],
+                        default="both")
+    args = parser.parse_args()
+
+    apply_nature_style()
+    rows, sens, null_df, forced_df, rean_vals = _load_data(args.results_dir)
+
+    if args.mode in ("combined", "both"):
+        _render_combined(rows, sens, null_df, forced_df, rean_vals, args.output)
+    if args.mode in ("split", "both"):
+        _render_split(rows, sens, null_df, forced_df, rean_vals, args.output)
 
 
 if __name__ == "__main__":
