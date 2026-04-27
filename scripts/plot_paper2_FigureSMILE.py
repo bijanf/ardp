@@ -106,36 +106,20 @@ def main() -> None:
                    linewidth=1.5, zorder=5,
                    label=f"MPI-ESM1-2-LR SMILE {cls} ({len(sub)})")
 
-    # SMILE ensemble mean (large diamond)
+    # SMILE ensemble mean
     if len(smile):
         ax.scatter([smile["velocity_share_pct"].mean()],
                    [smile["salinity_share_pct"].mean()],
-                   s=180, marker="D", c="black", edgecolor="white",
-                   linewidth=1.5, zorder=8,
-                   label=f"SMILE mean ({len(smile)} members)")
+                   s=70, marker="D", c="black", edgecolor="white",
+                   linewidth=0.8, zorder=8,
+                   label="SMILE mean")
 
     # Class boundaries + diagonal
     ax.plot([0, 100], [100, 0], color="0.6", lw=0.6, ls="--", zorder=1)
     ax.axvline(60, color="#E69F00", lw=0.4, ls=":", alpha=0.6)
     ax.axhline(60, color="#56B4E9", lw=0.4, ls=":", alpha=0.6)
 
-    # Annotations: SMILE summary
-    n_smile = len(smile)
-    weak_smile = smile[smile["delta_total"] < -0.01]
-    n_weak = len(weak_smile)
-    n_v = int(((weak_smile["velocity_share_pct"] > 60).sum()))
-    n_s = int(((weak_smile["salinity_share_pct"] > 60).sum()))
-    fv_mean = smile["velocity_share_pct"].mean()
-    fv_sd = smile["velocity_share_pct"].std()
-    text = (f"MPI-ESM1-2-LR Grand Ensemble  (n={n_smile})\n"
-            f"Weakening: {n_weak}/{n_smile}    "
-            f"v-dominant: {n_v}/{n_weak}    s-dominant: {n_s}/{n_weak}\n"
-            f"$f_v$ ensemble: mean = {fv_mean:+.0f}%   $\\sigma$ = {fv_sd:.0f}%")
-    ax.text(0.02, 0.98, text, transform=ax.transAxes, fontsize=8,
-            va="top",
-            bbox={"boxstyle": "round,pad=0.35", "facecolor": "white",
-                  "edgecolor": "0.6", "alpha": 0.92})
-
+    # Stats are reported in the figure caption, not on the axes.
     ax.set_xlabel(r"Velocity share $f_v$  (%)")
     ax.set_ylabel(r"Salinity share $f_s$  (%)")
     ax.set_xlim(-80, 220)
