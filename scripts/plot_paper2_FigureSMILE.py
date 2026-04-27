@@ -24,7 +24,6 @@ import argparse
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 
 from ardp.viz.style import apply_nature_style, save_publication_figure
