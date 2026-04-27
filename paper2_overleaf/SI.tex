@@ -9,7 +9,7 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{amsmath,amssymb}
-\usepackage{natbib}
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage{lineno}
 \usepackage{booktabs}
 
@@ -44,7 +44,7 @@ Four independent global ocean reanalysis products are analysed. They were select
 
 \paragraph{ECCO-V4r4} \citep{Forget2015}. NASA/JPL Estimating the Circulation and Climate of the Ocean, version 4 release 4. Native grid: LLC90 Lat-Lon-Cap (regridded to a uniform 0.5$^\circ$ monthly product), 50 vertical levels. ECCO is an adjoint-based least-squares state estimate (4D-variational) that iteratively adjusts initial conditions, surface fluxes, and interior mixing to minimise the misfit between the model trajectory and the full suite of altimetry, Argo, satellite SST/SSH, and mooring observations over its full time span. Atmospheric forcing (post-iteration): an ECCO-adjusted ERA-family atmospheric analysis. Record used: 26 annual means, 1992--2017.
 
-\paragraph{Direct-hydrography anchors.} Three published overturning freshwater-transport estimates at 34.5$^\circ$S from direct in-situ observations are used as independent anchor points in Fig.~1: \citet{GarzoliMatano2011} (central year 2005, value $-0.10\pm0.10$~Sv); \citet{Meinen2018} (central year 2015, value $-0.09\pm0.05$~Sv); and \citet{Kersale2020} (central year 2015, value $-0.17\pm0.07$~Sv). Together with \citet{Dong2024}'s $-0.15\pm0.09$~Sv from 49 XBT transects, they bracket the reanalysis ensemble from the low side.
+\paragraph{Direct-hydrography anchors.} Three published overturning freshwater-transport estimates at 34.5$^\circ$S from direct in-situ observations are used as independent anchor points in Fig.~1: \citet{GarzoliMatano2011} (central year 2005, value $-0.10\pm0.10$~Sv); \citet{Meinen2018} (central year 2015, value $-0.09\pm0.05$~Sv); and \citet{Kersale2020} (central year 2015, value $-0.17\pm0.07$~Sv). Together with \citet{ArumiPlanas2024}'s $-0.15\pm0.09$~Sv from 49 XBT transects, they bracket the reanalysis ensemble from the low side.
 
 \subsection*{CMIP6 ensemble}
 
@@ -210,7 +210,7 @@ To quantify the temporal relationship between the overturning freshwater transpo
 
 \subsection*{Emergent constraint on future \(F_{\mathrm{ovS}}\)}
 
-We follow the standard emergent constraint approach \citep{Portmann2026, Dong2024}. For each CMIP6 model, we compute the historical mean \(F_{\mathrm{ovS}}\) over the period 2000-2024 (the most recent decade common to all reanalyses) and the future mean \(F_{\mathrm{ovS}}\) over 2081-2100 under SSP5-8.5. A least-squares linear regression is fitted to the model ensemble, with historical \(F_{\mathrm{ovS}}\) as the predictor and future \(F_{\mathrm{ovS}}\) as the predictand. The observational estimate of historical \(F_{\mathrm{ovS}}\) (mean of the four reanalyses, \(\bar{F}_{\mathrm{ovS}} = -0.078\pm0.024\) Sv) is then projected onto the regression line to obtain a constrained future value. Confidence intervals (95\%) are derived using the standard error of the prediction, accounting for the spread in the model ensemble and the uncertainty in the observational mean.
+We follow the standard emergent constraint approach \citep{Portmann2026, ArumiPlanas2024}. For each CMIP6 model, we compute the historical mean \(F_{\mathrm{ovS}}\) over the period 2000-2024 (the most recent decade common to all reanalyses) and the future mean \(F_{\mathrm{ovS}}\) over 2081-2100 under SSP5-8.5. A least-squares linear regression is fitted to the model ensemble, with historical \(F_{\mathrm{ovS}}\) as the predictor and future \(F_{\mathrm{ovS}}\) as the predictand. The observational estimate of historical \(F_{\mathrm{ovS}}\) (mean of the four reanalyses, \(\bar{F}_{\mathrm{ovS}} = -0.078\pm0.024\) Sv) is then projected onto the regression line to obtain a constrained future value. Confidence intervals (95\%) are derived using the standard error of the prediction, accounting for the spread in the model ensemble and the uncertainty in the observational mean.
 
 \subsection*{Software and reproducibility}
 
@@ -261,7 +261,7 @@ Per-model velocity-share computed on the centennial forced window (1950-1980 vs 
 \label{fig:S7}
 \end{figure}
 
-\bibliographystyle{unsrtnat}
+\bibliographystyle{plainnat}
 \bibliography{references}
 
 \end{document}
