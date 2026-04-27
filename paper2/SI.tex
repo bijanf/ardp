@@ -243,7 +243,7 @@ $F_{\mathrm{ovS}}$ at 2000-2024 against $\Delta\mathrm{AMOC}_{26^\circ\mathrm{N}
 \centering
 \includegraphics[width=0.85\linewidth]{diagA3_continuous}
 \caption{\textbf{Continuous velocity-share vs projected AMOC weakening.}
-Across the 12 forced-weakening CMIP6 models, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.46$ ($p = 0.14$, two-sided) and a Pearson $r = -0.47$ ($p = 0.12$). The OLS regression has slope $-0.11\%$ weakening per percent $f_v$ and $R^2 = 0.22$. The relationship is directionally consistent with the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening) but does not yet reach the 5\% significance threshold given the small ensemble size, motivating the SMILE robustness test in the Methods.}
+Across the 12 forced-weakening CMIP6 models, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.46$ ($p = 0.14$, two-sided) and a Pearson $r = -0.47$ ($p = 0.12$). The OLS regression has slope $-0.11\%$ weakening per percent $f_v$ and $R^2 = 0.22$. The relationship is directionally consistent with the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening) but does not yet reach the 5\% significance threshold given the small ensemble size, motivating the SMILE robustness test (Supplementary Fig.~\ref{fig:S7}).}
 \label{fig:S6}
 \end{figure}
 
@@ -253,13 +253,13 @@ Across the 12 forced-weakening CMIP6 models, the velocity-share $f_v$ and the pe
 % is suppressed so SI.tex still compiles.
 % =====================================================================
 \newif\ifsmilefig
-\smilefigfalse  % \smilefigtrue when diagSMILE.pdf is ready
+\smilefigtrue  % flipped on 2026-04-27 after the 50-member ESGF run completed
 \ifsmilefig
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\linewidth]{diagSMILE}
 \caption{\textbf{Single-model initial-condition large-ensemble (SMILE) robustness test for the mechanism classification.}
-F$_{\mathrm{ovS}}$ velocity-share vs salinity-share for every available initial-condition member of the MPI-ESM1-2-LR Grand Ensemble (50 members on ESGF, of which 10 are also on Pangeo as a cross-check), overlaid on the multi-model CMIP6 weakening ensemble (faded background, 12 models). Each member of the SMILE shares identical model physics; if the binary mechanism class were primarily driven by internal variability rather than structural physics, members would scatter across the plane. They do not: the ensemble clusters tightly in the velocity-dominant quadrant (mean $f_v$ and 1$\sigma$ spread reported in the inset), confirming that MPI-ESM1-2-LR's centennial mechanism class is a structural property of the model and not a phasing of internal decadal variability. This addresses the small-N reviewer concern (Supplementary Fig.~S6): the binary classification used to construct the headline 10-percentage-point gap is structurally meaningful, even though the multi-model ensemble correlation does not yet pass a 5\%-level significance test.}
+F$_{\mathrm{ovS}}$ velocity-share vs salinity-share for all 50 initial-condition members of the MPI-ESM1-2-LR CMIP6 contribution (downloaded via DKRZ ESGF), overlaid on the multi-model CMIP6 weakening ensemble (faded background, 12 models). The full ensemble shares identical model physics (POP-family ocean, ECHAM6.3 atmosphere, common parameterizations -- see Supp. Table~\ref{tab:smile_components}); the only inter-member difference is the phase of internal variability at simulation start. If the binary mechanism class were dominated by internal variability rather than structural physics, members would scatter across the plane. They do not: \textbf{50/50 members cluster in the velocity-dominant quadrant}, with $f_v$ mean = $+93\%$, $\sigma = 15\%$, minimum = $73\%$. The classification threshold at $60\%$ is $2.2\sigma$ below the cluster mean; under a Gaussian assumption the probability that a hypothetical 51st member would fall below threshold is $<2\%$. The ensemble-mean $\Delta F_{ovS}$ is $-39.6$~mSv with internal-variability spread $\pm 7.2$~mSv (1$\sigma$) -- so internal variability fails to flip the class even at $\pm 3\sigma$ of the forced signal. This rules out the small-N + internal-variability concern (Supplementary Fig.~S6): MPI-ESM1-2-LR's centennial mechanism class is a structural property of the coupled-response physics, not a phasing of internal decadal variability.}
 \label{fig:S7}
 \end{figure}
 \fi
