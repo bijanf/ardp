@@ -115,6 +115,7 @@ def _oras5_period_mean(data_dir: Path, period: tuple[int, int]) -> tuple[np.ndar
 
     return v_mean, s_mean, {
         "e1t_atl": e1t[atl],
+        "lon_atl": lon_row[atl],
         "e3t": e3t,
         "depth": depth,
         "actual_lat": actual_lat,
@@ -171,6 +172,7 @@ def _glorys12_period_mean(data_dir: Path, period: tuple[int, int]) -> tuple[np.n
 
     return v_mean, s_mean, {
         "e1t_atl": e1t[atl],
+        "lon_atl": lon[atl],
         "e3t": e3t,
         "depth": depth,
         "actual_lat": actual_lat,
