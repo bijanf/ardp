@@ -128,8 +128,6 @@ def main() -> None:
                       a * xx + b + 1.96 * sigma_res,
                       color="#CC3333", alpha=0.15, zorder=3,
                       label="95% forecast interval")
-    ax_b.axvspan(X_obs_mean - X_obs_sigma, X_obs_mean + X_obs_sigma,
-                 color="#3366AA", alpha=0.18, zorder=2)
     # Constrained forecast: a 2-D errorbar at (X_obs_mean, Y_point),
     # with horizontal whisker = ±1σ on the observational F_ovS and
     # vertical whisker = ±(Y_95high − Y_95low)/(2·1.96), i.e. ±1σ of
