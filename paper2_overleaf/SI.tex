@@ -194,6 +194,38 @@ All analyses are implemented in Python 3.13 using NumPy, SciPy, xarray, dask, pa
 % avoid duplication. Cross-references in the Methods section above
 % point to the Main-text panels directly.
 
+\clearpage
+\section*{Supplementary Figures}
+
+% Skip S1-S4 (S2 and S4 were promoted into Main Fig 4(b,c); S1 and S3
+% are reserved for the lead-lag and post-Argo content already in Main).
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{figure}{4}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{diagA2_within_class}
+\caption{\textbf{Within-class emergent regression test (honest disclosure).}
+$F_{\mathrm{ovS}}$ at 2000-2024 against $\Delta\mathrm{AMOC}_{26^\circ\mathrm{N}}$ over 2030-2040, partitioned by mechanism class. Pooled (grey, dashed) regression has $R^2=0.010$ (slope $+0.70$, $n=16$). Salinity-dominant subset (blue, $n=6$): $R^2=0.106$. Velocity-dominant subset (orange, $n=5$): $R^2=0.027$. Within-class regression does NOT recover predictive power, and the constrained $\Delta\mathrm{AMOC}$ forecasts under the v-dominant ($-1.64$ Sv) and s-dominant ($-1.86$ Sv) regressions are statistically indistinguishable. The 10-percentage-point gap reported in Main Fig.~2\textbf{(c)} is therefore driven by the mechanism-class partition itself rather than by leveraging $F_{\mathrm{ovS}}$ as a regression predictor; we report it as such.}
+\label{fig:S5}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{diagA3_continuous}
+\caption{\textbf{Continuous velocity-share vs projected AMOC weakening.}
+Across the 12 forced-weakening CMIP6 models, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.46$ ($p = 0.14$, two-sided) and a Pearson $r = -0.47$ ($p = 0.12$). The OLS regression has slope $-0.11\%$ weakening per percent $f_v$ and $R^2 = 0.22$. The relationship is directionally consistent with the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening) but does not yet reach the 5\% significance threshold given the small ensemble size, motivating the SMILE robustness test (Supplementary Fig.~S7).}
+\label{fig:S6}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{diagA1_timescale}
+\caption{\textbf{Timescale consistency of the CMIP6 mechanism class.}
+Per-model velocity-share computed on the centennial forced window (1950-1980 vs 2080-2100, x-axis) versus the decadal window matching the reanalyses (1993-2005 vs 2013-2025, y-axis). Models are coloured by their centennial mechanism class. Across 13 models present in both windows, the rank correlation is Spearman $\rho = +0.79$ ($p = 0.001$); restricted to the 9 models that are weakening in both windows, $\rho = +0.87$ ($p = 0.003$). Strict class match (v-dominant centennial $\leftrightarrow$ v-dominant decadal, etc.) is 6/9 = 67\%; allowing a `mixed' bridge between v- and s-dominant raises this to 8/9 = 89\%. MPI-ESM1-2-LR is the only weakening-in-both model that flips class outright (v-dominant centennially, s-dominant decadally). Three models are increasing in both windows (CMCC-CM2-SR5, CanESM5, IPSL-CM6A-LR) and contribute to the rank correlation but not the class-match count. CNRM-CM6-1 and MIROC6 are present centennially but not decadally because their hist+ssp585 records produce non-contiguous coverage of 2013-2025 at 34.5°S; ACCESS-CM2 is in the decadal ensemble only.}
+\label{fig:S8}
+\end{figure}
+
 \bibliographystyle{unsrtnat}
 \bibliography{references}
 
