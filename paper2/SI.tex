@@ -39,6 +39,107 @@ analyses retain different subsets of the 15-model decomposition ensemble
 data-corruption outlier (Section~\ref{si:outlier});
 and (iv) supporting figures S5--S9.
 
+\section*{Model selection criteria for the CMIP6 ensemble}
+\label{si:model_selection}
+
+The CMIP6 ensemble used in the main text was assembled by applying a
+single set of pre-registered inclusion criteria to the full federated
+ESGF archive (DKRZ, LLNL, IPSL, BADC, CEDA, NCI mirrors, queried via
+the DKRZ Solr index with \texttt{distrib=true} on 2026-04-28). A model
+is included if and only if it publishes:
+
+\begin{enumerate}
+\item monthly meridional ocean velocity (\texttt{vo}) and salinity
+      (\texttt{so}) (CMIP6 table \texttt{Omon});
+\item both the \texttt{historical} and the \texttt{ssp585} experiment;
+\item realisation \texttt{r1i1p1f1} (the most widely available ensemble
+      member; we use the same realisation in every model to remove
+      member-selection ambiguity);
+\item native ocean grid (\texttt{grid\_label=gn}). Regridded archives
+      (\texttt{gr}) are excluded because regridding distorts the
+      mass-velocity-salinity coupling that the F$_{\mathrm{ovS}}$
+      decomposition resolves.
+\end{enumerate}
+
+A model is excluded a priori, regardless of \texttt{vo}/\texttt{so}
+publication status, if its ocean component uses isopycnal (density)
+vertical coordinates (NorESM2-LM, NorESM2-MM): the depth-coordinate
+remap that would be needed to evaluate $\int v\,[\bar{S}-S_0]\,
+\mathrm{d}z$ on these grids would itself reshape the velocity-vs-
+salinity partition we are trying to diagnose.
+
+\paragraph{Models in the analysed ensemble.}
+Sixteen CMIP6 models survive the criteria for the
+\texttt{historical}\,+\,\texttt{ssp585} decomposition: ACCESS-CM2,
+CESM2, CMCC-CM2-SR5, CNRM-CM6-1, CanESM5, FGOALS-g3, FIO-ESM-2-0,
+GFDL-CM4, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6,
+MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3, UKESM1-0-LL. ACCESS-CM2's
+\texttt{ssp585} run does not extend to 2100, so it is retained for
+the lead-lag and emergent-constraint diagnostics (Main Fig.~6a,b)
+but excluded from the 1950--1980 vs 2080--2100 mechanism
+decomposition; the headline mechanism ensemble is therefore $n=15$,
+of which $n=12$ exhibit forced AMOC weakening
+(see Section~\ref{si:ensemble}).
+
+\paragraph{Models considered but excluded.}
+Table~\ref{tab:excluded_models} lists the 30 additional CMIP6 models
+queried against the federated ESGF index, with the precise reason each
+was dropped. The exclusions fall into four categories: (i) isopycnal
+ocean coordinates (NorESM2 family); (ii) native-grid \texttt{vo} or
+\texttt{so} not published for one or both required experiments;
+(iii) only regridded archive available; and (iv) unstructured ocean
+mesh (AWI-CM-1-1-MR uses FESOM triangular finite-element grid; native
+\texttt{vo}/\texttt{so} are published, but section extraction at
+34.5$^\circ$S requires interpolation infrastructure beyond our
+NEMO/POP/MOM/MRI.COM-style depth-coordinate kernel). The exclusions
+are therefore archive-availability driven, not result-driven; the
+ensemble has not been pruned to favour a particular outcome.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\caption{CMIP6 models considered for the headline ensemble but excluded, with the exact reason each was dropped (queried federated ESGF index 2026-04-28). Columns ``vo h'', ``so h'', ``vo s'', ``so s'' report the number of native-grid (\texttt{gn}) files returned by the Solr index for monthly \texttt{vo} and \texttt{so} in the \texttt{historical} and \texttt{ssp585} experiments; a value of 0 in any column triggers exclusion. The reason column gives the dominant driver of the exclusion.}
+\label{tab:excluded_models}
+\begin{tabular}{l c c c c l}
+\toprule
+\textbf{Model} & \textbf{vo h} & \textbf{so h} & \textbf{vo s} & \textbf{so s} & \textbf{Reason for exclusion} \\
+\midrule
+NorESM2-LM        & --  & --  & --  & --  & isopycnal ocean coordinates \\
+NorESM2-MM        & --  & --  & --  & --  & isopycnal ocean coordinates \\
+AWI-CM-1-1-MR     & ok  & ok  & ok  & ok  & FESOM unstructured mesh \\
+INM-CM4-8         & 0   & 0   & 0   & 0   & no native \texttt{vo}/\texttt{so} on ESGF \\
+INM-CM5-0         & 0   & 0   & 0   & 0   & no native \texttt{vo}/\texttt{so} on ESGF \\
+KACE-1-0-G        & 0   & 0   & 0   & 0   & no native \texttt{vo}/\texttt{so} on ESGF \\
+KIOST-ESM         & 0   & 0   & 0   & 0   & no native \texttt{vo}/\texttt{so} on ESGF \\
+IITM-ESM          & 0   & 0   & 0   & 0   & no native \texttt{vo}/\texttt{so} on ESGF \\
+MPI-ESM1-2-HAM    & 0   & 0   & 0   & 0   & no native \texttt{vo}/\texttt{so} on ESGF \\
+HadGEM3-GC31-MM   & 0   & 0   & 0   & 0   & native files not on federated index \\
+SAM0-UNICON       & ok  & ok  & 0   & 0   & no \texttt{ssp585} on ESGF \\
+NorCPM1           & --  & --  & 0   & 0   & no \texttt{ssp585} on ESGF \\
+GISS-E2-2-G       & 0   & 0   & 0   & 0   & no native \texttt{vo}/\texttt{so} on ESGF \\
+CNRM-ESM2-1       & 0   & 0   & 0   & 0   & native files indexed only at IPSL \\
+GFDL-ESM4         & ok  & ok  & 0   & 0   & no native \texttt{ssp585} \texttt{vo}/\texttt{so} \\
+EC-Earth3-Veg     & ok  & ok  & 0   & 0   & no \texttt{ssp585} \texttt{vo}/\texttt{so} \\
+GISS-E2-1-H       & 0   & 0   & --  & --  & regridded only \\
+GISS-E2-2-H       & 0   & 0   & --  & --  & regridded only \\
+E3SM-1-0          & --  & --  & --  & --  & regridded only \\
+E3SM-1-1          & --  & --  & --  & --  & regridded only \\
+E3SM-2-0          & 0   & 0   & 0   & 0   & no native \texttt{vo}/\texttt{so} on ESGF \\
+EC-Earth3-CC      & --  & --  & --  & --  & near-duplicate of EC-Earth3 (same NEMO core) \\
+EC-Earth3-Veg-LR  & --  & --  & --  & --  & near-duplicate of EC-Earth3 (same NEMO core) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The discovery code that performed the federated Solr query
+(\texttt{scripts/discover\_cmip6\_expansion.py} in the public code
+repository) is reproducible against any future ESGF state; we
+encourage future revisions to re-run it as additional models or
+republished native-grid archives appear. The full per-model
+\texttt{vo}/\texttt{so} file-count grid against
+\texttt{(historical,ssp585)\,$\times$\,(gn,gr)} is preserved in
+\texttt{data/results/discovery\_cmip6\_expansion.csv}.
+
 \section*{Ocean component reference per weakening model}
 \label{si:components}
 
