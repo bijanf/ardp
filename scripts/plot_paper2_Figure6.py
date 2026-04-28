@@ -163,7 +163,7 @@ def _draw_emergent(ax, d):
     ax.fill_between(xx, a * xx + b - 1.96 * sigma_res,
                     a * xx + b + 1.96 * sigma_res,
                     color="#CC3333", alpha=0.15, zorder=3,
-                    label="95\\% forecast interval")
+                    label="95% forecast interval")
     sigma_y = (Y_high - Y_low) / (2 * 1.96)
     ax.errorbar([X_obs_mean], [Y_point],
                 xerr=[[X_obs_sigma], [X_obs_sigma]],
@@ -208,8 +208,8 @@ def _draw_smile_class(ax, smile, cmip6):
     ax.plot([0, 100], [100, 0], color="0.6", lw=0.6, ls="--", zorder=1)
     ax.axvline(60, color="#E69F00", lw=0.4, ls=":", alpha=0.6)
     ax.axhline(60, color="#56B4E9", lw=0.4, ls=":", alpha=0.6)
-    ax.set_xlabel(r"Velocity share $f_v$  (\%)")
-    ax.set_ylabel(r"Salinity share $f_s$  (\%)")
+    ax.set_xlabel(r"Velocity share $f_v$  (%)")
+    ax.set_ylabel(r"Salinity share $f_s$  (%)")
     ax.set_xlim(-80, 220)
     ax.set_ylim(-150, 220)
     ax.legend(loc="lower left", fontsize=6.0, frameon=False, ncol=2,
