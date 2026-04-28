@@ -55,8 +55,10 @@ for n in 1 2 3 4 5 6; do
 done
 
 # Copy SI honest-disclosure diagnostic figures (A1 timescale,
-# A2 within-class regression, A3 continuous correlation).
-for diag in diagA1_timescale diagA2_within_class diagA3_continuous; do
+# A2 within-class regression, A3 continuous correlation,
+# A4 joint threshold + |dF| floor sensitivity).
+for diag in diagA1_timescale diagA2_within_class diagA3_continuous \
+            diagA4_joint_sensitivity; do
     src="$SRC_FIG_DIR/${diag}.pdf"
     [[ -f "$src" ]] || { echo "missing SI diagnostic: $src"; exit 1; }
     cp "$src" "$DST/figures/${diag}.pdf"
