@@ -27,8 +27,11 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
+from ardp.viz.style import apply_nature_style, save_publication_figure
 
 REPO = Path(__file__).resolve().parent.parent
 RESULTS = REPO / "data" / "results"
@@ -163,6 +166,36 @@ def main() -> None:
     out_path = RESULTS / "diagA5_gap_bootstrap.json"
     out_path.write_text(json.dumps(out, indent=2))
     print(f"\nWrote {out_path}")
+
+    apply_nature_style()
+    fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(9.0, 3.8),
+                                      gridspec_kw={"wspace": 0.28})
+    for ax, draws, obs, ci, p_neg, label_n, title in [
+        (ax_a, boot_gap, obs_gap, (ci_lo, ci_hi), p_neg,
+         f"$n_v={len(v_arr)},\\ n_s={len(s_arr)}$",
+         "(a) standard"),
+        (ax_b, boot_gap_h, obs_gap_h, (ci_lo_h, ci_hi_h), p_neg_h,
+         f"$n_v={len(v_arr_h)},\\ n_s={len(s_arr_h)}$",
+         "(b) hierarchical (NEMO+UM pooled)"),
+    ]:
+        ax.hist(draws, bins=50, color="0.55", edgecolor="white",
+                linewidth=0.3)
+        ax.axvspan(ci[0], ci[1], color="#E69F00", alpha=0.30,
+                   label=f"95% CI [{ci[0]:.1f}, {ci[1]:.1f}] pp")
+        ax.axvline(obs, color="#CC3333", lw=1.6,
+                   label=f"observed gap = {obs:.1f} pp")
+        ax.axvline(0, color="0.2", lw=0.8, ls="--",
+                   label=f"P(gap $\\leq$ 0) = {p_neg:.0%}")
+        ax.set_xlabel(r"Bootstrap median$_s -$ median$_v$  (pp)")
+        ax.set_ylabel("# bootstrap draws")
+        ax.set_title(f"{title}  ({label_n})", fontsize=9.5,
+                     fontweight="bold", loc="left")
+        ax.legend(loc="upper left", fontsize=7.0, frameon=False,
+                  bbox_to_anchor=(0.02, 0.94),
+                  handlelength=1.2, handletextpad=0.4)
+    fig.tight_layout()
+    save_publication_figure(fig, REPO / "figures" / "paper2" /
+                            "diagA5_gap_bootstrap")
 
 
 if __name__ == "__main__":

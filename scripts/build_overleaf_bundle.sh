@@ -58,20 +58,15 @@ done
 # A2 within-class regression, A3 continuous correlation,
 # A4 joint threshold + |dF| floor sensitivity).
 for diag in diagA1_timescale diagA2_within_class diagA3_continuous \
-            diagA4_joint_sensitivity; do
+            diagA4_joint_sensitivity diagA5_gap_bootstrap; do
     src="$SRC_FIG_DIR/${diag}.pdf"
     [[ -f "$src" ]] || { echo "missing SI diagnostic: $src"; exit 1; }
     cp "$src" "$DST/figures/${diag}.pdf"
 done
 
-# Optional: SMILE robustness figures (S7 mechanism class, S9 AMOC
-# trajectory). SI.tex hides each block behind a \newif toggle so a
-# missing PDF does not break the build.
-for diag in diagSMILE diagSMILE_amoc; do
-    if [[ -f "$SRC_FIG_DIR/${diag}.pdf" ]]; then
-        cp "$SRC_FIG_DIR/${diag}.pdf" "$DST/figures/${diag}.pdf"
-    fi
-done
+# Note: diagSMILE.pdf and diagSMILE_amoc.pdf are NOT shipped any more --
+# the SMILE figures were promoted to Main Fig 6(c,d) in v3 and the
+# stand-alone SI versions were retired.
 
 # README — full canonical version is written inline so the bundle is
 # fully reproducible from this script alone.
