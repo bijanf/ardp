@@ -9,9 +9,9 @@ and `SI.tex` without further setup.
 
 ```
 paper2_overleaf/
-├── Main.tex          main manuscript (15 pages, 6 figures)
-├── SI.tex            supplementary methods (7 pages, no figures)
-├── references.bib    34 cited refs across Main + SI
+├── Main.tex          main manuscript (six figures, one per result)
+├── SI.tex            supplementary methods + diagnostic figures
+├── references.bib    cited refs across Main + SI
 ├── README.md         this file
 └── figures/
     ├── Figure1.pdf            combined PDF (used by default)
@@ -20,7 +20,9 @@ paper2_overleaf/
     ├── Figure3.pdf            and Figure3{a,b}.pdf
     ├── Figure4.pdf            and Figure4{a,b,c}.pdf
     ├── Figure5.pdf            and Figure5{a,b,c,d}.pdf
-    └── Figure6.pdf            and Figure6{a,b}.pdf
+    └── Figure6.pdf            and Figure6{a,b,c,d}.pdf
+                                 (lead-lag + emergent constraint
+                                  + SMILE class + SMILE AMOC)
 ```
 
 ## Two figure-layout modes
