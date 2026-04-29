@@ -133,10 +133,9 @@ def _files_covering(files: list[dict], years: tuple[int, int]) -> list[dict]:
 
 
 def _download(url: str, dest: Path) -> bool:
-    """HTTP-download with replica fallback."""
-    if dest.exists() and dest.stat().st_size > 0:
-        log.info(f"    [cache] {dest.name}")
-        return True
+    """HTTP-download with replica fallback. Validates cache vs Content-Length
+    so a paused / killed mid-write file is re-downloaded instead of silently
+    used by a downstream open_mfdataset call."""
     candidates = [url]
     for src_host in REPLICA_HOSTS:
         if f"//{src_host}/" in url:
@@ -145,6 +144,32 @@ def _download(url: str, dest: Path) -> bool:
                     candidates.append(url.replace(f"//{src_host}/",
                                                    f"//{host}/"))
             break
+    # Validate any existing cache against remote size. If HEAD is unavailable
+    # on every replica, fall open (accept the file as-is) since a future
+    # open_mfdataset will surface a hard failure if the file is bad.
+    if dest.exists() and dest.stat().st_size > 0:
+        local_size = dest.stat().st_size
+        head_ok = False
+        for u in candidates:
+            try:
+                h = requests.head(u, timeout=30, allow_redirects=True)
+            except Exception:
+                continue
+            if h.status_code != 200:
+                continue
+            head_ok = True
+            remote_size = int(h.headers.get("content-length", 0))
+            if remote_size > 0 and local_size < int(0.99 * remote_size):
+                log.info(f"    [partial cache] {dest.name} "
+                         f"({local_size/1e6:.0f}/{remote_size/1e6:.0f} MB) "
+                         f"-> re-download")
+                dest.unlink()
+                break
+            log.info(f"    [cache] {dest.name}")
+            return True
+        if not head_ok and dest.exists():
+            log.info(f"    [cache, HEAD unavailable] {dest.name}")
+            return True
     import time as _t
     for u in candidates:
         host = u.split("/")[2]
