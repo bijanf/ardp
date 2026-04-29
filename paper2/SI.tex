@@ -69,17 +69,21 @@ remap that would be needed to evaluate $\int v\,[\bar{S}-S_0]\,
 salinity partition we are trying to diagnose.
 
 \paragraph{Models in the analysed ensemble.}
-Sixteen CMIP6 models survive the criteria for the
-\texttt{historical}\,+\,\texttt{ssp585} decomposition: ACCESS-CM2,
-CESM2, CMCC-CM2-SR5, CNRM-CM6-1, CanESM5, FGOALS-g3, FIO-ESM-2-0,
-GFDL-CM4, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6,
-MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3, UKESM1-0-LL. ACCESS-CM2's
-\texttt{ssp585} run does not extend to 2100, so it is retained for
-the lead-lag and emergent-constraint diagnostics (Main Fig.~6a,b)
-but excluded from the 1950--1980 vs 2080--2100 mechanism
-decomposition; the headline mechanism ensemble is therefore $n=15$,
-of which $n=12$ exhibit forced AMOC weakening
-(see Section~\ref{si:ensemble}).
+Twenty-five CMIP6 models survive the criteria for the
+\texttt{historical}\,+\,\texttt{ssp585} decomposition. The original
+sixteen-model core (ACCESS-CM2, CESM2, CMCC-CM2-SR5, CNRM-CM6-1,
+CanESM5, FGOALS-g3, FIO-ESM-2-0, GFDL-CM4, GISS-E2-1-G,
+HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR, MPI-ESM1-2-LR,
+NESM3, UKESM1-0-LL) was extended in the v4.3 federated-ESGF\,+\,Pangeo
+discovery sweep with nine additional native-grid models that publish
+both the required experiments at \texttt{r1i1p1f1}: ACCESS-ESM1-5,
+BCC-CSM2-MR, CESM2-WACCM, CIESM, CMCC-ESM2, EC-Earth3, FGOALS-f3-L,
+MRI-ESM2-0, TaiESM1. Of the 25, $n=20$ exhibit forced AMOC weakening
+(see Section~\ref{si:ensemble}); the headline mechanism partition is
+calculated on this $n=20$ subset, while the AMOC26N mechanism-conditional
+weakening (Main Fig.~2b,c) is restricted to the 16 models with available
+\texttt{msftmz} fields, leaving $n=13$ forced-weakening models in the
+gap-quantification subset.
 
 \paragraph{Models considered but excluded.}
 Table~\ref{tab:excluded_models} lists the 30 additional CMIP6 models
@@ -185,13 +189,20 @@ mixed & GISS-E2-1-G    & GISS Ocean ($1^\circ$) & KPP-like   & GM + Redi    & GI
 \section*{Per-analysis ensemble bookkeeping}
 \label{si:ensemble}
 
-Different downstream analyses retain different subsets of the 15-model
-decomposition ensemble:
+Different downstream analyses retain different subsets of the 25-model
+decomposition ensemble. The federated-ESGF\,+\,Pangeo expansion brought
+the headline mechanism scatter (Main Fig.~2a) to a 25-model footing, but
+the AMOC26N (\texttt{msftmz}) field needed for the projection figures
+(Main Figs.~2b,c, 3, 6a,b) is currently available only for the original
+sixteen-model core; the nine newly-added models will be added to the
+projection ensemble in a future revision once their \texttt{msftmz}
+fields are extracted.
 \begin{itemize}
-\item \emph{Mechanism decomposition + tiebreaker scatter} (Main Figs.~1--2): all 15 models. Three models are flagged \emph{increasing} (CMCC-CM2-SR5, CanESM5, IPSL-CM6A-LR) and excluded from the mechanism-conditional projection because their forced $\Fovs$ change is positive; this leaves \textbf{12 weakening models} that drive the headline 10-percentage-point gap.
-\item \emph{Bistable-only subset} (Main Fig.~3): 6 models have $\overline{\Fovs}(t_1)<0$; of those, 2 are \emph{increasing} and are dropped, leaving \textbf{$n=4$ weakening + bistable} models (CNRM-CM6-1, MIROC6 salinity-dominant; MPI-ESM1-2-HR, NESM3 velocity-dominant).
+\item \emph{Mechanism decomposition + tiebreaker scatter} (Main Figs.~1--2a): all 25 models. Five models are flagged \emph{increasing} (CMCC-CM2-SR5, CMCC-ESM2, CanESM5, EC-Earth3, IPSL-CM6A-LR) and excluded from the mechanism-conditional projection because their forced $\Fovs$ change is positive; this leaves \textbf{20 forced-weakening models} (8 velocity-dominant, 9 salinity-dominant, 3 mixed) underpinning the headline mechanism partition.
+\item \emph{Mechanism-conditional AMOC weakening} (Main Fig.~2b,c): restricted to the 16 models with available AMOC26N, of which 13 are forced-weakening. Class breakdown on this subset: $n_v = 5$, $n_s = 6$, mixed $= 2$.
+\item \emph{Bistable-only subset} (Main Fig.~3): 6 models are bistable and forced-weakening (CNRM-CM6-1, MIROC6, CIESM, MRI-ESM2-0 salinity-dominant; MPI-ESM1-2-HR, NESM3 velocity-dominant). AMOC26N is available for 4 of them, so the violins in Main Fig.~3b show $n_s = 2$, $n_v = 2$.
 \item \emph{piControl null} (Main Fig.~4c): \textbf{13 models} (ACCESS-CM2, CESM2, CMCC-CM2-SR5, CNRM-CM6-1, CanESM5, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3, UKESM1-0-LL), with up to 200 random non-overlapping 30-year window pairs per model.
-\item \emph{Lead-lag cross-correlation and emergent constraint regression} (Main Fig.~6a,b): \textbf{16 models} -- the same 15 plus ACCESS-CM2 (excluded from the decomposition because its \texttt{ssp585} run does not reach 2100, but retained here because the diagnostic only uses the 1850-2024 historical+\texttt{ssp585} window for the lead-lag and the 2000-2024 / 2030-2040 windows for the emergent constraint). We re-add ACCESS-CM2 to maximise statistical power.
+\item \emph{Lead-lag cross-correlation and emergent constraint regression} (Main Fig.~6a,b): \textbf{16 models} -- the original sixteen-model core. The nine v4.3 additions are excluded from these diagnostics because they require both $F_{\mathrm{ovS}}$ \emph{and} AMOC26N annual time series, and AMOC26N is not yet computed for the new models.
 \end{itemize}
 
 \section*{Outlier handling: SODA 3.15.2, 1998}
