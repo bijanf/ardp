@@ -167,7 +167,23 @@ def process_model(
         so_ssp_da, *_ = _load_section(CMIP6_DIR / f"{model}_ssp585_so.nc", "so")
 
         def _maybe_concat(hist_da, ssp_da):
-            """Concat hist+ssp into one time series, deduplicating."""
+            """Concat hist+ssp into one time series, deduplicating.
+            Some CMIP6 models publish historical with calendar=gregorian
+            but ssp585 with calendar=proleptic_gregorian (CNRM-CM6-1,
+            EC-Earth3, MIROC6); xr.concat refuses to mix DatetimeGregorian
+            and DatetimeProlepticGregorian objects. Normalize to one
+            cftime type via the underlying datetime tuple, but only when
+            the calendars actually differ — converting matched calendars
+            corrupts xr.concat's dtype recognition (issue with noleap-to-
+            proleptic round-trip)."""
+            hist_cal = hist_da.time.encoding.get("calendar")
+            ssp_cal = ssp_da.time.encoding.get("calendar")
+            if hist_cal and ssp_cal and hist_cal != ssp_cal:
+                try:
+                    hist_da = hist_da.convert_calendar("proleptic_gregorian")
+                    ssp_da = ssp_da.convert_calendar("proleptic_gregorian")
+                except (TypeError, ValueError):
+                    pass
             combined = xr.concat([hist_da, ssp_da], dim="time")
             t_year = combined["time"].dt.year.values
             t_month = combined["time"].dt.month.values
