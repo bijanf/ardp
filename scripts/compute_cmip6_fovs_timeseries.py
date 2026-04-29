@@ -138,6 +138,12 @@ def compute_fovs_section(
             v_full = vo_da.isel({time_dim: t}).values  # (depth, x)
             s_full = so_da.isel({time_dim: t}).values  # (depth, x)
 
+            # Some models (e.g. FGOALS-f3-L) encode missing values as 1e35
+            # rather than NaN; treat physically-implausible magnitudes as
+            # land so that compute_fovs_from_section's NaN handling kicks in.
+            v_full = np.where(np.abs(v_full) < 10.0, v_full, np.nan)
+            s_full = np.where((s_full > 0.0) & (s_full < 50.0), s_full, np.nan)
+
             # Apply Atlantic mask
             v_section = v_full[:, atlantic_mask]
             s_section = s_full[:, atlantic_mask]

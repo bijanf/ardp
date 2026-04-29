@@ -81,9 +81,14 @@ BCC-CSM2-MR, CESM2-WACCM, CIESM, CMCC-ESM2, EC-Earth3, FGOALS-f3-L,
 MRI-ESM2-0, TaiESM1. Of the 25, $n=20$ exhibit forced AMOC weakening
 (see Section~\ref{si:ensemble}); the headline mechanism partition is
 calculated on this $n=20$ subset, while the AMOC26N mechanism-conditional
-weakening (Main Fig.~2b,c) is restricted to the 16 models with available
-\texttt{msftmz} fields, leaving $n=13$ forced-weakening models in the
-gap-quantification subset.
+weakening (Main Fig.~2b,c) is restricted to the 21 models with
+available meridional-streamfunction (\texttt{msftmz} or
+\texttt{msftyz}) fields. After dropping the four models that publish
+streamfunction without forced weakening, the gap-quantification
+subset is $n=17$ forced-weakening models. Four further models
+(BCC-CSM2-MR, CIESM, EC-Earth3, TaiESM1) appear in the
+mechanism-share scatter (Main Fig.~1b, 2a) but lack streamfunction
+output and therefore do not contribute to the AMOC26N panels.
 
 \paragraph{Models considered but excluded.}
 Table~\ref{tab:excluded_models} lists the 30 additional CMIP6 models
@@ -191,18 +196,21 @@ mixed & GISS-E2-1-G    & GISS Ocean ($1^\circ$) & KPP-like   & GM + Redi    & GI
 
 Different downstream analyses retain different subsets of the 25-model
 decomposition ensemble. The federated-ESGF\,+\,Pangeo expansion brought
-the headline mechanism scatter (Main Fig.~2a) to a 25-model footing, but
-the AMOC26N (\texttt{msftmz}) field needed for the projection figures
-(Main Figs.~2b,c, 3, 6a,b) is currently available only for the original
-sixteen-model core; the nine newly-added models will be added to the
-projection ensemble in a future revision once their \texttt{msftmz}
-fields are extracted.
+the headline mechanism scatter (Main Fig.~2a) to a 25-model footing,
+and v4.4 added dedicated extraction of the meridional streamfunction
+(\texttt{msftmz} where available, \texttt{msftyz} for CMCC-ESM2) for
+five of the nine newly-added models, raising the AMOC26N subset from
+16 to 21 models. The remaining four (BCC-CSM2-MR, CIESM, EC-Earth3,
+TaiESM1) do not publish a meridional streamfunction at \texttt{r1i1p1f1}
+on ESGF and therefore stay AMOC-blind.
 \begin{itemize}
 \item \emph{Mechanism decomposition + tiebreaker scatter} (Main Figs.~1--2a): all 25 models. Five models are flagged \emph{increasing} (CMCC-CM2-SR5, CMCC-ESM2, CanESM5, EC-Earth3, IPSL-CM6A-LR) and excluded from the mechanism-conditional projection because their forced $\Fovs$ change is positive; this leaves \textbf{20 forced-weakening models} (8 velocity-dominant, 9 salinity-dominant, 3 mixed) underpinning the headline mechanism partition.
-\item \emph{Mechanism-conditional AMOC weakening} (Main Fig.~2b,c): restricted to the 16 models with available AMOC26N, of which 13 are forced-weakening. Class breakdown on this subset: $n_v = 5$, $n_s = 6$, mixed $= 2$.
-\item \emph{Bistable-only subset} (Main Fig.~3): 6 models are bistable and forced-weakening (CNRM-CM6-1, MIROC6, CIESM, MRI-ESM2-0 salinity-dominant; MPI-ESM1-2-HR, NESM3 velocity-dominant). AMOC26N is available for 4 of them, so the violins in Main Fig.~3b show $n_s = 2$, $n_v = 2$.
+\item \emph{Mechanism-conditional AMOC weakening} (Main Fig.~2b,c): restricted to the 21 models with available AMOC26N, of which 17 are forced-weakening. Class breakdown on this subset: $n_v = 7$, $n_s = 7$, mixed $= 3$.
+\item \emph{Bistable-only subset} (Main Fig.~3): 6 models are bistable and forced-weakening (CNRM-CM6-1, MIROC6, CIESM, MRI-ESM2-0 salinity-dominant; MPI-ESM1-2-HR, NESM3 velocity-dominant). AMOC26N is available for 5 of them (CIESM publishes no streamfunction), so the violins in Main Fig.~3b show $n_s = 3$, $n_v = 2$.
 \item \emph{piControl null} (Main Fig.~4c): \textbf{13 models} (ACCESS-CM2, CESM2, CMCC-CM2-SR5, CNRM-CM6-1, CanESM5, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3, UKESM1-0-LL), with up to 200 random non-overlapping 30-year window pairs per model.
-\item \emph{Lead-lag cross-correlation and emergent constraint regression} (Main Fig.~6a,b): \textbf{16 models} -- the original sixteen-model core. The nine v4.3 additions are excluded from these diagnostics because they require both $F_{\mathrm{ovS}}$ \emph{and} AMOC26N annual time series, and AMOC26N is not yet computed for the new models.
+\item \emph{Lead-lag cross-correlation and emergent constraint regression} (Main Fig.~6a,b): \textbf{21 models}. v4.4 extracted the meridional streamfunction (\texttt{msftmz}/\texttt{msftyz}) for five of the nine v4.3 additions (ACCESS-ESM1-5, CESM2-WACCM, CMCC-ESM2, FGOALS-f3-L, MRI-ESM2-0); the remaining four (BCC-CSM2-MR, CIESM, EC-Earth3, TaiESM1) do not publish a meridional streamfunction at \texttt{r1i1p1f1} for the required experiments and so do not enter these diagnostics.
+
+\item \emph{AMOC26N gap quantification} (Main Fig.~2c, Fig.~3b): \textbf{17 forced-weakening models with AMOC26N} (= 21 minus the four \emph{increasing} retained for the emergent-constraint regression). v-dominant ($n=7$): ACCESS-ESM1-5, CESM2, CESM2-WACCM, FIO-ESM-2-0, MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3. s-dominant ($n=7$): CNRM-CM6-1, FGOALS-g3, GFDL-CM4, HadGEM3-GC31-LL, MIROC6, MRI-ESM2-0, UKESM1-0-LL. mixed ($n=3$): ACCESS-CM2, FGOALS-f3-L, GISS-E2-1-G.
 \end{itemize}
 
 \section*{Outlier handling: SODA 3.15.2, 1998}
@@ -220,7 +228,7 @@ For each annual $\Fovs$ time series we flag annual values with $|\Fovs| > 0.3$~S
 \centering
 \includegraphics[width=0.85\linewidth]{diagA2_within_class}
 \caption{\textbf{Within-class emergent regression test (honest disclosure).}
-$F_{\mathrm{ovS}}$ at 2000-2024 against $\Delta\mathrm{AMOC}_{26^\circ\mathrm{N}}$ over 2030-2040, partitioned by mechanism class. Pooled (grey, dashed) regression has $R^2=0.010$ (slope $+0.70$, $n=16$). Salinity-dominant subset (blue, $n=6$): $R^2=0.106$. Velocity-dominant subset (orange, $n=5$): $R^2=0.027$. Within-class regression does NOT recover predictive power, and the constrained $\Delta\mathrm{AMOC}$ forecasts under the v-dominant ($-1.64$ Sv) and s-dominant ($-1.86$ Sv) regressions are statistically indistinguishable. The 10-percentage-point gap reported in Main Fig.~2\textbf{(c)} is therefore driven by the mechanism-class partition itself rather than by leveraging $F_{\mathrm{ovS}}$ as a regression predictor; we report it as such.}
+$F_{\mathrm{ovS}}$ at 2000-2024 against $\Delta\mathrm{AMOC}_{26^\circ\mathrm{N}}$ over 2030-2040, partitioned by mechanism class. Pooled (grey, dashed) regression has $R^2=0.007$ (slope $+0.49$, $n=21$). Salinity-dominant subset (blue, $n=7$): $R^2=0.094$. Velocity-dominant subset (orange, $n=7$): $R^2=0.084$. Within-class regression does NOT recover predictive power, and the constrained $\Delta\mathrm{AMOC}$ forecasts under the v-dominant ($-1.74$ Sv) and s-dominant ($-1.92$ Sv) regressions are statistically indistinguishable. The 12-percentage-point gap reported in Main Fig.~2\textbf{(c)} is therefore driven by the mechanism-class partition itself rather than by leveraging $F_{\mathrm{ovS}}$ as a regression predictor; we report it as such.}
 \label{fig:S5}
 \end{figure}
 
@@ -228,7 +236,7 @@ $F_{\mathrm{ovS}}$ at 2000-2024 against $\Delta\mathrm{AMOC}_{26^\circ\mathrm{N}
 \centering
 \includegraphics[width=0.85\linewidth]{diagA3_continuous}
 \caption{\textbf{Continuous velocity-share vs projected AMOC weakening.}
-Across the 12 forced-weakening CMIP6 models, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.46$ ($p = 0.14$, two-sided) and a Pearson $r = -0.47$ ($p = 0.12$). The OLS regression has slope $-0.11\%$ weakening per percent $f_v$ and $R^2 = 0.22$. The relationship is directionally consistent with the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening) but does not yet reach the 5\% significance threshold given the small ensemble size, motivating the SMILE robustness test (Main Fig.~6\textbf{(c,d)}).}
+Across the 17 forced-weakening CMIP6 models with AMOC26N output, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.56$ ($p = 0.018$, two-sided) and a Pearson $r = -0.55$ ($p = 0.024$). The OLS regression has slope $-0.063\%$ weakening per percent $f_v$ and $R^2 = 0.30$. The continuous correlation is significant at the 5\% level and independently confirms the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening). The expansion from $n=12$ in v4.3 to $n=17$ here was achieved by dedicated extraction of \texttt{msftmz} (or \texttt{msftyz}) for the v4.3-added models that publish a meridional streamfunction.}
 \label{fig:S6}
 \end{figure}
 
@@ -244,7 +252,7 @@ Per-model velocity-share computed on the centennial forced window (1950-1980 vs 
 \centering
 \includegraphics[width=\linewidth]{diagA4_joint_sensitivity}
 \caption{\textbf{Joint sensitivity of the velocity-vs-salinity median AMOC-weakening gap to the classification threshold and the $|\Delta F_{\mathrm{ovS}}|$ floor.}
-\textbf{(a)} Median 2100 AMOC weakening gap (salinity-dominant minus velocity-dominant subset, in percentage points) as a function of the classification threshold applied to the velocity-share $f_v$ (or symmetrically the salinity-share $f_s$), for six choices of the $|\Delta F_{\mathrm{ovS}}|$ floor used to drop CMIP6 models with near-zero net change (in which percentage shares are dominated by sign cancellation between $\Delta F_v$ and $\Delta F_s$). Floor = 0 mSv corresponds to the unfiltered ensemble that includes models like CanESM5 ($|\Delta F_{\mathrm{ovS}}| = 0.6$ mSv, $f_s = -1509\%$). Vertical red dashed line: the 60\% threshold used in the main text. \textbf{(b)} Number of CMIP6 models classified into the $f_v$- or $f_s$-dominant subsets at each grid point. The headline 10-percentage-point gap is broadly stable across thresholds 40--75\% at any floor $\geq 10$ mSv (gap range $7$--$11$ pp), with a transient drop at threshold = 50\% caused by a single model (FGOALS-g3) crossing the discrete classification boundary. Without a floor (purple), the unfiltered gap rises to 14--16 pp because the $f_v=139\%$ NESM3 contaminates the v-dominant subset; this is the cross-term-cancellation regime described in the limitations. The 30 mSv floor used in the main text (teal) yields a 8.8 pp gap at 60\% threshold ($n_v = 3$, $n_s = 6$), consistent with the 10-pp headline number quoted from the unfiltered (n=12) ensemble in Figure~\ref{fig:S6}.}
+\textbf{(a)} Median 2100 AMOC weakening gap (salinity-dominant minus velocity-dominant subset, in percentage points) as a function of the classification threshold applied to the velocity-share $f_v$ (or symmetrically the salinity-share $f_s$), for six choices of the $|\Delta F_{\mathrm{ovS}}|$ floor used to drop CMIP6 models with near-zero net change (in which percentage shares are dominated by sign cancellation between $\Delta F_v$ and $\Delta F_s$). Floor = 0 mSv corresponds to the unfiltered ensemble that includes models like CanESM5 ($|\Delta F_{\mathrm{ovS}}| = 0.6$ mSv, $f_s = -1509\%$). Vertical red dashed line: the 60\% threshold used in the main text. \textbf{(b)} Number of CMIP6 models classified into the $f_v$- or $f_s$-dominant subsets at each grid point. The headline 12-percentage-point gap is broadly stable across thresholds 40--75\% at any floor $\geq 10$ mSv on the expanded 17-model AMOC ensemble. Without a floor, models with $|\Delta F_{\mathrm{ovS}}|$ near zero (e.g. CanESM5 at 0.6 mSv) produce $f_v$ values dominated by sign cancellation between $\Delta F_v$ and $\Delta F_s$; the $|\Delta F_{\mathrm{ovS}}|\geq 30$ mSv floor used in the sensitivity sweep removes that cross-term-cancellation regime.}
 \label{fig:S8}
 \end{figure}
 
@@ -252,7 +260,7 @@ Per-model velocity-share computed on the centennial forced window (1950-1980 vs 
 \centering
 \includegraphics[width=\linewidth]{diagA5_gap_bootstrap}
 \caption{\textbf{Bootstrap distribution of the velocity-vs-salinity AMOC-weakening gap.}
-\textbf{(a)} Standard non-parametric bootstrap. For each of $10^4$ draws we resample (with replacement) the per-class weakening rates within the velocity-dominant ($n_v=5$) and salinity-dominant ($n_s=6$) CMIP6 subsets and recompute the median gap. Observed gap (red): $9.7$ pp; 95\% percentile interval (orange shading): $[-12.8, +23.5]$ pp; $P(\mathrm{gap}\leq 0) = 7\%$. \textbf{(b)} Hierarchical variant in which UKESM1-0-LL and HadGEM3-GC31-LL\,---\,which share a NEMO+UM core\,---\,are pooled into a single bootstrap unit so that genealogically related models do not double-count. Observed gap: $11.6$ pp; 95\% CI $[-10.9, +25.3]$ pp; $P(\mathrm{gap}\leq 0) = 10\%$. The gap is directionally robust under both variants but is not statistically distinguishable from zero at the 5\% level given the per-class sample sizes.}
+\textbf{(a)} Standard non-parametric bootstrap. For each of $10^4$ draws we resample (with replacement) the per-class weakening rates within the velocity-dominant ($n_v=7$) and salinity-dominant ($n_s=7$) CMIP6 subsets and recompute the median gap. Observed gap (red): $11.6$ pp; 95\% percentile interval (orange shading): $[-0.7, +24.7]$ pp; $P(\mathrm{gap}\leq 0) = 2.6\%$. \textbf{(b)} Hierarchical variant in which UKESM1-0-LL and HadGEM3-GC31-LL\,---\,which share a NEMO+UM core\,---\,are pooled into a single bootstrap unit so that genealogically related models do not double-count. Observed gap: $11.6$ pp; 95\% CI $[+0.0, +26.8]$ pp; $P(\mathrm{gap}\leq 0) = 2.1\%$. The gap is significant at the 5\% level under both variants on the expanded 17-model AMOC ensemble.}
 \label{fig:S9}
 \end{figure}
 
