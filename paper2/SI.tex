@@ -74,7 +74,7 @@ Twenty-five CMIP6 models survive the criteria for the
 sixteen-model core (ACCESS-CM2, CESM2, CMCC-CM2-SR5, CNRM-CM6-1,
 CanESM5, FGOALS-g3, FIO-ESM-2-0, GFDL-CM4, GISS-E2-1-G,
 HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR, MPI-ESM1-2-LR,
-NESM3, UKESM1-0-LL) was extended in the v4.3 federated-ESGF\,+\,Pangeo
+NESM3, UKESM1-0-LL) was extended via a federated-ESGF\,+\,Pangeo
 discovery sweep with nine additional native-grid models that publish
 both the required experiments at \texttt{r1i1p1f1}: ACCESS-ESM1-5,
 BCC-CSM2-MR, CESM2-WACCM, CIESM, CMCC-ESM2, EC-Earth3, FGOALS-f3-L,
@@ -197,18 +197,20 @@ mixed & GISS-E2-1-G    & GISS Ocean ($1^\circ$) & KPP-like   & GM + Redi    & GI
 Different downstream analyses retain different subsets of the 25-model
 decomposition ensemble. The federated-ESGF\,+\,Pangeo expansion brought
 the headline mechanism scatter (Main Fig.~2a) to a 25-model footing,
-and v4.4 added dedicated extraction of the meridional streamfunction
-(\texttt{msftmz} where available, \texttt{msftyz} for CMCC-ESM2) for
-five of the nine newly-added models, raising the AMOC26N subset from
-16 to 21 models. The remaining four (BCC-CSM2-MR, CIESM, EC-Earth3,
-TaiESM1) do not publish a meridional streamfunction at \texttt{r1i1p1f1}
-on ESGF and therefore stay AMOC-blind.
+and the meridional streamfunction (\texttt{msftmz} where available,
+\texttt{msftyz} for CMCC-ESM2) is extracted for five of the nine
+newly-added models, bringing the AMOC26N subset to 21 models. The
+remaining four (BCC-CSM2-MR, CIESM, EC-Earth3, TaiESM1) do not
+publish a meridional streamfunction at \texttt{r1i1p1f1} on ESGF
+and therefore stay AMOC-blind: they appear in the mechanism-share
+scatter but not in the AMOC26N panels or the lead-lag and
+emergent-constraint regressions.
 \begin{itemize}
 \item \emph{Mechanism decomposition + tiebreaker scatter} (Main Figs.~1--2a): all 25 models. Five models are flagged \emph{increasing} (CMCC-CM2-SR5, CMCC-ESM2, CanESM5, EC-Earth3, IPSL-CM6A-LR) and excluded from the mechanism-conditional projection because their forced $\Fovs$ change is positive; this leaves \textbf{20 forced-weakening models} (8 velocity-dominant, 9 salinity-dominant, 3 mixed) underpinning the headline mechanism partition.
 \item \emph{Mechanism-conditional AMOC weakening} (Main Fig.~2b,c): restricted to the 21 models with available AMOC26N, of which 17 are forced-weakening. Class breakdown on this subset: $n_v = 7$, $n_s = 7$, mixed $= 3$.
 \item \emph{Bistable-only subset} (Main Fig.~3): 6 models are bistable and forced-weakening (CNRM-CM6-1, MIROC6, CIESM, MRI-ESM2-0 salinity-dominant; MPI-ESM1-2-HR, NESM3 velocity-dominant). AMOC26N is available for 5 of them (CIESM publishes no streamfunction), so the violins in Main Fig.~3b show $n_s = 3$, $n_v = 2$.
 \item \emph{piControl null} (Main Fig.~4c): \textbf{13 models} (ACCESS-CM2, CESM2, CMCC-CM2-SR5, CNRM-CM6-1, CanESM5, GISS-E2-1-G, HadGEM3-GC31-LL, IPSL-CM6A-LR, MIROC6, MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3, UKESM1-0-LL), with up to 200 random non-overlapping 30-year window pairs per model.
-\item \emph{Lead-lag cross-correlation and emergent constraint regression} (Main Fig.~6a,b): \textbf{21 models}. v4.4 extracted the meridional streamfunction (\texttt{msftmz}/\texttt{msftyz}) for five of the nine v4.3 additions (ACCESS-ESM1-5, CESM2-WACCM, CMCC-ESM2, FGOALS-f3-L, MRI-ESM2-0); the remaining four (BCC-CSM2-MR, CIESM, EC-Earth3, TaiESM1) do not publish a meridional streamfunction at \texttt{r1i1p1f1} for the required experiments and so do not enter these diagnostics.
+\item \emph{Lead-lag cross-correlation and emergent constraint regression} (Main Fig.~6a,b): \textbf{21 models}. The meridional streamfunction (\texttt{msftmz}/\texttt{msftyz}) is available for five of the nine newly-added models (ACCESS-ESM1-5, CESM2-WACCM, CMCC-ESM2, FGOALS-f3-L, MRI-ESM2-0) on top of the original sixteen-model core; the remaining four (BCC-CSM2-MR, CIESM, EC-Earth3, TaiESM1) do not publish a meridional streamfunction at \texttt{r1i1p1f1} for the required experiments and so do not enter these diagnostics.
 
 \item \emph{AMOC26N gap quantification} (Main Fig.~2c, Fig.~3b): \textbf{17 forced-weakening models with AMOC26N} (= 21 minus the four \emph{increasing} retained for the emergent-constraint regression). v-dominant ($n=7$): ACCESS-ESM1-5, CESM2, CESM2-WACCM, FIO-ESM-2-0, MPI-ESM1-2-HR, MPI-ESM1-2-LR, NESM3. s-dominant ($n=7$): CNRM-CM6-1, FGOALS-g3, GFDL-CM4, HadGEM3-GC31-LL, MIROC6, MRI-ESM2-0, UKESM1-0-LL. mixed ($n=3$): ACCESS-CM2, FGOALS-f3-L, GISS-E2-1-G.
 \end{itemize}
@@ -236,7 +238,7 @@ $F_{\mathrm{ovS}}$ at 2000-2024 against $\Delta\mathrm{AMOC}_{26^\circ\mathrm{N}
 \centering
 \includegraphics[width=0.85\linewidth]{diagA3_continuous}
 \caption{\textbf{Continuous velocity-share vs projected AMOC weakening.}
-Across the 17 forced-weakening CMIP6 models with AMOC26N output, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.56$ ($p = 0.018$, two-sided) and a Pearson $r = -0.55$ ($p = 0.024$). The OLS regression has slope $-0.063\%$ weakening per percent $f_v$ and $R^2 = 0.30$. The continuous correlation is significant at the 5\% level and independently confirms the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening). The expansion from $n=12$ in v4.3 to $n=17$ here was achieved by dedicated extraction of \texttt{msftmz} (or \texttt{msftyz}) for the v4.3-added models that publish a meridional streamfunction.}
+Across the 17 forced-weakening CMIP6 models with AMOC26N output, the velocity-share $f_v$ and the percent AMOC weakening by 2100 (2081-2100 vs 1950-1980) carry a Spearman rank correlation of $\rho = -0.56$ ($p = 0.018$, two-sided) and a Pearson $r = -0.55$ ($p = 0.024$). The OLS regression has slope $-0.063\%$ weakening per percent $f_v$ and $R^2 = 0.30$. The continuous correlation is significant at the 5\% level and independently confirms the binary mechanism-class partition reported in Main Fig.~2\textbf{(c)} (salinity-dominant models project more weakening).}
 \label{fig:S6}
 \end{figure}
 
