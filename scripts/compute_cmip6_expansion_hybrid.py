@@ -116,7 +116,7 @@ def _pangeo_extract(zstore: str, model: str, exp: str, var: str,
         return False
 
     if ds.sizes.get("time", 0) == 0:
-        log.warning(f"  [Pangeo] empty time dim after slice -> ESGF fallback")
+        log.warning("  [Pangeo] empty time dim after slice -> ESGF fallback")
         return False
 
     try:
@@ -135,7 +135,7 @@ def _pangeo_extract(zstore: str, model: str, exp: str, var: str,
         "section_j_index": int(j_idx),
     })
 
-    log.info(f"  [Pangeo] loading + saving (typically 30s-3min) ...")
+    log.info("  [Pangeo] loading + saving (typically 30s-3min) ...")
     import time as _t
     t0 = _t.time()
     section.load()
@@ -200,7 +200,7 @@ def main() -> None:
                         successes += 1
                         pangeo_used += 1
                         continue
-                    log.warning(f"  Pangeo failed, falling back to ESGF")
+                    log.warning("  Pangeo failed, falling back to ESGF")
                 # Fall back to ESGF download
                 log.info(f"  -- ESGF fallback {model}/{exp}/{var} --")
                 ok = _process_model_exp_var(model, exp, var, scratch)
