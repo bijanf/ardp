@@ -15,13 +15,4 @@ build/
 .pytest_cache/
 .ruff_cache/
 *.ipynb_checkpoints/
-figures/grl/fig_freshwater_flux_maps.pdf
 ideas/
-paper/manuscript.aux
-paper/manuscript.log
-paper/manuscript.blg
-paper2/*.aux
-paper2/*.bbl
-paper2/*.blg
-paper2/*.log
-paper2/*.out
