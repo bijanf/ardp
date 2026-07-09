@@ -301,11 +301,7 @@ def figure1_fovs_multiproduct(results_dir: Path, output_dir: Path) -> None:
         cbar.set_label("$\\Psi$ (Sv)", fontsize=7)
         cbar.ax.tick_params(labelsize=5)
 
-        ax_psi.set_title(
-            "ORAS5 mean Atlantic overturning streamfunction (2005\u20132024)",
-            fontsize=8, pad=6,
-        )
-        add_panel_label(ax_psi, "b", x=-0.08, y=1.05)
+        # Title and panel label intentionally omitted (supplied by LaTeX).
 
     save_publication_figure(fig, output_dir / "fig1_fovs_multiproduct")
 

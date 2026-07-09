@@ -190,9 +190,9 @@ def plot_comparison(
         deep_mask = depth_arr >= 500
         psi_interior = psi_plot[np.ix_(deep_mask, interior)]
         psi_max = np.nanmax(psi_interior)
-        ax.set_title(f"{title} ({period_str})\nAMOC max = {psi_max:.1f} Sv",
-                      fontsize=8, pad=6)
-        add_panel_label(ax, label, x=-0.08, y=1.08)
+        # Title and panel label intentionally omitted (npj style:
+        # title and AMOC max value supplied by LaTeX caption).
+        _ = (title, period_str, psi_max, label)
 
     # Single shared colorbar
     cbar = fig.colorbar(cf, ax=[ax_o, ax_g], orientation="vertical",

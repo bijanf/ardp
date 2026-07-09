@@ -32,8 +32,10 @@ from ardp.viz.style import apply_nature_style, save_publication_figure
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from compute_fovs_decomposition import (  # noqa: E402
-    EARLY, LATE,
-    _glorys12_period_mean, _oras5_period_mean,
+    EARLY,
+    LATE,
+    _glorys12_period_mean,
+    _oras5_period_mean,
 )
 
 
@@ -55,7 +57,8 @@ def _load_pair(product: str):
     return grid, dv, ds
 
 
-def _draw(ax, grid, field, cmap_name: str, vmax: float):
+def _draw(ax, grid, field, cmap_name: str, vmax: float,
+          show_ylabel: bool = True):
     cmap_obj = plt.colormaps[cmap_name].copy()
     cmap_obj.set_bad("0.7")
     ax.set_facecolor("0.7")
@@ -67,7 +70,8 @@ def _draw(ax, grid, field, cmap_name: str, vmax: float):
                        vmin=-vmax, vmax=vmax, shading="auto")
     ax.invert_yaxis()
     ax.set_xlabel("Longitude (°E)")
-    ax.set_ylabel("Depth  (m)")
+    if show_ylabel:
+        ax.set_ylabel("Depth  (m)")
     return im
 
 
@@ -89,10 +93,15 @@ def _render_combined(oras5, glorys12, dv_vmax, ds_vmax, output: Path):
                              gridspec_kw={"wspace": 0.18, "hspace": 0.55,
                                           "top": 0.94, "bottom": 0.10,
                                           "left": 0.10, "right": 0.88})
+    # Right-column panels omit the y-axis label: with the tight 2x2
+    # spacing a second "Depth (m)" label lands on top of the left-column
+    # panels (reviewer R3.12). Depth is labelled once per row, on the left.
     im_v_a = _draw(axes[0, 0], oras5[0], oras5[1], "RdBu_r", dv_vmax)
-    _draw(axes[0, 1], glorys12[0], glorys12[1], "RdBu_r", dv_vmax)
+    _draw(axes[0, 1], glorys12[0], glorys12[1], "RdBu_r", dv_vmax,
+          show_ylabel=False)
     im_s_a = _draw(axes[1, 0], oras5[0], oras5[2], "PiYG_r", ds_vmax)
-    _draw(axes[1, 1], glorys12[0], glorys12[2], "PiYG_r", ds_vmax)
+    _draw(axes[1, 1], glorys12[0], glorys12[2], "PiYG_r", ds_vmax,
+          show_ylabel=False)
     _panel_label(axes[0, 0], r"(a) ORAS5  $\Delta v$")
     _panel_label(axes[0, 1], r"(b) GLORYS12V1  $\Delta v$")
     _panel_label(axes[1, 0], r"(c) ORAS5  $\Delta S$")

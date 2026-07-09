@@ -167,23 +167,22 @@ def main():
     col_blue = "#4477AA"
     col_red = "#CC3311"
 
-    # Helper for profile plots
-    def plot_profile(ax, depth_arr, early_vals, late_vals, xlabel, title, label_panel):
+    # Helper for profile plots. Panel labels are drawn as editable vector text.
+    def plot_profile(ax, depth_arr, early_vals, late_vals, xlabel, _title, label_panel):
         ax.plot(early_vals, depth_arr, color=col_blue, lw=1.5, ls="--", label="1960\u20131990")
         ax.plot(late_vals, depth_arr, color=col_red, lw=1.5, label="2005\u20132025")
         ax.axvline(0, color="0.5", lw=0.5, ls=":")
         ax.set_ylim(args.depth_max, 0)
         ax.set_xlabel(xlabel, fontsize=6)
-        ax.set_title(title, fontsize=7, pad=3)
         ax.tick_params(labelsize=5)
         ax.legend(fontsize=5, loc="lower right")
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
-        ax.text(0.05, 0.95, f"({label_panel})", transform=ax.transAxes,
-                fontsize=9, fontweight="bold", va="top")
+        ax.text(0.04, 0.96, label_panel, transform=ax.transAxes,
+                fontsize=8, fontweight="bold", va="top", ha="left")
 
     # Helper for difference profile
-    def plot_diff_profile(ax, depth_arr, diff_vals, xlabel, title, label_panel):
+    def plot_diff_profile(ax, depth_arr, diff_vals, xlabel, _title, label_panel):
         ax.fill_betweenx(depth_arr, 0, diff_vals,
                          where=(diff_vals > 0), color=col_red, alpha=0.3)
         ax.fill_betweenx(depth_arr, 0, diff_vals,
@@ -192,29 +191,29 @@ def main():
         ax.axvline(0, color="0.5", lw=0.5, ls=":")
         ax.set_ylim(args.depth_max, 0)
         ax.set_xlabel(xlabel, fontsize=6)
-        ax.set_title(title, fontsize=7, pad=3)
         ax.tick_params(labelsize=5)
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
-        ax.text(0.05, 0.95, f"({label_panel})", transform=ax.transAxes,
-                fontsize=9, fontweight="bold", va="top")
+        ax.text(0.04, 0.96, label_panel, transform=ax.transAxes,
+                fontsize=8, fontweight="bold", va="top", ha="left")
 
     # Helper for salinity map
-    def plot_smap(ax, data, vm, title, label_panel, show_xlabel=False):
+    def plot_smap(ax, data, vm, _title, label_panel, show_xlabel=False):
         n_levels = 14
         bounds = np.linspace(-vm, vm, n_levels + 1)
         norm = mcolors.BoundaryNorm(bounds, cmap.N)
-        im = ax.pcolormesh(lon_2d, depth_2d, data, cmap=cmap, norm=norm, shading="auto")
+        im = ax.pcolormesh(lon_2d, depth_2d, data, cmap=cmap, norm=norm,
+                           shading="auto", rasterized=True)
         ax.set_ylim(args.depth_max, 0)
-        ax.set_title(title, fontsize=7, pad=3)
         ax.tick_params(labelsize=5)
         if show_xlabel:
             ax.set_xlabel("Longitude (\u00b0E)", fontsize=6)
         cb = fig.colorbar(im, ax=ax, shrink=0.8, pad=0.03, extend="both")
         cb.ax.tick_params(labelsize=4)
-        ax.text(0.03, 0.95, f"({label_panel})", transform=ax.transAxes,
-                fontsize=9, fontweight="bold", va="top",
-                bbox=dict(facecolor="white", alpha=0.7, boxstyle="round,pad=0.1"))
+        ax.text(0.04, 0.96, label_panel, transform=ax.transAxes,
+                fontsize=8, fontweight="bold", va="top", ha="left",
+                bbox=dict(facecolor="white", alpha=0.75, boxstyle="round,pad=0.1",
+                          edgecolor="none"))
         return im
 
     # ── Row 1: Early period ──
@@ -276,10 +275,6 @@ def main():
     plot_diff_profile(ax_f3, depth_p,
                       (fovs_int_late_sv - fovs_int_early_sv)[z_mask],
                       "Sv", "$\\Delta$ F$_{ovS}$ integrand", "i")
-
-    fig.suptitle(
-        f"F$_{{ovS}}$ decomposition at {actual_lat:.1f}\u00b0S (ORAS5)",
-        fontsize=10, fontweight="bold", y=0.98)
 
     save_publication_figure(fig, args.output)
 
