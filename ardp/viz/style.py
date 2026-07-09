@@ -83,6 +83,9 @@ def apply_nature_style() -> None:
         "savefig.dpi": 300,
         "savefig.bbox": "tight",
         "savefig.pad_inches": 0.02,
+        # Vector PDF/PS: TrueType so text stays editable in Illustrator/Inkscape.
+        "pdf.fonttype": 42,
+        "ps.fonttype": 42,
         # Grid
         "axes.grid": False,
     })

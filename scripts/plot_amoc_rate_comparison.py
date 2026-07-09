@@ -66,7 +66,7 @@ def plot_panel(ax, model_rates, obs_lines, title, xlabel):
     ax.set_yticks(y_pos)
     ax.set_yticklabels(names, fontsize=10)
     ax.set_xlabel(xlabel, fontsize=12)
-    ax.set_title(title, fontsize=13, fontweight="bold", pad=10)
+    del title  # npj style: caption supplies the title text
     ax.invert_yaxis()
     ax.grid(axis="x", alpha=0.3, linewidth=0.5)
 
@@ -159,10 +159,7 @@ def main():
     fig.legend(handles=legend_elements, loc="lower center", ncol=3, fontsize=11,
                framealpha=0.9, edgecolor="0.7", bbox_to_anchor=(0.5, -0.02))
 
-    fig.suptitle("AMOC weakening rate at 26.5°N: observations vs CMIP6",
-                 fontsize=15, fontweight="bold", y=0.98)
-
-    fig.tight_layout(rect=[0, 0.08, 1, 0.95])
+    fig.tight_layout(rect=[0, 0.08, 1, 1.0])
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(args.output, dpi=args.dpi, bbox_inches="tight")
