@@ -41,6 +41,10 @@ CLASS_COLORS = {
     "increasing": "0.5",
 }
 CLASS_ORDER = ["v-dominant", "s-dominant", "mixed", "increasing"]
+# Display name for the legend: the "increasing" bucket also contains models
+# whose |dF_ovS| falls below the 10 mSv classification floor (EC-Earth3 is
+# -1.4 mSv), so "excluded" is the accurate public label.
+CLASS_DISPLAY = {"increasing": "excluded"}
 
 
 def _load_reanalysis_shares(path: Path):
@@ -90,8 +94,8 @@ def _load_data(results_dir: Path):
     for label, fname, color in REANALYSIS_PRODUCTS:
         r = _load_reanalysis_shares(results_dir / fname)
         if r is not None:
-            dtot_mSv, v_pct, s_pct, has_trend = r
-            reanalysis_points.append((label, dtot_mSv, v_pct, s_pct,
+            dtot_msv, v_pct, s_pct, has_trend = r
+            reanalysis_points.append((label, dtot_msv, v_pct, s_pct,
                                        has_trend, color))
     cmip6_amoc = cmip6.copy()
     cmip6_amoc["class"] = cmip6_amoc.apply(_classify_amoc, axis=1)
@@ -118,14 +122,29 @@ def _draw_panel_a(ax, cmip6, reanalysis_points):
             ax.scatter(sub["velocity_share_pct"], sub["salinity_share_pct"],
                        s=55, color=CLASS_COLORS[cls], alpha=0.75,
                        edgecolor=edge_color, linewidth=edge_lw, zorder=4,
-                       label=f"{cls}, {tag} (n={len(sub)})")
-    rean_offsets = {"ORAS5": (10, 6), "GLORYS12V1": (-10, 6),
-                    "SODA3.15.2": (10, -10), "ECCO-V4r4": (-10, -10)}
+                       label=f"{CLASS_DISPLAY.get(cls, cls)}, {tag} (n={len(sub)})")
+    # SODA3.15.2 sits very close to the v=s=50 line, so its label is pulled
+    # well above the diamond (to ~y=60 data units) with a thin leader line
+    # rather than the small offset used for the others.
+    rean_offsets = {"ORAS5": (10, 6), "GLORYS12V1": (8, 10),
+                    "SODA3.15.2": None, "ECCO-V4r4": (-10, -10)}
     for label, _dtot, v_pct, s_pct, has_trend, color in reanalysis_points:
         if not has_trend:
             continue
         ax.scatter(v_pct, s_pct, s=140, c=color, edgecolor="black",
                    linewidth=0.9, zorder=8, marker="D")
+        if label == "SODA3.15.2":
+            label_x = v_pct - 22
+            label_y = 65
+            ax.annotate(
+                label, xy=(v_pct, s_pct),
+                xytext=(label_x, label_y), textcoords="data",
+                fontsize=8.5, color=color, fontweight="bold",
+                ha="left", va="bottom", zorder=9,
+                arrowprops={"arrowstyle": "-", "color": color, "lw": 0.5,
+                            "shrinkA": 0.0, "shrinkB": 3.0},
+            )
+            continue
         dx, dy = rean_offsets.get(label, (8, 8))
         ha = "left" if dx >= 0 else "right"
         va = "bottom" if dy >= 0 else "top"
@@ -136,7 +155,7 @@ def _draw_panel_a(ax, cmip6, reanalysis_points):
     ax.set_xlabel(r"Velocity share $f_v$ (%)")
     ax.set_ylabel(r"Salinity share $f_s$ (%)")
     ax.set_xlim(-80, 220)
-    ax.set_ylim(-150, 220)
+    ax.set_ylim(-150, 240)
     ax.legend(loc="lower left", fontsize=6.8, frameon=False,
               handlelength=1.3, handletextpad=0.5, borderaxespad=0.3)
 
@@ -202,7 +221,8 @@ def _draw_panel_c(ax, classes, amoc, amoc_models):
     bp = ax.boxplot(bp_data, tick_labels=bp_labels, patch_artist=True,
                     widths=0.6,
                     medianprops={"color": "black", "linewidth": 1.0})
-    for patch, cls in zip(bp["boxes"], ("v-dominant", "s-dominant", "mixed")):
+    for patch, cls in zip(bp["boxes"], ("v-dominant", "s-dominant", "mixed"),
+                          strict=False):
         patch.set_facecolor(CLASS_COLORS[cls])
         patch.set_alpha(0.65)
     ax.fill_between([0.5, 3.5], 43, 59, color="#CC3333", alpha=0.12,
