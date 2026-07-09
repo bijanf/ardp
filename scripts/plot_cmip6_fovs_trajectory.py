@@ -161,11 +161,11 @@ def plot_trajectory_figure(
     models = sorted(models)
     print(f"CMIP6 models with time series: {models}")
 
-    # Create figure
+    # Create figure (Nature 2-column width; tall enough for 22 model bars).
     fig, axes = plt.subplots(
         1, 2,
-        figsize=(GRL_FULL_WIDTH, GRL_FULL_WIDTH * 0.45),
-        gridspec_kw={"width_ratios": [3, 1], "wspace": 0.35},
+        figsize=(7.09, 4.2),
+        gridspec_kw={"width_ratios": [2.4, 1.0], "wspace": 0.30},
     )
 
     ax_ts, ax_bar = axes
@@ -270,11 +270,8 @@ def plot_trajectory_figure(
     ax_ts.set_xticks(list(range(1850, 2101, 50)))
     ax_ts.set_xticklabels([str(y) for y in range(1850, 2101, 50)])
 
-    # Count of models in each epoch
-    for i, (s, e) in enumerate(epochs):
-        n_total = len(bp_data_585[i])
-        ax_ts.text(epoch_centers[i], ylim[0] + 0.01 * (ylim[1] - ylim[0]),
-                   f"n={n_total}", fontsize=3.5, ha="center", va="bottom", color="0.5")
+    # Epoch n-counts moved to LaTeX caption (npj style).
+    _ = ylim
 
     # Legend
     from matplotlib.lines import Line2D
@@ -291,8 +288,8 @@ def plot_trajectory_figure(
     ]
     ax_ts.legend(handles=legend_elements, fontsize=4.0, loc="upper center",
                  framealpha=0.9, handlelength=1.2, ncol=5)
-
-    add_panel_label(ax_ts, "(a)")
+    ax_ts.text(0.012, 0.96, "a", transform=ax_ts.transAxes,
+               fontsize=8, fontweight="bold", va="top", ha="left")
 
     # ── Panel (b): Pre-industrial F_ovS (1850–1900) — regime classification ──
     # Use 1850–1900 to minimize anthropogenic forcing influence
@@ -328,19 +325,18 @@ def plot_trajectory_figure(
                 error_kw={"ecolor": "0.3", "lw": 0.6, "capsize": 1.5})
 
     ax_bar.set_yticks(y_pos)
-    ax_bar.set_yticklabels(sorted_models_b, fontsize=4)
+    ax_bar.set_yticklabels(sorted_models_b, fontsize=5)
     ax_bar.set_xlabel("F$_{ovS}$ 1850\u20131900 mean (Sv)")
     ax_bar.axvline(0, color="black", lw=0.5, ls=":")
 
-    # Mark observed ORAS5 mean
-    ax_bar.axvline(oras5_mean, color=COLORS["blue"], lw=1.5, ls="--", alpha=0.8)
-    ax_bar.text(oras5_mean + 0.01, len(sorted_models_b) - 0.3,
-                "ORAS5",
-                fontsize=4.5, ha="left", va="bottom", color=COLORS["blue"])
+    # Mark observed ORAS5 mean — name moved to legend.
+    ax_bar.axvline(oras5_mean, color=COLORS["blue"], lw=1.5, ls="--", alpha=0.8,
+                   label="ORAS5 mean")
+    ax_bar.legend(fontsize=4.5, loc="lower right", frameon=False)
+    ax_bar.text(0.012, 0.96, "b", transform=ax_bar.transAxes,
+                fontsize=8, fontweight="bold", va="top", ha="left")
 
-    add_panel_label(ax_bar, "(b)", x=-0.25)
-
-    fig.subplots_adjust(left=0.08, right=0.98, bottom=0.15, top=0.93, wspace=0.35)
+    fig.subplots_adjust(left=0.07, right=0.99, bottom=0.12, top=0.95, wspace=0.55)
     save_publication_figure(fig, output_path)
 
 

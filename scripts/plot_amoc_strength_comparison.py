@@ -132,17 +132,8 @@ def main() -> None:
     ax.scatter(r_yr, r_val, color="black", s=12, zorder=12,
                marker="o", label="RAPID", edgecolors="white", linewidths=0.3)
 
-    # Model names inside the plot, just above y=0 (two rows)
-    sorted_names = sorted(str(m) for m in models)
-    half = len(sorted_names) // 2
-    row1 = "  |  ".join(sorted_names[:half])
-    row2 = "  |  ".join(sorted_names[half:])
-    ax.text(0.5, 0.07, row1,
-            transform=ax.transAxes, fontsize=4.5, ha="center", va="bottom",
-            color="black")
-    ax.text(0.5, 0.02, row2,
-            transform=ax.transAxes, fontsize=4.5, ha="center", va="bottom",
-            color="black")
+    # Model list moved to LaTeX caption; keep only data on the canvas.
+    _ = models
 
     # Formatting
     ax.set_xlim(1850, 2100)

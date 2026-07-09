@@ -116,7 +116,9 @@ def _draw_panel_a(ax, rows, *, legend_loc: str = "lower center",
     ax.set_xticks(x)
     ax.set_xticklabels([r[0] for r in rows], rotation=15, ha="right",
                        fontsize=8)
-    ax.set_ylabel(r"$\Delta\mathrm{F}_{ovS}$ (mSv, late − early, post-Argo)")
+    # Two-line label so the full text (quantity, units, differencing
+    # convention) fits without being clipped at the figure edge (R3.10).
+    ax.set_ylabel("$\\Delta F_{ovS}$ (mSv)\n(late minus early, post-Argo)")
     ax.set_ylim(-100, 30)
     ax.grid(axis="y", alpha=0.3, lw=0.3)
     for i, r in enumerate(rows):
@@ -154,7 +156,6 @@ def _draw_panel_b(ax, sens, *, legend_loc: str = "upper right"):
         ax.scatter(x, y, color=product_colors.get(p, "0.3"), alpha=0.65,
                    s=35, edgecolor="0.2", linewidth=0.3, zorder=4,
                    label=f"{labels_map.get(p, p)} (n={len(x)})")
-        ax.axhline(i, color="0.85", lw=0.4, zorder=1)
     ax.axvline(60, color="#E69F00", ls=":", lw=0.7, alpha=0.7)
     ax.axvline(40, color="#56B4E9", ls=":", lw=0.7, alpha=0.7)
     ax.set_yticks(range(len(products_in_sens)))

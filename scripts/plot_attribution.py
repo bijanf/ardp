@@ -222,7 +222,8 @@ lines1, labels1 = ax1.get_legend_handles_labels()
 lines2, labels2 = ax2.get_legend_handles_labels()
 ax1.legend(lines1 + lines2, labels1 + labels2, loc="lower left", fontsize=5)
 
-add_panel_label(ax1, "a", x=-0.06)
+ax1.text(0.015, 0.95, "a", transform=ax1.transAxes,
+         fontsize=9, fontweight="bold", va="top", ha="left")
 
 # Panel (b): F_ovS after AMO removal
 ax3 = fig.add_subplot(gs[1, 0])
@@ -241,7 +242,8 @@ ax3.set_ylabel("$F_{ovS}$ [mSv]")
 ax3.set_xlabel("Year")
 ax3.legend(fontsize=5, loc="lower left")
 ax3.axhline(0, color="0.7", linewidth=0.3, linestyle=":")
-add_panel_label(ax3, "b", x=-0.15)
+ax3.text(0.015, 0.95, "b", transform=ax3.transAxes,
+         fontsize=9, fontweight="bold", va="top", ha="left")
 
 # Panel (c): Bootstrap distribution
 ax4 = fig.add_subplot(gs[1, 1])
@@ -261,7 +263,8 @@ tail = boot_sorted[boot_sorted <= observed_slope]
 if len(tail) > 0:
     ax4.axvspan(boot_sorted[0] - 0.1, observed_slope, alpha=0.15, color=COLORS["red"])
 
-add_panel_label(ax4, "c", x=-0.15)
+ax4.text(0.015, 0.95, "c", transform=ax4.transAxes,
+         fontsize=9, fontweight="bold", va="top", ha="left")
 
 save_publication_figure(fig, "figures/grl/fig_attribution")
 print("Done.")

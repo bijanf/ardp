@@ -104,47 +104,75 @@ def main() -> None:
           .sort_values("velocity_share_pct").to_string(index=False))
 
     # ── Plot ──
+    # Clip the x-axis to a meaningful interpretation window; MRI-ESM2-0
+    # at f_v ≈ -380% is reported in the caption rather than allowed to
+    # blow the visual scale.
+    XLIM = (-30, 130)
+    weak_plot = weakening[(weakening["velocity_share_pct"] >= XLIM[0])
+                          & (weakening["velocity_share_pct"] <= XLIM[1])]
+    weak_offscale = weakening[(weakening["velocity_share_pct"] < XLIM[0])
+                              | (weakening["velocity_share_pct"] > XLIM[1])]
+
     cls_color = {"v-dominant": "#E69F00", "s-dominant": "#56B4E9",
                  "mixed": "#009E73"}
-    fig, ax = plt.subplots(figsize=(6.0, 4.0))
+    fig, ax = plt.subplots(figsize=(5.5, 3.8), layout="constrained")
     for cls, color in cls_color.items():
-        sub = weakening[weakening["class"] == cls]
+        sub = weak_plot[weak_plot["class"] == cls]
         if len(sub) == 0:
             continue
         ax.scatter(sub["velocity_share_pct"], sub["weakening_pct"],
-                   s=80, color=color, edgecolor="0.2", linewidth=0.6,
+                   s=55, color=color, edgecolor="0.2", linewidth=0.5,
                    zorder=4, label=f"{cls} (n={len(sub)})")
-    # Regression line
-    xx = np.linspace(weakening["velocity_share_pct"].min() - 5,
-                     weakening["velocity_share_pct"].max() + 5, 50)
-    ax.plot(xx, slope * xx + intercept, color="0.3", lw=1.5, zorder=3,
-            label=(f"OLS:  slope={slope:+.2f}, R²={R2:.2f}, "
-                   f"p={p_lin:.3g}"))
+    # Regression line on the FULL ensemble (so the slope is unchanged),
+    # drawn only within the visible x-range
+    xx = np.linspace(*XLIM, 50)
+    ax.plot(xx, slope * xx + intercept, color="0.3", lw=1.2, zorder=3,
+            label="OLS fit")
     ax.axvline(60, color="#E69F00", lw=0.5, ls=":", alpha=0.6)
     ax.axvline(40, color="#56B4E9", lw=0.5, ls=":", alpha=0.6)
 
-    # Per-model labels
-    for _, row in weakening.iterrows():
-        short = (row["model"]
-                 .replace("-CM6-1", "")
-                 .replace("-0-LL", "")
-                 .replace("-GC31-LL", "")
-                 .replace("-ESM1-2-", "-"))
-        ax.annotate(short,
-                    xy=(row["velocity_share_pct"], row["weakening_pct"]),
-                    xytext=(4, 4), textcoords="offset points",
-                    fontsize=6.5, color="0.25")
+    # Per-model labels with adjustText (collision-free)
+    try:
+        from adjustText import adjust_text
+        texts = []
+        for _, row in weak_plot.iterrows():
+            short = (row["model"]
+                     .replace("-CM6-1", "")
+                     .replace("-0-LL", "")
+                     .replace("-GC31-LL", "")
+                     .replace("-ESM1-2-", "-"))
+            texts.append(ax.text(row["velocity_share_pct"],
+                                 row["weakening_pct"],
+                                 short, fontsize=5.5, color="0.25"))
+        adjust_text(texts, ax=ax, expand=(1.4, 1.8),
+                    only_move={"text": "xy", "static": "xy"},
+                    arrowprops={"arrowstyle": "-", "color": "0.55",
+                                "lw": 0.3})
+    except ImportError:
+        for _, row in weak_plot.iterrows():
+            short = row["model"]
+            ax.annotate(short,
+                        xy=(row["velocity_share_pct"], row["weakening_pct"]),
+                        xytext=(4, 4), textcoords="offset points",
+                        fontsize=5.5, color="0.25")
 
+    ax.set_xlim(*XLIM)
     ax.set_xlabel(r"Velocity share $f_v$  (%)")
     ax.set_ylabel("AMOC weakening by 2100  (%)")
-    ax.text(0.03, 0.97,
-            f"Spearman ρ = {rho:+.2f} (p={p_rho:.2g})\n"
-            f"Pearson r = {r:+.2f} (p={p_r:.2g})",
-            transform=ax.transAxes, fontsize=8, va="top",
-            bbox={"boxstyle": "round,pad=0.3", "facecolor": "white",
-                  "edgecolor": "0.7", "alpha": 0.85})
-    ax.legend(loc="lower right", fontsize=7, frameon=False)
-    fig.tight_layout()
+    # Legend in the corner opposite the data trend (top-right is mostly empty
+    # because the regression slopes from upper-left to lower-right).
+    ax.legend(loc="upper right", fontsize=6, frameon=False,
+              handletextpad=0.4, labelspacing=0.3, borderaxespad=0.3)
+    # Footnote about off-scale models (in caption-equivalent position below
+    # the x-axis; this is the ONLY allowed on-canvas text in this figure)
+    if not weak_offscale.empty:
+        off_list = ", ".join(
+            f"{r['model']} ({r['velocity_share_pct']:+.0f}%)"
+            for _, r in weak_offscale.iterrows()
+        )
+        ax.text(0.5, -0.20, f"Off-scale: {off_list}",
+                transform=ax.transAxes, fontsize=5.5, color="0.4",
+                ha="center", va="top")
     save_publication_figure(fig, args.out_fig)
 
 

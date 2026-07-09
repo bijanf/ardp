@@ -263,7 +263,7 @@ def main() -> None:
               ncol=5, frameon=False, fontsize=6.5, handlelength=1.8,
               columnspacing=1.2)
 
-    # ── Trend table (lower-left) ──
+    # ── Trend table (lower-left) — editable vector text via pdf.fonttype=42 ──
     def _stars(p: float) -> str:
         if not np.isfinite(p):
             return ""
@@ -296,10 +296,6 @@ def main() -> None:
     ax.set_xlim(1958, 2025)
     ax.set_xlabel("Year")
     ax.set_ylabel("AMOC anomaly at 26.5°N (Sv)")
-    fig.suptitle(
-        f"AMOC anomalies at 26.5°N  (ref. climatology {CLIM_START}–{CLIM_END})",
-        y=1.02, fontsize=9, fontweight="bold",
-    )
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 

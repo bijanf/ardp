@@ -143,40 +143,38 @@ def main():
     cmap = plt.cm.RdBu_r.copy()
     cmap.set_bad("0.85")
 
-    for ax, data, title, vm in [
-        (axes[0], integrand_early[z_mask, :], "Early period (1960\u20131990)", vmax),
-        (axes[1], integrand_late[z_mask, :], "Late period (2005\u20132025)", vmax),
-        (axes[2], integrand_diff[z_mask, :], "Difference (late \u2212 early)", vmax_diff),
+    for ax, data, tag, vm in [
+        (axes[0], integrand_early[z_mask, :], "early", vmax),
+        (axes[1], integrand_late[z_mask, :], "late", vmax),
+        (axes[2], integrand_diff[z_mask, :], "diff", vmax_diff),
     ]:
         n_levels = 16
         bounds = np.linspace(-vm, vm, n_levels + 1)
         norm = mcolors.BoundaryNorm(bounds, cmap.N)
 
-        im = ax.pcolormesh(lon_2d, depth_2d, data, cmap=cmap, norm=norm, shading="auto")
+        im = ax.pcolormesh(lon_2d, depth_2d, data, cmap=cmap, norm=norm,
+                           shading="auto", rasterized=True)
         ax.set_ylim(depth_max, 0)
+        ax.set_xlim(-60, 20)  # No ocean data west of ~-60° at 34.5°S
         ax.set_ylabel("Depth (m)", fontsize=8)
-        ax.set_title(title, fontsize=9)
         cb = fig.colorbar(im, ax=ax, extend="both", shrink=0.8, pad=0.02)
         cb.set_label("$v \\cdot (S - S_0)$ [m/s \u00b7 PSU]", fontsize=7)
         cb.ax.tick_params(labelsize=6)
 
-        # Add contour at v=0 (level of no motion)
-        if "Difference" not in title:
-            v_data = v_early[z_mask, :] if "Early" in title else v_late[z_mask, :]
+        # Add contour at v=0 (level of no motion) for early/late periods.
+        if tag != "diff":
+            v_data = v_early[z_mask, :] if tag == "early" else v_late[z_mask, :]
             ax.contour(lon_2d, depth_2d, v_data, levels=[0],
                        colors="black", linewidths=0.8, linestyles="--")
 
     axes[2].set_xlabel("Longitude (\u00b0E)", fontsize=8)
 
-    # Panel labels
-    for ax, label in zip(axes, ["a", "b", "c"]):
-        ax.text(0.02, 0.95, f"({label})", transform=ax.transAxes,
-                fontsize=10, fontweight="bold", va="top")
+    # Panel labels (a, b, c). Editable vector text via pdf.fonttype=42.
+    for ax, lab in zip(axes, ("a", "b", "c")):
+        ax.text(0.015, 0.93, lab, transform=ax.transAxes,
+                fontsize=9, fontweight="bold", va="top", ha="left")
 
-    fig.suptitle(f"Freshwater transport structure at {actual_lat:.1f}\u00b0S (ORAS5)",
-                 fontsize=11, fontweight="bold", y=0.98)
-
-    fig.tight_layout(rect=[0, 0, 1, 0.96])
+    fig.tight_layout()
     save_publication_figure(fig, args.output)
 
     # Print summary: compute actual F_ovS for each period
