@@ -1,0 +1,87 @@
+\section*{Abstract}
+
+Freshwater transport by the overturning at the southern boundary of the
+Atlantic, $\Fovs$, is the standard indicator of whether the salt-advection
+feedback is self-reinforcing, and its recent decline in ocean reanalyses is
+increasingly read as a warning that the overturning is weakening. We show that
+it is not. Once the net throughflow is removed, $\Fovs$ factorises exactly as
+$-T\,\Delta S/S_0$, with $T$ the northward-limb volume transport and $\Delta S$
+the transport-weighted salinity difference between the limbs, both measured
+directly from the section. At 34.5\degS{} $\Fovs$ changes at 36\% (ORAS5) and
+52\% (GLORYS12V1) of its own magnitude per decade while $T$ changes at 2.6\%
+and 0.6\%. The transport contributes 1\% to 18\% of the trend depending on how
+the overturning is defined, in most configurations with the opposite sign, and
+stays below 25\% in 97\% of all admissible epoch pairs in the two declining
+products. What the decline
+records instead is a widening limb salinity contrast, carried by the northward
+limb; the EN4 observational analysis reproduces that asymmetry in a salinity field no
+model integrates. The products disagree on the rest: ECCO-V4r4 has no trend to
+attribute, and in ORAS5 the split between salinity and flow structure is not
+resolved, with a third of the widening attributable to the flow.
+
+\section*{Introduction}
+
+The Atlantic meridional overturning circulation transports salt as well as
+heat, and the resulting salt-advection feedback is the classical route to
+multiple equilibria in this basin\cite{Stommel1961,Rahmstorf1996,Rahmstorf2002}.
+The diagnostic used to test whether that feedback is self-reinforcing is
+$\Fovs$, the freshwater transport carried by the overturning across the
+southern boundary\cite{deVries2005,Huisman2010,Dijkstra2007}. When $\Fovs<0$
+the overturning imports freshwater into the basin, so a weakening circulation
+freshens the Atlantic and weakens it further; when $\Fovs>0$ the same
+perturbation is damped. In box models and in coarse-resolution ocean models the
+sign of $\Fovs$ separates a monostable from a bistable regime, and its value has
+been used to argue that most climate models are biased towards the stable
+side\cite{Weijer2019,Mecking2017,vanWestenDijkstra2024}.
+
+That correspondence is not exact. Extended box models\cite{Cimatoribus2014}
+and hysteresis experiments in a state-of-the-art coupled
+model\cite{vanWestenDijkstra2023} show that the collapsed branch can persist
+well outside the $\Fovs<0$ range, so the sign indicates where the freshwater
+budget sits rather than proving that a second equilibrium exists. The
+\emph{transient} behaviour of $\Fovs$ is a further step removed. $\Fovs$
+reflects the salinity contrast between the limbs at the section, which responds
+to North Atlantic anomalies only after they have been advected south, and an
+AMOC collapse in a coupled model need not coincide with a minimum in
+$\Fovs$\cite{vanWesten2025,Vanderborght2025}. Despite this, a declining $\Fovs$
+is increasingly read as a physics-based early warning that the circulation is
+weakening\cite{vanWesten2024,Zhu2020,Zhu2023}, and it is that inference we test.
+
+The inference is not safe, for a reason visible in the definition. Write
+$\Fovs$ as the product of an overturning transport and a salinity contrast.
+Wherever $\Fovs<0$ the contrast is positive, so a weakening overturning
+\emph{raises} $\Fovs$ rather than lowering it, and a falling $\Fovs$ cannot by
+itself be evidence of a weakening circulation\cite{Vanderborght2025}. (The
+argument applies only where $\Fovs<0$ throughout; ORAS5 has 7 years of 68 in
+which it does not hold.) Whether the observed decline is carried by the
+transport or by the salinity field is an empirical question, and it determines
+how much of the recent literature on $\Fovs$ trends can be interpreted at all.
+
+Answering it requires a factorisation whose two factors are separately
+measurable. Defining the salinity contrast as $-S_0\Fovs/\Psi$ for some scalar
+overturning strength $\Psi$ does not qualify: the second factor is then the
+first divided out, it absorbs every change in the vertical structure of the
+velocity as well as every change in salinity, and the resulting attribution is
+fixed by algebra rather than by data. We therefore use the limb factorisation.
+Removing the net section throughflow, which any transport-consistent estimate
+of $\Fovs$ requires, forces the depth integral of the section velocity to
+vanish, so the northward and southward limbs carry equal and opposite volume
+transport $T$, and splitting the depth integral at the sign changes of the
+velocity gives
+\begin{equation}
+\Fovs \;=\; -\frac{1}{S_0}\,T\,\Delta S,
+\qquad \Delta S \;=\; S_{\uparrow}-S_{\downarrow},
+\label{eq:factorisation}
+\end{equation}
+exactly and with no residual, where $S_{\uparrow}$ and $S_{\downarrow}$ are the
+transport-weighted mean salinities of the northward and southward limbs.
+Equation~\eqref{eq:factorisation} is not a linearisation and not a fit. Both
+factors are computed directly from the section profile, $T$ is linear in the
+velocity field and so carries none of the sampling bias of a streamfunction
+maximum, and $\Delta S$ is a salinity difference that can be plotted, compared
+between products, and in principle measured by hydrography.
+
+We evaluate this at 34.5\degS{} in three ocean reanalyses recomputed here from
+monthly fields, ORAS5, GLORYS12V1 and ECCO-V4r4, spanning two ocean models and
+three assimilation methods, and we ask what the answer implies for the
+interpretation of CMIP6 freshwater transport biases.

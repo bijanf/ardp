@@ -19,3 +19,13 @@ CLAUDE.md
 gemini.md
 AMOC Analysis Pipeline Blueprint.md
 ideas/
+
+# LaTeX build artefacts (keep .tex, .bib, .bbl, .pdf)
+*.aux
+*.fls
+*.fdb_latexmk
+*.blg
+*.out
+*.synctex.gz
+PAPER_3_v2/*.log
+PAPER_3_v2/submission/

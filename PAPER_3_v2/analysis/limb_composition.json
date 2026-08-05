@@ -1,0 +1,216 @@
+{
+  "oras5": {
+    "label": "ORAS5",
+    "record": [
+      1958,
+      2025
+    ],
+    "n_sign_runs_min": 3,
+    "n_sign_runs_max": 7,
+    "n_sign_runs_modal": 4,
+    "n_northward_sublimbs_min": 2,
+    "n_northward_sublimbs_max": 4,
+    "n_northward_sublimbs_modal": 2,
+    "years_with_deep_northward_limb": 68,
+    "upper_limb": {
+      "mean_T_Sv": 15.008853377441435,
+      "mean_S": 34.93383700237694,
+      "mean_weight": 0.8477866422927881,
+      "base_depth_mean_m": 1324.8322089700139,
+      "trend_T_Sv_per_decade": -0.5901073724957202,
+      "p_T": 0.0001296612637814337,
+      "trend_S_per_decade": 0.035209043792784125,
+      "p_S": 1.8779299716540352e-07
+    },
+    "deep_northward_limb": {
+      "mean_T_Sv": 2.6660434918884404,
+      "mean_S": 34.71701432073977,
+      "mean_weight": 0.15221335770721173,
+      "top_depth_mean_m": 4044.364501953125,
+      "trend_T_Sv_per_decade": 0.05078641984571947,
+      "p_T": 0.11001190039919413
+    },
+    "salinity_gap_upper_minus_deep": 0.21682268163716856,
+    "composition": {
+      "trend_total": 0.02766840077769171,
+      "p_total": 2.0590244283526004e-08,
+      "ci_total": [
+        0.021817883916115333,
+        0.03349759076159439
+      ],
+      "trend_A": 0.029856465137417014,
+      "p_A": 1.9204029699874675e-07,
+      "ci_A": [
+        0.023527581021998076,
+        0.03618699282892549
+      ],
+      "trend_B": -0.0017088608000906476,
+      "p_B": 0.0004674083438916022,
+      "ci_B": [
+        -0.0025404060920232365,
+        -0.000864212427964795
+      ],
+      "residual_per_decade": -0.0004792035596346567,
+      "partition_share_point": 0.06176218184133202,
+      "partition_share_ci": [
+        0.03262399324139505,
+        0.09229497910081222
+      ]
+    },
+    "upper_cell_only": {
+      "mean_F_ov_Sv": -0.04102693019064494,
+      "mean_T_Sv": 15.862718619158537,
+      "mean_dS_PSU": 0.09591486426033805,
+      "trend_F_ov_mSv_per_yr": -1.3871457661274913,
+      "p_F_ov": 2.7810826011377043e-07,
+      "trend_S_north_per_decade": 0.03297777809641129,
+      "p_S_north": 2.2235872698906512e-07,
+      "transport_term_mSv_per_yr": 0.15508810988520924,
+      "salinity_term_mSv_per_yr": -1.5954397755337466,
+      "share_T": 0.1118037582439301
+    }
+  },
+  "glorys12": {
+    "label": "GLORYS12V1",
+    "record": [
+      1993,
+      2025
+    ],
+    "n_sign_runs_min": 3,
+    "n_sign_runs_max": 4,
+    "n_sign_runs_modal": 4,
+    "n_northward_sublimbs_min": 2,
+    "n_northward_sublimbs_max": 2,
+    "n_northward_sublimbs_modal": 2,
+    "years_with_deep_northward_limb": 33,
+    "upper_limb": {
+      "mean_T_Sv": 17.04228131609818,
+      "mean_S": 35.00374879838666,
+      "mean_weight": 0.8362009266513292,
+      "base_depth_mean_m": 1245.291015625,
+      "trend_T_Sv_per_decade": -0.1728223320102196,
+      "p_T": 0.5181779158068079,
+      "trend_S_per_decade": 0.0884710093281135,
+      "p_S": 0.03965183011668442
+    },
+    "deep_northward_limb": {
+      "mean_T_Sv": 3.3541750558016,
+      "mean_S": 34.714968293244894,
+      "mean_weight": 0.1637990733486709,
+      "top_depth_mean_m": 4405.22412109375,
+      "trend_T_Sv_per_decade": -0.017411855334207107,
+      "p_T": 0.8929166799161997
+    },
+    "salinity_gap_upper_minus_deep": 0.2887805051417658,
+    "composition": {
+      "trend_total": 0.07436620483338907,
+      "p_total": 0.013745536314513267,
+      "ci_total": [
+        0.05034139755087572,
+        0.09819518850809941
+      ],
+      "trend_A": 0.07424544609780453,
+      "p_A": 0.04013478213855658,
+      "ci_A": [
+        0.049044318912712256,
+        0.09908010428593395
+      ],
+      "trend_B": -0.0001848223305525483,
+      "p_B": 0.9120811045415197,
+      "ci_B": [
+        -0.0032224353881332244,
+        0.0029125773636060476
+      ],
+      "residual_per_decade": 0.00030558106613708114,
+      "partition_share_point": 0.0024853000225926072,
+      "partition_share_ci": [
+        0.0007023251356942596,
+        0.05014989241381463
+      ]
+    },
+    "upper_cell_only": {
+      "mean_F_ov_Sv": -0.08877126116835303,
+      "mean_T_Sv": 18.07708444492571,
+      "mean_dS_PSU": 0.1732865559084303,
+      "trend_F_ov_mSv_per_yr": -4.475172867826864,
+      "p_F_ov": 0.017010359660823697,
+      "trend_S_north_per_decade": 0.08630446939002895,
+      "p_S_north": 0.03332166136296124,
+      "transport_term_mSv_per_yr": 0.08519595558510357,
+      "salinity_term_mSv_per_yr": -4.499363755725702,
+      "share_T": 0.019037466954092114
+    }
+  },
+  "ecco": {
+    "label": "ECCO-V4r4",
+    "record": [
+      1992,
+      2017
+    ],
+    "n_sign_runs_min": 3,
+    "n_sign_runs_max": 5,
+    "n_sign_runs_modal": 3,
+    "n_northward_sublimbs_min": 2,
+    "n_northward_sublimbs_max": 3,
+    "n_northward_sublimbs_modal": 2,
+    "years_with_deep_northward_limb": 26,
+    "upper_limb": {
+      "mean_T_Sv": 12.767509094457758,
+      "mean_S": 35.19912558926947,
+      "mean_weight": 0.888171635707725,
+      "base_depth_mean_m": 1318.083233173077,
+      "trend_T_Sv_per_decade": -0.5556745085860664,
+      "p_T": 0.0567248197606932,
+      "trend_S_per_decade": 0.01802737029298509,
+      "p_S": 0.17778709141165824
+    },
+    "deep_northward_limb": {
+      "mean_T_Sv": 1.599099188949353,
+      "mean_S": 34.706421110183506,
+      "mean_weight": 0.11182836429227502,
+      "top_depth_mean_m": 4264.25,
+      "trend_T_Sv_per_decade": 0.3328930172110847,
+      "p_T": 0.018311943358477478
+    },
+    "salinity_gap_upper_minus_deep": 0.4927044790859654,
+    "composition": {
+      "trend_total": 0.0027630669116823284,
+      "p_total": 0.7741133486904911,
+      "ci_total": [
+        -0.010477703883677032,
+        0.016409865883587376
+      ],
+      "trend_A": 0.01571278701436176,
+      "p_A": 0.18486390913847173,
+      "ci_A": [
+        0.0015963690047553541,
+        0.030099254466029436
+      ],
+      "trend_B": -0.012701988899669552,
+      "p_B": 0.019112724810130367,
+      "ci_B": [
+        -0.019793906577432727,
+        -0.005898432754089387
+      ],
+      "residual_per_decade": -0.0002477312030098821,
+      "partition_share_point": 4.597061636822898,
+      "partition_share_ci": [
+        0.569645251011407,
+        52.41176074316143
+      ]
+    },
+    "upper_cell_only": {
+      "mean_F_ov_Sv": -0.13584028301589363,
+      "mean_T_Sv": 13.34125985444034,
+      "mean_dS_PSU": 0.3565982579155029,
+      "trend_F_ov_mSv_per_yr": 0.04700682825478718,
+      "p_F_ov": 0.8982139058990044,
+      "trend_S_north_per_decade": 0.012561131091304231,
+      "p_S_north": 0.2804719477480003,
+      "transport_term_mSv_per_yr": 0.453780042833339,
+      "salinity_term_mSv_per_yr": -0.4029080950647263,
+      "share_T": 9.653492049575288
+    }
+  },
+  "_SUPERSEDED": "Evaluated on annual-mean profiles. This route understates the abyssal cell by about 26 to 30 per cent and leaves a 1.5 to 5.4 per cent shortfall against T. The manuscript uses the monthly route in final_checks.json (composition_monthly). Retained only to document the comparison."
+}

@@ -1,0 +1,488 @@
+\section*{Results}
+
+\subsection*{A negative freshwater transport, and the two factors that set it}
+
+Recomputed from monthly fields on the contiguous Atlantic section
+(Methods), the record-mean $\Fovs$ at 34.5\degS{} is negative in all three
+reanalyses (Fig.~\ref{fig:sign}a,b): $-0.038$~Sv in ORAS5 over 1958--2025,
+$-0.084$~Sv in GLORYS12V1 over 1993--2025 and $-0.132$~Sv in ECCO-V4r4 over
+1992--2017. The sign is not marginal. It holds in 61 of 68 annual means in
+ORAS5, 32 of 33 in GLORYS12V1 and 26 of 26 in ECCO, and the 95\% circular
+block-bootstrap interval excludes zero in every product at every block length
+from 2 to 20 years, so the result does not depend on that choice. Because a
+mean over a trending record is not an estimate of any well-defined population
+quantity, we also give the most recent decade, which is the quantity a reader
+interested in the present state should use: $-0.088$~[$-0.094$, $-0.080$]~Sv in
+ORAS5 over 2016--2025, $-0.132$~[$-0.141$, $-0.121$] in GLORYS12V1 and
+$-0.128$~[$-0.136$, $-0.119$] in ECCO over 2008--2017.
+
+A fourth product, SODA 3.15.2, gives $-0.009$~Sv with an interval that includes
+zero, but we do not count it either way. The archive we can obtain provides
+annual rather than monthly fields, and $\Fovs$ is bilinear in velocity and
+salinity, so forming it from annual means discards the within-year covariance.
+Measured directly in ECCO, where both routes are available, that omission shifts
+$\Fovs$ by $+0.012$~Sv, larger in magnitude than SODA's entire record mean. The
+same test gives $+0.000$~Sv in ORAS5 and $-0.001$~Sv in GLORYS12V1, so the bias
+is product-dependent and small in the two eddy-permitting products. SODA can
+neither support nor refute the sign, and we say so rather than counting it.
+
+The magnitudes span a factor of three across the three products, which is
+larger than any within-product interval. The reanalyses differ more about how
+much freshwater the overturning carries than about which way it carries it, and
+only the second statement is robust.
+
+Equation~\eqref{eq:factorisation} splits each of these numbers into a transport
+and a salinity contrast. The northward limb carries 18.7~Sv in ORAS5, 21.3~Sv
+in GLORYS12V1 and 14.6~Sv in ECCO, against limb salinity contrasts of $+0.068$,
+$+0.136$ and $+0.307$~PSU. (The factorisation is exact year by year, so the
+product of the record means differs slightly from the mean of the products, by
+6\% in ORAS5.) Almost the entire three-product spread in $\Fovs$ is in
+$\Delta S$, which varies by a factor of 4.5, not in $T$, which varies by a
+factor of 1.5. Whatever the reanalyses constrain at this section, it is the
+transport far better than the salinity structure.
+
+\subsection*{The decline outruns the transport by an order of magnitude}
+
+ORAS5 and GLORYS12V1 both decline over their own records, by $-1.37$~mSv per
+year ($p<10^{-4}$, $N_{\text{eff}}=23.7$) and $-4.36$~mSv per year
+($p=0.017$, $N_{\text{eff}}=7.2$). ECCO does not decline at all
+($+0.11$~mSv per year, $p=0.76$, $N_{\text{eff}}=23.1$, minimum detectable
+trend 0.75~mSv per year). Over the 1993--2017 window all three share, no
+product has a significant \emph{$\Fovs$} trend, but that is a statement about
+power rather than about the ocean: the smallest trend those 25 years could have
+resolved is 1.3~mSv per year in ORAS5 and 7.1 in GLORYS12V1, and the GLORYS12V1
+point estimate over the common window ($-4.76$) is larger in magnitude than over
+its own record. The northward-limb transport behaves differently over that same
+window, and in the opposite direction to the paper's framing: it declines in all
+three products, by $-0.97$~Sv per decade in ORAS5 ($p=0.052$,
+$N_{\text{eff}}=10.1$), $-0.75$ in GLORYS12V1 ($p=0.036$, $N_{\text{eff}}=14.3$)
+and $-0.35$ in ECCO ($p=0.062$, $N_{\text{eff}}=21.3$). Over the one window in
+which the three products are directly comparable it is the transport, not
+$\Fovs$, that has the near-significant trends.
+
+The cleanest statement of the result needs no ratio at all. Expressed as
+fractional rates, $\Fovs$ is changing at $-36$\% of its own magnitude per decade
+in ORAS5 and $-52$\% in GLORYS12V1, while the transport that carries it changes
+at $-2.6$\% and $-0.6$\% per decade. Over the Argo era the same comparison gives
+$-35$\% against $-0.7$\% and $-20$\% against $+0.8$\%. In those windows the two quantities are
+changing at rates that differ by between one and two orders of magnitude, which
+is the argument in its simplest form and is free of any denominator that might
+approach zero. The separation is not uniform across every window: over the
+common 1993--2017 window, where the $\Fovs$ trend is not resolvable and the
+transport trend nearly is, the ORAS5 ratio narrows to 2.5. Across the four
+windows we examine, the transport rate is between 1\% and 132\% of the $\Fovs$
+rate in the two declining products. The wide end comes entirely from windows in
+which the $\Fovs$ trend is not resolvable: 40\% from the common window in
+ORAS5 and 132\% from the eleven-year clean window in GLORYS12V1, where the
+$\Fovs$ trend has the wrong sign and $p=0.79$. Over the windows in which the
+denominator is resolvable the range is 1\% to 7\%.
+
+Splitting the trend by equation~\eqref{eq:factorisation} puts numbers on it
+(Fig.~\ref{fig:attribution}b). In ORAS5 the total is $-1.37$~mSv per year, of
+which the transport term contributes $+0.09$ [$+0.06$, $+0.13$], the salinity
+term $-1.46$ [$-1.77$, $-1.14$] and a covariance residual $+0.002$, 3\% of the
+transport term. In GLORYS12V1 the total is $-4.36$, the transport term $+0.05$
+[$-0.12$, $+0.21$], the salinity term $-4.36$ [$-5.78$, $-2.94$] and the
+residual $-0.05$, which is 108\% of the transport term and larger than it. The
+transport share of the trend is 0.068 [0.046, 0.094] in ORAS5 and 0.012
+[0.001, 0.051] in GLORYS12V1; assigning the residual entirely to the transport
+instead of dropping it moves the GLORYS12V1 share to 0.001 and flips its sign, so for that product the honest statement is that the transport
+contribution is not distinguishable from zero rather than that it is
+positive. The transport term opposes the total with probability 1.00 in ORAS5
+over its own record but only 0.73 in GLORYS12V1, and 0.36 in GLORYS12V1 over
+the Argo era, where its point estimate ($-0.09$~mSv per year) has the same sign
+as the total. The magnitude claim is robust; the sign claim is not universal
+and we do not make it universal.
+
+What the salinity term represents is unusually specific
+(Fig.~\ref{fig:mechanism}a). The contrast $\Delta S$ widens because the
+northward limb becomes saltier while the southward limb does not change.
+$S_{\uparrow}$ rises by $+0.025$~PSU per decade in ORAS5 ($p<10^{-4}$,
+$N_{\text{eff}}=24.2$) and $+0.071$ in GLORYS12V1 ($p=0.017$,
+$N_{\text{eff}}=6.9$, which is under five degrees of freedom and should be read
+accordingly), whereas $S_{\downarrow}$ changes by $-0.002$ ($p=0.06$) and
+$-0.001$ ($p=0.24$) over the same records. The southward limb is not
+uniformly flat: over the matched 1993--2017 window the ORAS5 value is
+$-0.003$ and does reach significance ($p=0.006$). The asymmetry rests on
+magnitude, $S_{\uparrow}$ moving six times faster, rather than on
+$S_{\downarrow}$ being exactly stationary. Over the Argo era the two products converge, to $+0.051$
+($p=0.009$) and $+0.035$ ($p=0.005$); note that this is a rise for ORAS5 and a
+halving for GLORYS12V1, so the agreement improves while the GLORYS12V1 rate
+falls. Over the matched 1993--2017 window neither is individually significant
+($+0.019$, $p=0.11$, $N_{\text{eff}}=15.8$; $+0.083$, $p=0.10$,
+$N_{\text{eff}}=5.2$) and they differ by a factor of four.
+
+The depth-resolved salinity trends behind these numbers disagree far more than
+the limb-weighted quantities do (Fig.~\ref{fig:mechanism}b). Through the upper
+500~m GLORYS12V1 trends at $+0.10$ to $+0.13$~PSU per decade against a
+layer-mean $+0.009$ in ORAS5, which crosses zero near 200~m, so the two differ
+by more than an order of magnitude and are jointly significant over only a
+narrow band near 600~m. That the transport-weighted limb
+salinities agree to within a factor of 2.3 over 1993--2025 while the raw profiles
+disagree by more than ten is an argument for weighting by the transport that
+actually carries the salt rather than by depth.
+
+ECCO is the counterexample, and against GLORYS12V1 it is a real one rather than
+a lack of power. Its limb salinities are flat ($+0.005$~PSU per decade,
+$p=0.55$, $N_{\text{eff}}=14.9$). On the matched 1993--2017 window its minimum
+detectable $S_{\uparrow}$ trend is 0.020~PSU per decade, well below the
+GLORYS12V1 rate of $+0.083$ over the same years, so ECCO could have resolved
+that salinification and did not. Against ORAS5 the comparison is inconclusive:
+the ORAS5 common-window rate, $+0.019$~PSU per decade, is itself below ECCO's
+detection limit.
+
+\subsection*{Is the widening contrast a water mass, or a redistribution?}
+
+$\Delta S$ is transport-weighted, so it changes if the salinity field changes,
+and also if transport is redistributed in depth at a completely fixed salinity
+field. The two have to be separated before the change can be called a water-mass
+signal. Recomputing $\Delta S$ with the salinity profile frozen at its record
+mean, and again with the velocity profile frozen, does that at the full vertical
+resolution of the section, and the answer differs between products.
+
+In GLORYS12V1 the change is almost all salinity: the salinity-only trend is
+$+0.068$~PSU per decade ($p=0.048$, $N_{\text{eff}}=4.8$) against a full trend
+of $+0.072$, a share of 0.94, and the velocity-only trend is $+0.007$, not
+significant and close to its own detection limit ($p=0.22$,
+$N_{\text{eff}}=22.0$, detection limit 0.011).
+In ORAS5 the partition is not resolved. The point estimates give a salinity
+share of 0.66 and a velocity share of 0.39, so roughly a third of the widening
+is a change in the vertical structure of the flow rather than in the water
+masses. But the salinity-only series is so persistent (lag-1 autocorrelation
+0.93) that its effective sample size falls to the floor of 3 imposed by the
+significance test, and the smallest trend it could have resolved is
+0.199~PSU per decade, eleven times the estimate itself. Its $p=0.45$ therefore
+carries no information. The velocity-only term is the resolvable one
+($+0.011$~PSU per decade, $p=0.0002$, $N_{\text{eff}}=31.9$, detection limit
+0.005), so what can be said of ORAS5 is that a flow-structure contribution is
+definitely present, not that the salinity contribution is absent. In GLORYS12V1
+the salinity-only estimate also sits close to its own detection limit
+($+0.068$ against 0.066, $N_{\text{eff}}=4.8$). In ECCO neither term is
+resolvable ($-0.006$, detection limit 0.010; $+0.009$, detection limit 0.027)
+and the full trend is indistinguishable from zero. The two shares sum
+to slightly more than one because the split leaves a small covariance residual,
+$-5$\% in ORAS5 and $-4$\% in GLORYS12V1.
+
+The coarse component of that redistribution can be isolated further. The limbs
+are defined by the sign of the section velocity, and that sign changes more than
+once: besides the upper cell there is a northward abyssal limb of Antarctic
+Bottom Water carrying 3.8~Sv in ORAS5, 4.8 in GLORYS12V1 and 2.2 in ECCO, that
+is 20\%, 23\% and 15\% of the northward limb, and fresher than the upper cell by 0.21 to
+0.49~PSU (Extended Data Fig.~2a,c). Writing $S_{\uparrow}=\sum_i w_i S_i$ over
+the sub-limbs and holding either the weights or the sub-limb salinities at their
+record means splits it. The partition term is small and of the opposite sign to
+the total in both declining products: in ORAS5 the change in $S_{\uparrow}$ of
+$+0.027$~PSU per decade is a water-mass term of $+0.030$ and a partition term of
+$-0.003$, a share of 0.12; in GLORYS12V1, $+0.072$ splits into $+0.073$ and
+$-0.002$, a share of 0.03. So the upper-to-abyssal redistribution is not what
+drives the ORAS5 velocity term; that lives within the upper limb.
+
+ECCO is the one product in which the coarse redistribution is significant and
+active. Its upper-cell transport falls at $-0.60$~Sv per decade ($p=0.011$)
+while its abyssal limb rises at $+0.36$ ($p=0.041$), and its upper-cell salinity
+rises at $+0.022$~PSU per decade ($p=0.025$), the same sign as the other two
+products. That last $p$ is basis-dependent: identifying the sub-limbs on
+annual-mean profiles instead gives $+0.018$ and $p=0.18$, so the ECCO
+cancellation is suggestive rather than established.
+ECCO's flat whole-limb salinity is therefore the sum of a positive water-mass
+term and a redistribution that cancels it, not an absence of change, and the
+confound this section exists to test is demonstrably real even though it is not
+what dominates elsewhere.
+
+Excluding the abyssal cell altogether points the same way as the sub-limb split.
+Truncating the section at the deep zero crossing and re-applying the throughflow
+removal within the truncated layer, so the factorisation is again exact, gives
+upper-cell $S_{\uparrow}$ trends of $+0.033$~PSU per decade in ORAS5
+($p<10^{-4}$) and $+0.086$ in GLORYS12V1 ($p=0.033$), larger than the whole-limb
+values, with transport shares of 0.112 and 0.019.
+
+\subsection*{An observation-only test}
+
+The claim that the northward limb is becoming saltier can be tested in a
+salinity field that no ocean model integrates forward. We take EN4.2.2, an
+objective analysis of profile observations, hold the velocity structure frozen
+at each reanalysis record-mean profile, and let only the observed salinity vary
+over 2005--2024 (Methods). Any trend is then a trend in observed water masses
+under a fixed circulation. EN4 is on whole-degree latitudes, and we use the
+34\degS{} row: the 35\degS{} row lies south of Cape Agulhas, where Africa no
+longer closes the basin and a contiguous section runs into the Indian Ocean.
+
+The limb asymmetry is reproduced, and more clearly than in the reanalyses'
+own statistics. $S_{\uparrow}$ rises at $+0.026$~PSU per decade ($p=0.0005$)
+under the ORAS5 velocity structure and $+0.028$ ($p=0.0003$) under the
+GLORYS12V1 structure, while $S_{\downarrow}$ is flat in both ($+0.002$,
+$p=0.09$), and the contrast widens at $+0.024$ to $+0.026$~PSU per decade
+($p=0.0001$). The sign, the limb asymmetry and the significance therefore
+survive in a salinity field that no assimilating model has touched.
+
+The observed salinity field also supplies an observational estimate of $\Fovs$
+itself. Combined with the frozen transport it gives $-0.080$~Sv under the ORAS5
+velocity structure and $-0.128$~Sv under the GLORYS12V1 structure, both firmly
+negative. This is not an independent measurement, since the transport is taken
+from the reanalyses, but it shows the negative sign does not depend on the
+reanalysis salinity fields. It also sharpens the disagreement about magnitude:
+under ORAS5's own velocity structure the observed salinity field returns
+$-0.080$~Sv against ORAS5's own $-0.038$~Sv, because EN4's limb contrast at this
+section is 0.160~PSU against ORAS5's 0.068.
+
+The rate is a different matter. Over the identical 2005--2024 window the
+reanalyses give $S_{\uparrow}$ trends of $+0.056$ (ORAS5) and $+0.035$
+(GLORYS12V1)~PSU per decade, against $+0.026$ and $+0.028$ from the
+observations. ORAS5 runs about twice the observation-only rate while GLORYS12V1
+is within 30\% of it. Part of that gap is expected by construction, since EN4
+relaxes towards climatology where profiles are sparse and the core Argo array
+does not sample below 2000~m, so the observation-only estimate is a lower bound.
+The direction is robust; the ORAS5 rate should not be taken at face value.
+
+\subsection*{The attribution does not depend on the choices we made}
+
+\emph{Epoch selection.} Rather than quoting hand-picked epochs, we evaluate the
+symmetric decomposition of equation~\eqref{eq:factorisation} for every
+non-overlapping early and late epoch pair each record supports, at epoch lengths
+of 10, 13 and 15 years: 2901 usable pairs in ORAS5 and 151 in GLORYS12V1. These
+are not independent samples, and we treat them as a sensitivity analysis over
+window choice rather than as evidence from a large sample. The median transport
+share is 0.075 in ORAS5 and 0.038 in GLORYS12V1, the 95th percentile is 0.219
+and 0.088, the maximum is 0.90 and 0.12, and the share is below 0.25 in 96.8\%
+and 100\% of pairs (Fig.~\ref{fig:attribution}c). The transport term opposes the
+total in 96.8\% and 94.7\% of pairs. The symmetric form uses the mean of the two
+epochs as its coefficient, so it has no cross term and does not depend on which
+epoch is the base point; the early-base and late-base conventions bracket it,
+with median shares of 0.012 and 0.141 in ORAS5.
+
+\emph{The definition of overturning strength.} Substituting the depth-space
+streamfunction maximum for the limb transport, either integrated from the
+surface or with the integration restarted at 250~m to exclude the wind-driven
+surface cell, changes the mean overturning strength substantially, from 18.7 to
+14.6 to 8.6~Sv in ORAS5, and raises the share to 0.111 [0.076, 0.151] and 0.183
+[0.137, 0.240]; in GLORYS12V1 it becomes 0.014 and 0.040. The share therefore
+rises monotonically as the definition of the overturning narrows, by a factor of
+2.4 across the three definitions computed on this common basis (0.076, 0.111 and
+0.183 for ORAS5), and the full range across every test in which the share is
+identified, excluding the census tail, is 1\% to 18\% with individual intervals
+reaching 27\%; the two largest values with a resolvable denominator are
+0.18 over 1993--2025 in ORAS5 and 0.183 for the 250~m streamfunction definition
+over its full record. It remains a
+minority contribution throughout, but it is not definition-independent, and we
+note that the factorisation we advocate gives a smaller share than the
+construction it replaces.
+
+\emph{The observing system.} The salinity field at 34.5\degS{} was barely
+constrained before Argo, so we repeat everything from 2004 onwards. The
+GLORYS12V1 decline survives ($-2.28$~mSv per year, $p=0.038$) and its transport
+share rises, to 0.038 [0.004, 0.268], while remaining a minority. GLORYS12V1 has no documented stream join, but its record
+crosses the Argo transition, and applying the same level-shift model at 2004
+shows that most of its signal is a step rather than a trend: the residual trend
+falls to $-1.90\pm1.07$~mSv per year ($p=0.098$, not significant) against a step
+of $-0.061\pm0.022$~Sv ($p=0.014$), and the limb contrast behaves the same way
+($+0.029\pm0.015$~PSU per decade, $p=0.071$, against a step of
+$+0.105\pm0.031$, $p=0.004$). The attribution is unaffected, the step-adjusted
+transport share being 0.045 and the step-adjusted fractional rate 23\% per
+decade rather than 52\%, but the GLORYS12V1 \emph{decline} is a level shift
+at the arrival of Argo and should not be read as a trend.
+
+ORAS5 is also a splice, the consolidated
+reanalysis to 2014 and the operational stream thereafter, and here too the test
+is weaker than it looks. Fitting a trend together with a level shift at 2015 gives, over
+the full record, a step in $\Fovs$ of $-0.017\pm0.011$~Sv ($p=0.15$); the
+corresponding step in the limb salinity is larger relative to its own signal and
+is significant, $+0.038\pm0.017$~PSU ($p=0.029$), and allowing for it reduces
+the $S_{\uparrow}$ trend from $+0.025$ to $+0.020$~PSU per decade. Refitting over
+2004--2025 alone gives a trend of $-1.36\pm1.53$~mSv per year that is not
+significant, against $-2.46$ when the step is ignored. The ORAS5 Argo-era decline does not survive fitting the splice. Over the full record the step-adjusted trend is
+$-1.17\pm0.21$~mSv per year ($p<10^{-4}$), essentially identical to the
+consolidated-stream-only value of $-1.17$ ($p=5\times10^{-5}$), whose transport
+share is 0.050 [0.024, 0.083]. So roughly 15\% of the raw ORAS5 full-record decline is
+the splice, the decline survives correcting for it over the full record, and the
+attribution is unaffected; but the 22-year Argo window alone cannot separate the
+two.
+
+\emph{The one window with neither confound.} 2004--2014 is inside the Argo era
+and inside the ORAS5 consolidated stream at once. It is short, and it settles
+nothing: over it the ORAS5 fractional-rate ratio is 0.152 with an $\Fovs$ trend that
+is not resolvable, and GLORYS12V1 gives an $\Fovs$ trend of the opposite sign
+($+7$\% per decade, $p=0.79$) against a transport falling at $-9$\% per decade
+($p=0.0005$), so its fractional-rate ratio is 1.32; ECCO gives 0.30. Eleven years cannot
+separate these quantities, and we report the window rather than omit it because
+it is the only one that satisfies both homogeneity conditions.
+
+\emph{The removal of the net transport.} Taking the net section transport out in
+proportion to $|V|$, so that it is removed where the flow is rather than
+uniformly over the area, changes $T$ by less than 0.6\% and leaves the
+attribution intact: the transport share becomes 0.078 in ORAS5 and 0.012 in
+GLORYS12V1, against 0.068 and 0.012 for the scheme used throughout.
+
+\emph{The window.} Over 1993--2025, the longest window the two eddy-permitting
+products share, both limb-salinity trends are resolvable ($+0.031$~PSU per
+decade, $p=0.004$, in ORAS5 and $+0.071$, $p=0.017$, in GLORYS12V1, a factor of
+2.3 apart rather than the factor of four over the shorter three-product window).
+The ORAS5 transport share on that window is 0.180, and still a minority.
+
+\emph{The section.} Recomputing the whole diagnostic at 25, 28, 30, 32 and
+34.5\degS{} over the matched 1993--2025 window (Fig.~\ref{fig:sign}c), the
+record mean is negative at every latitude in both products, and its interval
+excludes zero everywhere except ORAS5 at 25\degS{} ($-0.004$~Sv). The magnitude
+varies by a factor of 22 in ORAS5 across the full band and by 1.5 in
+GLORYS12V1, and at 25\degS{} the two products disagree by a factor of 22, a
+larger disagreement than any we report at 34.5\degS{}. (The two factors, 22.5
+and 22.6, are close by coincidence.) Excluding 25\degS{}, the
+ORAS5 range narrows to a factor of two. The negative sign is established in
+ORAS5 only poleward of about 28\degS{}. We use 34.5\degS{} because that is
+where the observing array sits and where the diagnostic is defined.
+
+Two further quantities bound what the diagnostic means. The net volume
+transport across the section is $-1.2$~Sv in ORAS5, $-1.2$ in GLORYS12V1 and
+$-1.0$ in ECCO, and removing it in order to define an overturning component
+shifts $\Fovs$ by $+0.009$, $+0.008$ and $+0.007$~Sv. Separately, the
+overturning is not the only freshwater carrier at this section: the azonal
+component is $+0.306$~Sv in ORAS5, $+0.304$ in GLORYS12V1 and $+0.155$ in ECCO,
+opposite in sign to $\Fovs$ and, in the eddy-permitting products, several times
+larger. Its trend is also opposite and, over each product's own record,
+significant: $+1.84$~mSv per year in ORAS5 ($p=0.0002$, $N_{\text{eff}}=21.8$)
+and $+6.68$ in GLORYS12V1 ($p=0.049$, $N_{\text{eff}}=8.5$, so marginal on few
+effective degrees of freedom), both larger in magnitude than the $\Fovs$ trends
+they accompany, against $+0.19$ ($p=0.95$) in ECCO, where the
+detection limit is 14~mSv per year and the null is uninformative. The total freshwater transport
+across 34.5\degS{} is therefore not moving the way $\Fovs$ alone implies, and a
+reader assessing whether the basin is moving deeper into the self-reinforcing
+regime must weigh both. $\Fovs$ is a stability diagnostic defined on the
+overturning component; it is not the freshwater budget of the basin.
+
+\subsection*{Implications for climate models}
+
+CMIP6 historical simulations sit on the other side of zero, but not by a
+majority that can be tested. Over 1950--1980, 16 of 25 models have a positive
+mean $\Fovs$ at 34.5\degS{}, with a median of $+0.053$~Sv against a range of
+$-0.205$ to $+0.405$~Sv (Fig.~\ref{fig:models}a). That count is not
+distinguishable from a coin flip (binomial $p=0.23$), and taking one member per
+model family leaves 18 independent models of which 10 are positive
+($p=0.81$), or 9 if the other member of the one internally inconsistent family
+is chosen ($p=1.00$). The defensible statement is about location rather than
+majority: the model median is $+0.053$~Sv while all three recomputed
+observational estimates lie between $-0.038$ and $-0.132$~Sv, below 72\%, 80\%
+and 88\% of the models respectively. This confirms a bias documented
+previously\cite{Mecking2017,vanWestenDijkstra2024,Weijer2019} and benchmarks it
+against three consistently computed estimates; it does not discover it. The
+model means are over 1950--1980 while the reanalyses cover modern decades, and
+since ORAS5 declines by 1.37~mSv per year the two windows are not equivalent;
+the comparison should be read as a statement about a persistent model offset,
+not as a like-for-like difference of contemporaneous states.
+
+Whether that bias matters for projected rates is a separate question, and the
+test that has been used to answer it has no power. Correlating model mean
+$\Fovs$ against a 19-year overturning trend at 26.5\degN{} over 2005--2023
+gives $r=-0.04$ ($p=0.88$) across 16 models, but the smallest correlation that
+sample could reach significance with is $|r|=0.50$, and 19-year overturning
+trends within a single model's large ensemble already span $-3.5$ to
+$+2.4$~Sv per decade across 50 members of MPI-ESM1-2-LR. A null from such a test
+is guaranteed by internal variability whatever the forced relationship. The
+counting statistic behaves the same way: 2 of 6 models with negative $\Fovs$
+weaken faster than GLORYS12V1 (whose own rate at 26.5\degN{} is $-0.70$~Sv per
+decade) against 6 of 10 with positive $\Fovs$, a Fisher exact $p$ of 0.61, with the same counts against the RAPID rate.
+
+Repeating the test on the forced response, where the signal is large, remains
+negative but is now informative. Across 21 models with historical plus ssp585
+projections to 2100, mean $\Fovs$ and the overturning change from 1850--1900 to
+2081--2100 give $r=-0.20$ ($p=0.40$, 95\% CI $-0.58$ to $+0.26$) against a
+smallest reachable $|r|$ of 0.43 (Fig.~\ref{fig:models}b); on fractional rather
+than absolute change $r=+0.30$ ($p=0.18$). Leaving out one model at a time
+moves the first between $-0.41$ and $-0.05$ and the second between $+0.06$ and
+$+0.45$, so neither is stable.
+
+The reason the two have opposite signs is itself the one significant result in
+this comparison. Model mean $\Fovs$ and the pre-industrial overturning strength
+are strongly correlated ($r=+0.73$, $p=1.5\times10^{-4}$, 95\% CI $+0.44$ to
+$+0.89$, $n=21$): models with a stronger overturning carry a more positive
+$\Fovs$, which is what equation~\eqref{eq:factorisation} predicts given that
+these models mostly carry $\Delta S<0$. Absolute overturning change is
+mechanically tied to the base state while fractional change is not, which is
+why the two rate tests disagree in sign. It also suggests that the CMIP6
+$\Fovs$ bias is in part a symptom of the overturning strength bias rather than
+an independent error in the freshwater budget.
+
+The observed rate is itself weakly constrained. Over 2005--2023 the RAPID array
+gives $-0.89$~Sv per decade at 26.5\degN{}, with an unadjusted $p$ of 0.093
+that becomes 0.21 once the effective sample size is accounted for
+($N_{\text{eff}}=11.9$). The direct observations do not yet establish a
+significant decline over the era in which the reanalyses are best
+constrained\cite{Jackson2024,Terhaar2025}.
+
+\clearpage
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{Fig1_sign.pdf}
+  \caption{\textbf{The sign of the overturning freshwater transport at
+  34.5\degS{}.}
+  \textbf{a}, Annual-mean $\Fovs$. ORAS5, GLORYS12V1 and ECCO-V4r4 are computed
+  here from monthly fields on the contiguous Atlantic section; SODA 3.15.2 is
+  carried over from an annual-field pipeline, is not on the same basis, and is
+  not used in any quantitative claim.
+  \textbf{b}, Record mean (circles) and most recent decade (diamonds) with 95\%
+  circular block-bootstrap intervals, at a 5-year block for the record mean and
+  a 3-year block for the decade. The pale bar spans the intervals obtained for
+  block lengths of 2 to 20 years. Between-product spread is 0.094~Sv, wider than
+  the widest of these intervals (0.073~Sv, GLORYS12V1 across block lengths) and
+  1.5 times the 5-year intervals quoted in the text.
+  \textbf{c}, Mean $\Fovs$ over 1993--2025 against section latitude, with the
+  same intervals. The open marker is the one case whose interval includes zero.}
+  \label{fig:sign}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{Fig2_attribution.pdf}
+  \caption{\textbf{The decline is carried by the salinity contrast, not by the
+  transport.}
+  \textbf{a}, The two factors of equation~\eqref{eq:factorisation}, each as a
+  percentage anomaly from its own record mean, so that a factor which barely
+  moves can be compared with one that moves a great deal. The ORAS5 contrast
+  passes close to zero early in the record, which is why its percentage anomaly
+  is large there.
+  \textbf{b}, Trend in $\Fovs$ split into transport and salinity contributions
+  with 95\% block-bootstrap intervals, and the covariance residual, over each
+  product's own record and over the Argo era.
+  \textbf{c}, Transport share of the change over every non-overlapping epoch
+  pair the record supports (2901 for ORAS5, 151 for GLORYS12V1) at epoch lengths
+  of 10, 13 and 15 years, treated as a sensitivity analysis over window choice.
+  Ticks mark the median, 90th and 95th percentiles and the maximum; the
+  percentage is the fraction of pairs below the dashed 0.25 line.}
+  \label{fig:attribution}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{Fig3_mechanism.pdf}
+  \caption{\textbf{The northward limb salinifies; the southward limb does not.}
+  \textbf{a}, Transport-weighted salinity of the northward limb (solid) and the
+  southward limb (dashed), as anomalies from their record means.
+  \textbf{b}, Zonal-mean salinity trend against depth at the section over
+  1993--2025, drawn bold where the pointwise Santer-adjusted $p$ is below 0.05.
+  The panel is truncated at 3000~m; the abyssal limb discussed in the text
+  begins below 4000~m.
+  Adjacent levels are strongly correlated, so no field-significance claim is
+  made from this panel.
+  \textbf{c}, Transport share of the $\Fovs$ trend under every robustness test,
+  with 95\% block-bootstrap intervals: the full record, the Argo era, two
+  alternative definitions of the overturning strength, and, for ORAS5, the
+  homogeneous consolidated stream alone.}
+  \label{fig:mechanism}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{Fig4_models.pdf}
+  \caption{\textbf{CMIP6 lies above the observational estimates, but cannot be
+  sorted by the sign of $\Fovs$.}
+  \textbf{a}, Mean $\Fovs$ at 34.5\degS{} over 1950--1980 in 25 CMIP6 models,
+  with the reanalysis estimates marked; SODA is shown for continuity with
+  Fig.~\ref{fig:sign} and is not used quantitatively. No offset or bias
+  correction is applied to either models or reanalyses.
+  \textbf{b}, Model mean $\Fovs$ against the overturning change at 26.5\degN{}
+  from 1850--1900 to 2081--2100 in the 21 models with historical plus ssp585
+  projections ($r=-0.20$, $p=0.40$, smallest reachable $|r|=0.43$). This
+  replaces a 19-year single-member trend test, whose null result is guaranteed
+  by internal variability: 19-year trends span $-3.5$ to $+2.4$~Sv per decade
+  across 50 members of the MPI-ESM1-2-LR large ensemble.}
+  \label{fig:models}
+\end{figure}

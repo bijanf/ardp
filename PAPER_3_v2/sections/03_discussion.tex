@@ -1,0 +1,147 @@
+\section*{Discussion}
+
+Two statements about $\Fovs$ have been run together, and they need to be
+separated. The first is that the Atlantic freshwater budget at 34.5\degS{} sits
+on the side where the salt-advection feedback is self-reinforcing. Three
+reanalyses spanning two ocean models and three assimilation methods agree on
+that, with intervals clear of zero at every block length we tried, at every
+latitude from 28 to 34.5\degS{} in the two products run on the latitude ladder, and in the most recent decade of each record.
+The second is that the observed decline in $\Fovs$ measures a weakening
+overturning. That statement does not survive contact with the same data.
+
+The reason is a rate comparison rather than a ratio. In the two products that
+decline, $\Fovs$ is changing at 36\% and 52\% of its own magnitude per decade
+while the volume transport that carries it changes at 2.6\% and 0.6\%. Passed
+through equation~\eqref{eq:factorisation} this makes the transport contribution
+between 1\% and 18\% of the trend depending on how the overturning is defined
+and over which window, with individual intervals reaching 27\%, and in most
+configurations it has the opposite sign to the total. It is a minority
+contribution under every test we ran in which the share is identified, though it
+is not definition-independent:
+it rises systematically as the definition of the overturning narrows from the
+whole northward limb to the streamfunction maximum. Studies that read a falling
+$\Fovs$ as a proxy for AMOC weakening, including the early-warning arguments
+built on the $\Fovs$ minimum\cite{vanWesten2024} and an earlier, unpublished
+version of our own analysis of these data, have attributed to the circulation a
+change that the circulation did not make.
+
+What did make it is a widening of the salinity contrast between the limbs,
+carried by the northward limb while the southward limb does not change. How much
+of that is a water-mass change rather than a redistribution of transport in
+depth differs between products: in GLORYS12V1 it is 94\%, in ORAS5 only about
+two thirds, with the salinity-only part there not individually significant. The
+coarse upper-to-abyssal redistribution is small in both, and excluding the
+abyssal cell makes the salinification larger rather than smaller, so what
+remains in ORAS5 is a rearrangement of transport within the upper limb.
+
+The part of this that observations can check, they support. Holding the
+circulation fixed and letting only the EN4 objective analysis vary, the
+northward limb salinifies at $+0.026$ to $+0.028$~PSU per decade
+($p\le0.0005$) while the southward limb is flat. The limb asymmetry is
+therefore present in a salinity field that no model integrates forward, and the
+same construction returns a negative $\Fovs$, $-0.080$ to $-0.128$~Sv, from
+observed salinity. The rate is less secure: ORAS5 runs about twice the
+observation-only value over the same years while GLORYS12V1 is within 30\% of
+it, and part of that gap is expected because EN4 relaxes to climatology where
+profiles are sparse. The direction should be trusted; the ORAS5 rate should
+not.
+It also reframes what the diagnostic is sensing. A salinifying upper limb widens
+the limb contrast and drives $\Fovs$ downward regardless of what the overturning
+does, which is why $\Fovs$ and the transport are so weakly coupled on the
+timescales the records resolve. It is consistent in direction with the South
+Atlantic salinity accumulation attributed to a weakening
+overturning\cite{Zhu2020,Zhu2023}, but our decomposition locates the change in
+the transport-weighted upper limb rather than in the surface field, and we find
+no transport change to accompany it.
+
+Two things temper this. The first is that $\Fovs$ is not the freshwater budget
+of the basin. The azonal component at this section is several times larger, of
+the opposite sign, and trending upward by more than $\Fovs$ is trending
+downward: significantly so in ORAS5, and marginally in GLORYS12V1 ($p=0.049$ on
+8.5 effective degrees of freedom). Whether the basin as a whole is
+moving deeper into the self-reinforcing regime is therefore not settled by
+$\Fovs$ alone, and we make no claim that it is. Nor do we evaluate the northern
+boundary: the indicator in the theory we cite is the freshwater convergence
+between the southern and northern boundaries, and $\Fovs$ is a proxy for it
+whose adequacy we have not tested. Both are natural next steps and neither is
+addressed here.
+
+The second is ECCO-V4r4, and it is a genuine disagreement rather than a caveat.
+It is the only product here that is dynamically consistent by construction and
+therefore the only one whose freshwater budget closes without assimilation
+increments, and it shows no decline in $\Fovs$. Its limb salinities are flat only in the
+aggregate: its upper cell salinifies at $+0.022$~PSU per decade ($p=0.025$),
+the same sign as the other two products, while a significant redistribution
+towards its abyssal cell cancels the effect. Against GLORYS12V1 this is
+not an underpowered null: on the window the two share, ECCO's minimum detectable
+limb-salinity trend of 0.020~PSU per decade is well below the GLORYS12V1 rate of
+$+0.083$, so ECCO could have seen that salinification and did not. Against
+ORAS5, whose common-window rate is $+0.019$, the comparison is inconclusive.
+ECCO is also the one product in which the coarse limb redistribution is
+significant and acts to cancel a positive water-mass term, so its flat limb
+salinity is a cancellation rather than an absence of change. The mechanism we report is therefore a
+property of the two sequential-assimilation products, and it remains possible
+that what they are tracking is the arrival of the Argo array rather than a
+change in the ocean. The evidence against that reading is that the attribution
+is unchanged in every window and under every inhomogeneity correction we tried,
+and that EN4 reproduces the limb asymmetry independently. The evidence for it is
+that both sequential-assimilation products step at an observing-system boundary:
+GLORYS12V1's decline is a level shift at the 2004 Argo transition rather than a
+trend, and the ORAS5 record steps across its consolidated-to-operational join,
+significantly so in the limb salinity itself ($+0.038$~PSU, $p=0.029$), after
+which its Argo-era trend is no longer significant. Neither product's \emph{rate}
+of decline should be taken at face value. We could not obtain the salinity
+assimilation increments that would settle the question directly, and we regard
+it as open.
+
+Beyond that, all of these products are forced by the ERA family, so
+cross-product agreement is a weaker form of independence than the product count
+suggests: they differ in ocean model and in assimilation scheme, but not in the
+atmosphere driving them. The Copernicus distribution of ORAS5 publishes one of
+the system's five ensemble members\cite{Zuo2019}, so cross-product spread has to
+stand in for within-product spread throughout, and that spread, 0.094~Sv, exceeds even the
+widest within-product interval\cite{Jackson2019}. We compute
+ECCO on the distributed 0.5\degree{} interpolation rather than the native LLC90
+grid, which does not conserve transport exactly, and since ECCO is now the
+load-bearing counterexample that limitation matters more than it would if it
+were one supporting vote among four. The three products differ by 46\% in northward-limb transport
+at this section (14.6 to 21.3~Sv), and we have not applied a published SAMBA or
+SAMOC mean to arbitrate between them. That omission is not neutral: the weakest
+of the three is ECCO, which is also our counterexample, so a comparison against
+the observed mean transport could as easily undermine the counterexample as
+support it, and it should be done before these numbers are used to weigh one
+product against another. The reanalyses are also least
+constrained by observations exactly where we evaluate them, since the observing
+network at 34.5\degS{} is far sparser than the sustained array at
+26.5\degN{}\cite{Meinen2018,Cunningham2007,GarzoliMatano2011,FrajkaWilliams2019}.
+
+For models the implication cuts two ways. Correcting the freshwater transport
+bias is necessary if a model is to represent the salt-advection feedback with
+the right sign, and the CMIP6 median sits above every observational estimate we
+computed. But the majority count usually quoted is not distinguishable from a
+coin flip once model genealogy is accounted for, and we find no detectable
+relationship between the sign of $\Fovs$ and the rate at which a model's
+overturning weakens, either over the satellite era or over the forced response
+to 2100, with a sample that could not have detected a moderate one. What we do
+find is that model $\Fovs$ is strongly correlated with pre-industrial
+overturning strength, which suggests that the freshwater transport bias is
+partly a symptom of the overturning strength bias. If that is right, correcting
+$\Fovs$ in isolation is the wrong target, and the two biases should be
+addressed together.
+
+What would settle the transient question is observational rather than
+analytical. The claim we make is now a claim about limb salinities, which
+sustained hydrography at 34.5\degS{} and the repeat sections that cross it can
+test directly, without passing through an assimilating model; projecting an
+observation-only salinity analysis onto the same limb mask is the single most
+informative next step and we regard it as the test this result should be judged
+by. Sustained transport monitoring at this latitude, extended towards the length
+RAPID has reached at 26.5\degN{}, would constrain both factors of
+equation~\eqref{eq:factorisation} at once. Reanalyses forced outside the ERA
+family would test how much of the present agreement comes from shared boundary
+conditions, and release of all five ORAS5 ensemble members would separate
+assimilation noise from ocean signal within a single product. Until then the
+defensible statement is the narrow one: the Atlantic freshwater budget sits
+where the salt-advection feedback is self-reinforcing, and in the products that
+decline, the recent decline in that diagnostic records a salinifying upper limb
+rather than a slowing circulation.

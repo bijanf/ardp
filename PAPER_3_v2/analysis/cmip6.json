@@ -1,0 +1,629 @@
+{
+  "baseline_window": [
+    1950,
+    1980
+  ],
+  "n_models": 25,
+  "note_offset": "No offset or bias correction is applied. The previous Methods text described a correction against published pre-industrial control values; no such correction exists in the pipeline.",
+  "distribution": {
+    "median_Sv": 0.05317979340615102,
+    "mean_Sv": 0.06276205547095871,
+    "min_Sv": -0.20479173998042194,
+    "max_Sv": 0.4050012765964603,
+    "n_positive": 16,
+    "n_negative": 9,
+    "binomial_p": 0.2295229434967041
+  },
+  "genealogy_aware": {
+    "n_independent_models": 18,
+    "representatives": [
+      "ACCESS-ESM1-5",
+      "BCC-CSM2-MR",
+      "CESM2",
+      "CIESM",
+      "CMCC-ESM2",
+      "CNRM-CM6-1",
+      "CanESM5",
+      "EC-Earth3",
+      "FGOALS-f3-L",
+      "FIO-ESM-2-0",
+      "GFDL-CM4",
+      "GISS-E2-1-G",
+      "HadGEM3-GC31-LL",
+      "IPSL-CM6A-LR",
+      "MIROC6",
+      "MPI-ESM1-2-LR",
+      "MRI-ESM2-0",
+      "NESM3"
+    ],
+    "n_positive": 10,
+    "n_negative": 8,
+    "median_Sv": 0.049642706443576046,
+    "binomial_p": 0.8145294189453125,
+    "alternative_MPI_representative": {
+      "representative": "MPI-ESM1-2-HR",
+      "n_positive": 9,
+      "n_negative": 9,
+      "binomial_p": 1.0
+    }
+  },
+  "source_discrepancy": {
+    "n_compared": 16,
+    "max_abs_diff_Sv": 0.04079203864679895,
+    "rms_diff_Sv": 0.01593054412252097,
+    "sign_flips": [],
+    "worst": [
+      {
+        "model": "MPI-ESM1-2-LR",
+        "wp8": 0.093,
+        "csv": 0.13379203864679895,
+        "diff": -0.04079203864679895
+      },
+      {
+        "model": "FGOALS-g3",
+        "wp8": 0.347,
+        "csv": 0.3234907209712599,
+        "diff": 0.02350927902874006
+      },
+      {
+        "model": "CanESM5",
+        "wp8": -0.04,
+        "csv": -0.06039955304351918,
+        "diff": 0.020399553043519182
+      },
+      {
+        "model": "NESM3",
+        "wp8": -0.187,
+        "csv": -0.16708610325564713,
+        "diff": -0.01991389674435287
+      },
+      {
+        "model": "GFDL-CM4",
+        "wp8": 0.062,
+        "csv": 0.04610561948100107,
+        "diff": 0.015894380518998927
+      }
+    ]
+  },
+  "rate_test_short_window": {
+    "window": [
+      2005,
+      2023
+    ],
+    "n": 16,
+    "pearson_r": -0.04189839926276215,
+    "pearson_p": 0.8775582976684662,
+    "pearson_ci": [
+      -0.5266724991950593,
+      0.463439915216784
+    ],
+    "spearman_rho": 0.02941176470588235,
+    "spearman_p": 0.9138955872505002,
+    "min_detectable_r": 0.49730903545939303,
+    "leave_one_out": {
+      "min_r": -0.2070424731758065,
+      "max_r": 0.039970977547758524,
+      "most_influential": [
+        {
+          "dropped": "GISS-E2-1-G",
+          "r": -0.2070424731758065
+        },
+        {
+          "dropped": "CNRM-CM6-1",
+          "r": -0.13131812059740186
+        },
+        {
+          "dropped": "MPI-ESM1-2-HR",
+          "r": 0.039970977547758524
+        }
+      ]
+    }
+  },
+  "internal_variability_floor": {
+    "source": "MPI-ESM1-2-LR large ensemble",
+    "n_members": 50,
+    "window": [
+      2005,
+      2023
+    ],
+    "mean_trend_Sv_per_dec": -0.7177521628664268,
+    "sd_trend_Sv_per_dec": 0.9779299657755821,
+    "range_Sv_per_dec": [
+      -3.4536642108047166,
+      2.4225704962746963
+    ],
+    "comment": "Spread of 19-year overturning trends within a single model, i.e. with the forced response held fixed. Any across-model correlation using a 19-year single-member trend is competing against this."
+  },
+  "rate_test_forced_absolute": {
+    "base_window": [
+      1850,
+      1900
+    ],
+    "end_window": [
+      2081,
+      2100
+    ],
+    "n": 21,
+    "models": [
+      "ACCESS-CM2",
+      "ACCESS-ESM1-5",
+      "CESM2",
+      "CESM2-WACCM",
+      "CMCC-CM2-SR5",
+      "CMCC-ESM2",
+      "CNRM-CM6-1",
+      "CanESM5",
+      "FGOALS-f3-L",
+      "FGOALS-g3",
+      "FIO-ESM-2-0",
+      "GFDL-CM4",
+      "GISS-E2-1-G",
+      "HadGEM3-GC31-LL",
+      "IPSL-CM6A-LR",
+      "MIROC6",
+      "MPI-ESM1-2-HR",
+      "MPI-ESM1-2-LR",
+      "MRI-ESM2-0",
+      "NESM3",
+      "UKESM1-0-LL"
+    ],
+    "pearson_r": -0.1951479999218918,
+    "pearson_p": 0.3965965458752517,
+    "pearson_ci": [
+      -0.5781370191257753,
+      0.25830650055831733
+    ],
+    "spearman_rho": -0.24025974025974026,
+    "spearman_p": 0.29415239923972397,
+    "min_detectable_r": 0.4328575563165287,
+    "leave_one_out": {
+      "min_r": -0.4053649923932796,
+      "max_r": -0.053070856432401385,
+      "most_influential": [
+        {
+          "dropped": "MRI-ESM2-0",
+          "r": -0.4053649923932796
+        },
+        {
+          "dropped": "FGOALS-f3-L",
+          "r": -0.3540283255861866
+        },
+        {
+          "dropped": "NESM3",
+          "r": -0.053070856432401385
+        }
+      ]
+    }
+  },
+  "rate_test_forced_fractional": {
+    "base_window": [
+      1850,
+      1900
+    ],
+    "end_window": [
+      2081,
+      2100
+    ],
+    "n": 21,
+    "models": [
+      "ACCESS-CM2",
+      "ACCESS-ESM1-5",
+      "CESM2",
+      "CESM2-WACCM",
+      "CMCC-CM2-SR5",
+      "CMCC-ESM2",
+      "CNRM-CM6-1",
+      "CanESM5",
+      "FGOALS-f3-L",
+      "FGOALS-g3",
+      "FIO-ESM-2-0",
+      "GFDL-CM4",
+      "GISS-E2-1-G",
+      "HadGEM3-GC31-LL",
+      "IPSL-CM6A-LR",
+      "MIROC6",
+      "MPI-ESM1-2-HR",
+      "MPI-ESM1-2-LR",
+      "MRI-ESM2-0",
+      "NESM3",
+      "UKESM1-0-LL"
+    ],
+    "pearson_r": 0.3010430196530651,
+    "pearson_p": 0.18481011245747617,
+    "pearson_ci": [
+      -0.15016599485839308,
+      0.6484634522396863
+    ],
+    "spearman_rho": 0.2,
+    "spearman_p": 0.38472423043145215,
+    "min_detectable_r": 0.4328575563165287,
+    "leave_one_out": {
+      "min_r": 0.0610629758866999,
+      "max_r": 0.4520729326259084,
+      "most_influential": [
+        {
+          "dropped": "FGOALS-f3-L",
+          "r": 0.0610629758866999
+        },
+        {
+          "dropped": "NESM3",
+          "r": 0.4520729326259084
+        },
+        {
+          "dropped": "MRI-ESM2-0",
+          "r": 0.18228523278194522
+        }
+      ]
+    }
+  },
+  "forced_response": {
+    "NESM3": {
+      "amoc_base_Sv": 5.931948277198299,
+      "amoc_end_Sv": 4.255804003582928,
+      "delta_Sv": -1.676144273615371,
+      "delta_pct": -28.25621861974538,
+      "fovs_Sv": -0.16708610325564713
+    },
+    "IPSL-CM6A-LR": {
+      "amoc_base_Sv": 10.486053764410748,
+      "amoc_end_Sv": 6.195960944318342,
+      "delta_Sv": -4.290092820092406,
+      "delta_pct": -40.91236719244004,
+      "fovs_Sv": -0.16199975369585864
+    },
+    "CNRM-CM6-1": {
+      "amoc_base_Sv": 14.254782302750186,
+      "amoc_end_Sv": 6.330444765412666,
+      "delta_Sv": -7.924337537337521,
+      "delta_pct": -55.590729967224206,
+      "fovs_Sv": -0.10478285840417384
+    },
+    "MIROC6": {
+      "amoc_base_Sv": 13.61781552828987,
+      "amoc_end_Sv": 5.944338191356802,
+      "delta_Sv": -7.673477336933069,
+      "delta_pct": -56.34881248752462,
+      "fovs_Sv": -0.08682048115054188
+    },
+    "MPI-ESM1-2-HR": {
+      "amoc_base_Sv": 12.371192957490631,
+      "amoc_end_Sv": 7.098311012780999,
+      "delta_Sv": -5.272881944709632,
+      "delta_pct": -42.622259331239,
+      "fovs_Sv": -0.028556912145015476
+    },
+    "CanESM5": {
+      "amoc_base_Sv": 9.397618344263563,
+      "amoc_end_Sv": 4.9242415252157965,
+      "delta_Sv": -4.4733768190477665,
+      "delta_pct": -47.6011756933966,
+      "fovs_Sv": -0.06039955304351918
+    },
+    "UKESM1-0-LL": {
+      "amoc_base_Sv": 12.686464487399421,
+      "amoc_end_Sv": 7.382281150303373,
+      "delta_Sv": -5.304183337096048,
+      "delta_pct": -41.809783508749206,
+      "fovs_Sv": 0.04886207188509047
+    },
+    "CMCC-CM2-SR5": {
+      "amoc_base_Sv": 16.273439626081412,
+      "amoc_end_Sv": 9.333222682245061,
+      "delta_Sv": -6.940216943836351,
+      "delta_pct": -42.64751093378734,
+      "fovs_Sv": 0.045897556994590735
+    },
+    "GFDL-CM4": {
+      "amoc_base_Sv": 14.892624680899077,
+      "amoc_end_Sv": 7.124644509643554,
+      "delta_Sv": -7.767980171255523,
+      "delta_pct": -52.159913633078716,
+      "fovs_Sv": 0.04610561948100107
+    },
+    "ACCESS-CM2": {
+      "amoc_base_Sv": 15.321232617483222,
+      "amoc_end_Sv": 8.439389299748694,
+      "delta_Sv": -6.881843317734528,
+      "delta_pct": -44.917034350627794,
+      "fovs_Sv": 0.0750785975204134
+    },
+    "MPI-ESM1-2-LR": {
+      "amoc_base_Sv": 12.479157808764423,
+      "amoc_end_Sv": 8.448502418719388,
+      "delta_Sv": -4.030655390045036,
+      "delta_pct": -32.29909783827083,
+      "fovs_Sv": 0.13379203864679895
+    },
+    "HadGEM3-GC31-LL": {
+      "amoc_base_Sv": 13.859206464461101,
+      "amoc_end_Sv": 7.689544792019303,
+      "delta_Sv": -6.169661672441798,
+      "delta_pct": -44.51670222434844,
+      "fovs_Sv": 0.08875304199024485
+    },
+    "CESM2": {
+      "amoc_base_Sv": 15.231563050337462,
+      "amoc_end_Sv": 5.7685475860426205,
+      "delta_Sv": -9.463015464294841,
+      "delta_pct": -62.12767155295453,
+      "fovs_Sv": 0.15628911280720534
+    },
+    "FIO-ESM-2-0": {
+      "amoc_base_Sv": 18.187624894753853,
+      "amoc_end_Sv": 9.522796829859924,
+      "delta_Sv": -8.664828064893928,
+      "delta_pct": -47.6413391799897,
+      "fovs_Sv": 0.19576930813571228
+    },
+    "GISS-E2-1-G": {
+      "amoc_base_Sv": 21.46287286034997,
+      "amoc_end_Sv": 8.85325317497978,
+      "delta_Sv": -12.609619685370191,
+      "delta_pct": -58.750847416446845,
+      "fovs_Sv": 0.2394260605324067
+    },
+    "FGOALS-g3": {
+      "amoc_base_Sv": 19.828456392700417,
+      "amoc_end_Sv": 11.776804676820344,
+      "delta_Sv": -8.051651715880073,
+      "delta_pct": -40.60654826789332,
+      "fovs_Sv": 0.3234907209712599
+    },
+    "ACCESS-ESM1-5": {
+      "amoc_base_Sv": 18.14189861145098,
+      "amoc_end_Sv": 13.127823513599997,
+      "delta_Sv": -5.0140750978509825,
+      "delta_pct": -27.638094585569725,
+      "fovs_Sv": 0.07719928492167454
+    },
+    "FGOALS-f3-L": {
+      "amoc_base_Sv": 23.98153547294118,
+      "amoc_end_Sv": 19.4826341376,
+      "delta_Sv": -4.498901335341177,
+      "delta_pct": -18.759855224522102,
+      "fovs_Sv": 0.4050012765964603
+    },
+    "CMCC-ESM2": {
+      "amoc_base_Sv": 18.002789034666666,
+      "amoc_end_Sv": 10.719702783999999,
+      "delta_Sv": -7.283086250666667,
+      "delta_pct": -40.4553218761946,
+      "fovs_Sv": 0.05317979340615102
+    },
+    "MRI-ESM2-0": {
+      "amoc_base_Sv": 17.53521571639216,
+      "amoc_end_Sv": 6.389532544,
+      "delta_Sv": -11.14568317239216,
+      "delta_pct": -63.56171120252044,
+      "fovs_Sv": -0.20479173998042194
+    },
+    "CESM2-WACCM": {
+      "amoc_base_Sv": 18.0935605107451,
+      "amoc_end_Sv": 10.5289540608,
+      "delta_Sv": -7.564606449945099,
+      "delta_pct": -41.80828005329718,
+      "fovs_Sv": 0.137438133800732
+    }
+  },
+  "amoc_diagnostic": {
+    "experiments": "historical + ssp585, concatenated",
+    "variant_label": "r1i1p1f1",
+    "grid": "gn (native)",
+    "variables": "msftmz, or msftyz where msftmz is unavailable",
+    "latitude": 26.5,
+    "reduction": "maximum over depths at or below 500 m, annual means",
+    "realisations_per_model": 1
+  },
+  "base_state_relation": {
+    "n": 21,
+    "pearson_r": 0.7336743375563943,
+    "pearson_p": 0.00015368262767818803,
+    "pearson_ci": [
+      0.4419590667229096,
+      0.885052054402972
+    ],
+    "amoc_base_range_Sv": [
+      5.931948277198299,
+      23.98153547294118
+    ],
+    "comment": "Models with a stronger pre-industrial overturning have a more positive F_ovS. Absolute AMOC change is mechanically tied to the base state while fractional change is not, which is why the two rate tests give opposite-signed correlations.",
+    "leave_one_out": {
+      "min_r": 0.6505606047474445,
+      "max_r": 0.8486768126071559,
+      "most_influential": [
+        {
+          "dropped": "MRI-ESM2-0",
+          "r": 0.8486768126071559
+        },
+        {
+          "dropped": "FGOALS-f3-L",
+          "r": 0.6505606047474445
+        },
+        {
+          "dropped": "NESM3",
+          "r": 0.6989587676391924
+        }
+      ]
+    }
+  },
+  "per_model": [
+    {
+      "model": "MRI-ESM2-0",
+      "F_ov_Sv": -0.20479173998042194,
+      "family": "MRI-ESM2-0"
+    },
+    {
+      "model": "NESM3",
+      "F_ov_Sv": -0.16708610325564713,
+      "family": "NESM3"
+    },
+    {
+      "model": "IPSL-CM6A-LR",
+      "F_ov_Sv": -0.16199975369585864,
+      "family": "IPSL-CM6A-LR"
+    },
+    {
+      "model": "CNRM-CM6-1",
+      "F_ov_Sv": -0.10478285840417384,
+      "family": "CNRM-CM6-1"
+    },
+    {
+      "model": "MIROC6",
+      "F_ov_Sv": -0.08682048115054188,
+      "family": "MIROC6"
+    },
+    {
+      "model": "CIESM",
+      "F_ov_Sv": -0.06699151296531805,
+      "family": "CIESM"
+    },
+    {
+      "model": "CanESM5",
+      "F_ov_Sv": -0.06039955304351918,
+      "family": "CanESM5"
+    },
+    {
+      "model": "MPI-ESM1-2-HR",
+      "F_ov_Sv": -0.028556912145015476,
+      "family": "MPI"
+    },
+    {
+      "model": "EC-Earth3",
+      "F_ov_Sv": -0.013378687420595135,
+      "family": "EC-Earth3"
+    },
+    {
+      "model": "CMCC-CM2-SR5",
+      "F_ov_Sv": 0.045897556994590735,
+      "family": "CMCC"
+    },
+    {
+      "model": "GFDL-CM4",
+      "F_ov_Sv": 0.04610561948100107,
+      "family": "GFDL-CM4"
+    },
+    {
+      "model": "UKESM1-0-LL",
+      "F_ov_Sv": 0.04886207188509047,
+      "family": "UKMO"
+    },
+    {
+      "model": "CMCC-ESM2",
+      "F_ov_Sv": 0.05317979340615102,
+      "family": "CMCC"
+    },
+    {
+      "model": "ACCESS-CM2",
+      "F_ov_Sv": 0.0750785975204134,
+      "family": "ACCESS"
+    },
+    {
+      "model": "ACCESS-ESM1-5",
+      "F_ov_Sv": 0.07719928492167454,
+      "family": "ACCESS"
+    },
+    {
+      "model": "HadGEM3-GC31-LL",
+      "F_ov_Sv": 0.08875304199024485,
+      "family": "UKMO"
+    },
+    {
+      "model": "MPI-ESM1-2-LR",
+      "F_ov_Sv": 0.13379203864679895,
+      "family": "MPI"
+    },
+    {
+      "model": "CESM2-WACCM",
+      "F_ov_Sv": 0.137438133800732,
+      "family": "CESM2"
+    },
+    {
+      "model": "BCC-CSM2-MR",
+      "F_ov_Sv": 0.15012678346339653,
+      "family": "BCC-CSM2-MR"
+    },
+    {
+      "model": "CESM2",
+      "F_ov_Sv": 0.15628911280720534,
+      "family": "CESM2"
+    },
+    {
+      "model": "FIO-ESM-2-0",
+      "F_ov_Sv": 0.19576930813571228,
+      "family": "FIO-ESM-2-0"
+    },
+    {
+      "model": "GISS-E2-1-G",
+      "F_ov_Sv": 0.2394260605324067,
+      "family": "GISS-E2-1-G"
+    },
+    {
+      "model": "TaiESM1",
+      "F_ov_Sv": 0.2874495876819208,
+      "family": "CESM2"
+    },
+    {
+      "model": "FGOALS-g3",
+      "F_ov_Sv": 0.3234907209712599,
+      "family": "FGOALS"
+    },
+    {
+      "model": "FGOALS-f3-L",
+      "F_ov_Sv": 0.4050012765964603,
+      "family": "FGOALS"
+    }
+  ],
+  "counting_test": {
+    "GLORYS12": {
+      "threshold_Sv_per_dec": -0.7018920069341172,
+      "negative_fovs_faster": [
+        2,
+        6
+      ],
+      "positive_fovs_faster": [
+        6,
+        10
+      ],
+      "fisher_p": 0.6083916083916083,
+      "odds_ratio": 0.3333333333333333
+    },
+    "RAPID": {
+      "threshold_Sv_per_dec": -0.8887519202105563,
+      "negative_fovs_faster": [
+        2,
+        6
+      ],
+      "positive_fovs_faster": [
+        6,
+        10
+      ],
+      "fisher_p": 0.6083916083916083,
+      "odds_ratio": 0.3333333333333333
+    },
+    "ORAS5": {
+      "threshold_Sv_per_dec": -1.7383382035962018,
+      "negative_fovs_faster": [
+        0,
+        6
+      ],
+      "positive_fovs_faster": [
+        0,
+        10
+      ],
+      "fisher_p": 1.0,
+      "odds_ratio": null
+    }
+  },
+  "rapid": {
+    "window": [
+      2005,
+      2023
+    ],
+    "n": 19,
+    "trend_Sv_per_dec": -0.8887519202105563,
+    "p_ols": 0.09307506316861518,
+    "p_santer": 0.20515595230067243,
+    "n_eff": 11.879422714211781,
+    "note": "The two values previously in circulation, 0.093 and 0.205, are the unadjusted and Santer-adjusted p for the same trend."
+  }
+}
