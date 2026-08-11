@@ -29,3 +29,7 @@ ideas/
 *.synctex.gz
 PAPER_3_v2/*.log
 PAPER_3_v2/submission/
+
+# internal working notes — never commit
+PAPER_3_v2/CANONICAL_FACTS.md
+PAPER_3_v2/STATE.md
