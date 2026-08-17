@@ -33,3 +33,9 @@ PAPER_3_v2/submission/
 # internal working notes — never commit
 PAPER_3_v2/CANONICAL_FACTS.md
 PAPER_3_v2/STATE.md
+
+# Manuscript sources stay out of the public repo
+PAPER_3_v2/Main*
+PAPER_3_v2/sections/
+PAPER_3_v2/*submission*.zip
+paper3/
