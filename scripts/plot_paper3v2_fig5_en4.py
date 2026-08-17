@@ -122,10 +122,11 @@ def limb_panel(ax, years, block, title, note) -> None:
         ax.plot(years, slope * years + (anom.mean() - slope * years.mean()),
                 color=colour, lw=1.4,
                 ls="-" if fit["p"] < 0.05 else (0, (2.4, 1.4)), alpha=0.95)
-        sig = "" if fit["p"] < 0.05 else " (n.s.)"
+        sig = "" if fit["p"] < 0.05 else " n.s."
+        short = label.split()[0]
         ax.text(0.03, 0.965 - 0.075 * row,
-                f"{label}: {fit['trend']:+.3f} PSU per decade{sig}",
-                transform=ax.transAxes, color=colour, fontsize=5,
+                f"{short}: {fit['trend']:+.3f} PSU dec$^{{-1}}${sig}",
+                transform=ax.transAxes, color=colour, fontsize=4.6,
                 ha="left", va="top")
     ax.axhline(0.0, color="0.55", lw=0.4, zorder=0)
     # Reserve a clear band under the data for the note rather than writing it
@@ -133,7 +134,7 @@ def limb_panel(ax, years, block, title, note) -> None:
     span = hi - lo
     pad_bot = 0.12 + 0.11 * n_note
     ax.set_ylim(lo - pad_bot * span, hi + 0.34 * span)
-    ax.text(0.03, 0.018, note, transform=ax.transAxes, fontsize=4.6,
+    ax.text(0.03, 0.018, note, transform=ax.transAxes, fontsize=4.2,
             color="0.35", ha="left", va="bottom")
     ax.set_xlabel("Year")
     ax.set_ylabel("Limb salinity anomaly (PSU)")
@@ -153,15 +154,16 @@ def main() -> None:
     fc = blk["full_column"]
     limb_panel(
         axes[0], years, fc, "EN4 salinity, full column",
-        f"southward limb: {fc['frac_south_below_argo_mean']*100:.0f}% of transport weight below 2000 m\n"
-        f"mean EN4 observation weight  north {fc['obsw_north']['mean']:.2f}   south {fc['obsw_south']['mean']:.2f}",
+        f"{fc['frac_south_below_argo_mean']*100:.0f}% of southward-limb weight\n"
+        f"lies below 2000 m; EN4 obs weight\n"
+        f"north {fc['obsw_north']['mean']:.2f}, south {fc['obsw_south']['mean']:.2f}",
     )
     panel_letter(axes[0], "a")
 
     up = blk["upper_2000m"]
     limb_panel(
-        axes[1], years, up, "EN4 salinity, both limbs within upper 2000 m",
-        "both limbs inside the core-Argo layer",
+        axes[1], years, up, "EN4 salinity, upper 2000 m only",
+        "both limbs inside the\ncore-Argo layer",
     )
     panel_letter(axes[1], "b")
 
