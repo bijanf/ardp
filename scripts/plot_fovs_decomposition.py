@@ -175,7 +175,11 @@ def main():
         ax.set_ylim(args.depth_max, 0)
         ax.set_xlabel(xlabel, fontsize=6)
         ax.tick_params(labelsize=5)
-        ax.legend(fontsize=5, loc="lower right")
+        leg = ax.legend(fontsize=5, loc="lower right", frameon=True,
+                        framealpha=0.92, facecolor="white",
+                        edgecolor="0.85")
+        leg.get_frame().set_linewidth(0.3)
+        leg.set_zorder(20)
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
         ax.text(0.04, 0.96, label_panel, transform=ax.transAxes,
