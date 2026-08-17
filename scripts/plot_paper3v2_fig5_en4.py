@@ -107,6 +107,7 @@ def panel_letter(ax: plt.Axes, letter: str, x: float = -0.17) -> None:
 
 
 def limb_panel(ax, years, block, title, note) -> None:
+    n_note = note.count("\n") + 1
     lo, hi = np.inf, -np.inf
     for row, (key, colour, style, label) in enumerate(
         (("S_north", C_NORTH, "-", "northward limb"),
@@ -126,11 +127,14 @@ def limb_panel(ax, years, block, title, note) -> None:
                 f"{label}: {fit['trend']:+.3f} PSU per decade{sig}",
                 transform=ax.transAxes, color=colour, fontsize=5,
                 ha="left", va="top")
-    ax.text(0.03, 0.03, note, transform=ax.transAxes, fontsize=4.6,
-            color="0.35", ha="left", va="bottom")
     ax.axhline(0.0, color="0.55", lw=0.4, zorder=0)
+    # Reserve a clear band under the data for the note rather than writing it
+    # over the series.
     span = hi - lo
-    ax.set_ylim(lo - 0.14 * span, hi + 0.34 * span)
+    pad_bot = 0.12 + 0.11 * n_note
+    ax.set_ylim(lo - pad_bot * span, hi + 0.34 * span)
+    ax.text(0.03, 0.018, note, transform=ax.transAxes, fontsize=4.6,
+            color="0.35", ha="left", va="bottom")
     ax.set_xlabel("Year")
     ax.set_ylabel("Limb salinity anomaly (PSU)")
     ax.set_title(title, fontsize=6, pad=3)

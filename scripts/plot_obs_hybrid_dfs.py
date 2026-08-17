@@ -64,7 +64,7 @@ def main() -> None:
     ax_l.set_ylim(1000, 0)
     ax_l.set_xlabel(r"observed $\Delta\bar{S}$ (PSU), 2018-2024 minus 2006-2012")
     ax_l.set_ylabel("depth (m)")
-    ax_l.set_title("(a) Observed salinity change at 34.5$^\\circ$S", loc="left")
+    ax_l.set_title("a   Observed salinity change at 34.5$^\\circ$S", loc="left")
     ax_l.legend(frameon=False, loc="lower right")
 
     # ----- right: own vs hybrid delta_s (reference windows) -----
@@ -114,7 +114,7 @@ def main() -> None:
     ax_r.set_xticklabels(prods, rotation=12)
     ax_r.set_ylabel(r"salinity-driven component $\Delta F_s$ (mSv)")
     ax_r.set_title(
-        "(b) Own vs observation-constrained $\\Delta F_s$\n"
+        "b   Own vs observation-constrained $\\Delta F_s$\n"
         "(identical 2006-2012 vs 2018-2024 windows)",
         loc="left",
     )

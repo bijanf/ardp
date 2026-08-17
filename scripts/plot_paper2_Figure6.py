@@ -245,13 +245,13 @@ def _draw_smile_amoc(ax, members, years, matrix):
 def _render_combined(diag, smile, cmip6, members, years, matrix, output: Path):
     fig, axes = plt.subplots(2, 2, figsize=(8.4, 7.6))
     _draw_leadlag(axes[0, 0], diag)
-    _panel_label(axes[0, 0], "(a)")
+    _panel_label(axes[0, 0], "a")
     _draw_emergent(axes[0, 1], diag)
-    _panel_label(axes[0, 1], "(b)")
+    _panel_label(axes[0, 1], "b")
     _draw_smile_class(axes[1, 0], smile, cmip6)
-    _panel_label(axes[1, 0], "(c)")
+    _panel_label(axes[1, 0], "c")
     _draw_smile_amoc(axes[1, 1], members, years, matrix)
-    _panel_label(axes[1, 1], "(d)")
+    _panel_label(axes[1, 1], "d")
     fig.tight_layout(h_pad=2.0, w_pad=2.5)
     save_publication_figure(fig, output)
 

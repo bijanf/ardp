@@ -388,7 +388,7 @@ def figure2_rapid_validation(results_dir: Path, output_dir: Path) -> None:
         aligned = _align_monthly(oras5_moc, rapid_moc)
         if aligned is not None:
             o_v, r_v, _ = aligned
-            _scatter_validation(ax_sc1, r_v, o_v, "RAPID [Sv]", "ORAS5 [Sv]",
+            _scatter_validation(ax_sc1, r_v, o_v, "RAPID", "ORAS5",
                                 FINGERPRINT_COLORS["f_ovs"])
     add_panel_label(ax_sc1, "b", x=-0.15)
 
@@ -397,7 +397,7 @@ def figure2_rapid_validation(results_dir: Path, output_dir: Path) -> None:
         aligned_g = _align_monthly(glorys_moc, rapid_moc)
         if aligned_g is not None:
             g_v, r_v_g, _ = aligned_g
-            _scatter_validation(ax_sc2, r_v_g, g_v, "RAPID [Sv]", "GLORYS12 [Sv]",
+            _scatter_validation(ax_sc2, r_v_g, g_v, "RAPID", "GLORYS12",
                                 COLORS["green"])
     add_panel_label(ax_sc2, "c", x=-0.15)
 

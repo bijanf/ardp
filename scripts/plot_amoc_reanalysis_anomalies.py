@@ -274,7 +274,23 @@ def main() -> None:
         return ""
 
     tx, ty = 0.015, 0.46
-    ax.text(tx, ty, trend_title,
+    # The pale SODA/ECCO traces pass straight through this block, so lay a
+    # background panel down first and draw the text on top of it.
+    n_lines = len(trend_lines)
+    _blk_bot = ty - 0.06 - n_lines * 0.05 - 0.09
+    ax.add_patch(
+        plt.Rectangle(
+            (tx - 0.008, _blk_bot),
+            0.47,
+            (ty + 0.03) - _blk_bot,
+            transform=ax.transAxes,
+            facecolor="white",
+            alpha=0.82,
+            edgecolor="none",
+            zorder=4,
+        )
+    )
+    ax.text(tx, ty, trend_title, zorder=5,
             transform=ax.transAxes, fontsize=7, fontweight="bold",
             va="top", ha="left")
     neff_label = "N" if args.method == "ols" else "N_eff"
@@ -282,15 +298,15 @@ def main() -> None:
         ax.text(tx, ty - 0.06 - i * 0.05,
                 f"{name:<12s} {sl:+.2f} Sv/dec{_stars(pv)}  ({neff_label}={neff})",
                 transform=ax.transAxes, fontsize=6, color=color,
-                family="monospace", va="top", ha="left")
+                family="monospace", va="top", ha="left", zorder=5)
     ax.text(tx, ty - 0.06 - len(trend_lines) * 0.05 - 0.005,
             f"** p < 0.01    * p < 0.05   ({trend_cite})",
             transform=ax.transAxes, fontsize=5.5, color="0.4",
-            va="top", ha="left")
+            va="top", ha="left", zorder=5)
     ax.text(tx, ty - 0.06 - len(trend_lines) * 0.05 - 0.05,
             f"Reference: ORAS5 {CLIM_START}–{CLIM_END} mean ({oras5_clim:.2f} Sv)",
             transform=ax.transAxes, fontsize=5.5, color="0.3",
-            style="italic", va="top", ha="left")
+            style="italic", va="top", ha="left", zorder=5)
 
     # ── Formatting ──
     ax.set_xlim(1958, 2025)
