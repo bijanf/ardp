@@ -84,7 +84,16 @@ def main() -> None:
     ax.set_xlabel("Year")
     ax.set_ylabel("$F_{\\mathrm{ov}}^{S}$ (Sv)")
     ax.set_xlim(1958, 2026)
-    ax.legend(loc="lower left", ncol=2)
+    # The GLORYS12V1 and ECCO traces run through the lower-left quadrant, so
+    # the legend goes above the axes rather than on top of them.
+    ax.legend(
+        loc="lower center",
+        bbox_to_anchor=(0.5, 1.005),
+        ncol=4,
+        columnspacing=1.0,
+        handlelength=1.4,
+        handletextpad=0.4,
+    )
     panel_letter(ax, "a")
 
     # ── b: means with block-length envelope ───────────────────────────

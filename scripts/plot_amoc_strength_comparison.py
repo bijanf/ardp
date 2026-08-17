@@ -140,7 +140,12 @@ def main() -> None:
     ax.set_ylim(0, None)
     ax.set_xlabel("Year")
     ax.set_ylabel("AMOC strength at 26.5°N (Sv)")
-    ax.legend(fontsize=6, loc="upper right", framealpha=0.9, ncol=2)
+    # The historical and scenario bands spike into the upper right, so the
+    # legend needs an opaque backing rather than a transparent one.
+    leg = ax.legend(fontsize=6, loc="upper right", ncol=2, frameon=True,
+                    framealpha=0.95, facecolor="white", edgecolor="0.8")
+    leg.get_frame().set_linewidth(0.4)
+    leg.set_zorder(20)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
