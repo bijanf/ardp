@@ -121,7 +121,7 @@ def main() -> None:
     ax_a.axvline(60, color="#CC3333", lw=0.6, ls="--", alpha=0.6)
     ax_a.set_xlabel(r"Classification threshold on $f_v$ or $f_s$  (%)")
     ax_a.set_ylabel(r"Gap = median$_s -$ median$_v$  (pp)")
-    ax_a.text(0.02, 0.97, "(a) v-vs-s AMOC-weakening gap",
+    ax_a.text(0.02, 0.97, "a   v-vs-s AMOC-weakening gap",
               transform=ax_a.transAxes, fontweight="bold",
               fontsize=10, va="top", ha="left")
     ax_a.legend(fontsize=6.5, frameon=False, ncol=2,
@@ -131,7 +131,7 @@ def main() -> None:
     ax_b.axvline(60, color="#CC3333", lw=0.6, ls="--", alpha=0.6)
     ax_b.set_xlabel(r"Classification threshold on $f_v$ or $f_s$  (%)")
     ax_b.set_ylabel(r"$n$ classified (v + s)")
-    ax_b.text(0.02, 0.97, "(b) sample size used",
+    ax_b.text(0.02, 0.97, "b   sample size used",
               transform=ax_b.transAxes, fontweight="bold",
               fontsize=10, va="top", ha="left")
     ax_b.legend(fontsize=6.5, frameon=False, ncol=2,

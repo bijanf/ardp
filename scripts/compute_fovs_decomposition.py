@@ -310,6 +310,7 @@ def process_product(
     early_override: tuple[int, int] | None = None,
     late_override: tuple[int, int] | None = None,
     tag: str = "",
+    s0: float = S0,
 ) -> None:
     log.info(f"=== {product.upper()} F_ovS decomposition{' [' + tag + ']' if tag else ''} ===")
 
@@ -349,7 +350,7 @@ def process_product(
 
     result = decompose_fovs_trend(
         v1, s1, v2, s2,
-        e1t_atl=grid["e1t_atl"], e3t=grid["e3t"], s0=S0,
+        e1t_atl=grid["e1t_atl"], e3t=grid["e3t"], s0=s0,
     )
 
     log.info(f"F_ov({early[0]}-{early[1]}) = {result['F_ov_1']:+.4f} Sv")
@@ -370,6 +371,11 @@ def process_product(
     # Save
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     suffix = f"_{tag}" if tag else ""
+    # Non-default reference salinity gets its own filename token so S0
+    # sensitivity runs never overwrite the S0 = 35 canonical outputs.
+    s_token = f"_s{s0:g}".replace(".", "p")
+    if s0 != S0 and not suffix.endswith(s_token):
+        suffix += s_token
     out = RESULTS_DIR / f"fovs_decomposition_{product}{suffix}.nc"
 
     ds = xr.Dataset(
@@ -396,7 +402,7 @@ def process_product(
             "v_bar_late_ms": result["v_bar_2"],
             "V_net_early_Sv": result["V_net_1_Sv"],
             "V_net_late_Sv": result["V_net_2_Sv"],
-            "reference_salinity_PSU": S0,
+            "reference_salinity_PSU": s0,
         },
     )
     ds.to_netcdf(out)
@@ -427,6 +433,11 @@ def main() -> None:
         "--tag", default="",
         help="Suffix for output files (e.g. 'postargo'). Leave blank for the default pre-registered window.",
     )
+    parser.add_argument(
+        "--s0", type=float, default=S0,
+        help=f"Reference salinity [PSU] for F_ovS (default {S0:g}). Non-default "
+             "values add an '_sNN' token to the output filename.",
+    )
     args = parser.parse_args()
 
     early = _parse_window(args.early)
@@ -435,7 +446,9 @@ def main() -> None:
     products = ["oras5", "glorys12", "ecco", "soda"] if args.product == "all" else [args.product]
     for p in products:
         try:
-            process_product(p, early_override=early, late_override=late, tag=args.tag)
+            process_product(
+                p, early_override=early, late_override=late, tag=args.tag, s0=args.s0
+            )
         except Exception as e:
             log.error(f"{p}: {e}")
 

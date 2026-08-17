@@ -173,10 +173,10 @@ def main() -> None:
     for ax, draws, obs, ci, p_neg, label_n, title in [
         (ax_a, boot_gap, obs_gap, (ci_lo, ci_hi), p_neg,
          f"$n_v={len(v_arr)},\\ n_s={len(s_arr)}$",
-         "(a) standard"),
+         "a   standard"),
         (ax_b, boot_gap_h, obs_gap_h, (ci_lo_h, ci_hi_h), p_neg_h,
          f"$n_v={len(v_arr_h)},\\ n_s={len(s_arr_h)}$",
-         "(b) hierarchical (NEMO+UM pooled)"),
+         "b   hierarchical (NEMO+UM pooled)"),
     ]:
         ax.hist(draws, bins=50, color="0.55", edgecolor="white",
                 linewidth=0.3)

@@ -168,7 +168,7 @@ def main() -> None:
     ax.set_xlim(0, 0.42)
     ax.set_xlabel("Transport share of the trend")
     ax.legend(loc="lower right")
-    panel_letter(ax, "c", x=-0.62)
+    panel_letter(ax, "c", x=-0.42)
 
     save(fig, OUTBASE)
 
