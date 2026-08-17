@@ -127,7 +127,16 @@ def main() -> None:
     ax.set_yticks(ypos)
     ax.set_yticklabels([r[0] for r in rows])
     ax.set_xlabel("Trend in $F_{\\mathrm{ov}}^{S}$ (mSv yr$^{-1}$)")
-    ax.legend(loc="lower left", ncol=1)
+    # Horizontal, above the axes: the bars and their intervals fill the whole
+    # lower-left quadrant, so an in-axes legend overlaps them.
+    ax.legend(
+        loc="lower center",
+        bbox_to_anchor=(0.55, 1.005),
+        ncol=4,
+        columnspacing=1.0,
+        handlelength=1.4,
+        handletextpad=0.4,
+    )
     panel_letter(ax, "b", x=-0.30)
 
     # ── c: census over all epoch pairs ────────────────────────────────

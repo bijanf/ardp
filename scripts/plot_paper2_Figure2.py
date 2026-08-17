@@ -238,11 +238,11 @@ def _render_combined(cmip6, reanalysis_points, classes, amoc, amoc_models,
                      output: Path):
     fig, (ax_a, ax_b, ax_c) = plt.subplots(1, 3, figsize=(11.0, 3.8))
     _draw_panel_a(ax_a, cmip6, reanalysis_points)
-    _panel_label(ax_a, "(a)")
+    _panel_label(ax_a, "a")
     _draw_panel_b(ax_b, classes, amoc, amoc_models)
-    _panel_label(ax_b, "(b)")
+    _panel_label(ax_b, "b")
     _draw_panel_c(ax_c, classes, amoc, amoc_models)
-    _panel_label(ax_c, "(c)")
+    _panel_label(ax_c, "c")
     fig.tight_layout()
     save_publication_figure(fig, output)
 

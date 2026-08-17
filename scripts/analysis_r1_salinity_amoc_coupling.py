@@ -125,10 +125,12 @@ def _plot(fw: pd.DataFrame) -> None:
     })
     w = fw["weakening_pct"].to_numpy()
     fig, axes = plt.subplots(1, 2, figsize=(7.09, 3.2))
-    for ax, col, lab, color in [
-        (axes[0], "delta_s_mSv", r"salinity-driven $\Delta F_s$ (mSv)", "#c0392b"),
-        (axes[1], "delta_v_mSv", r"velocity-driven $\Delta F_v$ (mSv)", "#2c7fb8"),
+    for ax, col, lab, color, panel in [
+        (axes[0], "delta_s_mSv", r"salinity-driven $\Delta F_s$ (mSv)", "#c0392b", "a"),
+        (axes[1], "delta_v_mSv", r"velocity-driven $\Delta F_v$ (mSv)", "#2c7fb8", "b"),
     ]:
+        ax.text(-0.16, 1.10, panel, transform=ax.transAxes, fontsize=10,
+                fontweight="bold", va="top", ha="left")
         y = fw[col].to_numpy()
         ax.scatter(w, y, s=22, color=color, edgecolor="0.2", linewidth=0.4, zorder=3)
         pr, pp = stats.pearsonr(w, y)

@@ -102,10 +102,10 @@ def _render_combined(oras5, glorys12, dv_vmax, ds_vmax, output: Path):
     im_s_a = _draw(axes[1, 0], oras5[0], oras5[2], "PiYG_r", ds_vmax)
     _draw(axes[1, 1], glorys12[0], glorys12[2], "PiYG_r", ds_vmax,
           show_ylabel=False)
-    _panel_label(axes[0, 0], r"(a) ORAS5  $\Delta v$")
-    _panel_label(axes[0, 1], r"(b) GLORYS12V1  $\Delta v$")
-    _panel_label(axes[1, 0], r"(c) ORAS5  $\Delta S$")
-    _panel_label(axes[1, 1], r"(d) GLORYS12V1  $\Delta S$")
+    _panel_label(axes[0, 0], r"a  ORAS5  $\Delta v$")
+    _panel_label(axes[0, 1], r"b  GLORYS12V1  $\Delta v$")
+    _panel_label(axes[1, 0], r"c  ORAS5  $\Delta S$")
+    _panel_label(axes[1, 1], r"d  GLORYS12V1  $\Delta S$")
     cbar_v = fig.colorbar(im_v_a, ax=axes[0, :], pad=0.015, shrink=0.85,
                           location="right")
     cbar_v.set_label(r"$\Delta v$  (m s$^{-1}$)")
