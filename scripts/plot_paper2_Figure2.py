@@ -107,7 +107,7 @@ def _load_data(results_dir: Path):
     return cmip6, reanalysis_points, classes, amoc, amoc_models
 
 
-def _draw_panel_a(ax, cmip6, reanalysis_points):
+def _draw_panel_a(ax, cmip6, reanalysis_points, legend: bool = True):
     ax.plot([0, 100], [100, 0], color="0.5", lw=0.6, ls="--", zorder=2,
             label=r"$v+s=100$%")
     ax.axhline(60, color="#56B4E9", lw=0.5, ls=":", alpha=0.7, zorder=1)
@@ -156,8 +156,9 @@ def _draw_panel_a(ax, cmip6, reanalysis_points):
     ax.set_ylabel(r"Salinity share $f_s$ (%)")
     ax.set_xlim(-80, 220)
     ax.set_ylim(-150, 240)
-    ax.legend(loc="lower left", fontsize=6.8, frameon=False,
-              handlelength=1.3, handletextpad=0.5, borderaxespad=0.3)
+    if legend:
+        ax.legend(loc="lower left", fontsize=6.8, frameon=False,
+                  handlelength=1.3, handletextpad=0.5, borderaxespad=0.3)
 
 
 def _draw_panel_b(ax, classes, amoc, amoc_models):
@@ -237,13 +238,19 @@ def _draw_panel_c(ax, classes, amoc, amoc_models):
 def _render_combined(cmip6, reanalysis_points, classes, amoc, amoc_models,
                      output: Path):
     fig, (ax_a, ax_b, ax_c) = plt.subplots(1, 3, figsize=(11.0, 3.8))
-    _draw_panel_a(ax_a, cmip6, reanalysis_points)
+    _draw_panel_a(ax_a, cmip6, reanalysis_points, legend=False)
     _panel_label(ax_a, "a")
     _draw_panel_b(ax_b, classes, amoc, amoc_models)
     _panel_label(ax_b, "b")
     _draw_panel_c(ax_c, classes, amoc, amoc_models)
     _panel_label(ax_c, "c")
-    fig.tight_layout()
+    # Panel (a) carries eight legend entries; inside the axes they sit on
+    # top of the reanalysis markers, so they go in a strip below the panels.
+    handles, labels = ax_a.get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=4, frameon=False,
+               fontsize=6.8, handlelength=1.3, handletextpad=0.5,
+               columnspacing=1.2, bbox_to_anchor=(0.5, 0.0))
+    fig.tight_layout(rect=(0, 0.14, 1, 1))
     save_publication_figure(fig, output)
 
 

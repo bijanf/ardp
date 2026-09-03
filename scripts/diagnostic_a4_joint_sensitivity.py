@@ -121,23 +121,21 @@ def main() -> None:
     ax_a.axvline(60, color="#CC3333", lw=0.6, ls="--", alpha=0.6)
     ax_a.set_xlabel(r"Classification threshold on $f_v$ or $f_s$  (%)")
     ax_a.set_ylabel(r"Gap = median$_s -$ median$_v$  (pp)")
-    ax_a.text(0.02, 0.97, "a   v-vs-s AMOC-weakening gap",
-              transform=ax_a.transAxes, fontweight="bold",
-              fontsize=10, va="top", ha="left")
-    ax_a.legend(fontsize=6.5, frameon=False, ncol=2,
-                handlelength=1.5, handletextpad=0.4, columnspacing=0.7,
-                loc="lower right")
+    ax_a.set_title("a   v-vs-s AMOC-weakening gap", loc="left",
+                   fontweight="bold", fontsize=8, pad=5)
 
     ax_b.axvline(60, color="#CC3333", lw=0.6, ls="--", alpha=0.6)
     ax_b.set_xlabel(r"Classification threshold on $f_v$ or $f_s$  (%)")
     ax_b.set_ylabel(r"$n$ classified (v + s)")
-    ax_b.text(0.02, 0.97, "b   sample size used",
-              transform=ax_b.transAxes, fontweight="bold",
-              fontsize=10, va="top", ha="left")
-    ax_b.legend(fontsize=6.5, frameon=False, ncol=2,
-                handlelength=1.5, handletextpad=0.4, columnspacing=0.7)
-
+    ax_b.set_title("b   sample size used", loc="left",
+                   fontweight="bold", fontsize=8, pad=5)
+    # The six floor curves fill both panels, so the legend goes in a strip
+    # below them instead of on top of the lines.
+    handles, labels = ax_a.get_legend_handles_labels()
     fig.tight_layout()
+    fig.legend(handles, labels, loc="upper center", ncol=6, frameon=False,
+               fontsize=6.5, handlelength=1.5, handletextpad=0.4,
+               columnspacing=1.0, bbox_to_anchor=(0.5, -0.01))
     save_publication_figure(fig, FIG)
 
 

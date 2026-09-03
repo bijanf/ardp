@@ -152,7 +152,7 @@ def _panel_a(ax: plt.Axes) -> None:
     ax.set_xlim(1980, 2026)
     ax.set_ylim(-0.30, 0.22)
     ax.set_xlabel("Year")
-    ax.set_ylabel(r"$F_{ovS}$ at 34.5$\degree$S (Sv)")
+    ax.set_ylabel(r"$F_{ovS}$ at 34.5°S (Sv)")
     # Extra headroom (y up to 0.22) gives the legend an empty band above the
     # data; legend sits at upper-left, two columns, no frame so the SODA
     # spikes do not look fenced in.
@@ -403,7 +403,7 @@ def _panel_c(ax: plt.Axes) -> None:
         n_cls = len(by_class[cls])
         line, = ax.plot(common, mean_curve, color=color, linewidth=1.4,
                         zorder=5,
-                        label=f"{cls}-driven mean $\\pm$ 1$\\sigma$ (n={n_cls})")
+                        label=f"{cls}-driven mean ± 1σ (n={n_cls})")
         legend_handles.append(line)
 
     # RAPID annual AMOC at 26.5N, anchored to its own 2005-2022 mean so it
@@ -424,7 +424,7 @@ def _panel_c(ax: plt.Axes) -> None:
                     rapid_years, rapid_pct, color="#117733", linewidth=1.4,
                     marker="o", markersize=3.5, markerfacecolor="white",
                     markeredgecolor="#117733", markeredgewidth=0.8,
-                    zorder=8, label="RAPID 26.5$\\degree$N (annual)",
+                    zorder=8, label="RAPID 26.5°N (annual)",
                 )
         except Exception:
             pass
@@ -453,7 +453,7 @@ def _panel_c(ax: plt.Axes) -> None:
     ax.set_xlabel("Year")
     # Two-line label so the full text (quantity, latitude, units and
     # reference period) fits inside the figure without clipping (R3.10).
-    ax.set_ylabel("AMOC strength anomaly at 26.5$\\degree$N\n(% of 2005-2022 mean)")
+    ax.set_ylabel("AMOC strength anomaly at 26.5°N\n(% of 2005-2022 mean)")
     handles = legend_handles
     if smile_handle is not None:
         handles = handles + [smile_handle]
@@ -536,7 +536,7 @@ def _panel_coldblob_ts(ax: plt.Axes) -> None:
 
     ax.set_xlim(1900, 2024)
     ax.set_xlabel("Year")
-    ax.set_ylabel("Cold Blob core SST ($\\degree$C)")
+    ax.set_ylabel("Cold Blob core SST (°C)")
     ax.spines[["top", "right"]].set_visible(False)
     # Legend OUTSIDE below the panel, single row, 2 entries
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.28),
@@ -582,7 +582,7 @@ def _panel_coldblob_map(ax: plt.Axes, fig: plt.Figure) -> None:
 
     cax = ax.inset_axes([1.02, 0.10, 0.022, 0.80])
     cb = fig.colorbar(cs, cax=cax, ticks=np.arange(-1.5, 1.51, 0.50))
-    cb.set_label(r"$\Delta$SST 2014-2024 vs 1900-1960 ($\degree$C)",
+    cb.set_label("ΔSST 2014-2024 vs 1900-1960 (°C)",
                  fontsize=6, labelpad=2)
     cb.ax.tick_params(labelsize=5.5)
 
@@ -626,16 +626,16 @@ def _panel_d(ax: plt.Axes, fig: plt.Figure) -> None:
     ax.set_xlim(-60, 0)
     ax.set_ylim(40, 65)
     ax.set_xticks([-60, -45, -30, -15, 0])
-    ax.set_xticklabels(["60$\\degree$W", "45$\\degree$W", "30$\\degree$W",
-                         "15$\\degree$W", "0$\\degree$"])
+    ax.set_xticklabels(["60°W", "45°W", "30°W",
+                         "15°W", "0°"])
     ax.set_yticks([40, 50, 60])
-    ax.set_yticklabels(["40$\\degree$N", "50$\\degree$N", "60$\\degree$N"])
+    ax.set_yticklabels(["40°N", "50°N", "60°N"])
     ax.set_aspect(1.4)  # mild lat-stretch for visual readability
 
     cb = fig.colorbar(pc, ax=ax, location="bottom", shrink=0.85,
                       pad=0.18, aspect=18,
                       ticks=np.arange(-0.6, 0.61, 0.30))
-    cb.set_label("SST trend 1993-2024 ($\\degree$C decade$^{-1}$)", fontsize=6)
+    cb.set_label("SST trend 1993-2024 (°C decade$^{-1}$)", fontsize=6)
     cb.ax.tick_params(labelsize=5.5)
     ax.spines[["top", "right"]].set_visible(True)
     for s in ax.spines.values():
