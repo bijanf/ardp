@@ -7,11 +7,8 @@
 
 A Python framework for analyzing Atlantic Meridional Overturning Circulation (AMOC) weakening indicators using ocean reanalysis products (ORAS5, GLORYS12V1, SODA3.15.2, ECCO-V4r4) and CMIP6 model output.
 
-This code base produced the figures for two manuscripts. The full
-script-to-figure mapping for both papers lives in **[FIGURES.md](FIGURES.md)**;
-PNG previews of the cited figures are under `figures/grl/` (Paper 1)
-and `figures/paper2/` (Paper 2). The full manuscript sources are
-preserved at git tag `paper2-v4.4.1` and in a separate private archive.
+The mapping from each published figure to the script that produces it is in
+**[FIGURES.md](FIGURES.md)**.
 
 ## Installation
 
@@ -116,60 +113,6 @@ python scripts/plot_amoc_reanalysis_anomalies.py
 ```
 
 Output: `figures/grl/fig_amoc_reanalysis_anomalies_santer.{png,pdf}`
-
-## Reproduction: Paper 2 (F_ovS mechanism decomposition, Nature Comms target)
-
-Decompose the F_ovS trend into velocity-driven (Δv·S̄) and
-salinity-driven (v̄·ΔS) components across four reanalyses and 25
-CMIP6 models to identify which mechanism corresponds to forced AMOC
-weakening. Headline finding (v4.4.1): on the 17-model AMOC26N
-forced-weakening subset, salinity-dominant CMIP6 models project a
-median 54% weakening by 2100, velocity-dominant models project 42% —
-an 11.6 percentage-point gap (bootstrap p = 0.026, 95% CI
-[−0.7, +24.7] pp). Continuous correlation f_v vs ΔAMOC% gives Spearman
-ρ = −0.56 (p = 0.018, n = 17). The emergent-constraint regression
-itself has no predictive power (R² = 0.01, ΔAMOC = −1.82 Sv,
-95% CI [−3.68, +0.04]); the gap arises from the mechanism-class
-partition, not from a direct F_ovS↔ΔAMOC regression.
-
-```bash
-# Step 1: compute F_ovS time series from each reanalysis
-python scripts/compute_oras5_fovs.py
-python scripts/compute_glorys12_fovs.py
-python scripts/compute_soda_fovs.py     # uses UMD 5-day server catalogue
-python scripts/compute_ecco_fovs.py     # uses NASA Earthdata earthaccess
-
-# Step 2: mechanism decomposition of the trend (ΔF_v + ΔF_s + ΔF_cross)
-python scripts/compute_fovs_decomposition.py --product all
-python scripts/compute_cmip6_fovs_decomposition.py          # forced hist→ssp585
-python scripts/compute_cmip6_picontrol_null.py --n-bootstrap 200  # null test
-
-# Step 3: emergent-constraint regression and mechanism-conditional projections
-python scripts/compute_emergent_constraint.py --predictor mean --forecast-end 2100
-python scripts/compute_cmip6_fovs_amoc_leadlag.py             # CMIP6 CCF
-
-# Step 4: six main publication figures (Figure1..Figure6)
-python scripts/plot_paper2_Figure1.py     # F_ovS + decomposition (Δv, ΔS, Δcross)
-python scripts/plot_paper2_Figure2.py     # CMIP6 mechanism partition + AMOC26N
-python scripts/plot_paper2_Figure3.py     # bistable-only subset projections
-python scripts/plot_paper2_Figure4.py     # robustness (post-Argo / windows / S/N)
-python scripts/plot_paper2_Figure5.py     # zonal Δv and ΔS at 34.5°S
-python scripts/plot_paper2_Figure6.py     # CCF + emergent regression + SMILE
-
-# Step 5: SI diagnostics A1..A5
-python scripts/diagnostic_a1_timescale_consistency.py
-python scripts/diagnostic_a2_within_class_regression.py
-python scripts/diagnostic_a3_continuous_correlation.py
-python scripts/diagnostic_a4_joint_sensitivity.py
-python scripts/diagnostic_a5_gap_bootstrap.py
-python scripts/compute_paper2_tableS1.py   # trend table (CSV + TeX)
-```
-
-Outputs: `figures/paper2/Figure{1,2,3,4,5,6}.{png,pdf}` (with sub-panels
-`Figure{1,2,3,4,5,6}{a,b,c,d}.{png,pdf}`),
-`figures/paper2/diagA{1,2,3,4,5}_*.{png,pdf}`,
-`data/results/paper2_tableS1_trends.{csv,tex}`. See [FIGURES.md](FIGURES.md)
-for the figure-by-figure script mapping.
 
 ## GRL Figure Set
 

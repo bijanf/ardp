@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "ARDP: AMOC Reanalysis Diagnostic Pipeline"
+type: software
+authors:
+  - family-names: Fallah
+    given-names: Bijan
+  - family-names: Rostami
+    given-names: Masoud
+  - family-names: Guo
+    given-names: Junxin
+  - family-names: Fu
+    given-names: Li-Yun
+repository-code: "https://github.com/bijanf/ardp"
+license: MIT
+version: "1.0.0"
+keywords:
+  - AMOC
+  - freshwater transport
+  - ocean reanalysis
+  - CMIP6
+  - South Atlantic
+abstract: >-
+  Python code for computing the overturning freshwater transport at 34.5S
+  (F_ovS) from ocean reanalyses and CMIP6 output, decomposing its change into
+  velocity-driven and salinity-driven contributions, and producing the figures
+  and tables of the accompanying article.
