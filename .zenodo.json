@@ -1,0 +1,14 @@
+{
+  "title": "ARDP: AMOC Reanalysis Diagnostic Pipeline",
+  "description": "Python code for computing the overturning freshwater transport at 34.5S (F_ovS) from ocean reanalyses (ORAS5, GLORYS12V1, SODA 3.15.2, ECCO-V4r4) and CMIP6 output, decomposing its change into velocity-driven and salinity-driven contributions, and producing the figures and tables of the accompanying article.",
+  "creators": [
+    {"name": "Fallah, Bijan", "affiliation": "Potsdam Institute for Climate Impact Research"},
+    {"name": "Rostami, Masoud", "affiliation": "China University of Petroleum (East China); LMD/IPSL; PIK"},
+    {"name": "Guo, Junxin", "affiliation": "Shenzhen MSU-BIT University"},
+    {"name": "Fu, Li-Yun", "affiliation": "China University of Petroleum (East China)"}
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "keywords": ["AMOC", "freshwater transport", "ocean reanalysis", "CMIP6", "South Atlantic", "salt-advection feedback"]
+}
