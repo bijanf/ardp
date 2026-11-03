@@ -10,7 +10,8 @@ b  Longitude-depth section of the time-mean salinity in GLORYS12V1 (1993-2025),
 c  The profiles that define the limbs and cells: the zonally integrated
    velocity after removal of the net transport, its streamfunction and the
    zonal-mean salinity, with the transport-weighted limb salinities.
-d  The sequence of steps from the monthly fields to the attribution and tests.
+d  The plane of the two factors of F_ovS = -T dS / S0, shaded by F_ovS, with the
+   5-year-mean path of each reanalysis through it.
 
 Writes ``PAPER_3_v2/figures_r1/Fig1_schematic.{pdf,png}``.
 """
@@ -30,7 +31,6 @@ import matplotlib.patheffects as pe  # noqa: E402
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib import colors  # noqa: E402
 from matplotlib.gridspec import GridSpec, GridSpecFromSubplotSpec  # noqa: E402
-from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch  # noqa: E402
 from paper3v2_style import TWO_COL, panel_letter, set_style  # noqa: E402
 
 RESULTS = REPO / "data" / "results"
@@ -319,67 +319,176 @@ def main() -> None:
             plt.setp(ax.get_yticklabels(), visible=False)
     panel_letter(ax1, "c", x=-0.62, y=1.02)
 
-    # d: workflow --------------------------------------------------------------
-    axw = fig.add_subplot(gs[1, 1])
-    axw.set_axis_off()
-    axw.set_xlim(0, 1)
-    axw.set_ylim(0, 1)
-    steps = [
-        "Monthly $v$ and $S$ on the contiguous 34.5$^\\circ$S section\n"
-        "ORAS5 1958–2025, GLORYS12V1 1993–2025, ECCO-V4r4 1992–2017",
-        "Net section transport removed as a uniform velocity\n"
-        "$q'_k = q_k - v_c\\,a_k$, so that $\\Sigma_k\\, q'_k = 0$",
-        "Limbs from the sign of $q'_k$, cells from the zero of $\\psi$\n"
-        "northward transport $T$, limb salinities $S_\\uparrow$ and $S_\\downarrow$",
-        "Exact factorisation, no residual\n"
-        "$F_{\\mathrm{ovS}} = -\\,T\\,(S_\\uparrow - S_\\downarrow)\\,/\\,S_0$",
-        "Trends split into a transport term and a salinity term\n"
-        "own record, Argo era, common window, every epoch pair",
-        "Tests: frozen fields, EN4 observed salinity, overturning cells,\n"
-        "vertical grid, bottom cells, observing-system steps, CMIP6",
-    ]
-    y = np.linspace(0.93, 0.07, len(steps))
-    shades = ["#f7f7f7", "#efefef", "#e6e6e6", "#fbd5c9", "#e6e6e6", "#f7f7f7"]
-    for k, (txt, yy) in enumerate(zip(steps, y, strict=False)):
-        axw.add_patch(
-            FancyBboxPatch(
-                (0.10, yy - 0.066),
-                0.89,
-                0.132,
-                boxstyle="round,pad=0.006,rounding_size=0.02",
-                fc=shades[k],
-                ec="black",
-                lw=0.5,
-            )
+    # d: the plane of the two factors ------------------------------------------
+    import json
+
+    from paper3v2_style import C_ECCO, C_GLORYS, C_ORAS5
+
+    att = json.loads(
+        (REPO / "PAPER_3_v2" / "analysis" / "attribution.json").read_text()
+    )
+    axd = fig.add_subplot(gs[1, 1])
+    s0 = 35.0
+    tt, dd = np.meshgrid(np.linspace(12.5, 25.0, 300), np.linspace(-0.01, 0.37, 300))
+    ff = -tt * dd / s0
+    lev = np.array([-0.30, -0.20, -0.15, -0.10, -0.075, -0.05, -0.025, 0.0])
+    axd.contourf(tt, dd, ff, levels=lev, cmap="Greys_r", alpha=0.45, extend="both")
+    cs = axd.contour(tt, dd, ff, levels=lev[:-1], colors="0.35", linewidths=0.4)
+    # Contour labels in a column at the right edge, clear of the paths.
+    x_lab = 24.45
+    axd.clabel(
+        cs,
+        fmt=lambda v: f"{v:+.3g}",
+        fontsize=5.0,
+        inline_spacing=2,
+        manual=[(x_lab, -v * s0 / x_lab) for v in lev[:-1] if -v * s0 / x_lab < 0.36],
+    )
+    axd.text(
+        24.9,
+        0.362,
+        "$F_{\\mathrm{ovS}}$ (Sv)",
+        fontsize=5.5,
+        color="0.25",
+        ha="right",
+        va="top",
+    )
+
+    def blocks(years, values, width=5):
+        yrs = np.asarray(years)
+        out_t, out_y = [], []
+        start = yrs[0]
+        while start <= yrs[-1]:
+            m = (yrs >= start) & (yrs < start + width)
+            if m.sum() < 3 and out_t:
+                break
+            out_t.append(np.mean(values[m]))
+            out_y.append(int(yrs[m][0]))
+            start += width
+        return np.array(out_t), out_y
+
+    halo = [pe.withStroke(linewidth=1.6, foreground="white")]
+    # (start label offset and alignment, end label offset and alignment)
+    places = {
+        "oras5": ((-0.35, 0.0, "right", "center"), (-0.35, 0.0, "right", "center")),
+        "glorys12": ((0.35, -0.004, "left", "center"), (0.2, -0.035, "left", "center")),
+        "ecco": ((-0.35, 0.0, "right", "center"), (0.35, 0.006, "left", "center")),
+    }
+    handles = []
+    for key, label, col in (
+        ("oras5", "ORAS5", C_ORAS5),
+        ("glorys12", "GLORYS12V1", C_GLORYS),
+        ("ecco", "ECCO-V4r4", C_ECCO),
+    ):
+        r = att[key]
+        tv, y0 = blocks(r["years"], np.array(r["T_limb_Sv"]))
+        dv, _ = blocks(r["years"], np.array(r["dS_limb_PSU"]))
+        (h,) = axd.plot(tv, dv, "-o", color=col, lw=1.2, ms=2.4, zorder=3, label=label)
+        handles.append(h)
+        axd.plot(tv[0], dv[0], "o", mfc="white", mec=col, mew=0.9, ms=4.0, zorder=5)
+        axd.annotate(
+            "",
+            xy=(tv[-1], dv[-1]),
+            xytext=(tv[-2], dv[-2]),
+            arrowprops={
+                "arrowstyle": "-|>",
+                "color": col,
+                "lw": 1.2,
+                "mutation_scale": 8,
+            },
+            zorder=5,
         )
-        axw.add_patch(
-            Circle((0.045, yy), 0.032, fc="black", ec="none", transform=axw.transData)
+        (sx, sy, sha, sva), (ex, ey, eha, eva) = places[key]
+        axd.text(
+            tv[0] + sx,
+            dv[0] + sy,
+            f"{y0[0]}",
+            color=col,
+            fontsize=5.5,
+            ha=sha,
+            va=sva,
+            path_effects=halo,
+            zorder=6,
         )
-        axw.text(
-            0.045,
-            yy,
-            f"{k + 1}",
-            ha="center",
-            va="center",
-            fontsize=6.5,
-            fontweight="bold",
-            color="white",
+        axd.text(
+            tv[-1] + ex,
+            dv[-1] + ey,
+            f"{r['years'][-1]}",
+            color=col,
+            fontsize=5.5,
+            ha=eha,
+            va=eva,
+            path_effects=halo,
+            zorder=6,
         )
-        axw.text(
-            0.545, yy, txt, ha="center", va="center", fontsize=5.4, linespacing=1.3
-        )
-        if k < len(steps) - 1:
-            axw.add_patch(
-                FancyArrowPatch(
-                    (0.545, yy - 0.068),
-                    (0.545, y[k + 1] + 0.068),
-                    arrowstyle="-|>",
-                    mutation_scale=5,
-                    lw=0.6,
-                    color="black",
-                )
-            )
-    panel_letter(axw, "d", x=0.0, y=1.02)
+    axd.legend(
+        handles=handles,
+        loc="lower left",
+        fontsize=5.5,
+        handlelength=1.6,
+        frameon=True,
+        framealpha=0.9,
+        edgecolor="none",
+        title="5-year means",
+        title_fontsize=5.5,
+    )
+    # The two routes to a more negative F_ovS.
+    ox, oy = 17.2, 0.245
+    axd.annotate(
+        "",
+        xy=(ox + 2.6, oy),
+        xytext=(ox, oy),
+        arrowprops={
+            "arrowstyle": "-|>",
+            "color": "black",
+            "lw": 0.9,
+            "mutation_scale": 7,
+        },
+    )
+    axd.annotate(
+        "",
+        xy=(ox, oy + 0.07),
+        xytext=(ox, oy),
+        arrowprops={
+            "arrowstyle": "-|>",
+            "color": "black",
+            "lw": 0.9,
+            "mutation_scale": 7,
+        },
+    )
+    axd.text(
+        ox + 1.3,
+        oy - 0.008,
+        "stronger overturning",
+        fontsize=5.5,
+        ha="center",
+        va="top",
+        path_effects=halo,
+    )
+    axd.text(
+        ox + 0.2,
+        oy + 0.05,
+        "wider salinity\ncontrast",
+        fontsize=5.5,
+        ha="left",
+        va="center",
+        linespacing=1.1,
+        path_effects=halo,
+    )
+    axd.text(
+        ox + 1.3,
+        oy + 0.088,
+        "two routes to a more negative $F_{\\mathrm{ovS}}$",
+        fontsize=5.5,
+        ha="center",
+        va="bottom",
+        style="italic",
+        path_effects=halo,
+    )
+    axd.set_xlim(12.5, 25.0)
+    axd.set_ylim(-0.01, 0.37)
+    axd.set_xlabel("Northward-limb transport $T$ (Sv)")
+    axd.set_ylabel("Limb salinity contrast $\\Delta S$ (PSU)")
+    panel_letter(axd, "d", x=-0.13, y=1.02)
 
     for ext in ("pdf", "png"):
         fig.savefig(FIG_DIR / f"Fig1_schematic.{ext}", bbox_inches="tight", dpi=600)
