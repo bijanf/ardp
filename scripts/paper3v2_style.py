@@ -62,13 +62,19 @@ def set_style() -> None:
 
 
 def panel_letter(ax, letter: str, x: float = -0.10, y: float = 1.04) -> None:
+    """Panel label: bold lowercase letter (Nature style) by default, or the
+    letter in parentheses (American Meteorological Society style) when the
+    environment variable PANEL_STYLE is set to "ams"."""
+    import os
+
+    ams = os.environ.get("PANEL_STYLE", "").lower() == "ams"
     ax.text(
         x,
         y,
-        letter,
+        f"({letter})" if ams else letter,
         transform=ax.transAxes,
         fontsize=8,
-        fontweight="bold",
+        fontweight="normal" if ams else "bold",
         ha="left",
         va="bottom",
     )
