@@ -38,3 +38,7 @@ PAPER_3_v2/*submission*.zip
 paper3/
 
 PAPER_3_v2/
+
+
+# data symlink in worktrees
+/data

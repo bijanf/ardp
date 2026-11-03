@@ -167,7 +167,7 @@ def limb_quantities(v: np.ndarray, sbar: np.ndarray, e3t: np.ndarray) -> dict | 
 def main() -> None:
     files = sorted(EN4_DIR.glob("EN.4.2.2.f.analysis.g10.*.nc"))
     rows: list[dict] = []
-    with ProcessPoolExecutor(max_workers=6) as ex:
+    with ProcessPoolExecutor(max_workers=4) as ex:
         for fut in as_completed([ex.submit(en4_month, f) for f in files]):
             r = fut.result()
             if r is not None:
@@ -195,8 +195,8 @@ def main() -> None:
     years = np.array([t.year for t in times])
     uniq = np.unique(years)
     for key, fname, label in (
-        ("oras5", "paper3v2_section_oras5.nc", "ORAS5 velocity"),
-        ("glorys12", "paper3v2_section_glorys12.nc", "GLORYS12V1 velocity"),
+        ("oras5", "paper3r1_section_oras5.nc", "ORAS5 velocity"),
+        ("glorys12", "paper3r1_section_glorys12.nc", "GLORYS12V1 velocity"),
     ):
         v = frozen_velocity(fname, depth, e3t)
         monthly = [limb_quantities(v, sbar[i], e3t) for i in range(len(rows))]
@@ -232,8 +232,8 @@ def main() -> None:
     # the comparison is like for like.
     out["reanalysis_same_window"] = {}
     for key, fname in (
-        ("oras5", "paper3v2_section_oras5.nc"),
-        ("glorys12", "paper3v2_section_glorys12.nc"),
+        ("oras5", "paper3r1_section_oras5.nc"),
+        ("glorys12", "paper3r1_section_glorys12.nc"),
     ):
         with xr.open_dataset(RESULTS / fname) as ds:
             a = ds.groupby("time.year").mean()

@@ -83,7 +83,7 @@ def ensure_glorys12():
         print("  [OK] GLORYS12 data found")
         return
     print("  [ERROR] GLORYS12 data missing. Download manually via copernicusmarine.")
-    print("  See README.md for instructions.")
+    print("  See README for instructions.")
     sys.exit(1)
 
 

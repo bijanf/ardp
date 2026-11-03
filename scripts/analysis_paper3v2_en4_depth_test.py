@@ -162,7 +162,7 @@ def trend_block(years, values):
 def main() -> None:
     files = sorted(EN4_DIR.glob("EN.4.2.2.f.analysis.g10.*.nc"))
     rows = []
-    with ProcessPoolExecutor(max_workers=6) as ex:
+    with ProcessPoolExecutor(max_workers=4) as ex:
         for fut in as_completed([ex.submit(en4_month_full, f) for f in files]):
             r = fut.result()
             if r is not None:
@@ -192,8 +192,8 @@ def main() -> None:
     }
 
     for key, fname, label in (
-        ("oras5", "paper3v2_section_oras5.nc", "ORAS5 velocity"),
-        ("glorys12", "paper3v2_section_glorys12.nc", "GLORYS12V1 velocity"),
+        ("oras5", "paper3r1_section_oras5.nc", "ORAS5 velocity"),
+        ("glorys12", "paper3r1_section_glorys12.nc", "GLORYS12V1 velocity"),
     ):
         v = frozen_velocity(fname, depth, e3t)
         blocks: dict[str, dict[str, list]] = {}

@@ -53,6 +53,18 @@ LATITUDES = (-25.0, -28.0, -30.0, -32.0, -34.5)
 
 RNG = np.random.default_rng(20260805)
 N_BOOT = 10_000
+
+
+def bounds_thickness(depth: np.ndarray) -> np.ndarray:
+    """Cell thickness from level bounds reconstructed as midpoints between centres.
+
+    The distributed ORAS5 and GLORYS12V1 files carry level-centre depths only;
+    the spacing of the centres would halve the surface cell and shift every
+    level's weight upward by half a level.
+    """
+    zw = np.concatenate([[0.0], 0.5 * (depth[1:] + depth[:-1])])
+    zw = np.append(zw, depth[-1] + 0.5 * (depth[-1] - depth[-2]))
+    return np.diff(zw)
 BLOCK_YEARS = 5
 
 
@@ -132,7 +144,7 @@ def glorys_year(path: Path, lats: tuple[float, ...]) -> dict[float, list[dict]]:
     lat = ds["latitude"].values
     lon = ds["longitude"].values
     depth = ds["depth"].values
-    e3t = np.diff(depth, prepend=0.0)
+    e3t = bounds_thickness(depth)
 
     js = [int(np.abs(lat - t).argmin()) for t in lats]
     sub = ds[["vo", "so"]].isel(latitude=js).load()
@@ -199,7 +211,7 @@ def oras5_month(
 ) -> dict[float, dict]:
     dv = xr.open_dataset(v_path)
     dsal = xr.open_dataset(s_path)
-    e3t = np.diff(dv["depthv"].values, prepend=0.0)
+    e3t = bounds_thickness(dv["depthv"].values)
     lon2d = dv["nav_lon"].values
     lat2d = dv["nav_lat"].values
 
@@ -314,7 +326,7 @@ def summarise(rows: list[dict]) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--oras5-start", type=int, default=1993)
     ap.add_argument("--products", default="glorys12,oras5")
     args = ap.parse_args()
