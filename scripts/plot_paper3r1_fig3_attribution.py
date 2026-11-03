@@ -97,8 +97,35 @@ def main() -> None:
     ax.set_xlabel("Year")
     ax.set_ylabel("Anomaly from record mean (%)")
     ax.set_xlim(1958, 2026)
-    ax.legend(loc="upper left", ncol=2, handlelength=2.0, columnspacing=0.8)
-    panel_letter(ax, "a", x=-0.14)
+    ax.legend(
+        loc="lower center",
+        bbox_to_anchor=(0.5, 1.0),
+        ncol=3,
+        handlelength=2.0,
+        columnspacing=0.8,
+    )
+    panel_letter(ax, "a", x=-0.14, y=1.17)
+
+    # Inset: fractional rates of F_ovS and T over each record (percent per decade).
+    rates = json.loads((AN / "stepfit.json").read_text())
+    ins = ax.inset_axes([0.13, 0.6, 0.27, 0.36])
+    for i, (key, _label, colour) in enumerate(PROD[:2]):
+        fr = rates[key]["fractional_rates"]["own record"]
+        ins.bar(i - 0.18, fr["F_ov"]["fractional_pct_per_decade"], 0.34, color=colour)
+        ins.bar(
+            i + 0.18,
+            fr["T_limb"]["fractional_pct_per_decade"],
+            0.34,
+            color="white",
+            edgecolor=colour,
+            lw=0.7,
+        )
+    ins.axhline(0, color="black", lw=0.4)
+    ins.set_xticks([-0.18, 0.18, 0.82, 1.18])
+    ins.set_xticklabels(["$F$", "$T$", "$F$", "$T$"], fontsize=5)
+    ins.tick_params(axis="both", labelsize=5, length=1.5, pad=1)
+    ins.set_ylabel("% per decade", fontsize=5, labelpad=1)
+    ins.patch.set_alpha(0.9)
 
     # b: trend split by window
     ax = fig.add_subplot(gs[0, 1])
