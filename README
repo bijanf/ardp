@@ -25,6 +25,13 @@ Overturning freshwater transport at 34.5 S (paper 3)
 Run from the repository root, in this order. Every script caps its parallel
 workers at four.
 
+Trend, mean and correlation tests use scripts/paper3r1_stats.py: the effective
+sample size is formed from the lag-1 autocorrelation of the regression
+residuals corrected for its small-sample bias, intervals are the inverse of
+the test, and shares of trends use a joint AR(1) sieve bootstrap. Running
+    python scripts/paper3r1_stats.py
+writes the simulated size of the test for the record lengths of the paper.
+
   1. Section fields (monthly velocity and salinity on the contiguous Atlantic
      section at 34.5 S):
          python scripts/extract_paper3r1_section_fields.py
@@ -48,6 +55,10 @@ workers at four.
          python scripts/analysis_paper3r1_salinification_structure.py
          python scripts/analysis_paper3r1_cmip6.py
          python scripts/analysis_paper3r1_step_adjusted.py
+         python scripts/analysis_paper3r1_rapid_trend.py
+     The latitude sensitivity can refresh its statistics from the stored
+     annual series without reading the reanalysis fields:
+         python scripts/analysis_paper3v2_latitude_sensitivity.py --refresh-stats
   5. Figures:
          Figure 1   scripts/plot_paper3r1_fig1_schematic.py
          Figure 2   scripts/plot_paper3r1_fig2_sign.py
@@ -57,12 +68,11 @@ workers at four.
          Figure 6   scripts/plot_paper3r1_fig6_cells.py
          Figure 7   scripts/plot_paper3r1_fig7_models.py
          Supplementary figures with SODA, trend sections, SAMBA, CMIP6
-         trajectories and the pile-up index:
+         trajectories, the pile-up index and the overturning anomalies at
+         26.5 N:
                     scripts/plot_paper3r1_si_figures.py
          Supplementary surface salinity trends: scripts/plot_sss_trend_map.py
          Supplementary RAPID validation: scripts/plot_grl_figures.py
-         Supplementary overturning anomalies at 26.5 N:
-                    scripts/plot_amoc_reanalysis_anomalies.py
          Supplementary overturning strength against CMIP6:
                     scripts/plot_amoc_strength_comparison.py
 

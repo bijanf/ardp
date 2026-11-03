@@ -65,6 +65,8 @@ def bounds_thickness(depth: np.ndarray) -> np.ndarray:
     zw = np.concatenate([[0.0], 0.5 * (depth[1:] + depth[:-1])])
     zw = np.append(zw, depth[-1] + 0.5 * (depth[-1] - depth[-2]))
     return np.diff(zw)
+
+
 BLOCK_YEARS = 5
 
 
@@ -284,14 +286,11 @@ def annual_from_rows(rows: list[dict], key: str) -> tuple[np.ndarray, np.ndarray
 
 
 def block_mean_ci(values: np.ndarray) -> list[float]:
-    n = len(values)
-    boot = np.empty(N_BOOT)
-    n_blocks = int(np.ceil(n / BLOCK_YEARS))
-    for i in range(N_BOOT):
-        starts = RNG.integers(0, n, size=n_blocks)
-        idx = np.concatenate([(s + np.arange(BLOCK_YEARS)) % n for s in starts])[:n]
-        boot[i] = values[idx].mean()
-    return [float(np.percentile(boot, 2.5)), float(np.percentile(boot, 97.5))]
+    """Interval on the mean from the corrected effective sample size of the
+    de-meaned annual series (paper3r1_stats.py)."""
+    from paper3r1_stats import mean_test
+
+    return [float(c) for c in mean_test(values)["ci"]]
 
 
 def summarise(rows: list[dict]) -> dict:
@@ -329,6 +328,12 @@ def main() -> None:
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--oras5-start", type=int, default=1993)
     ap.add_argument("--products", default="glorys12,oras5")
+    ap.add_argument(
+        "--refresh-stats",
+        action="store_true",
+        help="recompute the statistics from the annual series stored in the "
+        "output, without reading the reanalysis fields again",
+    )
     args = ap.parse_args()
 
     # Merge into whatever is already on disk, so the two products can be run in
@@ -337,7 +342,27 @@ def main() -> None:
     res: dict = json.loads(path.read_text()) if path.exists() else {}
     res["latitudes_requested"] = list(LATITUDES)
     res["anchor_lon"] = ANCHOR_LON
-    wanted = set(args.products.split(","))
+    wanted = set() if args.refresh_stats else set(args.products.split(","))
+    if args.refresh_stats:
+        from paper3r1_stats import fitted_mean_test, step_design
+
+        for prod, step in (("glorys12", 2004), ("oras5", 2015)):
+            for s in res.get(prod, {}).values():
+                yrs = np.array(s["years"], dtype=float)
+                fov = np.array(s["F_ov_Sv"])
+                faz = np.array(s["F_az_Sv"])
+                ci = fitted_mean_test(step_design(yrs, step), fov)["ci"]
+                fit = ols_santer(yrs, fov)
+                s.update(
+                    {
+                        "ci_F_ov_Sv": ci,
+                        "ci_excludes_zero": bool(ci[0] * ci[1] > 0),
+                        "trend_F_ov_mSv_per_yr": fit["slope"] * 1e3,
+                        "p_santer": fit["p_santer"],
+                        "n_eff": fit["n_eff"],
+                        "trend_F_az_mSv_per_yr": ols_santer(yrs, faz)["slope"] * 1e3,
+                    }
+                )
 
     if "glorys12" in wanted:
         print("GLORYS12V1 ...", flush=True)

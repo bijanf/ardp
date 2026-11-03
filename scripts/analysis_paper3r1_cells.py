@@ -57,15 +57,15 @@ from analysis_paper3_r2_gate_checks import ols_santer  # noqa: E402
 from analysis_paper3v2_attribution import (  # noqa: E402
     ARGO_START,
     COMMON_WINDOW,
-    N_BOOT,
-    PRIMARY_BLOCK,
     S0,
     SECTIONS,
     annual,
-    block_idx,
     continuous,
     trend_stats,
 )
+from paper3r1_stats import corr_test, sieve_coefficients, trend_design  # noqa: E402
+
+SHARE_RNG = np.random.default_rng(20261104)
 
 RESULTS = REPO / "data" / "results"
 OUT_DIR = REPO / "PAPER_3_v2" / "analysis"
@@ -149,21 +149,14 @@ def cell_series(ds: xr.Dataset) -> xr.Dataset:
 
 
 def joint_share(years, part, total) -> dict:
-    """Trend of one additive part as a fraction of the trend of the total."""
+    """Trend of one additive part as a signed fraction of the trend of the
+    total, with paired draws from the joint AR(1) sieve bootstrap."""
     x = years.astype(float)
-    fits = {}
-    comps = {}
-    for name, ser in (("part", part), ("total", total)):
-        coef = np.polyfit(x, ser, 1)
-        fitted = np.polyval(coef, x)
-        comps[name] = (fitted, ser - fitted)
-        fits[name] = ols_santer(x, ser)
-    boot = {k: np.empty(N_BOOT) for k in comps}
-    for i in range(N_BOOT):
-        idx = block_idx(len(x), PRIMARY_BLOCK)
-        for k, (fitted, resid) in comps.items():
-            boot[k][i] = np.polyfit(x, fitted + resid[idx], 1)[0]
-    ratio = boot["part"] / boot["total"]
+    fits = {"part": ols_santer(x, part), "total": ols_santer(x, total)}
+    draws = sieve_coefficients(
+        trend_design(x), np.column_stack([part, total]), 1, SHARE_RNG
+    )
+    ratio = draws[:, 0] / draws[:, 1]
     return {
         "share_point": float(fits["part"]["slope"] / fits["total"]["slope"]),
         "share_ci": [
@@ -171,9 +164,12 @@ def joint_share(years, part, total) -> dict:
             float(np.percentile(ratio, 97.5)),
         ],
         "trend_part_mSv_per_yr": fits["part"]["slope"] * 1e3,
+        "ci_part_mSv_per_yr": [c * 1e3 for c in fits["part"]["ci"]],
         "p_part": fits["part"]["p_santer"],
         "trend_total_mSv_per_yr": fits["total"]["slope"] * 1e3,
+        "ci_total_mSv_per_yr": [c * 1e3 for c in fits["total"]["ci"]],
         "p_total": fits["total"]["p_santer"],
+        "total_resolved": bool(fits["total"]["p_santer"] < 0.05),
     }
 
 
@@ -300,7 +296,46 @@ def samba_compare(cells: dict[str, xr.Dataset]) -> dict:
             ),
             "T_limb_mean_same_months_Sv": float(cs["T_limb"].values[ri][ok].mean()),
         }
+        out["products"][key]["layers_as_samba"] = samba_layers(key, ri, up_s, ab_s)
     return out
+
+
+def samba_layers(key: str, ri: list[int], up_s: np.ndarray, ab_s: np.ndarray) -> dict:
+    """Reanalysis transports over the SAMBA integration layers.
+
+    SAMBA integrates the upper cell from the surface to 1315 dbar (northward
+    positive) and the abyssal cell from 3155 to 4295 dbar (southward
+    positive). The same layers are integrated here, from the velocity after
+    removal of the net section transport and from the uncorrected velocity.
+    """
+    import gsw
+
+    ds = xr.open_dataset(RESULTS / SECTIONS[key][1])
+    e3t = ds["e3t"].values
+    zw = np.concatenate([[0.0], np.cumsum(e3t)])
+    d1, d2, d3 = (-float(gsw.z_from_p(p, -34.5)) for p in (1315.0, 3155.0, 4295.0))
+
+    def overlap(z_top: float, z_bot: float) -> np.ndarray:
+        return np.clip(np.minimum(zw[1:], z_bot) - np.maximum(zw[:-1], z_top), 0, None)
+
+    w_up, w_ab = overlap(0.0, d1), overlap(d2, d3)
+    res = {"layer_depths_m": [d1, d2, d3]}
+    for vname in ("V_bc", "V_int"):
+        v = ds[vname].values[ri]
+        up = np.nansum(v * w_up, axis=1) / 1e6
+        ab = -np.nansum(v * w_ab, axis=1) / 1e6
+        for cell, r_ser, s_ser in (("upper", up, up_s), ("abyssal", ab, ab_s)):
+            ok = np.isfinite(r_ser) & np.isfinite(s_ser)
+            ct = corr_test(r_ser[ok] - r_ser[ok].mean(), s_ser[ok], detrend=False)
+            res[f"{cell}_{vname}"] = {
+                "mean_Sv": float(r_ser[ok].mean()),
+                "std_Sv": float(r_ser[ok].std()),
+                "samba_std_Sv": float(s_ser[ok].std()),
+                "corr": ct["r"],
+                "p": ct["p"],
+                "n_eff": ct["n_eff"],
+            }
+    return res
 
 
 # ── common window and azonal component ───────────────────────────────

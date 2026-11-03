@@ -126,9 +126,15 @@ def main() -> None:
     cs = ax.contour(tt, dd, ff, levels=lev, colors="0.35", linewidths=0.3)
     ax.clabel(cs, levels=[-0.2, -0.1, 0.1, 0.2], fmt="%.1f", fontsize=4.5)
     ax.axhline(0, color="black", lw=0.6)
+
+    def tilted(r):
+        return abs((r.get("lat_north") or 0) - (r.get("lat_south") or 0)) > 1.0
+
+    level = [r for r in rows if not tilted(r)]
+    slanted = [r for r in rows if tilted(r)]
     ax.plot(
-        [r["T_1993-2014"] for r in rows],
-        [r["dS_1993-2014"] for r in rows],
+        [r["T_1993-2014"] for r in level],
+        [r["dS_1993-2014"] for r in level],
         "o",
         ms=2.6,
         mfc="white",
@@ -136,6 +142,16 @@ def main() -> None:
         mew=0.5,
         label="CMIP6 models",
     )
+    if slanted:
+        ax.plot(
+            [r["T_1993-2014"] for r in slanted],
+            [r["dS_1993-2014"] for r in slanted],
+            "x",
+            ms=3.2,
+            color="black",
+            mew=0.7,
+            label="model row spanning\nmore than 1° latitude",
+        )
     for key, label, col, mk in REAN:
         w = rw[key]["1993-2014"]
         ax.plot(w["T"], w["dS"], mk, ms=5, mfc=col, mec="black", mew=0.5, label=label)
@@ -155,9 +171,14 @@ def main() -> None:
     cb.set_label("$F_{\\mathrm{ovS}}$ (Sv)", fontsize=6)
     cb.ax.tick_params(labelsize=5.5)
     ax.legend(
-        loc="upper right", fontsize=5.3, framealpha=0.85, frameon=True, edgecolor="none"
+        loc="lower center",
+        bbox_to_anchor=(0.5, 1.0),
+        ncol=3,
+        fontsize=5.0,
+        handlelength=1.0,
+        columnspacing=0.8,
     )
-    panel_letter(ax, "b", x=-0.2)
+    panel_letter(ax, "b", x=-0.2, y=1.2)
 
     # c
     ax = fig.add_subplot(gs[1, 0])

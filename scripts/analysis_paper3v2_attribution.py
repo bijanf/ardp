@@ -1,40 +1,33 @@
 #!/usr/bin/env python3
-"""Attribution of the F_ovS change, rebuilt on an exact two-factor factorisation.
+"""Attribution of the F_ovS change with the limb factorisation.
 
-The earlier version of this analysis factorised F_ovS as -Psi DvS / S0 with DvS
-defined as -S0 F_ovS / Psi. That is not a decomposition: the second factor is
-the first divided out, so it absorbs every change in the vertical structure of
-the velocity as well as every change in salinity, it closes to machine
-precision by construction, and the resulting "overturning share" is fixed by
-the algebraic identity
-
-    share = (F_early / dF) * (dPsi / Psi_early).
-
-This script discards that construction and uses the exact limb factorisation
-computed in ``compute_paper3r1_section_quantities.py``,
+Uses the exact limb factorisation computed in
+``compute_paper3r1_section_quantities.py``,
 
     F_ovS = -(1/S0) * T * dS ,
 
-with T the northward-limb transport of the barotropic-corrected velocity and
-dS = S_north - S_south the transport-weighted salinity contrast between the two
-limbs. Both are measured directly from the section profile, neither is defined
-in terms of the other, and T is linear in the velocity field, so it carries
-none of the upward sampling bias of a streamfunction maximum.
+with T the northward-limb transport of the velocity after removal of the net
+section transport and dS = S_north - S_south the contrast of the
+transport-weighted limb salinities. Both factors are formed from the section
+profile with positive weights within each limb. T = (1/2) sum |q'| is a convex
+function of the velocity and, like a streamfunction maximum, is biased upward
+by noise. With the streamfunction maximum Psi as the transport factor, the
+matching salinity factor is -S0 F_ovS / Psi, a salinity difference across the
+depth of Psi with signed weights; that choice is reported as a sensitivity
+test of the definition of the overturning strength.
 
 The epoch decomposition is taken in the symmetric (Shapley) form
 
     dF = -(1/S0) * ( <dS> * dT  +  <T> * ddS ) ,
 
-with <T> and <dS> the means of the two epochs. This is exact, has no cross
-term to discard, and does not depend on which epoch is chosen as the base
-point. The asymmetric early-base and late-base conventions are also reported,
-because the difference between them is large and the previous version quoted
-only the convention that gave the smallest number.
+with <T> and <dS> the means of the two epochs. It is exact, has no cross term
+and does not depend on which epoch is the base. The early-base and late-base
+conventions are also reported.
 
-Everything reported here carries an uncertainty. Trends use the Santer
-effective sample size with N_eff stated, means use a block bootstrap whose
-block length is varied rather than fixed at an arbitrary value, and shares use
-a paired block bootstrap.
+Trends use the effective sample size with the bias-corrected lag-1
+autocorrelation of ``paper3r1_stats.py``; their intervals are the inverse of
+that test. Means use the same correction. Shares of a trend use a joint AR(1)
+sieve bootstrap of the series concerned. The epoch census is descriptive.
 
 Writes ``PAPER_3_v2/analysis/attribution.json``.
 """
@@ -47,12 +40,18 @@ from pathlib import Path
 
 import numpy as np
 import xarray as xr
-from scipy import stats
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
 from analysis_paper3_r2_gate_checks import ols_santer  # noqa: E402
+from paper3r1_stats import (  # noqa: E402
+    fitted_mean_test,
+    ratio_summary,
+    sieve_coefficients,
+    step_design,
+    trend_design,
+)
 
 RESULTS = REPO / "data" / "results"
 OUT_DIR = REPO / "PAPER_3_v2" / "analysis"
@@ -77,45 +76,50 @@ ARGO_START = 2004
 
 
 def block_idx(n: int, block: int) -> np.ndarray:
+    """Circular moving-block indices (kept for the scripts that import it)."""
     n_blocks = int(np.ceil(n / block))
     starts = RNG.integers(0, n, size=n_blocks)
     return np.concatenate([(s + np.arange(block)) % n for s in starts])[:n]
 
 
-def mean_ci(v: np.ndarray, block: int) -> list[float]:
-    boot = np.array([v[block_idx(len(v), block)].mean() for _ in range(N_BOOT)])
-    return [float(np.percentile(boot, 2.5)), float(np.percentile(boot, 97.5))]
+STEP_YEARS = {"oras5": 2015, "glorys12": 2004}
+
+
+def mean_stats(years: np.ndarray, v: np.ndarray, step_year: int | None = None) -> dict:
+    """Mean with the interval of the mean of the fitted values of a regression
+    on a linear trend and, where it falls inside the window, the
+    observing-system step; the variability about the fit sets the interval."""
+    x = years.astype(float)
+    use_step = step_year is not None and x.min() < step_year <= x.max()
+    design = step_design(x, step_year) if use_step else trend_design(x)
+    r = fitted_mean_test(design, v)
+    return {
+        "mean": r["mean"],
+        "ci": r["ci"],
+        "n_eff": r["n_eff"],
+        "n_eff_at_floor": r["n_eff_at_floor"],
+        "step_year_in_model": int(step_year) if use_step else None,
+        "excludes_zero": bool(r["ci"][0] * r["ci"][1] > 0),
+    }
 
 
 def trend_stats(years: np.ndarray, v: np.ndarray, scale: float = 1e3) -> dict:
-    """OLS trend with Santer N_eff, its bootstrap CI, and the detection floor."""
-    x = years.astype(float)
-    fit = ols_santer(x, v)
-    coef = np.polyfit(x, v, 1)
-    resid = v - np.polyval(coef, x)
-    fitted = np.polyval(coef, x)
-    boot = np.array(
-        [
-            np.polyfit(x, fitted + resid[block_idx(len(x), PRIMARY_BLOCK)], 1)[0]
-            for _ in range(N_BOOT)
-        ]
-    )
-    # Smallest trend that this record could have resolved at the 5% level.
-    t_crit = stats.t.ppf(0.975, df=max(fit["n_eff"] - 2, 1))
+    """OLS trend with the corrected N_eff; the interval inverts the test and
+    its half-width is the smallest trend the record resolves at the 5% level."""
+    fit = ols_santer(years.astype(float), v)
     return {
-        "n": int(len(x)),
+        "n": int(len(years)),
         "window": [int(years[0]), int(years[-1])],
         "trend": fit["slope"] * scale,
         "p_santer": fit["p_santer"],
         "p_ols": fit["p_ols"],
         "n_eff": fit["n_eff"],
+        "n_eff_at_floor": fit["n_eff_at_floor"],
         "lag1": fit["lag1_autocorr"],
+        "phi_corrected": fit["phi_corrected"],
         "significant": bool(fit["p_santer"] < 0.05),
-        "ci": [
-            float(np.percentile(boot, 2.5) * scale),
-            float(np.percentile(boot, 97.5) * scale),
-        ],
-        "min_detectable_trend": float(t_crit * fit["stderr_santer"] * scale),
+        "ci": [fit["ci"][0] * scale, fit["ci"][1] * scale],
+        "min_detectable_trend": float(fit["half_width"] * scale),
     }
 
 
@@ -172,20 +176,15 @@ def continuous(years: np.ndarray, t: np.ndarray, d: np.ndarray, f: np.ndarray) -
     f_d = -(1 / S0) * t_bar * d
 
     x = years.astype(float)
-    parts = {}
-    fits = {}
-    for name, series in (("total", f), ("T", f_t), ("S", f_d)):
-        coef = np.polyfit(x, series, 1)
-        parts[name] = (np.polyval(coef, x), series - np.polyval(coef, x))
-        fits[name] = ols_santer(x, series)
-
-    boot = {k: np.empty(N_BOOT) for k in parts}
-    for i in range(N_BOOT):
-        idx = block_idx(len(x), PRIMARY_BLOCK)
-        for k, (fitted, resid) in parts.items():
-            boot[k][i] = np.polyfit(x, fitted + resid[idx], 1)[0]
-
-    ratio = np.abs(boot["T"]) / np.abs(boot["total"])
+    fits = {
+        name: ols_santer(x, series)
+        for name, series in (("total", f), ("T", f_t), ("S", f_d))
+    }
+    # Paired draws of the total and the transport-term trends for the share.
+    draws = sieve_coefficients(trend_design(x), np.column_stack([f, f_t]), 1, RNG)
+    share = ratio_summary(
+        draws[:, 1], draws[:, 0], abs(fits["T"]["slope"] / fits["total"]["slope"])
+    )
     out = {
         "n": int(len(x)),
         "window": [int(years[0]), int(years[-1])],
@@ -195,24 +194,21 @@ def continuous(years: np.ndarray, t: np.ndarray, d: np.ndarray, f: np.ndarray) -
             fits["total"]["slope"] - fits["T"]["slope"] - fits["S"]["slope"]
         )
         * 1e3,
-        "share_T_point": float(abs(fits["T"]["slope"] / fits["total"]["slope"])),
-        "share_T_ci": [
-            float(np.percentile(ratio, 2.5)),
-            float(np.percentile(ratio, 97.5)),
-        ],
-        "prob_share_T_below_0p25": float(np.mean(ratio < 0.25)),
-        "prob_T_term_opposes_total": float(
-            np.mean(np.sign(boot["T"]) != np.sign(boot["total"]))
+        "total_resolved": bool(fits["total"]["p_santer"] < 0.05),
+        "share_T_point": share["point"],
+        "share_T_ci": share["ci"],
+        "prob_share_T_below_0p25": share["prob_below_0p25"],
+        "prob_T_term_opposes_total": share["prob_opposite_sign"],
+        "T_term_opposes_total": bool(
+            np.sign(fits["T"]["slope"]) != np.sign(fits["total"]["slope"])
         ),
     }
     for k in ("total", "T", "S"):
         out[f"trend_{k}_mSv_per_yr"] = fits[k]["slope"] * 1e3
         out[f"p_{k}"] = fits[k]["p_santer"]
         out[f"n_eff_{k}"] = fits[k]["n_eff"]
-        out[f"ci_{k}_mSv_per_yr"] = [
-            float(np.percentile(boot[k], 2.5) * 1e3),
-            float(np.percentile(boot[k], 97.5) * 1e3),
-        ]
+        out[f"ci_{k}_mSv_per_yr"] = [c * 1e3 for c in fits[k]["ci"]]
+        out[f"mdt_{k}_mSv_per_yr"] = fits[k]["half_width"] * 1e3
     return out
 
 
@@ -262,38 +258,46 @@ def census(
 def epoch_bootstrap(
     years: np.ndarray, t: np.ndarray, d: np.ndarray, early: tuple, late: tuple
 ) -> dict:
+    """Point decomposition of one epoch pair (descriptive; no interval, since
+    epochs of 10 to 15 years hold too few independent values for a bootstrap)."""
     me = (years >= early[0]) & (years <= early[1])
     ml = (years >= late[0]) & (years <= late[1])
-    point = decompose(
+    return decompose(
         float(t[me].mean()),
         float(t[ml].mean()),
         float(d[me].mean()),
         float(d[ml].mean()),
     )
-    bt, bs, btot = np.empty(N_BOOT), np.empty(N_BOOT), np.empty(N_BOOT)
-    te, de, tl, dl = t[me], d[me], t[ml], d[ml]
-    for i in range(N_BOOT):
-        ie, il = block_idx(len(te), PRIMARY_BLOCK), block_idx(len(tl), PRIMARY_BLOCK)
-        r = decompose(
-            float(te[ie].mean()),
-            float(tl[il].mean()),
-            float(de[ie].mean()),
-            float(dl[il].mean()),
+
+
+def start_year_scan(
+    years: np.ndarray, t: np.ndarray, d: np.ndarray, f: np.ndarray, min_len: int = 15
+) -> list[dict]:
+    """Signed transport and salinity terms for every start year to the record end."""
+    rows = []
+    for y0 in range(int(years[0]), int(years[-1]) - min_len + 2):
+        m = years >= y0
+        t_bar, d_bar = float(t[m].mean()), float(d[m].mean())
+        x = years[m].astype(float)
+        tot = ols_santer(x, f[m])
+        term_t = ols_santer(x, -(1 / S0) * t[m] * d_bar)
+        term_s = ols_santer(x, -(1 / S0) * t_bar * d[m])
+        rows.append(
+            {
+                "start": y0,
+                "end": int(years[-1]),
+                "trend_total_mSv_per_yr": tot["slope"] * 1e3,
+                "p_total": tot["p_santer"],
+                "trend_T_mSv_per_yr": term_t["slope"] * 1e3,
+                "p_T": term_t["p_santer"],
+                "trend_S_mSv_per_yr": term_s["slope"] * 1e3,
+                "share_T": abs(term_t["slope"] / tot["slope"]),
+                "T_term_opposes_total": bool(
+                    np.sign(term_t["slope"]) != np.sign(tot["slope"])
+                ),
+            }
         )
-        bt[i], bs[i], btot[i] = r["term_T_sym_mSv"], r["term_S_sym_mSv"], r["total_mSv"]
-    ratio = np.abs(bt) / np.abs(btot)
-    pct = lambda a: [float(np.percentile(a, 2.5)), float(np.percentile(a, 97.5))]  # noqa: E731
-    point.update(
-        {
-            "term_T_ci_mSv": pct(bt),
-            "term_S_ci_mSv": pct(bs),
-            "total_ci_mSv": pct(btot),
-            "share_T_ci": pct(ratio),
-            "prob_share_below_0p25": float(np.mean(ratio < 0.25)),
-            "prob_S_term_larger": float(np.mean(np.abs(bs) > np.abs(bt))),
-        }
-    )
-    return point
+    return rows
 
 
 # ── per-product driver ────────────────────────────────────────────────
@@ -304,8 +308,7 @@ def run_product(key: str) -> dict:
     ds = xr.open_dataset(RESULTS / fname)
     a = annual(ds)
     years = a["year"].values.astype(int)
-    depth = ds["depth"].values
-    e3t = np.diff(depth, prepend=0.0)
+    e3t = ds["e3t"].values  # level thickness of the section file (bounds)
 
     fov = a["F_ov"].values
     t_limb = a["T_limb_Sv"].values
@@ -346,23 +349,29 @@ def run_product(key: str) -> dict:
         "lag1_F_ov": float(np.corrcoef(fov[:-1], fov[1:])[0, 1]),
     }
 
-    # Record mean, and how its interval depends on the block length.
-    out["mean_ci_by_block"] = {str(b): mean_ci(fov, b) for b in BLOCK_LENGTHS}
-    out["mean_ci_excludes_zero_by_block"] = {
-        str(b): bool(ci[0] * ci[1] > 0) for b, ci in out["mean_ci_by_block"].items()
-    }
-    # A mean over a trending record is not a well-defined population quantity;
-    # the most recent decade is, so report it too.
+    # Record mean and the mean of the last ten years of the record, with
+    # intervals from the corrected effective sample size of the de-meaned
+    # series (which contains the trend, so the intervals are conservative).
+    out["mean_stats"] = mean_stats(years, fov, STEP_YEARS.get(key))
     recent = years >= years[-1] - 9
     out["recent_decade"] = {
         "window": [int(years[recent][0]), int(years[-1])],
         "mean_F_ov_Sv": float(fov[recent].mean()),
-        "ci": mean_ci(fov[recent], 3),
+        **{
+            k: v
+            for k, v in mean_stats(
+                years[recent], fov[recent], STEP_YEARS.get(key)
+            ).items()
+            if k != "mean"
+        },
     }
 
     windows = {"own record": (int(years[0]), int(years[-1])), "common": COMMON_WINDOW}
     if years[-1] - ARGO_START >= 14:
         windows["argo"] = (ARGO_START, int(years[-1]))
+    if years[0] <= ARGO_START and years[-1] >= 2014:
+        # Argo era before the 2015 join of the ORAS5 streams.
+        windows["argo to 2014"] = (ARGO_START, 2014)
     out["trends"] = {}
     for name, (y0, y1) in windows.items():
         m = (years >= y0) & (years <= y1)
@@ -385,12 +394,12 @@ def run_product(key: str) -> dict:
             fov[(years >= y0) & (years <= y1)],
         )
         for name, (y0, y1) in windows.items()
-        if ((years >= y0) & (years <= y1)).sum() >= 15
+        if ((years >= y0) & (years <= y1)).sum() >= 11
     }
     out["census"] = census(years, t_limb, ds_limb)
+    out["start_year_scan"] = start_year_scan(years, t_limb, ds_limb, fov)
 
-    # The epoch pair used by the previous version, kept only so that the old
-    # and new attributions can be compared directly.
+    # One epoch pair, as a descriptive point decomposition.
     if years[0] <= 1993 and years[-1] >= 2020:
         late_end = min(2025, int(years[-1]))
         out["epoch_pair"] = epoch_bootstrap(
@@ -465,12 +474,11 @@ def report(res: dict) -> None:
             f"F_ov < 0 in {r['n_years_F_ov_negative']}/{r['n_years']} years, lag-1 "
             f"{r['lag1_F_ov']:.3f}"
         )
-        print("  mean CI by block length:")
-        for b, ci in r["mean_ci_by_block"].items():
-            flag = (
-                "excludes 0" if r["mean_ci_excludes_zero_by_block"][b] else "INCLUDES 0"
-            )
-            print(f"     L={b:>2}: [{ci[0]:+.4f}, {ci[1]:+.4f}]  {flag}")
+        ms = r["mean_stats"]
+        print(
+            f"  record mean {ms['mean']:+.4f} [{ms['ci'][0]:+.4f}, {ms['ci'][1]:+.4f}]"
+            f" Sv, N_eff {ms['n_eff']:.1f}"
+        )
         rd = r["recent_decade"]
         print(
             f"  most recent decade {rd['window'][0]}-{rd['window'][1]}: "
@@ -531,15 +539,12 @@ def report(res: dict) -> None:
                 f"({p['ddS_pct']:+.1f}%)"
             )
             print(
-                f"     transport term {p['term_T_sym_mSv']:+6.2f} "
-                f"[{p['term_T_ci_mSv'][0]:+.2f},{p['term_T_ci_mSv'][1]:+.2f}]  "
-                f"salinity term {p['term_S_sym_mSv']:+7.2f} "
-                f"[{p['term_S_ci_mSv'][0]:+.2f},{p['term_S_ci_mSv'][1]:+.2f}]  "
+                f"     transport term {p['term_T_sym_mSv']:+6.2f}  "
+                f"salinity term {p['term_S_sym_mSv']:+7.2f}  "
                 f"total {p['total_mSv']:+7.2f}"
             )
             print(
-                f"     share_T sym {p['share_T_sym']:.3f} "
-                f"[{p['share_T_ci'][0]:.3f},{p['share_T_ci'][1]:.3f}], "
+                f"     share_T sym {p['share_T_sym']:.3f}, "
                 f"early base {p['share_T_earlybase']:.3f}, late base "
                 f"{p['share_T_latebase']:.3f}, closure {p['closure_sym_mSv']:+.1e}"
             )

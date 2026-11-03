@@ -113,7 +113,21 @@ def main() -> None:
                 "S_north_p": fs["p_santer"],
                 "S_north_n_eff": fs["n_eff"],
                 "n_eff": fd["n_eff"],
+                "n_eff_at_floor": fd["n_eff_at_floor"],
             }
+            # The window of the EN4 test, with the circulation held at the same
+            # record-mean profile: the like-for-like comparison with EN4.
+            w = (years >= 2005) & (years <= 2024)
+            if w.sum() >= 15:
+                fw = ols_santer(x[w], ann_ds[w])
+                fsw = ols_santer(x[w], ann_sn[w])
+                frozen[name]["window_2005_2024"] = {
+                    "dS_trend_per_decade": fw["slope"] * 10,
+                    "dS_ci_per_decade": [c * 10 for c in fw["ci"]],
+                    "dS_p": fw["p_santer"],
+                    "S_north_trend_per_decade": fsw["slope"] * 10,
+                    "S_north_p": fsw["p_santer"],
+                }
         tot = frozen["full"]["dS_trend_per_decade"]
         frozen["salinity_share_of_dS"] = (
             abs(frozen["salinity_only"]["dS_trend_per_decade"] / tot) if tot else None

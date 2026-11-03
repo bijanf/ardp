@@ -156,27 +156,21 @@ def continuous_split(years, comp_a, comp_b, total):
         "A": ols_santer(x, comp_a),
         "B": ols_santer(x, comp_b),
     }
-    parts = {}
-    for k, series in (("total", total), ("A", comp_a), ("B", comp_b)):
-        coef = np.polyfit(x, series, 1)
-        parts[k] = (np.polyval(coef, x), series - np.polyval(coef, x))
-    boot = {k: np.empty(N_BOOT) for k in parts}
-    for i in range(N_BOOT):
-        idx = block_idx(len(x), BLOCK)
-        for k, (fit, res) in parts.items():
-            boot[k][i] = np.polyfit(x, fit + res[idx], 1)[0]
+    from paper3r1_stats import sieve_coefficients, trend_design
+
+    draws = sieve_coefficients(
+        trend_design(x), np.column_stack([total, comp_b]), 1, RNG
+    )
     out = {}
     for k in ("total", "A", "B"):
         out[f"trend_{k}"] = fits[k]["slope"] * 10  # per decade
         out[f"p_{k}"] = fits[k]["p_santer"]
-        out[f"ci_{k}"] = [
-            float(np.percentile(boot[k], 2.5) * 10),
-            float(np.percentile(boot[k], 97.5) * 10),
-        ]
+        out[f"n_eff_{k}"] = fits[k]["n_eff"]
+        out[f"ci_{k}"] = [c * 10 for c in fits[k]["ci"]]
     out["residual_per_decade"] = (
         fits["total"]["slope"] - fits["A"]["slope"] - fits["B"]["slope"]
     ) * 10
-    ratio = np.abs(boot["B"]) / np.abs(boot["total"])
+    ratio = np.abs(draws[:, 1]) / np.abs(draws[:, 0])
     out["partition_share_point"] = float(
         abs(fits["B"]["slope"] / fits["total"]["slope"])
     )

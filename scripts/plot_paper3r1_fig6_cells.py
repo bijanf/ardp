@@ -71,6 +71,45 @@ def mean_psi(key: str):
     return psi, zw, zw[kmax], psi[kmax], z0
 
 
+YLIM_TRENDS = (-8.0, 2.5)
+
+
+def bar_with_ci(ax, x, v, lo, hi, p, fc, width):
+    """Bar with its interval, hatched where the trend is not significant;
+    intervals beyond the axis are drawn to its edge with an arrow."""
+    resolved = p < 0.05
+    ax.bar(
+        x,
+        v,
+        width * 0.9,
+        color=fc if resolved else "white",
+        edgecolor="black" if fc == "white" or not resolved else "black",
+        lw=0.5,
+        hatch=None if resolved else "/////",
+    )
+    a, b = max(lo, YLIM_TRENDS[0]), min(hi, YLIM_TRENDS[1])
+    ax.errorbar(
+        x,
+        v,
+        yerr=[[v - a], [b - v]],
+        fmt="none",
+        ecolor="0.2",
+        elinewidth=0.5,
+        capsize=1.0,
+    )
+    for edge, start, cond in (
+        (YLIM_TRENDS[0], YLIM_TRENDS[0] + 0.6, lo < YLIM_TRENDS[0]),
+        (YLIM_TRENDS[1], YLIM_TRENDS[1] - 0.6, hi > YLIM_TRENDS[1]),
+    ):
+        if cond:
+            ax.annotate(
+                "",
+                xy=(x, edge),
+                xytext=(x, start),
+                arrowprops={"arrowstyle": "->", "lw": 0.5, "color": "0.2"},
+            )
+
+
 def main() -> None:
     set_style()
     cells = json.loads((AN / "r1_cells.json").read_text())
@@ -143,16 +182,10 @@ def main() -> None:
         for i, (key, _, _) in enumerate(PROD):
             t = cells[key]["windows"]["own"][var]
             x = i + (j - 1) * width
-            ax.bar(x, t["trend"], width * 0.9, color=fc, edgecolor="black", lw=0.5)
-            ax.errorbar(
-                x,
-                t["trend"],
-                yerr=[[t["trend"] - t["ci"][0]], [t["ci"][1] - t["trend"]]],
-                fmt="none",
-                ecolor="0.2",
-                elinewidth=0.5,
-                capsize=1.0,
+            bar_with_ci(
+                ax, x, t["trend"], t["ci"][0], t["ci"][1], t["p_santer"], fc, width
             )
+    ax.set_ylim(*YLIM_TRENDS)
     ax.axhline(0, color="black", lw=0.4)
     ax.set_xticks(range(len(PROD)))
     ax.set_xticklabels([p[1] for p in PROD])
@@ -181,16 +214,11 @@ def main() -> None:
         for i, (key, _, _) in enumerate(PROD):
             a = cells[key]["windows"]["own"]["upper_cell_attribution"]
             x = i + (j - 1) * width
-            ax.bar(x, a[tk], width * 0.9, color=fc, edgecolor="black", lw=0.5)
-            ax.errorbar(
-                x,
-                a[tk],
-                yerr=[[a[tk] - a[ck][0]], [a[ck][1] - a[tk]]],
-                fmt="none",
-                ecolor="0.2",
-                elinewidth=0.5,
-                capsize=1.0,
+            pk = {"trend_total_mSv_per_yr": "p_total", "trend_T_mSv_per_yr": "p_T"}.get(
+                tk, "p_S"
             )
+            bar_with_ci(ax, x, a[tk], a[ck][0], a[ck][1], a[pk], fc, width)
+    ax.set_ylim(*YLIM_TRENDS)
     ax.axhline(0, color="black", lw=0.4)
     ax.set_xticks(range(len(PROD)))
     ax.set_xticklabels([p[1] for p in PROD])
@@ -202,10 +230,14 @@ def main() -> None:
             Patch(fc=C_TRANSPORT, ec="black", lw=0.5, label="transport term"),
             Patch(fc=C_SALINITY, ec="black", lw=0.5, label="salinity term"),
         ],
-        loc="lower left",
+        loc="lower center",
+        bbox_to_anchor=(0.5, 1.0),
+        ncol=3,
         fontsize=5.3,
+        handlelength=1.0,
+        columnspacing=0.8,
     )
-    panel_letter(ax, "d", x=-0.25, y=1.02)
+    panel_letter(ax, "d", x=-0.25, y=1.12)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     for ext in ("pdf", "png"):

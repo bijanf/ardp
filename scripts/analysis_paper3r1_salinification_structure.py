@@ -33,7 +33,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import xarray as xr
-from scipy import stats
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
@@ -67,24 +66,13 @@ WINDOWS = {
 
 
 def santer_trend(years: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """Vectorised OLS trend along axis 0 with the Santer effective sample size."""
-    x = years.astype(float) - years.mean()
-    n = len(x)
-    ym = y.mean(axis=0)
-    slope = (x[:, None, None] * (y - ym)).sum(axis=0) / (x**2).sum()
-    resid = y - ym - slope * x[:, None, None]
-    r0 = resid[:-1]
-    r1 = resid[1:]
-    with np.errstate(invalid="ignore", divide="ignore"):
-        lag1 = (r0 * r1).sum(axis=0) / np.sqrt(
-            (r0**2).sum(axis=0) * (r1**2).sum(axis=0)
-        )
-        neff = np.clip(n * (1 - lag1) / (1 + lag1), 3.0, n)
-        se = np.sqrt((resid**2).sum(axis=0) / (n - 2) / (x**2).sum())
-        se_adj = se * np.sqrt((n - 2) / np.clip(neff - 2, 1.0, None))
-        tval = slope / se_adj
-        p = 2 * stats.t.sf(np.abs(tval), np.clip(neff - 2, 1.0, None))
-    return slope * 10.0, p
+    """Vectorised OLS trend along axis 0 (per decade) and its p-value, with the
+    corrected effective sample size of paper3r1_stats.py."""
+    from paper3r1_stats import trend_test_many
+
+    shape = y.shape[1:]
+    r = trend_test_many(years, y.reshape(len(years), -1))
+    return r["slope"].reshape(shape) * 10.0, r["p"].reshape(shape)
 
 
 def run(product: str) -> dict:
