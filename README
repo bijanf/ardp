@@ -1,0 +1,137 @@
+ARDP: AMOC Reanalysis Diagnostic Pipeline
+==========================================
+
+Python code that computes Atlantic meridional overturning circulation (AMOC)
+diagnostics from ocean reanalyses (ORAS5, GLORYS12V1, ECCO-V4r4, SODA 3.15.2),
+the EN4 objective analysis of observed salinity and CMIP6 model output, and
+produces every figure and number of the papers listed below.
+
+License: MIT (see LICENSE).
+
+
+Installation
+------------
+
+    pip install -e ".[dev]"
+
+Dependencies: xarray, numpy, scipy, matplotlib, cartopy, xgcm, gsw,
+copernicusmarine, intake. All data live under data/, which is not tracked;
+the download scripts in scripts/ (download_*.py) retrieve them.
+
+
+Overturning freshwater transport at 34.5 S (paper 3)
+----------------------------------------------------
+
+Run from the repository root, in this order. Every script caps its parallel
+workers at four.
+
+  1. Section fields (monthly velocity and salinity on the contiguous Atlantic
+     section at 34.5 S):
+         python scripts/extract_paper3r1_section_fields.py
+  2. Section diagnostics (overturning and azonal freshwater transports, limb
+     factorisation, streamfunction) for the baseline and the grid variants:
+         python scripts/compute_paper3r1_section_quantities.py
+  3. Attribution, frozen fields, observing-system steps, EN4 test and latitude
+     sensitivity:
+         python scripts/analysis_paper3v2_attribution.py
+         python scripts/analysis_paper3v2_final_checks.py
+         python scripts/analysis_paper3v2_stepfit.py
+         python scripts/analysis_paper3v2_limb_composition.py
+         python scripts/analysis_paper3v2_en4.py
+         python scripts/analysis_paper3v2_en4_depth_test.py
+         python scripts/analysis_paper3v2_latitude_sensitivity.py
+  4. Overturning cells, common window, grid sensitivity, SAMBA comparison,
+     salinity trend structure, CMIP6 and step-adjusted attribution:
+         python scripts/analysis_paper3r1_cells.py
+         python scripts/analysis_paper3r1_water_bodies.py
+         python scripts/analysis_paper3r1_salinity_profiles.py
+         python scripts/analysis_paper3r1_salinification_structure.py
+         python scripts/analysis_paper3r1_cmip6.py
+         python scripts/analysis_paper3r1_step_adjusted.py
+  5. Figures:
+         Figure 1   scripts/plot_paper3r1_fig1_schematic.py
+         Figure 2   scripts/plot_paper3r1_fig2_sign.py
+         Figure 3   scripts/plot_paper3r1_fig3_attribution.py
+         Figure 4   scripts/plot_paper3r1_fig4_salinification.py
+         Figure 5   scripts/plot_paper3r1_fig5_en4.py
+         Figure 6   scripts/plot_paper3r1_fig6_cells.py
+         Figure 7   scripts/plot_paper3r1_fig7_models.py
+         Supplementary figures with SODA, trend sections, SAMBA, CMIP6
+         trajectories and the pile-up index:
+                    scripts/plot_paper3r1_si_figures.py
+         Supplementary surface salinity trends: scripts/plot_sss_trend_map.py
+         Supplementary RAPID validation: scripts/plot_grl_figures.py
+         Supplementary overturning anomalies at 26.5 N:
+                    scripts/plot_amoc_reanalysis_anomalies.py
+         Supplementary overturning strength against CMIP6:
+                    scripts/plot_amoc_strength_comparison.py
+
+The numbers in the text are read from the JSON summaries that steps 3 and 4
+write to PAPER_3_v2/analysis/.
+
+
+AMOC mechanisms (paper 2): figure to script mapping
+---------------------------------------------------
+
+Main text
+  1  Mechanism-conditional AMOC projections, basin-mean salinity, F_ovS,
+     Cold Blob                                   plot_paper2_Figure1.py
+  2  Observational grounding: EN4 zonal section and upper-300 m salinity
+     trends                                      plot_obs_grounding.py
+  3  CMIP6 mechanism shares, mechanism-conditional AMOC, weakening by 2100
+                                                 plot_paper2_Figure2.py
+  4  AMOC projections restricted to the bistable subset
+                                                 plot_paper2_Figure3.py
+  5  Robustness: Argo-era windows, period sensitivity, piControl null
+                                                 plot_paper2_Figure4.py
+  6  Zonal structure of the velocity and salinity changes at 34.5 S
+                                                 plot_paper2_Figure5.py
+  7  Lead-lag, emergent regression, large-ensemble robustness
+                                                 plot_paper2_Figure6.py
+
+Supplementary
+  S1 Within-class emergent regression test       diagnostic_a2_within_class_regression.py
+  S2 Continuous velocity share against projected weakening
+                                                 diagnostic_a3_continuous_correlation.py
+  S3 Timescale consistency of the mechanism class
+                                                 diagnostic_a1_timescale_consistency.py
+  S4 Joint sensitivity to threshold and floor    diagnostic_a4_joint_sensitivity.py
+  S5 Bootstrap distribution of the class-median gap
+                                                 diagnostic_a5_gap_bootstrap.py
+  S6 Permutation null for the mechanism-class label
+                                                 robustness_permutation_and_bootstrap.py
+  S7 Lead-lag cross-correlation by mechanism class
+                                                 plot_paper2_figS1_leadlag.py
+  S8 Salinity component against projected AMOC weakening
+                                                 analysis_r1_salinity_amoc_coupling.py
+  S9 Observation-constrained salinity-driven component
+                                                 plot_obs_hybrid_dfs.py
+
+Tables
+  2  Net volume transport                        compute_paper2_tableS2_vnet.py
+  S1 Model selection                             compute_paper2_tableS1.py
+
+
+Other diagnostics
+-----------------
+
+  AMOC strength at 26.5 N:    scripts/compute_yearly_amoc26n.py, then
+                              scripts/plot_amoc_strength_comparison.py
+  Reanalysis AMOC anomalies:  scripts/compute_reanalysis_amoc.py, then
+                              scripts/plot_amoc_reanalysis_anomalies.py
+  F_ovS time series:          scripts/compute_oras5_fovs.py,
+                              scripts/compute_cmip6_fovs_timeseries.py
+
+
+Development
+-----------
+
+    ruff check .
+    ruff format .
+    mypy ardp/
+    pytest tests/ -v
+
+Package layout: ardp/ingestion (data loaders), ardp/physics (density,
+freshwater transport, heat transport, streamfunction), ardp/fingerprints,
+ardp/spatial (region masks), ardp/constants.py, ardp/viz; scripts/ holds the
+download, compute, analysis and plotting scripts.

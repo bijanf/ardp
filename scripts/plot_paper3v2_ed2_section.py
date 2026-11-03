@@ -45,9 +45,9 @@ RESULTS = REPO / "data" / "results"
 OUTBASE = REPO / "PAPER_3_v2" / "extended_data" / "ED2_section"
 
 PRODUCTS = [
-    ("ORAS5", "paper3v2_section_oras5.nc", C_ORAS5),
-    ("GLORYS12V1", "paper3v2_section_glorys12.nc", C_GLORYS),
-    ("ECCO-V4r4", "paper3v2_section_ecco.nc", C_ECCO),
+    ("ORAS5", "paper3r1_section_oras5.nc", C_ORAS5),
+    ("GLORYS12V1", "paper3r1_section_glorys12.nc", C_GLORYS),
+    ("ECCO-V4r4", "paper3r1_section_ecco.nc", C_ECCO),
 ]
 MATCH = (1993, 2017)  # the window all three products share
 

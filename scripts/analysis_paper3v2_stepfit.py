@@ -46,9 +46,9 @@ OUT_DIR = REPO / "PAPER_3_v2" / "analysis"
 
 SPLICE_YEAR = 2015
 SECTIONS = {
-    "oras5": ("ORAS5", "paper3v2_section_oras5.nc"),
-    "glorys12": ("GLORYS12V1", "paper3v2_section_glorys12.nc"),
-    "ecco": ("ECCO-V4r4", "paper3v2_section_ecco.nc"),
+    "oras5": ("ORAS5", "paper3r1_section_oras5.nc"),
+    "glorys12": ("GLORYS12V1", "paper3r1_section_glorys12.nc"),
+    "ecco": ("ECCO-V4r4", "paper3r1_section_ecco.nc"),
 }
 WINDOWS = {
     "own record": None,

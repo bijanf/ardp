@@ -41,8 +41,8 @@ ANALYSIS = REPO / "PAPER_3_v2" / "analysis" / "attribution.json"
 OUTBASE = REPO / "PAPER_3_v2" / "figures" / "Fig3_mechanism"
 
 PRODUCTS = [
-    ("oras5", "ORAS5", C_ORAS5, "paper3v2_section_oras5.nc"),
-    ("glorys12", "GLORYS12V1", C_GLORYS, "paper3v2_section_glorys12.nc"),
+    ("oras5", "ORAS5", C_ORAS5, "paper3r1_section_oras5.nc"),
+    ("glorys12", "GLORYS12V1", C_GLORYS, "paper3r1_section_glorys12.nc"),
 ]
 TREND_WINDOW = (1993, 2025)
 
