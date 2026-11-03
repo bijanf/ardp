@@ -47,31 +47,30 @@ BLOCK_YEARS = 5
 
 
 def ols_santer(years: np.ndarray, values: np.ndarray) -> dict:
-    """OLS slope with both naive and Santer N_eff-adjusted p-values.
+    """OLS slope with naive and effective-sample-size-adjusted p-values.
 
-    Santer et al. (2000): inflate the slope standard error using the
-    lag-1 autocorrelation of the regression residuals,
-    N_eff = N (1 - r1) / (1 + r1).
+    Santer et al. (2000) inflate the slope standard error with
+    N_eff = N (1 - phi) / (1 + phi). Here phi is the lag-1 autocorrelation
+    of the regression residuals corrected for its small-sample bias and
+    truncated at zero, with N_eff capped at N (scripts/paper3r1_stats.py).
+    The interval is the inverse of the test.
     """
-    n = len(years)
-    res = stats.linregress(years, values)
-    resid = values - (res.intercept + res.slope * years)
-    r1 = float(np.corrcoef(resid[:-1], resid[1:])[0, 1]) if n > 2 else 0.0
-    r1 = min(max(r1, -0.99), 0.99)
-    neff = n * (1.0 - r1) / (1.0 + r1)
-    neff = max(neff, 3.0)
-    se_adj = res.stderr * np.sqrt((n - 2) / (neff - 2))
-    t_adj = res.slope / se_adj if se_adj > 0 else np.inf
-    p_adj = 2.0 * stats.t.sf(abs(t_adj), df=neff - 2)
+    from paper3r1_stats import trend_test
+
+    r = trend_test(np.asarray(years, dtype=float), np.asarray(values, dtype=float))
     return {
-        "n_years": n,
-        "slope": float(res.slope),
-        "stderr_ols": float(res.stderr),
-        "p_ols": float(res.pvalue),
-        "lag1_autocorr": r1,
-        "n_eff": float(neff),
-        "stderr_santer": float(se_adj),
-        "p_santer": float(p_adj),
+        "n_years": r["n"],
+        "slope": r["value"],
+        "stderr_ols": r["stderr_ols"],
+        "p_ols": r["p_ols"],
+        "lag1_autocorr": r["lag1"],
+        "phi_corrected": r["phi_corrected"],
+        "n_eff": r["n_eff"],
+        "n_eff_at_floor": r["n_eff_at_floor"],
+        "stderr_santer": r["stderr_adj"],
+        "p_santer": r["p"],
+        "ci": r["ci"],
+        "half_width": r["half_width"],
     }
 
 

@@ -34,7 +34,6 @@ from pathlib import Path
 
 import numpy as np
 import xarray as xr
-from scipy import stats
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
@@ -61,36 +60,29 @@ WINDOWS = {
 def step_fit(years: np.ndarray, v: np.ndarray, step_year: int) -> dict | None:
     """OLS with a level shift, with the residual autocorrelation accounted for.
 
-    The standard errors are inflated by the same Santer factor used elsewhere,
-    computed from the lag-1 autocorrelation of the residuals of this fit.
+    The standard errors are inflated with the effective sample size from the
+    bias-corrected lag-1 autocorrelation of the residuals of this fit
+    (paper3r1_stats.py), as for the trends.
     """
-    x = years.astype(float)
+    from paper3r1_stats import step_test
+
     d = (years >= step_year).astype(float)
     if d.sum() < 3 or (1 - d).sum() < 3:
         return None
-    design = np.column_stack([np.ones_like(x), x - x.mean(), d])
-    beta, *_ = np.linalg.lstsq(design, v, rcond=None)
-    resid = v - design @ beta
-    n = len(x)
-    r1 = float(np.corrcoef(resid[:-1], resid[1:])[0, 1])
-    r1 = min(max(r1, -0.99), 0.99)
-    neff = max(n * (1 - r1) / (1 + r1), 3.0)
-    dof = max(neff - design.shape[1], 1.0)
-    s2 = float(resid @ resid) / (n - design.shape[1])
-    cov = s2 * np.linalg.inv(design.T @ design)
-    se = np.sqrt(np.diag(cov)) * np.sqrt((n - design.shape[1]) / dof)
-    t_slope = beta[1] / se[1]
-    t_step = beta[2] / se[2]
+    r = step_test(years.astype(float), v, step_year)
+    tr, st = r["trend"], r["step"]
     return {
-        "trend_mSv_per_yr": float(beta[1] * 1e3),
-        "trend_se": float(se[1] * 1e3),
-        "trend_p": float(2 * stats.t.sf(abs(t_slope), df=dof)),
-        "step_Sv": float(beta[2]),
-        "step_se": float(se[2]),
-        "step_p": float(2 * stats.t.sf(abs(t_step), df=dof)),
-        "n": int(n),
-        "n_eff": float(neff),
-        "dof": float(dof),
+        "trend_mSv_per_yr": tr["value"] * 1e3,
+        "trend_se": tr["stderr_adj"] * 1e3,
+        "trend_ci_mSv_per_yr": [c * 1e3 for c in tr["ci"]],
+        "trend_p": tr["p"],
+        "step_Sv": st["value"],
+        "step_se": st["stderr_adj"],
+        "step_ci_Sv": st["ci"],
+        "step_p": st["p"],
+        "n": tr["n"],
+        "n_eff": tr["n_eff"],
+        "dof": tr["n_eff"] - tr["k"],
     }
 
 

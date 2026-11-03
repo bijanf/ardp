@@ -166,6 +166,24 @@ def main() -> None:
                     C_EN4,
                 )
             )
+    # The reanalyses' own salinity with their circulation held at the same
+    # record-mean profile: the like-for-like comparison with EN4.
+    fc = json.loads((AN / "final_checks.json").read_text())
+    for key, lab, col in (
+        ("oras5", "ORAS5", C_ORAS5),
+        ("glorys12", "GLORYS12V1", C_GLORYS),
+    ):
+        w = fc[key]["frozen_field"]["salinity_only"]["window_2005_2024"]
+        rows.append(
+            (
+                f"{lab} salinity, {lab} circulation fixed",
+                w["dS_trend_per_decade"],
+                w["dS_ci_per_decade"][0],
+                w["dS_ci_per_decade"][1],
+                w["dS_p"],
+                col,
+            )
+        )
     for key, lab, col in (
         ("oras5", "ORAS5", C_ORAS5),
         ("glorys12", "GLORYS12V1", C_GLORYS),
@@ -177,9 +195,22 @@ def main() -> None:
             (f"{lab}, own salinity and circulation", *trend_ci(yrs[m], ds_[m]), col)
         )
     y = np.arange(len(rows))[::-1]
+    xl = (-0.08, 0.16)
     for yy, (_lab, t, lo, hi, p, col) in zip(y, rows, strict=False):
-        axd.plot([lo, hi], [yy, yy], color=col, lw=1.0)
+        axd.plot([max(lo, xl[0]), min(hi, xl[1])], [yy, yy], color=col, lw=1.0)
         axd.plot(t, yy, "o", color=col, ms=3.0, mfc=col if p < 0.05 else "white")
+        for edge, inside, cond in (
+            (xl[0], xl[0] + 0.012, lo < xl[0]),
+            (xl[1], xl[1] - 0.012, hi > xl[1]),
+        ):
+            if cond:
+                axd.annotate(
+                    "",
+                    xy=(edge, yy),
+                    xytext=(inside, yy),
+                    arrowprops={"arrowstyle": "->", "lw": 0.6, "color": col},
+                )
+    axd.set_xlim(*xl)
     axd.axvline(0, color="black", lw=0.4)
     axd.set_yticks(y)
     axd.set_yticklabels([r[0] for r in rows], fontsize=5.5)

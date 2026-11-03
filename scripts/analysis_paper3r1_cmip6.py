@@ -44,6 +44,7 @@ sys.path.insert(0, str(REPO / "scripts"))
 
 from compute_paper3r1_section_quantities import section_series  # noqa: E402
 from compute_paper3v2_section_profiles import atlantic_segment  # noqa: E402
+from paper3r1_stats import corr_test  # noqa: E402
 
 CMIP6_DIR = REPO / "data" / "cmip6_sections"
 RESULTS = REPO / "data" / "results"
@@ -245,9 +246,9 @@ def reanalysis_two_latitudes() -> dict:
             yv = ser.loc[common].values
             yr = np.array(common, float)
             res[f"{name}_raw"] = pearson(x, yv)
-            dx = x - np.polyval(np.polyfit(yr, x, 1), yr)
-            dy = yv - np.polyval(np.polyfit(yr, yv, 1), yr)
-            res[f"{name}_detrended"] = pearson(dx, dy)
+            # Detrended correlation with the effective sample size of
+            # Bretherton et al. (1999) from the corrected lag-1 coefficients.
+            res[f"{name}_detrended"] = corr_test(x, yv, detrend=True)
             res[f"{name}_trend_Sv_per_decade"] = float(np.polyfit(yr, yv, 1)[0] * 10)
         res["amoc26_trend_Sv_per_decade"] = float(
             np.polyfit(np.array(common, float), x, 1)[0] * 10
@@ -357,15 +358,92 @@ def main() -> None:
         ),
     }
 
-    def partial(x, y, z) -> dict:
+    def partial_r(x, y, z) -> float:
         a = np.column_stack([np.ones_like(z), z])
         rx = x - a @ np.linalg.lstsq(a, x, rcond=None)[0]
         ry = y - a @ np.linalg.lstsq(a, y, rcond=None)[0]
-        out = pearson(rx, ry)
+        return float(np.corrcoef(rx, ry)[0, 1])
+
+    def partial(x, y, z, names=None) -> dict:
+        """Partial correlation of x and y given z, with n - 3 degrees of
+        freedom, its Fisher interval and its leave-one-out range."""
+        x, y, z = (np.asarray(v, float) for v in (x, y, z))
         n = len(z)
-        tval = out["r"] * np.sqrt((n - 3) / (1 - out["r"] ** 2))
-        out["p"] = float(2 * stats.t.sf(abs(tval), n - 3))
+        r = partial_r(x, y, z)
+        dof = n - 3
+        tval = r * np.sqrt(dof / (1 - r**2))
+        t975 = stats.t.ppf(0.975, dof)
+        zr, se = np.arctanh(r), 1.0 / np.sqrt(n - 4)
+        loo = [
+            partial_r(np.delete(x, i), np.delete(y, i), np.delete(z, i))
+            for i in range(n)
+        ]
+        out = {
+            "r": r,
+            "n": n,
+            "p": float(2 * stats.t.sf(abs(tval), dof)),
+            "smallest_detectable_abs_r": float(t975 / np.sqrt(dof + t975**2)),
+            "fisher_ci": [
+                float(np.tanh(zr - 1.96 * se)),
+                float(np.tanh(zr + 1.96 * se)),
+            ],
+            "leave_one_out_range": [float(min(loo)), float(max(loo))],
+        }
+        if names is not None:
+            i_min = int(np.argmin(loo))
+            out["leave_one_out_min_without"] = str(names[i_min])
         return out
+
+    # Genealogy: one representative per family; every choice is enumerated,
+    # because the result depends on which member stands for a family.
+    families = {
+        "CESM2": ["CESM2", "CESM2-WACCM", "TaiESM1"],
+        "MPI": ["MPI-ESM1-2-LR", "MPI-ESM1-2-HR"],
+        "ACCESS": ["ACCESS-CM2", "ACCESS-ESM1-5"],
+        "FGOALS": ["FGOALS-f3-L", "FGOALS-g3"],
+        "CMCC": ["CMCC-CM2-SR5", "CMCC-ESM2"],
+        "UKMO": ["UKESM1-0-LL", "HadGEM3-GC31-LL"],
+    }
+    import itertools
+
+    for name in ("1950-1980", "1993-2014"):
+        col = df[f"F_{name}"].dropna()
+        fams = {k: [m for m in v if m in col.index] for k, v in families.items()}
+        fams = {k: v for k, v in fams.items() if v}
+        singles = [m for m in col.index if not any(m in v for v in fams.values())]
+        counts = []
+        for choice in itertools.product(*fams.values()):
+            members = singles + list(choice)
+            counts.append(int((col.loc[members] > 0).sum()))
+        n_ind = len(singles) + len(fams)
+        s[f"genealogy_{name}"] = {
+            "n_independent": n_ind,
+            "families": fams,
+            "n_positive_range": [min(counts), max(counts)],
+            "binomial_p_range": [
+                float(stats.binomtest(c, n_ind).pvalue)
+                for c in (min(counts), max(counts))
+            ],
+        }
+    # Models whose section row spans more than 1 degree of latitude.
+    span = (df["lat_north"] - df["lat_south"]).abs()
+    tilted = sorted(span[span > 1.0].index)
+    s["tilted_rows"] = {
+        m: [float(df.loc[m, "lat_south"]), float(df.loc[m, "lat_north"])]
+        for m in tilted
+    }
+    for name in ("1950-1980", "1993-2014"):
+        col = df[f"F_{name}"].drop(index=tilted, errors="ignore").dropna()
+        s[f"F_{name}_without_tilted_rows"] = {
+            "n": int(col.size),
+            "median": float(col.median()),
+            "n_positive": int((col > 0).sum()),
+            "percentile_of_reanalyses": {
+                k: float(100 * (col > v[name]["F_ov"]).mean())
+                for k, v in rean.items()
+                if name in v
+            },
+        }
 
     if "damoc26" in df:
         sub = df.dropna(subset=["damoc26"])
@@ -380,9 +458,13 @@ def main() -> None:
             sub["F_1950-1980"].values,
             sub["damoc26"].values,
             sub["amoc26_1850-1900"].values,
+            names=list(sub.index),
         )
         s["partial_F_vs_fractional_damoc26_given_base"] = partial(
-            sub["F_1950-1980"].values, frac26.values, sub["amoc26_1850-1900"].values
+            sub["F_1950-1980"].values,
+            frac26.values,
+            sub["amoc26_1850-1900"].values,
+            names=list(sub.index),
         )
         s["F1950-1980_vs_damoc26_leave_one_out_range"] = [
             float(
@@ -433,6 +515,7 @@ def main() -> None:
             sub["F_1950-1980"].values,
             sub["dpsi34"].values,
             sub["psi34_1850-1900"].values,
+            names=list(sub.index),
         )
         s["partial_F_vs_fractional_dpsi34_given_base_psi34"] = partial(
             sub["F_1950-1980"].values, frac.values, sub["psi34_1850-1900"].values

@@ -26,6 +26,7 @@ import xarray as xr
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
+import matplotlib.patheffects as pe  # noqa: E402
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib import colors  # noqa: E402
 from matplotlib.gridspec import GridSpec, GridSpecFromSubplotSpec  # noqa: E402
@@ -257,6 +258,11 @@ def main() -> None:
             fontsize=5.5,
             color=c,
             fontweight="bold",
+            path_effects=[
+                pe.withStroke(
+                    linewidth=1.6, foreground="white" if c == "black" else "black"
+                )
+            ],
         )
     for zlab, txt in ((z0 - 380, "upper cell above"), (z0 + 420, "abyssal cell below")):
         axs.text(
@@ -268,6 +274,7 @@ def main() -> None:
             fontsize=5.2,
             color="white",
             style="italic",
+            path_effects=[pe.withStroke(linewidth=1.6, foreground="black")],
         )
     cb2 = fig.colorbar(
         cs,

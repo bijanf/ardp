@@ -108,7 +108,7 @@ def main() -> None:
 
     # Inset: fractional rates of F_ovS and T over each record (percent per decade).
     rates = json.loads((AN / "stepfit.json").read_text())
-    ins = ax.inset_axes([0.13, 0.6, 0.27, 0.36])
+    ins = ax.inset_axes([0.12, 0.57, 0.3, 0.39])
     for i, (key, _label, colour) in enumerate(PROD[:2]):
         fr = rates[key]["fractional_rates"]["own record"]
         ins.bar(i - 0.18, fr["F_ov"]["fractional_pct_per_decade"], 0.34, color=colour)
@@ -122,26 +122,40 @@ def main() -> None:
         )
     ins.axhline(0, color="black", lw=0.4)
     ins.set_xticks([-0.18, 0.18, 0.82, 1.18])
-    ins.set_xticklabels(["$F$", "$T$", "$F$", "$T$"], fontsize=5)
-    ins.tick_params(axis="both", labelsize=5, length=1.5, pad=1)
-    ins.set_ylabel("% per decade", fontsize=5, labelpad=1)
+    ins.set_xticklabels(["$F$", "$T$", "$F$", "$T$"], fontsize=5.5)
+    ins.tick_params(axis="both", labelsize=5.5, length=1.5, pad=1)
+    ins.set_ylabel("% per decade", fontsize=5.5, labelpad=1)
     ins.patch.set_alpha(0.9)
 
     # b: trend split by window
     ax = fig.add_subplot(gs[0, 1])
+    windows = {
+        "oras5": (
+            ("own record", "1958–2025"),
+            ("consolidated", "1958–2014"),
+            ("argo", "2004–2025"),
+            ("common", "1993–2017"),
+        ),
+        "glorys12": (
+            ("own record", "1993–2025"),
+            ("argo", "2004–2025"),
+            ("argo to 2014", "2004–2014"),
+            ("common", "1993–2017"),
+        ),
+        "ecco": (("common", "1993–2017"),),
+    }
     rows = []
     for key, label, _ in PROD:
-        for win, wl in (
-            ("own record", "own record"),
-            ("argo", "2004 onwards"),
-            ("common", "1993–2017"),
-        ):
-            c = d[key]["continuous"].get(win)
-            if c is None or (key == "ecco" and win == "own record"):
-                continue
-            rows.append((f"{label}, {wl}", c))
+        for win, wl in windows[key]:
+            if win == "consolidated":
+                c = d[key]["consolidated_only"]["continuous"]
+            else:
+                c = d[key]["continuous"].get(win)
+            if c is not None:
+                rows.append((f"{label}, {wl}", c))
     ypos = np.arange(len(rows))[::-1].astype(float)
     h = 0.26
+    xlim_b = (-9.0, 3.0)
     for k, (vk, ck, col, _name) in enumerate(
         (
             ("trend_total_mSv_per_yr", "ci_total_mSv_per_yr", C_TOTAL, "total"),
@@ -164,15 +178,34 @@ def main() -> None:
                 lw=0.6,
                 hatch=hatch,
             )
+        lo_c = np.clip(lo, *xlim_b)
+        hi_c = np.clip(hi, *xlim_b)
         ax.errorbar(
             vals,
             ypos + off,
-            xerr=[vals - lo, hi - vals],
+            xerr=[vals - lo_c, hi_c - vals],
             fmt="none",
             ecolor="0.2",
             elinewidth=0.5,
             capsize=1.0,
         )
+        # Intervals that run past the axis are drawn to its edge with an arrow.
+        for y, a, b in zip(ypos + off, lo, hi, strict=False):
+            if a < xlim_b[0]:
+                ax.annotate(
+                    "",
+                    xy=(xlim_b[0], y),
+                    xytext=(xlim_b[0] + 0.45, y),
+                    arrowprops={"arrowstyle": "->", "lw": 0.5, "color": "0.2"},
+                )
+            if b > xlim_b[1]:
+                ax.annotate(
+                    "",
+                    xy=(xlim_b[1], y),
+                    xytext=(xlim_b[1] - 0.45, y),
+                    arrowprops={"arrowstyle": "->", "lw": 0.5, "color": "0.2"},
+                )
+    ax.set_xlim(*xlim_b)
     ax.axvline(0, color="0.4", lw=0.5)
     ax.set_yticks(ypos)
     ax.set_yticklabels([r[0] for r in rows], fontsize=5.5)
@@ -187,11 +220,11 @@ def main() -> None:
             ),
         ],
         loc="lower center",
-        bbox_to_anchor=(0.4, 1.0),
+        bbox_to_anchor=(0.45, 1.0),
         ncol=2,
         handlelength=1.2,
     )
-    panel_letter(ax, "b", x=-0.62)
+    panel_letter(ax, "b", x=-0.62, y=1.17)
 
     # c: census
     ax = fig.add_subplot(gs[1, 0])
@@ -266,6 +299,20 @@ def main() -> None:
             lambda k: d[k]["consolidated_only"]["continuous"] if k == "oras5" else None,
         ),
     ]
+    tests.append(("start years to 2001", lambda k: "scan" if k == "oras5" else None))
+    xmax = 0.45
+
+    def resolved(key: str, r: dict) -> bool:
+        """Shares are quoted only where the trend of the total is resolved."""
+        if "total_resolved" in r:
+            return bool(r["total_resolved"])
+        if "F_trend_resolved" in r:
+            return bool(r["F_trend_resolved"])
+        if "p_F_ov" in r:
+            return bool(r["p_F_ov"] < 0.05)
+        # Streamfunction definitions share the total of the baseline.
+        return bool(d[key]["continuous"]["own record"]["total_resolved"])
+
     yy = np.arange(len(tests))[::-1].astype(float)
     for j, (key, _label, colour) in enumerate(PROD[:2]):
         off = 0.16 * (1 - 2 * j)
@@ -276,21 +323,48 @@ def main() -> None:
                 r = None
             if r is None:
                 continue
+            if r == "scan":
+                sh = [
+                    s["share_T"]
+                    for s in d[key]["start_year_scan"]
+                    if s["p_total"] < 0.05
+                ]
+                ax.plot([min(sh), max(sh)], [y + off, y + off], color=colour, lw=2.2)
+                continue
             p = r.get("share_T_point", r.get("share_T"))
-            ci = r["share_T_ci"]
-            ax.plot([ci[0], min(ci[1], 0.6)], [y + off, y + off], color=colour, lw=0.9)
-            ax.plot(p, y + off, "o", color=colour, ms=2.8)
+            if resolved(key, r):
+                ci = r["share_T_ci"]
+                ax.plot(
+                    [ci[0], min(ci[1], xmax)], [y + off, y + off], color=colour, lw=0.9
+                )
+                ax.plot(p, y + off, "o", color=colour, ms=2.8)
+            else:
+                ax.plot(
+                    min(p, xmax), y + off, "o", mfc="white", mec=colour, mew=0.7, ms=2.8
+                )
     ax.axvline(0.25, color="0.4", lw=0.5, ls=(0, (2, 1.5)))
     ax.set_yticks(yy)
     ax.set_yticklabels([t[0] for t in tests], fontsize=5.5)
-    ax.set_xlim(0, 0.6)
+    ax.set_xlim(0, xmax)
     ax.set_xlabel("Transport share of the $F_{\\mathrm{ovS}}$ trend")
     ax.legend(
         handles=[
             plt.Line2D([], [], color=c, marker="o", ms=2.8, lw=0.9, label=lab)
             for _, lab, c in PROD[:2]
+        ]
+        + [
+            plt.Line2D(
+                [],
+                [],
+                color="0.4",
+                marker="o",
+                mfc="white",
+                ls="none",
+                ms=2.8,
+                label="total not resolved",
+            )
         ],
-        loc="upper right",
+        loc="lower right",
     )
     panel_letter(ax, "d", x=-0.5)
 
