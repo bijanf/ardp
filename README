@@ -59,14 +59,20 @@ writes the simulated size of the test for the record lengths of the paper.
      The latitude sensitivity can refresh its statistics from the stored
      annual series without reading the reanalysis fields:
          python scripts/analysis_paper3v2_latitude_sensitivity.py --refresh-stats
-  5. Figures:
-         Figure 1   scripts/plot_paper3r1_fig1_schematic.py
-         Figure 2   scripts/plot_paper3r1_fig2_sign.py
-         Figure 3   scripts/plot_paper3r1_fig3_attribution.py
-         Figure 4   scripts/plot_paper3r1_fig4_salinification.py
-         Figure 5   scripts/plot_paper3r1_fig5_en4.py
-         Figure 6   scripts/plot_paper3r1_fig6_cells.py
-         Figure 7   scripts/plot_paper3r1_fig7_models.py
+  5. Figures of the Journal of Climate version, drawn at the printed width of
+     39 pc with the shared style scripts/paper3jc_style.py; each writes a PDF
+     and a 600 dpi PNG to PAPER_3_v2/figures_jclim/:
+         Figure 1   scripts/plot_paper3jc_fig1_schematic.py
+         Figure 2   scripts/plot_paper3jc_fig2_sign.py
+         Figure 3   scripts/plot_paper3jc_fig3_attribution.py
+         Figure 4   scripts/plot_paper3jc_fig4_salinification.py
+         Figure 5   scripts/plot_paper3jc_fig5_en4.py
+         Figure 6   scripts/plot_paper3jc_fig6_cells.py
+         Figure 7   scripts/plot_paper3jc_fig7_models.py
+     The colour palette and colour maps are shown by
+         python scripts/paper3jc_swatch.py
+     The earlier layouts of the same figures remain in
+     scripts/plot_paper3r1_fig1_schematic.py to plot_paper3r1_fig7_models.py.
          Supplementary figures with SODA, trend sections, SAMBA, CMIP6
          trajectories, the pile-up index and the overturning anomalies at
          26.5 N:
