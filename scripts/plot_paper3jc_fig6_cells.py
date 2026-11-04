@@ -195,14 +195,14 @@ def main(preview: str | None = None) -> None:
                   arrowprops=dict(arrowstyle="-", lw=0.5, color="black",
                                   shrinkA=2, shrinkB=0))
     # direct labels: the product marker, then the maximum of the plotted (time-mean)
-    # streamfunction and its depth, the values the markers in the panel mark
+    # streamfunction (the depth is given in the text as the median monthly value), the values the markers in the panel mark
     label_depth = {"oras5": 3300, "glorys12": 3720, "ecco": 4140}
     for key, label, col, mark in PROD:
         _psi, _zw, zmax_p, pmax_p, _z0 = psi_data[key]
         ylab = label_depth[key]
         ax_a.plot([4.9], [ylab], mark, color=col, ms=4.4, mec="black", mew=0.5,
                   ls="none", zorder=6, clip_on=False)
-        ax_a.text(5.9, ylab, f"{label}: {pmax_p:.1f} Sv, {zmax_p:.0f} m", color="black",
+        ax_a.text(5.9, ylab, f"{label}: {pmax_p:.1f} Sv", color="black",
                   fontsize=7, ha="left", va="center", zorder=6)
     # key for the two marker kinds, in black (the product colour is on the curves)
     ax_a.plot([8.2], [5150], "o", color="black", ms=4.0, mec="black", mew=0.5,

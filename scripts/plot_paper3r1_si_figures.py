@@ -186,14 +186,16 @@ def amoc26_anomalies():
             "n_eff": r["n_eff"],
             "offset_Sv": offset,
         }
-        sig = "" if r["p"] >= 0.05 else ", significant"
-        handles.append(
-            (
-                h,
+        if key == "soda":
+            # SODA is shown for comparison only and carries no trend in the legend.
+            legend_text = f"{label} {s.index[0]}–{s.index[-1]}"
+        else:
+            sig = "" if r["p"] >= 0.05 else ", significant"
+            legend_text = (
                 f"{label} {s.index[0]}–{s.index[-1]}: "
-                f"{r['value'] * 10:+.2f} Sv per decade{sig}",
+                f"{r['value'] * 10:+.2f} Sv per decade{sig}"
             )
-        )
+        handles.append((h, legend_text))
     ax.axhline(0, color="0.5", lw=0.4)
     ax.set_xlabel("Year")
     ax.set_ylabel("Overturning anomaly at 26.5°N (Sv)")
