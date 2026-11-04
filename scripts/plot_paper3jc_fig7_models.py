@@ -410,7 +410,7 @@ def main() -> None:
     ax.text(1.9, 2.4, "1:1", fontsize=7, ha="right", va="bottom", color="0.35")
 
     # ------------------------------------------------------------------ d
-    ax = ax_in(fig, 4.00, BOT_Y0, 1.75, BOT_H)
+    ax = ax_in(fig, 3.60, BOT_Y0, 2.15, BOT_H)
     sub_d = [r for r in rows
              if r.get("damoc26") is not None and np.isfinite(r.get("damoc26", np.nan))]
     xd = np.array([r["damoc26"] for r in sub_d])
@@ -440,6 +440,9 @@ def main() -> None:
     perm_rho = np.array([np.corrcoef(rx, rng.permutation(ry))[0, 1] for _ in range(20000)])
     perm_p = float(np.mean(np.abs(perm_rho) >= abs(rho) - 1e-12))
     part = d["summary"]["partial_F_vs_damoc26_given_base"]
+    n11 = json.loads((AN / "jc_n11_cmip6_relation.json").read_text())
+    pb = n11["sets"]["26.5N_21"]["bootstrap_family_cluster"]["partial_r"]
+    pr_pt, (pr_lo, pr_hi) = float(pb["point"]), [float(v) for v in pb["ci95"]]
     ax.set_xlim(-14, 2)
     ax.set_ylim(-0.3, 0.9)
     ax.set_xticks([-12, -8, -4, 0])
@@ -449,8 +452,7 @@ def main() -> None:
     ax.set_ylabel("$F_{\\mathrm{ovS}}$, 1950–1980 (Sv)")
     st.panel_label_pt(ax, "d")
     ax.text(1.9, 0.87, f"Spearman ρ = {sgn(rho, 2)}, n = {n_d}\n"
-            f"permutation p = {perm_p:.2f}\n"
-            f"partial r = {sgn(part['r'], 2)}, p = {part['p']:.2f}",
+            f"partial r = {sgn(pr_pt, 2)}, family bootstrap [{sgn(pr_lo, 2)}, {sgn(pr_hi, 2)}]",
             fontsize=7, ha="right", va="top", linespacing=1.25, zorder=6)
     LOG_NUMBERS["d_n"] = n_d
     LOG_NUMBERS["d_spearman_rho"] = float(rho)
@@ -458,6 +460,7 @@ def main() -> None:
     LOG_NUMBERS["d_permutation_p"] = perm_p
     LOG_NUMBERS["d_ls_slope"] = float(b1)
     LOG_NUMBERS["d_ls_intercept"] = float(b0)
+    LOG_NUMBERS["d_partial_family_bootstrap"] = [pr_pt, pr_lo, pr_hi]
     LOG_NUMBERS["d_partial_r_json"] = float(part["r"])
     LOG_NUMBERS["d_partial_p_json"] = float(part["p"])
     LOG_NUMBERS["d_partial_loo_range_json"] = [float(v) for v in part["leave_one_out_range"]]
