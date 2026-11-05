@@ -484,8 +484,7 @@ def table_size():
     return table_block(
         "tab:si_size",
         "Size and power of the bias-corrected trend test under autoregressive and moving-average noise. "
-        "Computed by the size-calibration script \\texttt{analysis\\_paper3jc\\_n04\\_ar\\_recalibration.py} "
-        "(output \\texttt{jc\\_n04\\_ar\\_recalibration.json} in the analysis folder of the code repository), "
+        "Computed in the analysis repository (machine-readable output \\texttt{jc\\_n04\\_ar\\_recalibration.json}), "
         "with twenty thousand parametric replicates per case and seed 20261104.",
         "Setting & Size, corrected (\\%) & Size, uncorrected (\\%) & Power, 0.5 MDT (\\%) & Power, 1 MDT (\\%)",
         rows, note, "lrrrrr"), d
@@ -924,10 +923,14 @@ def table_data():
     lines = ["\\begin{table}[h]", "\\centering",
              "\\caption{Data inventory: the inputs of the study, their providers, identifiers, versions, access dates "
              "and terms.}", "\\label{tab:si_data}", "\\footnotesize", "\\setlength{\\tabcolsep}{3pt}",
-             "\\begin{tabular}{p{2.2cm}p{2.4cm}p{3.9cm}p{3.0cm}p{1.8cm}p{2.0cm}}", "\\toprule",
+             "\\begin{tabular}{>{\\raggedright\\arraybackslash}p{2.2cm}>{\\raggedright\\arraybackslash}p{2.4cm}"
+             ">{\\raggedright\\arraybackslash}p{3.9cm}>{\\raggedright\\arraybackslash}p{3.0cm}"
+             ">{\\raggedright\\arraybackslash}p{1.8cm}>{\\raggedright\\arraybackslash}p{2.0cm}}", "\\toprule",
              "Input & Provider & DOI or URL & Version or product & Access date & Terms \\\\", "\\midrule"]
     for r in rows:
-        lines.append(" & ".join(r) + " \\\\")
+        cells = list(r)
+        cells[2] = cells[2].replace("/", "/\\allowbreak{}")  # break points inside URLs and DOIs
+        lines.append(" & ".join(cells) + " \\\\")
     lines += ["\\bottomrule", "\\end{tabular}", "\\par\\smallskip",
               "\\begin{minipage}{0.95\\linewidth}\\footnotesize Access dates are the file dates of the raw downloads "
               "kept in the analysis repository; where raw files are not kept, the date of the derived file is given "
