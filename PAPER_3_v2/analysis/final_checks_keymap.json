@@ -1,0 +1,76 @@
+{
+  "file": "PAPER_3_v2/analysis/final_checks.json",
+  "date": "2026-11-05",
+  "policy": "final_checks.json is not renamed in place and its values are not overwritten. This keymap states, for each misnamed key, the effective window or construction and the stored file that holds the corrected value. The producing script scripts/analysis_paper3v2_final_checks.py is not rerun for this purpose.",
+  "key_maps": [
+    {
+      "path": "ecco/window_1993_2025",
+      "corrected_name": "window_1993_2017",
+      "effective_record": "1993 to 2017 (the ECCO-V4r4 record in this file ends in 2017; ecco.record = [1992, 2017])",
+      "values_in": "PAPER_3_v2/analysis/jc_r2_G03_headline.json, products/ecco/constructions/bounds/windows/1993_2025"
+    },
+    {
+      "path": "oras5/window_1993_2025, glorys12/window_1993_2025",
+      "corrected_name": null,
+      "effective_record": "1993 to 2025 (as named)",
+      "values_in": "PAPER_3_v2/analysis/jc_r2_G03_headline.json"
+    }
+  ],
+  "units": {
+    "F_ov_trend_mSv_per_yr": "mSv per year (FovS trend)",
+    "F_ov_p": "p value (dimensionless)",
+    "S_north_trend_per_decade": "PSU per decade",
+    "dS_trend_per_decade": "PSU per decade",
+    "T_trend_per_decade": "Sv per decade",
+    "mean_F_ov_Sv": "Sv (record mean, annual-mean estimator in this block)",
+    "mean_T_Sv": "Sv",
+    "mean_dS_PSU": "PSU",
+    "transport_share": "dimensionless ratio; not meaningful where the total trend is near zero (ECCO-V4r4)",
+    "dS_ci_per_decade": "PSU per decade, [lower, upper]"
+  },
+  "superseded_blocks": [
+    {
+      "path": "oras5/alternative_removal, glorys12/alternative_removal, ecco/alternative_removal",
+      "reason": "annual-mean estimator; does not match Table S2(a)",
+      "replacement": "PAPER_3_v2/analysis/jc_r2_G04_removal_a68.json, key alternative_removal (monthly estimator)",
+      "oras5_replacement_values": {
+        "mean_F_ov_Sv": -0.045361,
+        "F_ov_trend_mSv_per_yr": -1.40485,
+        "transport_share_T_term": 0.080111
+      }
+    }
+  ],
+  "no_interval_keys": {
+    "frozen_field_intervals": "final_checks.json has no interval keys for the frozen-field split; the intervals are in PAPER_3_v2/analysis/jc_r2_G07_frozen_epochs_intervals.json"
+  },
+  "ecco_transport_share": "2.38 (1993 to 2017) and 2.16 are not meaningful and are not to be printed (see CANONICAL_FACTS.md section 48)",
+  "r1_vertical_grid.json": {
+    "status": "no producing script is in scripts/ or PAPER_3_v2 (checked); retire the file and cite jc_r2_G03_headline.json",
+    "keys": {
+      "oras5": {
+        "used": "centres",
+        "alternative": "bounds"
+      },
+      "glorys12": {
+        "used": "centres",
+        "alternative": "bounds"
+      },
+      "ecco": {
+        "used": "bounds",
+        "alternative": "centres"
+      }
+    },
+    "reason": "the keys used and alternative name different constructions across products"
+  },
+  "jc_n04_ar_recalibration.json": {
+    "summary.sieve_share_coverage_pct": "stylised configuration only (AR(2) in both series, true shares 0.1 and 0.5, correlation 0.5); not ORAS5 coverage",
+    "summary.sieve_halfwidth_inflation_for_95pct": "stylised configuration only; not applied to ORAS5 intervals",
+    "ORAS5 coverage": "PAPER_3_v2/analysis/jc_r2_G02_calibration_sieve.json and jc_r2_G02_calibration_bootstrap.json"
+  },
+  "en4.json": {
+    "reanalysis_same_window": "holds reanalysis own salinity (pair B), not EN4; rename to reanalysis_own_salinity_own_circulation in a later script revision (not done)"
+  },
+  "en4_depth_test_or_jc_n01": {
+    "northward_limb_2005_2017_interval": "PAPER_3_v2/analysis/jc_r2_G05_en4_table.json (the interval is absent from jc_n01_en4_window.json)"
+  }
+}

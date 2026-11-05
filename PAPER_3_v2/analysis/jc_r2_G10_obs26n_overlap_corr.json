@@ -1,0 +1,291 @@
+{
+  "meta": {
+    "id": "jc_r2_G10_obs26n_overlap_corr",
+    "group": "G10_obs26n",
+    "actions": [
+      "A107"
+    ],
+    "cluster": "C55",
+    "date": "2026-11-05",
+    "script": "scripts/analysis_paper3jc_r2_G10_obs26n_overlap_corr.py",
+    "inputs": [
+      "data/results/yearly_amoc26n_{oras5,glorys12,ecco,soda}.npz",
+      "data/results/rapid_amoc26n.npz (cross-check)",
+      "data/external/rapid_moc_monthly.nc (moc_mar_hc10)",
+      "data/results/oras5_moc_26N.nc (moc_upper)",
+      "data/results/glorys12_moc_26N.nc (moc_upper)"
+    ],
+    "seeds": "none (no random draws)",
+    "replicates": "none (analytic effective sample sizes, Bretherton et al. 1999)",
+    "units": "Sv; correlations dimensionless; n_eff in months or years as stated",
+    "offset_convention": "offset = mean(ORAS5) - mean(product) over the overlap (as in the figure script)"
+  },
+  "annual_overlaps": {
+    "products": {
+      "GLORYS12V1": {
+        "offset_ci95_Sv": [
+          -42.079563215614364,
+          42.18594402125752
+        ],
+        "offset_n_eff": 2.0,
+        "offset_n_eff_at_floor": true,
+        "product": "GLORYS12V1",
+        "source": "data/results/yearly_amoc26n_glorys12.npz",
+        "overlap_years": [
+          1993,
+          2025
+        ],
+        "n_years": 33,
+        "mean_ORAS5_over_overlap_Sv": 15.90826317858194,
+        "mean_product_over_overlap_Sv": 15.85507277576036,
+        "offset_ORAS5_minus_product_Sv": 0.0531904028215795,
+        "difference_product_minus_ORAS5_Sv": -0.0531904028215795,
+        "window_note": "1993 to 2025"
+      },
+      "ECCO-V4r4": {
+        "offset_ci95_Sv": [
+          -32.197230876945795,
+          40.03329662135569
+        ],
+        "offset_n_eff": 2.0,
+        "offset_n_eff_at_floor": true,
+        "product": "ECCO-V4r4",
+        "source": "data/results/yearly_amoc26n_ecco.npz",
+        "overlap_years": [
+          1992,
+          2017
+        ],
+        "n_years": 26,
+        "mean_ORAS5_over_overlap_Sv": 17.025542269022672,
+        "mean_product_over_overlap_Sv": 13.107509396817724,
+        "offset_ORAS5_minus_product_Sv": 3.9180328722049484,
+        "difference_product_minus_ORAS5_Sv": -3.9180328722049484,
+        "window_note": "1992 to 2017"
+      },
+      "SODA 3.15.2": {
+        "offset_ci95_Sv": [
+          -1.8000715697218599,
+          13.186564817905465
+        ],
+        "offset_n_eff": 4.9428260935082475,
+        "offset_n_eff_at_floor": false,
+        "product": "SODA 3.15.2",
+        "source": "data/results/yearly_amoc26n_soda.npz",
+        "overlap_years": [
+          1980,
+          2020
+        ],
+        "n_years": 27,
+        "mean_ORAS5_over_overlap_Sv": 18.067440908607587,
+        "mean_product_over_overlap_Sv": 12.374194284515788,
+        "offset_ORAS5_minus_product_Sv": 5.693246624091799,
+        "difference_product_minus_ORAS5_Sv": -5.693246624091799,
+        "window_note": "1980 to 2020"
+      },
+      "RAPID": {
+        "offset_ci95_Sv": [
+          -4.549603382963927,
+          -0.888110947574861
+        ],
+        "offset_n_eff": 4.298319337336242,
+        "offset_n_eff_at_floor": false,
+        "product": "RAPID",
+        "source": "data/external/rapid_moc_monthly.nc (annual means of complete years)",
+        "overlap_years": [
+          2005,
+          2023
+        ],
+        "n_years": 19,
+        "mean_ORAS5_over_overlap_Sv": 14.1890047697408,
+        "mean_product_over_overlap_Sv": 16.907861935010196,
+        "offset_ORAS5_minus_product_Sv": -2.7188571652693962,
+        "difference_product_minus_ORAS5_Sv": 2.7188571652693962,
+        "window_note": "2005 to 2023",
+        "cross_check_npz_mean_over_overlap_Sv": 16.915981259380164,
+        "cross_check_npz_offset_ORAS5_minus_product_Sv": -2.7269764896393642
+      }
+    },
+    "ORAS5_reference_1958_2009_mean_Sv": 20.037429746773494,
+    "ORAS5_full_record_1958_2025_mean_Sv": 18.534713499972867,
+    "ORAS5_mean_1993_2025_Sv": 15.90826317858194,
+    "ORAS5_mean_2005_2023_Sv": 14.1890047697408
+  },
+  "monthly_correlations_with_RAPID": {
+    "months": [
+      "2004-04-01",
+      "2024-03-01",
+      240
+    ],
+    "primary_detrend_false": {
+      "ORAS5_vs_RAPID_raw": {
+        "r": 0.7474065670843437,
+        "n": 240.0,
+        "phi_a": 0.4156221690716707,
+        "phi_b": 0.43240141745054694,
+        "n_eff": 166.8777202610868,
+        "p": 4.326615220754685e-31,
+        "p_ols": 3.726716834251608e-44,
+        "r_ci95": [
+          0.6717628730629638,
+          0.807623853667739
+        ]
+      },
+      "GLORYS12V1_vs_RAPID_raw": {
+        "r": 0.705754749165145,
+        "n": 240.0,
+        "phi_a": 0.2777169236074434,
+        "phi_b": 0.43240141745054694,
+        "n_eff": 188.53883229398858,
+        "p": 9.830936285873101e-30,
+        "p_ols": 1.726779167257282e-37,
+        "r_ci95": [
+          0.6259838276307197,
+          0.7709090919324311
+        ]
+      },
+      "ORAS5_vs_RAPID_deseasonalised": {
+        "r": 0.7543796699326341,
+        "n": 240.0,
+        "phi_a": 0.4053521853037356,
+        "phi_b": 0.34301298323479906,
+        "n_eff": 181.4071080222143,
+        "p": 1.2540809761849293e-34,
+        "p_ols": 2.1203398133528803e-45,
+        "r_ci95": [
+          0.6838464589784998,
+          0.8109438255319377
+        ]
+      },
+      "GLORYS12V1_vs_RAPID_deseasonalised": {
+        "r": 0.6516020407984648,
+        "n": 240.0,
+        "phi_a": 0.17280392689287838,
+        "phi_b": 0.34301298323479906,
+        "n_eff": 213.14055127824076,
+        "p": 3.833254742926291e-27,
+        "p_ols": 2.1604017365020626e-30,
+        "r_ci95": [
+          0.5668523628107502,
+          0.7227042378686895
+        ]
+      }
+    },
+    "sensitivity_detrend_true": {
+      "ORAS5_vs_RAPID_raw": {
+        "r": 0.7459391887774761,
+        "n": 240.0,
+        "phi_a": 0.33742610207275464,
+        "phi_b": 0.4199722042180647,
+        "n_eff": 180.42215182439793,
+        "p": 2.5499586201824554e-33,
+        "p_ols": 6.731463911525638e-44,
+        "r_ci95": [
+          0.6732110132567092,
+          0.8043738280789409
+        ]
+      },
+      "GLORYS12V1_vs_RAPID_raw": {
+        "r": 0.6983823196082354,
+        "n": 240.0,
+        "phi_a": 0.2672450921582533,
+        "phi_b": 0.4199722042180647,
+        "n_eff": 191.5632754960986,
+        "p": 2.405733429085395e-29,
+        "p_ols": 1.980615660228675e-36,
+        "r_ci95": [
+          0.6177783542788579,
+          0.7644630813818679
+        ]
+      },
+      "ORAS5_vs_RAPID_deseasonalised": {
+        "r": 0.7506546336729939,
+        "n": 240.0,
+        "phi_a": 0.31013811385888085,
+        "phi_b": 0.322128290537399,
+        "n_eff": 196.40161899596205,
+        "p": 7.72282827972422e-37,
+        "p_ols": 9.921473951645622e-45,
+        "r_ci95": [
+          0.682360660751611,
+          0.8059586563929769
+        ]
+      },
+      "GLORYS12V1_vs_RAPID_deseasonalised": {
+        "r": 0.640727796202761,
+        "n": 240.0,
+        "phi_a": 0.15430795771519193,
+        "phi_b": 0.322128290537399,
+        "n_eff": 217.27047539450723,
+        "p": 1.6552719408018425e-26,
+        "p_ols": 3.8789951835156676e-29,
+        "r_ci95": [
+          0.5549538938868896,
+          0.7130214277067467
+        ]
+      }
+    },
+    "sensitivity_climatology_full_record": {
+      "note": "Climatology of each reanalysis over its full record; RAPID over its 240 months.",
+      "ORAS5_vs_RAPID_deseasonalised": {
+        "r": 0.748672940085636,
+        "n": 240.0,
+        "phi_a": 0.4036962218534318,
+        "phi_b": 0.34301298323479906,
+        "n_eff": 181.61736015488296,
+        "p": 6.786263859165458e-34,
+        "p_ols": 2.229917036330207e-44,
+        "r_ci95": [
+          0.6768496769891764,
+          0.8063760699608232
+        ]
+      },
+      "GLORYS12V1_vs_RAPID_deseasonalised": {
+        "r": 0.644985254285003,
+        "n": 240.0,
+        "phi_a": 0.17605624272110146,
+        "phi_b": 0.34301298323479906,
+        "n_eff": 212.66382318007146,
+        "p": 2.101884413690662e-26,
+        "p_ols": 1.2698161922068358e-29,
+        "r_ci95": [
+          0.5589501096014926,
+          0.7172812052156631
+        ]
+      }
+    },
+    "lag1_of_deseasonalised_series": {
+      "RAPID": 0.3341275292286747,
+      "ORAS5": 0.3961476701294565,
+      "GLORYS12V1": 0.16681973507908102
+    },
+    "seasonal_amplitude_Sv": {
+      "RAPID_std_of_climatology": 1.6110070371197505,
+      "ORAS5_std_of_climatology": 0.9698692868545795,
+      "GLORYS12V1_std_of_climatology": 1.3692468675671543
+    }
+  },
+  "FigS_rapid": {
+    "figure": "FigS_rapid (Fig. S5 panels b and c)",
+    "printed_in_caption": {
+      "ORAS5_vs_RAPID": 0.75,
+      "GLORYS12V1_vs_RAPID": 0.71
+    },
+    "reproduced_raw_r": {
+      "ORAS5_vs_RAPID": 0.7474065670843437,
+      "GLORYS12V1_vs_RAPID": 0.705754749165145
+    },
+    "deseasonalised_r": {
+      "ORAS5_vs_RAPID": 0.7543796699326341,
+      "GLORYS12V1_vs_RAPID": 0.6516020407984648
+    },
+    "n_months": 240,
+    "n_eff_raw": {
+      "ORAS5_vs_RAPID": 166.8777202610868,
+      "GLORYS12V1_vs_RAPID": 188.53883229398858
+    },
+    "n_eff_deseasonalised": {
+      "ORAS5_vs_RAPID": 181.4071080222143,
+      "GLORYS12V1_vs_RAPID": 213.14055127824076
+    }
+  }
+}

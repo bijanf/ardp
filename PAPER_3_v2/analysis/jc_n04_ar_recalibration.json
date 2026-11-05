@@ -1,0 +1,7785 @@
+{
+ "description": "Simulated size and power of the bias-corrected trend test of paper3r1_stats.trend_test under AR(p) and ARMA noise, with sieve-bootstrap coverage for trend shares.",
+ "settings": {
+  "n_rep": 20000,
+  "alpha": 0.05,
+  "lengths": [
+   11,
+   13,
+   15,
+   20,
+   22,
+   25,
+   26,
+   33,
+   68
+  ],
+  "phi_grid": [
+   0.0,
+   0.1,
+   0.2,
+   0.3,
+   0.4,
+   0.5,
+   0.6,
+   0.65,
+   0.7,
+   0.8,
+   0.9,
+   0.95,
+   0.98
+  ],
+  "power_fractions": [
+   0.5,
+   1.0
+  ],
+  "burn_in": 1000,
+  "seed": 20261104,
+  "order_candidates": [
+   "AR(0)",
+   "AR(1)",
+   "AR(2)",
+   "AR(3)",
+   "ARMA(1,1)"
+  ],
+  "selection": "minimum AIC of the candidates on the linear-trend residuals",
+  "mdt_definition": "median half-width of the 95 per cent interval over noise-only replicates, in units of the stationary noise sd per year"
+ },
+ "checks": {
+  "max_abs_difference_p_or_half_width": 1.0880185641326534e-14
+ },
+ "series": [
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "window": [
+    1958,
+    2025
+   ],
+   "n": 68,
+   "sd_residual": 0.01755004779918795,
+   "lag1_residual": 0.47166920697786807,
+   "aic": {
+    "AR(0)": -356.8613713227414,
+    "AR(1)": -371.7109980182264,
+    "AR(2)": -371.1212102726393,
+    "AR(3)": -369.66438478579386,
+    "ARMA(1,1)": -371.5423455205671
+   },
+   "selected_order": "AR(1)",
+   "selected_ar": [
+    0.46798720183891057
+   ],
+   "selected_ma": [],
+   "fitted_ar2": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "fitted_arma11": {
+    "ar": [
+     0.7349559372100395
+    ],
+    "ma": [
+     -0.3505258375877286
+    ]
+   },
+   "paper_trend_test": {
+    "unit": "mSv per yr",
+    "value": -1.4207059824989183,
+    "ci": [
+     -1.8502821485172987,
+     -0.991129816480538
+    ],
+    "p": 1.5174647555478277e-06,
+    "phi_corrected": 0.5368948638016591,
+    "n_eff": 20.49011289138592,
+    "half_width": 0.4295761660183802
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "window": [
+    1958,
+    2025
+   ],
+   "n": 68,
+   "sd_residual": 0.9541247213063588,
+   "lag1_residual": 0.588256608135454,
+   "aic": {
+    "AR(0)": 186.5589592115089,
+    "AR(1)": 160.1623109094023,
+    "AR(2)": 160.531443479021,
+    "AR(3)": 156.17019155795597,
+    "ARMA(1,1)": 155.6515890614447
+   },
+   "selected_order": "ARMA(1,1)",
+   "selected_ar": [
+    0.23332237759436317
+   ],
+   "selected_ma": [
+    0.5918320192536848
+   ],
+   "fitted_ar2": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "fitted_arma11": {
+    "ar": [
+     0.23332237759436317
+    ],
+    "ma": [
+     0.5918320192536848
+    ]
+   },
+   "paper_trend_test": {
+    "unit": "Sv per yr",
+    "value": -0.05014478840073208,
+    "ci": [
+     -0.08050206574920218,
+     -0.019787511052261977
+    ],
+    "p": 0.0036896165055814896,
+    "phi_corrected": 0.6616128299049584,
+    "n_eff": 13.84818843014048,
+    "half_width": 0.030357277348470105
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "window": [
+    1958,
+    2025
+   ],
+   "n": 68,
+   "sd_residual": 0.031268422076131716,
+   "lag1_residual": 0.5023382423497867,
+   "aic": {
+    "AR(0)": -278.3142945057104,
+    "AR(1)": -295.7903192003036,
+    "AR(2)": -295.88423113934005,
+    "AR(3)": -294.95949287412117,
+    "ARMA(1,1)": -296.7984547295689
+   },
+   "selected_order": "ARMA(1,1)",
+   "selected_ar": [
+    0.7980932662363228
+   ],
+   "selected_ma": [
+    -0.41194900053284994
+   ],
+   "fitted_ar2": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "fitted_arma11": {
+    "ar": [
+     0.7980932662363228
+    ],
+    "ma": [
+     -0.41194900053284994
+    ]
+   },
+   "paper_trend_test": {
+    "unit": "PSU per yr",
+    "value": 0.0027756432993461546,
+    "ci": [
+     0.0019665771310497333,
+     0.003584709467642576
+    ],
+    "p": 1.476812587431182e-06,
+    "phi_corrected": 0.5671202550270869,
+    "n_eff": 18.783384723496738,
+    "half_width": 0.0008090661682964215
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "window": [
+    1993,
+    2025
+   ],
+   "n": 33,
+   "sd_residual": 0.03042952092054618,
+   "lag1_residual": 0.6426070514648532,
+   "aic": {
+    "AR(0)": -136.90780447318997,
+    "AR(1)": -151.86977828820505,
+    "AR(2)": -150.4328004731206,
+    "AR(3)": -148.4374974843816,
+    "ARMA(1,1)": -151.600873051004
+   },
+   "selected_order": "AR(1)",
+   "selected_ar": [
+    0.6366960987588662
+   ],
+   "selected_ma": [],
+   "fitted_ar2": [
+    0.7179096181728732,
+    -0.13476527065449742
+   ],
+   "fitted_arma11": {
+    "ar": [
+     0.15017285616025008
+    ],
+    "ma": [
+     0.7217756846025826
+    ]
+   },
+   "paper_trend_test": {
+    "unit": "mSv per yr",
+    "value": -4.725877092514741,
+    "ci": [
+     -44.08188291253224,
+     34.63012872750276
+    ],
+    "p": 0.3693468344614078,
+    "phi_corrected": 0.8468528156290165,
+    "n_eff": 3.0,
+    "half_width": 39.3560058200175
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "window": [
+    1993,
+    2025
+   ],
+   "n": 33,
+   "sd_residual": 1.0259433127451156,
+   "lag1_residual": 0.3153024011816889,
+   "aic": {
+    "AR(0)": 95.27719604722972,
+    "AR(1)": 93.9245154910988,
+    "AR(2)": 95.62716573175038,
+    "AR(3)": 97.3496062158272,
+    "ARMA(1,1)": 95.47837009155789
+   },
+   "selected_order": "AR(1)",
+   "selected_ar": [
+    0.3096085402703469
+   ],
+   "selected_ma": [],
+   "fitted_ar2": [
+    0.3415796350462892,
+    -0.09830585661275908
+   ],
+   "fitted_arma11": {
+    "ar": [
+     -0.07869608536063544
+    ],
+    "ma": [
+     0.42946262031070204
+    ]
+   },
+   "paper_trend_test": {
+    "unit": "Sv per yr",
+    "value": -0.013846228187533694,
+    "ci": [
+     -0.08335834294601208,
+     0.055665886570944685
+    ],
+    "p": 0.6694264064085279,
+    "phi_corrected": 0.4364514690486517,
+    "n_eff": 12.946557487049098,
+    "half_width": 0.06951211475847838
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "window": [
+    1993,
+    2025
+   ],
+   "n": 33,
+   "sd_residual": 0.04679553052940398,
+   "lag1_residual": 0.6284859909726747,
+   "aic": {
+    "AR(0)": -108.50308900929443,
+    "AR(1)": -122.51650712423576,
+    "AR(2)": -120.67716913662751,
+    "AR(3)": -118.6774218152157,
+    "ARMA(1,1)": -120.71385548711238
+   },
+   "selected_order": "AR(1)",
+   "selected_ar": [
+    0.621218478351349
+   ],
+   "selected_ma": [],
+   "fitted_ar2": [
+    0.6639210527055346,
+    -0.07382870735927348
+   ],
+   "fitted_arma11": {
+    "ar": [
+     0.5038167441860896
+    ],
+    "ma": [
+     0.17937591112627482
+    ]
+   },
+   "paper_trend_test": {
+    "unit": "PSU per yr",
+    "value": 0.007330259717760576,
+    "ci": [
+     -0.040034029705770656,
+     0.054694549141291814
+    ],
+    "p": 0.33810617597782944,
+    "phi_corrected": 0.8285687730920651,
+    "n_eff": 3.0938024159712696,
+    "half_width": 0.047364289423531235
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "window": [
+    1992,
+    2017
+   ],
+   "n": 26,
+   "sd_residual": 0.01294572820490174,
+   "lag1_residual": 0.05866148785958511,
+   "aic": {
+    "AR(0)": -152.3397561801978,
+    "AR(1)": -150.4261829780733,
+    "AR(2)": -150.91628431067218,
+    "AR(3)": -149.11776032368158,
+    "ARMA(1,1)": -150.54760343295953
+   },
+   "selected_order": "AR(0)",
+   "selected_ar": [],
+   "selected_ma": [],
+   "fitted_ar2": [
+    0.07695667890153024,
+    -0.2938942830387518
+   ],
+   "fitted_arma11": {
+    "ar": [
+     -0.6297659000613182
+    ],
+    "ma": [
+     0.863101684075339
+    ]
+   },
+   "paper_trend_test": {
+    "unit": "mSv per yr",
+    "value": 0.1114005774276295,
+    "ci": [
+     -0.7515419245369683,
+     0.9743430793922273
+    ],
+    "p": 0.7882555764105318,
+    "phi_corrected": 0.1681800401779393,
+    "n_eff": 18.51368642806058,
+    "half_width": 0.8629425019645979
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "window": [
+    1992,
+    2017
+   ],
+   "n": 26,
+   "sd_residual": 0.6083232780951324,
+   "lag1_residual": 0.16945286315586244,
+   "aic": {
+    "AR(0)": 47.85715411882566,
+    "AR(1)": 49.097920605619876,
+    "AR(2)": 51.07822445352233,
+    "AR(3)": 52.87525716357466,
+    "ARMA(1,1)": 51.0645909687085
+   },
+   "selected_order": "AR(0)",
+   "selected_ar": [],
+   "selected_ma": [],
+   "fitted_ar2": [
+    0.18004966652349344,
+    0.029499394138079227
+   ],
+   "fitted_arma11": {
+    "ar": [
+     0.3742256609517989
+    ],
+    "ma": [
+     -0.19524022281609252
+    ]
+   },
+   "paper_trend_test": {
+    "unit": "Sv per yr",
+    "value": -0.024345197448466162,
+    "ci": [
+     -0.07340400267159045,
+     0.024713607774658117
+    ],
+    "p": 0.30080179528235396,
+    "phi_corrected": 0.30058117689444613,
+    "n_eff": 13.982125624919963,
+    "half_width": 0.04905880522312428
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "window": [
+    1992,
+    2017
+   ],
+   "n": 26,
+   "sd_residual": 0.026451574283369556,
+   "lag1_residual": 0.2688173431231913,
+   "aic": {
+    "AR(0)": -115.1831660407773,
+    "AR(1)": -115.05726664537019,
+    "AR(2)": -114.34553663603741,
+    "AR(3)": -112.34578629147377,
+    "ARMA(1,1)": -115.14640184624336
+   },
+   "selected_order": "AR(0)",
+   "selected_ar": [],
+   "selected_ma": [],
+   "fitted_ar2": [
+    0.31891688816086966,
+    -0.21524177241416786
+   ],
+   "fitted_arma11": {
+    "ar": [
+     -0.34780926121944344
+    ],
+    "ma": [
+     0.7285171294352365
+    ]
+   },
+   "paper_trend_test": {
+    "unit": "PSU per yr",
+    "value": 0.0003136100784277314,
+    "ci": [
+     -0.0023416819116279693,
+     0.0029689020684834323
+    ],
+    "p": 0.7938683867604857,
+    "phi_corrected": 0.4250975186925112,
+    "n_eff": 10.488730994148812,
+    "half_width": 0.0026552919900557008
+   }
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "window": [
+    2005,
+    2024
+   ],
+   "n": 20,
+   "sd_residual": 0.011907623374694651,
+   "lag1_residual": 0.05235139985856869,
+   "aic": {
+    "AR(0)": -120.57272755503504,
+    "AR(1)": -118.6321921970947,
+    "AR(2)": -117.43318949506553,
+    "AR(3)": -115.87341183414166,
+    "ARMA(1,1)": -116.90121485450018
+   },
+   "selected_order": "AR(0)",
+   "selected_ar": [],
+   "selected_ma": [],
+   "fitted_ar2": [
+    0.061713769511525976,
+    0.2253044231007376
+   ],
+   "fitted_arma11": {
+    "ar": [
+     0.5954334057803514
+    ],
+    "ma": [
+     -0.48295631915496845
+    ]
+   },
+   "paper_trend_test": {
+    "unit": "PSU per yr",
+    "value": 0.0024261427130168756,
+    "ci": [
+     0.0011376670015594492,
+     0.0037146184244743023
+    ],
+    "p": 0.0016027631186680718,
+    "phi_corrected": 0.20627234660754537,
+    "n_eff": 13.16000744980503,
+    "half_width": 0.0012884757114574265
+   }
+  }
+ ],
+ "size_power_ar1_grid": [
+  {
+   "phi": 0.0,
+   "n": 11,
+   "size_corrected": 0.0295,
+   "mc_se": 0.0011964478676482315,
+   "size_uncorrected": 0.1546,
+   "mdt_unit": 0.2491511355885679,
+   "frac_neff_at_floor": 0.14075,
+   "power": {
+    "0.5xMDT": 0.1343,
+    "1xMDT": 0.42535
+   }
+  },
+  {
+   "phi": 0.0,
+   "n": 13,
+   "size_corrected": 0.02985,
+   "mc_se": 0.0012033074731754973,
+   "size_uncorrected": 0.1341,
+   "mdt_unit": 0.1851965112741537,
+   "frac_neff_at_floor": 0.07345,
+   "power": {
+    "0.5xMDT": 0.13505,
+    "1xMDT": 0.4317
+   }
+  },
+  {
+   "phi": 0.0,
+   "n": 15,
+   "size_corrected": 0.0312,
+   "mc_se": 0.0012293608095266418,
+   "size_uncorrected": 0.122,
+   "mdt_unit": 0.1440816035433791,
+   "frac_neff_at_floor": 0.0378,
+   "power": {
+    "0.5xMDT": 0.1317,
+    "1xMDT": 0.44
+   }
+  },
+  {
+   "phi": 0.0,
+   "n": 20,
+   "size_corrected": 0.03615,
+   "mc_se": 0.0013199086616126133,
+   "size_uncorrected": 0.1024,
+   "mdt_unit": 0.08855704338274575,
+   "frac_neff_at_floor": 0.0048,
+   "power": {
+    "0.5xMDT": 0.13845,
+    "1xMDT": 0.4503
+   }
+  },
+  {
+   "phi": 0.0,
+   "n": 22,
+   "size_corrected": 0.0359,
+   "mc_se": 0.0013155073165893073,
+   "size_uncorrected": 0.09665,
+   "mdt_unit": 0.07583954761937373,
+   "frac_neff_at_floor": 0.0017,
+   "power": {
+    "0.5xMDT": 0.13455,
+    "1xMDT": 0.45685
+   }
+  },
+  {
+   "phi": 0.0,
+   "n": 25,
+   "size_corrected": 0.0326,
+   "mc_se": 0.0012557316592329748,
+   "size_uncorrected": 0.08605,
+   "mdt_unit": 0.061685169999408915,
+   "frac_neff_at_floor": 0.0004,
+   "power": {
+    "0.5xMDT": 0.14,
+    "1xMDT": 0.4659
+   }
+  },
+  {
+   "phi": 0.0,
+   "n": 26,
+   "size_corrected": 0.03435,
+   "mc_se": 0.0012878291326880286,
+   "size_uncorrected": 0.0859,
+   "mdt_unit": 0.05772094981090075,
+   "frac_neff_at_floor": 0.0002,
+   "power": {
+    "0.5xMDT": 0.14235,
+    "1xMDT": 0.4607
+   }
+  },
+  {
+   "phi": 0.0,
+   "n": 33,
+   "size_corrected": 0.03485,
+   "mc_se": 0.0012968322462832268,
+   "size_uncorrected": 0.0768,
+   "mdt_unit": 0.0396811903206221,
+   "frac_neff_at_floor": 0.0,
+   "power": {
+    "0.5xMDT": 0.14305,
+    "1xMDT": 0.47485
+   }
+  },
+  {
+   "phi": 0.0,
+   "n": 68,
+   "size_corrected": 0.0409,
+   "mc_se": 0.0014004854515488547,
+   "size_uncorrected": 0.0627,
+   "mdt_unit": 0.012827095009512282,
+   "frac_neff_at_floor": 0.0,
+   "power": {
+    "0.5xMDT": 0.1504,
+    "1xMDT": 0.4902
+   }
+  },
+  {
+   "phi": 0.1,
+   "n": 11,
+   "size_corrected": 0.03985,
+   "mc_se": 0.0013831481753593866,
+   "size_uncorrected": 0.15985,
+   "mdt_unit": 0.26387016518349365,
+   "frac_neff_at_floor": 0.19985,
+   "power": {
+    "0.5xMDT": 0.1504,
+    "1xMDT": 0.41495
+   }
+  },
+  {
+   "phi": 0.1,
+   "n": 13,
+   "size_corrected": 0.04285,
+   "mc_se": 0.0014320243974876965,
+   "size_uncorrected": 0.143,
+   "mdt_unit": 0.19466266759072953,
+   "frac_neff_at_floor": 0.118,
+   "power": {
+    "0.5xMDT": 0.14505,
+    "1xMDT": 0.41815
+   }
+  },
+  {
+   "phi": 0.1,
+   "n": 15,
+   "size_corrected": 0.03935,
+   "mc_se": 0.0013748013947476195,
+   "size_uncorrected": 0.1237,
+   "mdt_unit": 0.15156339867385743,
+   "frac_neff_at_floor": 0.07355,
+   "power": {
+    "0.5xMDT": 0.14215,
+    "1xMDT": 0.419
+   }
+  },
+  {
+   "phi": 0.1,
+   "n": 20,
+   "size_corrected": 0.0409,
+   "mc_se": 0.0014004854515488547,
+   "size_uncorrected": 0.10095,
+   "mdt_unit": 0.09406190043131257,
+   "frac_neff_at_floor": 0.0137,
+   "power": {
+    "0.5xMDT": 0.14735,
+    "1xMDT": 0.44175
+   }
+  },
+  {
+   "phi": 0.1,
+   "n": 22,
+   "size_corrected": 0.0412,
+   "mc_se": 0.0014053924718739601,
+   "size_uncorrected": 0.09555,
+   "mdt_unit": 0.07998851652957557,
+   "frac_neff_at_floor": 0.0071,
+   "power": {
+    "0.5xMDT": 0.1485,
+    "1xMDT": 0.44195
+   }
+  },
+  {
+   "phi": 0.1,
+   "n": 25,
+   "size_corrected": 0.0445,
+   "mc_se": 0.0014580766440760238,
+   "size_uncorrected": 0.0901,
+   "mdt_unit": 0.06523368460983311,
+   "frac_neff_at_floor": 0.0015,
+   "power": {
+    "0.5xMDT": 0.1471,
+    "1xMDT": 0.4488
+   }
+  },
+  {
+   "phi": 0.1,
+   "n": 26,
+   "size_corrected": 0.04495,
+   "mc_se": 0.0014650852790878762,
+   "size_uncorrected": 0.0867,
+   "mdt_unit": 0.061214241554476634,
+   "frac_neff_at_floor": 0.0015,
+   "power": {
+    "0.5xMDT": 0.1456,
+    "1xMDT": 0.4536
+   }
+  },
+  {
+   "phi": 0.1,
+   "n": 33,
+   "size_corrected": 0.04735,
+   "mc_se": 0.001501798546743204,
+   "size_uncorrected": 0.0816,
+   "mdt_unit": 0.0417353745773775,
+   "frac_neff_at_floor": 0.0,
+   "power": {
+    "0.5xMDT": 0.148,
+    "1xMDT": 0.4581
+   }
+  },
+  {
+   "phi": 0.1,
+   "n": 68,
+   "size_corrected": 0.04895,
+   "mc_se": 0.0015256784966040519,
+   "size_uncorrected": 0.06415,
+   "mdt_unit": 0.013709790132063887,
+   "frac_neff_at_floor": 0.0,
+   "power": {
+    "0.5xMDT": 0.154,
+    "1xMDT": 0.47615
+   }
+  },
+  {
+   "phi": 0.2,
+   "n": 11,
+   "size_corrected": 0.0482,
+   "mc_se": 0.0015145421750482882,
+   "size_uncorrected": 0.17035,
+   "mdt_unit": 0.289157480491115,
+   "frac_neff_at_floor": 0.2624,
+   "power": {
+    "0.5xMDT": 0.1617,
+    "1xMDT": 0.423
+   }
+  },
+  {
+   "phi": 0.2,
+   "n": 13,
+   "size_corrected": 0.04705,
+   "mc_se": 0.001497269139132975,
+   "size_uncorrected": 0.14275,
+   "mdt_unit": 0.21831947422280007,
+   "frac_neff_at_floor": 0.1773,
+   "power": {
+    "0.5xMDT": 0.1659,
+    "1xMDT": 0.4259
+   }
+  },
+  {
+   "phi": 0.2,
+   "n": 15,
+   "size_corrected": 0.0511,
+   "mc_se": 0.0015570611741354287,
+   "size_uncorrected": 0.12545,
+   "mdt_unit": 0.1698854183610486,
+   "frac_neff_at_floor": 0.1216,
+   "power": {
+    "0.5xMDT": 0.1617,
+    "1xMDT": 0.42885
+   }
+  },
+  {
+   "phi": 0.2,
+   "n": 20,
+   "size_corrected": 0.0505,
+   "mc_se": 0.0015483822202544178,
+   "size_uncorrected": 0.10575,
+   "mdt_unit": 0.10403590554802844,
+   "frac_neff_at_floor": 0.0305,
+   "power": {
+    "0.5xMDT": 0.15425,
+    "1xMDT": 0.4427
+   }
+  },
+  {
+   "phi": 0.2,
+   "n": 22,
+   "size_corrected": 0.0533,
+   "mc_se": 0.0015883814088561979,
+   "size_uncorrected": 0.10045,
+   "mdt_unit": 0.08971952960552218,
+   "frac_neff_at_floor": 0.02075,
+   "power": {
+    "0.5xMDT": 0.157,
+    "1xMDT": 0.44605
+   }
+  },
+  {
+   "phi": 0.2,
+   "n": 25,
+   "size_corrected": 0.0486,
+   "mc_se": 0.0015204939986727998,
+   "size_uncorrected": 0.08775,
+   "mdt_unit": 0.07257628984328483,
+   "frac_neff_at_floor": 0.00715,
+   "power": {
+    "0.5xMDT": 0.1598,
+    "1xMDT": 0.45005
+   }
+  },
+  {
+   "phi": 0.2,
+   "n": 26,
+   "size_corrected": 0.04975,
+   "mc_se": 0.0015374481698580932,
+   "size_uncorrected": 0.0874,
+   "mdt_unit": 0.06779120949083803,
+   "frac_neff_at_floor": 0.004,
+   "power": {
+    "0.5xMDT": 0.1617,
+    "1xMDT": 0.44925
+   }
+  },
+  {
+   "phi": 0.2,
+   "n": 33,
+   "size_corrected": 0.05065,
+   "mc_se": 0.0015505576013163781,
+   "size_uncorrected": 0.082,
+   "mdt_unit": 0.04626955219334987,
+   "frac_neff_at_floor": 0.00025,
+   "power": {
+    "0.5xMDT": 0.1589,
+    "1xMDT": 0.4562
+   }
+  },
+  {
+   "phi": 0.2,
+   "n": 68,
+   "size_corrected": 0.05155,
+   "mc_se": 0.0015635312197074928,
+   "size_uncorrected": 0.06215,
+   "mdt_unit": 0.015204422513507457,
+   "frac_neff_at_floor": 0.0,
+   "power": {
+    "0.5xMDT": 0.16215,
+    "1xMDT": 0.48305
+   }
+  },
+  {
+   "phi": 0.3,
+   "n": 11,
+   "size_corrected": 0.0568,
+   "mc_se": 0.0016366697895421668,
+   "size_uncorrected": 0.17665,
+   "mdt_unit": 0.38016552942567866,
+   "frac_neff_at_floor": 0.3419,
+   "power": {
+    "0.5xMDT": 0.2311,
+    "1xMDT": 0.4647
+   }
+  },
+  {
+   "phi": 0.3,
+   "n": 13,
+   "size_corrected": 0.05585,
+   "mc_se": 0.0016237422440153486,
+   "size_uncorrected": 0.15055,
+   "mdt_unit": 0.2631863608409336,
+   "frac_neff_at_floor": 0.24395,
+   "power": {
+    "0.5xMDT": 0.1948,
+    "1xMDT": 0.4457
+   }
+  },
+  {
+   "phi": 0.3,
+   "n": 15,
+   "size_corrected": 0.05545,
+   "mc_se": 0.001618259829261049,
+   "size_uncorrected": 0.13095,
+   "mdt_unit": 0.20286062264775423,
+   "frac_neff_at_floor": 0.19155,
+   "power": {
+    "0.5xMDT": 0.1893,
+    "1xMDT": 0.4445
+   }
+  },
+  {
+   "phi": 0.3,
+   "n": 20,
+   "size_corrected": 0.0553,
+   "mc_se": 0.0016161978529870655,
+   "size_uncorrected": 0.10915,
+   "mdt_unit": 0.12146102446301826,
+   "frac_neff_at_floor": 0.07595,
+   "power": {
+    "0.5xMDT": 0.17305,
+    "1xMDT": 0.4519
+   }
+  },
+  {
+   "phi": 0.3,
+   "n": 22,
+   "size_corrected": 0.0548,
+   "mc_se": 0.0016093004691480086,
+   "size_uncorrected": 0.09905,
+   "mdt_unit": 0.10315259990935849,
+   "frac_neff_at_floor": 0.04755,
+   "power": {
+    "0.5xMDT": 0.1683,
+    "1xMDT": 0.4453
+   }
+  },
+  {
+   "phi": 0.3,
+   "n": 25,
+   "size_corrected": 0.05775,
+   "mc_se": 0.0016494686644492524,
+   "size_uncorrected": 0.09665,
+   "mdt_unit": 0.08259316630460041,
+   "frac_neff_at_floor": 0.02205,
+   "power": {
+    "0.5xMDT": 0.16225,
+    "1xMDT": 0.4492
+   }
+  },
+  {
+   "phi": 0.3,
+   "n": 26,
+   "size_corrected": 0.05605,
+   "mc_se": 0.0016264746770239002,
+   "size_uncorrected": 0.0937,
+   "mdt_unit": 0.0779294762701524,
+   "frac_neff_at_floor": 0.0161,
+   "power": {
+    "0.5xMDT": 0.1671,
+    "1xMDT": 0.45105
+   }
+  },
+  {
+   "phi": 0.3,
+   "n": 33,
+   "size_corrected": 0.0534,
+   "mc_se": 0.0015897867781561148,
+   "size_uncorrected": 0.0821,
+   "mdt_unit": 0.052888059307869814,
+   "frac_neff_at_floor": 0.00145,
+   "power": {
+    "0.5xMDT": 0.15895,
+    "1xMDT": 0.46275
+   }
+  },
+  {
+   "phi": 0.3,
+   "n": 68,
+   "size_corrected": 0.0529,
+   "mc_se": 0.0015827442939401173,
+   "size_uncorrected": 0.06625,
+   "mdt_unit": 0.017064334835435558,
+   "frac_neff_at_floor": 0.0,
+   "power": {
+    "0.5xMDT": 0.1681,
+    "1xMDT": 0.4791
+   }
+  },
+  {
+   "phi": 0.4,
+   "n": 11,
+   "size_corrected": 0.06525,
+   "mc_se": 0.0017463166594292115,
+   "size_uncorrected": 0.18545,
+   "mdt_unit": 0.5626810413635616,
+   "frac_neff_at_floor": 0.4109,
+   "power": {
+    "0.5xMDT": 0.3155,
+    "1xMDT": 0.4887
+   }
+  },
+  {
+   "phi": 0.4,
+   "n": 13,
+   "size_corrected": 0.0645,
+   "mc_se": 0.0017369477539638319,
+   "size_uncorrected": 0.15705,
+   "mdt_unit": 0.35927112951891926,
+   "frac_neff_at_floor": 0.33285,
+   "power": {
+    "0.5xMDT": 0.25685,
+    "1xMDT": 0.47665
+   }
+  },
+  {
+   "phi": 0.4,
+   "n": 15,
+   "size_corrected": 0.0646,
+   "mc_se": 0.0017382007939245685,
+   "size_uncorrected": 0.14315,
+   "mdt_unit": 0.26085678154684533,
+   "frac_neff_at_floor": 0.2796,
+   "power": {
+    "0.5xMDT": 0.2253,
+    "1xMDT": 0.46605
+   }
+  },
+  {
+   "phi": 0.4,
+   "n": 20,
+   "size_corrected": 0.0613,
+   "mc_se": 0.0016962062079829798,
+   "size_uncorrected": 0.1117,
+   "mdt_unit": 0.14531285522153634,
+   "frac_neff_at_floor": 0.1432,
+   "power": {
+    "0.5xMDT": 0.1857,
+    "1xMDT": 0.44845
+   }
+  },
+  {
+   "phi": 0.4,
+   "n": 22,
+   "size_corrected": 0.05395,
+   "mc_se": 0.0015974886149829049,
+   "size_uncorrected": 0.10525,
+   "mdt_unit": 0.12194690681868124,
+   "frac_neff_at_floor": 0.1083,
+   "power": {
+    "0.5xMDT": 0.18315,
+    "1xMDT": 0.44965
+   }
+  },
+  {
+   "phi": 0.4,
+   "n": 25,
+   "size_corrected": 0.0602,
+   "mc_se": 0.0016819030887658183,
+   "size_uncorrected": 0.10355,
+   "mdt_unit": 0.09870151809501009,
+   "frac_neff_at_floor": 0.06315,
+   "power": {
+    "0.5xMDT": 0.17735,
+    "1xMDT": 0.45305
+   }
+  },
+  {
+   "phi": 0.4,
+   "n": 26,
+   "size_corrected": 0.05775,
+   "mc_se": 0.0016494686644492524,
+   "size_uncorrected": 0.09505,
+   "mdt_unit": 0.09152821660336155,
+   "frac_neff_at_floor": 0.04835,
+   "power": {
+    "0.5xMDT": 0.177,
+    "1xMDT": 0.4482
+   }
+  },
+  {
+   "phi": 0.4,
+   "n": 33,
+   "size_corrected": 0.05335,
+   "mc_se": 0.0015890842881987096,
+   "size_uncorrected": 0.0847,
+   "mdt_unit": 0.060986995738581795,
+   "frac_neff_at_floor": 0.01065,
+   "power": {
+    "0.5xMDT": 0.16315,
+    "1xMDT": 0.4539
+   }
+  },
+  {
+   "phi": 0.4,
+   "n": 68,
+   "size_corrected": 0.05325,
+   "mc_se": 0.0015876781396114265,
+   "size_uncorrected": 0.0674,
+   "mdt_unit": 0.019327297978742587,
+   "frac_neff_at_floor": 0.0,
+   "power": {
+    "0.5xMDT": 0.1663,
+    "1xMDT": 0.47895
+   }
+  },
+  {
+   "phi": 0.5,
+   "n": 11,
+   "size_corrected": 0.0755,
+   "mc_se": 0.0018681508236756473,
+   "size_uncorrected": 0.19955,
+   "mdt_unit": 1.2794323256491227,
+   "frac_neff_at_floor": 0.4769,
+   "power": {
+    "0.5xMDT": 0.4497,
+    "1xMDT": 0.49845
+   }
+  },
+  {
+   "phi": 0.5,
+   "n": 13,
+   "size_corrected": 0.07175,
+   "mc_se": 0.001824855302482912,
+   "size_uncorrected": 0.17055,
+   "mdt_unit": 0.674782673548183,
+   "frac_neff_at_floor": 0.42375,
+   "power": {
+    "0.5xMDT": 0.39285,
+    "1xMDT": 0.50045
+   }
+  },
+  {
+   "phi": 0.5,
+   "n": 15,
+   "size_corrected": 0.0685,
+   "mc_se": 0.0017861655858290408,
+   "size_uncorrected": 0.1485,
+   "mdt_unit": 0.40755917846180845,
+   "frac_neff_at_floor": 0.38465,
+   "power": {
+    "0.5xMDT": 0.32035,
+    "1xMDT": 0.49155
+   }
+  },
+  {
+   "phi": 0.5,
+   "n": 20,
+   "size_corrected": 0.0613,
+   "mc_se": 0.0016962062079829798,
+   "size_uncorrected": 0.1215,
+   "mdt_unit": 0.19034115954118963,
+   "frac_neff_at_floor": 0.247,
+   "power": {
+    "0.5xMDT": 0.224,
+    "1xMDT": 0.46125
+   }
+  },
+  {
+   "phi": 0.5,
+   "n": 22,
+   "size_corrected": 0.05905,
+   "mc_se": 0.0016667797919941313,
+   "size_uncorrected": 0.1118,
+   "mdt_unit": 0.15616750824922887,
+   "frac_neff_at_floor": 0.2055,
+   "power": {
+    "0.5xMDT": 0.2074,
+    "1xMDT": 0.4635
+   }
+  },
+  {
+   "phi": 0.5,
+   "n": 25,
+   "size_corrected": 0.06125,
+   "mc_se": 0.0016955594578191588,
+   "size_uncorrected": 0.1083,
+   "mdt_unit": 0.12051497070839748,
+   "frac_neff_at_floor": 0.13715,
+   "power": {
+    "0.5xMDT": 0.1923,
+    "1xMDT": 0.4489
+   }
+  },
+  {
+   "phi": 0.5,
+   "n": 26,
+   "size_corrected": 0.05645,
+   "mc_se": 0.0016319221412187531,
+   "size_uncorrected": 0.1016,
+   "mdt_unit": 0.11344395329036758,
+   "frac_neff_at_floor": 0.12125,
+   "power": {
+    "0.5xMDT": 0.1906,
+    "1xMDT": 0.456
+   }
+  },
+  {
+   "phi": 0.5,
+   "n": 33,
+   "size_corrected": 0.05605,
+   "mc_se": 0.0016264746770239002,
+   "size_uncorrected": 0.09265,
+   "mdt_unit": 0.07300529008259982,
+   "frac_neff_at_floor": 0.0397,
+   "power": {
+    "0.5xMDT": 0.17255,
+    "1xMDT": 0.45155
+   }
+  },
+  {
+   "phi": 0.5,
+   "n": 68,
+   "size_corrected": 0.0521,
+   "mc_se": 0.0015713941262458632,
+   "size_uncorrected": 0.06955,
+   "mdt_unit": 0.022365885976735757,
+   "frac_neff_at_floor": 0.0,
+   "power": {
+    "0.5xMDT": 0.1613,
+    "1xMDT": 0.47555
+   }
+  },
+  {
+   "phi": 0.6,
+   "n": 11,
+   "size_corrected": 0.08655,
+   "mc_se": 0.0019882039319446083,
+   "size_uncorrected": 0.2177,
+   "mdt_unit": 2.0326741061210822,
+   "frac_neff_at_floor": 0.5435,
+   "power": {
+    "0.5xMDT": 0.42395,
+    "1xMDT": 0.5024
+   }
+  },
+  {
+   "phi": 0.6,
+   "n": 13,
+   "size_corrected": 0.0809,
+   "mc_se": 0.0019281492421490615,
+   "size_uncorrected": 0.1887,
+   "mdt_unit": 1.6625637246925722,
+   "frac_neff_at_floor": 0.50035,
+   "power": {
+    "0.5xMDT": 0.4421,
+    "1xMDT": 0.50165
+   }
+  },
+  {
+   "phi": 0.6,
+   "n": 15,
+   "size_corrected": 0.0751,
+   "mc_se": 0.0018635985350927919,
+   "size_uncorrected": 0.1653,
+   "mdt_unit": 1.0431935529189533,
+   "frac_neff_at_floor": 0.47635,
+   "power": {
+    "0.5xMDT": 0.4427,
+    "1xMDT": 0.4944
+   }
+  },
+  {
+   "phi": 0.6,
+   "n": 20,
+   "size_corrected": 0.06635,
+   "mc_se": 0.0017599385997812537,
+   "size_uncorrected": 0.13655,
+   "mdt_unit": 0.29371619193853116,
+   "frac_neff_at_floor": 0.36565,
+   "power": {
+    "0.5xMDT": 0.30015,
+    "1xMDT": 0.47785
+   }
+  },
+  {
+   "phi": 0.6,
+   "n": 22,
+   "size_corrected": 0.06215,
+   "mc_se": 0.001707152270595684,
+   "size_uncorrected": 0.1226,
+   "mdt_unit": 0.2377946303664134,
+   "frac_neff_at_floor": 0.3397,
+   "power": {
+    "0.5xMDT": 0.27795,
+    "1xMDT": 0.48675
+   }
+  },
+  {
+   "phi": 0.6,
+   "n": 25,
+   "size_corrected": 0.0607,
+   "mc_se": 0.0016884239692683824,
+   "size_uncorrected": 0.11635,
+   "mdt_unit": 0.1674722254328166,
+   "frac_neff_at_floor": 0.2638,
+   "power": {
+    "0.5xMDT": 0.2258,
+    "1xMDT": 0.4665
+   }
+  },
+  {
+   "phi": 0.6,
+   "n": 26,
+   "size_corrected": 0.0575,
+   "mc_se": 0.0016461128454635181,
+   "size_uncorrected": 0.1087,
+   "mdt_unit": 0.1524038986532269,
+   "frac_neff_at_floor": 0.24525,
+   "power": {
+    "0.5xMDT": 0.2157,
+    "1xMDT": 0.4697
+   }
+  },
+  {
+   "phi": 0.6,
+   "n": 33,
+   "size_corrected": 0.0548,
+   "mc_se": 0.0016093004691480086,
+   "size_uncorrected": 0.0973,
+   "mdt_unit": 0.09322629336474253,
+   "frac_neff_at_floor": 0.12915,
+   "power": {
+    "0.5xMDT": 0.19015,
+    "1xMDT": 0.4573
+   }
+  },
+  {
+   "phi": 0.6,
+   "n": 68,
+   "size_corrected": 0.04705,
+   "mc_se": 0.001497269139132975,
+   "size_uncorrected": 0.06905,
+   "mdt_unit": 0.02657995088789228,
+   "frac_neff_at_floor": 0.0003,
+   "power": {
+    "0.5xMDT": 0.15985,
+    "1xMDT": 0.4649
+   }
+  },
+  {
+   "phi": 0.65,
+   "n": 11,
+   "size_corrected": 0.09275,
+   "mc_se": 0.0020511879180123895,
+   "size_uncorrected": 0.2321,
+   "mdt_unit": 2.075091337506856,
+   "frac_neff_at_floor": 0.57695,
+   "power": {
+    "0.5xMDT": 0.40435,
+    "1xMDT": 0.5054
+   }
+  },
+  {
+   "phi": 0.65,
+   "n": 13,
+   "size_corrected": 0.0843,
+   "mc_se": 0.0019646056856275256,
+   "size_uncorrected": 0.1948,
+   "mdt_unit": 1.7819767223753404,
+   "frac_neff_at_floor": 0.53425,
+   "power": {
+    "0.5xMDT": 0.41475,
+    "1xMDT": 0.4995
+   }
+  },
+  {
+   "phi": 0.65,
+   "n": 15,
+   "size_corrected": 0.08065,
+   "mc_se": 0.0019254295300010333,
+   "size_uncorrected": 0.1768,
+   "mdt_unit": 1.5541125572824643,
+   "frac_neff_at_floor": 0.52065,
+   "power": {
+    "0.5xMDT": 0.43785,
+    "1xMDT": 0.499
+   }
+  },
+  {
+   "phi": 0.65,
+   "n": 20,
+   "size_corrected": 0.0657,
+   "mc_se": 0.0017519062474915716,
+   "size_uncorrected": 0.13655,
+   "mdt_unit": 0.5199594646599044,
+   "frac_neff_at_floor": 0.43495,
+   "power": {
+    "0.5xMDT": 0.407,
+    "1xMDT": 0.495
+   }
+  },
+  {
+   "phi": 0.65,
+   "n": 22,
+   "size_corrected": 0.06535,
+   "mc_se": 0.0017475608358509297,
+   "size_uncorrected": 0.12985,
+   "mdt_unit": 0.33543320040107005,
+   "frac_neff_at_floor": 0.40665,
+   "power": {
+    "0.5xMDT": 0.34,
+    "1xMDT": 0.5002
+   }
+  },
+  {
+   "phi": 0.65,
+   "n": 25,
+   "size_corrected": 0.06255,
+   "mc_se": 0.0017122718461155635,
+   "size_uncorrected": 0.1208,
+   "mdt_unit": 0.22770134681991658,
+   "frac_neff_at_floor": 0.3477,
+   "power": {
+    "0.5xMDT": 0.2858,
+    "1xMDT": 0.48695
+   }
+  },
+  {
+   "phi": 0.65,
+   "n": 26,
+   "size_corrected": 0.0573,
+   "mc_se": 0.0016434218874044485,
+   "size_uncorrected": 0.11795,
+   "mdt_unit": 0.1934914960347251,
+   "frac_neff_at_floor": 0.3182,
+   "power": {
+    "0.5xMDT": 0.25965,
+    "1xMDT": 0.47795
+   }
+  },
+  {
+   "phi": 0.65,
+   "n": 33,
+   "size_corrected": 0.05255,
+   "mc_se": 0.0015777911379520422,
+   "size_uncorrected": 0.10095,
+   "mdt_unit": 0.11079533508671052,
+   "frac_neff_at_floor": 0.20155,
+   "power": {
+    "0.5xMDT": 0.2072,
+    "1xMDT": 0.46535
+   }
+  },
+  {
+   "phi": 0.65,
+   "n": 68,
+   "size_corrected": 0.0451,
+   "mc_se": 0.00146741251868723,
+   "size_uncorrected": 0.06955,
+   "mdt_unit": 0.029506241375984815,
+   "frac_neff_at_floor": 0.002,
+   "power": {
+    "0.5xMDT": 0.1595,
+    "1xMDT": 0.4591
+   }
+  },
+  {
+   "phi": 0.7,
+   "n": 11,
+   "size_corrected": 0.09545,
+   "mc_se": 0.002077730703195195,
+   "size_uncorrected": 0.2419,
+   "mdt_unit": 1.9991956165822111,
+   "frac_neff_at_floor": 0.59665,
+   "power": {
+    "0.5xMDT": 0.3768,
+    "1xMDT": 0.50355
+   }
+  },
+  {
+   "phi": 0.7,
+   "n": 13,
+   "size_corrected": 0.08835,
+   "mc_se": 0.002006791936150831,
+   "size_uncorrected": 0.2048,
+   "mdt_unit": 1.7998194753997536,
+   "frac_neff_at_floor": 0.5695,
+   "power": {
+    "0.5xMDT": 0.38675,
+    "1xMDT": 0.5025
+   }
+  },
+  {
+   "phi": 0.7,
+   "n": 15,
+   "size_corrected": 0.08,
+   "mc_se": 0.0019183326093250878,
+   "size_uncorrected": 0.185,
+   "mdt_unit": 1.6328667735336024,
+   "frac_neff_at_floor": 0.56445,
+   "power": {
+    "0.5xMDT": 0.40335,
+    "1xMDT": 0.49825
+   }
+  },
+  {
+   "phi": 0.7,
+   "n": 20,
+   "size_corrected": 0.0705,
+   "mc_se": 0.0018101070410337615,
+   "size_uncorrected": 0.1506,
+   "mdt_unit": 1.0923421614782076,
+   "frac_neff_at_floor": 0.48835,
+   "power": {
+    "0.5xMDT": 0.446,
+    "1xMDT": 0.49945
+   }
+  },
+  {
+   "phi": 0.7,
+   "n": 22,
+   "size_corrected": 0.06985,
+   "mc_se": 0.0018023731231351626,
+   "size_uncorrected": 0.1406,
+   "mdt_unit": 0.9738043287335669,
+   "frac_neff_at_floor": 0.48535,
+   "power": {
+    "0.5xMDT": 0.47355,
+    "1xMDT": 0.50815
+   }
+  },
+  {
+   "phi": 0.7,
+   "n": 25,
+   "size_corrected": 0.06165,
+   "mc_se": 0.0017007245147289435,
+   "size_uncorrected": 0.12635,
+   "mdt_unit": 0.38170543044801564,
+   "frac_neff_at_floor": 0.4247,
+   "power": {
+    "0.5xMDT": 0.3864,
+    "1xMDT": 0.50505
+   }
+  },
+  {
+   "phi": 0.7,
+   "n": 26,
+   "size_corrected": 0.05955,
+   "mc_se": 0.0016733767881143805,
+   "size_uncorrected": 0.1232,
+   "mdt_unit": 0.30215230856076997,
+   "frac_neff_at_floor": 0.4014,
+   "power": {
+    "0.5xMDT": 0.34675,
+    "1xMDT": 0.49965
+   }
+  },
+  {
+   "phi": 0.7,
+   "n": 33,
+   "size_corrected": 0.0555,
+   "mc_se": 0.0016189464166549798,
+   "size_uncorrected": 0.10805,
+   "mdt_unit": 0.14482466221857326,
+   "frac_neff_at_floor": 0.2971,
+   "power": {
+    "0.5xMDT": 0.24765,
+    "1xMDT": 0.48
+   }
+  },
+  {
+   "phi": 0.7,
+   "n": 68,
+   "size_corrected": 0.05045,
+   "mc_se": 0.0015476562522084806,
+   "size_uncorrected": 0.0761,
+   "mdt_unit": 0.033410677355998356,
+   "frac_neff_at_floor": 0.0102,
+   "power": {
+    "0.5xMDT": 0.16125,
+    "1xMDT": 0.4505
+   }
+  },
+  {
+   "phi": 0.8,
+   "n": 11,
+   "size_corrected": 0.1083,
+   "mc_se": 0.0021973974378796386,
+   "size_uncorrected": 0.26835,
+   "mdt_unit": 1.7503295346307852,
+   "frac_neff_at_floor": 0.639,
+   "power": {
+    "0.5xMDT": 0.3446,
+    "1xMDT": 0.5036
+   }
+  },
+  {
+   "phi": 0.8,
+   "n": 13,
+   "size_corrected": 0.0978,
+   "mc_se": 0.0021004185297221123,
+   "size_uncorrected": 0.2381,
+   "mdt_unit": 1.6091592327420112,
+   "frac_neff_at_floor": 0.62105,
+   "power": {
+    "0.5xMDT": 0.3405,
+    "1xMDT": 0.4994
+   }
+  },
+  {
+   "phi": 0.8,
+   "n": 15,
+   "size_corrected": 0.0886,
+   "mc_se": 0.002009353627413552,
+   "size_uncorrected": 0.2123,
+   "mdt_unit": 1.519564268875854,
+   "frac_neff_at_floor": 0.6345,
+   "power": {
+    "0.5xMDT": 0.34685,
+    "1xMDT": 0.50945
+   }
+  },
+  {
+   "phi": 0.8,
+   "n": 20,
+   "size_corrected": 0.07005,
+   "mc_se": 0.0018047575668216494,
+   "size_uncorrected": 0.16875,
+   "mdt_unit": 1.2874952742806283,
+   "frac_neff_at_floor": 0.61525,
+   "power": {
+    "0.5xMDT": 0.3636,
+    "1xMDT": 0.513
+   }
+  },
+  {
+   "phi": 0.8,
+   "n": 22,
+   "size_corrected": 0.07045,
+   "mc_se": 0.0018095137122995228,
+   "size_uncorrected": 0.16555,
+   "mdt_unit": 1.2097287126744067,
+   "frac_neff_at_floor": 0.60575,
+   "power": {
+    "0.5xMDT": 0.3694,
+    "1xMDT": 0.5089
+   }
+  },
+  {
+   "phi": 0.8,
+   "n": 25,
+   "size_corrected": 0.06635,
+   "mc_se": 0.0017599385997812537,
+   "size_uncorrected": 0.15065,
+   "mdt_unit": 1.090559832001679,
+   "frac_neff_at_floor": 0.57635,
+   "power": {
+    "0.5xMDT": 0.3982,
+    "1xMDT": 0.50635
+   }
+  },
+  {
+   "phi": 0.8,
+   "n": 26,
+   "size_corrected": 0.06585,
+   "mc_se": 0.0017537642016531186,
+   "size_uncorrected": 0.14645,
+   "mdt_unit": 1.0479368074063118,
+   "frac_neff_at_floor": 0.55965,
+   "power": {
+    "0.5xMDT": 0.41435,
+    "1xMDT": 0.5033
+   }
+  },
+  {
+   "phi": 0.8,
+   "n": 33,
+   "size_corrected": 0.055,
+   "mc_se": 0.0016120638945153508,
+   "size_uncorrected": 0.1226,
+   "mdt_unit": 0.8155132354401472,
+   "frac_neff_at_floor": 0.5036,
+   "power": {
+    "0.5xMDT": 0.4573,
+    "1xMDT": 0.51055
+   }
+  },
+  {
+   "phi": 0.8,
+   "n": 68,
+   "size_corrected": 0.04485,
+   "mc_se": 0.0014635313030475297,
+   "size_uncorrected": 0.08425,
+   "mdt_unit": 0.049035888976870404,
+   "frac_neff_at_floor": 0.13585,
+   "power": {
+    "0.5xMDT": 0.1805,
+    "1xMDT": 0.45175
+   }
+  },
+  {
+   "phi": 0.9,
+   "n": 11,
+   "size_corrected": 0.1221,
+   "mc_se": 0.002315076564608609,
+   "size_uncorrected": 0.3057,
+   "mdt_unit": 1.2856837656816662,
+   "frac_neff_at_floor": 0.6694,
+   "power": {
+    "0.5xMDT": 0.32515,
+    "1xMDT": 0.51135
+   }
+  },
+  {
+   "phi": 0.9,
+   "n": 13,
+   "size_corrected": 0.1095,
+   "mc_se": 0.0022080506108330036,
+   "size_uncorrected": 0.2745,
+   "mdt_unit": 1.1929707318753842,
+   "frac_neff_at_floor": 0.66455,
+   "power": {
+    "0.5xMDT": 0.3131,
+    "1xMDT": 0.50835
+   }
+  },
+  {
+   "phi": 0.9,
+   "n": 15,
+   "size_corrected": 0.1044,
+   "mc_se": 0.0021621822309879435,
+   "size_uncorrected": 0.25325,
+   "mdt_unit": 1.128126175247198,
+   "frac_neff_at_floor": 0.67505,
+   "power": {
+    "0.5xMDT": 0.2982,
+    "1xMDT": 0.4999
+   }
+  },
+  {
+   "phi": 0.9,
+   "n": 20,
+   "size_corrected": 0.0879,
+   "mc_se": 0.0020021686991859603,
+   "size_uncorrected": 0.21785,
+   "mdt_unit": 0.9918383135114588,
+   "frac_neff_at_floor": 0.68255,
+   "power": {
+    "0.5xMDT": 0.29355,
+    "1xMDT": 0.50635
+   }
+  },
+  {
+   "phi": 0.9,
+   "n": 22,
+   "size_corrected": 0.0803,
+   "mc_se": 0.0019216127341376565,
+   "size_uncorrected": 0.20705,
+   "mdt_unit": 0.9427646504711633,
+   "frac_neff_at_floor": 0.6889,
+   "power": {
+    "0.5xMDT": 0.28915,
+    "1xMDT": 0.49845
+   }
+  },
+  {
+   "phi": 0.9,
+   "n": 25,
+   "size_corrected": 0.0743,
+   "mc_se": 0.0018544474918422468,
+   "size_uncorrected": 0.1898,
+   "mdt_unit": 0.8799857257494212,
+   "frac_neff_at_floor": 0.68555,
+   "power": {
+    "0.5xMDT": 0.2968,
+    "1xMDT": 0.50515
+   }
+  },
+  {
+   "phi": 0.9,
+   "n": 26,
+   "size_corrected": 0.07155,
+   "mc_se": 0.0018225064814699563,
+   "size_uncorrected": 0.1831,
+   "mdt_unit": 0.8617699882008883,
+   "frac_neff_at_floor": 0.6789,
+   "power": {
+    "0.5xMDT": 0.3089,
+    "1xMDT": 0.5033
+   }
+  },
+  {
+   "phi": 0.9,
+   "n": 33,
+   "size_corrected": 0.0659,
+   "mc_se": 0.0017543829399535326,
+   "size_uncorrected": 0.16795,
+   "mdt_unit": 0.7452262358889961,
+   "frac_neff_at_floor": 0.6635,
+   "power": {
+    "0.5xMDT": 0.3142,
+    "1xMDT": 0.49285
+   }
+  },
+  {
+   "phi": 0.9,
+   "n": 68,
+   "size_corrected": 0.04925,
+   "mc_se": 0.0015301051842928968,
+   "size_uncorrected": 0.1168,
+   "mdt_unit": 0.42199616390510886,
+   "frac_neff_at_floor": 0.506,
+   "power": {
+    "0.5xMDT": 0.4464,
+    "1xMDT": 0.4967
+   }
+  },
+  {
+   "phi": 0.95,
+   "n": 11,
+   "size_corrected": 0.1334,
+   "mc_se": 0.0024042092255043028,
+   "size_uncorrected": 0.32845,
+   "mdt_unit": 0.9040424421169051,
+   "frac_neff_at_floor": 0.6689,
+   "power": {
+    "0.5xMDT": 0.31435,
+    "1xMDT": 0.498
+   }
+  },
+  {
+   "phi": 0.95,
+   "n": 13,
+   "size_corrected": 0.11905,
+   "mc_se": 0.002289946478632197,
+   "size_uncorrected": 0.30305,
+   "mdt_unit": 0.8487971651360562,
+   "frac_neff_at_floor": 0.67115,
+   "power": {
+    "0.5xMDT": 0.2984,
+    "1xMDT": 0.50185
+   }
+  },
+  {
+   "phi": 0.95,
+   "n": 15,
+   "size_corrected": 0.1081,
+   "mc_se": 0.0021956136955302496,
+   "size_uncorrected": 0.2798,
+   "mdt_unit": 0.8136426208353773,
+   "frac_neff_at_floor": 0.69635,
+   "power": {
+    "0.5xMDT": 0.29385,
+    "1xMDT": 0.50645
+   }
+  },
+  {
+   "phi": 0.95,
+   "n": 20,
+   "size_corrected": 0.09295,
+   "mc_se": 0.002053171905856887,
+   "size_uncorrected": 0.24905,
+   "mdt_unit": 0.7124523967233191,
+   "frac_neff_at_floor": 0.7033,
+   "power": {
+    "0.5xMDT": 0.2757,
+    "1xMDT": 0.5069
+   }
+  },
+  {
+   "phi": 0.95,
+   "n": 22,
+   "size_corrected": 0.08625,
+   "mc_se": 0.0019850810751704828,
+   "size_uncorrected": 0.23215,
+   "mdt_unit": 0.6857930281948547,
+   "frac_neff_at_floor": 0.72075,
+   "power": {
+    "0.5xMDT": 0.2615,
+    "1xMDT": 0.51005
+   }
+  },
+  {
+   "phi": 0.95,
+   "n": 25,
+   "size_corrected": 0.0823,
+   "mc_se": 0.0019432795732987056,
+   "size_uncorrected": 0.22075,
+   "mdt_unit": 0.640370733534072,
+   "frac_neff_at_floor": 0.7205,
+   "power": {
+    "0.5xMDT": 0.26815,
+    "1xMDT": 0.4966
+   }
+  },
+  {
+   "phi": 0.95,
+   "n": 26,
+   "size_corrected": 0.08265,
+   "mc_se": 0.0019470359203158014,
+   "size_uncorrected": 0.2208,
+   "mdt_unit": 0.6300496179786739,
+   "frac_neff_at_floor": 0.7162,
+   "power": {
+    "0.5xMDT": 0.2744,
+    "1xMDT": 0.50115
+   }
+  },
+  {
+   "phi": 0.95,
+   "n": 33,
+   "size_corrected": 0.07405,
+   "mc_se": 0.0018515749714769856,
+   "size_uncorrected": 0.20405,
+   "mdt_unit": 0.5577965796142403,
+   "frac_neff_at_floor": 0.71875,
+   "power": {
+    "0.5xMDT": 0.26085,
+    "1xMDT": 0.50195
+   }
+  },
+  {
+   "phi": 0.95,
+   "n": 68,
+   "size_corrected": 0.05915,
+   "mc_se": 0.0016681018778839619,
+   "size_uncorrected": 0.15035,
+   "mdt_unit": 0.3714381214074917,
+   "frac_neff_at_floor": 0.6823,
+   "power": {
+    "0.5xMDT": 0.29615,
+    "1xMDT": 0.5078
+   }
+  },
+  {
+   "phi": 0.98,
+   "n": 11,
+   "size_corrected": 0.1375,
+   "mc_se": 0.0024350949673472696,
+   "size_uncorrected": 0.3472,
+   "mdt_unit": 0.5709187288010725,
+   "frac_neff_at_floor": 0.67645,
+   "power": {
+    "0.5xMDT": 0.314,
+    "1xMDT": 0.5089
+   }
+  },
+  {
+   "phi": 0.98,
+   "n": 13,
+   "size_corrected": 0.1286,
+   "mc_se": 0.00236708723962595,
+   "size_uncorrected": 0.32515,
+   "mdt_unit": 0.5379094449479138,
+   "frac_neff_at_floor": 0.67335,
+   "power": {
+    "0.5xMDT": 0.29705,
+    "1xMDT": 0.50565
+   }
+  },
+  {
+   "phi": 0.98,
+   "n": 15,
+   "size_corrected": 0.1167,
+   "mc_se": 0.002270254501151798,
+   "size_uncorrected": 0.30095,
+   "mdt_unit": 0.5105884642767407,
+   "frac_neff_at_floor": 0.69945,
+   "power": {
+    "0.5xMDT": 0.28785,
+    "1xMDT": 0.5037
+   }
+  },
+  {
+   "phi": 0.98,
+   "n": 20,
+   "size_corrected": 0.10275,
+   "mc_se": 0.0021470029983677247,
+   "size_uncorrected": 0.26925,
+   "mdt_unit": 0.4560474485867947,
+   "frac_neff_at_floor": 0.71665,
+   "power": {
+    "0.5xMDT": 0.27205,
+    "1xMDT": 0.51115
+   }
+  },
+  {
+   "phi": 0.98,
+   "n": 22,
+   "size_corrected": 0.0956,
+   "mc_se": 0.00207919022698742,
+   "size_uncorrected": 0.25615,
+   "mdt_unit": 0.43648399517593955,
+   "frac_neff_at_floor": 0.73115,
+   "power": {
+    "0.5xMDT": 0.25535,
+    "1xMDT": 0.5122
+   }
+  },
+  {
+   "phi": 0.98,
+   "n": 25,
+   "size_corrected": 0.09085,
+   "mc_se": 0.002032194349711661,
+   "size_uncorrected": 0.24395,
+   "mdt_unit": 0.40984584250334205,
+   "frac_neff_at_floor": 0.72865,
+   "power": {
+    "0.5xMDT": 0.25935,
+    "1xMDT": 0.5015
+   }
+  },
+  {
+   "phi": 0.98,
+   "n": 26,
+   "size_corrected": 0.09455,
+   "mc_se": 0.002068940519928014,
+   "size_uncorrected": 0.24745,
+   "mdt_unit": 0.40161721537956474,
+   "frac_neff_at_floor": 0.7212,
+   "power": {
+    "0.5xMDT": 0.26465,
+    "1xMDT": 0.50125
+   }
+  },
+  {
+   "phi": 0.98,
+   "n": 33,
+   "size_corrected": 0.08235,
+   "mc_se": 0.0019438168316484967,
+   "size_uncorrected": 0.2296,
+   "mdt_unit": 0.3579068342656371,
+   "frac_neff_at_floor": 0.7375,
+   "power": {
+    "0.5xMDT": 0.24765,
+    "1xMDT": 0.50035
+   }
+  },
+  {
+   "phi": 0.98,
+   "n": 68,
+   "size_corrected": 0.0638,
+   "mc_se": 0.0017281429339033273,
+   "size_uncorrected": 0.187,
+   "mdt_unit": 0.2485918236079327,
+   "frac_neff_at_floor": 0.74385,
+   "power": {
+    "0.5xMDT": 0.2424,
+    "1xMDT": 0.5001
+   }
+  }
+ ],
+ "size_fitted_noise": [
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.1009,
+   "mc_se": 0.0021297792139092727,
+   "size_uncorrected": 0.2501,
+   "mdt_unit": 0.35668759072991163,
+   "frac_neff_at_floor": 0.3645
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.10345,
+   "mc_se": 0.0021534634603354664,
+   "size_uncorrected": 0.2284,
+   "mdt_unit": 0.27059605060265224,
+   "frac_neff_at_floor": 0.30645
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.104,
+   "mc_se": 0.0021585180101171266,
+   "size_uncorrected": 0.2056,
+   "mdt_unit": 0.21675506685873036,
+   "frac_neff_at_floor": 0.27325
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.1026,
+   "mc_se": 0.0021456145972657812,
+   "size_uncorrected": 0.1794,
+   "mdt_unit": 0.13391848882011015,
+   "frac_neff_at_floor": 0.1683
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.1019,
+   "mc_se": 0.0021391165232403776,
+   "size_uncorrected": 0.1676,
+   "mdt_unit": 0.11517455628143394,
+   "frac_neff_at_floor": 0.14115
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.098,
+   "mc_se": 0.002102332038475369,
+   "size_uncorrected": 0.16195,
+   "mdt_unit": 0.09409099676021919,
+   "frac_neff_at_floor": 0.09435
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.10145,
+   "mc_se": 0.002134922685953756,
+   "size_uncorrected": 0.1602,
+   "mdt_unit": 0.08930728940779031,
+   "frac_neff_at_floor": 0.0816
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.0971,
+   "mc_se": 0.0020936999546257817,
+   "size_uncorrected": 0.1433,
+   "mdt_unit": 0.06175092887729239,
+   "frac_neff_at_floor": 0.0288
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.0902,
+   "mc_se": 0.002025635209014693,
+   "size_uncorrected": 0.11215,
+   "mdt_unit": 0.020329097651762024,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.7349559372100395
+   ],
+   "ma": [
+    -0.3505258375877286
+   ],
+   "n": 11,
+   "size_corrected": 0.10815,
+   "mc_se": 0.002196059852326434,
+   "size_uncorrected": 0.2659,
+   "mdt_unit": 0.29175965473522214,
+   "frac_neff_at_floor": 0.32745
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.7349559372100395
+   ],
+   "ma": [
+    -0.3505258375877286
+   ],
+   "n": 13,
+   "size_corrected": 0.11445,
+   "mc_se": 0.0022511241358485765,
+   "size_uncorrected": 0.2456,
+   "mdt_unit": 0.22384285200583837,
+   "frac_neff_at_floor": 0.2574
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.7349559372100395
+   ],
+   "ma": [
+    -0.3505258375877286
+   ],
+   "n": 15,
+   "size_corrected": 0.117,
+   "mc_se": 0.0022727846356397257,
+   "size_uncorrected": 0.23065,
+   "mdt_unit": 0.18366077086643784,
+   "frac_neff_at_floor": 0.2347
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.7349559372100395
+   ],
+   "ma": [
+    -0.3505258375877286
+   ],
+   "n": 20,
+   "size_corrected": 0.1261,
+   "mc_se": 0.0023473260318924594,
+   "size_uncorrected": 0.2069,
+   "mdt_unit": 0.11950517571740807,
+   "frac_neff_at_floor": 0.1356
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.7349559372100395
+   ],
+   "ma": [
+    -0.3505258375877286
+   ],
+   "n": 22,
+   "size_corrected": 0.1242,
+   "mc_se": 0.002332105915261998,
+   "size_uncorrected": 0.2036,
+   "mdt_unit": 0.10243044385629295,
+   "frac_neff_at_floor": 0.10935
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.7349559372100395
+   ],
+   "ma": [
+    -0.3505258375877286
+   ],
+   "n": 25,
+   "size_corrected": 0.12665,
+   "mc_se": 0.002351699146362051,
+   "size_uncorrected": 0.19505,
+   "mdt_unit": 0.08506003955801864,
+   "frac_neff_at_floor": 0.0728
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.7349559372100395
+   ],
+   "ma": [
+    -0.3505258375877286
+   ],
+   "n": 26,
+   "size_corrected": 0.12865,
+   "mc_se": 0.0023674794349687603,
+   "size_uncorrected": 0.1917,
+   "mdt_unit": 0.07952394786229947,
+   "frac_neff_at_floor": 0.0634
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.7349559372100395
+   ],
+   "ma": [
+    -0.3505258375877286
+   ],
+   "n": 33,
+   "size_corrected": 0.1263,
+   "mc_se": 0.002348917942372615,
+   "size_uncorrected": 0.1771,
+   "mdt_unit": 0.057132867678114346,
+   "frac_neff_at_floor": 0.02325
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.7349559372100395
+   ],
+   "ma": [
+    -0.3505258375877286
+   ],
+   "n": 68,
+   "size_corrected": 0.12905,
+   "mc_se": 0.002370612763611974,
+   "size_uncorrected": 0.15545,
+   "mdt_unit": 0.019630580196931043,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.46798720183891057
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.0754,
+   "mc_se": 0.0018670141938399933,
+   "size_uncorrected": 0.19675,
+   "mdt_unit": 0.8914335675440648,
+   "frac_neff_at_floor": 0.45985
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.46798720183891057
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.068,
+   "mc_se": 0.0017801123560045305,
+   "size_uncorrected": 0.1654,
+   "mdt_unit": 0.5042146502899298,
+   "frac_neff_at_floor": 0.38705
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.46798720183891057
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.06805,
+   "mc_se": 0.0017807189208294495,
+   "size_uncorrected": 0.15015,
+   "mdt_unit": 0.3467426629613626,
+   "frac_neff_at_floor": 0.3456
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.46798720183891057
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0607,
+   "mc_se": 0.0016884239692683824,
+   "size_uncorrected": 0.1168,
+   "mdt_unit": 0.1740058209986034,
+   "frac_neff_at_floor": 0.2105
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.46798720183891057
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.06155,
+   "mc_se": 0.001699435163517573,
+   "size_uncorrected": 0.11105,
+   "mdt_unit": 0.14293054784663667,
+   "frac_neff_at_floor": 0.17215
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.46798720183891057
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.058,
+   "mc_se": 0.001652815779208318,
+   "size_uncorrected": 0.10295,
+   "mdt_unit": 0.1125360999146063,
+   "frac_neff_at_floor": 0.11055
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.46798720183891057
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.0567,
+   "mc_se": 0.0016353151072499759,
+   "size_uncorrected": 0.1021,
+   "mdt_unit": 0.10398379053620321,
+   "frac_neff_at_floor": 0.08895
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.46798720183891057
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.0535,
+   "mc_se": 0.0015911905919782207,
+   "size_uncorrected": 0.0858,
+   "mdt_unit": 0.06888792126789513,
+   "frac_neff_at_floor": 0.0269
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.46798720183891057
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.05385,
+   "mc_se": 0.0015960917501823008,
+   "size_uncorrected": 0.0715,
+   "mdt_unit": 0.021273243634507527,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.06005,
+   "mc_se": 0.00167994043793225,
+   "size_uncorrected": 0.1617,
+   "mdt_unit": 2.5617657869242008,
+   "frac_neff_at_floor": 0.66775
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.04675,
+   "mc_se": 0.0014927229732941073,
+   "size_uncorrected": 0.1281,
+   "mdt_unit": 2.243451698662577,
+   "frac_neff_at_floor": 0.6185
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.0412,
+   "mc_se": 0.0014053924718739601,
+   "size_uncorrected": 0.10865,
+   "mdt_unit": 2.0002123134553234,
+   "frac_neff_at_floor": 0.6007
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0323,
+   "mc_se": 0.0012501341927969173,
+   "size_uncorrected": 0.07745,
+   "mdt_unit": 1.084109390577147,
+   "frac_neff_at_floor": 0.47725
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.0307,
+   "mc_se": 0.0012197850220428189,
+   "size_uncorrected": 0.07375,
+   "mdt_unit": 0.5140468752979559,
+   "frac_neff_at_floor": 0.431
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.0289,
+   "mc_se": 0.0011845841042323673,
+   "size_uncorrected": 0.0645,
+   "mdt_unit": 0.2695772701713772,
+   "frac_neff_at_floor": 0.3419
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.027,
+   "mc_se": 0.001146102089693584,
+   "size_uncorrected": 0.06095,
+   "mdt_unit": 0.22373682858263244,
+   "frac_neff_at_floor": 0.30615
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.02175,
+   "mc_se": 0.0010314295298274139,
+   "size_uncorrected": 0.04935,
+   "mdt_unit": 0.11404884692085338,
+   "frac_neff_at_floor": 0.1457
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.02115,
+   "mc_se": 0.0010174152913142204,
+   "size_uncorrected": 0.03475,
+   "mdt_unit": 0.027970448505881623,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.23332237759436317
+   ],
+   "ma": [
+    0.5918320192536848
+   ],
+   "n": 11,
+   "size_corrected": 0.03735,
+   "mc_se": 0.001340801579280096,
+   "size_uncorrected": 0.11965,
+   "mdt_unit": 2.7312378677747726,
+   "frac_neff_at_floor": 0.7192
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.23332237759436317
+   ],
+   "ma": [
+    0.5918320192536848
+   ],
+   "n": 13,
+   "size_corrected": 0.0318,
+   "mc_se": 0.001240740907683792,
+   "size_uncorrected": 0.098,
+   "mdt_unit": 2.388973915297716,
+   "frac_neff_at_floor": 0.66425
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.23332237759436317
+   ],
+   "ma": [
+    0.5918320192536848
+   ],
+   "n": 15,
+   "size_corrected": 0.02715,
+   "mc_se": 0.0011491927057721868,
+   "size_uncorrected": 0.0814,
+   "mdt_unit": 2.0962023183965486,
+   "frac_neff_at_floor": 0.62605
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.23332237759436317
+   ],
+   "ma": [
+    0.5918320192536848
+   ],
+   "n": 20,
+   "size_corrected": 0.0194,
+   "mc_se": 0.000975285599196461,
+   "size_uncorrected": 0.05685,
+   "mdt_unit": 1.0446556376235017,
+   "frac_neff_at_floor": 0.4715
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.23332237759436317
+   ],
+   "ma": [
+    0.5918320192536848
+   ],
+   "n": 22,
+   "size_corrected": 0.0185,
+   "mc_se": 0.0009528313072102532,
+   "size_uncorrected": 0.0519,
+   "mdt_unit": 0.48426268747622236,
+   "frac_neff_at_floor": 0.4145
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.23332237759436317
+   ],
+   "ma": [
+    0.5918320192536848
+   ],
+   "n": 25,
+   "size_corrected": 0.018,
+   "mc_se": 0.0009401063769595438,
+   "size_uncorrected": 0.0447,
+   "mdt_unit": 0.25533361465504245,
+   "frac_neff_at_floor": 0.31135
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.23332237759436317
+   ],
+   "ma": [
+    0.5918320192536848
+   ],
+   "n": 26,
+   "size_corrected": 0.01965,
+   "mc_se": 0.00098142441125132,
+   "size_uncorrected": 0.04635,
+   "mdt_unit": 0.2170393061399593,
+   "frac_neff_at_floor": 0.27545
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.23332237759436317
+   ],
+   "ma": [
+    0.5918320192536848
+   ],
+   "n": 33,
+   "size_corrected": 0.016,
+   "mc_se": 0.0008872429205127534,
+   "size_uncorrected": 0.0379,
+   "mdt_unit": 0.1092269619690797,
+   "frac_neff_at_floor": 0.11595
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.23332237759436317
+   ],
+   "ma": [
+    0.5918320192536848
+   ],
+   "n": 68,
+   "size_corrected": 0.0152,
+   "mc_se": 0.000865128892131109,
+   "size_uncorrected": 0.0253,
+   "mdt_unit": 0.027225980943922933,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.1108,
+   "mc_se": 0.002219497240367737,
+   "size_uncorrected": 0.26615,
+   "mdt_unit": 0.33001297326530343,
+   "frac_neff_at_floor": 0.36225
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.11665,
+   "mc_se": 0.002269832345130362,
+   "size_uncorrected": 0.24215,
+   "mdt_unit": 0.26586307178741875,
+   "frac_neff_at_floor": 0.314
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.11775,
+   "mc_se": 0.0022790890449914413,
+   "size_uncorrected": 0.2265,
+   "mdt_unit": 0.210207822701441,
+   "frac_neff_at_floor": 0.2799
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.1127,
+   "mc_se": 0.0022360535548148213,
+   "size_uncorrected": 0.1965,
+   "mdt_unit": 0.13254235785181964,
+   "frac_neff_at_floor": 0.18115
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.11165,
+   "mc_se": 0.002226929247865769,
+   "size_uncorrected": 0.18645,
+   "mdt_unit": 0.11558484874640634,
+   "frac_neff_at_floor": 0.16205
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.11575,
+   "mc_se": 0.002262210616852463,
+   "size_uncorrected": 0.1807,
+   "mdt_unit": 0.0943470503407961,
+   "frac_neff_at_floor": 0.10875
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.11495,
+   "mc_se": 0.0022553990500574395,
+   "size_uncorrected": 0.1796,
+   "mdt_unit": 0.09031930162485374,
+   "frac_neff_at_floor": 0.0958
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.10855,
+   "mc_se": 0.002199623803062696,
+   "size_uncorrected": 0.15715,
+   "mdt_unit": 0.06298466062721153,
+   "frac_neff_at_floor": 0.04145
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.10355,
+   "mc_se": 0.0021543838736399787,
+   "size_uncorrected": 0.1283,
+   "mdt_unit": 0.020978761689076454,
+   "frac_neff_at_floor": 5e-05
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.7980932662363228
+   ],
+   "ma": [
+    -0.41194900053284994
+   ],
+   "n": 11,
+   "size_corrected": 0.1085,
+   "mc_se": 0.0021991788240159097,
+   "size_uncorrected": 0.2738,
+   "mdt_unit": 0.25763977503609814,
+   "frac_neff_at_floor": 0.30855
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.7980932662363228
+   ],
+   "ma": [
+    -0.41194900053284994
+   ],
+   "n": 13,
+   "size_corrected": 0.1255,
+   "mc_se": 0.002342538686980431,
+   "size_uncorrected": 0.2645,
+   "mdt_unit": 0.19830217530673727,
+   "frac_neff_at_floor": 0.24125
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.7980932662363228
+   ],
+   "ma": [
+    -0.41194900053284994
+   ],
+   "n": 15,
+   "size_corrected": 0.13625,
+   "mc_se": 0.002425756969483959,
+   "size_uncorrected": 0.25995,
+   "mdt_unit": 0.16356383224377183,
+   "frac_neff_at_floor": 0.2147
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.7980932662363228
+   ],
+   "ma": [
+    -0.41194900053284994
+   ],
+   "n": 20,
+   "size_corrected": 0.145,
+   "mc_se": 0.0024897289009046747,
+   "size_uncorrected": 0.2405,
+   "mdt_unit": 0.1098798963454245,
+   "frac_neff_at_floor": 0.12665
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.7980932662363228
+   ],
+   "ma": [
+    -0.41194900053284994
+   ],
+   "n": 22,
+   "size_corrected": 0.1521,
+   "mc_se": 0.002539346274142225,
+   "size_uncorrected": 0.2397,
+   "mdt_unit": 0.0966143763137986,
+   "frac_neff_at_floor": 0.10835
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.7980932662363228
+   ],
+   "ma": [
+    -0.41194900053284994
+   ],
+   "n": 25,
+   "size_corrected": 0.15845,
+   "mc_se": 0.002582088277925447,
+   "size_uncorrected": 0.23135,
+   "mdt_unit": 0.07996286355243569,
+   "frac_neff_at_floor": 0.07385
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.7980932662363228
+   ],
+   "ma": [
+    -0.41194900053284994
+   ],
+   "n": 26,
+   "size_corrected": 0.15555,
+   "mc_se": 0.0025627543532301335,
+   "size_uncorrected": 0.22915,
+   "mdt_unit": 0.07632751604328074,
+   "frac_neff_at_floor": 0.06355
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.7980932662363228
+   ],
+   "ma": [
+    -0.41194900053284994
+   ],
+   "n": 33,
+   "size_corrected": 0.159,
+   "mc_se": 0.0025857204025184163,
+   "size_uncorrected": 0.21895,
+   "mdt_unit": 0.05447078076480532,
+   "frac_neff_at_floor": 0.0293
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": true,
+   "ar": [
+    0.7980932662363228
+   ],
+   "ma": [
+    -0.41194900053284994
+   ],
+   "n": 68,
+   "size_corrected": 0.16875,
+   "mc_se": 0.002648333792217288,
+   "size_uncorrected": 0.2003,
+   "mdt_unit": 0.019716830421831866,
+   "frac_neff_at_floor": 5e-05
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.7179096181728732,
+    -0.13476527065449742
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.06195,
+   "mc_se": 0.0017045849568150015,
+   "size_uncorrected": 0.1744,
+   "mdt_unit": 2.444013830745653,
+   "frac_neff_at_floor": 0.66525
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.7179096181728732,
+    -0.13476527065449742
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.0552,
+   "mc_se": 0.0016148213523483022,
+   "size_uncorrected": 0.141,
+   "mdt_unit": 2.190117874551861,
+   "frac_neff_at_floor": 0.6351
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.7179096181728732,
+    -0.13476527065449742
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.0474,
+   "mc_se": 0.0015025518293889232,
+   "size_uncorrected": 0.12415,
+   "mdt_unit": 1.9623018319850845,
+   "frac_neff_at_floor": 0.60955
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.7179096181728732,
+    -0.13476527065449742
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0374,
+   "mc_se": 0.0013416638923366762,
+   "size_uncorrected": 0.08955,
+   "mdt_unit": 1.378943058460155,
+   "frac_neff_at_floor": 0.50975
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.7179096181728732,
+    -0.13476527065449742
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.0347,
+   "mc_se": 0.0012941389029003032,
+   "size_uncorrected": 0.081,
+   "mdt_unit": 0.8728619393420255,
+   "frac_neff_at_floor": 0.4696
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.7179096181728732,
+    -0.13476527065449742
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.0311,
+   "mc_se": 0.0012274524430706062,
+   "size_uncorrected": 0.07245,
+   "mdt_unit": 0.35455254384322965,
+   "frac_neff_at_floor": 0.39735
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.7179096181728732,
+    -0.13476527065449742
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.0313,
+   "mc_se": 0.0012312658120812094,
+   "size_uncorrected": 0.0714,
+   "mdt_unit": 0.2737768825591077,
+   "frac_neff_at_floor": 0.36
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.7179096181728732,
+    -0.13476527065449742
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.02885,
+   "mc_se": 0.0011835894030448229,
+   "size_uncorrected": 0.0583,
+   "mdt_unit": 0.12888670183927975,
+   "frac_neff_at_floor": 0.2073
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.7179096181728732,
+    -0.13476527065449742
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.02255,
+   "mc_se": 0.0010497975400047383,
+   "size_uncorrected": 0.0387,
+   "mdt_unit": 0.030064152933236082,
+   "frac_neff_at_floor": 0.00025
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.15017285616025008
+   ],
+   "ma": [
+    0.7217756846025826
+   ],
+   "n": 11,
+   "size_corrected": 0.0335,
+   "mc_se": 0.0012723550998050821,
+   "size_uncorrected": 0.1153,
+   "mdt_unit": 2.7794611195184338,
+   "frac_neff_at_floor": 0.7182
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.15017285616025008
+   ],
+   "ma": [
+    0.7217756846025826
+   ],
+   "n": 13,
+   "size_corrected": 0.0263,
+   "mc_se": 0.001131554461791389,
+   "size_uncorrected": 0.08985,
+   "mdt_unit": 2.377019958379269,
+   "frac_neff_at_floor": 0.6503
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.15017285616025008
+   ],
+   "ma": [
+    0.7217756846025826
+   ],
+   "n": 15,
+   "size_corrected": 0.02495,
+   "mc_se": 0.001102893863887183,
+   "size_uncorrected": 0.07505,
+   "mdt_unit": 2.0777341691230085,
+   "frac_neff_at_floor": 0.61285
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.15017285616025008
+   ],
+   "ma": [
+    0.7217756846025826
+   ],
+   "n": 20,
+   "size_corrected": 0.01865,
+   "mc_se": 0.0009566132316668006,
+   "size_uncorrected": 0.05395,
+   "mdt_unit": 0.7734271730866582,
+   "frac_neff_at_floor": 0.4406
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.15017285616025008
+   ],
+   "ma": [
+    0.7217756846025826
+   ],
+   "n": 22,
+   "size_corrected": 0.01805,
+   "mc_se": 0.0009413872077949646,
+   "size_uncorrected": 0.0481,
+   "mdt_unit": 0.38662736757815364,
+   "frac_neff_at_floor": 0.38355
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.15017285616025008
+   ],
+   "ma": [
+    0.7217756846025826
+   ],
+   "n": 25,
+   "size_corrected": 0.016,
+   "mc_se": 0.0008872429205127534,
+   "size_uncorrected": 0.04255,
+   "mdt_unit": 0.2243787883354496,
+   "frac_neff_at_floor": 0.27485
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.15017285616025008
+   ],
+   "ma": [
+    0.7217756846025826
+   ],
+   "n": 26,
+   "size_corrected": 0.01275,
+   "mc_se": 0.0007933296130865152,
+   "size_uncorrected": 0.0406,
+   "mdt_unit": 0.1930407431959369,
+   "frac_neff_at_floor": 0.2399
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.15017285616025008
+   ],
+   "ma": [
+    0.7217756846025826
+   ],
+   "n": 33,
+   "size_corrected": 0.01495,
+   "mc_se": 0.0008580937448787282,
+   "size_uncorrected": 0.0338,
+   "mdt_unit": 0.10289414877322764,
+   "frac_neff_at_floor": 0.0892
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.15017285616025008
+   ],
+   "ma": [
+    0.7217756846025826
+   ],
+   "n": 68,
+   "size_corrected": 0.0142,
+   "mc_se": 0.0008366110207258808,
+   "size_uncorrected": 0.02405,
+   "mdt_unit": 0.02615094531428028,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.6366960987588662
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.0874,
+   "mc_se": 0.001997013269860769,
+   "size_uncorrected": 0.219,
+   "mdt_unit": 2.104546565435222,
+   "frac_neff_at_floor": 0.56965
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.6366960987588662
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.0798,
+   "mc_se": 0.0019161414352808093,
+   "size_uncorrected": 0.19005,
+   "mdt_unit": 1.7950080045556056,
+   "frac_neff_at_floor": 0.5306
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.6366960987588662
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.0756,
+   "mc_se": 0.0018692864948958467,
+   "size_uncorrected": 0.16935,
+   "mdt_unit": 1.5174995049140974,
+   "frac_neff_at_floor": 0.51285
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.6366960987588662
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0686,
+   "mc_se": 0.001787372932546535,
+   "size_uncorrected": 0.1411,
+   "mdt_unit": 0.4425908652376454,
+   "frac_neff_at_floor": 0.4217
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.6366960987588662
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.06545,
+   "mc_se": 0.0017488038412011794,
+   "size_uncorrected": 0.13075,
+   "mdt_unit": 0.3011894889735861,
+   "frac_neff_at_floor": 0.3838
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.6366960987588662
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.0597,
+   "mc_se": 0.0016753493665501533,
+   "size_uncorrected": 0.11625,
+   "mdt_unit": 0.20424117704489994,
+   "frac_neff_at_floor": 0.3243
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.6366960987588662
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.05945,
+   "mc_se": 0.00167206006919608,
+   "size_uncorrected": 0.11725,
+   "mdt_unit": 0.1899351219798806,
+   "frac_neff_at_floor": 0.30435
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.6366960987588662
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.0566,
+   "mc_se": 0.0016339589958135425,
+   "size_uncorrected": 0.10145,
+   "mdt_unit": 0.10423994343714128,
+   "frac_neff_at_floor": 0.17955
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.6366960987588662
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.0502,
+   "mc_se": 0.0015440200775896666,
+   "size_uncorrected": 0.0729,
+   "mdt_unit": 0.028836571446773693,
+   "frac_neff_at_floor": 0.0011
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.3415796350462892,
+    -0.09830585661275908
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.0454,
+   "mc_se": 0.001472053667499932,
+   "size_uncorrected": 0.1407,
+   "mdt_unit": 0.5941131704290686,
+   "frac_neff_at_floor": 0.4088
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.3415796350462892,
+    -0.09830585661275908
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.04315,
+   "mc_se": 0.00143680335293317,
+   "size_uncorrected": 0.1187,
+   "mdt_unit": 0.33972805200610845,
+   "frac_neff_at_floor": 0.29705
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.3415796350462892,
+    -0.09830585661275908
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.04195,
+   "mc_se": 0.0014175718235772041,
+   "size_uncorrected": 0.1009,
+   "mdt_unit": 0.24624739925111272,
+   "frac_neff_at_floor": 0.23205
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.3415796350462892,
+    -0.09830585661275908
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.04035,
+   "mc_se": 0.0013914359040214537,
+   "size_uncorrected": 0.0796,
+   "mdt_unit": 0.1347236955080111,
+   "frac_neff_at_floor": 0.0815
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.3415796350462892,
+    -0.09830585661275908
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.03825,
+   "mc_se": 0.0013562252301885555,
+   "size_uncorrected": 0.07685,
+   "mdt_unit": 0.11273548437245333,
+   "frac_neff_at_floor": 0.05405
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.3415796350462892,
+    -0.09830585661275908
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.0377,
+   "mc_se": 0.0013468242275813129,
+   "size_uncorrected": 0.06895,
+   "mdt_unit": 0.0899638985403237,
+   "frac_neff_at_floor": 0.0233
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.3415796350462892,
+    -0.09830585661275908
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.03525,
+   "mc_se": 0.0013039830807951458,
+   "size_uncorrected": 0.06265,
+   "mdt_unit": 0.08444594321081056,
+   "frac_neff_at_floor": 0.01445
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.3415796350462892,
+    -0.09830585661275908
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.0352,
+   "mc_se": 0.0013030917082078298,
+   "size_uncorrected": 0.05745,
+   "mdt_unit": 0.056128842798800496,
+   "frac_neff_at_floor": 0.00115
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.3415796350462892,
+    -0.09830585661275908
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.03435,
+   "mc_se": 0.0012878291326880286,
+   "size_uncorrected": 0.04265,
+   "mdt_unit": 0.01755711065921449,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.07869608536063544
+   ],
+   "ma": [
+    0.42946262031070204
+   ],
+   "n": 11,
+   "size_corrected": 0.0446,
+   "mc_se": 0.0014596376262620801,
+   "size_uncorrected": 0.1344,
+   "mdt_unit": 0.5627960511864345,
+   "frac_neff_at_floor": 0.3911
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.07869608536063544
+   ],
+   "ma": [
+    0.42946262031070204
+   ],
+   "n": 13,
+   "size_corrected": 0.0423,
+   "mc_se": 0.0014232130901590246,
+   "size_uncorrected": 0.1161,
+   "mdt_unit": 0.3301920043647225,
+   "frac_neff_at_floor": 0.27795
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.07869608536063544
+   ],
+   "ma": [
+    0.42946262031070204
+   ],
+   "n": 15,
+   "size_corrected": 0.04165,
+   "mc_se": 0.0014127150721217636,
+   "size_uncorrected": 0.1013,
+   "mdt_unit": 0.23907738920019647,
+   "frac_neff_at_floor": 0.21885
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.07869608536063544
+   ],
+   "ma": [
+    0.42946262031070204
+   ],
+   "n": 20,
+   "size_corrected": 0.03895,
+   "mc_se": 0.0013680807267847904,
+   "size_uncorrected": 0.0783,
+   "mdt_unit": 0.13169612138425058,
+   "frac_neff_at_floor": 0.07505
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.07869608536063544
+   ],
+   "ma": [
+    0.42946262031070204
+   ],
+   "n": 22,
+   "size_corrected": 0.0392,
+   "mc_se": 0.0013722856845423987,
+   "size_uncorrected": 0.0747,
+   "mdt_unit": 0.11138442181589145,
+   "frac_neff_at_floor": 0.04655
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.07869608536063544
+   ],
+   "ma": [
+    0.42946262031070204
+   ],
+   "n": 25,
+   "size_corrected": 0.03725,
+   "mc_se": 0.0013390750072344714,
+   "size_uncorrected": 0.0688,
+   "mdt_unit": 0.08832558708592052,
+   "frac_neff_at_floor": 0.02035
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.07869608536063544
+   ],
+   "ma": [
+    0.42946262031070204
+   ],
+   "n": 26,
+   "size_corrected": 0.036,
+   "mc_se": 0.001317269904006009,
+   "size_uncorrected": 0.064,
+   "mdt_unit": 0.0826359079703009,
+   "frac_neff_at_floor": 0.0123
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.07869608536063544
+   ],
+   "ma": [
+    0.42946262031070204
+   ],
+   "n": 33,
+   "size_corrected": 0.03515,
+   "mc_se": 0.0013021996294731463,
+   "size_uncorrected": 0.0559,
+   "mdt_unit": 0.05540412442212028,
+   "frac_neff_at_floor": 0.0014
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.07869608536063544
+   ],
+   "ma": [
+    0.42946262031070204
+   ],
+   "n": 68,
+   "size_corrected": 0.0348,
+   "mc_se": 0.0012959351835643634,
+   "size_uncorrected": 0.04345,
+   "mdt_unit": 0.017385158688354784,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.3096085402703469
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.0617,
+   "mc_se": 0.0017013687137125803,
+   "size_uncorrected": 0.17475,
+   "mdt_unit": 0.3877142469625011,
+   "frac_neff_at_floor": 0.34465
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.3096085402703469
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.061,
+   "mc_se": 0.0016923208915569175,
+   "size_uncorrected": 0.154,
+   "mdt_unit": 0.27141269674242763,
+   "frac_neff_at_floor": 0.25945
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.3096085402703469
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.0545,
+   "mc_se": 0.001605144074530383,
+   "size_uncorrected": 0.1322,
+   "mdt_unit": 0.20994331706031444,
+   "frac_neff_at_floor": 0.20805
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.3096085402703469
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0558,
+   "mc_se": 0.0016230582244639285,
+   "size_uncorrected": 0.10805,
+   "mdt_unit": 0.12375686806850578,
+   "frac_neff_at_floor": 0.07695
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.3096085402703469
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.05785,
+   "mc_se": 0.0016508085518920721,
+   "size_uncorrected": 0.10575,
+   "mdt_unit": 0.10461414260810678,
+   "frac_neff_at_floor": 0.05375
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.3096085402703469
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.05425,
+   "mc_se": 0.0016016700268781955,
+   "size_uncorrected": 0.0949,
+   "mdt_unit": 0.08503990355513466,
+   "frac_neff_at_floor": 0.0246
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.3096085402703469
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.0542,
+   "mc_se": 0.0016009740784909668,
+   "size_uncorrected": 0.0927,
+   "mdt_unit": 0.07876500829945697,
+   "frac_neff_at_floor": 0.0184
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.3096085402703469
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.055,
+   "mc_se": 0.0016120638945153508,
+   "size_uncorrected": 0.08525,
+   "mdt_unit": 0.05327378610769079,
+   "frac_neff_at_floor": 0.0017
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.3096085402703469
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.05335,
+   "mc_se": 0.0015890842881987096,
+   "size_uncorrected": 0.0654,
+   "mdt_unit": 0.01721560672409169,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6639210527055346,
+    -0.07382870735927348
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.07025,
+   "mc_se": 0.0018071377576156168,
+   "size_uncorrected": 0.1942,
+   "mdt_unit": 2.3136925070495673,
+   "frac_neff_at_floor": 0.6156
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6639210527055346,
+    -0.07382870735927348
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.06245,
+   "mc_se": 0.00171099382669839,
+   "size_uncorrected": 0.16125,
+   "mdt_unit": 2.0632582624560962,
+   "frac_neff_at_floor": 0.5788
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6639210527055346,
+    -0.07382870735927348
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.0576,
+   "mc_se": 0.0016474562209661293,
+   "size_uncorrected": 0.13725,
+   "mdt_unit": 1.8398136462080594,
+   "frac_neff_at_floor": 0.558
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6639210527055346,
+    -0.07382870735927348
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0496,
+   "mc_se": 0.0015352498168050698,
+   "size_uncorrected": 0.11075,
+   "mdt_unit": 0.6242631855642127,
+   "frac_neff_at_floor": 0.44355
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6639210527055346,
+    -0.07382870735927348
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.0458,
+   "mc_se": 0.0014782144634659748,
+   "size_uncorrected": 0.10185,
+   "mdt_unit": 0.3851443778693867,
+   "frac_neff_at_floor": 0.4126
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6639210527055346,
+    -0.07382870735927348
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.0415,
+   "mc_se": 0.0014102792276708893,
+   "size_uncorrected": 0.08995,
+   "mdt_unit": 0.2330791457030484,
+   "frac_neff_at_floor": 0.3275
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6639210527055346,
+    -0.07382870735927348
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.045,
+   "mc_se": 0.0014658615214269049,
+   "size_uncorrected": 0.09095,
+   "mdt_unit": 0.20085120601823803,
+   "frac_neff_at_floor": 0.30705
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6639210527055346,
+    -0.07382870735927348
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.03675,
+   "mc_se": 0.001330402899500749,
+   "size_uncorrected": 0.07375,
+   "mdt_unit": 0.11054917173138501,
+   "frac_neff_at_floor": 0.16455
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.6639210527055346,
+    -0.07382870735927348
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.0333,
+   "mc_se": 0.0012686825844158184,
+   "size_uncorrected": 0.05165,
+   "mdt_unit": 0.028365598559512956,
+   "frac_neff_at_floor": 0.00075
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5038167441860896
+   ],
+   "ma": [
+    0.17937591112627482
+   ],
+   "n": 11,
+   "size_corrected": 0.067,
+   "mc_se": 0.0017679225096140386,
+   "size_uncorrected": 0.1811,
+   "mdt_unit": 2.3886480155584664,
+   "frac_neff_at_floor": 0.62935
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5038167441860896
+   ],
+   "ma": [
+    0.17937591112627482
+   ],
+   "n": 13,
+   "size_corrected": 0.0595,
+   "mc_se": 0.0016727185955802606,
+   "size_uncorrected": 0.15005,
+   "mdt_unit": 2.1227970779057665,
+   "frac_neff_at_floor": 0.5947
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5038167441860896
+   ],
+   "ma": [
+    0.17937591112627482
+   ],
+   "n": 15,
+   "size_corrected": 0.0529,
+   "mc_se": 0.0015827442939401173,
+   "size_uncorrected": 0.13235,
+   "mdt_unit": 1.8617643463011073,
+   "frac_neff_at_floor": 0.5683
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5038167441860896
+   ],
+   "ma": [
+    0.17937591112627482
+   ],
+   "n": 20,
+   "size_corrected": 0.0438,
+   "mc_se": 0.0014470929479477122,
+   "size_uncorrected": 0.09935,
+   "mdt_unit": 0.7490683848178707,
+   "frac_neff_at_floor": 0.45305
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5038167441860896
+   ],
+   "ma": [
+    0.17937591112627482
+   ],
+   "n": 22,
+   "size_corrected": 0.04235,
+   "mc_se": 0.0014240168099429165,
+   "size_uncorrected": 0.0925,
+   "mdt_unit": 0.4232312086388737,
+   "frac_neff_at_floor": 0.41735
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5038167441860896
+   ],
+   "ma": [
+    0.17937591112627482
+   ],
+   "n": 25,
+   "size_corrected": 0.03765,
+   "mc_se": 0.0013459657777967462,
+   "size_uncorrected": 0.0833,
+   "mdt_unit": 0.2467971871392964,
+   "frac_neff_at_floor": 0.331
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5038167441860896
+   ],
+   "ma": [
+    0.17937591112627482
+   ],
+   "n": 26,
+   "size_corrected": 0.0407,
+   "mc_se": 0.0013972027411939902,
+   "size_uncorrected": 0.08585,
+   "mdt_unit": 0.20358629466040679,
+   "frac_neff_at_floor": 0.30555
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5038167441860896
+   ],
+   "ma": [
+    0.17937591112627482
+   ],
+   "n": 33,
+   "size_corrected": 0.0315,
+   "mc_se": 0.0012350657877214476,
+   "size_uncorrected": 0.06925,
+   "mdt_unit": 0.11126212578397826,
+   "frac_neff_at_floor": 0.1621
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5038167441860896
+   ],
+   "ma": [
+    0.17937591112627482
+   ],
+   "n": 68,
+   "size_corrected": 0.02775,
+   "mc_se": 0.0011614632473737599,
+   "size_uncorrected": 0.04435,
+   "mdt_unit": 0.02851363180237923,
+   "frac_neff_at_floor": 0.0002
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.621218478351349
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.08595,
+   "mc_se": 0.001981951027396994,
+   "size_uncorrected": 0.22265,
+   "mdt_unit": 2.050287813757362,
+   "frac_neff_at_floor": 0.556
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.621218478351349
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.0835,
+   "mc_se": 0.001956115410705616,
+   "size_uncorrected": 0.19145,
+   "mdt_unit": 1.7288099040560954,
+   "frac_neff_at_floor": 0.51565
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.621218478351349
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.07665,
+   "mc_se": 0.0018811536021813848,
+   "size_uncorrected": 0.1676,
+   "mdt_unit": 1.374586858935175,
+   "frac_neff_at_floor": 0.49555
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.621218478351349
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.06605,
+   "mc_se": 0.0017562374198837696,
+   "size_uncorrected": 0.1337,
+   "mdt_unit": 0.3566585024132378,
+   "frac_neff_at_floor": 0.39605
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.621218478351349
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.0601,
+   "mc_se": 0.0016805949839268234,
+   "size_uncorrected": 0.12425,
+   "mdt_unit": 0.26280320559989,
+   "frac_neff_at_floor": 0.3661
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.621218478351349
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.0581,
+   "mc_se": 0.001654152199768812,
+   "size_uncorrected": 0.11595,
+   "mdt_unit": 0.18749618240762694,
+   "frac_neff_at_floor": 0.3041
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.621218478351349
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.0585,
+   "mc_se": 0.0016594841065825246,
+   "size_uncorrected": 0.10895,
+   "mdt_unit": 0.17146087983220054,
+   "frac_neff_at_floor": 0.27965
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.621218478351349
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.05515,
+   "mc_se": 0.0016141325456727523,
+   "size_uncorrected": 0.0986,
+   "mdt_unit": 0.10087587435781023,
+   "frac_neff_at_floor": 0.15865
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "is_selected": true,
+   "ar": [
+    0.621218478351349
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.0505,
+   "mc_se": 0.0015483822202544178,
+   "size_uncorrected": 0.07125,
+   "mdt_unit": 0.02774443702960365,
+   "frac_neff_at_floor": 0.00065
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.07695667890153024,
+    -0.2938942830387518
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.01635,
+   "mc_se": 0.0008967351197538769,
+   "size_uncorrected": 0.08115,
+   "mdt_unit": 0.3213330549003749,
+   "frac_neff_at_floor": 0.214
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.07695667890153024,
+    -0.2938942830387518
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.01455,
+   "mc_se": 0.000846708258492853,
+   "size_uncorrected": 0.06105,
+   "mdt_unit": 0.22043440762034325,
+   "frac_neff_at_floor": 0.10145
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.07695667890153024,
+    -0.2938942830387518
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.0118,
+   "mc_se": 0.0007635692502975745,
+   "size_uncorrected": 0.05055,
+   "mdt_unit": 0.16703264159632014,
+   "frac_neff_at_floor": 0.0464
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.07695667890153024,
+    -0.2938942830387518
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0117,
+   "mc_se": 0.0007603653726992043,
+   "size_uncorrected": 0.0355,
+   "mdt_unit": 0.09868069591195151,
+   "frac_neff_at_floor": 0.003
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.07695667890153024,
+    -0.2938942830387518
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.01295,
+   "mc_se": 0.0007994466054715599,
+   "size_uncorrected": 0.0349,
+   "mdt_unit": 0.08305775841783936,
+   "frac_neff_at_floor": 0.00125
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.07695667890153024,
+    -0.2938942830387518
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.01245,
+   "mc_se": 0.0007840598669744549,
+   "size_uncorrected": 0.0299,
+   "mdt_unit": 0.06694153832606026,
+   "frac_neff_at_floor": 0.00015
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.07695667890153024,
+    -0.2938942830387518
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.011,
+   "mc_se": 0.0007375296604205148,
+   "size_uncorrected": 0.02735,
+   "mdt_unit": 0.06267330618895657,
+   "frac_neff_at_floor": 5e-05
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.07695667890153024,
+    -0.2938942830387518
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.0105,
+   "mc_se": 0.0007207548126790413,
+   "size_uncorrected": 0.0218,
+   "mdt_unit": 0.042374112001959695,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.07695667890153024,
+    -0.2938942830387518
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.00815,
+   "mc_se": 0.0006357506390087232,
+   "size_uncorrected": 0.0126,
+   "mdt_unit": 0.013471509238160375,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.6297659000613182
+   ],
+   "ma": [
+    0.863101684075339
+   ],
+   "n": 11,
+   "size_corrected": 0.0333,
+   "mc_se": 0.0012686825844158184,
+   "size_uncorrected": 0.1321,
+   "mdt_unit": 0.3195681142959402,
+   "frac_neff_at_floor": 0.2605
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.6297659000613182
+   ],
+   "ma": [
+    0.863101684075339
+   ],
+   "n": 13,
+   "size_corrected": 0.0367,
+   "mc_se": 0.0013295320605385943,
+   "size_uncorrected": 0.1114,
+   "mdt_unit": 0.2257829888012235,
+   "frac_neff_at_floor": 0.1576
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.6297659000613182
+   ],
+   "ma": [
+    0.863101684075339
+   ],
+   "n": 15,
+   "size_corrected": 0.0347,
+   "mc_se": 0.0012941389029003032,
+   "size_uncorrected": 0.09675,
+   "mdt_unit": 0.17338311751710622,
+   "frac_neff_at_floor": 0.10495
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.6297659000613182
+   ],
+   "ma": [
+    0.863101684075339
+   ],
+   "n": 20,
+   "size_corrected": 0.03555,
+   "mc_se": 0.0013093165679086169,
+   "size_uncorrected": 0.0755,
+   "mdt_unit": 0.10452234367601954,
+   "frac_neff_at_floor": 0.0213
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.6297659000613182
+   ],
+   "ma": [
+    0.863101684075339
+   ],
+   "n": 22,
+   "size_corrected": 0.03445,
+   "mc_se": 0.0012896355589855609,
+   "size_uncorrected": 0.0731,
+   "mdt_unit": 0.08840223205469018,
+   "frac_neff_at_floor": 0.0111
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.6297659000613182
+   ],
+   "ma": [
+    0.863101684075339
+   ],
+   "n": 25,
+   "size_corrected": 0.0346,
+   "mc_se": 0.0012923397386136511,
+   "size_uncorrected": 0.06805,
+   "mdt_unit": 0.07191320907053136,
+   "frac_neff_at_floor": 0.0033
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.6297659000613182
+   ],
+   "ma": [
+    0.863101684075339
+   ],
+   "n": 26,
+   "size_corrected": 0.03615,
+   "mc_se": 0.0013199086616126133,
+   "size_uncorrected": 0.06785,
+   "mdt_unit": 0.06714911514801125,
+   "frac_neff_at_floor": 0.00205
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.6297659000613182
+   ],
+   "ma": [
+    0.863101684075339
+   ],
+   "n": 33,
+   "size_corrected": 0.0346,
+   "mc_se": 0.0012923397386136511,
+   "size_uncorrected": 0.05705,
+   "mdt_unit": 0.045622348983121376,
+   "frac_neff_at_floor": 5e-05
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.6297659000613182
+   ],
+   "ma": [
+    0.863101684075339
+   ],
+   "n": 68,
+   "size_corrected": 0.0395,
+   "mc_se": 0.0013773116931181555,
+   "size_uncorrected": 0.0486,
+   "mdt_unit": 0.014710997405681265,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.03075,
+   "mc_se": 0.0012207464417314515,
+   "size_uncorrected": 0.156,
+   "mdt_unit": 0.2510173210503873,
+   "frac_neff_at_floor": 0.14345
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.0311,
+   "mc_se": 0.0012274524430706062,
+   "size_uncorrected": 0.1365,
+   "mdt_unit": 0.18610185805428697,
+   "frac_neff_at_floor": 0.07205
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.03165,
+   "mc_se": 0.0012379070542653837,
+   "size_uncorrected": 0.11875,
+   "mdt_unit": 0.14385070114807547,
+   "frac_neff_at_floor": 0.03915
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0329,
+   "mc_se": 0.0012613007175134724,
+   "size_uncorrected": 0.0966,
+   "mdt_unit": 0.08876874374692001,
+   "frac_neff_at_floor": 0.00545
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.03345,
+   "mc_se": 0.0012714381129256744,
+   "size_uncorrected": 0.0917,
+   "mdt_unit": 0.07592553711089117,
+   "frac_neff_at_floor": 0.00265
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.0355,
+   "mc_se": 0.0013084294019930919,
+   "size_uncorrected": 0.088,
+   "mdt_unit": 0.061696907029112555,
+   "frac_neff_at_floor": 0.00055
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.03485,
+   "mc_se": 0.0012968322462832268,
+   "size_uncorrected": 0.0833,
+   "mdt_unit": 0.05788169635685324,
+   "frac_neff_at_floor": 0.00035
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.0367,
+   "mc_se": 0.0013295320605385943,
+   "size_uncorrected": 0.07815,
+   "mdt_unit": 0.03961331077730148,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.0414,
+   "mc_se": 0.0014086525476497034,
+   "size_uncorrected": 0.064,
+   "mdt_unit": 0.012835828782887745,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.18004966652349344,
+    0.029499394138079227
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.05235,
+   "mc_se": 0.0015749520230787983,
+   "size_uncorrected": 0.17975,
+   "mdt_unit": 0.27563420245141335,
+   "frac_neff_at_floor": 0.2455
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.18004966652349344,
+    0.029499394138079227
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.0502,
+   "mc_se": 0.0015440200775896666,
+   "size_uncorrected": 0.14945,
+   "mdt_unit": 0.2056770668301141,
+   "frac_neff_at_floor": 0.15925
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.18004966652349344,
+    0.029499394138079227
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.0549,
+   "mc_se": 0.0016106829296916262,
+   "size_uncorrected": 0.13905,
+   "mdt_unit": 0.16264994629136847,
+   "frac_neff_at_floor": 0.1156
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.18004966652349344,
+    0.029499394138079227
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.05625,
+   "mc_se": 0.0016292012997171344,
+   "size_uncorrected": 0.11395,
+   "mdt_unit": 0.10045439844496235,
+   "frac_neff_at_floor": 0.0292
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.18004966652349344,
+    0.029499394138079227
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.05685,
+   "mc_se": 0.0016373465958678388,
+   "size_uncorrected": 0.10865,
+   "mdt_unit": 0.08584295946558937,
+   "frac_neff_at_floor": 0.0173
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.18004966652349344,
+    0.029499394138079227
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.05285,
+   "mc_se": 0.0015820378867144745,
+   "size_uncorrected": 0.0961,
+   "mdt_unit": 0.07032214946132548,
+   "frac_neff_at_floor": 0.00595
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.18004966652349344,
+    0.029499394138079227
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.05565,
+   "mc_se": 0.001621003971309139,
+   "size_uncorrected": 0.1002,
+   "mdt_unit": 0.06588251585433413,
+   "frac_neff_at_floor": 0.0043
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.18004966652349344,
+    0.029499394138079227
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.0564,
+   "mc_se": 0.0016312424712469939,
+   "size_uncorrected": 0.0878,
+   "mdt_unit": 0.04524134546143193,
+   "frac_neff_at_floor": 0.0003
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.18004966652349344,
+    0.029499394138079227
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.05985,
+   "mc_se": 0.0016773189544627464,
+   "size_uncorrected": 0.0719,
+   "mdt_unit": 0.014872517852597494,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.3742256609517989
+   ],
+   "ma": [
+    -0.19524022281609252
+   ],
+   "n": 11,
+   "size_corrected": 0.0515,
+   "mc_se": 0.0015628139684556188,
+   "size_uncorrected": 0.1794,
+   "mdt_unit": 0.2745050255646393,
+   "frac_neff_at_floor": 0.23935
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.3742256609517989
+   ],
+   "ma": [
+    -0.19524022281609252
+   ],
+   "n": 13,
+   "size_corrected": 0.0559,
+   "mc_se": 0.0016244258985869439,
+   "size_uncorrected": 0.16205,
+   "mdt_unit": 0.201955261465181,
+   "frac_neff_at_floor": 0.1512
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.3742256609517989
+   ],
+   "ma": [
+    -0.19524022281609252
+   ],
+   "n": 15,
+   "size_corrected": 0.0545,
+   "mc_se": 0.001605144074530383,
+   "size_uncorrected": 0.1423,
+   "mdt_unit": 0.15781922944120885,
+   "frac_neff_at_floor": 0.11065
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.3742256609517989
+   ],
+   "ma": [
+    -0.19524022281609252
+   ],
+   "n": 20,
+   "size_corrected": 0.0599,
+   "mc_se": 0.0016779748210268236,
+   "size_uncorrected": 0.1204,
+   "mdt_unit": 0.09938685367414563,
+   "frac_neff_at_floor": 0.0279
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.3742256609517989
+   ],
+   "ma": [
+    -0.19524022281609252
+   ],
+   "n": 22,
+   "size_corrected": 0.05925,
+   "mc_se": 0.001669422617254241,
+   "size_uncorrected": 0.11165,
+   "mdt_unit": 0.08528690239079764,
+   "frac_neff_at_floor": 0.01725
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.3742256609517989
+   ],
+   "ma": [
+    -0.19524022281609252
+   ],
+   "n": 25,
+   "size_corrected": 0.0572,
+   "mc_se": 0.0016420742979536584,
+   "size_uncorrected": 0.1022,
+   "mdt_unit": 0.06984397670528911,
+   "frac_neff_at_floor": 0.00615
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.3742256609517989
+   ],
+   "ma": [
+    -0.19524022281609252
+   ],
+   "n": 26,
+   "size_corrected": 0.0605,
+   "mc_se": 0.0016858195336393513,
+   "size_uncorrected": 0.1025,
+   "mdt_unit": 0.06483557721662744,
+   "frac_neff_at_floor": 0.00455
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.3742256609517989
+   ],
+   "ma": [
+    -0.19524022281609252
+   ],
+   "n": 33,
+   "size_corrected": 0.058,
+   "mc_se": 0.001652815779208318,
+   "size_uncorrected": 0.09,
+   "mdt_unit": 0.04505997661264108,
+   "frac_neff_at_floor": 0.00035
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.3742256609517989
+   ],
+   "ma": [
+    -0.19524022281609252
+   ],
+   "n": 68,
+   "size_corrected": 0.06275,
+   "mc_se": 0.0017148241527923497,
+   "size_uncorrected": 0.07575,
+   "mdt_unit": 0.014869138996518472,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.03135,
+   "mc_se": 0.0012322170567720609,
+   "size_uncorrected": 0.15925,
+   "mdt_unit": 0.25023971809422774,
+   "frac_neff_at_floor": 0.14035
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.0311,
+   "mc_se": 0.0012274524430706062,
+   "size_uncorrected": 0.13485,
+   "mdt_unit": 0.18416656389838532,
+   "frac_neff_at_floor": 0.0728
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.0346,
+   "mc_se": 0.0012923397386136511,
+   "size_uncorrected": 0.12345,
+   "mdt_unit": 0.14411654588023118,
+   "frac_neff_at_floor": 0.0396
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.03475,
+   "mc_se": 0.001295037402934757,
+   "size_uncorrected": 0.0989,
+   "mdt_unit": 0.08857846165348081,
+   "frac_neff_at_floor": 0.00475
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.0353,
+   "mc_se": 0.001304873748682224,
+   "size_uncorrected": 0.09275,
+   "mdt_unit": 0.07595351459036148,
+   "frac_neff_at_floor": 0.00175
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.0362,
+   "mc_se": 0.0013207868866702153,
+   "size_uncorrected": 0.08615,
+   "mdt_unit": 0.06182275243141356,
+   "frac_neff_at_floor": 0.0002
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.03515,
+   "mc_se": 0.0013021996294731463,
+   "size_uncorrected": 0.086,
+   "mdt_unit": 0.05781949678569384,
+   "frac_neff_at_floor": 0.00025
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.03485,
+   "mc_se": 0.0012968322462832268,
+   "size_uncorrected": 0.07495,
+   "mdt_unit": 0.039651809088917536,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.0401,
+   "mc_se": 0.0013872993548618119,
+   "size_uncorrected": 0.06305,
+   "mdt_unit": 0.012836856380285939,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.31891688816086966,
+    -0.21524177241416786
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.02935,
+   "mc_se": 0.0011934943967191467,
+   "size_uncorrected": 0.1096,
+   "mdt_unit": 0.6680484824257253,
+   "frac_neff_at_floor": 0.4068
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.31891688816086966,
+    -0.21524177241416786
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.02845,
+   "mc_se": 0.0011755976671463753,
+   "size_uncorrected": 0.08425,
+   "mdt_unit": 0.36924307530075073,
+   "frac_neff_at_floor": 0.28765
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.31891688816086966,
+    -0.21524177241416786
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.02735,
+   "mc_se": 0.0011532991264195079,
+   "size_uncorrected": 0.06925,
+   "mdt_unit": 0.2512098498258304,
+   "frac_neff_at_floor": 0.20435
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.31891688816086966,
+    -0.21524177241416786
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.024,
+   "mc_se": 0.0010822199406774946,
+   "size_uncorrected": 0.05195,
+   "mdt_unit": 0.13392860365612969,
+   "frac_neff_at_floor": 0.0509
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.31891688816086966,
+    -0.21524177241416786
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.02205,
+   "mc_se": 0.001038359222523689,
+   "size_uncorrected": 0.04525,
+   "mdt_unit": 0.11182741598754825,
+   "frac_neff_at_floor": 0.02815
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.31891688816086966,
+    -0.21524177241416786
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.02095,
+   "mc_se": 0.0010126968327194472,
+   "size_uncorrected": 0.0406,
+   "mdt_unit": 0.08783127139310445,
+   "frac_neff_at_floor": 0.00775
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.31891688816086966,
+    -0.21524177241416786
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.021,
+   "mc_se": 0.0010138786909685005,
+   "size_uncorrected": 0.0393,
+   "mdt_unit": 0.08191168608197444,
+   "frac_neff_at_floor": 0.00605
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.31891688816086966,
+    -0.21524177241416786
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.0196,
+   "mc_se": 0.0009801999795960006,
+   "size_uncorrected": 0.0336,
+   "mdt_unit": 0.05424635874504749,
+   "frac_neff_at_floor": 5e-05
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.31891688816086966,
+    -0.21524177241416786
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.0172,
+   "mc_se": 0.0009193519456660763,
+   "size_uncorrected": 0.02295,
+   "mdt_unit": 0.01679921186165149,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.34780926121944344
+   ],
+   "ma": [
+    0.7285171294352365
+   ],
+   "n": 11,
+   "size_corrected": 0.03575,
+   "mc_se": 0.0013128582844313397,
+   "size_uncorrected": 0.12175,
+   "mdt_unit": 0.5855312526953917,
+   "frac_neff_at_floor": 0.3899
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.34780926121944344
+   ],
+   "ma": [
+    0.7285171294352365
+   ],
+   "n": 13,
+   "size_corrected": 0.03675,
+   "mc_se": 0.001330402899500749,
+   "size_uncorrected": 0.1059,
+   "mdt_unit": 0.32844567932249247,
+   "frac_neff_at_floor": 0.26555
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.34780926121944344
+   ],
+   "ma": [
+    0.7285171294352365
+   ],
+   "n": 15,
+   "size_corrected": 0.03245,
+   "mc_se": 0.0012529365007852553,
+   "size_uncorrected": 0.0869,
+   "mdt_unit": 0.23093119241215576,
+   "frac_neff_at_floor": 0.1942
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.34780926121944344
+   ],
+   "ma": [
+    0.7285171294352365
+   ],
+   "n": 20,
+   "size_corrected": 0.0341,
+   "mc_se": 0.0012833002376684889,
+   "size_uncorrected": 0.0714,
+   "mdt_unit": 0.127330223841838,
+   "frac_neff_at_floor": 0.05835
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.34780926121944344
+   ],
+   "ma": [
+    0.7285171294352365
+   ],
+   "n": 22,
+   "size_corrected": 0.0312,
+   "mc_se": 0.0012293608095266418,
+   "size_uncorrected": 0.0627,
+   "mdt_unit": 0.10865976330030759,
+   "frac_neff_at_floor": 0.0376
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.34780926121944344
+   ],
+   "ma": [
+    0.7285171294352365
+   ],
+   "n": 25,
+   "size_corrected": 0.02985,
+   "mc_se": 0.0012033074731754973,
+   "size_uncorrected": 0.0559,
+   "mdt_unit": 0.08637626158796669,
+   "frac_neff_at_floor": 0.01365
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.34780926121944344
+   ],
+   "ma": [
+    0.7285171294352365
+   ],
+   "n": 26,
+   "size_corrected": 0.0316,
+   "mc_se": 0.0012369607916179073,
+   "size_uncorrected": 0.05795,
+   "mdt_unit": 0.08068391294849978,
+   "frac_neff_at_floor": 0.0089
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.34780926121944344
+   ],
+   "ma": [
+    0.7285171294352365
+   ],
+   "n": 33,
+   "size_corrected": 0.03135,
+   "mc_se": 0.0012322170567720609,
+   "size_uncorrected": 0.04855,
+   "mdt_unit": 0.05387068029917691,
+   "frac_neff_at_floor": 0.0007
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    -0.34780926121944344
+   ],
+   "ma": [
+    0.7285171294352365
+   ],
+   "n": 68,
+   "size_corrected": 0.02725,
+   "mc_se": 0.001151247964167581,
+   "size_uncorrected": 0.0359,
+   "mdt_unit": 0.016919450564276375,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.0302,
+   "mc_se": 0.0012101231342305624,
+   "size_uncorrected": 0.1591,
+   "mdt_unit": 0.2503997959023914,
+   "frac_neff_at_floor": 0.1434
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.03005,
+   "mc_se": 0.0012072074697416348,
+   "size_uncorrected": 0.1338,
+   "mdt_unit": 0.18540770331652603,
+   "frac_neff_at_floor": 0.07205
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.0327,
+   "mc_se": 0.0012575911497780192,
+   "size_uncorrected": 0.1229,
+   "mdt_unit": 0.1439202764502512,
+   "frac_neff_at_floor": 0.0396
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0339,
+   "mc_se": 0.0012796638230410358,
+   "size_uncorrected": 0.10175,
+   "mdt_unit": 0.08897626392357716,
+   "frac_neff_at_floor": 0.0051
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.03655,
+   "mc_se": 0.0013269155493097517,
+   "size_uncorrected": 0.09455,
+   "mdt_unit": 0.07567790251733351,
+   "frac_neff_at_floor": 0.0021
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.0353,
+   "mc_se": 0.001304873748682224,
+   "size_uncorrected": 0.08915,
+   "mdt_unit": 0.06161196611461356,
+   "frac_neff_at_floor": 0.0003
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.03755,
+   "mc_se": 0.0013442469546180865,
+   "size_uncorrected": 0.0902,
+   "mdt_unit": 0.058097939108842485,
+   "frac_neff_at_floor": 0.00015
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.03495,
+   "mc_se": 0.0012986242239385495,
+   "size_uncorrected": 0.07415,
+   "mdt_unit": 0.039643396562599006,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.03905,
+   "mc_se": 0.001369764532684359,
+   "size_uncorrected": 0.0606,
+   "mdt_unit": 0.012831546441388196,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.061713769511525976,
+    0.2253044231007376
+   ],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.0607,
+   "mc_se": 0.0016884239692683824,
+   "size_uncorrected": 0.24245,
+   "mdt_unit": 0.23243829654552398,
+   "frac_neff_at_floor": 0.1474
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.061713769511525976,
+    0.2253044231007376
+   ],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.0716,
+   "mc_se": 0.0018230940732721392,
+   "size_uncorrected": 0.2262,
+   "mdt_unit": 0.17269011939039333,
+   "frac_neff_at_floor": 0.0896
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.061713769511525976,
+    0.2253044231007376
+   ],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.07335,
+   "mc_se": 0.0018434990846214162,
+   "size_uncorrected": 0.2093,
+   "mdt_unit": 0.1373665656988595,
+   "frac_neff_at_floor": 0.058
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.061713769511525976,
+    0.2253044231007376
+   ],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0843,
+   "mc_se": 0.0019646056856275256,
+   "size_uncorrected": 0.1877,
+   "mdt_unit": 0.08632594684512057,
+   "frac_neff_at_floor": 0.01455
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.061713769511525976,
+    0.2253044231007376
+   ],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.09055,
+   "mc_se": 0.002029170982199381,
+   "size_uncorrected": 0.18095,
+   "mdt_unit": 0.07431999808819885,
+   "frac_neff_at_floor": 0.0086
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.061713769511525976,
+    0.2253044231007376
+   ],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.08725,
+   "mc_se": 0.0019954628222545265,
+   "size_uncorrected": 0.1716,
+   "mdt_unit": 0.06075000207299294,
+   "frac_neff_at_floor": 0.0037
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.061713769511525976,
+    0.2253044231007376
+   ],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.0931,
+   "mc_se": 0.002054658000738809,
+   "size_uncorrected": 0.1747,
+   "mdt_unit": 0.05707398524572521,
+   "frac_neff_at_floor": 0.00225
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.061713769511525976,
+    0.2253044231007376
+   ],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.10135,
+   "mc_se": 0.00213398895850002,
+   "size_uncorrected": 0.16555,
+   "mdt_unit": 0.03967706511513012,
+   "frac_neff_at_floor": 0.0002
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(2)",
+   "is_selected": false,
+   "ar": [
+    0.061713769511525976,
+    0.2253044231007376
+   ],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.1094,
+   "mc_se": 0.0022071660562812214,
+   "size_uncorrected": 0.13935,
+   "mdt_unit": 0.013136157431114261,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5954334057803514
+   ],
+   "ma": [
+    -0.48295631915496845
+   ],
+   "n": 11,
+   "size_corrected": 0.0483,
+   "mc_se": 0.0015160328162675109,
+   "size_uncorrected": 0.18615,
+   "mdt_unit": 0.2513583813436108,
+   "frac_neff_at_floor": 0.1893
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5954334057803514
+   ],
+   "ma": [
+    -0.48295631915496845
+   ],
+   "n": 13,
+   "size_corrected": 0.05255,
+   "mc_se": 0.0015777911379520422,
+   "size_uncorrected": 0.16555,
+   "mdt_unit": 0.18829629936632386,
+   "frac_neff_at_floor": 0.11415
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5954334057803514
+   ],
+   "ma": [
+    -0.48295631915496845
+   ],
+   "n": 15,
+   "size_corrected": 0.0495,
+   "mc_se": 0.0015337820901288421,
+   "size_uncorrected": 0.1499,
+   "mdt_unit": 0.147256462972268,
+   "frac_neff_at_floor": 0.07365
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5954334057803514
+   ],
+   "ma": [
+    -0.48295631915496845
+   ],
+   "n": 20,
+   "size_corrected": 0.06075,
+   "mc_se": 0.0016890742656852007,
+   "size_uncorrected": 0.13305,
+   "mdt_unit": 0.09143177014903768,
+   "frac_neff_at_floor": 0.01735
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5954334057803514
+   ],
+   "ma": [
+    -0.48295631915496845
+   ],
+   "n": 22,
+   "size_corrected": 0.0592,
+   "mc_se": 0.0016687624156841501,
+   "size_uncorrected": 0.12225,
+   "mdt_unit": 0.07875430616727938,
+   "frac_neff_at_floor": 0.0079
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5954334057803514
+   ],
+   "ma": [
+    -0.48295631915496845
+   ],
+   "n": 25,
+   "size_corrected": 0.06285,
+   "mc_se": 0.0017160984456026992,
+   "size_uncorrected": 0.1184,
+   "mdt_unit": 0.06419288734054143,
+   "frac_neff_at_floor": 0.003
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5954334057803514
+   ],
+   "ma": [
+    -0.48295631915496845
+   ],
+   "n": 26,
+   "size_corrected": 0.067,
+   "mc_se": 0.0017679225096140386,
+   "size_uncorrected": 0.1219,
+   "mdt_unit": 0.06041307788180768,
+   "frac_neff_at_floor": 0.00145
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5954334057803514
+   ],
+   "ma": [
+    -0.48295631915496845
+   ],
+   "n": 33,
+   "size_corrected": 0.0692,
+   "mc_se": 0.001794594104526146,
+   "size_uncorrected": 0.11,
+   "mdt_unit": 0.04148040383629299,
+   "frac_neff_at_floor": 5e-05
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "is_selected": false,
+   "ar": [
+    0.5954334057803514
+   ],
+   "ma": [
+    -0.48295631915496845
+   ],
+   "n": 68,
+   "size_corrected": 0.0743,
+   "mc_se": 0.0018544474918422468,
+   "size_uncorrected": 0.0918,
+   "mdt_unit": 0.013806929730489179,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 11,
+   "size_corrected": 0.02885,
+   "mc_se": 0.0011835894030448229,
+   "size_uncorrected": 0.15355,
+   "mdt_unit": 0.2504156312882177,
+   "frac_neff_at_floor": 0.1381
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 13,
+   "size_corrected": 0.0298,
+   "mc_se": 0.0012023302374971694,
+   "size_uncorrected": 0.1357,
+   "mdt_unit": 0.18424542578864234,
+   "frac_neff_at_floor": 0.06845
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 15,
+   "size_corrected": 0.0332,
+   "mc_se": 0.0012668417422866994,
+   "size_uncorrected": 0.1209,
+   "mdt_unit": 0.1448270735242582,
+   "frac_neff_at_floor": 0.0426
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 20,
+   "size_corrected": 0.0337,
+   "mc_se": 0.001276015477962552,
+   "size_uncorrected": 0.0996,
+   "mdt_unit": 0.0890002600563431,
+   "frac_neff_at_floor": 0.00445
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 22,
+   "size_corrected": 0.0333,
+   "mc_se": 0.0012686825844158184,
+   "size_uncorrected": 0.09275,
+   "mdt_unit": 0.07609332120542514,
+   "frac_neff_at_floor": 0.00175
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 25,
+   "size_corrected": 0.03575,
+   "mc_se": 0.0013128582844313397,
+   "size_uncorrected": 0.0879,
+   "mdt_unit": 0.06170371062666298,
+   "frac_neff_at_floor": 0.00045
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 26,
+   "size_corrected": 0.035,
+   "mc_se": 0.0012995191418367026,
+   "size_uncorrected": 0.0838,
+   "mdt_unit": 0.05803562780396566,
+   "frac_neff_at_floor": 0.0005
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 33,
+   "size_corrected": 0.03735,
+   "mc_se": 0.001340801579280096,
+   "size_uncorrected": 0.08105,
+   "mdt_unit": 0.03946994348395949,
+   "frac_neff_at_floor": 0.0
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "is_selected": true,
+   "ar": [],
+   "ma": [],
+   "n": 68,
+   "size_corrected": 0.03885,
+   "mc_se": 0.001366394480009342,
+   "size_uncorrected": 0.059,
+   "mdt_unit": 0.012832182827615186,
+   "frac_neff_at_floor": 0.0
+  }
+ ],
+ "power_selected_fitted_noise": [
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 11,
+   "mdt_unit": 0.8914335675440648,
+   "mdt_model_physical": 0.015644701720198977,
+   "power": {
+    "0.5xMDT": 0.4111,
+    "1xMDT": 0.49545
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 13,
+   "mdt_unit": 0.5042146502899298,
+   "mdt_model_physical": 0.008848991213639105,
+   "power": {
+    "0.5xMDT": 0.3314,
+    "1xMDT": 0.489
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 15,
+   "mdt_unit": 0.3467426629613626,
+   "mdt_model_physical": 0.0060853503089896305,
+   "power": {
+    "0.5xMDT": 0.2834,
+    "1xMDT": 0.4886
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 20,
+   "mdt_unit": 0.1740058209986034,
+   "mdt_model_physical": 0.003053810475862432,
+   "power": {
+    "0.5xMDT": 0.20985,
+    "1xMDT": 0.4694
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 22,
+   "mdt_unit": 0.14293054784663667,
+   "mdt_model_physical": 0.002508437946672594,
+   "power": {
+    "0.5xMDT": 0.1909,
+    "1xMDT": 0.45885
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 25,
+   "mdt_unit": 0.1125360999146063,
+   "mdt_model_physical": 0.0019750139326355316,
+   "power": {
+    "0.5xMDT": 0.18765,
+    "1xMDT": 0.44895
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 26,
+   "mdt_unit": 0.10398379053620321,
+   "mdt_model_physical": 0.001824920494251114,
+   "power": {
+    "0.5xMDT": 0.1786,
+    "1xMDT": 0.44535
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 33,
+   "mdt_unit": 0.06888792126789513,
+   "mdt_model_physical": 0.0012089863110382557,
+   "power": {
+    "0.5xMDT": 0.17065,
+    "1xMDT": 0.4596
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 68,
+   "mdt_unit": 0.021273243634507527,
+   "mdt_model_physical": 0.0003733464426293779,
+   "power": {
+    "0.5xMDT": 0.1626,
+    "1xMDT": 0.4766
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "n": 11,
+   "mdt_unit": 2.7312378677747726,
+   "mdt_model_physical": 2.6059415694119785,
+   "power": {
+    "0.5xMDT": 0.27395,
+    "1xMDT": 0.5
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "n": 13,
+   "mdt_unit": 2.388973915297716,
+   "mdt_model_physical": 2.279379071141594,
+   "power": {
+    "0.5xMDT": 0.29775,
+    "1xMDT": 0.49955
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "n": 15,
+   "mdt_unit": 2.0962023183965486,
+   "mdt_model_physical": 2.0000384528418502,
+   "power": {
+    "0.5xMDT": 0.34315,
+    "1xMDT": 0.5024
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "n": 20,
+   "mdt_unit": 1.0446556376235017,
+   "mdt_model_physical": 0.9967317691086401,
+   "power": {
+    "0.5xMDT": 0.4371,
+    "1xMDT": 0.5092
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "n": 22,
+   "mdt_unit": 0.48426268747622236,
+   "mdt_model_physical": 0.462047001727319,
+   "power": {
+    "0.5xMDT": 0.37055,
+    "1xMDT": 0.4965
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "n": 25,
+   "mdt_unit": 0.25533361465504245,
+   "mdt_model_physical": 0.2436201139228876,
+   "power": {
+    "0.5xMDT": 0.25825,
+    "1xMDT": 0.50055
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "n": 26,
+   "mdt_unit": 0.2170393061399593,
+   "mdt_model_physical": 0.20708256748331416,
+   "power": {
+    "0.5xMDT": 0.22745,
+    "1xMDT": 0.4909
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "n": 33,
+   "mdt_unit": 0.1092269619690797,
+   "mdt_model_physical": 0.10421614464788842,
+   "power": {
+    "0.5xMDT": 0.1496,
+    "1xMDT": 0.471
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "T",
+   "model": "ARMA(1,1)",
+   "n": 68,
+   "mdt_unit": 0.027225980943922933,
+   "mdt_model_physical": 0.025976981480412706,
+   "power": {
+    "0.5xMDT": 0.1114,
+    "1xMDT": 0.46615
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "n": 11,
+   "mdt_unit": 0.25763977503609814,
+   "mdt_model_physical": 0.00805598922942834,
+   "power": {
+    "0.5xMDT": 0.21635,
+    "1xMDT": 0.4119
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "n": 13,
+   "mdt_unit": 0.19830217530673727,
+   "mdt_model_physical": 0.006200596116106126,
+   "power": {
+    "0.5xMDT": 0.21775,
+    "1xMDT": 0.40785
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "n": 15,
+   "mdt_unit": 0.16356383224377183,
+   "mdt_model_physical": 0.0051143829429878595,
+   "power": {
+    "0.5xMDT": 0.2241,
+    "1xMDT": 0.41305
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "n": 20,
+   "mdt_unit": 0.1098798963454245,
+   "mdt_model_physical": 0.003435770976610336,
+   "power": {
+    "0.5xMDT": 0.2317,
+    "1xMDT": 0.42465
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "n": 22,
+   "mdt_unit": 0.0966143763137986,
+   "mdt_model_physical": 0.003020979097202077,
+   "power": {
+    "0.5xMDT": 0.2295,
+    "1xMDT": 0.4357
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "n": 25,
+   "mdt_unit": 0.07996286355243569,
+   "mdt_model_physical": 0.0025003125679736882,
+   "power": {
+    "0.5xMDT": 0.2379,
+    "1xMDT": 0.43575
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "n": 26,
+   "mdt_unit": 0.07632751604328074,
+   "mdt_model_physical": 0.002386640987664017,
+   "power": {
+    "0.5xMDT": 0.24105,
+    "1xMDT": 0.4344
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "n": 33,
+   "mdt_unit": 0.05447078076480532,
+   "mdt_model_physical": 0.0017032153637703694,
+   "power": {
+    "0.5xMDT": 0.2444,
+    "1xMDT": 0.4436
+   }
+  },
+  {
+   "product": "ORAS5",
+   "variable": "dS",
+   "model": "ARMA(1,1)",
+   "n": 68,
+   "mdt_unit": 0.019716830421831866,
+   "mdt_model_physical": 0.0006165141756333529,
+   "power": {
+    "0.5xMDT": 0.25455,
+    "1xMDT": 0.4729
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 11,
+   "mdt_unit": 2.104546565435222,
+   "mdt_model_physical": 0.06404034374117469,
+   "power": {
+    "0.5xMDT": 0.4092,
+    "1xMDT": 0.50505
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 13,
+   "mdt_unit": 1.7950080045556056,
+   "mdt_model_physical": 0.05462123362717265,
+   "power": {
+    "0.5xMDT": 0.4307,
+    "1xMDT": 0.51355
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 15,
+   "mdt_unit": 1.5174995049140974,
+   "mdt_model_physical": 0.04617678293170199,
+   "power": {
+    "0.5xMDT": 0.4522,
+    "1xMDT": 0.49855
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 20,
+   "mdt_unit": 0.4425908652376454,
+   "mdt_model_physical": 0.013467827992991566,
+   "power": {
+    "0.5xMDT": 0.38035,
+    "1xMDT": 0.50365
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 22,
+   "mdt_unit": 0.3011894889735861,
+   "mdt_model_physical": 0.00916505185577035,
+   "power": {
+    "0.5xMDT": 0.32695,
+    "1xMDT": 0.49425
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 25,
+   "mdt_unit": 0.20424117704489994,
+   "mdt_model_physical": 0.006214961169724759,
+   "power": {
+    "0.5xMDT": 0.25945,
+    "1xMDT": 0.4809
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 26,
+   "mdt_unit": 0.1899351219798806,
+   "mdt_model_physical": 0.005779634767833267,
+   "power": {
+    "0.5xMDT": 0.26645,
+    "1xMDT": 0.4958
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 33,
+   "mdt_unit": 0.10423994343714128,
+   "mdt_model_physical": 0.003171971539577041,
+   "power": {
+    "0.5xMDT": 0.19845,
+    "1xMDT": 0.4512
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "F_ovS",
+   "model": "AR(1)",
+   "n": 68,
+   "mdt_unit": 0.028836571446773693,
+   "mdt_model_physical": 0.0008774830541164246,
+   "power": {
+    "0.5xMDT": 0.16,
+    "1xMDT": 0.4697
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "n": 11,
+   "mdt_unit": 0.3877142469625011,
+   "mdt_model_physical": 0.3977728389271863,
+   "power": {
+    "0.5xMDT": 0.2295,
+    "1xMDT": 0.46495
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "n": 13,
+   "mdt_unit": 0.27141269674242763,
+   "mdt_model_physical": 0.27845404121701167,
+   "power": {
+    "0.5xMDT": 0.21055,
+    "1xMDT": 0.4512
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "n": 15,
+   "mdt_unit": 0.20994331706031444,
+   "mdt_model_physical": 0.21538994219355714,
+   "power": {
+    "0.5xMDT": 0.19195,
+    "1xMDT": 0.44685
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "n": 20,
+   "mdt_unit": 0.12375686806850578,
+   "mdt_model_physical": 0.12696753120116303,
+   "power": {
+    "0.5xMDT": 0.175,
+    "1xMDT": 0.4447
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "n": 22,
+   "mdt_unit": 0.10461414260810678,
+   "mdt_model_physical": 0.10732818002735102,
+   "power": {
+    "0.5xMDT": 0.1738,
+    "1xMDT": 0.4475
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "n": 25,
+   "mdt_unit": 0.08503990355513466,
+   "mdt_model_physical": 0.08724612036887999,
+   "power": {
+    "0.5xMDT": 0.1696,
+    "1xMDT": 0.4601
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "n": 26,
+   "mdt_unit": 0.07876500829945697,
+   "mdt_model_physical": 0.0808084335431414,
+   "power": {
+    "0.5xMDT": 0.165,
+    "1xMDT": 0.4538
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "n": 33,
+   "mdt_unit": 0.05327378610769079,
+   "mdt_model_physical": 0.05465588460179901,
+   "power": {
+    "0.5xMDT": 0.1683,
+    "1xMDT": 0.45105
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "T",
+   "model": "AR(1)",
+   "n": 68,
+   "mdt_unit": 0.01721560672409169,
+   "mdt_model_physical": 0.017662236593431718,
+   "power": {
+    "0.5xMDT": 0.16715,
+    "1xMDT": 0.4829
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "n": 11,
+   "mdt_unit": 2.050287813757362,
+   "mdt_model_physical": 0.09594430598274757,
+   "power": {
+    "0.5xMDT": 0.4149,
+    "1xMDT": 0.50105
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "n": 13,
+   "mdt_unit": 1.7288099040560954,
+   "mdt_model_physical": 0.08090057664479297,
+   "power": {
+    "0.5xMDT": 0.4306,
+    "1xMDT": 0.4977
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "n": 15,
+   "mdt_unit": 1.374586858935175,
+   "mdt_model_physical": 0.06432452132261851,
+   "power": {
+    "0.5xMDT": 0.45115,
+    "1xMDT": 0.49595
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "n": 20,
+   "mdt_unit": 0.3566585024132378,
+   "mdt_model_physical": 0.016690023838250172,
+   "power": {
+    "0.5xMDT": 0.33035,
+    "1xMDT": 0.49385
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "n": 22,
+   "mdt_unit": 0.26280320559989,
+   "mdt_model_physical": 0.012298015430874885,
+   "power": {
+    "0.5xMDT": 0.2881,
+    "1xMDT": 0.48515
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "n": 25,
+   "mdt_unit": 0.18749618240762694,
+   "mdt_model_physical": 0.008773983328002805,
+   "power": {
+    "0.5xMDT": 0.24675,
+    "1xMDT": 0.4758
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "n": 26,
+   "mdt_unit": 0.17146087983220054,
+   "mdt_model_physical": 0.008023602836786208,
+   "power": {
+    "0.5xMDT": 0.2412,
+    "1xMDT": 0.48795
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "n": 33,
+   "mdt_unit": 0.10087587435781023,
+   "mdt_model_physical": 0.004720540058191229,
+   "power": {
+    "0.5xMDT": 0.1993,
+    "1xMDT": 0.46615
+   }
+  },
+  {
+   "product": "GLORYS12V1",
+   "variable": "dS",
+   "model": "AR(1)",
+   "n": 68,
+   "mdt_unit": 0.02774443702960365,
+   "mdt_model_physical": 0.001298315650039944,
+   "power": {
+    "0.5xMDT": 0.1611,
+    "1xMDT": 0.46875
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "n": 11,
+   "mdt_unit": 0.2510173210503873,
+   "mdt_model_physical": 0.0032496020130408742,
+   "power": {
+    "0.5xMDT": 0.13605,
+    "1xMDT": 0.43315
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "n": 13,
+   "mdt_unit": 0.18610185805428697,
+   "mdt_model_physical": 0.002409224072798003,
+   "power": {
+    "0.5xMDT": 0.13485,
+    "1xMDT": 0.44565
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "n": 15,
+   "mdt_unit": 0.14385070114807547,
+   "mdt_model_physical": 0.0018622520791475316,
+   "power": {
+    "0.5xMDT": 0.1332,
+    "1xMDT": 0.43885
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "n": 20,
+   "mdt_unit": 0.08876874374692001,
+   "mdt_model_physical": 0.0011491760296381973,
+   "power": {
+    "0.5xMDT": 0.1368,
+    "1xMDT": 0.4525
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "n": 22,
+   "mdt_unit": 0.07592553711089117,
+   "mdt_model_physical": 0.0009829113672487776,
+   "power": {
+    "0.5xMDT": 0.1375,
+    "1xMDT": 0.45985
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "n": 25,
+   "mdt_unit": 0.061696907029112555,
+   "mdt_model_physical": 0.0007987113894819828,
+   "power": {
+    "0.5xMDT": 0.1428,
+    "1xMDT": 0.46145
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "n": 26,
+   "mdt_unit": 0.05788169635685324,
+   "mdt_model_physical": 0.0007493207090744732,
+   "power": {
+    "0.5xMDT": 0.1396,
+    "1xMDT": 0.47005
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "n": 33,
+   "mdt_unit": 0.03961331077730148,
+   "mdt_model_physical": 0.0005128231546192498,
+   "power": {
+    "0.5xMDT": 0.14305,
+    "1xMDT": 0.47485
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "F_ovS",
+   "model": "AR(0)",
+   "n": 68,
+   "mdt_unit": 0.012835828782887745,
+   "mdt_model_physical": 0.00016616915070791945,
+   "power": {
+    "0.5xMDT": 0.1509,
+    "1xMDT": 0.4886
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "n": 11,
+   "mdt_unit": 0.25023971809422774,
+   "mdt_model_physical": 0.15222664562068244,
+   "power": {
+    "0.5xMDT": 0.13815,
+    "1xMDT": 0.42945
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "n": 13,
+   "mdt_unit": 0.18416656389838532,
+   "mdt_model_physical": 0.11203280786618243,
+   "power": {
+    "0.5xMDT": 0.13155,
+    "1xMDT": 0.4361
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "n": 15,
+   "mdt_unit": 0.14411654588023118,
+   "mdt_model_physical": 0.08766944961760978,
+   "power": {
+    "0.5xMDT": 0.1374,
+    "1xMDT": 0.44395
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "n": 20,
+   "mdt_unit": 0.08857846165348081,
+   "mdt_model_physical": 0.05388434016166943,
+   "power": {
+    "0.5xMDT": 0.14065,
+    "1xMDT": 0.45255
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "n": 22,
+   "mdt_unit": 0.07595351459036148,
+   "mdt_model_physical": 0.046204290978455166,
+   "power": {
+    "0.5xMDT": 0.1384,
+    "1xMDT": 0.45775
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "n": 25,
+   "mdt_unit": 0.06182275243141356,
+   "mdt_model_physical": 0.037608219419941316,
+   "power": {
+    "0.5xMDT": 0.1408,
+    "1xMDT": 0.4657
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "n": 26,
+   "mdt_unit": 0.05781949678569384,
+   "mdt_model_physical": 0.03517294582248425,
+   "power": {
+    "0.5xMDT": 0.1405,
+    "1xMDT": 0.46865
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "n": 33,
+   "mdt_unit": 0.039651809088917536,
+   "mdt_model_physical": 0.02412111848737268,
+   "power": {
+    "0.5xMDT": 0.14375,
+    "1xMDT": 0.47375
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "T",
+   "model": "AR(0)",
+   "n": 68,
+   "mdt_unit": 0.012836856380285939,
+   "mdt_model_physical": 0.007808958553691958,
+   "power": {
+    "0.5xMDT": 0.152,
+    "1xMDT": 0.4812
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 11,
+   "mdt_unit": 0.2503997959023914,
+   "mdt_model_physical": 0.006623468801852682,
+   "power": {
+    "0.5xMDT": 0.13595,
+    "1xMDT": 0.42745
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 13,
+   "mdt_unit": 0.18540770331652603,
+   "mdt_model_physical": 0.004904325636986033,
+   "power": {
+    "0.5xMDT": 0.1321,
+    "1xMDT": 0.43605
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 15,
+   "mdt_unit": 0.1439202764502512,
+   "mdt_model_physical": 0.003806917883406902,
+   "power": {
+    "0.5xMDT": 0.13915,
+    "1xMDT": 0.43435
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 20,
+   "mdt_unit": 0.08897626392357716,
+   "mdt_model_physical": 0.002353562254631196,
+   "power": {
+    "0.5xMDT": 0.13805,
+    "1xMDT": 0.46015
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 22,
+   "mdt_unit": 0.07567790251733351,
+   "mdt_model_physical": 0.0020017996600468473,
+   "power": {
+    "0.5xMDT": 0.1378,
+    "1xMDT": 0.4592
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 25,
+   "mdt_unit": 0.06161196611461356,
+   "mdt_model_physical": 0.0016297334984251486,
+   "power": {
+    "0.5xMDT": 0.1377,
+    "1xMDT": 0.47065
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 26,
+   "mdt_unit": 0.058097939108842485,
+   "mdt_model_physical": 0.0015367819520482283,
+   "power": {
+    "0.5xMDT": 0.14265,
+    "1xMDT": 0.46805
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 33,
+   "mdt_unit": 0.039643396562599006,
+   "mdt_model_physical": 0.0010486302490206648,
+   "power": {
+    "0.5xMDT": 0.14725,
+    "1xMDT": 0.46985
+   }
+  },
+  {
+   "product": "ECCO-V4r4",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 68,
+   "mdt_unit": 0.012831546441388196,
+   "mdt_model_physical": 0.00033941460386488617,
+   "power": {
+    "0.5xMDT": 0.14905,
+    "1xMDT": 0.4829
+   }
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 11,
+   "mdt_unit": 0.2504156312882177,
+   "mdt_model_physical": 0.0029818550245164985,
+   "power": {
+    "0.5xMDT": 0.13585,
+    "1xMDT": 0.4326
+   }
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 13,
+   "mdt_unit": 0.18424542578864234,
+   "mdt_model_physical": 0.0021939251388014063,
+   "power": {
+    "0.5xMDT": 0.13475,
+    "1xMDT": 0.43055
+   }
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 15,
+   "mdt_unit": 0.1448270735242582,
+   "mdt_model_physical": 0.0017245462459860776,
+   "power": {
+    "0.5xMDT": 0.1369,
+    "1xMDT": 0.44295
+   }
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 20,
+   "mdt_unit": 0.0890002600563431,
+   "mdt_model_physical": 0.0010597815770008138,
+   "power": {
+    "0.5xMDT": 0.141,
+    "1xMDT": 0.46245
+   }
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 22,
+   "mdt_unit": 0.07609332120542514,
+   "mdt_model_physical": 0.0009060906102438686,
+   "power": {
+    "0.5xMDT": 0.1355,
+    "1xMDT": 0.45555
+   }
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 25,
+   "mdt_unit": 0.06170371062666298,
+   "mdt_model_physical": 0.0007347445469634468,
+   "power": {
+    "0.5xMDT": 0.14265,
+    "1xMDT": 0.4637
+   }
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 26,
+   "mdt_unit": 0.05803562780396566,
+   "mdt_model_physical": 0.0006910663982035803,
+   "power": {
+    "0.5xMDT": 0.14035,
+    "1xMDT": 0.46015
+   }
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 33,
+   "mdt_unit": 0.03946994348395949,
+   "mdt_model_physical": 0.00046999322162747287,
+   "power": {
+    "0.5xMDT": 0.1394,
+    "1xMDT": 0.47315
+   }
+  },
+  {
+   "product": "EN4 (ORAS5 circulation)",
+   "variable": "dS",
+   "model": "AR(0)",
+   "n": 68,
+   "mdt_unit": 0.012832182827615186,
+   "mdt_model_physical": 0.0001528008001864659,
+   "power": {
+    "0.5xMDT": 0.1524,
+    "1xMDT": 0.4824
+   }
+  }
+ ],
+ "sieve_model": {
+  "label": "AR(2) fitted to ORAS5 F_ovS residuals",
+  "ar": [
+   0.4023249104231823,
+   0.1423890075982222
+  ],
+  "innovation_correlation": 0.5,
+  "datasets_per_cell": 500
+ },
+ "sieve_coverage": [
+  {
+   "n": 20,
+   "true_share": 0.1,
+   "n_datasets": 500,
+   "coverage_share_interval": 0.878,
+   "mc_se": 0.014636666287102402,
+   "miss_below": 0.066,
+   "miss_above": 0.056,
+   "median_point_estimate": 0.09920976795858495,
+   "median_interval_width": 0.16501154954042108,
+   "coverage_F_trend_interval": 0.896
+  },
+  {
+   "n": 20,
+   "true_share": 0.5,
+   "n_datasets": 500,
+   "coverage_share_interval": 0.846,
+   "mc_se": 0.016142118820031033,
+   "miss_below": 0.088,
+   "miss_above": 0.066,
+   "median_point_estimate": 0.49641108599448464,
+   "median_interval_width": 0.196874480790581,
+   "coverage_F_trend_interval": 0.918
+  },
+  {
+   "n": 26,
+   "true_share": 0.1,
+   "n_datasets": 500,
+   "coverage_share_interval": 0.856,
+   "mc_se": 0.015701210144444283,
+   "miss_below": 0.074,
+   "miss_above": 0.07,
+   "median_point_estimate": 0.10036636608954295,
+   "median_interval_width": 0.12438855822441366,
+   "coverage_F_trend_interval": 0.92
+  },
+  {
+   "n": 26,
+   "true_share": 0.5,
+   "n_datasets": 500,
+   "coverage_share_interval": 0.864,
+   "mc_se": 0.01532997064576446,
+   "miss_below": 0.084,
+   "miss_above": 0.052,
+   "median_point_estimate": 0.5028395437814805,
+   "median_interval_width": 0.1303552980524214,
+   "coverage_F_trend_interval": 0.898
+  },
+  {
+   "n": 33,
+   "true_share": 0.1,
+   "n_datasets": 500,
+   "coverage_share_interval": 0.854,
+   "mc_se": 0.015791390059142988,
+   "miss_below": 0.066,
+   "miss_above": 0.08,
+   "median_point_estimate": 0.09781795105255381,
+   "median_interval_width": 0.0961712138248316,
+   "coverage_F_trend_interval": 0.898
+  },
+  {
+   "n": 33,
+   "true_share": 0.5,
+   "n_datasets": 500,
+   "coverage_share_interval": 0.884,
+   "mc_se": 0.014320893826853127,
+   "miss_below": 0.06,
+   "miss_above": 0.056,
+   "median_point_estimate": 0.5002245977363959,
+   "median_interval_width": 0.09266442534166619,
+   "coverage_F_trend_interval": 0.908
+  },
+  {
+   "n": 68,
+   "true_share": 0.1,
+   "n_datasets": 500,
+   "coverage_share_interval": 0.876,
+   "mc_se": 0.014739335127474372,
+   "miss_below": 0.072,
+   "miss_above": 0.052,
+   "median_point_estimate": 0.10080986610432156,
+   "median_interval_width": 0.034867939448104006,
+   "coverage_F_trend_interval": 0.924
+  },
+  {
+   "n": 68,
+   "true_share": 0.5,
+   "n_datasets": 500,
+   "coverage_share_interval": 0.896,
+   "mc_se": 0.013651666564928987,
+   "miss_below": 0.056,
+   "miss_above": 0.048,
+   "median_point_estimate": 0.5010306637214794,
+   "median_interval_width": 0.03255644837813712,
+   "coverage_F_trend_interval": 0.912
+  }
+ ],
+ "summary": {
+  "ar1_phi_0_to_0p8_n22_to_68_size_corrected": [
+   3.26,
+   7.045
+  ],
+  "ar1_phi_0_to_0p8_n22_to_68_size_uncorrected": [
+   6.215,
+   16.555
+  ],
+  "ar1_phi_0p9_to_0p98_n22_size_corrected": [
+   8.03,
+   9.56
+  ],
+  "ar1_phi_0p9_to_0p98_n22_size_uncorrected": [
+   20.705000000000002,
+   25.615
+  ],
+  "ar1_phi_0_to_0p8_n11_to_20_size_corrected": [
+   2.9499999999999997,
+   10.83
+  ],
+  "ar1_phi_0_to_0p8_n11_to_20_size_uncorrected": [
+   10.095,
+   26.834999999999997
+  ],
+  "ar1_phi_0_to_0p8_all_n_size_corrected": [
+   2.9499999999999997,
+   10.83
+  ],
+  "ar1_phi_0_to_0p8_n22_to_68_power_0p5xMDT": [
+   13.455,
+   47.355000000000004
+  ],
+  "ar1_phi_0_to_0p8_n22_to_68_power_1xMDT": [
+   44.195,
+   51.05499999999999
+  ],
+  "ar1_neff_at_floor_by_phi_n68": {
+   "0": 0.0,
+   "0.1": 0.0,
+   "0.2": 0.0,
+   "0.3": 0.0,
+   "0.4": 0.0,
+   "0.5": 0.0,
+   "0.6": 0.0003,
+   "0.65": 0.002,
+   "0.7": 0.0102,
+   "0.8": 0.13585,
+   "0.9": 0.506,
+   "0.95": 0.6823,
+   "0.98": 0.74385
+  },
+  "ar1_mdt_unit_by_phi_n68": {
+   "0": 0.012827095009512282,
+   "0.1": 0.013709790132063887,
+   "0.2": 0.015204422513507457,
+   "0.3": 0.017064334835435558,
+   "0.4": 0.019327297978742587,
+   "0.5": 0.022365885976735757,
+   "0.6": 0.02657995088789228,
+   "0.65": 0.029506241375984815,
+   "0.7": 0.033410677355998356,
+   "0.8": 0.049035888976870404,
+   "0.9": 0.42199616390510886,
+   "0.95": 0.3714381214074917,
+   "0.98": 0.2485918236079327
+  },
+  "fitted_size_n22_to_68_corrected": {
+   "ORAS5 F_ovS AR(2)": [
+    9.02,
+    10.190000000000001
+   ],
+   "ORAS5 F_ovS ARMA(1,1)": [
+    12.42,
+    12.905
+   ],
+   "ORAS5 F_ovS AR(1) (AIC-selected)": [
+    5.35,
+    6.155
+   ],
+   "ORAS5 T AR(2)": [
+    2.1149999999999998,
+    3.0700000000000003
+   ],
+   "ORAS5 T ARMA(1,1) (AIC-selected)": [
+    1.52,
+    1.965
+   ],
+   "ORAS5 dS AR(2)": [
+    10.355,
+    11.575000000000001
+   ],
+   "ORAS5 dS ARMA(1,1) (AIC-selected)": [
+    15.21,
+    16.875
+   ],
+   "GLORYS12V1 F_ovS AR(2)": [
+    2.255,
+    3.47
+   ],
+   "GLORYS12V1 F_ovS ARMA(1,1)": [
+    1.275,
+    1.805
+   ],
+   "GLORYS12V1 F_ovS AR(1) (AIC-selected)": [
+    5.0200000000000005,
+    6.544999999999999
+   ],
+   "GLORYS12V1 T AR(2)": [
+    3.435,
+    3.8249999999999997
+   ],
+   "GLORYS12V1 T ARMA(1,1)": [
+    3.4799999999999995,
+    3.92
+   ],
+   "GLORYS12V1 T AR(1) (AIC-selected)": [
+    5.335,
+    5.785
+   ],
+   "GLORYS12V1 dS AR(2)": [
+    3.3300000000000005,
+    4.58
+   ],
+   "GLORYS12V1 dS ARMA(1,1)": [
+    2.775,
+    4.234999999999999
+   ],
+   "GLORYS12V1 dS AR(1) (AIC-selected)": [
+    5.050000000000001,
+    6.01
+   ],
+   "ECCO-V4r4 F_ovS AR(2)": [
+    0.815,
+    1.295
+   ],
+   "ECCO-V4r4 F_ovS ARMA(1,1)": [
+    3.4450000000000003,
+    3.95
+   ],
+   "ECCO-V4r4 F_ovS AR(0) (AIC-selected)": [
+    3.345,
+    4.14
+   ],
+   "ECCO-V4r4 T AR(2)": [
+    5.285,
+    5.985
+   ],
+   "ECCO-V4r4 T ARMA(1,1)": [
+    5.72,
+    6.275
+   ],
+   "ECCO-V4r4 T AR(0) (AIC-selected)": [
+    3.485,
+    4.01
+   ],
+   "ECCO-V4r4 dS AR(2)": [
+    1.72,
+    2.205
+   ],
+   "ECCO-V4r4 dS ARMA(1,1)": [
+    2.725,
+    3.16
+   ],
+   "ECCO-V4r4 dS AR(0) (AIC-selected)": [
+    3.495,
+    3.9050000000000002
+   ],
+   "EN4 (ORAS5 circulation) dS AR(2)": [
+    8.725,
+    10.94
+   ],
+   "EN4 (ORAS5 circulation) dS ARMA(1,1)": [
+    5.92,
+    7.430000000000001
+   ],
+   "EN4 (ORAS5 circulation) dS AR(0) (AIC-selected)": [
+    3.3300000000000005,
+    3.8850000000000002
+   ]
+  },
+  "fitted_size_n11_to_20_corrected": {
+   "ORAS5 F_ovS AR(2)": [
+    10.09,
+    10.4
+   ],
+   "ORAS5 F_ovS ARMA(1,1)": [
+    10.815,
+    12.61
+   ],
+   "ORAS5 F_ovS AR(1) (AIC-selected)": [
+    6.069999999999999,
+    7.539999999999999
+   ],
+   "ORAS5 T AR(2)": [
+    3.2300000000000004,
+    6.005
+   ],
+   "ORAS5 T ARMA(1,1) (AIC-selected)": [
+    1.94,
+    3.7350000000000003
+   ],
+   "ORAS5 dS AR(2)": [
+    11.08,
+    11.774999999999999
+   ],
+   "ORAS5 dS ARMA(1,1) (AIC-selected)": [
+    10.85,
+    14.499999999999998
+   ],
+   "GLORYS12V1 F_ovS AR(2)": [
+    3.74,
+    6.194999999999999
+   ],
+   "GLORYS12V1 F_ovS ARMA(1,1)": [
+    1.865,
+    3.35
+   ],
+   "GLORYS12V1 F_ovS AR(1) (AIC-selected)": [
+    6.859999999999999,
+    8.74
+   ],
+   "GLORYS12V1 T AR(2)": [
+    4.035,
+    4.54
+   ],
+   "GLORYS12V1 T ARMA(1,1)": [
+    3.895,
+    4.46
+   ],
+   "GLORYS12V1 T AR(1) (AIC-selected)": [
+    5.45,
+    6.17
+   ],
+   "GLORYS12V1 dS AR(2)": [
+    4.96,
+    7.025
+   ],
+   "GLORYS12V1 dS ARMA(1,1)": [
+    4.38,
+    6.7
+   ],
+   "GLORYS12V1 dS AR(1) (AIC-selected)": [
+    6.6049999999999995,
+    8.595
+   ],
+   "ECCO-V4r4 F_ovS AR(2)": [
+    1.17,
+    1.635
+   ],
+   "ECCO-V4r4 F_ovS ARMA(1,1)": [
+    3.3300000000000005,
+    3.6700000000000004
+   ],
+   "ECCO-V4r4 F_ovS AR(0) (AIC-selected)": [
+    3.075,
+    3.29
+   ],
+   "ECCO-V4r4 T AR(2)": [
+    5.0200000000000005,
+    5.625
+   ],
+   "ECCO-V4r4 T ARMA(1,1)": [
+    5.1499999999999995,
+    5.99
+   ],
+   "ECCO-V4r4 T AR(0) (AIC-selected)": [
+    3.11,
+    3.4750000000000005
+   ],
+   "ECCO-V4r4 dS AR(2)": [
+    2.4,
+    2.935
+   ],
+   "ECCO-V4r4 dS ARMA(1,1)": [
+    3.245,
+    3.675
+   ],
+   "ECCO-V4r4 dS AR(0) (AIC-selected)": [
+    3.005,
+    3.39
+   ],
+   "EN4 (ORAS5 circulation) dS AR(2)": [
+    6.069999999999999,
+    8.43
+   ],
+   "EN4 (ORAS5 circulation) dS ARMA(1,1)": [
+    4.83,
+    6.075
+   ],
+   "EN4 (ORAS5 circulation) dS AR(0) (AIC-selected)": [
+    2.8850000000000002,
+    3.37
+   ]
+  },
+  "selected_power_n22_to_68_0p5xMDT": [
+   11.14,
+   37.055
+  ],
+  "selected_power_n22_to_68_1xMDT": [
+   43.44,
+   50.05500000000001
+  ],
+  "sieve_share_coverage_pct": [
+   84.6,
+   89.60000000000001
+  ],
+  "sieve_share_coverage_F_trend_pct": [
+   89.60000000000001,
+   92.4
+  ],
+  "sieve_halfwidth_inflation_for_95pct": [
+   1.267409470433374,
+   1.3748884170243576,
+   1.3414705688445492,
+   1.3146591364217572,
+   1.3481602776647146,
+   1.2469655324455127,
+   1.2741941483068266,
+   1.2055653369591108
+  ]
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "figure": "FigS_rapid (Fig. S5)",
+ "window": [
+  "2004-04-01",
+  "2024-03-01",
+  240
+ ],
+ "raw_correlation_with_RAPID": {
+  "ORAS5": {
+   "r": 0.7474065670843437,
+   "r_ci95": [
+    0.6717628730629638,
+    0.807623853667739
+   ],
+   "n_eff": 166.8777202610868
+  },
+  "GLORYS12V1": {
+   "r": 0.705754749165145,
+   "r_ci95": [
+    0.6259838276307197,
+    0.7709090919324311
+   ],
+   "n_eff": 188.53883229398858
+  }
+ },
+ "deseasonalised_correlation_with_RAPID_from_G10": {
+  "ORAS5": 0.7543796699326341,
+  "GLORYS12V1": 0.6516020407984648
+ },
+ "monthly_mean_Sv": {
+  "RAPID": 16.970323299160306,
+  "ORAS5": 14.27703709917876,
+  "GLORYS12V1": 15.99394076140476
+ },
+ "least_squares_fit_reanalysis_on_RAPID": {
+  "ORAS5": {
+   "slope": 0.6899630138314959,
+   "intercept": 2.568141689995252
+  },
+  "GLORYS12V1": {
+   "slope": 0.6503598664755286,
+   "intercept": 4.957123566516307
+  }
+ },
+ "annual_overlap_offset_ORAS5_minus_RAPID": {
+  "overlap_years": [
+   2005,
+   2023
+  ],
+  "mean_ORAS5_Sv": 14.1890047697408,
+  "mean_RAPID_Sv": 16.907861935010196,
+  "offset_Sv": -2.7188571652693962,
+  "offset_ci95_Sv": [
+   -4.549603382963927,
+   -0.888110947574861
+  ],
+  "source": "jc_r2_G10_obs26n_overlap_corr.json (annual_overlaps.products.RAPID)"
+ },
+ "source": "data/external/rapid_moc_monthly.nc; data/results/oras5_moc_26N.nc; data/results/glorys12_moc_26N.nc; jc_r2_G10_obs26n_overlap_corr.json"
+}

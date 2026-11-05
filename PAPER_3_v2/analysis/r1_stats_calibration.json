@@ -1,0 +1,164 @@
+{
+ "n_sims": 2000,
+ "nominal": 0.05,
+ "rows": [
+  {
+   "n": 22,
+   "phi": 0.0,
+   "size_corrected": 0.035,
+   "size_uncorrected": 0.1
+  },
+  {
+   "n": 22,
+   "phi": 0.3,
+   "size_corrected": 0.0605,
+   "size_uncorrected": 0.1055
+  },
+  {
+   "n": 22,
+   "phi": 0.5,
+   "size_corrected": 0.0505,
+   "size_uncorrected": 0.1025
+  },
+  {
+   "n": 22,
+   "phi": 0.65,
+   "size_corrected": 0.0695,
+   "size_uncorrected": 0.143
+  },
+  {
+   "n": 22,
+   "phi": 0.8,
+   "size_corrected": 0.0685,
+   "size_uncorrected": 0.157
+  },
+  {
+   "n": 25,
+   "phi": 0.0,
+   "size_corrected": 0.0345,
+   "size_uncorrected": 0.0875
+  },
+  {
+   "n": 25,
+   "phi": 0.3,
+   "size_corrected": 0.057,
+   "size_uncorrected": 0.0915
+  },
+  {
+   "n": 25,
+   "phi": 0.5,
+   "size_corrected": 0.045,
+   "size_uncorrected": 0.0935
+  },
+  {
+   "n": 25,
+   "phi": 0.65,
+   "size_corrected": 0.0505,
+   "size_uncorrected": 0.1095
+  },
+  {
+   "n": 25,
+   "phi": 0.8,
+   "size_corrected": 0.063,
+   "size_uncorrected": 0.1535
+  },
+  {
+   "n": 26,
+   "phi": 0.0,
+   "size_corrected": 0.0305,
+   "size_uncorrected": 0.078
+  },
+  {
+   "n": 26,
+   "phi": 0.3,
+   "size_corrected": 0.0485,
+   "size_uncorrected": 0.085
+  },
+  {
+   "n": 26,
+   "phi": 0.5,
+   "size_corrected": 0.0475,
+   "size_uncorrected": 0.096
+  },
+  {
+   "n": 26,
+   "phi": 0.65,
+   "size_corrected": 0.0565,
+   "size_uncorrected": 0.1145
+  },
+  {
+   "n": 26,
+   "phi": 0.8,
+   "size_corrected": 0.0495,
+   "size_uncorrected": 0.1405
+  },
+  {
+   "n": 33,
+   "phi": 0.0,
+   "size_corrected": 0.0285,
+   "size_uncorrected": 0.081
+  },
+  {
+   "n": 33,
+   "phi": 0.3,
+   "size_corrected": 0.057,
+   "size_uncorrected": 0.0795
+  },
+  {
+   "n": 33,
+   "phi": 0.5,
+   "size_corrected": 0.0575,
+   "size_uncorrected": 0.0955
+  },
+  {
+   "n": 33,
+   "phi": 0.65,
+   "size_corrected": 0.0555,
+   "size_uncorrected": 0.1005
+  },
+  {
+   "n": 33,
+   "phi": 0.8,
+   "size_corrected": 0.0595,
+   "size_uncorrected": 0.1235
+  },
+  {
+   "n": 68,
+   "phi": 0.0,
+   "size_corrected": 0.038,
+   "size_uncorrected": 0.064
+  },
+  {
+   "n": 68,
+   "phi": 0.3,
+   "size_corrected": 0.05,
+   "size_uncorrected": 0.063
+  },
+  {
+   "n": 68,
+   "phi": 0.5,
+   "size_corrected": 0.0495,
+   "size_uncorrected": 0.0665
+  },
+  {
+   "n": 68,
+   "phi": 0.65,
+   "size_corrected": 0.048,
+   "size_uncorrected": 0.073
+  },
+  {
+   "n": 68,
+   "phi": 0.8,
+   "size_corrected": 0.048,
+   "size_uncorrected": 0.085
+  }
+ ],
+ "range_corrected": [
+  0.0285,
+  0.0695
+ ],
+ "range_uncorrected": [
+  0.063,
+  0.157
+ ]
+}

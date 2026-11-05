@@ -1,0 +1,2109 @@
+{
+ "description": "CMIP6 cross-model relation between the 1950 to 1980 mean F_ovS at 34.5 S and the forced change of the overturning at 26.5 N (1850 to 1900 to 2081 to 2100, ssp585) and of the streamfunction maximum at 34.5 S; errors-in-variables regressions, rank and partial correlations, family-cluster bootstrap.",
+ "units": {
+  "F_ovS": "Sv",
+  "overturning change": "Sv",
+  "slopes": "Sv per Sv"
+ },
+ "n_boot": 10000,
+ "seed": {
+  "bootstrap": 20261104,
+  "paired": 20261105
+ },
+ "model_sets": {
+  "26.5N_21": [
+   "ACCESS-CM2",
+   "ACCESS-ESM1-5",
+   "CESM2",
+   "CESM2-WACCM",
+   "CMCC-CM2-SR5",
+   "CMCC-ESM2",
+   "CNRM-CM6-1",
+   "CanESM5",
+   "FGOALS-f3-L",
+   "FGOALS-g3",
+   "FIO-ESM-2-0",
+   "GFDL-CM4",
+   "GISS-E2-1-G",
+   "HadGEM3-GC31-LL",
+   "IPSL-CM6A-LR",
+   "MIROC6",
+   "MPI-ESM1-2-HR",
+   "MPI-ESM1-2-LR",
+   "MRI-ESM2-0",
+   "NESM3",
+   "UKESM1-0-LL"
+  ],
+  "34.5S_19": [
+   "ACCESS-CM2",
+   "ACCESS-ESM1-5",
+   "CESM2",
+   "CMCC-CM2-SR5",
+   "CNRM-CM6-1",
+   "CanESM5",
+   "EC-Earth3",
+   "FGOALS-g3",
+   "FIO-ESM-2-0",
+   "GFDL-CM4",
+   "GISS-E2-1-G",
+   "HadGEM3-GC31-LL",
+   "IPSL-CM6A-LR",
+   "MIROC6",
+   "MPI-ESM1-2-HR",
+   "MPI-ESM1-2-LR",
+   "NESM3",
+   "TaiESM1",
+   "UKESM1-0-LL"
+  ],
+  "common_17": [
+   "ACCESS-CM2",
+   "ACCESS-ESM1-5",
+   "CESM2",
+   "CMCC-CM2-SR5",
+   "CNRM-CM6-1",
+   "CanESM5",
+   "FGOALS-g3",
+   "FIO-ESM-2-0",
+   "GFDL-CM4",
+   "GISS-E2-1-G",
+   "HadGEM3-GC31-LL",
+   "IPSL-CM6A-LR",
+   "MIROC6",
+   "MPI-ESM1-2-HR",
+   "MPI-ESM1-2-LR",
+   "NESM3",
+   "UKESM1-0-LL"
+  ],
+  "excluded_from_26.5N": [
+   "BCC-CSM2-MR",
+   "CIESM",
+   "EC-Earth3",
+   "TaiESM1"
+  ],
+  "excluded_from_34.5S": [
+   "BCC-CSM2-MR",
+   "CESM2-WACCM",
+   "CIESM",
+   "CMCC-ESM2",
+   "FGOALS-f3-L",
+   "MRI-ESM2-0"
+  ]
+ },
+ "family_clusters": {
+  "26.5N_21": 15,
+  "34.5S_19": 15,
+  "common_17": 14
+ },
+ "error_model": "Sampling error of each window mean from interannual variability: standard error about a linear trend with the lag-1 corrected effective sample size (paper3r1_stats.fitted_mean_test). Change errors add the two window errors in quadrature. Deming delta = mean(error variance of y) / mean(error variance of F) over the set; the interannual sensitivity uses the ratio of the mean interannual variances instead.",
+ "consistency_with_r1_cmip6_json": {
+  "F_mean": {
+   "n_compared": 25,
+   "max_abs_diff": 1.1102230246251565e-16
+  },
+  "amoc26_base": {
+   "n_compared": 21,
+   "max_abs_diff": 7.105427357601002e-15
+  },
+  "damoc26": {
+   "n_compared": 21,
+   "max_abs_diff": 7.105427357601002e-15
+  },
+  "psi34_base": {
+   "n_compared": 19,
+   "max_abs_diff": 3.552713678800501e-15
+  },
+  "dpsi34": {
+   "n_compared": 19,
+   "max_abs_diff": 5.329070518200751e-15
+  }
+ },
+ "per_model": [
+  {
+   "model": "ACCESS-CM2",
+   "F_mean": 0.07888758286075541,
+   "F_se": 0.007501160602640951,
+   "F_sd_interannual": 0.013488979378214399,
+   "psi34_base": 16.286027228224686,
+   "psi34_base_se": 0.09485245842250814,
+   "psi34_base_sd_interannual": 0.6773820430956741,
+   "dpsi34": -3.410569345152913,
+   "dpsi34_se": 0.25609795916213324,
+   "dpsi34_sd_interannual": 0.748617553726132,
+   "amoc26_base": 15.321232617483226,
+   "amoc26_base_se": 0.3053369653841126,
+   "amoc26_base_sd_interannual": 1.1997145635072324,
+   "damoc26": -6.881843317734534,
+   "damoc26_se": 0.3216112762554107,
+   "damoc26_sd_interannual": 0.90647064088818
+  },
+  {
+   "model": "ACCESS-ESM1-5",
+   "F_mean": 0.08069590419403176,
+   "F_se": 0.003415956101497433,
+   "F_sd_interannual": 0.010873143939050164,
+   "psi34_base": 15.623589589089917,
+   "psi34_base_se": 0.08268823634189192,
+   "psi34_base_sd_interannual": 0.5594794225235565,
+   "dpsi34": -2.003358496453597,
+   "dpsi34_se": 0.15210835514179888,
+   "dpsi34_sd_interannual": 0.5652474545362906,
+   "amoc26_base": 18.14189861145098,
+   "amoc26_base_se": 0.22205213190193152,
+   "amoc26_base_sd_interannual": 0.7915831798620282,
+   "damoc26": -5.014075097850981,
+   "damoc26_se": 0.6861482130422988,
+   "damoc26_sd_interannual": 0.7850360370969218
+  },
+  {
+   "model": "BCC-CSM2-MR",
+   "F_mean": 0.16276079865984544,
+   "F_se": 0.01199222035672994,
+   "F_sd_interannual": 0.01239885120042121,
+   "psi34_base": null,
+   "psi34_base_se": null,
+   "psi34_base_sd_interannual": null,
+   "dpsi34": null,
+   "dpsi34_se": null,
+   "dpsi34_sd_interannual": null,
+   "amoc26_base": null,
+   "amoc26_base_se": null,
+   "amoc26_base_sd_interannual": null,
+   "damoc26": null,
+   "damoc26_se": null,
+   "damoc26_sd_interannual": null
+  },
+  {
+   "model": "CESM2",
+   "F_mean": 0.1624063655194725,
+   "F_se": 0.0016609168884993842,
+   "F_sd_interannual": 0.007498198174888647,
+   "psi34_base": 15.481946463066114,
+   "psi34_base_se": 0.07595303947700972,
+   "psi34_base_sd_interannual": 0.5338725046917544,
+   "dpsi34": -6.128588799791682,
+   "dpsi34_se": 0.13674227275785547,
+   "dpsi34_sd_interannual": 0.5213499546032394,
+   "amoc26_base": 15.231563050337458,
+   "amoc26_base_se": 0.108169886976205,
+   "amoc26_base_sd_interannual": 0.6029043743199354,
+   "damoc26": -9.463015464294838,
+   "damoc26_se": 0.16169472967195658,
+   "damoc26_sd_interannual": 0.5711317307237253
+  },
+  {
+   "model": "CESM2-WACCM",
+   "F_mean": 0.14313525275883485,
+   "F_se": 0.0020958031213203494,
+   "F_sd_interannual": 0.008502970186961618,
+   "psi34_base": null,
+   "psi34_base_se": null,
+   "psi34_base_sd_interannual": null,
+   "dpsi34": null,
+   "dpsi34_se": null,
+   "dpsi34_sd_interannual": null,
+   "amoc26_base": 18.0935605107451,
+   "amoc26_base_se": 0.10118220909657152,
+   "amoc26_base_sd_interannual": 0.5761700054809746,
+   "damoc26": -7.564606449945101,
+   "damoc26_se": 0.18985185755807812,
+   "damoc26_sd_interannual": 0.6511872399040678
+  },
+  {
+   "model": "CIESM",
+   "F_mean": -0.07183893482890584,
+   "F_se": 0.002842570776552658,
+   "F_sd_interannual": 0.00942853342121758,
+   "psi34_base": null,
+   "psi34_base_se": null,
+   "psi34_base_sd_interannual": null,
+   "dpsi34": null,
+   "dpsi34_se": null,
+   "dpsi34_sd_interannual": null,
+   "amoc26_base": null,
+   "amoc26_base_se": null,
+   "amoc26_base_sd_interannual": null,
+   "damoc26": null,
+   "damoc26_se": null,
+   "damoc26_sd_interannual": null
+  },
+  {
+   "model": "CMCC-CM2-SR5",
+   "F_mean": 0.04477588198726388,
+   "F_se": 0.0054151266201935755,
+   "F_sd_interannual": 0.00943259703515492,
+   "psi34_base": 15.085149360402832,
+   "psi34_base_se": 0.1566635035479576,
+   "psi34_base_sd_interannual": 0.704165412250511,
+   "dpsi34": -3.95719202635053,
+   "dpsi34_se": 0.2414791068394134,
+   "dpsi34_sd_interannual": 0.6379066125236698,
+   "amoc26_base": 16.273439626081412,
+   "amoc26_base_se": 0.5394549513289674,
+   "amoc26_base_sd_interannual": 1.0127999006533654,
+   "damoc26": -6.940216943836353,
+   "damoc26_se": 0.5864337426983635,
+   "damoc26_sd_interannual": 0.7913195914919338
+  },
+  {
+   "model": "CMCC-ESM2",
+   "F_mean": 0.0523316043983217,
+   "F_se": 0.0023977745477375056,
+   "F_sd_interannual": 0.005323272752481738,
+   "psi34_base": null,
+   "psi34_base_se": null,
+   "psi34_base_sd_interannual": null,
+   "dpsi34": null,
+   "dpsi34_se": null,
+   "dpsi34_sd_interannual": null,
+   "amoc26_base": 18.00278903466667,
+   "amoc26_base_se": 1.4281256054597868,
+   "amoc26_base_sd_interannual": 1.456979542622927,
+   "damoc26": -7.283086250666669,
+   "damoc26_se": 1.4401695091458433,
+   "damoc26_sd_interannual": 1.148628184977384
+  },
+  {
+   "model": "CNRM-CM6-1",
+   "F_mean": -0.11237761703794649,
+   "F_se": 0.0031466737638624126,
+   "F_sd_interannual": 0.012003595508698705,
+   "psi34_base": 14.113908866992539,
+   "psi34_base_se": 0.0796667549765852,
+   "psi34_base_sd_interannual": 0.5689344287995443,
+   "dpsi34": -5.1551885200483305,
+   "dpsi34_se": 0.16398078409374978,
+   "dpsi34_sd_interannual": 0.5065646049618874,
+   "amoc26_base": 14.254782302750183,
+   "amoc26_base_se": 0.10393533690941402,
+   "amoc26_base_sd_interannual": 0.6976065004012046,
+   "damoc26": -7.924337537337518,
+   "damoc26_se": 0.17882169812217552,
+   "damoc26_sd_interannual": 0.6745916315143993
+  },
+  {
+   "model": "CanESM5",
+   "F_mean": -0.0699317869203142,
+   "F_se": 0.0037256003553008846,
+   "F_sd_interannual": 0.010062901461382447,
+   "psi34_base": 10.635522240383013,
+   "psi34_base_se": 0.102615906878696,
+   "psi34_base_sd_interannual": 0.5238789206735321,
+   "dpsi34": -0.3720434992481394,
+   "dpsi34_se": 0.14583585090466428,
+   "dpsi34_sd_interannual": 0.4945758510163374,
+   "amoc26_base": 9.397618344263558,
+   "amoc26_base_se": 0.10501051137961707,
+   "amoc26_base_sd_interannual": 0.6907494950676051,
+   "damoc26": -4.473376819047761,
+   "damoc26_se": 0.1599631377183986,
+   "damoc26_sd_interannual": 0.5838232919084788
+  },
+  {
+   "model": "EC-Earth3",
+   "F_mean": -0.0157820955845484,
+   "F_se": 0.001977052157836025,
+   "F_sd_interannual": 0.007081121983839519,
+   "psi34_base": 15.133524487035514,
+   "psi34_base_se": 0.10962026429867469,
+   "psi34_base_sd_interannual": 0.5506934555939087,
+   "dpsi34": -3.031789021754536,
+   "dpsi34_se": 0.1670040754452415,
+   "dpsi34_sd_interannual": 0.5571079156869584,
+   "amoc26_base": null,
+   "amoc26_base_se": null,
+   "amoc26_base_sd_interannual": null,
+   "damoc26": null,
+   "damoc26_se": null,
+   "damoc26_sd_interannual": null
+  },
+  {
+   "model": "FGOALS-f3-L",
+   "F_mean": 0.46693206478889443,
+   "F_se": 0.0037227737771064603,
+   "F_sd_interannual": 0.019402803937435247,
+   "psi34_base": null,
+   "psi34_base_se": null,
+   "psi34_base_sd_interannual": null,
+   "dpsi34": null,
+   "dpsi34_se": null,
+   "dpsi34_sd_interannual": null,
+   "amoc26_base": 23.98153547294117,
+   "amoc26_base_se": 0.39297507207271487,
+   "amoc26_base_sd_interannual": 2.8064033514087576,
+   "damoc26": -4.4989013353411735,
+   "damoc26_se": 0.571419443932651,
+   "damoc26_sd_interannual": 2.3788353498585404
+  },
+  {
+   "model": "FGOALS-g3",
+   "F_mean": 0.3593694818102595,
+   "F_se": 0.0033626960010155085,
+   "F_sd_interannual": 0.011654838579418769,
+   "psi34_base": 20.62353979821982,
+   "psi34_base_se": 0.16299840296220924,
+   "psi34_base_sd_interannual": 0.515765782584359,
+   "dpsi34": -6.831614579500362,
+   "dpsi34_se": 0.1875199311874177,
+   "dpsi34_sd_interannual": 0.4537215383032444,
+   "amoc26_base": 19.82845639270042,
+   "amoc26_base_se": 1.4135612603326055,
+   "amoc26_base_sd_interannual": 1.4421209385751612,
+   "damoc26": -8.051651715880077,
+   "damoc26_se": 1.4204183588162034,
+   "damoc26_sd_interannual": 1.0725536937822344
+  },
+  {
+   "model": "FIO-ESM-2-0",
+   "F_mean": 0.20325472876799316,
+   "F_se": 0.007217111064803497,
+   "F_sd_interannual": 0.007461828045812583,
+   "psi34_base": 18.30600369204023,
+   "psi34_base_se": 0.09973842911697982,
+   "psi34_base_sd_interannual": 0.5450289836692553,
+   "dpsi34": -6.166219176493122,
+   "dpsi34_se": 0.17863313369253322,
+   "dpsi34_sd_interannual": 0.6067526008355355,
+   "amoc26_base": 18.187624894753846,
+   "amoc26_base_se": 0.18506231197291906,
+   "amoc26_base_sd_interannual": 0.7798550616659271,
+   "damoc26": -8.664828064893921,
+   "damoc26_se": 0.20747800025340188,
+   "damoc26_sd_interannual": 0.6217631447571544
+  },
+  {
+   "model": "GFDL-CM4",
+   "F_mean": 0.035909100936191145,
+   "F_se": 0.003326876863384596,
+   "F_sd_interannual": 0.01269175859994578,
+   "psi34_base": 18.037978930766457,
+   "psi34_base_se": 0.2886109287839834,
+   "psi34_base_sd_interannual": 1.157488347144046,
+   "dpsi34": -6.552227410512687,
+   "dpsi34_se": 0.34179981640256496,
+   "dpsi34_sd_interannual": 0.9947778256106095,
+   "amoc26_base": 14.892624680899074,
+   "amoc26_base_se": 0.3390173266488445,
+   "amoc26_base_sd_interannual": 0.9826854229713078,
+   "damoc26": -7.76798017125552,
+   "damoc26_se": 0.37781038374009895,
+   "damoc26_sd_interannual": 0.8202049712400549
+  },
+  {
+   "model": "GISS-E2-1-G",
+   "F_mean": 0.25248546609213457,
+   "F_se": 0.004383967475099806,
+   "F_sd_interannual": 0.013516906734082294,
+   "psi34_base": 22.917925468881126,
+   "psi34_base_se": 0.16706066423858704,
+   "psi34_base_sd_interannual": 0.7248821703070817,
+   "dpsi34": -8.540176795574215,
+   "dpsi34_se": 0.2078865325771034,
+   "dpsi34_sd_interannual": 0.6448275190510119,
+   "amoc26_base": 21.46287286034997,
+   "amoc26_base_se": 1.4238750678333658,
+   "amoc26_base_sd_interannual": 1.4526431268740825,
+   "damoc26": -12.609619685370191,
+   "damoc26_se": 1.4279317645032754,
+   "damoc26_sd_interannual": 1.0820236503084908
+  },
+  {
+   "model": "HadGEM3-GC31-LL",
+   "F_mean": 0.08883906611504583,
+   "F_se": 0.011834117525511615,
+   "F_sd_interannual": 0.01468790344424077,
+   "psi34_base": 13.00334420233575,
+   "psi34_base_se": 0.08488741333359424,
+   "psi34_base_sd_interannual": 0.5843342301019261,
+   "dpsi34": -2.805606411596111,
+   "dpsi34_se": 0.14267283043329101,
+   "dpsi34_sd_interannual": 0.48659987030731744,
+   "amoc26_base": 13.8592064644611,
+   "amoc26_base_se": 0.15575114293889164,
+   "amoc26_base_sd_interannual": 0.8673878865690274,
+   "damoc26": -6.169661672441796,
+   "damoc26_se": 0.2605354059123103,
+   "damoc26_sd_interannual": 0.8636619583983601
+  },
+  {
+   "model": "IPSL-CM6A-LR",
+   "F_mean": -0.17459351476909304,
+   "F_se": 0.005693367332230554,
+   "F_sd_interannual": 0.015621699830428102,
+   "psi34_base": 10.666817553167702,
+   "psi34_base_se": 0.09957601633247827,
+   "psi34_base_sd_interannual": 0.7111149938378081,
+   "dpsi34": -1.806850662242928,
+   "dpsi34_se": 0.1735860662424726,
+   "dpsi34_sd_interannual": 0.6745440392438233,
+   "amoc26_base": 10.486053764410748,
+   "amoc26_base_se": 0.1430290300484806,
+   "amoc26_base_sd_interannual": 0.8918004977835291,
+   "damoc26": -4.290092820092406,
+   "damoc26_se": 0.32162604555055213,
+   "damoc26_sd_interannual": 0.8511031318119694
+  },
+  {
+   "model": "MIROC6",
+   "F_mean": -0.09290603663925112,
+   "F_se": 0.003184535435790584,
+   "F_sd_interannual": 0.012822547442160149,
+   "psi34_base": 15.617448447177845,
+   "psi34_base_se": 0.07849749286618285,
+   "psi34_base_sd_interannual": 0.560584227123899,
+   "dpsi34": -4.778412111385924,
+   "dpsi34_se": 0.2293919387667089,
+   "dpsi34_sd_interannual": 0.6129891223713853,
+   "amoc26_base": 13.61781552828987,
+   "amoc26_base_se": 0.15457685211138356,
+   "amoc26_base_sd_interannual": 0.76736228767759,
+   "damoc26": -7.673477336933068,
+   "damoc26_se": 0.2269355155538697,
+   "damoc26_sd_interannual": 0.7553010594360724
+  },
+  {
+   "model": "MPI-ESM1-2-HR",
+   "F_mean": -0.041793271031548083,
+   "F_se": 0.0043047625037713555,
+   "F_sd_interannual": 0.012652851545159749,
+   "psi34_base": 15.765822238782128,
+   "psi34_base_se": 0.14419027572219217,
+   "psi34_base_sd_interannual": 0.9551114385615033,
+   "dpsi34": -3.5552192998985905,
+   "dpsi34_se": 0.4785135788726311,
+   "dpsi34_sd_interannual": 0.9751789529890772,
+   "amoc26_base": 12.371192957490635,
+   "amoc26_base_se": 0.30767910947155613,
+   "amoc26_base_sd_interannual": 0.8685766345064495,
+   "damoc26": -5.272881944709636,
+   "damoc26_se": 0.4268835740574889,
+   "damoc26_sd_interannual": 0.8100954336374776
+  },
+  {
+   "model": "MPI-ESM1-2-LR",
+   "F_mean": 0.12388202070180607,
+   "F_se": 0.006682236165849617,
+   "F_sd_interannual": 0.012845403880610291,
+   "psi34_base": 20.471838903257023,
+   "psi34_base_se": 0.17304992926159657,
+   "psi34_base_sd_interannual": 0.9853695355022395,
+   "dpsi34": -3.568119355566452,
+   "dpsi34_se": 0.3275786114825549,
+   "dpsi34_sd_interannual": 0.9633231514702936,
+   "amoc26_base": 12.479157808764425,
+   "amoc26_base_se": 0.2439452780852676,
+   "amoc26_base_sd_interannual": 0.9216311655612632,
+   "damoc26": -4.030655390045039,
+   "damoc26_se": 0.32534317975734367,
+   "damoc26_sd_interannual": 0.8356052805243346
+  },
+  {
+   "model": "MRI-ESM2-0",
+   "F_mean": -0.21468520947820138,
+   "F_se": 0.003683741122706539,
+   "F_sd_interannual": 0.020020397712322006,
+   "psi34_base": null,
+   "psi34_base_se": null,
+   "psi34_base_sd_interannual": null,
+   "dpsi34": null,
+   "dpsi34_se": null,
+   "dpsi34_sd_interannual": null,
+   "amoc26_base": 17.535215716392155,
+   "amoc26_base_se": 0.10778165217636723,
+   "amoc26_base_sd_interannual": 0.7443543399338587,
+   "damoc26": -11.145683172392157,
+   "damoc26_se": 0.20709159052128406,
+   "damoc26_sd_interannual": 0.7679401766263194
+  },
+  {
+   "model": "NESM3",
+   "F_mean": -0.1788367689354095,
+   "F_se": 0.0036411101741269393,
+   "F_sd_interannual": 0.019329005527587345,
+   "psi34_base": 6.195284508871844,
+   "psi34_base_se": 0.12261131696355397,
+   "psi34_base_sd_interannual": 0.7334636577596509,
+   "dpsi34": 1.1641932235434647,
+   "dpsi34_se": 0.18663264963542806,
+   "dpsi34_sd_interannual": 0.6427094848929006,
+   "amoc26_base": 5.9319482771983,
+   "amoc26_base_se": 0.1859178962364355,
+   "amoc26_base_sd_interannual": 0.9926397538517985,
+   "damoc26": -1.676144273615372,
+   "damoc26_se": 0.26492627823774345,
+   "damoc26_sd_interannual": 0.7926643559131237
+  },
+  {
+   "model": "TaiESM1",
+   "F_mean": 0.2998764954728872,
+   "F_se": 0.0030788271492532718,
+   "F_sd_interannual": 0.01101430209591074,
+   "psi34_base": 17.33573564792827,
+   "psi34_base_se": 0.10616414545549617,
+   "psi34_base_sd_interannual": 0.7090467879127542,
+   "dpsi34": -6.01774140486155,
+   "dpsi34_se": 0.17930655247682306,
+   "dpsi34_sd_interannual": 0.6783611232470326,
+   "amoc26_base": null,
+   "amoc26_base_se": null,
+   "amoc26_base_sd_interannual": null,
+   "damoc26": null,
+   "damoc26_se": null,
+   "damoc26_sd_interannual": null
+  },
+  {
+   "model": "UKESM1-0-LL",
+   "F_mean": 0.0476777828910943,
+   "F_se": 0.009381050330108935,
+   "F_sd_interannual": 0.009699141917568944,
+   "psi34_base": 11.913377751633359,
+   "psi34_base_se": 0.11073983390777106,
+   "psi34_base_sd_interannual": 0.7082752097003805,
+   "dpsi34": -1.9986152236912194,
+   "dpsi34_se": 0.25809803116812446,
+   "dpsi34_sd_interannual": 0.694445742246722,
+   "amoc26_base": 12.686464487399418,
+   "amoc26_base_se": 0.1267337335786684,
+   "amoc26_base_sd_interannual": 0.8533741748608998,
+   "damoc26": -5.304183337096044,
+   "damoc26_se": 0.21617994179115135,
+   "damoc26_sd_interannual": 0.7346638195739558
+  }
+ ],
+ "sets": {
+  "26.5N_21": {
+   "n": 21,
+   "n_clusters": 15,
+   "members": [
+    "ACCESS-CM2",
+    "ACCESS-ESM1-5",
+    "CESM2",
+    "CESM2-WACCM",
+    "CMCC-CM2-SR5",
+    "CMCC-ESM2",
+    "CNRM-CM6-1",
+    "CanESM5",
+    "FGOALS-f3-L",
+    "FGOALS-g3",
+    "FIO-ESM-2-0",
+    "GFDL-CM4",
+    "GISS-E2-1-G",
+    "HadGEM3-GC31-LL",
+    "IPSL-CM6A-LR",
+    "MIROC6",
+    "MPI-ESM1-2-HR",
+    "MPI-ESM1-2-LR",
+    "MRI-ESM2-0",
+    "NESM3",
+    "UKESM1-0-LL"
+   ],
+   "delta_pooled": 13870.749152052034,
+   "delta_interannual_sensitivity": 5430.975999464029,
+   "delta_median_model": 5293.981709474859,
+   "reliability_ratio_x": 0.9990518305234178,
+   "raw": {
+    "pearson_r": -0.18982846713589296,
+    "pearson_p": 0.4098430089371014,
+    "spearman_rho": -0.2350649350649351,
+    "spearman_p": 0.3050302888415488,
+    "kendall_tau": -0.1619047619047619,
+    "kendall_p": 0.3232088737909401
+   },
+   "slopes": {
+    "ols": -2.7580727134320218,
+    "rma": -14.529289284402186,
+    "deming_pooled_delta": -2.7991147794057083,
+    "deming_interannual_delta": -2.865275761593236,
+    "york": -2.936731319290476,
+    "york_intercept": -6.951025072617108,
+    "york_analytic_se_measurement_only": 0.40109027608504966,
+    "york_analytic_se_scatter_scaled": 3.722587132021051,
+    "york_chi2": 1636.6622977537484,
+    "york_slope_per_0p1_Sv_F": -0.2936731319290476,
+    "ols_per_0p1_Sv_F": -0.2758072713432022
+   },
+   "partial_base": {
+    "absolute": {
+     "r": 0.45588394793991494,
+     "n": 21,
+     "p": 0.04336650330029526,
+     "fisher_ci95": [
+      0.016731595549344776,
+      0.7475916297056264
+     ],
+     "smallest_detectable_abs_r": 0.4437633993377869
+    },
+    "absolute_spearman_r": 0.2797581185970234,
+    "fractional": {
+     "r": 0.46246868278371805,
+     "n": 21,
+     "p": 0.04005948029949411,
+     "fisher_ci95": [
+      0.02507199074054489,
+      0.7512493620358524
+     ],
+     "smallest_detectable_abs_r": 0.4437633993377869
+    },
+    "leave_one_model_out_range": [
+     0.2707975917409976,
+     0.5570801482369622
+    ],
+    "leave_one_model_out_min_without": "MRI-ESM2-0",
+    "leave_one_model_out_max_without": "CESM2",
+    "leave_one_family_out_range": [
+     0.2707975917409976,
+     0.5570638952699408
+    ],
+    "leave_one_family_out_detail": [
+     {
+      "dropped": [
+       "CESM2",
+       "CESM2-WACCM"
+      ],
+      "partial_r": 0.5570638952699408
+     },
+     {
+      "dropped": [
+       "MPI-ESM1-2-LR",
+       "MPI-ESM1-2-HR"
+      ],
+      "partial_r": 0.4240957033736633
+     },
+     {
+      "dropped": [
+       "ACCESS-CM2",
+       "ACCESS-ESM1-5"
+      ],
+      "partial_r": 0.5291498792969432
+     },
+     {
+      "dropped": [
+       "FGOALS-f3-L",
+       "FGOALS-g3"
+      ],
+      "partial_r": 0.28558096883326517
+     },
+     {
+      "dropped": [
+       "CMCC-CM2-SR5",
+       "CMCC-ESM2"
+      ],
+      "partial_r": 0.47872791269644166
+     },
+     {
+      "dropped": [
+       "UKESM1-0-LL",
+       "HadGEM3-GC31-LL"
+      ],
+      "partial_r": 0.4559338613253929
+     },
+     {
+      "dropped": [
+       "CNRM-CM6-1"
+      ],
+      "partial_r": 0.43201473201879614
+     },
+     {
+      "dropped": [
+       "CanESM5"
+      ],
+      "partial_r": 0.45613182252142814
+     },
+     {
+      "dropped": [
+       "FIO-ESM-2-0"
+      ],
+      "partial_r": 0.4715452760669604
+     },
+     {
+      "dropped": [
+       "GFDL-CM4"
+      ],
+      "partial_r": 0.4571097943927371
+     },
+     {
+      "dropped": [
+       "GISS-E2-1-G"
+      ],
+      "partial_r": 0.5071121717135842
+     },
+     {
+      "dropped": [
+       "IPSL-CM6A-LR"
+      ],
+      "partial_r": 0.4805131975345309
+     },
+     {
+      "dropped": [
+       "MIROC6"
+      ],
+      "partial_r": 0.4375880865319221
+     },
+     {
+      "dropped": [
+       "MRI-ESM2-0"
+      ],
+      "partial_r": 0.2707975917409976
+     },
+     {
+      "dropped": [
+       "NESM3"
+      ],
+      "partial_r": 0.44197860924936705
+     }
+    ]
+   },
+   "fractional_change": {
+    "pearson_r": 0.31332464196109383,
+    "pearson_p": 0.16665476937290818
+   },
+   "base_state_correlations": {
+    "F_with_base": {
+     "r": 0.7468428243941967,
+     "p": 0.00010047391779169088
+    },
+    "base_with_change": {
+     "r": -0.5837574942069351,
+     "p": 0.005465091901234835
+    }
+   },
+   "point_vector": {
+    "r": -0.18982846713589296,
+    "rho": -0.2350649350649351,
+    "slope_ols": -2.7580727134320218,
+    "slope_rma": -14.529289284402186,
+    "slope_deming_pooled": -2.7991147794057083,
+    "slope_deming_interannual": -2.865275761593236,
+    "slope_york": -2.936731319290476,
+    "partial_r": 0.45588394793991494,
+    "partial_rho": 0.2797581185970234,
+    "r_frac": 0.31332464196109383,
+    "partial_r_frac": 0.46246868278371805
+   },
+   "bootstrap_family_cluster": {
+    "r": {
+     "point": -0.18982846713589296,
+     "ci95": [
+      -0.7680667049848124,
+      0.33128750629804954
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.7701,
+     "ci_excludes_zero": false
+    },
+    "rho": {
+     "point": -0.2350649350649351,
+     "ci95": [
+      -0.6983259132694807,
+      0.2962890811429957
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.8005,
+     "ci_excludes_zero": false
+    },
+    "slope_ols": {
+     "point": -2.7580727134320218,
+     "ci95": [
+      -15.685970648824277,
+      4.2145207964915565
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.7701,
+     "ci_excludes_zero": false,
+     "ci95_per_0p1_Sv_F": [
+      -1.568597064882428,
+      0.42145207964915565
+     ]
+    },
+    "slope_rma": {
+     "point": -14.529289284402186,
+     "ci95": [
+      -22.177667194463133,
+      17.899728888441892
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.7701,
+     "ci_excludes_zero": false,
+     "ci95_per_0p1_Sv_F": [
+      -2.2177667194463133,
+      1.7899728888441893
+     ]
+    },
+    "slope_deming_pooled": {
+     "point": -2.7991147794057083,
+     "ci95": [
+      -15.884552581752134,
+      4.284603160931066
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.7701,
+     "ci_excludes_zero": false,
+     "ci95_per_0p1_Sv_F": [
+      -1.5884552581752134,
+      0.42846031609310664
+     ]
+    },
+    "slope_deming_interannual": {
+     "point": -2.865275761593236,
+     "ci95": [
+      -16.260640158892432,
+      4.366169670978408
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.7701,
+     "ci_excludes_zero": false,
+     "ci95_per_0p1_Sv_F": [
+      -1.6260640158892432,
+      0.4366169670978408
+     ]
+    },
+    "slope_york": {
+     "point": -2.936731319290476,
+     "ci95": [
+      -14.567113997667827,
+      10.805339552257667
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.6509,
+     "ci_excludes_zero": false,
+     "ci95_per_0p1_Sv_F": [
+      -1.4567113997667827,
+      1.0805339552257667
+     ]
+    },
+    "partial_r": {
+     "point": 0.45588394793991494,
+     "ci95": [
+      -0.24305379599648247,
+      0.7543151810963798
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9176,
+     "ci_excludes_zero": false
+    },
+    "partial_rho": {
+     "point": 0.2797581185970234,
+     "ci95": [
+      -0.4258133697172741,
+      0.6631929785354682
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.8168,
+     "ci_excludes_zero": false
+    },
+    "r_frac": {
+     "point": 0.31332464196109383,
+     "ci95": [
+      -0.41427756395356724,
+      0.7186942105476833
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.8051,
+     "ci_excludes_zero": false
+    },
+    "partial_r_frac": {
+     "point": 0.46246868278371805,
+     "ci95": [
+      -0.20420069222064163,
+      0.7591305362011729
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9287,
+     "ci_excludes_zero": false
+    }
+   }
+  },
+  "34.5S_19": {
+   "n": 19,
+   "n_clusters": 15,
+   "members": [
+    "ACCESS-CM2",
+    "ACCESS-ESM1-5",
+    "CESM2",
+    "CMCC-CM2-SR5",
+    "CNRM-CM6-1",
+    "CanESM5",
+    "EC-Earth3",
+    "FGOALS-g3",
+    "FIO-ESM-2-0",
+    "GFDL-CM4",
+    "GISS-E2-1-G",
+    "HadGEM3-GC31-LL",
+    "IPSL-CM6A-LR",
+    "MIROC6",
+    "MPI-ESM1-2-HR",
+    "MPI-ESM1-2-LR",
+    "NESM3",
+    "TaiESM1",
+    "UKESM1-0-LL"
+   ],
+   "delta_pooled": 1802.833727259193,
+   "delta_interannual_sensitivity": 3074.0088412697296,
+   "delta_median_model": 2403.18627128166,
+   "reliability_ratio_x": 0.998696181602902,
+   "raw": {
+    "pearson_r": -0.6894320624639341,
+    "pearson_p": 0.00109245276823497,
+    "spearman_rho": -0.6070175438596491,
+    "spearman_p": 0.0058504328676708284,
+    "kendall_tau": -0.43859649122807015,
+    "kendall_p": 0.008263500509190905
+   },
+   "slopes": {
+    "ols": -10.958784285660721,
+    "rma": -15.895379519332991,
+    "deming_pooled_delta": -11.766242104818499,
+    "deming_interannual_delta": -11.4325093892105,
+    "york": -12.254353906012492,
+    "york_intercept": -3.1470785772684136,
+    "york_analytic_se_measurement_only": 0.2927102261877157,
+    "york_analytic_se_scatter_scaled": 2.671345676307502,
+    "york_chi2": 1415.902377029407,
+    "york_slope_per_0p1_Sv_F": -1.2254353906012492,
+    "ols_per_0p1_Sv_F": -1.095878428566072
+   },
+   "partial_base": {
+    "absolute": {
+     "r": -0.11571174969727538,
+     "n": 19,
+     "p": 0.6475125315447393,
+     "fisher_ci95": [
+      -0.5527289138944175,
+      0.37122009139852036
+     ],
+     "smallest_detectable_abs_r": 0.4682773054452068
+    },
+    "absolute_spearman_r": -0.07216966301354451,
+    "fractional": {
+     "r": 0.005022422830981952,
+     "n": 19,
+     "p": 0.9842200250173744,
+     "fisher_ci95": [
+      -0.46294045147024654,
+      0.47079582055416525
+     ],
+     "smallest_detectable_abs_r": 0.4682773054452068
+    },
+    "leave_one_model_out_range": [
+     -0.2615316885427538,
+     0.01938796235492176
+    ],
+    "leave_one_model_out_min_without": "CNRM-CM6-1",
+    "leave_one_model_out_max_without": "MPI-ESM1-2-LR",
+    "leave_one_family_out_range": [
+     -0.2615316885427538,
+     0.12507442674864944
+    ],
+    "leave_one_family_out_detail": [
+     {
+      "dropped": [
+       "CESM2",
+       "TaiESM1"
+      ],
+      "partial_r": 0.12507442674864944
+     },
+     {
+      "dropped": [
+       "MPI-ESM1-2-LR",
+       "MPI-ESM1-2-HR"
+      ],
+      "partial_r": 0.08044686557544285
+     },
+     {
+      "dropped": [
+       "ACCESS-CM2",
+       "ACCESS-ESM1-5"
+      ],
+      "partial_r": -0.14712623062850783
+     },
+     {
+      "dropped": [
+       "FGOALS-g3"
+      ],
+      "partial_r": -0.11451573604573348
+     },
+     {
+      "dropped": [
+       "CMCC-CM2-SR5"
+      ],
+      "partial_r": -0.1159582015942019
+     },
+     {
+      "dropped": [
+       "UKESM1-0-LL",
+       "HadGEM3-GC31-LL"
+      ],
+      "partial_r": -0.12514634326005264
+     },
+     {
+      "dropped": [
+       "CNRM-CM6-1"
+      ],
+      "partial_r": -0.2615316885427538
+     },
+     {
+      "dropped": [
+       "CanESM5"
+      ],
+      "partial_r": -0.12684056382128472
+     },
+     {
+      "dropped": [
+       "EC-Earth3"
+      ],
+      "partial_r": -0.09426562333951333
+     },
+     {
+      "dropped": [
+       "FIO-ESM-2-0"
+      ],
+      "partial_r": -0.09767544418816967
+     },
+     {
+      "dropped": [
+       "GFDL-CM4"
+      ],
+      "partial_r": -0.18347304747441578
+     },
+     {
+      "dropped": [
+       "GISS-E2-1-G"
+      ],
+      "partial_r": -0.12715296179561905
+     },
+     {
+      "dropped": [
+       "IPSL-CM6A-LR"
+      ],
+      "partial_r": -0.1354323421498379
+     },
+     {
+      "dropped": [
+       "MIROC6"
+      ],
+      "partial_r": -0.1826504414107064
+     },
+     {
+      "dropped": [
+       "NESM3"
+      ],
+      "partial_r": -0.12401705928561156
+     }
+    ]
+   },
+   "fractional_change": {
+    "pearson_r": -0.554681834933534,
+    "pearson_p": 0.013708004189472716
+   },
+   "base_state_correlations": {
+    "F_with_base": {
+     "r": 0.7629055842681558,
+     "p": 0.0001453535511036505
+    },
+    "base_with_change": {
+     "r": -0.8524227036286256,
+     "p": 3.5800162971863173e-06
+    }
+   },
+   "point_vector": {
+    "r": -0.6894320624639342,
+    "rho": -0.6070175438596491,
+    "slope_ols": -10.958784285660721,
+    "slope_rma": -15.895379519332991,
+    "slope_deming_pooled": -11.766242104818499,
+    "slope_deming_interannual": -11.4325093892105,
+    "slope_york": -12.254353906012492,
+    "partial_r": -0.11571174969727538,
+    "partial_rho": -0.07216966301354451,
+    "r_frac": -0.554681834933534,
+    "partial_r_frac": 0.005022422830981952
+   },
+   "bootstrap_family_cluster": {
+    "r": {
+     "point": -0.6894320624639342,
+     "ci95": [
+      -0.8684083678339998,
+      -0.3496483806594843
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9983,
+     "ci_excludes_zero": true
+    },
+    "rho": {
+     "point": -0.6070175438596491,
+     "ci95": [
+      -0.864204038375725,
+      -0.09848286217958536
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9894,
+     "ci_excludes_zero": true
+    },
+    "slope_ols": {
+     "point": -10.958784285660721,
+     "ci95": [
+      -16.219015041365964,
+      -5.034241270787678
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9983,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.6219015041365965,
+      -0.5034241270787678
+     ]
+    },
+    "slope_rma": {
+     "point": -15.895379519332991,
+     "ci95": [
+      -21.37799846250662,
+      -11.40894332286729
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9983,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -2.137799846250662,
+      -1.1408943322867289
+     ]
+    },
+    "slope_deming_pooled": {
+     "point": -11.766242104818499,
+     "ci95": [
+      -17.532483979278375,
+      -5.576174045996338
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9983,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.7532483979278375,
+      -0.5576174045996338
+     ]
+    },
+    "slope_deming_interannual": {
+     "point": -11.4325093892105,
+     "ci95": [
+      -16.98414251079829,
+      -5.351940384220337
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9983,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.698414251079829,
+      -0.5351940384220337
+     ]
+    },
+    "slope_york": {
+     "point": -12.254353906012492,
+     "ci95": [
+      -17.898812252130277,
+      -6.032378803378136
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9978,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.7898812252130278,
+      -0.6032378803378137
+     ]
+    },
+    "partial_r": {
+     "point": -0.11571174969727538,
+     "ci95": [
+      -0.536407534585389,
+      0.5763673074625174
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.5943,
+     "ci_excludes_zero": false
+    },
+    "partial_rho": {
+     "point": -0.07216966301354451,
+     "ci95": [
+      -0.5850688577813058,
+      0.4707469895615582
+     ],
+     "n_valid": 9999,
+     "share_same_sign_as_point": 0.5675567556755675,
+     "ci_excludes_zero": false
+    },
+    "r_frac": {
+     "point": -0.554681834933534,
+     "ci95": [
+      -0.7945327704626618,
+      -0.12242159460698543
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9916,
+     "ci_excludes_zero": true
+    },
+    "partial_r_frac": {
+     "point": 0.005022422830981952,
+     "ci95": [
+      -0.4671406626543468,
+      0.6623279600303364
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.544,
+     "ci_excludes_zero": false
+    }
+   }
+  },
+  "common_17_26.5N": {
+   "n": 17,
+   "n_clusters": 14,
+   "members": [
+    "ACCESS-CM2",
+    "ACCESS-ESM1-5",
+    "CESM2",
+    "CMCC-CM2-SR5",
+    "CNRM-CM6-1",
+    "CanESM5",
+    "FGOALS-g3",
+    "FIO-ESM-2-0",
+    "GFDL-CM4",
+    "GISS-E2-1-G",
+    "HadGEM3-GC31-LL",
+    "IPSL-CM6A-LR",
+    "MIROC6",
+    "MPI-ESM1-2-HR",
+    "MPI-ESM1-2-LR",
+    "NESM3",
+    "UKESM1-0-LL"
+   ],
+   "delta_pooled": 10401.652351415132,
+   "delta_interannual_sensitivity": 4211.14751846539,
+   "delta_median_model": 5078.234661749708,
+   "reliability_ratio_x": 0.9984995535609843,
+   "raw": {
+    "pearson_r": -0.6149872155006298,
+    "pearson_p": 0.008604461495427521,
+    "spearman_rho": -0.5441176470588236,
+    "spearman_p": 0.023944958290257605,
+    "kendall_tau": -0.3529411764705882,
+    "kendall_p": 0.05175324945907756
+   },
+   "slopes": {
+    "ols": -10.43720416448096,
+    "rma": -16.971416480559785,
+    "deming_pooled_delta": -10.61809731485936,
+    "deming_interannual_delta": -10.888090686257758,
+    "york": -11.245664426506401,
+    "york_intercept": -6.452308063738398,
+    "york_analytic_se_measurement_only": 0.5194947506562105,
+    "york_analytic_se_scatter_scaled": 3.706200416300465,
+    "york_chi2": 763.4607824504457,
+    "york_slope_per_0p1_Sv_F": -1.12456644265064,
+    "ols_per_0p1_Sv_F": -1.043720416448096
+   },
+   "partial_base": {
+    "absolute": {
+     "r": 0.15174564555467318,
+     "n": 17,
+     "p": 0.574789898579812,
+     "fisher_ci95": [
+      -0.3719458275534408,
+      0.6021624817883905
+     ],
+     "smallest_detectable_abs_r": 0.49730903545939303
+    },
+    "absolute_spearman_r": 0.08776412926281746,
+    "fractional": {
+     "r": 0.22139252903764078,
+     "n": 17,
+     "p": 0.4099198026923393,
+     "fisher_ci95": [
+      -0.30813754466304005,
+      0.6461881065176625
+     ],
+     "smallest_detectable_abs_r": 0.49730903545939303
+    },
+    "leave_one_model_out_range": [
+     0.03188801741637884,
+     0.4472171855531213
+    ],
+    "leave_one_model_out_min_without": "FGOALS-g3",
+    "leave_one_model_out_max_without": "ACCESS-ESM1-5",
+    "leave_one_family_out_range": [
+     0.03188801741637884,
+     0.45286170452217256
+    ],
+    "leave_one_family_out_detail": [
+     {
+      "dropped": [
+       "CESM2"
+      ],
+      "partial_r": 0.3022096447781331
+     },
+     {
+      "dropped": [
+       "MPI-ESM1-2-LR",
+       "MPI-ESM1-2-HR"
+      ],
+      "partial_r": 0.046734609520817615
+     },
+     {
+      "dropped": [
+       "ACCESS-CM2",
+       "ACCESS-ESM1-5"
+      ],
+      "partial_r": 0.45286170452217256
+     },
+     {
+      "dropped": [
+       "FGOALS-g3"
+      ],
+      "partial_r": 0.03188801741637884
+     },
+     {
+      "dropped": [
+       "CMCC-CM2-SR5"
+      ],
+      "partial_r": 0.1789559764120985
+     },
+     {
+      "dropped": [
+       "UKESM1-0-LL",
+       "HadGEM3-GC31-LL"
+      ],
+      "partial_r": 0.13927418573177408
+     },
+     {
+      "dropped": [
+       "CNRM-CM6-1"
+      ],
+      "partial_r": 0.04330815435546204
+     },
+     {
+      "dropped": [
+       "CanESM5"
+      ],
+      "partial_r": 0.16668022938669694
+     },
+     {
+      "dropped": [
+       "FIO-ESM-2-0"
+      ],
+      "partial_r": 0.1532408458454706
+     },
+     {
+      "dropped": [
+       "GFDL-CM4"
+      ],
+      "partial_r": 0.14080304163041577
+     },
+     {
+      "dropped": [
+       "GISS-E2-1-G"
+      ],
+      "partial_r": 0.13724814140719285
+     },
+     {
+      "dropped": [
+       "IPSL-CM6A-LR"
+      ],
+      "partial_r": 0.17331460869212922
+     },
+     {
+      "dropped": [
+       "MIROC6"
+      ],
+      "partial_r": 0.06686547571282946
+     },
+     {
+      "dropped": [
+       "NESM3"
+      ],
+      "partial_r": 0.14080736713947561
+     }
+    ]
+   },
+   "fractional_change": {
+    "pearson_r": -0.1475309201761058,
+    "pearson_p": 0.5720331653845586
+   },
+   "base_state_correlations": {
+    "F_with_base": {
+     "r": 0.8177529289563229,
+     "p": 6.075402704265051e-05
+    },
+    "base_with_change": {
+     "r": -0.8140735589643101,
+     "p": 6.97799170923206e-05
+    }
+   },
+   "point_vector": {
+    "r": -0.6149872155006297,
+    "rho": -0.5441176470588236,
+    "slope_ols": -10.43720416448096,
+    "slope_rma": -16.971416480559785,
+    "slope_deming_pooled": -10.61809731485936,
+    "slope_deming_interannual": -10.888090686257758,
+    "slope_york": -11.245664426506401,
+    "partial_r": 0.15174564555467318,
+    "partial_rho": 0.08776412926281746,
+    "r_frac": -0.14753092017610578,
+    "partial_r_frac": 0.22139252903764078
+   },
+   "bootstrap_family_cluster": {
+    "r": {
+     "point": -0.6149872155006297,
+     "ci95": [
+      -0.8520640326216704,
+      -0.20726036830861613
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.995,
+     "ci_excludes_zero": true
+    },
+    "rho": {
+     "point": -0.5441176470588236,
+     "ci95": [
+      -0.8634312396716542,
+      0.04652903934085185
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9652,
+     "ci_excludes_zero": false
+    },
+    "slope_ols": {
+     "point": -10.43720416448096,
+     "ci95": [
+      -18.74005488403533,
+      -2.703517160929576
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.995,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.874005488403533,
+      -0.2703517160929576
+     ]
+    },
+    "slope_rma": {
+     "point": -16.971416480559785,
+     "ci95": [
+      -23.440038585438028,
+      -10.410530574699827
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.995,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -2.344003858543803,
+      -1.0410530574699828
+     ]
+    },
+    "slope_deming_pooled": {
+     "point": -10.61809731485936,
+     "ci95": [
+      -19.049547501090125,
+      -2.7287305816906984
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.995,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.9049547501090125,
+      -0.27287305816906987
+     ]
+    },
+    "slope_deming_interannual": {
+     "point": -10.888090686257758,
+     "ci95": [
+      -19.472153241333015,
+      -2.815835602706434
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.995,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.9472153241333015,
+      -0.2815835602706434
+     ]
+    },
+    "slope_york": {
+     "point": -11.245664426506401,
+     "ci95": [
+      -19.406731499071107,
+      1.983450619752019
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9556,
+     "ci_excludes_zero": false,
+     "ci95_per_0p1_Sv_F": [
+      -1.9406731499071108,
+      0.1983450619752019
+     ]
+    },
+    "partial_r": {
+     "point": 0.15174564555467318,
+     "ci95": [
+      -0.42797881206628635,
+      0.7987283201571852
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.6929,
+     "ci_excludes_zero": false
+    },
+    "partial_rho": {
+     "point": 0.08776412926281746,
+     "ci95": [
+      -0.6056100268401469,
+      0.5971586528560869
+     ],
+     "n_valid": 9999,
+     "share_same_sign_as_point": 0.6497649764976497,
+     "ci_excludes_zero": false
+    },
+    "r_frac": {
+     "point": -0.14753092017610578,
+     "ci95": [
+      -0.6130805168687438,
+      0.38278440775677997
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.7063,
+     "ci_excludes_zero": false
+    },
+    "partial_r_frac": {
+     "point": 0.22139252903764078,
+     "ci95": [
+      -0.39659181369798613,
+      0.8290773991195454
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.7572,
+     "ci_excludes_zero": false
+    }
+   }
+  },
+  "common_17_34.5S": {
+   "n": 17,
+   "n_clusters": 14,
+   "members": [
+    "ACCESS-CM2",
+    "ACCESS-ESM1-5",
+    "CESM2",
+    "CMCC-CM2-SR5",
+    "CNRM-CM6-1",
+    "CanESM5",
+    "FGOALS-g3",
+    "FIO-ESM-2-0",
+    "GFDL-CM4",
+    "GISS-E2-1-G",
+    "HadGEM3-GC31-LL",
+    "IPSL-CM6A-LR",
+    "MIROC6",
+    "MPI-ESM1-2-HR",
+    "MPI-ESM1-2-LR",
+    "NESM3",
+    "UKESM1-0-LL"
+   ],
+   "delta_pooled": 1739.2319778946821,
+   "delta_interannual_sensitivity": 2981.8852931851234,
+   "delta_median_model": 2248.63032986902,
+   "reliability_ratio_x": 0.9984995535609843,
+   "raw": {
+    "pearson_r": -0.673407523125491,
+    "pearson_p": 0.003044003678639551,
+    "spearman_rho": -0.5857843137254902,
+    "spearman_p": 0.013478995289806915,
+    "kendall_tau": -0.4411764705882352,
+    "kendall_p": 0.013367514323499561
+   },
+   "slopes": {
+    "ols": -11.37082679499516,
+    "rma": -16.885506033879256,
+    "deming_pooled_delta": -12.398354126811032,
+    "deming_interannual_delta": -11.968990254168132,
+    "york": -12.943363949171445,
+    "york_intercept": -3.1731453687164555,
+    "york_analytic_se_measurement_only": 0.3225741456619525,
+    "york_analytic_se_scatter_scaled": 3.1062911842948475,
+    "york_chi2": 1390.9658764951012,
+    "york_slope_per_0p1_Sv_F": -1.2943363949171447,
+    "ols_per_0p1_Sv_F": -1.1370826794995161
+   },
+   "partial_base": {
+    "absolute": {
+     "r": -0.005915838725391087,
+     "n": 17,
+     "p": 0.9826523239350539,
+     "fisher_ci95": [
+      -0.5001619492900489,
+      0.4912376079059637
+     ],
+     "smallest_detectable_abs_r": 0.49730903545939303
+    },
+    "absolute_spearman_r": -0.04404621223072886,
+    "fractional": {
+     "r": 0.10030666370935028,
+     "n": 17,
+     "p": 0.7116698288699256,
+     "fisher_ci95": [
+      -0.41609586128183257,
+      0.5677872691365692
+     ],
+     "smallest_detectable_abs_r": 0.49730903545939303
+    },
+    "leave_one_model_out_range": [
+     -0.15763112628319895,
+     0.15706711978576704
+    ],
+    "leave_one_model_out_min_without": "CNRM-CM6-1",
+    "leave_one_model_out_max_without": "MPI-ESM1-2-LR",
+    "leave_one_family_out_range": [
+     -0.15763112628319895,
+     0.23636747218335452
+    ],
+    "leave_one_family_out_detail": [
+     {
+      "dropped": [
+       "CESM2"
+      ],
+      "partial_r": 0.14575803542940421
+     },
+     {
+      "dropped": [
+       "MPI-ESM1-2-LR",
+       "MPI-ESM1-2-HR"
+      ],
+      "partial_r": 0.23636747218335452
+     },
+     {
+      "dropped": [
+       "ACCESS-CM2",
+       "ACCESS-ESM1-5"
+      ],
+      "partial_r": -0.043387428595152426
+     },
+     {
+      "dropped": [
+       "FGOALS-g3"
+      ],
+      "partial_r": 0.014896701560487204
+     },
+     {
+      "dropped": [
+       "CMCC-CM2-SR5"
+      ],
+      "partial_r": -0.00548708507912661
+     },
+     {
+      "dropped": [
+       "UKESM1-0-LL",
+       "HadGEM3-GC31-LL"
+      ],
+      "partial_r": -0.008612137727615697
+     },
+     {
+      "dropped": [
+       "CNRM-CM6-1"
+      ],
+      "partial_r": -0.15763112628319895
+     },
+     {
+      "dropped": [
+       "CanESM5"
+      ],
+      "partial_r": -0.01645570396641838
+     },
+     {
+      "dropped": [
+       "FIO-ESM-2-0"
+      ],
+      "partial_r": 0.024621034310788638
+     },
+     {
+      "dropped": [
+       "GFDL-CM4"
+      ],
+      "partial_r": -0.07260649454204911
+     },
+     {
+      "dropped": [
+       "GISS-E2-1-G"
+      ],
+      "partial_r": -0.010429007800345587
+     },
+     {
+      "dropped": [
+       "IPSL-CM6A-LR"
+      ],
+      "partial_r": -0.02393677521399569
+     },
+     {
+      "dropped": [
+       "MIROC6"
+      ],
+      "partial_r": -0.07255804303693746
+     },
+     {
+      "dropped": [
+       "NESM3"
+      ],
+      "partial_r": -0.014868786930675792
+     }
+    ]
+   },
+   "fractional_change": {
+    "pearson_r": -0.5282344429187893,
+    "pearson_p": 0.029280017085951935
+   },
+   "base_state_correlations": {
+    "F_with_base": {
+     "r": 0.7860292283219442,
+     "p": 0.00018337877843534496
+    },
+    "base_with_change": {
+     "r": -0.8543023853869594,
+     "p": 1.2683992737911907e-05
+    }
+   },
+   "point_vector": {
+    "r": -0.6734075231254909,
+    "rho": -0.5857843137254902,
+    "slope_ols": -11.37082679499516,
+    "slope_rma": -16.885506033879256,
+    "slope_deming_pooled": -12.398354126811032,
+    "slope_deming_interannual": -11.968990254168132,
+    "slope_york": -12.943363949171445,
+    "partial_r": -0.005915838725391087,
+    "partial_rho": -0.04404621223072886,
+    "r_frac": -0.5282344429187894,
+    "partial_r_frac": 0.10030666370935028
+   },
+   "bootstrap_family_cluster": {
+    "r": {
+     "point": -0.6734075231254909,
+     "ci95": [
+      -0.8739466495006707,
+      -0.29506076339992904
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9981,
+     "ci_excludes_zero": true
+    },
+    "rho": {
+     "point": -0.5857843137254902,
+     "ci95": [
+      -0.9054054054054054,
+      -0.05438740110235576
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9836,
+     "ci_excludes_zero": true
+    },
+    "slope_ols": {
+     "point": -11.37082679499516,
+     "ci95": [
+      -17.69583052086819,
+      -4.507125792737645
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9981,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.769583052086819,
+      -0.4507125792737645
+     ]
+    },
+    "slope_rma": {
+     "point": -16.885506033879256,
+     "ci95": [
+      -22.75084627583553,
+      -11.574039283737074
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9981,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -2.2750846275835532,
+      -1.1574039283737074
+     ]
+    },
+    "slope_deming_pooled": {
+     "point": -12.398354126811032,
+     "ci95": [
+      -19.238235014320704,
+      -5.095421525110701
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9981,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.9238235014320706,
+      -0.50954215251107
+     ]
+    },
+    "slope_deming_interannual": {
+     "point": -11.968990254168132,
+     "ci95": [
+      -18.612211580282757,
+      -4.8551480825023265
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9981,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.8612211580282758,
+      -0.4855148082502327
+     ]
+    },
+    "slope_york": {
+     "point": -12.943363949171445,
+     "ci95": [
+      -19.866003434741884,
+      -5.51657215950483
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9982,
+     "ci_excludes_zero": true,
+     "ci95_per_0p1_Sv_F": [
+      -1.9866003434741886,
+      -0.551657215950483
+     ]
+    },
+    "partial_r": {
+     "point": -0.005915838725391087,
+     "ci95": [
+      -0.48255627388789496,
+      0.6636750329170666
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.4619,
+     "ci_excludes_zero": false
+    },
+    "partial_rho": {
+     "point": -0.04404621223072886,
+     "ci95": [
+      -0.695683122248927,
+      0.5106992168938629
+     ],
+     "n_valid": 9987,
+     "share_same_sign_as_point": 0.5443075998798438,
+     "ci_excludes_zero": false
+    },
+    "r_frac": {
+     "point": -0.5282344429187894,
+     "ci95": [
+      -0.8049579169396891,
+      -0.05506949723812131
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.9844,
+     "ci_excludes_zero": true
+    },
+    "partial_r_frac": {
+     "point": 0.10030666370935028,
+     "ci95": [
+      -0.4309858304057055,
+      0.6932857377300745
+     ],
+     "n_valid": 10000,
+     "share_same_sign_as_point": 0.6581,
+     "ci_excludes_zero": false
+    }
+   }
+  }
+ },
+ "paired_difference_common_17": {
+  "r": {
+   "difference_26N_minus_34S": 0.05842030762486117,
+   "ci95": [
+    -0.09540403300500276,
+    0.21444791879838376
+   ],
+   "ci_excludes_zero": false,
+   "n_valid": 10000
+  },
+  "rho": {
+   "difference_26N_minus_34S": 0.04166666666666663,
+   "ci95": [
+    -0.11863253823329775,
+    0.3048374001994826
+   ],
+   "ci_excludes_zero": false,
+   "n_valid": 10000
+  },
+  "slope_ols": {
+   "difference_26N_minus_34S": 0.9336226305142006,
+   "ci95": [
+    -2.4008702211795576,
+    3.7274624224819712
+   ],
+   "ci_excludes_zero": false,
+   "n_valid": 10000
+  },
+  "slope_rma": {
+   "difference_26N_minus_34S": -0.08591044668052916,
+   "ci95": [
+    -3.8043361445281096,
+    3.9151258896497683
+   ],
+   "ci_excludes_zero": false,
+   "n_valid": 10000
+  },
+  "slope_deming_pooled": {
+   "difference_26N_minus_34S": 1.7802568119516717,
+   "ci95": [
+    -1.4211025906586983,
+    4.648255850667162
+   ],
+   "ci_excludes_zero": false,
+   "n_valid": 10000
+  },
+  "slope_deming_interannual": {
+   "difference_26N_minus_34S": 1.0808995679103734,
+   "ci95": [
+    -2.3398256524379937,
+    3.9979380648863083
+   ],
+   "ci_excludes_zero": false,
+   "n_valid": 10000
+  },
+  "slope_york": {
+   "difference_26N_minus_34S": 1.6976995226650438,
+   "ci95": [
+    -3.128459342585157,
+    11.905854342053807
+   ],
+   "ci_excludes_zero": false,
+   "n_valid": 10000
+  },
+  "partial_r": {
+   "difference_26N_minus_34S": 0.15766148428006427,
+   "ci95": [
+    -0.5169559049082594,
+    0.8738675104646919
+   ],
+   "ci_excludes_zero": false,
+   "n_valid": 10000
+  },
+  "partial_rho": {
+   "difference_26N_minus_34S": 0.1318103414935463,
+   "ci95": [
+    -0.5540720537713685,
+    0.9041132124887671
+   ],
+   "ci_excludes_zero": false,
+   "n_valid": 9982
+  },
+  "r_frac": {
+   "difference_26N_minus_34S": 0.3807035227426836,
+   "ci95": [
+    0.08093892128400922,
+    0.7032304990816703
+   ],
+   "ci_excludes_zero": true,
+   "n_valid": 10000
+  },
+  "partial_r_frac": {
+   "difference_26N_minus_34S": 0.1210858653282905,
+   "ci95": [
+    -0.5237434545039805,
+    0.7638228762686455
+   ],
+   "ci_excludes_zero": false,
+   "n_valid": 10000
+  }
+ },
+ "claims": {
+  "P1_partial_26N_positive": {
+   "statement": "Given the 1850 to 1900 base state, a more positive F_ovS goes with less weakening at 26.5 N (21 models; family-cluster bootstrap)",
+   "value": 0.45588394793991494,
+   "ci95": [
+    -0.24305379599648247,
+    0.7543151810963798
+   ],
+   "survives_at_95": false
+  },
+  "P2_partial_26N_fractional_positive": {
+   "statement": "Same, with the fractional change of the overturning at 26.5 N",
+   "value": 0.46246868278371805,
+   "ci95": [
+    -0.20420069222064163,
+    0.7591305362011729
+   ],
+   "survives_at_95": false
+  },
+  "P3_raw_26N_21_models": {
+   "statement": "Raw correlation of F_ovS with the 26.5 N change, 21 models",
+   "value": -0.18982846713589296,
+   "ci95": [
+    -0.7680667049848124,
+    0.33128750629804954
+   ],
+   "survives_at_95": false
+  },
+  "P4_raw_26N_common_17_models_negative": {
+   "statement": "Raw correlation of F_ovS with the 26.5 N change on the 17 models with both latitudes (sign opposite to the partial)",
+   "value": -0.6149872155006298,
+   "ci95": [
+    -0.8520640326216704,
+    -0.20726036830861613
+   ],
+   "survives_at_95": true
+  },
+  "P5_raw_34S_19_models_negative": {
+   "statement": "Raw correlation of F_ovS with the 34.5 S change, 19 models (the paper's \"absent at 34.5 S\" statement concerns the partial only)",
+   "value": -0.6894320624639341,
+   "ci95": [
+    -0.8684083678339998,
+    -0.3496483806594843
+   ],
+   "survives_at_95": true
+  },
+  "P6_partial_34S_not_distinguishable_from_zero": {
+   "statement": "Partial correlation at 34.5 S given the base state is not distinguishable from zero",
+   "value": -0.11571174969727538,
+   "ci95": [
+    -0.536407534585389,
+    0.5763673074625174
+   ],
+   "survives_at_95": true
+  },
+  "P7_partial_26N_minus_34S_contrast": {
+   "statement": "The 26.5 N partial exceeds the 34.5 S partial (\"absent at 34.5 S\"), paired on the 17 common models",
+   "value": 0.15766148428006427,
+   "ci95": [
+    -0.5169559049082594,
+    0.8738675104646919
+   ],
+   "survives_at_95": false
+  },
+  "P8_partial_26N_stable_leave_one_model_out": {
+   "statement": "Partial at 26.5 N keeps its sign when any one model is dropped (21 models)",
+   "value": [
+    0.2707975917409976,
+    0.5570801482369622
+   ],
+   "ci95": [
+    0.2707975917409976,
+    0.5570801482369622
+   ],
+   "survives_at_95": true
+  },
+  "P9_partial_26N_on_common_17_models": {
+   "statement": "Partial at 26.5 N on the 17 models with both latitudes",
+   "value": 0.15174564555467318,
+   "ci95": [
+    -0.42797881206628635,
+    0.7987283201571852
+   ],
+   "survives_at_95": false
+  },
+  "P10_errors_in_variables_negligible": {
+   "statement": "Errors in F_ovS (interannual sampling only) do not change the slope: reliability ratio of F_ovS and York versus OLS slope, 21 models, per 0.1 Sv of F_ovS",
+   "value": {
+    "reliability_ratio_x": 0.9990518305234178,
+    "ols": -0.2758072713432022,
+    "york": -0.2936731319290476
+   },
+   "ci95": null,
+   "survives_at_95": true
+  }
+ }
+}

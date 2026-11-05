@@ -1,0 +1,420 @@
+{
+  "oras5": {
+    "label": "ORAS5",
+    "record": [
+      1958,
+      2025
+    ],
+    "continuous_full": {
+      "n_years": 68,
+      "window": [
+        1958,
+        2025
+      ],
+      "psi_mean_Sv": 14.64265847734763,
+      "dvs_mean_PSU": 0.06312314809517106,
+      "trend_fovs_mSv_per_yr": -1.40587637806229,
+      "trend_fovs_p_santer": 3.761423776163221e-06,
+      "trend_fovs_n_eff": 18.81890835375625,
+      "trend_fovs_ci_mSv_per_yr": [
+        -1.7398233031488457,
+        -1.0696418645263976
+      ],
+      "trend_psi_term_mSv_per_yr": 0.09831438406543394,
+      "trend_psi_term_p_santer": 0.0001684336801555803,
+      "trend_psi_term_n_eff": 21.81065316022107,
+      "trend_psi_term_ci_mSv_per_yr": [
+        0.06418405884808646,
+        0.13163298125789355
+      ],
+      "trend_dvs_term_mSv_per_yr": -1.563846409437154,
+      "trend_dvs_term_p_santer": 8.937053043849074e-06,
+      "trend_dvs_term_n_eff": 16.69955749443515,
+      "trend_dvs_term_ci_mSv_per_yr": [
+        -1.9283939813728306,
+        -1.1958665139606035
+      ],
+      "residual_mSv_per_yr": 0.05965564730943027,
+      "abs_share_psi_point": 0.06993103063652012,
+      "abs_share_psi_ci": [
+        0.048896141578838544,
+        0.09338335895645104
+      ],
+      "prob_psi_term_opposes_total": 1.0,
+      "prob_abs_share_below_0p25": 1.0
+    },
+    "epoch_census": {
+      "n_pairs": 2951,
+      "epoch_lengths": [
+        10,
+        13,
+        15
+      ],
+      "share_threshold_mSv": 5.0,
+      "n_pairs_usable": 2902,
+      "frac_total_negative": 0.9881396136902745,
+      "frac_psi_term_opposes_total": 0.4218908844459505,
+      "frac_dvs_term_same_sign_as_total": 0.9983056590986107,
+      "abs_share_psi_median": 0.024241658881580565,
+      "abs_share_psi_p90": 0.09590724014225846,
+      "abs_share_psi_p95": 0.14279112003554942,
+      "abs_share_psi_max": 0.7827730804125645,
+      "frac_abs_share_below_0p25": 0.9848380427291523,
+      "abs_share_dvs_median": 1.1540416115475778
+    },
+    "epoch_bootstrap": {
+      "pre_registered": {
+        "early": [
+          1993,
+          2005
+        ],
+        "late": [
+          2013,
+          2025
+        ],
+        "term_psi_mSv": 3.7942658790674773,
+        "term_psi_ci_mSv": [
+          1.0856373396798669,
+          7.143255480723793
+        ],
+        "term_dvs_mSv": -41.430875757113334,
+        "term_dvs_ci_mSv": [
+          -56.958840102492985,
+          -25.33788475387375
+        ],
+        "total_mSv": -33.42663012959735,
+        "total_ci_mSv": [
+          -47.88853236160276,
+          -18.545634786814514
+        ],
+        "dvs_minus_psi_mSv": -45.22514163618081,
+        "dvs_minus_psi_ci_mSv": [
+          -61.074836030601084,
+          -28.71713882102336
+        ],
+        "prob_dvs_term_larger_in_magnitude": 1.0,
+        "prob_psi_term_opposes_total": 0.9994,
+        "abs_share_psi_point": 0.11351027203031974,
+        "abs_share_psi_ci": [
+          0.028844171619021006,
+          0.30291676188439903
+        ],
+        "prob_abs_share_below_0p25": 0.9323
+      },
+      "long_epochs": {
+        "early": [
+          1960,
+          1989
+        ],
+        "late": [
+          1995,
+          2024
+        ],
+        "term_psi_mSv": -0.44017161900930124,
+        "term_psi_ci_mSv": [
+          -2.029001823857286,
+          0.8911779844275101
+        ],
+        "term_dvs_mSv": -64.64494369714728,
+        "term_dvs_ci_mSv": [
+          -84.78352423955037,
+          -47.26662980349861
+        ],
+        "total_mSv": -55.59826732580502,
+        "total_ci_mSv": [
+          -71.83198265410165,
+          -40.64432191076559
+        ],
+        "dvs_minus_psi_mSv": -64.20477207813798,
+        "dvs_minus_psi_ci_mSv": [
+          -83.58372052422733,
+          -47.546309924003516
+        ],
+        "prob_dvs_term_larger_in_magnitude": 1.0,
+        "prob_psi_term_opposes_total": 0.2783,
+        "abs_share_psi_point": 0.007917002456747476,
+        "abs_share_psi_ci": [
+          0.0004813889366358335,
+          0.031578269663258315
+        ],
+        "prob_abs_share_below_0p25": 1.0
+      }
+    },
+    "barotropic_correction": {
+      "pre_registered": {
+        "V_net_early_Sv": -1.1166439928720224,
+        "V_net_late_Sv": -0.821070447862326
+      },
+      "long_epochs": {
+        "V_net_early_Sv": -1.494060770064399,
+        "V_net_late_Sv": -1.0258548249520254
+      }
+    },
+    "continuous_argo": {
+      "n_years": 22,
+      "window": [
+        2004,
+        2025
+      ],
+      "psi_mean_Sv": 12.960419794352388,
+      "dvs_mean_PSU": 0.15519199080895726,
+      "trend_fovs_mSv_per_yr": -2.57697168924062,
+      "trend_fovs_p_santer": 0.011930100634884505,
+      "trend_fovs_n_eff": 10.738824091606398,
+      "trend_fovs_ci_mSv_per_yr": [
+        -3.716914715918968,
+        -1.4857580142065512
+      ],
+      "trend_psi_term_mSv_per_yr": 0.13259129885131626,
+      "trend_psi_term_p_santer": 0.4794339040547431,
+      "trend_psi_term_n_eff": 12.180328913149964,
+      "trend_psi_term_ci_mSv_per_yr": [
+        -0.10511296897741762,
+        0.3826261096309515
+      ],
+      "trend_dvs_term_mSv_per_yr": -2.812494191358807,
+      "trend_dvs_term_p_santer": 0.006352008385886209,
+      "trend_dvs_term_n_eff": 10.996724298462834,
+      "trend_dvs_term_ci_mSv_per_yr": [
+        -3.9835346977192674,
+        -1.675001419704197
+      ],
+      "residual_mSv_per_yr": 0.10293120326687133,
+      "abs_share_psi_point": 0.05145236923048548,
+      "abs_share_psi_ci": [
+        0.002487318861024492,
+        0.17159997228421367
+      ],
+      "prob_psi_term_opposes_total": 0.8522,
+      "prob_abs_share_below_0p25": 0.9984
+    },
+    "continuous_1993": {
+      "n_years": 33,
+      "window": [
+        1993,
+        2025
+      ],
+      "psi_mean_Sv": 13.537907754809938,
+      "dvs_mean_PSU": 0.13454057774999273,
+      "trend_fovs_mSv_per_yr": -1.5498720147761962,
+      "trend_fovs_p_santer": 0.0054411011491941035,
+      "trend_fovs_n_eff": 15.198282065376933,
+      "trend_fovs_ci_mSv_per_yr": [
+        -2.2918600631652994,
+        -0.8034184097638213
+      ],
+      "trend_psi_term_mSv_per_yr": 0.31452797982956343,
+      "trend_psi_term_p_santer": 0.0052291801373688645,
+      "trend_psi_term_n_eff": 16.34771417078503,
+      "trend_psi_term_ci_mSv_per_yr": [
+        0.17390121326007418,
+        0.4559032829822082
+      ],
+      "trend_dvs_term_mSv_per_yr": -1.9070967149574192,
+      "trend_dvs_term_p_santer": 0.001500806972415592,
+      "trend_dvs_term_n_eff": 14.39799981935216,
+      "trend_dvs_term_ci_mSv_per_yr": [
+        -2.687671854017634,
+        -1.1436809627242512
+      ],
+      "residual_mSv_per_yr": 0.04269672035165967,
+      "abs_share_psi_point": 0.20293803412856753,
+      "abs_share_psi_ci": [
+        0.08828924498371747,
+        0.49595626596306885
+      ],
+      "prob_psi_term_opposes_total": 1.0,
+      "prob_abs_share_below_0p25": 0.6993
+    }
+  },
+  "glorys12": {
+    "label": "GLORYS12V1",
+    "record": [
+      1993,
+      2025
+    ],
+    "continuous_full": {
+      "n_years": 33,
+      "window": [
+        1993,
+        2025
+      ],
+      "psi_mean_Sv": 16.692554979380134,
+      "dvs_mean_PSU": 0.14999704473224085,
+      "trend_fovs_mSv_per_yr": -4.390134395406505,
+      "trend_fovs_p_santer": 0.01812927885950235,
+      "trend_fovs_n_eff": 6.904646619887491,
+      "trend_fovs_ci_mSv_per_yr": [
+        -5.79027504612741,
+        -2.9712851909418414
+      ],
+      "trend_psi_term_mSv_per_yr": 0.05097865571515553,
+      "trend_psi_term_p_santer": 0.6766202965159722,
+      "trend_psi_term_n_eff": 10.988820271598962,
+      "trend_psi_term_ci_mSv_per_yr": [
+        -0.12194776078383768,
+        0.2228838656648437
+      ],
+      "trend_dvs_term_mSv_per_yr": -4.37353116422748,
+      "trend_dvs_term_p_santer": 0.02915416215870003,
+      "trend_dvs_term_n_eff": 6.222600897108545,
+      "trend_dvs_term_ci_mSv_per_yr": [
+        -5.808594985060499,
+        -2.941421881084999
+      ],
+      "residual_mSv_per_yr": -0.06758188689418021,
+      "abs_share_psi_point": 0.01161209455648912,
+      "abs_share_psi_ci": [
+        0.0008079126080643532,
+        0.0480786227960931
+      ],
+      "prob_psi_term_opposes_total": 0.7053,
+      "prob_abs_share_below_0p25": 1.0
+    },
+    "epoch_census": {
+      "n_pairs": 151,
+      "epoch_lengths": [
+        10,
+        13,
+        15
+      ],
+      "share_threshold_mSv": 5.0,
+      "n_pairs_usable": 151,
+      "frac_total_negative": 1.0,
+      "frac_psi_term_opposes_total": 0.9139072847682119,
+      "frac_dvs_term_same_sign_as_total": 1.0,
+      "abs_share_psi_median": 0.014168921173710894,
+      "abs_share_psi_p90": 0.04445776634011425,
+      "abs_share_psi_p95": 0.06254783605918196,
+      "abs_share_psi_max": 0.13472148250284477,
+      "frac_abs_share_below_0p25": 1.0,
+      "abs_share_dvs_median": 1.0546473349748269
+    },
+    "epoch_bootstrap": {
+      "pre_registered": {
+        "early": [
+          1993,
+          2005
+        ],
+        "late": [
+          2013,
+          2025
+        ],
+        "term_psi_mSv": 0.558299624969776,
+        "term_psi_ci_mSv": [
+          -0.2875510112089515,
+          1.8458006636979312
+        ],
+        "term_dvs_mSv": -95.65714894800412,
+        "term_dvs_ci_mSv": [
+          -124.78324838908571,
+          -64.5877360665258
+        ],
+        "total_mSv": -92.37049134332385,
+        "total_ci_mSv": [
+          -121.03359663462632,
+          -60.77815082484524
+        ],
+        "dvs_minus_psi_mSv": -96.2154485729739,
+        "dvs_minus_psi_ci_mSv": [
+          -124.70353448471765,
+          -65.84175353869333
+        ],
+        "prob_dvs_term_larger_in_magnitude": 1.0,
+        "prob_psi_term_opposes_total": 0.8544,
+        "abs_share_psi_point": 0.006044133974503619,
+        "abs_share_psi_ci": [
+          9.083425762516906e-05,
+          0.028061288853311484
+        ],
+        "prob_abs_share_below_0p25": 1.0
+      },
+      "halves": {
+        "early": [
+          1993,
+          2008
+        ],
+        "late": [
+          2009,
+          2024
+        ],
+        "term_psi_mSv": 1.339794689154467,
+        "term_psi_ci_mSv": [
+          -0.08112485995135461,
+          3.049061655752682
+        ],
+        "term_dvs_mSv": -71.89173395631656,
+        "term_dvs_ci_mSv": [
+          -113.03765862439907,
+          -27.703065840293203
+        ],
+        "total_mSv": -67.83809914685115,
+        "total_ci_mSv": [
+          -108.6787437220433,
+          -24.256003713152563
+        ],
+        "dvs_minus_psi_mSv": -73.23152864547103,
+        "dvs_minus_psi_ci_mSv": [
+          -113.12235098743409,
+          -30.08357036902072
+        ],
+        "prob_dvs_term_larger_in_magnitude": 0.9999,
+        "prob_psi_term_opposes_total": 0.9606,
+        "abs_share_psi_point": 0.019749885477394844,
+        "abs_share_psi_ci": [
+          0.0005934022315410578,
+          0.10624448216730832
+        ],
+        "prob_abs_share_below_0p25": 0.9953
+      }
+    },
+    "barotropic_correction": {
+      "pre_registered": {
+        "V_net_early_Sv": -1.3948521032612151,
+        "V_net_late_Sv": -0.9719039178004596
+      },
+      "halves": {
+        "V_net_early_Sv": -1.3565761167725106,
+        "V_net_late_Sv": -1.096013632523169
+      }
+    },
+    "continuous_argo": {
+      "n_years": 22,
+      "window": [
+        2004,
+        2025
+      ],
+      "psi_mean_Sv": 16.468475798331294,
+      "dvs_mean_PSU": 0.2155665643309373,
+      "trend_fovs_mSv_per_yr": -2.294348916500947,
+      "trend_fovs_p_santer": 0.03855944460020295,
+      "trend_fovs_n_eff": 9.899674613725463,
+      "trend_fovs_ci_mSv_per_yr": [
+        -3.6398452015869243,
+        -0.9823706623155846
+      ],
+      "trend_psi_term_mSv_per_yr": -0.20775038477517352,
+      "trend_psi_term_p_santer": 0.3262792982799121,
+      "trend_psi_term_n_eff": 12.889438864127866,
+      "trend_psi_term_ci_mSv_per_yr": [
+        -0.5306682082171124,
+        0.1284757143045319
+      ],
+      "trend_dvs_term_mSv_per_yr": -2.0641692390823265,
+      "trend_dvs_term_p_santer": 0.03186995776335961,
+      "trend_dvs_term_n_eff": 10.621889509351732,
+      "trend_dvs_term_ci_mSv_per_yr": [
+        -3.257957724587684,
+        -0.8863145754905105
+      ],
+      "residual_mSv_per_yr": -0.022429292643446827,
+      "abs_share_psi_point": 0.09054873183456695,
+      "abs_share_psi_ci": [
+        0.005861735339506903,
+        0.2212687268220102
+      ],
+      "prob_psi_term_opposes_total": 0.1128,
+      "prob_abs_share_below_0p25": 0.988
+    }
+  }
+}

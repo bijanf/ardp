@@ -1,0 +1,217 @@
+{
+ "meta": {
+  "id": "jc_r2_G11_tables_s8",
+  "date": "2026-11-05",
+  "script": "scripts/analysis_paper3jc_r2_G11_tables_s8.py",
+  "inputs": [
+   "PAPER_3_v2/analysis/jc_n18_annual_fields.json",
+   "PAPER_3_v2/analysis/jc_n06_layer_damping.json",
+   "PAPER_3_v2/analysis/r1_salinity_profiles.json",
+   "PAPER_3_v2/analysis/jc_n05_limb_levels_rg09.json"
+  ],
+  "seeds": null,
+  "replicates": null,
+  "units": "percent of mean northward-limb transport for the Jensen term; percent of weight for depth shares; PSU per decade for band trends; Sv and PSU for means",
+  "purpose": "inputs of the new Supplement Table S8"
+ },
+ "jensen_term_by_product": {
+  "ORAS5": {
+   "source_key": "products/oras5/jensen",
+   "mean_T_monthly_Sv": 19.25597930806607,
+   "mean_T_fields_Sv": 18.230336578875207,
+   "mean_J_T_Sv": 1.0256427291908612,
+   "rel_J_T_to_T_mean_percent": 5.326359738874633,
+   "rel_J_T_annual_min_percent": 2.7223524628428772,
+   "rel_J_T_annual_max_percent": 8.636744369089532
+  },
+  "GLORYS12V1": {
+   "source_key": "products/glorys12/jensen",
+   "mean_T_monthly_Sv": 22.53257338507849,
+   "mean_T_fields_Sv": 21.6503883785884,
+   "mean_J_T_Sv": 0.8821850064900922,
+   "rel_J_T_to_T_mean_percent": 3.915154258742113,
+   "rel_J_T_annual_min_percent": 1.2354734175260145,
+   "rel_J_T_annual_max_percent": 10.121431277099004
+  },
+  "ECCO-V4r4": {
+   "source_key": "products/ecco/jensen",
+   "mean_T_monthly_Sv": 14.583886096037334,
+   "mean_T_fields_Sv": 14.366608283407116,
+   "mean_J_T_Sv": 0.21727781263022236,
+   "rel_J_T_to_T_mean_percent": 1.4898485300790993,
+   "rel_J_T_annual_min_percent": 0.16885875439790252,
+   "rel_J_T_annual_max_percent": 3.7995455540893883
+  }
+ },
+ "southward_weight_depth_share": {
+  "source_key": "damping/oras5/all_levels/levels",
+  "n_levels": 41,
+  "southward": {
+   "total_weight_Sv": 17.559743622377006,
+   "weight_below_2000m_Sv": 14.769542759714419,
+   "share_below_2000m_percent": 84.1102414553084
+  },
+  "northward": {
+   "total_weight_Sv": 17.705789698584983,
+   "weight_below_2000m_Sv": 2.105543412151147,
+   "share_below_2000m_percent": 11.891835653732059
+  },
+  "southward_share_below_2000m_percent": 84.1102414553084,
+  "definition": "share of |transport_weight_Sv| on levels with depth_m > 2000 among the levels of the stated limb"
+ },
+ "salinity_trends_by_depth_band": {
+  "source_key": "layers",
+  "window": [
+   2005,
+   2024
+  ],
+  "units": "PSU per decade (layer means of the trend profile)",
+  "bands": {
+   "0-100 m": {
+    "obs_weight_en4": 0.937717951131456,
+    "trend_EN4_PSU_per_decade": 0.05673719743836167,
+    "trend_ORAS5_PSU_per_decade": 0.05611203961340773,
+    "trend_GLORYS12V1_PSU_per_decade": 0.07346078672036692,
+    "ratio_ORAS5_to_EN4": 0.9889815173611086,
+    "ratio_GLORYS12V1_to_EN4": 1.2947552934769728
+   },
+   "100-500 m": {
+    "obs_weight_en4": 0.9482680582914335,
+    "trend_EN4_PSU_per_decade": 0.036303819296764524,
+    "trend_ORAS5_PSU_per_decade": 0.04948154347133947,
+    "trend_GLORYS12V1_PSU_per_decade": 0.06613530996729815,
+    "ratio_ORAS5_to_EN4": 1.3629845131955407,
+    "ratio_GLORYS12V1_to_EN4": 1.821717693851354
+   },
+   "500-1300 m": {
+    "obs_weight_en4": 0.9372583960483671,
+    "trend_EN4_PSU_per_decade": 0.005649772118581149,
+    "trend_ORAS5_PSU_per_decade": 0.011928853975730562,
+    "trend_GLORYS12V1_PSU_per_decade": 0.011652730728546739,
+    "ratio_ORAS5_to_EN4": 2.1113867471749117,
+    "ratio_GLORYS12V1_to_EN4": 2.062513404783685
+   },
+   "1300-2000 m": {
+    "obs_weight_en4": 0.9502102922690523,
+    "trend_EN4_PSU_per_decade": 0.00556035482034079,
+    "trend_ORAS5_PSU_per_decade": 0.008801401497813256,
+    "trend_GLORYS12V1_PSU_per_decade": 0.005562835744321204,
+    "ratio_ORAS5_to_EN4": 1.5828848665585382,
+    "ratio_GLORYS12V1_to_EN4": 1.0004461808752452
+   },
+   "2000-4000 m": {
+    "obs_weight_en4": 0.11418980738381332,
+    "trend_EN4_PSU_per_decade": 0.0014426797391516115,
+    "trend_ORAS5_PSU_per_decade": -0.0005265845623811234,
+    "trend_GLORYS12V1_PSU_per_decade": -0.0011796287754669461,
+    "ratio_ORAS5_to_EN4": -0.36500447610832115,
+    "ratio_GLORYS12V1_to_EN4": -0.8176650322687998
+   },
+   "4000-6500 m": {
+    "obs_weight_en4": 0.04403414705497443,
+    "trend_EN4_PSU_per_decade": 0.00011491305912883757,
+    "trend_ORAS5_PSU_per_decade": -0.0016330939451036435,
+    "trend_GLORYS12V1_PSU_per_decade": -0.0008237382951588187,
+    "ratio_ORAS5_to_EN4": -14.211560961688964,
+    "ratio_GLORYS12V1_to_EN4": -7.168361032276275
+   }
+  }
+ },
+ "own_circulation_en4_means_2005_2024": {
+  "source_key": "summary/full_column",
+  "window": [
+   2005,
+   2024
+  ],
+  "units": {
+   "S_north": "PSU",
+   "S_south": "PSU",
+   "dS": "PSU",
+   "T_Sv": "Sv",
+   "F_ov_Sv": "Sv"
+  },
+  "note": "EN4 salinity with the frozen circulation of the stated product, full column; reanalysis own-circulation means for comparison",
+  "circulation": {
+   "ORAS5": {
+    "EN4_mean": {
+     "S_north": 34.98354772431832,
+     "S_south": 34.823965273243246,
+     "dS": 0.15958245107507735,
+     "T_Sv": 17.638695643904384,
+     "F_ov_Sv": -0.08042360813204431
+    },
+    "EN4_mean_ci95": {
+     "S_north": [
+      34.73836238745943,
+      35.22873306117721
+     ],
+     "S_south": [
+      34.82162654027496,
+      34.82630400621153
+     ],
+     "dS": [
+      0.04820093192843747,
+      0.27096397022171725
+     ],
+     "T_Sv": [
+      17.638695643904384,
+      17.638695643904384
+     ],
+     "F_ov_Sv": [
+      -0.13655574289156705,
+      -0.02429147337252157
+     ]
+    },
+    "own_monthly_key": "ORAS5/ORAS5_own_monthly",
+    "own_monthly_mean": {
+     "S_north": 34.948415581369524,
+     "S_south": 34.80723818205091,
+     "dS": 0.14117739931862122,
+     "T_Sv": 17.768490220651774,
+     "F_ov_Sv": -0.07700656001890753
+    },
+    "EN4_minus_own_percent_F_ov": -4.4373467822712644
+   },
+   "GLORYS12V1": {
+    "EN4_mean": {
+     "S_north": 35.03320407897359,
+     "S_south": 34.81844326412997,
+     "dS": 0.21476081484363138,
+     "T_Sv": 20.92939233779632,
+     "F_ov_Sv": -0.12842323864706265
+    },
+    "EN4_mean_ci95": {
+     "S_north": [
+      34.776712219936165,
+      35.289695938011015
+     ],
+     "S_south": [
+      34.816136285929886,
+      34.82075024233005
+     ],
+     "dS": [
+      0.09822654523880904,
+      0.33129508444845374
+     ],
+     "T_Sv": [
+      20.92939233779632,
+      20.92939233779632
+     ],
+     "F_ov_Sv": [
+      -0.19810870862871616,
+      -0.058737768665409154
+     ]
+    },
+    "own_monthly_key": "GLORYS12V1/GLORYS12V1_own_monthly",
+    "own_monthly_mean": {
+     "S_north": 35.004207088472164,
+     "S_south": 34.804574365788916,
+     "dS": 0.19963272268324492,
+     "T_Sv": 22.33896758244922,
+     "F_ov_Sv": -0.12949770426022622
+    },
+    "EN4_minus_own_percent_F_ov": 0.8297178851946507
+   }
+  }
+ }
+}

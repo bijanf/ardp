@@ -1,0 +1,972 @@
+{
+  "meta": {
+    "date": "2026-11-05",
+    "group": "G08_cmip6",
+    "actions": [
+      "A38",
+      "A79",
+      "A82"
+    ],
+    "script": "scripts/analysis_paper3jc_r2_G08_cmip6.py",
+    "inputs": [
+      "PAPER_3_v2/analysis/jc_n12_cmip6_forced.json (per_model, reanalysis_1993_2014, a_table_and_medians, c_offsets_from_reanalyses_1993_2014)",
+      "scripts/analysis_paper3jc_n12_cmip6_forced.py (units_for, FAMILIES, SEED, N_BOOT, S0)"
+    ],
+    "seed": 20261104,
+    "n_boot": 10000,
+    "interval": "2.5 and 97.5 percentiles of the family bootstrap; resampled units are the six families and the single models",
+    "units": "Sv for F_ov, T, F_ov offsets and F_ov standard deviations; PSU for dS and its offsets and standard deviations; ratios and fractions are dimensionless",
+    "S0_PSU": 35.0,
+    "window_1993_2014": [
+      1993,
+      2014
+    ],
+    "window_2081_2100": [
+      2081,
+      2100
+    ],
+    "p_values": "none: no hypothesis test is performed in this file",
+    "reproduction_check": {
+      "n_checks": 26,
+      "n_agree_1e-9": 26,
+      "max_abs_diff": 0.0
+    }
+  },
+  "A38_family_grouped_contrast_and_offsets": {
+    "description": "Family-grouped (median of 18 unit means) and pooled 25-model medians of F_ov and dS over 1993 to 2014, and offsets from ORAS5, GLORYS12V1 and ECCO-V4r4 (reanalysis value subtracted from the median).",
+    "n_models": 25,
+    "n_units": 18,
+    "units": [
+      [
+        "CESM2",
+        "CESM2-WACCM",
+        "TaiESM1"
+      ],
+      [
+        "MPI-ESM1-2-LR",
+        "MPI-ESM1-2-HR"
+      ],
+      [
+        "ACCESS-CM2",
+        "ACCESS-ESM1-5"
+      ],
+      [
+        "FGOALS-f3-L",
+        "FGOALS-g3"
+      ],
+      [
+        "CMCC-CM2-SR5",
+        "CMCC-ESM2"
+      ],
+      [
+        "UKESM1-0-LL",
+        "HadGEM3-GC31-LL"
+      ],
+      [
+        "BCC-CSM2-MR"
+      ],
+      [
+        "CIESM"
+      ],
+      [
+        "CNRM-CM6-1"
+      ],
+      [
+        "CanESM5"
+      ],
+      [
+        "EC-Earth3"
+      ],
+      [
+        "FIO-ESM-2-0"
+      ],
+      [
+        "GFDL-CM4"
+      ],
+      [
+        "GISS-E2-1-G"
+      ],
+      [
+        "IPSL-CM6A-LR"
+      ],
+      [
+        "MIROC6"
+      ],
+      [
+        "MRI-ESM2-0"
+      ],
+      [
+        "NESM3"
+      ]
+    ],
+    "stats": {
+      "F_ov_median": {
+        "point": 0.08610547105759632,
+        "ci": [
+          -0.05256103202639641,
+          0.16661485912997898
+        ]
+      },
+      "F_ov_family_grouped_median": {
+        "point": 0.04044495059148791,
+        "ci": [
+          -0.08578816884449622,
+          0.11100561992535743
+        ]
+      },
+      "dS_median": {
+        "point": -0.1647073315816401,
+        "ci": [
+          -0.30087312717272124,
+          0.11504085315117588
+        ]
+      },
+      "dS_family_grouped_median": {
+        "point": -0.05730780432077917,
+        "ci": [
+          -0.19572632625915273,
+          0.16327406898611171
+        ]
+      },
+      "F_ov_offset_pooled_oras5": {
+        "point": 0.14629608863049395,
+        "ci": [
+          0.0076295855465012205,
+          0.2268054767028766
+        ]
+      },
+      "F_ov_offset_family_grouped_oras5": {
+        "point": 0.10063556816438554,
+        "ci": [
+          -0.025597551271598587,
+          0.17119623749825508
+        ]
+      },
+      "dS_offset_pooled_oras5": {
+        "point": -0.26842834117847547,
+        "ci": [
+          -0.4045941367695566,
+          0.011319843554340514
+        ]
+      },
+      "dS_offset_family_grouped_oras5": {
+        "point": -0.16102881391761453,
+        "ci": [
+          -0.2994473358559881,
+          0.05955305938927635
+        ]
+      },
+      "F_ov_offset_pooled_glorys12": {
+        "point": 0.15603913296358068,
+        "ci": [
+          0.01737262987958795,
+          0.23654852103596335
+        ]
+      },
+      "F_ov_offset_family_grouped_glorys12": {
+        "point": 0.11037861249747227,
+        "ci": [
+          -0.015854506938511856,
+          0.18093928183134178
+        ]
+      },
+      "dS_offset_pooled_glorys12": {
+        "point": -0.2721268341013957,
+        "ci": [
+          -0.40829262969247687,
+          0.007621350631420262
+        ]
+      },
+      "dS_offset_family_grouped_glorys12": {
+        "point": -0.16472730684053477,
+        "ci": [
+          -0.30314582877890833,
+          0.0558545664663561
+        ]
+      },
+      "F_ov_offset_pooled_ecco": {
+        "point": 0.21818147771612362,
+        "ci": [
+          0.07951497463213089,
+          0.2986908657885063
+        ]
+      },
+      "F_ov_offset_family_grouped_ecco": {
+        "point": 0.1725209572500152,
+        "ci": [
+          0.04628783781403109,
+          0.24308162658388474
+        ]
+      },
+      "dS_offset_pooled_ecco": {
+        "point": -0.46938124888902866,
+        "ci": [
+          -0.6055470444801099,
+          -0.1896330641562127
+        ]
+      },
+      "dS_offset_family_grouped_ecco": {
+        "point": -0.3619817216281678,
+        "ci": [
+          -0.5004002435665413,
+          -0.14139984832127686
+        ]
+      }
+    }
+  },
+  "A79_level_offset_decomposition_1993_2014": {
+    "description": "Level offset of F_ov at 1993 to 2014 per reference, split as -(T_m dS_m - T_r dS_r)/S0 into transport, contrast and cross parts. Medians over models (pooled and family-grouped) with family-bootstrap intervals. Actual offset = F_ov_m - F_ov_r; residual = actual minus identity. The medians of the parts do not sum to the median of the identity offset.",
+    "n_models": 25,
+    "n_units": 18,
+    "decomposition_point": {
+      "oras5": {
+        "reanalysis_T_Sv": 18.596085255786274,
+        "reanalysis_dS_PSU": 0.10372100959683536,
+        "reanalysis_F_ov_Sv": -0.060190617572897634,
+        "max_abs_identity_check_error_Sv": 1.1102230246251565e-16,
+        "n_models_identity_offset_positive": 18,
+        "n_models_actual_offset_positive": 19,
+        "contrast_share_of_identity_median_point": 0.9916163356398167
+      },
+      "glorys12": {
+        "reanalysis_T_Sv": 22.53786321648562,
+        "reanalysis_dS_PSU": 0.10741950251975561,
+        "reanalysis_F_ov_Sv": -0.06993366190598437,
+        "max_abs_identity_check_error_Sv": 1.1102230246251565e-16,
+        "n_models_identity_offset_positive": 19,
+        "n_models_actual_offset_positive": 19,
+        "contrast_share_of_identity_median_point": 1.1098486834956192
+      },
+      "ecco": {
+        "reanalysis_T_Sv": 14.6723683117573,
+        "reanalysis_dS_PSU": 0.3046739173073886,
+        "reanalysis_F_ov_Sv": -0.1320760066585273,
+        "max_abs_identity_check_error_Sv": 5.551115123125783e-17,
+        "n_models_identity_offset_positive": 22,
+        "n_models_actual_offset_positive": 22,
+        "contrast_share_of_identity_median_point": 0.909118008899737
+      }
+    },
+    "stats": {
+      "transport_oras5_median": {
+        "point": -0.0020657157835113774,
+        "ci": [
+          -0.006723405512798418,
+          0.0032845406416617366
+        ]
+      },
+      "transport_oras5_family_grouped_median": {
+        "point": -0.0011136292034081788,
+        "ci": [
+          -0.006520599069812562,
+          0.0038610528088273777
+        ]
+      },
+      "contrast_oras5_median": {
+        "point": 0.14262046621783472,
+        "ci": [
+          -0.0060144221662479696,
+          0.2149676303245122
+        ]
+      },
+      "contrast_oras5_family_grouped_median": {
+        "point": 0.08555730149286009,
+        "ci": [
+          -0.03164153627559675,
+          0.15910137677702918
+        ]
+      },
+      "cross_oras5_median": {
+        "point": 0.005638928307863389,
+        "ci": [
+          0.00018194873405539565,
+          0.02138748808305138
+        ]
+      },
+      "cross_oras5_family_grouped_median": {
+        "point": 0.011142510672225582,
+        "ci": [
+          0.0002931310997978179,
+          0.029759350008144933
+        ]
+      },
+      "identity_oras5_median": {
+        "point": 0.14382625728509432,
+        "ci": [
+          0.004697714743255452,
+          0.22246711327037058
+        ]
+      },
+      "identity_oras5_family_grouped_median": {
+        "point": 0.09737892560685815,
+        "ci": [
+          -0.025583993906175724,
+          0.16743510411330076
+        ]
+      },
+      "actual_F_ov_offset_oras5_median": {
+        "point": 0.14629608863049395,
+        "ci": [
+          0.0076295855465012205,
+          0.2268054767028766
+        ]
+      },
+      "actual_F_ov_offset_oras5_family_grouped_median": {
+        "point": 0.10063556816438554,
+        "ci": [
+          -0.025597551271598587,
+          0.17119623749825505
+        ]
+      },
+      "residual_actual_minus_identity_oras5_median": {
+        "point": 0.002931870803245768,
+        "ci": [
+          0.0011404522917500878,
+          0.004338363432506015
+        ]
+      },
+      "residual_actual_minus_identity_oras5_family_grouped_median": {
+        "point": 0.0023806887794224213,
+        "ci": [
+          0.0007956004492824156,
+          0.003680126458232713
+        ]
+      },
+      "transport_glorys12_median": {
+        "point": 0.009958448385785091,
+        "ci": [
+          0.005134674344670719,
+          0.0154994847272088
+        ]
+      },
+      "transport_glorys12_family_grouped_median": {
+        "point": 0.01094448455326896,
+        "ci": [
+          0.005344712477716489,
+          0.01609655421616033
+        ]
+      },
+      "contrast_glorys12_median": {
+        "point": 0.1752330675575009,
+        "ci": [
+          -0.004907684515880748,
+          0.26291552686595027
+        ]
+      },
+      "contrast_glorys12_family_grouped_median": {
+        "point": 0.10607432884548654,
+        "ci": [
+          -0.03596693082956681,
+          0.1952074063904916
+        ]
+      },
+      "cross_glorys12_median": {
+        "point": -0.0006560115236309952,
+        "ci": [
+          -0.02659117905739874,
+          0.01034677031266707
+        ]
+      },
+      "cross_glorys12_family_grouped_median": {
+        "point": 0.005044583384053499,
+        "ci": [
+          -0.017099777332857728,
+          0.01147937977011438
+        ]
+      },
+      "identity_glorys12_median": {
+        "point": 0.15788915206492884,
+        "ci": [
+          0.018760609523089954,
+          0.23653000805020513
+        ]
+      },
+      "identity_glorys12_family_grouped_median": {
+        "point": 0.11144182038669265,
+        "ci": [
+          -0.011521099126341222,
+          0.18149799889313525
+        ]
+      },
+      "actual_F_ov_offset_glorys12_median": {
+        "point": 0.15603913296358068,
+        "ci": [
+          0.01737262987958795,
+          0.23654852103596335
+        ]
+      },
+      "actual_F_ov_offset_glorys12_family_grouped_median": {
+        "point": 0.11037861249747227,
+        "ci": [
+          -0.015854506938511856,
+          0.18093928183134178
+        ]
+      },
+      "residual_actual_minus_identity_glorys12_median": {
+        "point": -0.0013879796435020027,
+        "ci": [
+          -0.0031793981549976882,
+          1.8512985758223355e-05
+        ]
+      },
+      "residual_actual_minus_identity_glorys12_family_grouped_median": {
+        "point": -0.0019391616673253564,
+        "ci": [
+          -0.0035242499974653674,
+          -0.0006397239885150508
+        ]
+      },
+      "transport_ecco_median": {
+        "point": -0.04022374431716714,
+        "ci": [
+          -0.053905413835620905,
+          -0.024507703854461757
+        ]
+      },
+      "transport_ecco_family_grouped_median": {
+        "point": -0.037427050097708955,
+        "ci": [
+          -0.053309682713451385,
+          -0.02281423576127143
+        ]
+      },
+      "contrast_ecco_median": {
+        "point": 0.19676955892378428,
+        "ci": [
+          0.07949617603963012,
+          0.2538516933345215
+        ]
+      },
+      "contrast_ecco_family_grouped_median": {
+        "point": 0.1517465469100709,
+        "ci": [
+          0.0592763043941826,
+          0.2097730479114673
+        ]
+      },
+      "cross_ecco_median": {
+        "point": 0.06391031748196256,
+        "ci": [
+          0.017775063813669813,
+          0.091990212816766
+        ]
+      },
+      "cross_ecco_family_grouped_median": {
+        "point": 0.051464964227344624,
+        "ci": [
+          0.012205546287618397,
+          0.09378007193919358
+        ]
+      },
+      "identity_ecco_median": {
+        "point": 0.21644006278340616,
+        "ci": [
+          0.07731152024156733,
+          0.29508091876868253
+        ]
+      },
+      "identity_ecco_family_grouped_median": {
+        "point": 0.16999273110517002,
+        "ci": [
+          0.04702981159213614,
+          0.24004890961161265
+        ]
+      },
+      "actual_F_ov_offset_ecco_median": {
+        "point": 0.21818147771612362,
+        "ci": [
+          0.07951497463213089,
+          0.2986908657885063
+        ]
+      },
+      "actual_F_ov_offset_ecco_family_grouped_median": {
+        "point": 0.1725209572500152,
+        "ci": [
+          0.04628783781403109,
+          0.24308162658388474
+        ]
+      },
+      "residual_actual_minus_identity_ecco_median": {
+        "point": 0.002203454390563561,
+        "ci": [
+          0.00041203587906789296,
+          0.003609947019823756
+        ]
+      },
+      "residual_actual_minus_identity_ecco_family_grouped_median": {
+        "point": 0.0016522723667402248,
+        "ci": [
+          6.71840366002173e-05,
+          0.002951710045550503
+        ]
+      }
+    }
+  },
+  "A82_spread_and_ssp245": {
+    "sd_ssp585": {
+      "description": "Family-bootstrap standard deviations (ddof 1) of F_ov, T and dS over the 25 models in 1993 to 2014 and 2081 to 2100 under SSP5-8.5, with ratios and reduction fractions.",
+      "models": [
+        "ACCESS-CM2",
+        "ACCESS-ESM1-5",
+        "BCC-CSM2-MR",
+        "CESM2",
+        "CESM2-WACCM",
+        "CIESM",
+        "CMCC-CM2-SR5",
+        "CMCC-ESM2",
+        "CNRM-CM6-1",
+        "CanESM5",
+        "EC-Earth3",
+        "FGOALS-f3-L",
+        "FGOALS-g3",
+        "FIO-ESM-2-0",
+        "GFDL-CM4",
+        "GISS-E2-1-G",
+        "HadGEM3-GC31-LL",
+        "IPSL-CM6A-LR",
+        "MIROC6",
+        "MPI-ESM1-2-HR",
+        "MPI-ESM1-2-LR",
+        "MRI-ESM2-0",
+        "NESM3",
+        "TaiESM1",
+        "UKESM1-0-LL"
+      ],
+      "n_models": 25,
+      "n_units": 18,
+      "units": [
+        [
+          "CESM2",
+          "CESM2-WACCM",
+          "TaiESM1"
+        ],
+        [
+          "MPI-ESM1-2-LR",
+          "MPI-ESM1-2-HR"
+        ],
+        [
+          "ACCESS-CM2",
+          "ACCESS-ESM1-5"
+        ],
+        [
+          "FGOALS-f3-L",
+          "FGOALS-g3"
+        ],
+        [
+          "CMCC-CM2-SR5",
+          "CMCC-ESM2"
+        ],
+        [
+          "UKESM1-0-LL",
+          "HadGEM3-GC31-LL"
+        ],
+        [
+          "BCC-CSM2-MR"
+        ],
+        [
+          "CIESM"
+        ],
+        [
+          "CNRM-CM6-1"
+        ],
+        [
+          "CanESM5"
+        ],
+        [
+          "EC-Earth3"
+        ],
+        [
+          "FIO-ESM-2-0"
+        ],
+        [
+          "GFDL-CM4"
+        ],
+        [
+          "GISS-E2-1-G"
+        ],
+        [
+          "IPSL-CM6A-LR"
+        ],
+        [
+          "MIROC6"
+        ],
+        [
+          "MRI-ESM2-0"
+        ],
+        [
+          "NESM3"
+        ]
+      ],
+      "stats": {
+        "sd_F_ov_1993-2014": {
+          "point": 0.17704257708725227,
+          "ci": [
+            0.11684252290902847,
+            0.22260502669252163
+          ]
+        },
+        "sd_F_ov_2081-2100": {
+          "point": 0.12463320189888404,
+          "ci": [
+            0.08070223214490223,
+            0.16389466438698774
+          ]
+        },
+        "sd_T_1993-2014": {
+          "point": 3.4003769094563636,
+          "ci": [
+            2.34523720781034,
+            4.333797595637145
+          ]
+        },
+        "sd_T_2081-2100": {
+          "point": 2.5811642760751856,
+          "ci": [
+            1.697420485523618,
+            3.28692881167674
+          ]
+        },
+        "sd_dS_1993-2014": {
+          "point": 0.3397637434725615,
+          "ci": [
+            0.21429693289458793,
+            0.44142250658283444
+          ]
+        },
+        "sd_dS_2081-2100": {
+          "point": 0.2899343220251031,
+          "ci": [
+            0.19362653272211552,
+            0.37328104948081847
+          ]
+        },
+        "sd_ratio_2081_over_1993_F_ov": {
+          "point": 0.703973043938808,
+          "ci": [
+            0.5591658072295697,
+            0.8342410337086944
+          ]
+        },
+        "sd_reduction_fraction_F_ov": {
+          "point": 0.296026956061192,
+          "ci": [
+            0.16575896629130557,
+            0.44083419277043034
+          ]
+        },
+        "sd_ratio_2081_over_1993_T": {
+          "point": 0.7590818149885185,
+          "ci": [
+            0.5527360110991567,
+            0.9665352506100215
+          ]
+        },
+        "sd_reduction_fraction_T": {
+          "point": 0.24091818501148154,
+          "ci": [
+            0.033464749389978406,
+            0.4472639889008432
+          ]
+        },
+        "sd_ratio_2081_over_1993_dS": {
+          "point": 0.8533409688209346,
+          "ci": [
+            0.7273278553415916,
+            1.03290294282157
+          ]
+        },
+        "sd_reduction_fraction_dS": {
+          "point": 0.14665903117906542,
+          "ci": [
+            -0.03290294282156985,
+            0.2726721446584083
+          ]
+        }
+      }
+    },
+    "ssp245": {
+      "description": "Change of F_ov from 1993 to 2014 to 2081 to 2100 under SSP2-4.5, 13 models; family bootstrap over 12 units.",
+      "models": [
+        "ACCESS-CM2",
+        "CESM2",
+        "CMCC-CM2-SR5",
+        "CNRM-CM6-1",
+        "CanESM5",
+        "FGOALS-g3",
+        "FIO-ESM-2-0",
+        "GFDL-CM4",
+        "IPSL-CM6A-LR",
+        "MPI-ESM1-2-HR",
+        "MPI-ESM1-2-LR",
+        "NESM3",
+        "UKESM1-0-LL"
+      ],
+      "n_models": 13,
+      "n_units": 12,
+      "units": [
+        [
+          "CESM2"
+        ],
+        [
+          "MPI-ESM1-2-LR",
+          "MPI-ESM1-2-HR"
+        ],
+        [
+          "ACCESS-CM2"
+        ],
+        [
+          "FGOALS-g3"
+        ],
+        [
+          "CMCC-CM2-SR5"
+        ],
+        [
+          "UKESM1-0-LL"
+        ],
+        [
+          "CNRM-CM6-1"
+        ],
+        [
+          "CanESM5"
+        ],
+        [
+          "FIO-ESM-2-0"
+        ],
+        [
+          "GFDL-CM4"
+        ],
+        [
+          "IPSL-CM6A-LR"
+        ],
+        [
+          "NESM3"
+        ]
+      ],
+      "excluded_no_2081_2100_window": [
+        "GISS-E2-1-G",
+        "HadGEM3-GC31-LL"
+      ],
+      "stats": {
+        "dF_ov_ssp245_median": {
+          "point": -0.042312244531942614,
+          "ci": [
+            -0.11066241368261179,
+            0.0031305813939164553
+          ]
+        },
+        "dF_ov_ssp245_family_grouped_median": {
+          "point": -0.058479348007291904,
+          "ci": [
+            -0.1107930342337671,
+            0.008992435351875414
+          ]
+        }
+      },
+      "per_model_dF_ov_ssp245_minus_1993_2014": {
+        "ACCESS-CM2": -0.0746464514826412,
+        "CESM2": -0.16399341747018548,
+        "CMCC-CM2-SR5": 0.014854289309834373,
+        "CNRM-CM6-1": -0.042312244531942614,
+        "CanESM5": 0.0031305813939164553,
+        "FGOALS-g3": -0.11066241368261179,
+        "FIO-ESM-2-0": -0.08443725852090855,
+        "GFDL-CM4": -0.139191950782614,
+        "IPSL-CM6A-LR": 0.025710538986261133,
+        "MPI-ESM1-2-HR": 0.0014352515509359065,
+        "MPI-ESM1-2-LR": -0.03332609089656509,
+        "NESM3": 0.05698063662296557,
+        "UKESM1-0-LL": -0.1109236547849224
+      }
+    }
+  },
+  "reproduction_checks": [
+    {
+      "quantity": "F_ov family-grouped median 1993-2014",
+      "recomputed": 0.04044495059148791,
+      "stored": 0.04044495059148791,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov family-grouped median, lower bound",
+      "recomputed": -0.08578816884449622,
+      "stored": -0.08578816884449622,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov family-grouped median, upper bound",
+      "recomputed": 0.11100561992535743,
+      "stored": 0.11100561992535743,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "dS family-grouped median 1993-2014",
+      "recomputed": -0.05730780432077917,
+      "stored": -0.05730780432077917,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "dS pooled median 1993-2014",
+      "recomputed": -0.1647073315816401,
+      "stored": -0.1647073315816401,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov pooled offset vs ORAS5",
+      "recomputed": 0.14629608863049395,
+      "stored": 0.14629608863049395,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov pooled offset vs ORAS5, lower bound",
+      "recomputed": 0.0076295855465012205,
+      "stored": 0.0076295855465012205,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov pooled offset vs ORAS5, upper bound",
+      "recomputed": 0.2268054767028766,
+      "stored": 0.2268054767028766,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov pooled offset vs GLORYS12V1",
+      "recomputed": 0.15603913296358068,
+      "stored": 0.15603913296358068,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov pooled offset vs GLORYS12V1, lower bound",
+      "recomputed": 0.01737262987958795,
+      "stored": 0.01737262987958795,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov pooled offset vs GLORYS12V1, upper bound",
+      "recomputed": 0.23654852103596335,
+      "stored": 0.23654852103596335,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov pooled offset vs ECCO-V4r4",
+      "recomputed": 0.21818147771612362,
+      "stored": 0.21818147771612362,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov pooled offset vs ECCO-V4r4, lower bound",
+      "recomputed": 0.07951497463213089,
+      "stored": 0.07951497463213089,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "F_ov pooled offset vs ECCO-V4r4, upper bound",
+      "recomputed": 0.2986908657885063,
+      "stored": 0.2986908657885063,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "actual F_ov offset vs ORAS5 equals stored pooled offset",
+      "recomputed": 0.14629608863049395,
+      "stored": 0.14629608863049395,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "actual F_ov offset vs GLORYS12V1 equals stored pooled offset",
+      "recomputed": 0.15603913296358068,
+      "stored": 0.15603913296358068,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "actual F_ov offset vs ECCO-V4r4 equals stored pooled offset",
+      "recomputed": 0.21818147771612362,
+      "stored": 0.21818147771612362,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "SD of F_ov 1993-2014 over 25 models vs stored spread_ssp585",
+      "recomputed": 0.17704257708725227,
+      "stored": 0.17704257708725227,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "SD of F_ov 2081-2100 over 25 models vs stored spread_ssp585",
+      "recomputed": 0.12463320189888404,
+      "stored": 0.12463320189888404,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "SD reduction fraction of F_ov vs stored spread_ssp585",
+      "recomputed": 0.296026956061192,
+      "stored": 0.296026956061192,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "SSP2-4.5 dF_ov median vs stored",
+      "recomputed": -0.042312244531942614,
+      "stored": -0.042312244531942614,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "SSP2-4.5 dF_ov family-grouped median vs stored",
+      "recomputed": -0.058479348007291904,
+      "stored": -0.058479348007291904,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "SSP2-4.5 dF_ov median, lower bound vs stored",
+      "recomputed": -0.11066241368261179,
+      "stored": -0.11066241368261179,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "SSP2-4.5 dF_ov median, upper bound vs stored",
+      "recomputed": 0.0031305813939164553,
+      "stored": 0.0031305813939164553,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "SSP2-4.5 dF_ov family-grouped median, lower bound vs stored",
+      "recomputed": -0.1107930342337671,
+      "stored": -0.1107930342337671,
+      "abs_diff": 0.0,
+      "agrees": true
+    },
+    {
+      "quantity": "SSP2-4.5 dF_ov family-grouped median, upper bound vs stored",
+      "recomputed": 0.008992435351875414,
+      "stored": 0.008992435351875414,
+      "abs_diff": 0.0,
+      "agrees": true
+    }
+  ],
+  "not_done": [
+    {
+      "item": "observed-window (2005 to 2024) model contrast and FovS compared with EN4",
+      "reason": "needs a spliced series of historical 2005 to 2014 and SSP2-4.5 2015 to 2024 section values for matched models; not built in this group"
+    }
+  ]
+}

@@ -1,0 +1,2858 @@
+{
+ "meta": {
+  "date": "2026-11-05",
+  "group": "G03_headline",
+  "actions": [
+   "A27",
+   "A28 (covariance residual values)",
+   "A73 (items 2 and 3; the key rename is applied in the note only)"
+  ],
+  "script": "scripts/analysis_paper3jc_r2_G03_headline_construction.py",
+  "inputs": [
+   "data/results/paper3r1_section_oras5.nc",
+   "data/results/paper3r1_section_glorys12.nc",
+   "data/results/paper3r1_section_ecco.nc",
+   "data/results/paper3r1_section_oras5_centres.nc",
+   "data/results/paper3r1_section_glorys12_centres.nc",
+   "data/results/paper3r1_section_ecco_centres.nc",
+   "PAPER_3_v2/analysis/attribution.json",
+   "PAPER_3_v2/analysis/r1_common_window.json",
+   "PAPER_3_v2/analysis/r1_cells.json",
+   "PAPER_3_v2/analysis/r1_vertical_grid.json",
+   "PAPER_3_v2/analysis/final_checks.json",
+   "CANONICAL_FACTS.md sections 21 to 23 (values typed in the script)"
+  ],
+  "seed": 20261104,
+  "sieve_resamples": 10000,
+  "replicates": {
+   "sieve": 10000,
+   "bias_table_draws": 4000
+  },
+  "intervals": "95%: ci_bias_corrected (corrected N_eff test) and ci_sieve (AR(1) sieve percentiles)",
+  "units": {
+   "F_ovS_mean, F_az_mean, V_net_mean, covariance_residual": "Sv",
+   "T_limb_mean": "Sv",
+   "dS_limb_mean": "PSU",
+   "F_ovS_trend, F_az_trend": "mSv per year",
+   "T_limb_trend, dS_limb_trend": "Sv per decade, PSU per decade",
+   "transport_share": "dimensionless"
+  },
+  "constructions": {
+   "bounds": "midpoints between level centres, surface at zero (baseline, headline)",
+   "centres": "spacing of consecutive level centres (variant)"
+  },
+  "windows": {
+   "record": "own record of each section file (ORAS5 1958-2025, GLORYS12V1 1993-2025, ECCO-V4r4 1992-2017)",
+   "1993_2017": "common window of the three products",
+   "1993_2025": "requested window; ECCO has no data after 2017, so its effective window is 1993-2017"
+  },
+  "p_values": "stored in JSON only (p_santer, p_ols)"
+ },
+ "products": {
+  "oras5": {
+   "label": "ORAS5",
+   "constructions": {
+    "bounds": {
+     "section_file": "paper3r1_section_oras5.nc",
+     "thickness_convention": "bounds",
+     "column_total_m": 6004.05615234375,
+     "section_latitude": -34.56488037109375,
+     "n_monthly": 816,
+     "windows": {
+      "record": {
+       "window": [
+        1958,
+        2025
+       ],
+       "n_years": 68,
+       "F_ovS_mean_Sv": {
+        "value": -0.043271790581535706,
+        "fitted_mean": -0.0432717905815357,
+        "design": "step",
+        "step_year": 2015,
+        "ci_bias_corrected": [
+         -0.05106495275171736,
+         -0.03547862841135404
+        ],
+        "ci_sieve": [
+         -0.050454502281897955,
+         -0.03615743969799544
+        ],
+        "n_eff": 22.755158507341275,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -1.4207059824989183,
+        "ci_bias_corrected": [
+         -1.8502821485172987,
+         -0.991129816480538
+        ],
+        "ci_sieve": [
+         -1.8102989473000093,
+         -1.0389603180205709
+        ],
+        "p_santer": 1.5174647555478277e-06,
+        "p_ols": 4.969597994715299e-20,
+        "n_eff": 20.49011289138592,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.4295761660183802
+       },
+       "F_az_mean_Sv": 0.32100768400522195,
+       "F_az_trend_mSv_per_yr": {
+        "value": 1.9289441683960122,
+        "ci_bias_corrected": [
+         0.9276145983942682,
+         2.930273738397757
+        ],
+        "ci_sieve": [
+         1.065602413150334,
+         2.7948000779582145
+        ],
+        "p_santer": 0.0008566273703251442,
+        "p_ols": 9.386288887671396e-12,
+        "n_eff": 18.141898416551744,
+        "n_eff_at_floor": false,
+        "min_detectable": 1.0013295700017442
+       },
+       "T_limb_mean_Sv": 19.25597930806607,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.5014478840073209,
+        "ci_bias_corrected": [
+         -0.8050206574920218,
+         -0.19787511052261977
+        ],
+        "ci_sieve": [
+         -0.7478460042437887,
+         -0.2511425114981651
+        ],
+        "p_santer": 0.0036896165055814896,
+        "p_ols": 3.291036532612914e-12,
+        "n_eff": 13.84818843014048,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.3035727734847011
+       },
+       "dS_limb_mean_PSU": 0.07416089165641016,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.027756432993461547,
+        "ci_bias_corrected": [
+         0.019665771310497335,
+         0.03584709467642576
+        ],
+        "ci_sieve": [
+         0.020614807552313277,
+         0.034931075579494035
+        ],
+        "p_santer": 1.476812587431182e-06,
+        "p_ols": 5.375633907980471e-22,
+        "n_eff": 18.783384723496738,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.008090661682964215
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.04080115986295896,
+       "covariance_residual_Eq1_Sv": -0.002470630718576748,
+       "transport_share_continuous": {
+        "point": 0.0747874098316596,
+        "ci_sieve": [
+         0.03354584842933732,
+         0.13478821959097131
+        ],
+        "prob_below_0p25": 0.9997,
+        "T_term_trend_mSv_per_yr": 0.10625092056343721,
+        "T_term_p_santer": 0.003689616505581531,
+        "S_term_trend_mSv_per_yr": -1.5270779982509086
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.07478740983165963,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -0.6761623617772127
+      },
+      "1993_2017": {
+       "window": [
+        1993,
+        2017
+       ],
+       "n_years": 25,
+       "F_ovS_mean_Sv": {
+        "value": -0.06251091994522819,
+        "fitted_mean": -0.06251091994522823,
+        "design": "step",
+        "step_year": 2015,
+        "ci_bias_corrected": [
+         -0.07505221740360117,
+         -0.04996962248685528
+        ],
+        "ci_sieve": [
+         -0.07279319357367912,
+         -0.05244111815699375
+        ],
+        "n_eff": 12.580863584254391,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -0.7832596731863029,
+        "ci_bias_corrected": [
+         -2.427862902275868,
+         0.8613435559032623
+        ],
+        "ci_sieve": [
+         -2.153094339620481,
+         0.57946988221862
+        ],
+        "p_santer": 0.31654551986779494,
+        "p_ols": 0.14001307238813238,
+        "n_eff": 12.852554343740938,
+        "n_eff_at_floor": false,
+        "min_detectable": 1.6446032290895651
+       },
+       "F_az_mean_Sv": 0.3461913389638614,
+       "F_az_trend_mSv_per_yr": {
+        "value": 2.0484640516346766,
+        "ci_bias_corrected": [
+         -5.3264334721577535,
+         9.423361575427107
+        ],
+        "ci_sieve": [
+         -2.509670248179444,
+         6.570039080764805
+        ],
+        "p_santer": 0.4975026446318416,
+        "p_ols": 0.11027180311696705,
+        "n_eff": 6.527781350231156,
+        "n_eff_at_floor": false,
+        "min_detectable": 7.37489752379243
+       },
+       "T_limb_mean_Sv": 18.48418780700949,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -1.0054226911506097,
+        "ci_bias_corrected": [
+         -2.938361977315581,
+         0.9275165950143617
+        ],
+        "ci_sieve": [
+         -2.107311857878417,
+         0.12447469788215833
+        ],
+        "p_santer": 0.21413249178841726,
+        "p_ols": 0.0009660576611614204,
+        "n_eff": 5.634565938471443,
+        "n_eff_at_floor": false,
+        "min_detectable": 1.9329392861649715
+       },
+       "dS_limb_mean_PSU": 0.1095457341441843,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.022006169230196774,
+        "ci_bias_corrected": [
+         -0.007443304065244813,
+         0.05145564252563836
+        ],
+        "ci_sieve": [
+         -0.0025537582423315612,
+         0.04650476606950111
+        ],
+        "p_santer": 0.12752388587016505,
+        "p_ols": 0.021926556902026717,
+        "n_eff": 12.434637110266165,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.029449473295441588
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.057853254953652414,
+       "covariance_residual_Eq1_Sv": -0.004657664991575772,
+       "transport_share_continuous": {
+        "point": 0.4017633728006235,
+        "ci_sieve": [
+         0.018829917974304666,
+         10.151708713056712
+        ],
+        "prob_below_0p25": 0.3477,
+        "T_term_trend_mSv_per_yr": 0.3146850480780431,
+        "T_term_p_santer": 0.21413249178841623,
+        "S_term_trend_mSv_per_yr": -1.162189042753688
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.40176337280062313,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -0.5910396201235933
+      },
+      "1993_2025": {
+       "window": [
+        1993,
+        2025
+       ],
+       "n_years": 33,
+       "F_ovS_mean_Sv": {
+        "value": -0.07088939521539968,
+        "fitted_mean": -0.07088939521539964,
+        "design": "step",
+        "step_year": 2015,
+        "ci_bias_corrected": [
+         -0.0802565576543169,
+         -0.061522232776482375
+        ],
+        "ci_sieve": [
+         -0.0790999246115922,
+         -0.06270847666369515
+        ],
+        "n_eff": 17.183870176203886,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -1.4562047139460343,
+        "ci_bias_corrected": [
+         -2.708624730588273,
+         -0.2037846973037957
+        ],
+        "ci_sieve": [
+         -2.4975715283780824,
+         -0.4149088736037724
+        ],
+        "p_santer": 0.026635898048901235,
+        "p_ols": 0.00013615543536256582,
+        "n_eff": 12.774374730950008,
+        "n_eff_at_floor": false,
+        "min_detectable": 1.2524200166422386
+       },
+       "F_az_mean_Sv": 0.3578535184504737,
+       "F_az_trend_mSv_per_yr": {
+        "value": 2.4432031934737064,
+        "ci_bias_corrected": [
+         -0.9898531111104028,
+         5.8762594980578156
+        ],
+        "ci_sieve": [
+         -0.07296203870524166,
+         5.10059425458169
+        ],
+        "p_santer": 0.1382380527893016,
+        "p_ols": 0.0021603023415112184,
+        "n_eff": 9.597767836052544,
+        "n_eff_at_floor": false,
+        "min_detectable": 3.433056304584109
+       },
+       "T_limb_mean_Sv": 18.248317212845294,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.7720704434565695,
+        "ci_bias_corrected": [
+         -1.5386052780958153,
+         -0.005535608817323623
+        ],
+        "ci_sieve": [
+         -1.3674599777850516,
+         -0.19248474022511777
+        ],
+        "p_santer": 0.04875217581616104,
+        "p_ols": 2.6208046871845855e-05,
+        "n_eff": 9.166025872835737,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.7665348346392459
+       },
+       "dS_limb_mean_PSU": 0.12716230221149452,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.0333017086150008,
+        "ci_bias_corrected": [
+         0.010908889718659219,
+         0.05569452751134238
+        ],
+        "ci_sieve": [
+         0.014758963728427247,
+         0.05215308880722248
+        ],
+        "p_santer": 0.007670732965866303,
+        "p_ols": 2.876007203585839e-06,
+        "n_eff": 12.370336180400232,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.02239281889634158
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.06629994366488716,
+       "covariance_residual_Eq1_Sv": -0.004589451550512519,
+       "transport_share_continuous": {
+        "point": 0.19263040249990046,
+        "ci_sieve": [
+         0.03269438843809984,
+         1.0124032886615808
+        ],
+        "prob_below_0p25": 0.6544,
+        "T_term_trend_mSv_per_yr": 0.280509300169677,
+        "T_term_p_santer": 0.04875217581616076,
+        "S_term_trend_mSv_per_yr": -1.7362861215322214
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.19263040249990032,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -0.4843541559050026
+      }
+     }
+    },
+    "centres": {
+     "section_file": "paper3r1_section_oras5_centres.nc",
+     "thickness_convention": "centres",
+     "column_total_m": 5902.0576171875,
+     "section_latitude": -34.56488037109375,
+     "n_monthly": 816,
+     "windows": {
+      "record": {
+       "window": [
+        1958,
+        2025
+       ],
+       "n_years": 68,
+       "F_ovS_mean_Sv": {
+        "value": -0.038292336805689144,
+        "fitted_mean": -0.038292336805689164,
+        "design": "step",
+        "step_year": 2015,
+        "ci_bias_corrected": [
+         -0.045895239318922566,
+         -0.030689434292455766
+        ],
+        "ci_sieve": [
+         -0.045272534064723854,
+         -0.031366503703407274
+        ],
+        "n_eff": 22.01497323295554,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -1.3656074712345407,
+        "ci_bias_corrected": [
+         -1.784316538418044,
+         -0.9468984040510378
+        ],
+        "ci_sieve": [
+         -1.7433015213547984,
+         -0.9963290298281161
+        ],
+        "p_santer": 2.1211146202339382e-06,
+        "p_ols": 3.9372891746717327e-20,
+        "n_eff": 19.891682080437427,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.418709067183503
+       },
+       "F_az_mean_Sv": 0.3055563391747375,
+       "F_az_trend_mSv_per_yr": {
+        "value": 1.8373439328108403,
+        "ci_bias_corrected": [
+         0.8837495313303251,
+         2.7909383342913556
+        ],
+        "ci_sieve": [
+         1.0160876416715168,
+         2.6611201945429173
+        ],
+        "p_santer": 0.0008596030449400461,
+        "p_ols": 8.553286101431377e-12,
+        "n_eff": 18.071512402426798,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.9535944014805152
+       },
+       "T_limb_mean_Sv": 18.68537241671861,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.48393916236409495,
+        "ci_bias_corrected": [
+         -0.7745603940677204,
+         -0.19331793066046962
+        ],
+        "ci_sieve": [
+         -0.7197178492549682,
+         -0.24374261768471364
+        ],
+        "p_santer": 0.003484019312984665,
+        "p_ols": 2.7708413500414013e-12,
+        "n_eff": 13.909335085445392,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.29062123170362536
+       },
+       "dS_limb_mean_PSU": 0.06763859772284313,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.02737665600227513,
+        "ci_bias_corrected": [
+         0.01925047522419985,
+         0.035502836780350405
+        ],
+        "ci_sieve": [
+         0.020245115557745857,
+         0.03456121695436677
+        ],
+        "p_santer": 2.144138901818798e-06,
+        "p_ols": 5.699619492666672e-22,
+        "n_eff": 18.29753157652307,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.008126180778075281
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.03611006823416969,
+       "covariance_residual_Eq1_Sv": -0.002182268571519451,
+       "transport_share_continuous": {
+        "point": 0.06848436530987988,
+        "ci_sieve": [
+         0.03091476270849014,
+         0.12288480984948713
+        ],
+        "prob_below_0p25": 0.9998,
+        "T_term_trend_mSv_per_yr": 0.09352276092992756,
+        "T_term_p_santer": 0.003484019312984662,
+        "S_term_trend_mSv_per_yr": -1.461551465505445
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.06848436530987996,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -1.2220376523439536
+      },
+      "1993_2017": {
+       "window": [
+        1993,
+        2017
+       ],
+       "n_years": 25,
+       "F_ovS_mean_Sv": {
+        "value": -0.056802469387759055,
+        "fitted_mean": -0.05680246938775909,
+        "design": "step",
+        "step_year": 2015,
+        "ci_bias_corrected": [
+         -0.06868754687095291,
+         -0.04491739190456527
+        ],
+        "ci_sieve": [
+         -0.0665136036466097,
+         -0.04722757461866059
+        ],
+        "n_eff": 12.553501031467672,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -0.7750355311011694,
+        "ci_bias_corrected": [
+         -2.340658285707222,
+         0.7905872235048825
+        ],
+        "ci_sieve": [
+         -2.0739323091991264,
+         0.5191706841573636
+        ],
+        "p_santer": 0.29844735525262966,
+        "p_ols": 0.12378582633194726,
+        "n_eff": 12.757232731132902,
+        "n_eff_at_floor": false,
+        "min_detectable": 1.565622754606052
+       },
+       "F_az_mean_Sv": 0.32949870025063427,
+       "F_az_trend_mSv_per_yr": {
+        "value": 1.9625442494192327,
+        "ci_bias_corrected": [
+         -5.034814173036451,
+         8.959902671874916
+        ],
+        "ci_sieve": [
+         -2.3689925964952145,
+         6.249450906429559
+        ],
+        "p_santer": 0.49359458245143595,
+        "p_ols": 0.10716028038475281,
+        "n_eff": 6.529883888630758,
+        "n_eff_at_floor": false,
+        "min_detectable": 6.997358422455684
+       },
+       "T_limb_mean_Sv": 17.93933476458769,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.9734063438523883,
+        "ci_bias_corrected": [
+         -2.8156087144861166,
+         0.8687960267813398
+        ],
+        "ci_sieve": [
+         -2.028718798126064,
+         0.10999662215593035
+        ],
+        "p_santer": 0.20910267126959906,
+        "p_ols": 0.0008951860242520176,
+        "n_eff": 5.6639815290730855,
+        "n_eff_at_floor": false,
+        "min_detectable": 1.842202370633728
+       },
+       "dS_limb_mean_PSU": 0.10255950497740317,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.021846345301944597,
+        "ci_bias_corrected": [
+         -0.00742329242177583,
+         0.05111598302566503
+        ],
+        "ci_sieve": [
+         -0.0025780795914943978,
+         0.046144654050299896
+        ],
+        "p_santer": 0.1276441085210175,
+        "p_ols": 0.020707111630072817,
+        "n_eff": 12.242669365413835,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.02926963772372043
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.05256712265942952,
+       "covariance_residual_Eq1_Sv": -0.0042353467283295365,
+       "transport_share_continuous": {
+        "point": 0.36802763508891173,
+        "ci_sieve": [
+         0.017844778699702107,
+         8.794521213324757
+        ],
+        "prob_below_0p25": 0.3717,
+        "T_term_trend_mSv_per_yr": 0.2852344936210421,
+        "T_term_p_santer": 0.20910267126959925,
+        "S_term_trend_mSv_per_yr": -1.1197397192981764
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.3680276350889122,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -1.1015581651962028
+      },
+      "1993_2025": {
+       "window": [
+        1993,
+        2025
+       ],
+       "n_years": 33,
+       "F_ovS_mean_Sv": {
+        "value": -0.06487341084021503,
+        "fitted_mean": -0.06487341084021499,
+        "design": "step",
+        "step_year": 2015,
+        "ci_bias_corrected": [
+         -0.0737654503059654,
+         -0.05598137137446457
+        ],
+        "ci_sieve": [
+         -0.07265157053920733,
+         -0.05712408643304934
+        ],
+        "n_eff": 17.102622234738433,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -1.4124148781248456,
+        "ci_bias_corrected": [
+         -2.609472170388359,
+         -0.21535758586133188
+        ],
+        "ci_sieve": [
+         -2.402809310057824,
+         -0.41912112672984364
+        ],
+        "p_santer": 0.0249632586036867,
+        "p_ols": 0.00010147799845517462,
+        "n_eff": 12.622154789067766,
+        "n_eff_at_floor": false,
+        "min_detectable": 1.1970572922635137
+       },
+       "F_az_mean_Sv": 0.34063044092494354,
+       "F_az_trend_mSv_per_yr": {
+        "value": 2.3349446450857663,
+        "ci_bias_corrected": [
+         -0.9250534250750163,
+         5.594942715246549
+        ],
+        "ci_sieve": [
+         -0.04971788196186946,
+         4.861349148564622
+        ],
+        "p_santer": 0.13607541286747787,
+        "p_ols": 0.0020433420264214046,
+        "n_eff": 9.599196736536703,
+        "n_eff_at_floor": false,
+        "min_detectable": 3.2599980701607825
+       },
+       "T_limb_mean_Sv": 17.71363401098276,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.7431818520305554,
+        "ci_bias_corrected": [
+         -1.4806893890989494,
+         -0.005674314962161309
+        ],
+        "ci_sieve": [
+         -1.3154767099124125,
+         -0.18427106095151247
+        ],
+        "p_santer": 0.04867170088197766,
+        "p_ols": 2.6019058059564334e-05,
+        "n_eff": 9.165577674428201,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.7375075370683941
+       },
+       "dS_limb_mean_PSU": 0.11997058207294169,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.03295465723480538,
+        "ci_bias_corrected": [
+         0.01066031886770495,
+         0.05524899560190581
+        ],
+        "ci_sieve": [
+         0.014572632546010543,
+         0.05162087889076854
+        ],
+        "p_santer": 0.008030347403996968,
+        "p_ols": 2.5659306529874876e-06,
+        "n_eff": 12.158410688020467,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.02229433836710043
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.06071757094070452,
+       "covariance_residual_Eq1_Sv": -0.004155839899510509,
+       "transport_share_continuous": {
+        "point": 0.1803597123015366,
+        "ci_sieve": [
+         0.031186607370463734,
+         0.9050875363701372
+        ],
+        "prob_below_0p25": 0.6908,
+        "T_term_trend_mSv_per_yr": 0.254742741069007,
+        "T_term_p_santer": 0.048671700881977725,
+        "S_term_trend_mSv_per_yr": -1.6678478206135074
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.1803597123015368,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -0.9827544032353821
+      }
+     }
+    }
+   }
+  },
+  "glorys12": {
+   "label": "GLORYS12V1",
+   "constructions": {
+    "bounds": {
+     "section_file": "paper3r1_section_glorys12.nc",
+     "thickness_convention": "bounds",
+     "column_total_m": 5954.4833984375,
+     "section_latitude": -34.5,
+     "n_monthly": 396,
+     "windows": {
+      "record": {
+       "window": [
+        1993,
+        2025
+       ],
+       "n_years": 33,
+       "F_ovS_mean_Sv": {
+        "value": -0.0952506656402985,
+        "fitted_mean": -0.09525066564029849,
+        "design": "step",
+        "step_year": 2004,
+        "ci_bias_corrected": [
+         -0.1156684942763273,
+         -0.07483283700426968
+        ],
+        "ci_sieve": [
+         -0.11123669071097683,
+         -0.0793501282356468
+        ],
+        "n_eff": 10.250635157403826,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -4.725877092514741,
+        "ci_bias_corrected": [
+         -44.08188291253224,
+         34.63012872750276
+        ],
+        "ci_sieve": [
+         -8.662434006602796,
+         -0.6792632454139675
+        ],
+        "p_santer": 0.3693468344614078,
+        "p_ols": 1.352441175334458e-09,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 39.3560058200175
+       },
+       "F_az_mean_Sv": 0.3289774385238098,
+       "F_az_trend_mSv_per_yr": {
+        "value": 7.319347396375005,
+        "ci_bias_corrected": [
+         -13.528083125472511,
+         28.16677791822252
+        ],
+        "ci_sieve": [
+         -0.5012139874380874,
+         15.356309632923471
+        ],
+        "p_santer": 0.28703199378197214,
+        "p_ols": 9.39509546079446e-06,
+        "n_eff": 4.174033461262459,
+        "n_eff_at_floor": false,
+        "min_detectable": 20.847430521847517
+       },
+       "T_limb_mean_Sv": 22.53257338507849,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.13846228187533693,
+        "ci_bias_corrected": [
+         -0.8335834294601208,
+         0.5566588657094469
+        ],
+        "ci_sieve": [
+         -0.7169014205320298,
+         0.4487725215056768
+        ],
+        "p_santer": 0.6694264064085279,
+        "p_ols": 0.4659298795150072,
+        "n_eff": 12.946557487049098,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.6951211475847838
+       },
+       "dS_limb_mean_PSU": 0.14618687139386022,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.07330259717760576,
+        "ci_bias_corrected": [
+         -0.4003402970577066,
+         0.5469454914129181
+        ],
+        "ci_sieve": [
+         0.014813212096432958,
+         0.1305909121396275
+        ],
+        "p_santer": 0.33810617597782944,
+        "p_ols": 1.1195751242518572e-09,
+        "n_eff": 3.0938024159712696,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.47364289423531236
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.09411332593191962,
+       "covariance_residual_Eq1_Sv": -0.0011373397083788844,
+       "transport_share_continuous": {
+        "point": 0.012237406576092324,
+        "ci_sieve": [
+         0.0009086082997499263,
+         0.157892994625965
+        ],
+        "prob_below_0p25": 0.9872,
+        "T_term_trend_mSv_per_yr": 0.05783247940974397,
+        "T_term_p_santer": 0.6694264064085267,
+        "S_term_trend_mSv_per_yr": -4.7191318577749986
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.012237406576092272,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -0.417949747799634
+      },
+      "1993_2017": {
+       "window": [
+        1993,
+        2017
+       ],
+       "n_years": 25,
+       "F_ovS_mean_Sv": {
+        "value": -0.0769072334146876,
+        "fitted_mean": -0.07690723341468761,
+        "design": "step",
+        "step_year": 2004,
+        "ci_bias_corrected": [
+         -0.0948850208191025,
+         -0.05892944601027272
+        ],
+        "ci_sieve": [
+         -0.09162685249710666,
+         -0.06269406577480545
+        ],
+        "n_eff": 11.859379319182528,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -5.145679371944216,
+        "ci_bias_corrected": [
+         -61.17389370466295,
+         50.882534960774514
+        ],
+        "ci_sieve": [
+         -15.52484912789473,
+         5.324252825859056
+        ],
+        "p_santer": 0.4510494448602468,
+        "p_ols": 1.0757201237514888e-05,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 56.02821433271873
+       },
+       "F_az_mean_Sv": 0.3064904652503393,
+       "F_az_trend_mSv_per_yr": {
+        "value": 9.528255571601383,
+        "ci_bias_corrected": [
+         -129.92187625829598,
+         148.97838740149876
+        ],
+        "ci_sieve": [
+         -12.123100695227837,
+         31.63942078232234
+        ],
+        "p_santer": 0.5448455866091986,
+        "p_ols": 0.0003744483518984894,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 139.45013182989737
+       },
+       "T_limb_mean_Sv": 22.37710346283121,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.7931275462750484,
+        "ci_bias_corrected": [
+         -1.8193582061240314,
+         0.2331031135739349
+        ],
+        "ci_sieve": [
+         -1.5868447059732345,
+         -0.023386020404073466
+        ],
+        "p_santer": 0.11096583496751518,
+        "p_ols": 0.003695692112853521,
+        "n_eff": 9.255082858387935,
+        "n_eff_at_floor": false,
+        "min_detectable": 1.0262306598489832
+       },
+       "dS_limb_mean_PSU": 0.11960102781432866,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.08545912187792702,
+        "ci_bias_corrected": [
+         -0.7542773730543724,
+         0.9251956168102264
+        ],
+        "ci_sieve": [
+         -0.07482966947404027,
+         0.24303629129667392
+        ],
+        "p_santer": 0.41906783889672466,
+        "p_ols": 2.508829834568367e-06,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 0.8397364949322994
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.07646641639034817,
+       "covariance_residual_Eq1_Sv": -0.0004408170243394294,
+       "transport_share_continuous": {
+        "point": 0.052670468265390735,
+        "ci_sieve": [
+         0.004523541186523267,
+         1.0719207742840848
+        ],
+        "prob_below_0p25": 0.8986,
+        "T_term_trend_mSv_per_yr": 0.27102534206386353,
+        "T_term_p_santer": 0.1109658349675148,
+        "S_term_trend_mSv_per_yr": -5.463793177443072
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.05267046826539076,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -0.5188158128833514
+      },
+      "1993_2025": {
+       "window": [
+        1993,
+        2025
+       ],
+       "n_years": 33,
+       "F_ovS_mean_Sv": {
+        "value": -0.0952506656402985,
+        "fitted_mean": -0.09525066564029849,
+        "design": "step",
+        "step_year": 2004,
+        "ci_bias_corrected": [
+         -0.1156684942763273,
+         -0.07483283700426968
+        ],
+        "ci_sieve": [
+         -0.11123669071097683,
+         -0.0793501282356468
+        ],
+        "n_eff": 10.250635157403826,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -4.725877092514741,
+        "ci_bias_corrected": [
+         -44.08188291253224,
+         34.63012872750276
+        ],
+        "ci_sieve": [
+         -8.662434006602796,
+         -0.6792632454139675
+        ],
+        "p_santer": 0.3693468344614078,
+        "p_ols": 1.352441175334458e-09,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 39.3560058200175
+       },
+       "F_az_mean_Sv": 0.3289774385238098,
+       "F_az_trend_mSv_per_yr": {
+        "value": 7.319347396375005,
+        "ci_bias_corrected": [
+         -13.528083125472511,
+         28.16677791822252
+        ],
+        "ci_sieve": [
+         -0.5012139874380874,
+         15.356309632923471
+        ],
+        "p_santer": 0.28703199378197214,
+        "p_ols": 9.39509546079446e-06,
+        "n_eff": 4.174033461262459,
+        "n_eff_at_floor": false,
+        "min_detectable": 20.847430521847517
+       },
+       "T_limb_mean_Sv": 22.53257338507849,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.13846228187533693,
+        "ci_bias_corrected": [
+         -0.8335834294601208,
+         0.5566588657094469
+        ],
+        "ci_sieve": [
+         -0.7169014205320298,
+         0.4487725215056768
+        ],
+        "p_santer": 0.6694264064085279,
+        "p_ols": 0.4659298795150072,
+        "n_eff": 12.946557487049098,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.6951211475847838
+       },
+       "dS_limb_mean_PSU": 0.14618687139386022,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.07330259717760576,
+        "ci_bias_corrected": [
+         -0.4003402970577066,
+         0.5469454914129181
+        ],
+        "ci_sieve": [
+         0.014813212096432958,
+         0.1305909121396275
+        ],
+        "p_santer": 0.33810617597782944,
+        "p_ols": 1.1195751242518572e-09,
+        "n_eff": 3.0938024159712696,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.47364289423531236
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.09411332593191962,
+       "covariance_residual_Eq1_Sv": -0.0011373397083788844,
+       "transport_share_continuous": {
+        "point": 0.012237406576092324,
+        "ci_sieve": [
+         0.0009086082997499263,
+         0.157892994625965
+        ],
+        "prob_below_0p25": 0.9872,
+        "T_term_trend_mSv_per_yr": 0.05783247940974397,
+        "T_term_p_santer": 0.6694264064085267,
+        "S_term_trend_mSv_per_yr": -4.7191318577749986
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.012237406576092272,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -0.417949747799634
+      }
+     }
+    },
+    "centres": {
+     "section_file": "paper3r1_section_glorys12_centres.nc",
+     "thickness_convention": "centres",
+     "column_total_m": 5727.9169921875,
+     "section_latitude": -34.5,
+     "n_monthly": 396,
+     "windows": {
+      "record": {
+       "window": [
+        1993,
+        2025
+       ],
+       "n_years": 33,
+       "F_ovS_mean_Sv": {
+        "value": -0.08368806827200949,
+        "fitted_mean": -0.08368806827200945,
+        "design": "step",
+        "step_year": 2004,
+        "ci_bias_corrected": [
+         -0.10241152373134928,
+         -0.06496461281266962
+        ],
+        "ci_sieve": [
+         -0.09840759046076043,
+         -0.06907054387256036
+        ],
+        "n_eff": 10.312998205666004,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -4.36196538446867,
+        "ci_bias_corrected": [
+         -40.68443165922316,
+         31.96050089028582
+        ],
+        "ci_sieve": [
+         -7.990214182276294,
+         -0.6333095018661602
+        ],
+        "p_santer": 0.36932299088157344,
+        "p_ols": 1.3500169258412891e-09,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 36.32246627475449
+       },
+       "F_az_mean_Sv": 0.30425944633053553,
+       "F_az_trend_mSv_per_yr": {
+        "value": 6.6762403319717905,
+        "ci_bias_corrected": [
+         -11.954643500092603,
+         25.307124164036185
+        ],
+        "ci_sieve": [
+         -0.444842006213237,
+         13.980787985309467
+        ],
+        "p_santer": 0.28301702090165615,
+        "p_ols": 9.742701076741258e-06,
+        "n_eff": 4.211151776352118,
+        "n_eff_at_floor": false,
+        "min_detectable": 18.630883832064395
+       },
+       "T_limb_mean_Sv": 21.263193650690802,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.12887219456684115,
+        "ci_bias_corrected": [
+         -0.7715860291230401,
+         0.5138416399893577
+        ],
+        "ci_sieve": [
+         -0.6678140784280073,
+         0.41958485239917115
+        ],
+        "p_santer": 0.6686092865935517,
+        "p_ols": 0.4746248190494528,
+        "n_eff": 13.422217371409765,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.6427138345561989
+       },
+       "dS_limb_mean_PSU": 0.13625797304817994,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.07173538860936997,
+        "ci_bias_corrected": [
+         -0.33154371601435173,
+         0.47501449323309164
+        ],
+        "ci_sieve": [
+         0.015337322912381837,
+         0.1273355274474677
+        ],
+        "p_santer": 0.3206246605675028,
+        "p_ols": 1.1143161893764722e-09,
+        "n_eff": 3.15538905817579,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.4032791046237217
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.08277941906783023,
+       "covariance_residual_Eq1_Sv": -0.0009086492041792543,
+       "transport_share_continuous": {
+        "point": 0.011501934476255408,
+        "ci_sieve": [
+         0.0008007125741017781,
+         0.14703682398136805
+        ],
+        "prob_below_0p25": 0.9882,
+        "T_term_trend_mSv_per_yr": 0.05017104003985287,
+        "T_term_p_santer": 0.6686092865935507,
+        "S_term_trend_mSv_per_yr": -4.358067027453122
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.011501934476255367,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -1.1693192400139143
+      },
+      "1993_2017": {
+       "window": [
+        1993,
+        2017
+       ],
+       "n_years": 25,
+       "F_ovS_mean_Sv": {
+        "value": -0.06678262353377815,
+        "fitted_mean": -0.06678262353377817,
+        "design": "step",
+        "step_year": 2004,
+        "ci_bias_corrected": [
+         -0.08345936111319696,
+         -0.05010588595435939
+        ],
+        "ci_sieve": [
+         -0.08040264090714118,
+         -0.05363284111904365
+        ],
+        "n_eff": 11.797602907912102,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -4.756445524994062,
+        "ci_bias_corrected": [
+         -56.45412935605959,
+         46.94123830607147
+        ],
+        "ci_sieve": [
+         -14.325671710802641,
+         4.870125300011991
+        ],
+        "p_santer": 0.4504878377254535,
+        "p_ols": 1.0498312377490403e-05,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 51.69768383106553
+       },
+       "F_az_mean_Sv": 0.2837139656020261,
+       "F_az_trend_mSv_per_yr": {
+        "value": 8.678444711749897,
+        "ci_bias_corrected": [
+         -118.91760868583022,
+         136.27449810933
+        ],
+        "ci_sieve": [
+         -10.97931200322373,
+         28.81982283158554
+        ],
+        "p_santer": 0.5462890690958524,
+        "p_ols": 0.00039262136528278927,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 127.59605339758012
+       },
+       "T_limb_mean_Sv": 21.11487559820184,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.7504024897745841,
+        "ci_bias_corrected": [
+         -1.674565561906487,
+         0.17376058235731892
+        ],
+        "ci_sieve": [
+         -1.479339442533836,
+         -0.0379829629443462
+        ],
+        "p_santer": 0.09775480090226675,
+        "p_ols": 0.0037475015872848317,
+        "n_eff": 9.81669790963699,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.924163072131903
+       },
+       "dS_limb_mean_PSU": 0.11021688529368286,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.08354164383934085,
+        "ci_bias_corrected": [
+         -0.7379955382265164,
+         0.9050788259051983
+        ],
+        "ci_sieve": [
+         -0.07330442345130225,
+         0.2376575833240391
+        ],
+        "p_santer": 0.4193087692047354,
+        "p_ols": 2.5378736762145836e-06,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 0.8215371820658574
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.06649188062278273,
+       "covariance_residual_Eq1_Sv": -0.0002907429109954146,
+       "transport_share_continuous": {
+        "point": 0.049681171553705425,
+        "ci_sieve": [
+         0.0044033818858425725,
+         0.9839412191639642
+        ],
+        "prob_below_0p25": 0.9039,
+        "T_term_trend_mSv_per_yr": 0.23630578611308445,
+        "T_term_p_santer": 0.09775480090226732,
+        "S_term_trend_mSv_per_yr": -5.0399183341056215
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.04968117155370531,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -1.2616582571553754
+      },
+      "1993_2025": {
+       "window": [
+        1993,
+        2025
+       ],
+       "n_years": 33,
+       "F_ovS_mean_Sv": {
+        "value": -0.08368806827200949,
+        "fitted_mean": -0.08368806827200945,
+        "design": "step",
+        "step_year": 2004,
+        "ci_bias_corrected": [
+         -0.10241152373134928,
+         -0.06496461281266962
+        ],
+        "ci_sieve": [
+         -0.09840759046076043,
+         -0.06907054387256036
+        ],
+        "n_eff": 10.312998205666004,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": -4.36196538446867,
+        "ci_bias_corrected": [
+         -40.68443165922316,
+         31.96050089028582
+        ],
+        "ci_sieve": [
+         -7.990214182276294,
+         -0.6333095018661602
+        ],
+        "p_santer": 0.36932299088157344,
+        "p_ols": 1.3500169258412891e-09,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 36.32246627475449
+       },
+       "F_az_mean_Sv": 0.30425944633053553,
+       "F_az_trend_mSv_per_yr": {
+        "value": 6.6762403319717905,
+        "ci_bias_corrected": [
+         -11.954643500092603,
+         25.307124164036185
+        ],
+        "ci_sieve": [
+         -0.444842006213237,
+         13.980787985309467
+        ],
+        "p_santer": 0.28301702090165615,
+        "p_ols": 9.742701076741258e-06,
+        "n_eff": 4.211151776352118,
+        "n_eff_at_floor": false,
+        "min_detectable": 18.630883832064395
+       },
+       "T_limb_mean_Sv": 21.263193650690802,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.12887219456684115,
+        "ci_bias_corrected": [
+         -0.7715860291230401,
+         0.5138416399893577
+        ],
+        "ci_sieve": [
+         -0.6678140784280073,
+         0.41958485239917115
+        ],
+        "p_santer": 0.6686092865935517,
+        "p_ols": 0.4746248190494528,
+        "n_eff": 13.422217371409765,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.6427138345561989
+       },
+       "dS_limb_mean_PSU": 0.13625797304817994,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.07173538860936997,
+        "ci_bias_corrected": [
+         -0.33154371601435173,
+         0.47501449323309164
+        ],
+        "ci_sieve": [
+         0.015337322912381837,
+         0.1273355274474677
+        ],
+        "p_santer": 0.3206246605675028,
+        "p_ols": 1.1143161893764722e-09,
+        "n_eff": 3.15538905817579,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.4032791046237217
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.08277941906783023,
+       "covariance_residual_Eq1_Sv": -0.0009086492041792543,
+       "transport_share_continuous": {
+        "point": 0.011501934476255408,
+        "ci_sieve": [
+         0.0008007125741017781,
+         0.14703682398136805
+        ],
+        "prob_below_0p25": 0.9882,
+        "T_term_trend_mSv_per_yr": 0.05017104003985287,
+        "T_term_p_santer": 0.6686092865935507,
+        "S_term_trend_mSv_per_yr": -4.358067027453122
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 0.011501934476255367,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -1.1693192400139143
+      }
+     }
+    }
+   }
+  },
+  "ecco": {
+   "label": "ECCO-V4r4",
+   "constructions": {
+    "bounds": {
+     "section_file": "paper3r1_section_ecco.nc",
+     "thickness_convention": "bounds",
+     "column_total_m": 6134.5,
+     "section_latitude": -34.75,
+     "n_monthly": 312,
+     "windows": {
+      "record": {
+       "window": [
+        1992,
+        2017
+       ],
+       "n_years": 26,
+       "F_ovS_mean_Sv": {
+        "value": -0.13213557055807046,
+        "fitted_mean": -0.1321355705580704,
+        "design": "trend",
+        "step_year": null,
+        "ci_bias_corrected": [
+         -0.1386076393228049,
+         -0.1256635017933359
+        ],
+        "ci_sieve": [
+         -0.1379528248083074,
+         -0.12631305449202743
+        ],
+        "n_eff": 18.51368642806058,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": 0.1114005774276295,
+        "ci_bias_corrected": [
+         -0.7515419245369683,
+         0.9743430793922273
+        ],
+        "ci_sieve": [
+         -0.6543648513105806,
+         0.8792768305155462
+        ],
+        "p_santer": 0.7882555764105318,
+        "p_ols": 0.7449455504816397,
+        "n_eff": 18.51368642806058,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.8629425019645979
+       },
+       "F_az_mean_Sv": 0.15488001273630483,
+       "F_az_trend_mSv_per_yr": {
+        "value": 0.1939361059696756,
+        "ci_bias_corrected": [
+         -40.24493933167785,
+         40.632811543617194
+        ],
+        "ci_sieve": [
+         -5.880475063993343,
+         6.269818516452276
+        ],
+        "p_santer": 0.9612547121019621,
+        "p_ols": 0.7678717269932379,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 40.438875437647525
+       },
+       "T_limb_mean_Sv": 14.583886096037334,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.24345197448466163,
+        "ci_bias_corrected": [
+         -0.7340400267159044,
+         0.24713607774658117
+        ],
+        "ci_sieve": [
+         -0.6328706695225149,
+         0.1513218064824167
+        ],
+        "p_santer": 0.30080179528235396,
+        "p_ols": 0.13897422917656369,
+        "n_eff": 13.982125624919963,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.4905880522312428
+       },
+       "dS_limb_mean_PSU": 0.3065734674754686,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.0031361007842773143,
+        "ci_bias_corrected": [
+         -0.023416819116279693,
+         0.029689020684834325
+        ],
+        "ci_sieve": [
+         -0.017850266473756572,
+         0.02402960682145381
+        ],
+        "p_santer": 0.7938683867604857,
+        "p_ols": 0.6543300518888677,
+        "n_eff": 10.488730994148812,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.02655291990055701
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.1277437865636983,
+       "covariance_residual_Eq1_Sv": -0.00439178399437215,
+       "transport_share_continuous": {
+        "point": 1.9142223420827853,
+        "ci_sieve": [
+         0.04086609529923184,
+         13.56180206229371
+        ],
+        "prob_below_0p25": 0.146,
+        "T_term_trend_mSv_per_yr": 0.21324547423289159,
+        "T_term_p_santer": 0.30080179528235407,
+        "S_term_trend_mSv_per_yr": -0.130675818924553
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 1.914222342082784,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -0.976620389818642
+      },
+      "1993_2017": {
+       "window": [
+        1993,
+        2017
+       ],
+       "n_years": 25,
+       "F_ovS_mean_Sv": {
+        "value": -0.13214473594125464,
+        "fitted_mean": -0.13214473594125464,
+        "design": "trend",
+        "step_year": null,
+        "ci_bias_corrected": [
+         -0.13893993992849135,
+         -0.12534953195401793
+        ],
+        "ci_sieve": [
+         -0.13829601783547218,
+         -0.12606556355273296
+        ],
+        "n_eff": 17.69596786136069,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": 0.1276169954021331,
+        "ci_bias_corrected": [
+         -0.8147082508755304,
+         1.0699422416797966
+        ],
+        "ci_sieve": [
+         -0.7031746296826898,
+         0.9439239933389612
+        ],
+        "p_santer": 0.7774555715650301,
+        "p_ols": 0.7309463196459665,
+        "n_eff": 17.69596786136069,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.9423252462776636
+       },
+       "F_az_mean_Sv": 0.15388459321156944,
+       "F_az_trend_mSv_per_yr": {
+        "value": 0.4670330003997338,
+        "ci_bias_corrected": [
+         -41.14241079125223,
+         42.0764767920517
+        ],
+        "ci_sieve": [
+         -5.889170150999725,
+         6.87319089208701
+        ],
+        "p_santer": 0.9098153133986743,
+        "p_ols": 0.5008294874462345,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 41.60944379165197
+       },
+       "T_limb_mean_Sv": 14.612999178710048,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.3466661779770226,
+        "ci_bias_corrected": [
+         -0.772914956663303,
+         0.07958260070925774
+        ],
+        "ci_sieve": [
+         -0.7092523373095522,
+         0.017233978785366963
+        ],
+        "p_santer": 0.10337829212273231,
+        "p_ols": 0.04063256582278715,
+        "n_eff": 16.732064179219282,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.42624877868628036
+       },
+       "dS_limb_mean_PSU": 0.3061243564218414,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.0046508910163799684,
+        "ci_bias_corrected": [
+         -0.024253211328952463,
+         0.0335549933617124
+        ],
+        "ci_sieve": [
+         -0.017565169277902373,
+         0.02733894502325459
+        ],
+        "p_santer": 0.7205370912284852,
+        "p_ols": 0.5377198835714213,
+        "n_eff": 10.06707943022716,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.02890410234533243
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.1278112848278717,
+       "covariance_residual_Eq1_Sv": -0.00433345111338293,
+       "transport_share_continuous": {
+        "point": 2.3759253849946416,
+        "ci_sieve": [
+         0.07248292524308138,
+         20.29264550016644
+        ],
+        "prob_below_0p25": 0.0798,
+        "T_term_trend_mSv_per_yr": 0.3032084589326724,
+        "T_term_p_santer": 0.10337829212273288,
+        "S_term_trend_mSv_per_yr": -0.1941813331503718
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 2.3759253849946464,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -0.9652832068426958
+      },
+      "1993_2025": {
+       "window": [
+        1993,
+        2017
+       ],
+       "n_years": 25,
+       "F_ovS_mean_Sv": {
+        "value": -0.13214473594125464,
+        "fitted_mean": -0.13214473594125464,
+        "design": "trend",
+        "step_year": null,
+        "ci_bias_corrected": [
+         -0.13893993992849135,
+         -0.12534953195401793
+        ],
+        "ci_sieve": [
+         -0.13829601783547218,
+         -0.12606556355273296
+        ],
+        "n_eff": 17.69596786136069,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": 0.1276169954021331,
+        "ci_bias_corrected": [
+         -0.8147082508755304,
+         1.0699422416797966
+        ],
+        "ci_sieve": [
+         -0.7031746296826898,
+         0.9439239933389612
+        ],
+        "p_santer": 0.7774555715650301,
+        "p_ols": 0.7309463196459665,
+        "n_eff": 17.69596786136069,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.9423252462776636
+       },
+       "F_az_mean_Sv": 0.15388459321156944,
+       "F_az_trend_mSv_per_yr": {
+        "value": 0.4670330003997338,
+        "ci_bias_corrected": [
+         -41.14241079125223,
+         42.0764767920517
+        ],
+        "ci_sieve": [
+         -5.889170150999725,
+         6.87319089208701
+        ],
+        "p_santer": 0.9098153133986743,
+        "p_ols": 0.5008294874462345,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 41.60944379165197
+       },
+       "T_limb_mean_Sv": 14.612999178710048,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.3466661779770226,
+        "ci_bias_corrected": [
+         -0.772914956663303,
+         0.07958260070925774
+        ],
+        "ci_sieve": [
+         -0.7092523373095522,
+         0.017233978785366963
+        ],
+        "p_santer": 0.10337829212273231,
+        "p_ols": 0.04063256582278715,
+        "n_eff": 16.732064179219282,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.42624877868628036
+       },
+       "dS_limb_mean_PSU": 0.3061243564218414,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.0046508910163799684,
+        "ci_bias_corrected": [
+         -0.024253211328952463,
+         0.0335549933617124
+        ],
+        "ci_sieve": [
+         -0.017565169277902373,
+         0.02733894502325459
+        ],
+        "p_santer": 0.7205370912284852,
+        "p_ols": 0.5377198835714213,
+        "n_eff": 10.06707943022716,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.02890410234533243
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.1278112848278717,
+       "covariance_residual_Eq1_Sv": -0.00433345111338293,
+       "transport_share_continuous": {
+        "point": 2.3759253849946416,
+        "ci_sieve": [
+         0.07248292524308138,
+         20.29264550016644
+        ],
+        "prob_below_0p25": 0.0798,
+        "T_term_trend_mSv_per_yr": 0.3032084589326724,
+        "T_term_p_santer": 0.10337829212273288,
+        "S_term_trend_mSv_per_yr": -0.1941813331503718
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 2.3759253849946464,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -0.9652832068426958
+      }
+     }
+    },
+    "centres": {
+     "section_file": "paper3r1_section_ecco_centres.nc",
+     "thickness_convention": "centres",
+     "column_total_m": 5906.25,
+     "section_latitude": -34.75,
+     "n_monthly": 312,
+     "windows": {
+      "record": {
+       "window": [
+        1992,
+        2017
+       ],
+       "n_years": 26,
+       "F_ovS_mean_Sv": {
+        "value": -0.11712521925271695,
+        "fitted_mean": -0.11712521925271689,
+        "design": "trend",
+        "step_year": null,
+        "ci_bias_corrected": [
+         -0.12272396904782146,
+         -0.11152646945761233
+        ],
+        "ci_sieve": [
+         -0.12212544999689269,
+         -0.11209089702023425
+        ],
+        "n_eff": 18.979256002480607,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": 0.08662776736362532,
+        "ci_bias_corrected": [
+         -0.6598722053169828,
+         0.8331277400442333
+        ],
+        "ci_sieve": [
+         -0.5796557751794389,
+         0.7548828100014852
+        ],
+        "p_santer": 0.8095019905365648,
+        "p_ols": 0.7734675274193225,
+        "n_eff": 18.979256002480607,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.746499972680608
+       },
+       "F_az_mean_Sv": 0.14381906848917178,
+       "F_az_trend_mSv_per_yr": {
+        "value": 0.20847054796094264,
+        "ci_bias_corrected": [
+         -37.64354549343517,
+         38.060486589357055
+        ],
+        "ci_sieve": [
+         -5.504023359168783,
+         5.927181351754525
+        ],
+        "p_santer": 0.9555221045452259,
+        "p_ols": 0.7347119535807431,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 37.85201604139611
+       },
+       "T_limb_mean_Sv": 13.737417930757102,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.23819598741409906,
+        "ci_bias_corrected": [
+         -0.7111706467616113,
+         0.23477867193341326
+        ],
+        "ci_sieve": [
+         -0.612440249360073,
+         0.13837478668801104
+        ],
+        "p_santer": 0.2924818600662887,
+        "p_ols": 0.12245179423279877,
+        "n_eff": 13.404704849028116,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.4729746593475123
+       },
+       "dS_limb_mean_PSU": 0.2891086205751799,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.0035942208193696186,
+        "ci_bias_corrected": [
+         -0.020950363117260937,
+         0.028138804756000172
+        ],
+        "ci_sieve": [
+         -0.01596768456442053,
+         0.023013731078187914
+        ],
+        "p_santer": 0.7471771554619877,
+        "p_ols": 0.5866492227932195,
+        "n_eff": 10.747724105395626,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.024544583936630553
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.11347445566359794,
+       "covariance_residual_Eq1_Sv": -0.003650763589119005,
+       "transport_share_continuous": {
+        "point": 2.2712781179790325,
+        "ci_sieve": [
+         0.04483481949889769,
+         16.99344492926565
+        ],
+        "prob_below_0p25": 0.1412,
+        "T_term_trend_mSv_per_yr": 0.19675575242238036,
+        "T_term_p_santer": 0.2924818600662888,
+        "S_term_trend_mSv_per_yr": -0.14107232437459608
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 2.271278117979031,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -1.2127217806282888
+      },
+      "1993_2017": {
+       "window": [
+        1993,
+        2017
+       ],
+       "n_years": 25,
+       "F_ovS_mean_Sv": {
+        "value": -0.11716654137231583,
+        "fitted_mean": -0.11716654137231582,
+        "design": "trend",
+        "step_year": null,
+        "ci_bias_corrected": [
+         -0.12304205336426506,
+         -0.11129102938036657
+        ],
+        "ci_sieve": [
+         -0.12248974752828276,
+         -0.11185131236477104
+        ],
+        "n_eff": 18.135441906589545,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": 0.10778676818380091,
+        "ci_bias_corrected": [
+         -0.7070001455306832,
+         0.922573681898285
+        ],
+        "ci_sieve": [
+         -0.6099292453104715,
+         0.8172955235549835
+        ],
+        "p_santer": 0.7828488495526594,
+        "p_ols": 0.7409651955049626,
+        "n_eff": 18.135441906589545,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.8147869137144841
+       },
+       "F_az_mean_Sv": 0.14292754515837666,
+       "F_az_trend_mSv_per_yr": {
+        "value": 0.4574101991548445,
+        "ci_bias_corrected": [
+         -38.553183699505404,
+         39.46800409781509
+        ],
+        "ci_sieve": [
+         -5.567398921816385,
+         6.479099809222012
+        ],
+        "p_santer": 0.905846489019323,
+        "p_ols": 0.4821066820980019,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 39.01059389866025
+       },
+       "T_limb_mean_Sv": 13.76523199223503,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.3375056395356863,
+        "ci_bias_corrected": [
+         -0.7462897807194407,
+         0.07127850164806819
+        ],
+        "ci_sieve": [
+         -0.6818525877679052,
+         0.009306189352338698
+        ],
+        "p_santer": 0.09835667702544446,
+        "p_ols": 0.032960009076464354,
+        "n_eff": 16.006978772801514,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.4087841411837545
+       },
+       "dS_limb_mean_PSU": 0.28878211751462385,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.004859756073180975,
+        "ci_bias_corrected": [
+         -0.022089323762794662,
+         0.03180883590915662
+        ],
+        "ci_sieve": [
+         -0.016020053982329297,
+         0.026140734276996282
+        ],
+        "p_santer": 0.6895476966236315,
+        "p_ols": 0.49579490201107285,
+        "n_eff": 10.224586347118692,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.02694907983597564
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.11357579550850504,
+       "covariance_residual_Eq1_Sv": -0.003590745863810793,
+       "transport_share_continuous": {
+        "point": 2.5835557396072866,
+        "ci_sieve": [
+         0.08405427781308863,
+         21.154422961959067
+        ],
+        "prob_below_0p25": 0.0728,
+        "T_term_trend_mSv_per_yr": 0.27847312359497894,
+        "T_term_p_santer": 0.09835667702544523,
+        "S_term_trend_mSv_per_yr": -0.19113048506573985
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 2.5835557396072923,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -1.2012971986706784
+      },
+      "1993_2025": {
+       "window": [
+        1993,
+        2017
+       ],
+       "n_years": 25,
+       "F_ovS_mean_Sv": {
+        "value": -0.11716654137231583,
+        "fitted_mean": -0.11716654137231582,
+        "design": "trend",
+        "step_year": null,
+        "ci_bias_corrected": [
+         -0.12304205336426506,
+         -0.11129102938036657
+        ],
+        "ci_sieve": [
+         -0.12248974752828276,
+         -0.11185131236477104
+        ],
+        "n_eff": 18.135441906589545,
+        "n_eff_at_floor": false
+       },
+       "F_ovS_trend_mSv_per_yr": {
+        "value": 0.10778676818380091,
+        "ci_bias_corrected": [
+         -0.7070001455306832,
+         0.922573681898285
+        ],
+        "ci_sieve": [
+         -0.6099292453104715,
+         0.8172955235549835
+        ],
+        "p_santer": 0.7828488495526594,
+        "p_ols": 0.7409651955049626,
+        "n_eff": 18.135441906589545,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.8147869137144841
+       },
+       "F_az_mean_Sv": 0.14292754515837666,
+       "F_az_trend_mSv_per_yr": {
+        "value": 0.4574101991548445,
+        "ci_bias_corrected": [
+         -38.553183699505404,
+         39.46800409781509
+        ],
+        "ci_sieve": [
+         -5.567398921816385,
+         6.479099809222012
+        ],
+        "p_santer": 0.905846489019323,
+        "p_ols": 0.4821066820980019,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "min_detectable": 39.01059389866025
+       },
+       "T_limb_mean_Sv": 13.76523199223503,
+       "T_limb_trend_Sv_per_decade": {
+        "value": -0.3375056395356863,
+        "ci_bias_corrected": [
+         -0.7462897807194407,
+         0.07127850164806819
+        ],
+        "ci_sieve": [
+         -0.6818525877679052,
+         0.009306189352338698
+        ],
+        "p_santer": 0.09835667702544446,
+        "p_ols": 0.032960009076464354,
+        "n_eff": 16.006978772801514,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.4087841411837545
+       },
+       "dS_limb_mean_PSU": 0.28878211751462385,
+       "dS_limb_trend_PSU_per_decade": {
+        "value": 0.004859756073180975,
+        "ci_bias_corrected": [
+         -0.022089323762794662,
+         0.03180883590915662
+        ],
+        "ci_sieve": [
+         -0.016020053982329297,
+         0.026140734276996282
+        ],
+        "p_santer": 0.6895476966236315,
+        "p_ols": 0.49579490201107285,
+        "n_eff": 10.224586347118692,
+        "n_eff_at_floor": false,
+        "min_detectable": 0.02694907983597564
+       },
+       "F_ovS_pred_minus_T_dS_Sv": -0.11357579550850504,
+       "covariance_residual_Eq1_Sv": -0.003590745863810793,
+       "transport_share_continuous": {
+        "point": 2.5835557396072866,
+        "ci_sieve": [
+         0.08405427781308863,
+         21.154422961959067
+        ],
+        "prob_below_0p25": 0.0728,
+        "T_term_trend_mSv_per_yr": 0.27847312359497894,
+        "T_term_p_santer": 0.09835667702544523,
+        "S_term_trend_mSv_per_yr": -0.19113048506573985
+       },
+       "transport_share_T_term_with_mean_dS": {
+        "point": 2.5835557396072923,
+        "definition": "abs(-(1/S0) * slope(T) * mean(dS) / slope(F_ovS)), as in analysis_paper3v2_final_checks.py"
+       },
+       "V_net_mean_Sv": -1.2012971986706784
+      }
+     }
+    }
+   }
+  }
+ },
+ "expected_check": {
+  "ORAS5 record-mean F_ovS (Sv), expected -0.0433": -0.043271790581535706,
+  "ORAS5 record trend (mSv/yr), expected -1.42": -1.4207059824989183,
+  "ORAS5 record transport share, expected 0.075": 0.0747874098316596,
+  "ECCO record-mean F_ovS (Sv), expected -0.132": -0.13213557055807046,
+  "ORAS5 net removal (Sv), expected -0.68": -0.6761623617772127,
+  "GLORYS12V1 net removal (Sv), expected -0.42": -0.417949747799634,
+  "ECCO net removal (Sv), expected -0.98": -0.976620389818642
+ },
+ "cross_check_stored_values": [
+  {
+   "source": "attribution.json trends['own record'].F_ov.trend (mSv/yr)",
+   "product": "oras5",
+   "window": "record",
+   "stored": -1.4207059824989183,
+   "decimals": 3,
+   "bounds_value": -1.4207059824989183,
+   "centres_value": -1.3656074712345407,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json mean_F_ov_Sv",
+   "product": "oras5",
+   "window": "record",
+   "stored": -0.043271790581535706,
+   "decimals": 4,
+   "bounds_value": -0.043271790581535706,
+   "centres_value": -0.038292336805689144,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json mean_stats.mean (fitted mean)",
+   "product": "oras5",
+   "window": "record",
+   "stored": -0.0432717905815357,
+   "decimals": 4,
+   "bounds_value": -0.0432717905815357,
+   "centres_value": -0.038292336805689164,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json mean_V_net_Sv",
+   "product": "oras5",
+   "window": "record",
+   "stored": -0.6761623617772127,
+   "decimals": 2,
+   "bounds_value": -0.6761623617772127,
+   "centres_value": -1.2220376523439536,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json own mean_F_ov_Sv",
+   "product": "oras5",
+   "window": "record",
+   "stored": -0.043271790581535706,
+   "decimals": 4,
+   "bounds_value": -0.043271790581535706,
+   "centres_value": -0.038292336805689144,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json own trend_F_ov.trend (mSv/yr)",
+   "product": "oras5",
+   "window": "record",
+   "stored": -1.4207059824989183,
+   "decimals": 3,
+   "bounds_value": -1.4207059824989183,
+   "centres_value": -1.3656074712345407,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json own trend_F_az.trend (mSv/yr)",
+   "product": "oras5",
+   "window": "record",
+   "stored": 1.9289441683960122,
+   "decimals": 3,
+   "bounds_value": 1.9289441683960122,
+   "centres_value": 1.8373439328108403,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json common mean_F_ov_Sv (1993-2017)",
+   "product": "oras5",
+   "window": "1993_2017",
+   "stored": -0.06251091994522819,
+   "decimals": 4,
+   "bounds_value": -0.06251091994522819,
+   "centres_value": -0.056802469387759055,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json common trend_F_ov.trend (mSv/yr)",
+   "product": "oras5",
+   "window": "1993_2017",
+   "stored": -0.7832596731863029,
+   "decimals": 3,
+   "bounds_value": -0.7832596731863029,
+   "centres_value": -0.7750355311011694,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_cells.json means F_ov",
+   "product": "oras5",
+   "window": "record",
+   "stored": -0.043271790581535706,
+   "decimals": 4,
+   "bounds_value": -0.043271790581535706,
+   "centres_value": -0.038292336805689144,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json used mean_F_ov_Sv",
+   "product": "oras5",
+   "window": "record",
+   "stored": -0.038291745979010375,
+   "decimals": 4,
+   "bounds_value": -0.043271790581535706,
+   "centres_value": -0.038292336805689144,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json used trend_F_ov_mSv_per_yr",
+   "product": "oras5",
+   "window": "record",
+   "stored": -1.365598856378567,
+   "decimals": 3,
+   "bounds_value": -1.4207059824989183,
+   "centres_value": -1.3656074712345407,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json used share_T",
+   "product": "oras5",
+   "window": "record",
+   "stored": 0.06848412355010762,
+   "decimals": 3,
+   "bounds_value": 0.0747874098316596,
+   "centres_value": 0.06848436530987988,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json alternative mean_F_ov_Sv",
+   "product": "oras5",
+   "window": "record",
+   "stored": -0.04327116959933053,
+   "decimals": 4,
+   "bounds_value": -0.043271790581535706,
+   "centres_value": -0.038292336805689144,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json alternative trend_F_ov_mSv_per_yr",
+   "product": "oras5",
+   "window": "record",
+   "stored": -1.420697023652096,
+   "decimals": 3,
+   "bounds_value": -1.4207059824989183,
+   "centres_value": -1.3656074712345407,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json alternative share_T",
+   "product": "oras5",
+   "window": "record",
+   "stored": 0.07478724127195789,
+   "decimals": 3,
+   "bounds_value": 0.0747874098316596,
+   "centres_value": 0.06848436530987988,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "final_checks.json window_1993_2025 F_ov_trend_mSv_per_yr",
+   "product": "oras5",
+   "window": "1993_2025",
+   "stored": -1.4562047139460343,
+   "decimals": 3,
+   "bounds_value": -1.4562047139460343,
+   "centres_value": -1.4124148781248456,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "final_checks.json window_1993_2025 transport_share",
+   "product": "oras5",
+   "window": "1993_2025",
+   "stored": 0.19263040249990032,
+   "decimals": 3,
+   "bounds_value": 0.19263040249990032,
+   "centres_value": 0.1803597123015368,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json trends['own record'].F_ov.trend (mSv/yr)",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -4.725877092514741,
+   "decimals": 3,
+   "bounds_value": -4.725877092514741,
+   "centres_value": -4.36196538446867,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json mean_F_ov_Sv",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -0.0952506656402985,
+   "decimals": 4,
+   "bounds_value": -0.0952506656402985,
+   "centres_value": -0.08368806827200949,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json mean_stats.mean (fitted mean)",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -0.09525066564029849,
+   "decimals": 4,
+   "bounds_value": -0.09525066564029849,
+   "centres_value": -0.08368806827200945,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json mean_V_net_Sv",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -0.417949747799634,
+   "decimals": 2,
+   "bounds_value": -0.417949747799634,
+   "centres_value": -1.1693192400139143,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json own mean_F_ov_Sv",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -0.0952506656402985,
+   "decimals": 4,
+   "bounds_value": -0.0952506656402985,
+   "centres_value": -0.08368806827200949,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json own trend_F_ov.trend (mSv/yr)",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -4.725877092514741,
+   "decimals": 3,
+   "bounds_value": -4.725877092514741,
+   "centres_value": -4.36196538446867,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json own trend_F_az.trend (mSv/yr)",
+   "product": "glorys12",
+   "window": "record",
+   "stored": 7.319347396375005,
+   "decimals": 3,
+   "bounds_value": 7.319347396375005,
+   "centres_value": 6.6762403319717905,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json common mean_F_ov_Sv (1993-2017)",
+   "product": "glorys12",
+   "window": "1993_2017",
+   "stored": -0.0769072334146876,
+   "decimals": 4,
+   "bounds_value": -0.0769072334146876,
+   "centres_value": -0.06678262353377815,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json common trend_F_ov.trend (mSv/yr)",
+   "product": "glorys12",
+   "window": "1993_2017",
+   "stored": -5.145679371944216,
+   "decimals": 3,
+   "bounds_value": -5.145679371944216,
+   "centres_value": -4.756445524994062,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_cells.json means F_ov",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -0.09525066564029849,
+   "decimals": 4,
+   "bounds_value": -0.0952506656402985,
+   "centres_value": -0.08368806827200949,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json used mean_F_ov_Sv",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -0.08368821724240695,
+   "decimals": 4,
+   "bounds_value": -0.0952506656402985,
+   "centres_value": -0.08368806827200949,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json used trend_F_ov_mSv_per_yr",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -4.361965918007252,
+   "decimals": 3,
+   "bounds_value": -4.725877092514741,
+   "centres_value": -4.36196538446867,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json used share_T",
+   "product": "glorys12",
+   "window": "record",
+   "stored": 0.011501954145717272,
+   "decimals": 3,
+   "bounds_value": 0.012237406576092324,
+   "centres_value": 0.011501934476255408,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json alternative mean_F_ov_Sv",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -0.09525082286460262,
+   "decimals": 4,
+   "bounds_value": -0.0952506656402985,
+   "centres_value": -0.08368806827200949,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json alternative trend_F_ov_mSv_per_yr",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -4.725877668562875,
+   "decimals": 3,
+   "bounds_value": -4.725877092514741,
+   "centres_value": -4.36196538446867,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json alternative share_T",
+   "product": "glorys12",
+   "window": "record",
+   "stored": 0.012237425771264245,
+   "decimals": 3,
+   "bounds_value": 0.012237406576092324,
+   "centres_value": 0.011501934476255408,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "final_checks.json window_1993_2025 F_ov_trend_mSv_per_yr",
+   "product": "glorys12",
+   "window": "1993_2025",
+   "stored": -4.725877092514741,
+   "decimals": 3,
+   "bounds_value": -4.725877092514741,
+   "centres_value": -4.36196538446867,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "final_checks.json window_1993_2025 transport_share",
+   "product": "glorys12",
+   "window": "1993_2025",
+   "stored": 0.012237406576092272,
+   "decimals": 3,
+   "bounds_value": 0.012237406576092272,
+   "centres_value": 0.011501934476255367,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json trends['own record'].F_ov.trend (mSv/yr)",
+   "product": "ecco",
+   "window": "record",
+   "stored": 0.1114005774276295,
+   "decimals": 3,
+   "bounds_value": 0.1114005774276295,
+   "centres_value": 0.08662776736362532,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json mean_F_ov_Sv",
+   "product": "ecco",
+   "window": "record",
+   "stored": -0.13213557055807046,
+   "decimals": 4,
+   "bounds_value": -0.13213557055807046,
+   "centres_value": -0.11712521925271695,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json mean_stats.mean (fitted mean)",
+   "product": "ecco",
+   "window": "record",
+   "stored": -0.1321355705580704,
+   "decimals": 4,
+   "bounds_value": -0.1321355705580704,
+   "centres_value": -0.11712521925271689,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "attribution.json mean_V_net_Sv",
+   "product": "ecco",
+   "window": "record",
+   "stored": -0.976620389818642,
+   "decimals": 2,
+   "bounds_value": -0.976620389818642,
+   "centres_value": -1.2127217806282888,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json own mean_F_ov_Sv",
+   "product": "ecco",
+   "window": "record",
+   "stored": -0.13213557055807046,
+   "decimals": 4,
+   "bounds_value": -0.13213557055807046,
+   "centres_value": -0.11712521925271695,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json own trend_F_ov.trend (mSv/yr)",
+   "product": "ecco",
+   "window": "record",
+   "stored": 0.1114005774276295,
+   "decimals": 3,
+   "bounds_value": 0.1114005774276295,
+   "centres_value": 0.08662776736362532,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json own trend_F_az.trend (mSv/yr)",
+   "product": "ecco",
+   "window": "record",
+   "stored": 0.1939361059696756,
+   "decimals": 3,
+   "bounds_value": 0.1939361059696756,
+   "centres_value": 0.20847054796094264,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json common mean_F_ov_Sv (1993-2017)",
+   "product": "ecco",
+   "window": "1993_2017",
+   "stored": -0.13214473594125464,
+   "decimals": 4,
+   "bounds_value": -0.13214473594125464,
+   "centres_value": -0.11716654137231583,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_common_window.json common trend_F_ov.trend (mSv/yr)",
+   "product": "ecco",
+   "window": "1993_2017",
+   "stored": 0.1276169954021331,
+   "decimals": 3,
+   "bounds_value": 0.1276169954021331,
+   "centres_value": 0.10778676818380091,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_cells.json means F_ov",
+   "product": "ecco",
+   "window": "record",
+   "stored": -0.13213557055807046,
+   "decimals": 4,
+   "bounds_value": -0.13213557055807046,
+   "centres_value": -0.11712521925271695,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json used mean_F_ov_Sv",
+   "product": "ecco",
+   "window": "record",
+   "stored": -0.1321355705580696,
+   "decimals": 4,
+   "bounds_value": -0.13213557055807046,
+   "centres_value": -0.11712521925271695,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json used trend_F_ov_mSv_per_yr",
+   "product": "ecco",
+   "window": "record",
+   "stored": 0.11140057742764015,
+   "decimals": 3,
+   "bounds_value": 0.1114005774276295,
+   "centres_value": 0.08662776736362532,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json used share_T",
+   "product": "ecco",
+   "window": "record",
+   "stored": 1.9142223420825943,
+   "decimals": 3,
+   "bounds_value": 1.9142223420827853,
+   "centres_value": 2.2712781179790325,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json alternative mean_F_ov_Sv",
+   "product": "ecco",
+   "window": "record",
+   "stored": -0.11712521925271502,
+   "decimals": 4,
+   "bounds_value": -0.13213557055807046,
+   "centres_value": -0.11712521925271695,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json alternative trend_F_ov_mSv_per_yr",
+   "product": "ecco",
+   "window": "record",
+   "stored": 0.0866277673636287,
+   "decimals": 3,
+   "bounds_value": 0.1114005774276295,
+   "centres_value": 0.08662776736362532,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "r1_vertical_grid.json alternative share_T",
+   "product": "ecco",
+   "window": "record",
+   "stored": 2.271278117978928,
+   "decimals": 3,
+   "bounds_value": 1.9142223420827853,
+   "centres_value": 2.2712781179790325,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "final_checks.json window_1993_2025 F_ov_trend_mSv_per_yr",
+   "product": "ecco",
+   "window": "1993_2025",
+   "stored": 0.1276169954021331,
+   "decimals": 3,
+   "bounds_value": 0.1276169954021331,
+   "centres_value": 0.10778676818380091,
+   "matches": "bounds",
+   "note": "ECCO key: record ends 2017, effective window 1993 to 2017"
+  },
+  {
+   "source": "final_checks.json window_1993_2025 transport_share",
+   "product": "ecco",
+   "window": "1993_2025",
+   "stored": 2.3759253849946464,
+   "decimals": 3,
+   "bounds_value": 2.3759253849946464,
+   "centres_value": 2.5835557396072923,
+   "matches": "bounds",
+   "note": "ECCO key: record ends 2017, effective window 1993 to 2017"
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 mean F_ovS",
+   "product": "oras5",
+   "window": "record",
+   "stored": -0.0383,
+   "decimals": 4,
+   "bounds_value": -0.043271790581535706,
+   "centres_value": -0.038292336805689144,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 mean F_ovS",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -0.0837,
+   "decimals": 4,
+   "bounds_value": -0.0952506656402985,
+   "centres_value": -0.08368806827200949,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 mean F_ovS",
+   "product": "ecco",
+   "window": "record",
+   "stored": -0.1321,
+   "decimals": 4,
+   "bounds_value": -0.13213557055807046,
+   "centres_value": -0.11712521925271695,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 net section transport",
+   "product": "oras5",
+   "window": "record",
+   "stored": -1.22,
+   "decimals": 2,
+   "bounds_value": -0.6761623617772127,
+   "centres_value": -1.2220376523439536,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 net section transport",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -1.17,
+   "decimals": 2,
+   "bounds_value": -0.417949747799634,
+   "centres_value": -1.1693192400139143,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 net section transport",
+   "product": "ecco",
+   "window": "record",
+   "stored": -0.98,
+   "decimals": 2,
+   "bounds_value": -0.976620389818642,
+   "centres_value": -1.2127217806282888,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 T",
+   "product": "oras5",
+   "window": "record",
+   "stored": 18.69,
+   "decimals": 2,
+   "bounds_value": 19.25597930806607,
+   "centres_value": 18.68537241671861,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 T",
+   "product": "glorys12",
+   "window": "record",
+   "stored": 21.26,
+   "decimals": 2,
+   "bounds_value": 22.53257338507849,
+   "centres_value": 21.263193650690802,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 T",
+   "product": "ecco",
+   "window": "record",
+   "stored": 14.58,
+   "decimals": 2,
+   "bounds_value": 14.583886096037334,
+   "centres_value": 13.737417930757102,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 dS",
+   "product": "oras5",
+   "window": "record",
+   "stored": 0.0676,
+   "decimals": 4,
+   "bounds_value": 0.07416089165641016,
+   "centres_value": 0.06763859772284313,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 dS",
+   "product": "glorys12",
+   "window": "record",
+   "stored": 0.1363,
+   "decimals": 4,
+   "bounds_value": 0.14618687139386022,
+   "centres_value": 0.13625797304817994,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 21 dS",
+   "product": "ecco",
+   "window": "record",
+   "stored": 0.3066,
+   "decimals": 4,
+   "bounds_value": 0.3065734674754686,
+   "centres_value": 0.2891086205751799,
+   "matches": "bounds",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 22 F_ovS trend 1958-2025",
+   "product": "oras5",
+   "window": "record",
+   "stored": -1.366,
+   "decimals": 3,
+   "bounds_value": -1.4207059824989183,
+   "centres_value": -1.3656074712345407,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 22 F_ovS trend 1993-2025",
+   "product": "glorys12",
+   "window": "record",
+   "stored": -4.362,
+   "decimals": 3,
+   "bounds_value": -4.725877092514741,
+   "centres_value": -4.36196538446867,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 22 F_ovS trend 1993-2017",
+   "product": "oras5",
+   "window": "1993_2017",
+   "stored": -0.775,
+   "decimals": 3,
+   "bounds_value": -0.7832596731863029,
+   "centres_value": -0.7750355311011694,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 23 share_T full record",
+   "product": "oras5",
+   "window": "record",
+   "stored": 0.068,
+   "decimals": 3,
+   "bounds_value": 0.0747874098316596,
+   "centres_value": 0.06848436530987988,
+   "matches": "centres",
+   "note": ""
+  },
+  {
+   "source": "CANONICAL_FACTS sec 23 share_T full record",
+   "product": "glorys12",
+   "window": "record",
+   "stored": 0.012,
+   "decimals": 3,
+   "bounds_value": 0.012237406576092324,
+   "centres_value": 0.011501934476255408,
+   "matches": "bounds",
+   "note": ""
+  }
+ ]
+}

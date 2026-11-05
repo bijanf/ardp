@@ -1,0 +1,443 @@
+{
+ "meta": {
+  "date": "2026-11-05",
+  "group": "G09_cmip6meta",
+  "actions": [
+   "A84 (grid_name)"
+  ],
+  "script": "scripts/analysis_paper3jc_r2_G09_cmip6meta_grids.py",
+  "inputs": [
+   "data/results/fovs_decomposition_cmip6_summary.csv (model list)",
+   "ESGF search service esgf-node.ornl.gov (read only, Omon vo historical)"
+  ],
+  "seed": null,
+  "sieve_resamples": null,
+  "replicates": {
+   "queries": 25
+  },
+  "units": {},
+  "note": "The member of the section files is not recorded; the label is that of the first file returned."
+ },
+ "grids": {
+  "ACCESS-CM2": {
+   "grid_label": "gn",
+   "member_first_file": "r6i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r10i1p1f1",
+    "r1i1p1f1",
+    "r2i1p1f1",
+    "r4i1p1f1",
+    "r5i1p1f1",
+    "r6i1p1f1",
+    "r7i1p1f1",
+    "r8i1p1f1",
+    "r9i1p1f1"
+   ],
+   "n_files_returned": 19
+  },
+  "ACCESS-ESM1-5": {
+   "grid_label": "gn",
+   "member_first_file": "r9i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r10i1p1f1",
+    "r11i1p1f1",
+    "r15i1p1f1",
+    "r3i1p1f1",
+    "r4i1p1f1",
+    "r8i1p1f1",
+    "r9i1p1f1"
+   ],
+   "n_files_returned": 11
+  },
+  "BCC-CSM2-MR": {
+   "grid_label": "gn",
+   "member_first_file": "r1i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1",
+    "r2i1p1f1",
+    "r3i1p1f1"
+   ],
+   "n_files_returned": 20
+  },
+  "CESM2": {
+   "grid_label": "gn",
+   "member_first_file": "r11i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r10i1p1f1",
+    "r11i1p1f1",
+    "r1i1p1f1",
+    "r3i1p1f1",
+    "r5i1p1f1",
+    "r7i1p1f1",
+    "r8i1p1f1",
+    "r9i1p1f1"
+   ],
+   "n_files_returned": 20
+  },
+  "CESM2-WACCM": {
+   "grid_label": "gn",
+   "member_first_file": "r2i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1",
+    "r2i1p1f1",
+    "r3i1p1f1"
+   ],
+   "n_files_returned": 14
+  },
+  "CIESM": {
+   "grid_label": "gn",
+   "member_first_file": "r3i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1",
+    "r2i1p1f1",
+    "r3i1p1f1"
+   ],
+   "n_files_returned": 16
+  },
+  "CMCC-CM2-SR5": {
+   "grid_label": "gn",
+   "member_first_file": "r10i1p2f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r10i1p2f1",
+    "r11i1p2f1",
+    "r1i1p1f1",
+    "r3i1p2f1",
+    "r4i1p2f1",
+    "r6i1p2f1",
+    "r7i1p2f1",
+    "r8i1p2f1",
+    "r9i1p2f1"
+   ],
+   "n_files_returned": 16
+  },
+  "CMCC-ESM2": {
+   "grid_label": "gn",
+   "member_first_file": "r1i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1"
+   ],
+   "n_files_returned": 9
+  },
+  "CNRM-CM6-1": {
+   "grid_label": "gn",
+   "member_first_file": "r12i1p1f2",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r12i1p1f2",
+    "r13i1p1f2",
+    "r1i1p1f2",
+    "r21i1p1f2",
+    "r23i1p1f2",
+    "r24i1p1f2",
+    "r25i1p1f2",
+    "r26i1p1f2",
+    "r27i1p1f2",
+    "r2i1p1f2",
+    "r30i1p1f2",
+    "r3i1p1f2",
+    "r4i1p1f2",
+    "r6i1p1f2"
+   ],
+   "n_files_returned": 20
+  },
+  "CanESM5": {
+   "grid_label": "gn",
+   "member_first_file": "r10i1p2f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r10i1p1f1",
+    "r10i1p2f1",
+    "r11i1p1f1",
+    "r12i1p1f1",
+    "r13i1p1f1"
+   ],
+   "n_files_returned": 20
+  },
+  "EC-Earth3": {
+   "grid_label": "gn",
+   "member_first_file": "r120i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r120i1p1f1",
+    "r133i1p1f1"
+   ],
+   "n_files_returned": 6
+  },
+  "FGOALS-f3-L": {
+   "grid_label": "gn",
+   "member_first_file": "r1i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1",
+    "r2i1p1f1",
+    "r3i1p1f1"
+   ],
+   "n_files_returned": 14
+  },
+  "FGOALS-g3": {
+   "grid_label": "gn",
+   "member_first_file": "r1i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1",
+    "r2i1p1f1",
+    "r3i1p1f1",
+    "r4i1p1f1",
+    "r5i1p1f1"
+   ],
+   "n_files_returned": 16
+  },
+  "FIO-ESM-2-0": {
+   "grid_label": "gn",
+   "member_first_file": "r1i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1",
+    "r2i1p1f1",
+    "r3i1p1f1"
+   ],
+   "n_files_returned": 20
+  },
+  "GFDL-CM4": {
+   "grid_label": "gn",
+   "member_first_file": "r1i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1"
+   ],
+   "n_files_returned": 20
+  },
+  "GISS-E2-1-G": {
+   "grid_label": "gn",
+   "member_first_file": "r9i1p5f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r101i1p1f1",
+    "r10i1p1f2",
+    "r10i1p3f1",
+    "r10i1p5f1",
+    "r12i1p1f2",
+    "r12i1p3f1",
+    "r1i1p5f1",
+    "r201i1p1f2",
+    "r201i1p1f6",
+    "r202i1p1f2",
+    "r203i1p1f4",
+    "r205i1p1f2",
+    "r206i1p1f2",
+    "r9i1p5f1"
+   ],
+   "n_files_returned": 20
+  },
+  "HadGEM3-GC31-LL": {
+   "grid_label": "gn",
+   "member_first_file": "r20i1p1f3",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r13i1p1f3",
+    "r14i1p1f3",
+    "r16i1p1f3",
+    "r20i1p1f3",
+    "r21i1p1f3",
+    "r23i1p1f3",
+    "r2i1p1f3",
+    "r31i1p1f3",
+    "r35i1p1f3",
+    "r37i1p1f3",
+    "r3i1p1f3",
+    "r40i1p1f3",
+    "r43i1p1f3",
+    "r51i1p1f3",
+    "r55i1p1f3",
+    "r56i1p1f3",
+    "r58i1p1f3"
+   ],
+   "n_files_returned": 18
+  },
+  "IPSL-CM6A-LR": {
+   "grid_label": "gn",
+   "member_first_file": "r9i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r12i1p1f1",
+    "r13i1p1f1",
+    "r14i1p1f1",
+    "r15i1p1f1",
+    "r16i1p1f1",
+    "r18i1p1f1",
+    "r1i1p1f1",
+    "r22i1p1f1",
+    "r23i1p1f1",
+    "r26i1p1f1",
+    "r27i1p1f1",
+    "r28i1p1f1",
+    "r2i1p1f1",
+    "r30i1p1f1",
+    "r33i1p1f1",
+    "r4i1p1f1",
+    "r6i1p1f1",
+    "r9i1p1f1"
+   ],
+   "n_files_returned": 19
+  },
+  "MIROC6": {
+   "grid_label": "gn",
+   "member_first_file": "r12i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r11i1p1f1",
+    "r12i1p1f1",
+    "r13i1p1f1",
+    "r14i1p1f1",
+    "r15i1p1f1",
+    "r17i1p1f1"
+   ],
+   "n_files_returned": 15
+  },
+  "MPI-ESM1-2-HR": {
+   "grid_label": "gn",
+   "member_first_file": "r1i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1",
+    "r2i1p1f1",
+    "r3i1p1f1",
+    "r7i1p1f1",
+    "r9i1p1f1"
+   ],
+   "n_files_returned": 20
+  },
+  "MPI-ESM1-2-LR": {
+   "grid_label": "gn",
+   "member_first_file": "r3i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r10i1p1f1",
+    "r12i1p1f1",
+    "r15i1p1f1",
+    "r17i1p1f1",
+    "r19i1p1f1",
+    "r30i1p1f1",
+    "r3i1p1f1",
+    "r5i1p1f1",
+    "r9i1p1f1"
+   ],
+   "n_files_returned": 15
+  },
+  "MRI-ESM2-0": {
+   "grid_label": "gn",
+   "member_first_file": "r9i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1000p1f1",
+    "r1i1p1f1",
+    "r1i2p1f1",
+    "r3i1p1f1",
+    "r5i1p1f1",
+    "r7i1p1f1",
+    "r8i1p1f1",
+    "r9i1p1f1"
+   ],
+   "n_files_returned": 13
+  },
+  "NESM3": {
+   "grid_label": "gn",
+   "member_first_file": "r5i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1",
+    "r2i1p1f1",
+    "r3i1p1f1",
+    "r4i1p1f1",
+    "r5i1p1f1"
+   ],
+   "n_files_returned": 20
+  },
+  "TaiESM1": {
+   "grid_label": "gn",
+   "member_first_file": "r1i1p1f1",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r1i1p1f1"
+   ],
+   "n_files_returned": 8
+  },
+  "UKESM1-0-LL": {
+   "grid_label": "gn",
+   "member_first_file": "r7i1p1f3",
+   "labels_seen": [
+    "gn"
+   ],
+   "members_seen": [
+    "r12i1p1f2",
+    "r17i1p1f2",
+    "r18i1p1f2",
+    "r19i1p1f2",
+    "r2i1p1f2",
+    "r3i1p1f2",
+    "r4i1p1f2",
+    "r5i1p1f3",
+    "r7i1p1f3",
+    "r8i1p1f2",
+    "r9i1p1f2"
+   ],
+   "n_files_returned": 20
+  }
+ }
+}

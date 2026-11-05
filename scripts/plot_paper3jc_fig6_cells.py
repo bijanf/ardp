@@ -4,26 +4,32 @@
 a  Time-mean streamfunction of each product after removal of the net section
    transport, on a depth axis. The ORAS5 upper cell (mid grey) and abyssal cell
    (pale grey) are shaded. Each product marks its streamfunction maximum with its
-   product marker (ORAS5 circle, GLORYS12V1 square, ECCO-V4r4 triangle), and the
-   depth at which its time-mean curve returns to zero (the boundary between the two
-   cells) with a horizontal bar in the product colour. Direct labels carry the
-   maximum in Sv and its depth in m.
+   product marker (ORAS5 circle, GLORYS12V1 square, ECCO-V4r4 triangle). The marker
+   sits at the value of the time-mean maximum and at the median monthly depth of
+   that maximum; the horizontal bar in the product colour sits at the median monthly
+   depth at which the monthly streamfunction returns to zero (the boundary between
+   the two cells). Direct labels carry the maximum in Sv and its depth in m.
 b  Annual freshwater transport. Upper panel: the upper cell (solid). Lower strip,
    with its own scale: the abyssal cell (dashed). Each product in its colour, with
    its product marker at the last year of its record.
 c  Trends over each product's own record (95 per cent intervals). Rows are the
-   full column (total), the upper cell, its transport term, its salinity term, the
-   residual (no interval) and the abyssal cell, in the greys and marker shapes of
-   TERM_STYLE. Filled markers with solid (abyssal: dashed) lines mark trends
-   significant at 5 per cent (Santer-corrected p); open markers with dotted grey
-   lines are intervals that include zero. The right-hand column gives each trend in
-   mSv per yr.
+   full column (total), the upper cell, its transport term, its contrast term, the
+   residual and the abyssal cell, in the greys and marker shapes of TERM_STYLE.
+   Filled markers with solid (abyssal: dashed) lines mark trends resolved, that is,
+   with a 95 per cent interval that excludes zero; open markers with dotted grey lines
+   are intervals that include zero. The residual interval is the ORAS5 bootstrap
+   interval of jc_r2_G11_tables_residual.json (own window); the other products have no
+   stored residual interval and their residual rows carry the marker only. A trend
+   whose effective sample size is at its floor of three (dagger) shows its point value
+   only, with no interval, and is not counted. The header of each product gives the
+   number of its resolved rows out of the rows with a stored interval.
+   The right-hand column gives each trend in mSv per yr.
 
 Data handling follows scripts/plot_paper3r1_fig6_cells.py: the time-mean
-streamfunction from data/results/paper3r1_section_<key>.nc, annual means of
-data/results/paper3r1_cells_<key>.nc, and the trends and intervals of
-PAPER_3_v2/analysis/r1_cells.json (windows 'own'). Record periods are read from
-the time coordinate of the cells NetCDF files, never typed.
+streamfunction from data/results/paper3r1_section_<key>.nc, annual means and
+monthly medians of data/results/paper3r1_cells_<key>.nc, and the trends and
+intervals of PAPER_3_v2/analysis/r1_cells.json (windows 'own'). Record periods are
+read from the time coordinate of the cells NetCDF files, never typed.
 
 Writes PAPER_3_v2/figures_jclim/Fig6_cells.{pdf,png} at the final size. Pass a
 preview path as the first argument to also write a 200 dpi preview there.
@@ -60,8 +66,9 @@ PROD = [
     ("ecco", "ECCO-V4r4", st.PRODUCT_COLOURS["ECCO-V4r4"], st.PRODUCT_MARKERS["ECCO-V4r4"]),
 ]
 MINUS = "−"
+DAGGER = "†"   # floor marker: effective sample size at its floor of 3
 ALPHA = 0.05
-FIG_W, FIG_H = st.TWO_COL, 6.60
+FIG_W, FIG_H = st.TWO_COL, 7.05
 C_NS = "0.45"      # interval that includes zero (dotted)
 C_NS_EDGE = "0.25"
 C_SIG = "black"    # interval that excludes zero
@@ -73,7 +80,7 @@ ROWS = [
     ("full column", 0, "win", "trend_F_ov", "total"),
     ("upper cell", 1, "win", "trend_F_up", "upper_cell"),
     ("transport term", 2, "att", "T", "transport"),
-    ("salinity term", 2, "att", "S", "salinity"),
+    ("contrast term", 2, "att", "S", "salinity"),
     ("residual", 2, "res", "res", "residual"),
     ("abyssal cell", 1, "win", "trend_F_ab", "abyssal_cell"),
 ]
@@ -81,7 +88,6 @@ ABYSSAL_ROW = "abyssal_cell"
 XLIM_C = (-8.0, 2.5)
 GROUP_STEP = 8.0
 N_ROWS = len(ROWS)
-N_TESTS = sum(1 for row in ROWS if row[2] != "res")  # rows with a trend and a p value
 
 
 def depth_fwd(z):
@@ -103,6 +109,34 @@ def mean_psi(key: str):
     i = next(i for i in range(kmax + 1, len(psi) - 1) if psi[i] < 0)
     z0 = zw[i - 1] + psi[i - 1] / (psi[i - 1] - psi[i]) * (zw[i] - zw[i - 1])
     return psi, zw, zw[kmax], psi[kmax], z0
+
+
+def monthly_depths(key: str):
+    """Median over the record months of the depth of the streamfunction maximum and
+    of the zero crossing (the values the text quotes as median monthly depths)."""
+    ds = xr.open_dataset(RES / f"paper3r1_cells_{key}.nc")
+    return float(np.nanmedian(ds["z_psimax"].values)), float(np.nanmedian(ds["z0"].values))
+
+
+def residual_interval(key: str):
+    """Bootstrap 95 per cent interval of the upper-cell residual (A56), own window.
+    Only ORAS5 has one stored; other products return None."""
+    if key != "oras5":
+        return None
+    d = json.loads((AN / "jc_r2_G11_tables_residual.json").read_text())
+    own = d["upper_cell_residual_ORAS5"]["own"]
+    return own["residual_ci95_bootstrap_mSv_per_yr"]
+
+
+def term_interval(key: str, term: str):
+    """Sieve (joint AR(1) bootstrap, 10,000 resamples, own window) 95 per cent interval of
+    an upper-cell decomposition term, mSv per yr. Stored for ORAS5 only: returns None for
+    the other products, whose terms are drawn as point estimates."""
+    if key != "oras5":
+        return None
+    d = json.loads((AN / "jc_r2_G11_tables_residual.json").read_text())
+    own = d["upper_cell_residual_ORAS5"]["own"]
+    return own[f"{term}_term_ci95_bootstrap_mSv_per_yr"]
 
 
 def annual_cells(key: str):
@@ -160,6 +194,7 @@ def main(preview: str | None = None) -> None:
     psi_data = {key: mean_psi(key) for key, *_ in PROD}
     cell_data = {key: annual_cells(key) for key, *_ in PROD}
     periods = {key: record_period(key) for key, *_ in PROD}
+    mdepth = {key: monthly_depths(key) for key, *_ in PROD}
 
     FIG = plt.figure(figsize=(FIG_W, FIG_H))
 
@@ -176,10 +211,12 @@ def main(preview: str | None = None) -> None:
     ax_a.axvline(0, color="black", lw=0.5, zorder=2)
     for key, label, col, mark in PROD:
         psi, zw, zmax, pmax, z0 = psi_data[key]
+        z_max_med, z0_med = mdepth[key]
         ax_a.plot(psi, zw, color=col, lw=1.0, zorder=3)
-        # maximum: product marker; zero crossing: horizontal bar in the product colour
-        ax_a.plot(pmax, zmax, mark, color=col, ms=4.4, mec="black", mew=0.5, zorder=4)
-        ax_a.plot(0, z0, marker="_", color=col, ms=6.0, mew=1.5, ls="none", zorder=4)
+        # maximum: product marker at the median monthly depth; zero crossing: bar at
+        # the median monthly depth, both in the product colour
+        ax_a.plot(pmax, z_max_med, mark, color=col, ms=4.4, mec="black", mew=0.5, zorder=4)
+        ax_a.plot(0, z0_med, marker="_", color=col, ms=6.0, mew=1.5, ls="none", zorder=4)
     ax_a.set_yscale("function", functions=(depth_fwd, depth_inv))
     ax_a.set_ylim(5800, 0)
     ax_a.set_xlim(-4.5, 21.0)
@@ -194,16 +231,18 @@ def main(preview: str | None = None) -> None:
                   ha="left", va="center", color="black", zorder=6,
                   arrowprops=dict(arrowstyle="-", lw=0.5, color="black",
                                   shrinkA=2, shrinkB=0))
-    # direct labels: the product marker, then the maximum of the plotted (time-mean)
-    # streamfunction (the depth is given in the text as the median monthly value), the values the markers in the panel mark
+    # direct labels: the product marker, then the time-mean maximum of the streamfunction
+    # in Sv and the median monthly depth of that maximum in m (as the text gives it)
     label_depth = {"oras5": 3300, "glorys12": 3720, "ecco": 4140}
     for key, label, col, mark in PROD:
-        _psi, _zw, zmax_p, pmax_p, _z0 = psi_data[key]
+        _psi, _zw, _zmax, pmax_p, _z0 = psi_data[key]
+        z_max_med, _z0_med = mdepth[key]
         ylab = label_depth[key]
         ax_a.plot([4.9], [ylab], mark, color=col, ms=4.4, mec="black", mew=0.5,
                   ls="none", zorder=6, clip_on=False)
-        ax_a.text(5.9, ylab, f"{label}: {pmax_p:.1f} Sv", color="black",
-                  fontsize=7, ha="left", va="center", zorder=6)
+        ax_a.text(5.9, ylab, f"{label}: {pmax_p:.1f} Sv\nat {z_max_med:.0f} m",
+                  color="black", fontsize=7, ha="left", va="center", zorder=6,
+                  linespacing=1.1)
     # key for the two marker kinds, in black (the product colour is on the curves)
     ax_a.plot([8.2], [5150], "o", color="black", ms=4.0, mec="black", mew=0.5,
               ls="none", zorder=6)
@@ -258,38 +297,54 @@ def main(preview: str | None = None) -> None:
         att = cells[key]["windows"]["own"]["upper_cell_attribution"]
         win = cells[key]["windows"]["own"]
         n_sig = 0
+        n_tested = 0
         for r, (name, indent, src, k, term) in enumerate(ROWS):
             y = base + 1.0 + r
+            p = None
+            uninformative = False
             if src == "win":
+                # total trends: bias-corrected test interval (own window)
                 t = win[k]
                 est, lo, hi, p = t["trend"], t["ci"][0], t["ci"][1], t["p_santer"]
+                # effective sample size at its floor of three: point only, no interval
+                if t.get("n_eff_at_floor"):
+                    uninformative = True
+                    lo, hi = None, None
             elif src == "att":
-                if k == "T":
-                    est = att["trend_T_mSv_per_yr"]
-                    lo, hi = att["ci_T_mSv_per_yr"][0], att["ci_T_mSv_per_yr"][1]
-                    p = att["p_T"]
-                else:
-                    est = att["trend_S_mSv_per_yr"]
-                    lo, hi = att["ci_S_mSv_per_yr"][0], att["ci_S_mSv_per_yr"][1]
-                    p = att["p_S"]
+                # decomposition terms: sieve interval where stored (ORAS5), else none
+                est = att["trend_T_mSv_per_yr"] if k == "T" else att["trend_S_mSv_per_yr"]
+                ci_term = term_interval(key, k)
+                lo, hi = (ci_term if ci_term is not None else (None, None))
             else:
-                est, lo, hi, p = att["residual_mSv_per_yr"], None, None, None
-            if src != "res":
-                sig = p < ALPHA
-                n_sig += int(sig)
-                inc0 = draw_interval(ax_c, y, lo, hi, XLIM_C[0], XLIM_C[1],
-                                     dashed_when_sig=(term == ABYSSAL_ROW))
-                if inc0 == sig:  # open marker (interval includes zero) must agree with p
-                    print(f"CHECK: p and interval disagree for {key} {name}: "
-                          f"p={p:.3g} ci=({lo:.3g}, {hi:.3g})")
+                est = att["residual_mSv_per_yr"]
+                ci_res = residual_interval(key)
+                lo, hi = (ci_res if ci_res is not None else (None, None))
+            if lo is None:
+                # no stored interval (or uninformative): point estimate only, open marker
+                ax_c.plot([est], [y], **st.term_marker(term, significant=False, ms=4.2),
+                          zorder=5)
+            elif src == "res":
+                # residual: sieve interval, significance from the interval
+                inc0 = draw_interval(ax_c, y, lo, hi, XLIM_C[0], XLIM_C[1])
                 ax_c.plot([est], [y], **st.term_marker(term, significant=not inc0, ms=4.2),
                           zorder=5)
             else:
-                ax_c.plot([est], [y], **st.term_marker(term, significant=True, ms=4.2),
+                # significant when the stored interval excludes zero
+                inc0 = draw_interval(ax_c, y, lo, hi, XLIM_C[0], XLIM_C[1],
+                                     dashed_when_sig=(term == ABYSSAL_ROW))
+                sig = not inc0
+                n_tested += 1
+                n_sig += int(sig)
+                if p is not None and (p < ALPHA) != sig:
+                    print(f"CHECK: p and interval disagree for {key} {name}: "
+                          f"p={p:.3g} ci=({lo:.3g}, {hi:.3g})")
+                ax_c.plot([est], [y], **st.term_marker(term, significant=sig, ms=4.2),
                           zorder=5)
             yticks.append(y)
             ylabels.append(" " * (2 * indent) + name)
-            ax_c.text(1.02, y, minus(f"{est:+.2f}"), transform=ax_c.get_yaxis_transform(),
+            value = minus(f"{est:+.3f}" if term == "res" else f"{est:+.2f}")
+            ax_c.text(1.02, y, value + (DAGGER if uninformative else ""),
+                      transform=ax_c.get_yaxis_transform(),
                       ha="left", va="center", fontsize=7, clip_on=False)
         # group header: product marker and name, record period and count
         yticks.append(base)
@@ -299,7 +354,7 @@ def main(preview: str | None = None) -> None:
         hdr_box = dict(fc="white", ec="none", pad=0.3)
         ax_c.text(XLIM_C[0] + 0.75, base, periods[key], color="black", fontsize=7,
                   ha="left", va="center", zorder=6, bbox=hdr_box)
-        ax_c.text(XLIM_C[1] - 0.25, base, f"{n_sig} of {N_TESTS} significant",
+        ax_c.text(XLIM_C[1] - 0.25, base, f"{n_sig} of {n_tested} resolved",
                   color="black", fontsize=7, ha="right", va="center", zorder=6, bbox=hdr_box)
         if key == "oras5":
             # the transport term share of the upper-cell trend, from the attribution block
@@ -307,6 +362,14 @@ def main(preview: str | None = None) -> None:
             lo_s, hi_s = att["share_T_ci"][0] * 100, att["share_T_ci"][1] * 100
             ax_c.text(-0.35, base + 3.0, f"transport share {share:.0f}% [{lo_s:.0f}%, {hi_s:.0f}%]",
                       fontsize=7, ha="right", va="center", zorder=6)
+    FIG.text(0.62 / FIG_W, 1 - 6.72 / FIG_H,
+             "Intervals: totals (full column, upper cell, abyssal cell) use the bias-corrected "
+             "test interval; the transport and contrast terms and the residual use the ORAS5 "
+             "sieve interval (10,000 resamples), which GLORYS12V1 and ECCO-V4r4 do not have, so "
+             "their terms show point estimates only. Filled markers: interval excludes zero "
+             "(resolved). Dagger: effective sample size at its floor of 3 (uninformative), "
+             "point value only, not counted.",
+             fontsize=7, ha="left", va="top", linespacing=1.15, wrap=True)
     ax_c.text(1.02, 1.0, "trend\nmSv yr$^{-1}$", transform=ax_c.transAxes, ha="left",
               va="bottom", fontsize=7, linespacing=1.1, clip_on=False)
     ax_c.axvline(0, color="black", lw=0.5, zorder=1)

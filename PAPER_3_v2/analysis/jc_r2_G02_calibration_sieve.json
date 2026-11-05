@@ -1,0 +1,317 @@
+{
+ "meta": {
+  "date": "2026-11-05",
+  "script": "scripts/analysis_paper3jc_r2_G02_calibration_sieve.py",
+  "action": "A18 (cluster C27)",
+  "inputs": [
+   "data/results/paper3r1_section_oras5.nc",
+   "PAPER_3_v2/analysis/jc_n04_ar_recalibration.json (fitted_ar2 for F_ovS, fitted_arma11 for T, sd_residual)",
+   "PAPER_3_v2/analysis/attribution.json (oras5 continuous, dS_mean_PSU)",
+   "PAPER_3_v2/analysis/jc_r2_G01_steps_oras5.json (stored shares and intervals for the inflation)",
+   "scripts/paper3r1_stats.py (sieve_coefficients, ratio_summary, step_design)"
+  ],
+  "seed": 20261104,
+  "seed_scheme": "SeedSequence(20261104).spawn(3), one stream per specification",
+  "datasets_per_specification": 5000,
+  "sieve_resamples_per_dataset": 10000,
+  "nominal_coverage": 0.95,
+  "inflation_grid": "1.00 to 4.00 step 0.01",
+  "units": "shares dimensionless; trends Sv per year; residual sd Sv",
+  "runtime_s": 718.5
+ },
+ "specifications": [
+  {
+   "specification": "unstepped",
+   "case": "unstepped",
+   "truth_share": 0.07478740983165962,
+   "n": 68,
+   "n_datasets": 5000,
+   "n_boot": 10000,
+   "dS_mean_PSU": 0.07416089165641016,
+   "F_trend_fit_Sv_per_yr": -0.0014207059824989181,
+   "fT_trend_fit_Sv_per_yr": 0.00010625092056343721,
+   "sd_residual_F_Sv": 0.01755004779918795,
+   "sd_residual_T_Sv": 0.9541247213063587,
+   "residual_corr_F_T_data": 0.00301017697895719,
+   "innovation_correlation_used": 0.00301017697895719,
+   "coverage_share_interval": 0.964,
+   "coverage_mc_se": 0.002634539808012019,
+   "miss_below": 0.0184,
+   "miss_above": 0.0176,
+   "below_90pct": false,
+   "median_point_estimate": 0.07475534992721428,
+   "median_interval_width": 0.0820633194217888,
+   "inflation_factor_empirical_95pct": 1.0,
+   "inflation_factor_gaussian_95pct": 0.9346837459802461,
+   "coverage_by_inflation_factor": {
+    "1.00": 0.964,
+    "1.10": 0.979,
+    "1.20": 0.9864,
+    "1.30": 0.9924,
+    "1.40": 0.9956,
+    "1.50": 0.997,
+    "1.60": 0.9982,
+    "1.80": 0.9996,
+    "2.00": 1.0,
+    "2.50": 1.0,
+    "3.00": 1.0
+   },
+   "stored_noise_F": {
+    "model": "AR(2)",
+    "ar": [
+     0.4023249104231823,
+     0.1423890075982222
+    ],
+    "ma": []
+   },
+   "stored_noise_T": {
+    "model": "ARMA(1,1)",
+    "ar": [
+     0.23332237759436317
+    ],
+    "ma": [
+     0.5918320192536848
+    ]
+   },
+   "stored_sd_residual_trend_design_F_Sv": 0.01755004779918795,
+   "stored_sd_residual_trend_design_T_Sv": 0.9541247213063588
+  },
+  {
+   "specification": "2015_only",
+   "case": "2015_only",
+   "truth_share": 0.07591297696617187,
+   "n": 68,
+   "n_datasets": 5000,
+   "n_boot": 10000,
+   "dS_mean_PSU": 0.07416089165641016,
+   "F_trend_fit_Sv_per_yr": -0.0012155080971725785,
+   "fT_trend_fit_Sv_per_yr": 9.227283818285735e-05,
+   "sd_residual_F_Sv": 0.0169707046260355,
+   "sd_residual_T_Sv": 0.9480460651718569,
+   "residual_corr_F_T_data": -0.0462501005840964,
+   "innovation_correlation_used": -0.0462501005840964,
+   "coverage_share_interval": 0.9626,
+   "coverage_mc_se": 0.002683327784673352,
+   "miss_below": 0.0186,
+   "miss_above": 0.0188,
+   "below_90pct": false,
+   "median_point_estimate": 0.07551091615249433,
+   "median_interval_width": 0.12781100526523634,
+   "inflation_factor_empirical_95pct": 1.0,
+   "inflation_factor_gaussian_95pct": 0.9416698831692671,
+   "coverage_by_inflation_factor": {
+    "1.00": 0.9626,
+    "1.10": 0.9772,
+    "1.20": 0.9874,
+    "1.30": 0.9922,
+    "1.40": 0.9958,
+    "1.50": 0.9972,
+    "1.60": 0.9976,
+    "1.80": 0.9986,
+    "2.00": 0.9992,
+    "2.50": 0.9998,
+    "3.00": 1.0
+   },
+   "stored_noise_F": {
+    "model": "AR(2)",
+    "ar": [
+     0.4023249104231823,
+     0.1423890075982222
+    ],
+    "ma": []
+   },
+   "stored_noise_T": {
+    "model": "ARMA(1,1)",
+    "ar": [
+     0.23332237759436317
+    ],
+    "ma": [
+     0.5918320192536848
+    ]
+   },
+   "stored_sd_residual_trend_design_F_Sv": 0.01755004779918795,
+   "stored_sd_residual_trend_design_T_Sv": 0.9541247213063588
+  },
+  {
+   "specification": "joint_2004_2015",
+   "case": "joint_2004_2015",
+   "truth_share": 0.023107847254400505,
+   "n": 68,
+   "n_datasets": 5000,
+   "n_boot": 10000,
+   "dS_mean_PSU": 0.07416089165641016,
+   "F_trend_fit_Sv_per_yr": -0.0012834360371660096,
+   "fT_trend_fit_Sv_per_yr": 2.9657443907625242e-05,
+   "sd_residual_F_Sv": 0.01706490867801431,
+   "sd_residual_T_Sv": 0.8172990732987155,
+   "residual_corr_F_T_data": -0.013830972508065236,
+   "innovation_correlation_used": -0.013830972508065236,
+   "coverage_share_interval": 0.9866,
+   "coverage_mc_se": 0.0016260651893451239,
+   "miss_below": 0.0134,
+   "miss_above": 0.0,
+   "below_90pct": false,
+   "median_point_estimate": 0.02438438197994438,
+   "median_interval_width": 0.10219226585462521,
+   "inflation_factor_empirical_95pct": 1.0,
+   "inflation_factor_gaussian_95pct": 0.7925586350667602,
+   "coverage_by_inflation_factor": {
+    "1.00": 0.9866,
+    "1.10": 0.9934,
+    "1.20": 0.9962,
+    "1.30": 0.998,
+    "1.40": 0.999,
+    "1.50": 0.9996,
+    "1.60": 0.9998,
+    "1.80": 1.0,
+    "2.00": 1.0,
+    "2.50": 1.0,
+    "3.00": 1.0
+   },
+   "stored_noise_F": {
+    "model": "AR(2)",
+    "ar": [
+     0.4023249104231823,
+     0.1423890075982222
+    ],
+    "ma": []
+   },
+   "stored_noise_T": {
+    "model": "ARMA(1,1)",
+    "ar": [
+     0.23332237759436317
+    ],
+    "ma": [
+     0.5918320192536848
+    ]
+   },
+   "stored_sd_residual_trend_design_F_Sv": 0.01755004779918795,
+   "stored_sd_residual_trend_design_T_Sv": 0.9541247213063588
+  },
+  {
+   "specification": "unstepped",
+   "case": "unstepped_rho_0.5_sensitivity",
+   "truth_share": 0.07478740983165962,
+   "n": 68,
+   "n_datasets": 5000,
+   "n_boot": 10000,
+   "dS_mean_PSU": 0.07416089165641016,
+   "F_trend_fit_Sv_per_yr": -0.0014207059824989181,
+   "fT_trend_fit_Sv_per_yr": 0.00010625092056343721,
+   "sd_residual_F_Sv": 0.01755004779918795,
+   "sd_residual_T_Sv": 0.9541247213063587,
+   "residual_corr_F_T_data": 0.00301017697895719,
+   "innovation_correlation_used": 0.5,
+   "coverage_share_interval": 0.9794,
+   "coverage_mc_se": 0.0020087628033194937,
+   "miss_below": 0.0108,
+   "miss_above": 0.0098,
+   "below_90pct": false,
+   "median_point_estimate": 0.07481391957008665,
+   "median_interval_width": 0.06558482601171009,
+   "inflation_factor_empirical_95pct": 1.0,
+   "inflation_factor_gaussian_95pct": 0.8465502754178226,
+   "coverage_by_inflation_factor": {
+    "1.00": 0.9794,
+    "1.10": 0.9872,
+    "1.20": 0.9904,
+    "1.30": 0.9942,
+    "1.40": 0.9958,
+    "1.50": 0.9974,
+    "1.60": 0.998,
+    "1.80": 0.9998,
+    "2.00": 1.0,
+    "2.50": 1.0,
+    "3.00": 1.0
+   },
+   "stored_noise_F": {
+    "model": "AR(2)",
+    "ar": [
+     0.4023249104231823,
+     0.1423890075982222
+    ],
+    "ma": []
+   },
+   "stored_noise_T": {
+    "model": "ARMA(1,1)",
+    "ar": [
+     0.23332237759436317
+    ],
+    "ma": [
+     0.5918320192536848
+    ]
+   },
+   "stored_sd_residual_trend_design_F_Sv": 0.01755004779918795,
+   "stored_sd_residual_trend_design_T_Sv": 0.9541247213063588
+  }
+ ],
+ "inflated_stored_shares": {
+  "unstepped": {
+   "k": 1.0,
+   "stored_point": 0.0747874098316596,
+   "stored_interval": [
+    0.03354584842933732,
+    0.13478821959097131
+   ],
+   "inflated_interval": [
+    0.03354584842933732,
+    0.13478821959097131
+   ],
+   "inflated_interval_percent": [
+    3.3545848429337317,
+    13.478821959097132
+   ],
+   "formula": "[p - k (p - lo), p + k (hi - p)]"
+  },
+  "2015_only": {
+   "k": 1.0,
+   "stored_point": 0.07591297696617143,
+   "stored_interval": [
+    0.016310472852741908,
+    0.1758453221078491
+   ],
+   "inflated_interval": [
+    0.01631047285274191,
+    0.1758453221078491
+   ],
+   "inflated_interval_percent": [
+    1.631047285274191,
+    17.584532210784907
+   ],
+   "formula": "[p - k (p - lo), p + k (hi - p)]"
+  },
+  "joint_2004_2015": {
+   "k": 1.0,
+   "stored_point": 0.02310784725440018,
+   "stored_interval": [
+    0.0011646231753527749,
+    0.10814059128334687
+   ],
+   "inflated_interval": [
+    0.001164623175352774,
+    0.10814059128334687
+   ],
+   "inflated_interval_percent": [
+    0.1164623175352774,
+    10.814059128334687
+   ],
+   "formula": "[p - k (p - lo), p + k (hi - p)]"
+  }
+ },
+ "checks": {
+  "attribution_unstepped_share_point": 0.0747874098316596,
+  "attribution_dS_mean_PSU": 0.07416089165641016,
+  "computed_dS_mean_PSU": 0.07416089165641016,
+  "G01_stored_points": {
+   "unstepped": 0.0747874098316596,
+   "2015_only": 0.07591297696617143,
+   "joint_2004_2015": 0.02310784725440018
+  },
+  "computed_truth_shares": {
+   "unstepped": 0.07478740983165962,
+   "2015_only": 0.07591297696617187,
+   "joint_2004_2015": 0.023107847254400505
+  }
+ },
+ "note": "The noise of the simulated F is the stored AR(2) fit, that of T the stored ARMA(1,1) fit; the innovation correlation is the residual correlation of each specification."
+}

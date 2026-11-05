@@ -1,0 +1,293 @@
+{
+  "meta": {
+    "date": "2026-11-05",
+    "script": "scripts/analysis_paper3jc_r2_G07_frozen_epochs_intervals.py",
+    "group": "G07_frozen_epochs",
+    "action": "A07",
+    "inputs": [
+      "data/results/paper3r1_section_oras5.nc",
+      "data/results/paper3r1_section_glorys12.nc",
+      "PAPER_3_v2/analysis/final_checks.json (reproduction check)"
+    ],
+    "seed": 20261104,
+    "n_boot_sieve": 10000,
+    "units": "PSU per decade for dS and its parts; shares are dimensionless; p values are the N_eff test of paper3r1_stats.py",
+    "interval_method": "t interval with bias-corrected N_eff (trend_test); cross term and shares: joint AR(1) sieve bootstrap (sieve_coefficients)",
+    "cross_term_definition": "full - salinity_only - velocity_only (per decade)",
+    "min_detectable_definition": "half-width of the 95% interval"
+  },
+  "oras5": {
+    "label": "ORAS5",
+    "record": [
+      1958,
+      2025
+    ],
+    "n_years": 68,
+    "full": {
+      "trend_per_decade": 0.027756432993461606,
+      "ci_95_per_decade": [
+        0.019665771310497758,
+        0.03584709467642545
+      ],
+      "min_detectable_trend_per_decade": 0.008090661682963851,
+      "p_value": 1.476812587429731e-06,
+      "n_eff": 18.78338472349801,
+      "n_eff_at_floor": false,
+      "lag1_raw": 0.5023382423497659,
+      "phi_corrected": 0.5671202550270639,
+      "n_years": 68
+    },
+    "salinity_only": {
+      "trend_per_decade": 0.018505855921331582,
+      "ci_95_per_decade": [
+        -0.18402519798260517,
+        0.2210369098252683
+      ],
+      "min_detectable_trend_per_decade": 0.20253105390393672,
+      "p_value": 0.45265681307260014,
+      "n_eff": 3.0,
+      "n_eff_at_floor": true,
+      "lag1_raw": 0.9274045491728833,
+      "phi_corrected": 0.98,
+      "n_years": 68
+    },
+    "velocity_only": {
+      "trend_per_decade": 0.010638293739482775,
+      "ci_95_per_decade": [
+        0.005006328834810329,
+        0.01627025864415522
+      ],
+      "min_detectable_trend_per_decade": 0.005631964904672447,
+      "p_value": 0.0006270604785919495,
+      "n_eff": 28.35164688236274,
+      "n_eff_at_floor": false,
+      "lag1_raw": 0.3577295896988649,
+      "phi_corrected": 0.4114963718891548,
+      "n_years": 68
+    },
+    "reproduction_check_vs_final_checks": {
+      "full": {
+        "stored_dS_trend_per_decade": 0.027756432993461606,
+        "recomputed_dS_trend_per_decade": 0.027756432993461606,
+        "stored_dS_min_detectable_per_decade": 0.008090661682963851,
+        "recomputed_min_detectable_per_decade": 0.008090661682963851,
+        "max_abs_diff_trend": 0.0
+      },
+      "salinity_only": {
+        "stored_dS_trend_per_decade": 0.018505855921331582,
+        "recomputed_dS_trend_per_decade": 0.018505855921331582,
+        "stored_dS_min_detectable_per_decade": 0.20253105390393672,
+        "recomputed_min_detectable_per_decade": 0.20253105390393672,
+        "max_abs_diff_trend": 0.0
+      },
+      "velocity_only": {
+        "stored_dS_trend_per_decade": 0.010638293739482775,
+        "recomputed_dS_trend_per_decade": 0.010638293739482775,
+        "stored_dS_min_detectable_per_decade": 0.005631964904672447,
+        "recomputed_min_detectable_per_decade": 0.005631964904672447,
+        "max_abs_diff_trend": 0.0
+      }
+    },
+    "three_term_split_per_decade": {
+      "full": 0.027756432993461606,
+      "salinity_only": 0.018505855921331582,
+      "velocity_only": 0.010638293739482775,
+      "cross_term": -0.0013877166673527518,
+      "sum_of_parts": 0.027756432993461602,
+      "full_ci_95_t": [
+        0.019665771310497758,
+        0.03584709467642545
+      ],
+      "salinity_only_ci_95_t": [
+        -0.18402519798260517,
+        0.2210369098252683
+      ],
+      "velocity_only_ci_95_t": [
+        0.005006328834810329,
+        0.01627025864415522
+      ],
+      "full_ci_95_sieve": [
+        0.02061480755231337,
+        0.03493107557949332
+      ],
+      "salinity_only_ci_95_sieve": [
+        -0.00425316966583361,
+        0.0420350992462621
+      ],
+      "velocity_only_ci_95_sieve": [
+        0.005603557518700985,
+        0.015708082549065673
+      ],
+      "cross_term_ci_95_sieve": [
+        -0.02449136959492202,
+        0.021550697667735437
+      ],
+      "cross_term_sieve_two_sided_p": 0.9058
+    },
+    "shares_of_full_trend": {
+      "salinity_only": {
+        "point": 0.6667231313797014,
+        "ci_95_sieve": [
+          -0.16001511967793783,
+          1.5872618043635254
+        ]
+      },
+      "velocity_only": {
+        "point": 0.3832730863504243,
+        "ci_95_sieve": [
+          0.24754784494011692,
+          0.4885313133621598
+        ]
+      },
+      "cross_term": {
+        "point": -0.049996217730125726,
+        "ci_95_sieve": [
+          -0.9300408658993309,
+          0.7821012219117102
+        ]
+      }
+    },
+    "resolved_at_5pct_by_t_test": {
+      "full": true,
+      "salinity_only": false,
+      "velocity_only": true
+    }
+  },
+  "glorys12": {
+    "label": "GLORYS12V1",
+    "record": [
+      1993,
+      2025
+    ],
+    "n_years": 33,
+    "full": {
+      "trend_per_decade": 0.07330259717760634,
+      "ci_95_per_decade": [
+        -0.40034029705730323,
+        0.5469454914125159
+      ],
+      "min_detectable_trend_per_decade": 0.4736428942349096,
+      "p_value": 0.33810617597772596,
+      "n_eff": 3.0938024159716333,
+      "n_eff_at_floor": false,
+      "lag1_raw": 0.6284859909726607,
+      "phi_corrected": 0.8285687730920467,
+      "n_years": 33
+    },
+    "salinity_only": {
+      "trend_per_decade": 0.06910977417092645,
+      "ci_95_per_decade": [
+        -0.3624186950589463,
+        0.5006382434007992
+      ],
+      "min_detectable_trend_per_decade": 0.4315284692298727,
+      "p_value": 0.290783253565933,
+      "n_eff": 3.0,
+      "n_eff_at_floor": true,
+      "lag1_raw": 0.7462478310495578,
+      "phi_corrected": 0.98,
+      "n_years": 33
+    },
+    "velocity_only": {
+      "trend_per_decade": 0.007075696870536681,
+      "ci_95_per_decade": [
+        -0.006410644137738219,
+        0.020562037878811584
+      ],
+      "min_detectable_trend_per_decade": 0.0134863410082749,
+      "p_value": 0.2813603747647247,
+      "n_eff": 17.21312371267864,
+      "n_eff_at_floor": false,
+      "lag1_raw": 0.20892577696752063,
+      "phi_corrected": 0.31439741486019585,
+      "n_years": 33
+    },
+    "reproduction_check_vs_final_checks": {
+      "full": {
+        "stored_dS_trend_per_decade": 0.07330259717760634,
+        "recomputed_dS_trend_per_decade": 0.07330259717760634,
+        "stored_dS_min_detectable_per_decade": 0.4736428942349096,
+        "recomputed_min_detectable_per_decade": 0.4736428942349096,
+        "max_abs_diff_trend": 0.0
+      },
+      "salinity_only": {
+        "stored_dS_trend_per_decade": 0.06910977417092645,
+        "recomputed_dS_trend_per_decade": 0.06910977417092645,
+        "stored_dS_min_detectable_per_decade": 0.4315284692298727,
+        "recomputed_min_detectable_per_decade": 0.4315284692298727,
+        "max_abs_diff_trend": 0.0
+      },
+      "velocity_only": {
+        "stored_dS_trend_per_decade": 0.007075696870536681,
+        "recomputed_dS_trend_per_decade": 0.007075696870536681,
+        "stored_dS_min_detectable_per_decade": 0.0134863410082749,
+        "recomputed_min_detectable_per_decade": 0.0134863410082749,
+        "max_abs_diff_trend": 0.0
+      }
+    },
+    "three_term_split_per_decade": {
+      "full": 0.07330259717760634,
+      "salinity_only": 0.06910977417092645,
+      "velocity_only": 0.007075696870536681,
+      "cross_term": -0.00288287386385679,
+      "sum_of_parts": 0.07330259717760634,
+      "full_ci_95_t": [
+        -0.40034029705730323,
+        0.5469454914125159
+      ],
+      "salinity_only_ci_95_t": [
+        -0.3624186950589463,
+        0.5006382434007992
+      ],
+      "velocity_only_ci_95_t": [
+        -0.006410644137738219,
+        0.020562037878811584
+      ],
+      "full_ci_95_sieve": [
+        0.01481321209643458,
+        0.13059091213962645
+      ],
+      "salinity_only_ci_95_sieve": [
+        -0.005823611818319354,
+        0.1474542867358733
+      ],
+      "velocity_only_ci_95_sieve": [
+        -0.0050020614432268505,
+        0.018912002938831354
+      ],
+      "cross_term_ci_95_sieve": [
+        -0.07316921168303518,
+        0.061263506107084316
+      ],
+      "cross_term_sieve_two_sided_p": 0.958
+    },
+    "shares_of_full_trend": {
+      "salinity_only": {
+        "point": 0.9428011671057027,
+        "ci_95_sieve": [
+          -0.17416627071480398,
+          2.9589369651704396
+        ]
+      },
+      "velocity_only": {
+        "point": 0.09652723290817149,
+        "ci_95_sieve": [
+          -0.17798437945583562,
+          0.23607684106505641
+        ]
+      },
+      "cross_term": {
+        "point": -0.03932840001387423,
+        "ci_95_sieve": [
+          -1.8944013420840788,
+          1.030326234876079
+        ]
+      }
+    },
+    "resolved_at_5pct_by_t_test": {
+      "full": false,
+      "salinity_only": false,
+      "velocity_only": false
+    }
+  }
+}

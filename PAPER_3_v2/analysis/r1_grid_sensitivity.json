@@ -1,0 +1,269 @@
+{
+ "oras5": {
+  "product": "ORAS5",
+  "_baseline": {
+   "description": "baseline: level bounds, uniform removal",
+   "mean_F_ov_Sv": -0.043271790581535706,
+   "mean_T_Sv": 19.25597930806607,
+   "mean_dS_PSU": 0.07416089165641016,
+   "mean_F_az_Sv": 0.321007684005222,
+   "mean_V_net_Sv": -0.6761623617772126,
+   "trend_F_ov_mSv_per_yr": -1.4207059824989183,
+   "p_F_ov": 1.5174647555478277e-06,
+   "trend_T_term_mSv_per_yr": 0.10625092056343721,
+   "trend_S_term_mSv_per_yr": -1.5270779982509086,
+   "share_T": 0.0747874098316596,
+   "share_T_ci": [
+    0.034066339524723606,
+    0.1372377021213527
+   ]
+  },
+  "_absV": {
+   "description": "net transport removed in proportion to |V_int(z)|",
+   "max_abs_c": 0.11135554550493278,
+   "mean_F_ov_Sv": -0.045361261220105885,
+   "mean_T_Sv": 19.29539437858104,
+   "mean_dS_PSU": 0.07744353535418876,
+   "mean_F_az_Sv": 0.321007684005222,
+   "mean_V_net_Sv": -0.6761623617772126,
+   "trend_F_ov_mSv_per_yr": -1.4048458105148947,
+   "p_F_ov": 1.3852021843098186e-06,
+   "trend_T_term_mSv_per_yr": 0.11254310509149884,
+   "trend_S_term_mSv_per_yr": -1.5173717681483074,
+   "share_T": 0.08011064577275587,
+   "share_T_ci": [
+    0.03669623726914448,
+    0.14393620900843518
+   ]
+  },
+  "_centres": {
+   "description": "thickness from the spacing of level centres",
+   "mean_F_ov_Sv": -0.03829233680568915,
+   "mean_T_Sv": 18.68537241671861,
+   "mean_dS_PSU": 0.06763859772284314,
+   "mean_F_az_Sv": 0.3055563391747375,
+   "mean_V_net_Sv": -1.2220376523439538,
+   "trend_F_ov_mSv_per_yr": -1.3656074712345407,
+   "p_F_ov": 2.1211146202339382e-06,
+   "trend_T_term_mSv_per_yr": 0.09352276092992756,
+   "trend_S_term_mSv_per_yr": -1.461551465505445,
+   "share_T": 0.06848436530987988,
+   "share_T_ci": [
+    0.03091070076986353,
+    0.1253423418305956
+   ]
+  },
+  "_bottom0p5": {
+   "description": "deepest wet cell of each column at half thickness",
+   "mean_F_ov_Sv": -0.04362924216009577,
+   "mean_T_Sv": 18.577745360176845,
+   "mean_dS_PSU": 0.07722006232590017,
+   "mean_F_az_Sv": 0.3205372651234569,
+   "mean_V_net_Sv": -1.1593146908741623,
+   "trend_F_ov_mSv_per_yr": -1.4213320531357165,
+   "p_F_ov": 1.885576456760806e-06,
+   "trend_T_term_mSv_per_yr": 0.11166340387155299,
+   "trend_S_term_mSv_per_yr": -1.5349512690369536,
+   "share_T": 0.07856250312881022,
+   "share_T_ci": [
+    0.03712074278966956,
+    0.14152484229491397
+   ]
+  },
+  "_bottom0p2": {
+   "description": "deepest wet cell of each column at one fifth thickness",
+   "mean_F_ov_Sv": -0.04386293206366437,
+   "mean_T_Sv": 18.463656155621646,
+   "mean_dS_PSU": 0.07773420527102748,
+   "mean_F_az_Sv": 0.320276199307309,
+   "mean_V_net_Sv": -1.449206088332332,
+   "trend_F_ov_mSv_per_yr": -1.4221802410811306,
+   "p_F_ov": 2.1327095112454746e-06,
+   "trend_T_term_mSv_per_yr": 0.11179071916879131,
+   "trend_S_term_mSv_per_yr": -1.5329601080853599,
+   "share_T": 0.07860516968215565,
+   "share_T_ci": [
+    0.03854686253308487,
+    0.13959893601590592
+   ]
+  }
+ },
+ "glorys12": {
+  "product": "GLORYS12V1",
+  "_baseline": {
+   "description": "baseline: level bounds, uniform removal",
+   "mean_F_ov_Sv": -0.09525066564029849,
+   "mean_T_Sv": 22.53257338507849,
+   "mean_dS_PSU": 0.14618687139386022,
+   "mean_F_az_Sv": 0.3289774385238098,
+   "mean_V_net_Sv": -0.41794974779963406,
+   "trend_F_ov_mSv_per_yr": -4.725877092514741,
+   "p_F_ov": 0.3693468344614078,
+   "trend_T_term_mSv_per_yr": 0.05783247940974397,
+   "trend_S_term_mSv_per_yr": -4.7191318577749986,
+   "share_T": 0.012237406576092324,
+   "share_T_ci": [
+    0.0008367247889296895,
+    0.15234958843864227
+   ]
+  },
+  "_absV": {
+   "description": "net transport removed in proportion to |V_int(z)|",
+   "max_abs_c": 0.1879229891108055,
+   "mean_F_ov_Sv": -0.09708472377566787,
+   "mean_T_Sv": 22.514462558440123,
+   "mean_dS_PSU": 0.14903004759565133,
+   "mean_F_az_Sv": 0.3289774385238098,
+   "mean_V_net_Sv": -0.41794974779963406,
+   "trend_F_ov_mSv_per_yr": -4.686998467351679,
+   "p_F_ov": 0.3751875422587102,
+   "trend_T_term_mSv_per_yr": 0.061379652247302297,
+   "trend_S_term_mSv_per_yr": -4.685099146468704,
+   "share_T": 0.01309572697214556,
+   "share_T_ci": [
+    0.0008579909714136295,
+    0.22771011274423691
+   ]
+  },
+  "_centres": {
+   "description": "thickness from the spacing of level centres",
+   "mean_F_ov_Sv": -0.08368806827200947,
+   "mean_T_Sv": 21.263193650690805,
+   "mean_dS_PSU": 0.13625797304817996,
+   "mean_F_az_Sv": 0.30425944633053553,
+   "mean_V_net_Sv": -1.169319240013914,
+   "trend_F_ov_mSv_per_yr": -4.36196538446867,
+   "p_F_ov": 0.36932299088157344,
+   "trend_T_term_mSv_per_yr": 0.05017104003985287,
+   "trend_S_term_mSv_per_yr": -4.358067027453122,
+   "share_T": 0.011501934476255408,
+   "share_T_ci": [
+    0.0009288148104189324,
+    0.14501157110884158
+   ]
+  },
+  "_bottom0p5": {
+   "description": "deepest wet cell of each column at half thickness",
+   "mean_F_ov_Sv": -0.10318229207971907,
+   "mean_T_Sv": 21.017020854558414,
+   "mean_dS_PSU": 0.16992652032154307,
+   "mean_F_az_Sv": 0.3257646688707389,
+   "mean_V_net_Sv": 0.47334011885372623,
+   "trend_F_ov_mSv_per_yr": -4.747508131872012,
+   "p_F_ov": 0.28052632062437866,
+   "trend_T_term_mSv_per_yr": 0.09789847281162856,
+   "trend_S_term_mSv_per_yr": -4.779337164361968,
+   "share_T": 0.020621022669639066,
+   "share_T_ci": [
+    0.0012692511228203718,
+    0.18326886938109327
+   ]
+  },
+  "_bottom0p2": {
+   "description": "deepest wet cell of each column at one fifth thickness",
+   "mean_F_ov_Sv": -0.10794761084025564,
+   "mean_T_Sv": 20.556371815615083,
+   "mean_dS_PSU": 0.1817953606471381,
+   "mean_F_az_Sv": 0.32383221977201754,
+   "mean_V_net_Sv": 1.0081140388457424,
+   "trend_F_ov_mSv_per_yr": -4.7561951633315145,
+   "p_F_ov": 0.19967521659122328,
+   "trend_T_term_mSv_per_yr": 0.1302038170274173,
+   "trend_S_term_mSv_per_yr": -4.822040086161216,
+   "share_T": 0.0273756253803965,
+   "share_T_ci": [
+    0.001533982087141579,
+    0.1989524116470988
+   ]
+  }
+ },
+ "ecco": {
+  "product": "ECCO-V4r4",
+  "_baseline": {
+   "description": "baseline: level bounds, uniform removal",
+   "mean_F_ov_Sv": -0.13213557055807046,
+   "mean_T_Sv": 14.58388609603734,
+   "mean_dS_PSU": 0.3065734674754686,
+   "mean_F_az_Sv": 0.15488001273630483,
+   "mean_V_net_Sv": -0.9766203898186421,
+   "trend_F_ov_mSv_per_yr": 0.1114005774276295,
+   "p_F_ov": 0.7882555764105318,
+   "trend_T_term_mSv_per_yr": 0.21324547423289159,
+   "trend_S_term_mSv_per_yr": -0.130675818924553,
+   "share_T": 1.9142223420827853,
+   "share_T_ci": [
+    0.040211756316603856,
+    16.284858469938225
+   ]
+  },
+  "_absV": {
+   "description": "net transport removed in proportion to |V_int(z)|",
+   "max_abs_c": 0.1122895648258405,
+   "mean_F_ov_Sv": -0.1383225328466702,
+   "mean_T_Sv": 14.658787040664073,
+   "mean_dS_PSU": 0.3191183964731299,
+   "mean_F_az_Sv": 0.15488001273630483,
+   "mean_V_net_Sv": -0.9766203898186421,
+   "trend_F_ov_mSv_per_yr": 0.1572814621798945,
+   "p_F_ov": 0.7222868119888299,
+   "trend_T_term_mSv_per_yr": 0.23208500401427595,
+   "trend_S_term_mSv_per_yr": -0.10449075608263124,
+   "share_T": 1.47560304181826,
+   "share_T_ci": [
+    0.04494532151952831,
+    14.128044814057757
+   ]
+  },
+  "_centres": {
+   "description": "thickness from the spacing of level centres",
+   "mean_F_ov_Sv": -0.11712521925271692,
+   "mean_T_Sv": 13.737417930757102,
+   "mean_dS_PSU": 0.2891086205751799,
+   "mean_F_az_Sv": 0.1438190684891718,
+   "mean_V_net_Sv": -1.212721780628289,
+   "trend_F_ov_mSv_per_yr": 0.08662776736362532,
+   "p_F_ov": 0.8095019905365648,
+   "trend_T_term_mSv_per_yr": 0.19675575242238036,
+   "trend_S_term_mSv_per_yr": -0.14107232437459608,
+   "share_T": 2.2712781179790325,
+   "share_T_ci": [
+    0.042761936705537976,
+    17.10291041714582
+   ]
+  },
+  "_bottom0p5": {
+   "description": "deepest wet cell of each column at half thickness",
+   "mean_F_ov_Sv": -0.13320273094097315,
+   "mean_T_Sv": 13.987806827544913,
+   "mean_dS_PSU": 0.321697203696847,
+   "mean_F_az_Sv": 0.15385179058617426,
+   "mean_V_net_Sv": -0.8890165755942678,
+   "trend_F_ov_mSv_per_yr": 0.08763144949854042,
+   "p_F_ov": 0.8320803590742644,
+   "trend_T_term_mSv_per_yr": 0.2605632459224298,
+   "trend_S_term_mSv_per_yr": -0.20654090727466612,
+   "share_T": 2.9733987901999694,
+   "share_T_ci": [
+    0.05082938131060047,
+    19.75578573124804
+   ]
+  },
+  "_bottom0p2": {
+   "description": "deepest wet cell of each column at one fifth thickness",
+   "mean_F_ov_Sv": -0.1338625267228643,
+   "mean_T_Sv": 13.685494793679855,
+   "mean_dS_PSU": 0.33011588746518766,
+   "mean_F_az_Sv": 0.15325546983312144,
+   "mean_V_net_Sv": -0.8364542920782065,
+   "trend_F_ov_mSv_per_yr": 0.07391432310251124,
+   "p_F_ov": 0.8577193733038462,
+   "trend_T_term_mSv_per_yr": 0.28748038250954533,
+   "trend_S_term_mSv_per_yr": -0.24943113889377863,
+   "share_T": 3.889373134227866,
+   "share_T_ci": [
+    0.05546321080764897,
+    23.318374175983255
+   ]
+  }
+ }
+}

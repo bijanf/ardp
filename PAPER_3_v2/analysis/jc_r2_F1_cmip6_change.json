@@ -1,0 +1,73 @@
+{
+ "description": "Change-on-change relation over the models with both the 26.5 N and the 34.5 S change (SSP5-8.5, 2081 to 2100 minus 1850 to 1900).",
+ "source": "PAPER_3_v2/analysis/jc_n11_cmip6_relation.json (per_model)",
+ "script": "scripts/analysis_paper3jc_r2_F1_cmip6_change.py",
+ "units": {
+  "changes": "Sv",
+  "slope": "Sv per Sv",
+  "r": "dimensionless"
+ },
+ "models": [
+  "ACCESS-CM2",
+  "ACCESS-ESM1-5",
+  "CESM2",
+  "CMCC-CM2-SR5",
+  "CNRM-CM6-1",
+  "CanESM5",
+  "FGOALS-g3",
+  "FIO-ESM-2-0",
+  "GFDL-CM4",
+  "GISS-E2-1-G",
+  "HadGEM3-GC31-LL",
+  "IPSL-CM6A-LR",
+  "MIROC6",
+  "MPI-ESM1-2-HR",
+  "MPI-ESM1-2-LR",
+  "NESM3",
+  "UKESM1-0-LL"
+ ],
+ "n_models": 17,
+ "family_units": 14,
+ "n_boot": 10000,
+ "seed": 20261104,
+ "point": {
+  "r": 0.9195322312805418,
+  "slope_26N_on_34S": 0.9242106474658758,
+  "median_34S_change": -3.568119355566452,
+  "median_26N_change": -6.881843317734534
+ },
+ "bootstrap_family_cluster": {
+  "r": {
+   "ci95": [
+    0.8155681770676235,
+    0.9802952690702794
+   ],
+   "n_valid": 10000,
+   "ci_excludes_zero": true
+  },
+  "slope_26N_on_34S": {
+   "ci95": [
+    0.6824624949032009,
+    1.1362494594901305
+   ],
+   "n_valid": 10000,
+   "ci_excludes_zero": true
+  },
+  "median_34S_change": {
+   "ci95": [
+    -6.128588799791682,
+    -2.404482454024854
+   ],
+   "n_valid": 10000,
+   "ci_excludes_zero": true
+  },
+  "median_26N_change": {
+   "ci95": [
+    -7.924337537337518,
+    -5.143478521280308
+   ],
+   "n_valid": 10000,
+   "ci_excludes_zero": true
+  }
+ }
+}

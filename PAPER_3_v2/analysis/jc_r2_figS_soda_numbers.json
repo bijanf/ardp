@@ -1,0 +1,15 @@
+{
+ "window": [
+  1980,
+  2022
+ ],
+ "n_years": 43,
+ "record_mean_Sv": -0.009066669629534948,
+ "mean_ci_Sv_N_eff_test": [
+  -0.020625845075745483,
+  0.002492505816675584
+ ],
+ "n_negative_years": 27,
+ "sensitivity_1980_2021_mean_Sv": -0.007976143681390317,
+ "source": "data/results/soda_f_ovs.nc; jc_r2_G04_removal_soda.json"
+}

@@ -7,8 +7,8 @@ Panels keep the letters cited in Main.tex.
 (a) Transport-weighted salinity of the northward limb (solid) and southward
     limb (dashed) as anomalies from their record means; grey zero line.
 (b) Zonal-mean salinity trend against depth over the full water column, bold
-    where the Santer-adjusted p is below 0.05; gray bands mark the depth ranges
-    of the northward limb.
+    where the Santer-adjusted p is below 0.05; gray bands mark 0-1000 m and
+    4000 m to the bottom.
 (c) Longitude-depth section of the salinity trend in GLORYS12V1, 2005-2024.
 (d) The same in the EN4.2.2 objective analysis on its 34 S row.
 (e) Contributions of four longitude bands and three layers to the trend of the
@@ -240,8 +240,8 @@ def main() -> None:
         ax.plot(tr, z, color=col, lw=0.6)
         sig = np.where(pv < 0.05, tr, np.nan)
         ax.plot(sig, z, color=col, lw=1.8)
-    ax.axhspan(0, 1360, color="0.85", lw=0, zorder=0)
-    ax.axhspan(4100, 5800, color="0.85", lw=0, zorder=0)
+    ax.axhspan(0, 1000, color="0.85", lw=0, zorder=0)
+    ax.axhspan(4000, 5800, color="0.85", lw=0, zorder=0)
     ax.axvline(0, color="0.45", lw=0.4, zorder=1)
     ax.set_yscale("function", functions=(depth_fwd, depth_inv))
     ax.set_ylim(5800, 0)

@@ -1,0 +1,1350 @@
+{
+ "meta": {
+  "date": "2026-11-05",
+  "group": "G09_cmip6meta",
+  "actions": [
+   "A84 (per-model metadata, net removal, Jensen term)"
+  ],
+  "script": "scripts/analysis_paper3jc_r2_G09_cmip6meta_models.py",
+  "inputs": [
+   "data/cmip6_sections/{model}_{historical,ssp585}_{vo,so}.nc",
+   "data/results/fovs_decomposition_cmip6_summary.csv (model list)",
+   "PAPER_3_v2/analysis/r1_cmip6.json (validation only)"
+  ],
+  "seed": null,
+  "sieve_resamples": null,
+  "replicates": {
+   "models": 25,
+   "experiments": [
+    "historical",
+    "ssp585"
+   ]
+  },
+  "windows": {
+   "1950-1980": [
+    1950,
+    1980
+   ],
+   "1993-2014": [
+    1993,
+    2014
+   ],
+   "record": [
+    1850,
+    2100
+   ]
+  },
+  "units": {
+   "F_ovS, jensen_term, V_net_removed": "Sv",
+   "jensen_term_pct_of_F_ovS": "percent",
+   "lat, lon": "degrees"
+  },
+  "definitions": {
+   "V_net_removed": "sum over the section of the level transports before removal, monthly mean over the window",
+   "jensen_term": "mean over the months of year y of F_ovS(monthly) minus F_ovS(annual-mean v and S of year y), averaged over the window"
+  },
+  "note": "grid_label is not stored in the section files; see the note file."
+ },
+ "n_models": 25,
+ "errors": {},
+ "per_model": [
+  {
+   "model": "ACCESS-CM2",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.98709487915039,
+   "lat_north": -34.98709487915039,
+   "lon_west": -53.0,
+   "lon_east": 19.0,
+   "n_points": 73,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 360,
+    "n_vertical_levels": 50,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.07888758286075541,
+     "F_ovS_annual_fields_mean_Sv": 0.07812815848538095,
+     "jensen_term_Sv": 0.0007594243753744551,
+     "jensen_term_pct_of_F_ovS": 0.9626665538921584,
+     "jensen_term_abs_mean_Sv": 0.001003495055159739,
+     "V_net_removed_mean_Sv": 0.01719525986244689
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.08059233329139003,
+     "F_ovS_annual_fields_mean_Sv": 0.0795871666387902,
+     "jensen_term_Sv": 0.0010051666525997898,
+     "jensen_term_pct_of_F_ovS": 1.247223664520922,
+     "jensen_term_abs_mean_Sv": 0.0011200135683138365,
+     "V_net_removed_mean_Sv": 0.07977743205096462
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.0572341911603861,
+     "F_ovS_annual_fields_mean_Sv": 0.056430561999840416,
+     "jensen_term_Sv": 0.000803629160545681,
+     "jensen_term_pct_of_F_ovS": 1.4041067834674013,
+     "jensen_term_abs_mean_Sv": 0.0009486587146168926,
+     "V_net_removed_mean_Sv": 0.12391574376305932
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "ACCESS-ESM1-5",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.98709487915039,
+   "lat_north": -34.98709487915039,
+   "lon_west": -53.0,
+   "lon_east": 19.0,
+   "n_points": 73,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 360,
+    "n_vertical_levels": 50,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.08069590419403176,
+     "F_ovS_annual_fields_mean_Sv": 0.08035890990821974,
+     "jensen_term_Sv": 0.00033699428581202565,
+     "jensen_term_pct_of_F_ovS": 0.41761014908728117,
+     "jensen_term_abs_mean_Sv": 0.000526931463471769,
+     "V_net_removed_mean_Sv": -0.44366906013845214
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.11044547941892023,
+     "F_ovS_annual_fields_mean_Sv": 0.11018244416914537,
+     "jensen_term_Sv": 0.0002630352497748629,
+     "jensen_term_pct_of_F_ovS": 0.23815845714895126,
+     "jensen_term_abs_mean_Sv": 0.0003976745392459257,
+     "V_net_removed_mean_Sv": -0.4945581126702489
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.08885794269953609,
+     "F_ovS_annual_fields_mean_Sv": 0.08858560112127958,
+     "jensen_term_Sv": 0.00027234157825648095,
+     "jensen_term_pct_of_F_ovS": 0.30649097872699543,
+     "jensen_term_abs_mean_Sv": 0.0005271423314630269,
+     "V_net_removed_mean_Sv": -0.37581312454662924
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "BCC-CSM2-MR",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -35.0,
+   "lat_north": -35.0,
+   "lon_west": -54.0,
+   "lon_east": 18.0,
+   "n_points": 73,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 360,
+    "n_vertical_levels": 40,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.1627607986598454,
+     "F_ovS_annual_fields_mean_Sv": 0.16283599483117323,
+     "jensen_term_Sv": -7.519617132779115e-05,
+     "jensen_term_pct_of_F_ovS": -0.04620041923297759,
+     "jensen_term_abs_mean_Sv": 0.0005298091093414662,
+     "V_net_removed_mean_Sv": -0.39928616395538086
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.11323609538872198,
+     "F_ovS_annual_fields_mean_Sv": 0.11315487100887633,
+     "jensen_term_Sv": 8.122437984565715e-05,
+     "jensen_term_pct_of_F_ovS": 0.07173011358862776,
+     "jensen_term_abs_mean_Sv": 0.00036489943466614207,
+     "V_net_removed_mean_Sv": -0.3916276987828811
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "CESM2",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.61097385513808,
+   "lat_north": -34.61097385513808,
+   "lon_west": -52.37499143955455,
+   "lon_east": 19.625000546115302,
+   "n_points": 65,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 320,
+    "n_vertical_levels": 60,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.1624063655194725,
+     "F_ovS_annual_fields_mean_Sv": 0.16169144973778732,
+     "jensen_term_Sv": 0.0007149157816852215,
+     "jensen_term_pct_of_F_ovS": 0.4402018230002834,
+     "jensen_term_abs_mean_Sv": 0.0007149157816852215,
+     "V_net_removed_mean_Sv": -1.0303852135531149
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.18730165944458219,
+     "F_ovS_annual_fields_mean_Sv": 0.1865155243786085,
+     "jensen_term_Sv": 0.0007861350659736592,
+     "jensen_term_pct_of_F_ovS": 0.4197160176289077,
+     "jensen_term_abs_mean_Sv": 0.0008483940233480102,
+     "V_net_removed_mean_Sv": -0.9775828651537146
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.12932208991472105,
+     "F_ovS_annual_fields_mean_Sv": 0.12853136012709876,
+     "jensen_term_Sv": 0.0007907297876222978,
+     "jensen_term_pct_of_F_ovS": 0.6114421659468458,
+     "jensen_term_abs_mean_Sv": 0.0007988232485945606,
+     "V_net_removed_mean_Sv": -0.9108792843023785
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "CESM2-WACCM",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.61097385513808,
+   "lat_north": -34.61097385513808,
+   "lon_west": -52.37499143955455,
+   "lon_east": 19.625000546115302,
+   "n_points": 65,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 320,
+    "n_vertical_levels": 60,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.14313525275883482,
+     "F_ovS_annual_fields_mean_Sv": 0.14216804060203628,
+     "jensen_term_Sv": 0.0009672121567985499,
+     "jensen_term_pct_of_F_ovS": 0.6757330134653708,
+     "jensen_term_abs_mean_Sv": 0.0009672121567985499,
+     "V_net_removed_mean_Sv": -0.9591966048804571
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.16661485912997898,
+     "F_ovS_annual_fields_mean_Sv": 0.16552834670155225,
+     "jensen_term_Sv": 0.0010865124284267502,
+     "jensen_term_pct_of_F_ovS": 0.6521101623830226,
+     "jensen_term_abs_mean_Sv": 0.0010988188125554512,
+     "V_net_removed_mean_Sv": -0.9763834607437398
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "CIESM",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.34513854980469,
+   "lat_north": -34.34513854980469,
+   "lon_west": -52.9375,
+   "lon_east": 19.0625,
+   "n_points": 65,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 320,
+    "n_vertical_levels": 60,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": -0.07183893482890585,
+     "F_ovS_annual_fields_mean_Sv": -0.07315250156671771,
+     "jensen_term_Sv": 0.0013135667378118652,
+     "jensen_term_pct_of_F_ovS": -1.8284886057126293,
+     "jensen_term_abs_mean_Sv": 0.0013135667378118652,
+     "V_net_removed_mean_Sv": -0.7679180307488452
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": -0.07809377547746997,
+     "F_ovS_annual_fields_mean_Sv": -0.07993635197766413,
+     "jensen_term_Sv": 0.0018425765001941637,
+     "jensen_term_pct_of_F_ovS": -2.359440927178308,
+     "jensen_term_abs_mean_Sv": 0.0018514678562815538,
+     "V_net_removed_mean_Sv": -0.6608905895795189
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "CMCC-CM2-SR5",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.25550079345703,
+   "lat_north": -34.25550079345703,
+   "lon_west": -53.5,
+   "lon_east": 19.5,
+   "n_points": 74,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 362,
+    "n_vertical_levels": 50,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.04477588198726389,
+     "F_ovS_annual_fields_mean_Sv": 0.04385331890789882,
+     "jensen_term_Sv": 0.0009225630793650617,
+     "jensen_term_pct_of_F_ovS": 2.0604018020850523,
+     "jensen_term_abs_mean_Sv": 0.0009455706601731363,
+     "V_net_removed_mean_Sv": -2.172717302092552
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.08610547105759632,
+     "F_ovS_annual_fields_mean_Sv": 0.0850997524727572,
+     "jensen_term_Sv": 0.0010057185848391275,
+     "jensen_term_pct_of_F_ovS": 1.1680077612796496,
+     "jensen_term_abs_mean_Sv": 0.0010057185848391275,
+     "V_net_removed_mean_Sv": -1.8746967870743676
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.03121327787911062,
+     "F_ovS_annual_fields_mean_Sv": 0.030240747051547882,
+     "jensen_term_Sv": 0.0009725308275627439,
+     "jensen_term_pct_of_F_ovS": 3.115760002295712,
+     "jensen_term_abs_mean_Sv": 0.0010032817353551387,
+     "V_net_removed_mean_Sv": -1.9160083242464128
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "CMCC-ESM2",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.25550079345703,
+   "lat_north": -34.25550079345703,
+   "lon_west": -53.5,
+   "lon_east": 19.5,
+   "n_points": 74,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 362,
+    "n_vertical_levels": 50,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.0523316043983217,
+     "F_ovS_annual_fields_mean_Sv": 0.05180299567669624,
+     "jensen_term_Sv": 0.0005286087216254653,
+     "jensen_term_pct_of_F_ovS": 1.0101137308956996,
+     "jensen_term_abs_mean_Sv": 0.0006191854929640456,
+     "V_net_removed_mean_Sv": -2.253609178508477
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.09657854385168049,
+     "F_ovS_annual_fields_mean_Sv": 0.09598900322723153,
+     "jensen_term_Sv": 0.000589540624448958,
+     "jensen_term_pct_of_F_ovS": 0.6104260852745295,
+     "jensen_term_abs_mean_Sv": 0.0007074417256144227,
+     "V_net_removed_mean_Sv": -2.046428464108758
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "CNRM-CM6-1",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.25550079345703,
+   "lat_north": -34.25550079345703,
+   "lon_west": -53.5,
+   "lon_east": 19.5,
+   "n_points": 74,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 362,
+    "n_vertical_levels": 75,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": -0.11237761703794646,
+     "F_ovS_annual_fields_mean_Sv": -0.11265228918184,
+     "jensen_term_Sv": 0.0002746721438935096,
+     "jensen_term_pct_of_F_ovS": -0.24441890754878817,
+     "jensen_term_abs_mean_Sv": 0.0005967301244409065,
+     "V_net_removed_mean_Sv": -1.9461625164868994
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": -0.10629262892422649,
+     "F_ovS_annual_fields_mean_Sv": -0.10646813027168123,
+     "jensen_term_Sv": 0.00017550134745474138,
+     "jensen_term_pct_of_F_ovS": -0.16511149383637144,
+     "jensen_term_abs_mean_Sv": 0.0005659878003824712,
+     "V_net_removed_mean_Sv": -2.1977301561535527
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": -0.11362298694204566,
+     "F_ovS_annual_fields_mean_Sv": -0.11383689984129762,
+     "jensen_term_Sv": 0.00021391289925193664,
+     "jensen_term_pct_of_F_ovS": -0.18826551299962274,
+     "jensen_term_abs_mean_Sv": 0.0006573671702616891,
+     "V_net_removed_mean_Sv": -1.8320559774532719
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "CanESM5",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.25550079345703,
+   "lat_north": -34.25550079345703,
+   "lon_west": -53.5,
+   "lon_east": 19.5,
+   "n_points": 74,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 360,
+    "n_vertical_levels": 45,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": -0.06993178692031421,
+     "F_ovS_annual_fields_mean_Sv": -0.07007457070038074,
+     "jensen_term_Sv": 0.0001427837800665412,
+     "jensen_term_pct_of_F_ovS": -0.2041757923749901,
+     "jensen_term_abs_mean_Sv": 0.000339938882165315,
+     "V_net_removed_mean_Sv": 2.17750123941347
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": -0.05256103202639641,
+     "F_ovS_annual_fields_mean_Sv": -0.05285732294211462,
+     "jensen_term_Sv": 0.0002962909157182139,
+     "jensen_term_pct_of_F_ovS": -0.5637083297173753,
+     "jensen_term_abs_mean_Sv": 0.0004960039942316947,
+     "V_net_removed_mean_Sv": 2.108588672144461
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": -0.06736169520886137,
+     "F_ovS_annual_fields_mean_Sv": -0.06767288295249756,
+     "jensen_term_Sv": 0.00031118774363617525,
+     "jensen_term_pct_of_F_ovS": -0.46196542808388047,
+     "jensen_term_abs_mean_Sv": 0.0005269987909399513,
+     "V_net_removed_mean_Sv": 2.3980861514721084
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "EC-Earth3",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.25550079345703,
+   "lat_north": -34.25550079345703,
+   "lon_west": -53.5,
+   "lon_east": 19.5,
+   "n_points": 74,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 362,
+    "n_vertical_levels": 75,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": -0.0157820955845484,
+     "F_ovS_annual_fields_mean_Sv": -0.016692939842486196,
+     "jensen_term_Sv": 0.000910844257937798,
+     "jensen_term_pct_of_F_ovS": -5.771377147338837,
+     "jensen_term_abs_mean_Sv": 0.0009358032239655474,
+     "V_net_removed_mean_Sv": -1.7424766991260952
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": -0.035280100804959816,
+     "F_ovS_annual_fields_mean_Sv": -0.03634772218640707,
+     "jensen_term_Sv": 0.0010676213814472463,
+     "jensen_term_pct_of_F_ovS": -3.0261290560064267,
+     "jensen_term_abs_mean_Sv": 0.0011055153138496187,
+     "V_net_removed_mean_Sv": -1.905823860141576
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": -0.02469334509975303,
+     "F_ovS_annual_fields_mean_Sv": -0.02578541591472586,
+     "jensen_term_Sv": 0.0010920708149728313,
+     "jensen_term_pct_of_F_ovS": -4.422530890655854,
+     "jensen_term_abs_mean_Sv": 0.0011559112351296073,
+     "V_net_removed_mean_Sv": -1.8129730881538033
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "FGOALS-f3-L",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.691986083984375,
+   "lat_north": -34.691986083984375,
+   "lon_west": -54.5,
+   "lon_east": 19.5,
+   "n_points": 75,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 360,
+    "n_vertical_levels": 30,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.4669320647888943,
+     "F_ovS_annual_fields_mean_Sv": 0.4653217887502369,
+     "jensen_term_Sv": 0.0016102760386574966,
+     "jensen_term_pct_of_F_ovS": 0.3448630240001877,
+     "jensen_term_abs_mean_Sv": 0.0017144938206801956,
+     "V_net_removed_mean_Sv": -2.844142284364112
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.48999502011421453,
+     "F_ovS_annual_fields_mean_Sv": 0.4889680667101708,
+     "jensen_term_Sv": 0.0010269534040437324,
+     "jensen_term_pct_of_F_ovS": 0.2095844573694558,
+     "jensen_term_abs_mean_Sv": 0.0010562152479858282,
+     "V_net_removed_mean_Sv": -3.074643867660234
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "FGOALS-g3",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.691986083984375,
+   "lat_north": -34.691986083984375,
+   "lon_west": -54.5,
+   "lon_east": 19.5,
+   "n_points": 75,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 360,
+    "n_vertical_levels": 30,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.35936948181025946,
+     "F_ovS_annual_fields_mean_Sv": 0.357281814271152,
+     "jensen_term_Sv": 0.002087667539107471,
+     "jensen_term_pct_of_F_ovS": 0.5809251048784719,
+     "jensen_term_abs_mean_Sv": 0.002087667539107471,
+     "V_net_removed_mean_Sv": -4.078423584945433
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.31755175384425166,
+     "F_ovS_annual_fields_mean_Sv": 0.3152857776176234,
+     "jensen_term_Sv": 0.002265976226628252,
+     "jensen_term_pct_of_F_ovS": 0.7135769836559103,
+     "jensen_term_abs_mean_Sv": 0.002265976226628252,
+     "V_net_removed_mean_Sv": -4.037471830297258
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.3071524074205896,
+     "F_ovS_annual_fields_mean_Sv": 0.3051010652278692,
+     "jensen_term_Sv": 0.0020513421927205104,
+     "jensen_term_pct_of_F_ovS": 0.6678580871129455,
+     "jensen_term_abs_mean_Sv": 0.0020545413589644437,
+     "V_net_removed_mean_Sv": -3.9406848783539363
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "FIO-ESM-2-0",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.61097385513808,
+   "lat_north": -34.61097385513808,
+   "lon_west": -52.37499143955455,
+   "lon_east": 19.625000546115302,
+   "n_points": 65,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 320,
+    "n_vertical_levels": 60,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.20325472876799308,
+     "F_ovS_annual_fields_mean_Sv": 0.20239380233760979,
+     "jensen_term_Sv": 0.0008609264303833591,
+     "jensen_term_pct_of_F_ovS": 0.423570184862007,
+     "jensen_term_abs_mean_Sv": 0.0008823457067191137,
+     "V_net_removed_mean_Sv": -0.8302651459872891
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.19755526456842043,
+     "F_ovS_annual_fields_mean_Sv": 0.19648295494650797,
+     "jensen_term_Sv": 0.001072309621912452,
+     "jensen_term_pct_of_F_ovS": 0.5427896969767023,
+     "jensen_term_abs_mean_Sv": 0.0010750966611566724,
+     "V_net_removed_mean_Sv": -0.8091591908999142
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.17983212967461124,
+     "F_ovS_annual_fields_mean_Sv": 0.1789414931563422,
+     "jensen_term_Sv": 0.0008906365182690442,
+     "jensen_term_pct_of_F_ovS": 0.4952599515340026,
+     "jensen_term_abs_mean_Sv": 0.0009322510804538074,
+     "V_net_removed_mean_Sv": -0.8263284259227311
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "GFDL-CM4",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.46187973022461,
+   "lat_north": -34.46187973022461,
+   "lon_west": -53.875,
+   "lon_east": 19.125,
+   "n_points": 293,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 1440,
+    "n_vertical_levels": 35,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.035909100936191145,
+     "F_ovS_annual_fields_mean_Sv": 0.034667864853704475,
+     "jensen_term_Sv": 0.0012412360824866743,
+     "jensen_term_pct_of_F_ovS": 3.456605846780444,
+     "jensen_term_abs_mean_Sv": 0.0012412360824866743,
+     "V_net_removed_mean_Sv": -0.02827076292775517
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.055773529409294566,
+     "F_ovS_annual_fields_mean_Sv": 0.054456539103018974,
+     "jensen_term_Sv": 0.0013169903062756072,
+     "jensen_term_pct_of_F_ovS": 2.3613178513607442,
+     "jensen_term_abs_mean_Sv": 0.0013169903062756072,
+     "V_net_removed_mean_Sv": 1.008491588332501
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.00624311009841125,
+     "F_ovS_annual_fields_mean_Sv": 0.004672477865880063,
+     "jensen_term_Sv": 0.0015706322325311879,
+     "jensen_term_pct_of_F_ovS": 25.157849337478176,
+     "jensen_term_abs_mean_Sv": 0.0015748026414598986,
+     "V_net_removed_mean_Sv": 0.06482657390214003
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "GISS-E2-1-G",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.5,
+   "lat_north": -34.5,
+   "lon_west": -53.125,
+   "lon_east": 18.125,
+   "n_points": 58,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 288,
+    "n_vertical_levels": 40,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.25248546609213457,
+     "F_ovS_annual_fields_mean_Sv": 0.2514951591496458,
+     "jensen_term_Sv": 0.000990306942488777,
+     "jensen_term_pct_of_F_ovS": 0.39222334569048173,
+     "jensen_term_abs_mean_Sv": 0.0011391240708882294,
+     "V_net_removed_mean_Sv": 0.43052572852040183
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.2674681474094603,
+     "F_ovS_annual_fields_mean_Sv": 0.26668908309940503,
+     "jensen_term_Sv": 0.0007790643100553322,
+     "jensen_term_pct_of_F_ovS": 0.2912736778569308,
+     "jensen_term_abs_mean_Sv": 0.0010099699548814574,
+     "V_net_removed_mean_Sv": 0.4626848341888161
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.18941510459801608,
+     "F_ovS_annual_fields_mean_Sv": 0.1880367886574979,
+     "jensen_term_Sv": 0.0013783159405181598,
+     "jensen_term_pct_of_F_ovS": 0.7276694978699161,
+     "jensen_term_abs_mean_Sv": 0.0014424692172908332,
+     "V_net_removed_mean_Sv": 0.480822823040256
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "HadGEM3-GC31-LL",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.25550079345703,
+   "lat_north": -34.25550079345703,
+   "lon_west": -53.5,
+   "lon_east": 19.5,
+   "n_points": 74,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 360,
+    "n_vertical_levels": 75,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.08883906611504583,
+     "F_ovS_annual_fields_mean_Sv": 0.0882790549493861,
+     "jensen_term_Sv": 0.0005600111656597317,
+     "jensen_term_pct_of_F_ovS": 0.6303658853578246,
+     "jensen_term_abs_mean_Sv": 0.0007856412971323589,
+     "V_net_removed_mean_Sv": -1.825029392662705
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.1322004814270472,
+     "F_ovS_annual_fields_mean_Sv": 0.13153037203141735,
+     "jensen_term_Sv": 0.0006701093956298902,
+     "jensen_term_pct_of_F_ovS": 0.5068887710516241,
+     "jensen_term_abs_mean_Sv": 0.000693256282966601,
+     "V_net_removed_mean_Sv": -1.920852812250378
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.06853218674154576,
+     "F_ovS_annual_fields_mean_Sv": 0.06786998397460535,
+     "jensen_term_Sv": 0.0006622027669404033,
+     "jensen_term_pct_of_F_ovS": 0.9662653395808849,
+     "jensen_term_abs_mean_Sv": 0.0007940461346854113,
+     "V_net_removed_mean_Sv": -1.689792540069962
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "IPSL-CM6A-LR",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.25550079345703,
+   "lat_north": -34.25550079345703,
+   "lon_west": -53.5,
+   "lon_east": 19.5,
+   "n_points": 74,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 362,
+    "n_vertical_levels": 75,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": -0.1745935147690931,
+     "F_ovS_annual_fields_mean_Sv": -0.17598073616518686,
+     "jensen_term_Sv": 0.0013872213960937746,
+     "jensen_term_pct_of_F_ovS": -0.7945434845781244,
+     "jensen_term_abs_mean_Sv": 0.0014246394908624537,
+     "V_net_removed_mean_Sv": -1.1645792879574153
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": -0.18281669230810363,
+     "F_ovS_annual_fields_mean_Sv": -0.18461945920549871,
+     "jensen_term_Sv": 0.0018027668973951,
+     "jensen_term_pct_of_F_ovS": -0.9861062874701129,
+     "jensen_term_abs_mean_Sv": 0.0018507532451897087,
+     "V_net_removed_mean_Sv": -1.2294500824689687
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": -0.17233985167653187,
+     "F_ovS_annual_fields_mean_Sv": -0.17388871313315293,
+     "jensen_term_Sv": 0.001548861456621076,
+     "jensen_term_pct_of_F_ovS": -0.898725072322892,
+     "jensen_term_abs_mean_Sv": 0.0016203931452173912,
+     "V_net_removed_mean_Sv": -1.0317062540651478
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "MIROC6",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.41716003417969,
+   "lat_north": -34.41716003417969,
+   "lon_west": -53.0,
+   "lon_east": 19.0,
+   "n_points": 73,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 360,
+    "n_vertical_levels": 63,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": -0.0929060366392511,
+     "F_ovS_annual_fields_mean_Sv": -0.09334469776262012,
+     "jensen_term_Sv": 0.0004386611233690105,
+     "jensen_term_pct_of_F_ovS": -0.47215567387973606,
+     "jensen_term_abs_mean_Sv": 0.0005680841415437128,
+     "V_net_removed_mean_Sv": -0.9027301826263463
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": -0.09348256221152247,
+     "F_ovS_annual_fields_mean_Sv": -0.09412698133900266,
+     "jensen_term_Sv": 0.0006444191274801996,
+     "jensen_term_pct_of_F_ovS": -0.6893468816377497,
+     "jensen_term_abs_mean_Sv": 0.0007647401825042206,
+     "V_net_removed_mean_Sv": -0.9411070376412906
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": -0.10547315208028658,
+     "F_ovS_annual_fields_mean_Sv": -0.10600458101096906,
+     "jensen_term_Sv": 0.0005314289306824684,
+     "jensen_term_pct_of_F_ovS": -0.5038523265882322,
+     "jensen_term_abs_mean_Sv": 0.0006776985376836778,
+     "V_net_removed_mean_Sv": -0.8434365854815715
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "MPI-ESM1-2-HR",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.664976809778196,
+   "lat_north": -34.64906511183026,
+   "lon_west": -53.49611970603058,
+   "lon_east": 18.953880293969377,
+   "n_points": 162,
+   "lat_varies_along_row": true,
+   "grid_description": {
+    "n_longitude_points_global_i": 802,
+    "n_vertical_levels": 40,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": -0.041793271031548083,
+     "F_ovS_annual_fields_mean_Sv": -0.0445389451402197,
+     "jensen_term_Sv": 0.002745674108671618,
+     "jensen_term_pct_of_F_ovS": -6.569655930015665,
+     "jensen_term_abs_mean_Sv": 0.0027833943615764595,
+     "V_net_removed_mean_Sv": -0.9160981226893026
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": -0.0592857931665264,
+     "F_ovS_annual_fields_mean_Sv": -0.06221407730603395,
+     "jensen_term_Sv": 0.002928284139507552,
+     "jensen_term_pct_of_F_ovS": -4.939267880388084,
+     "jensen_term_abs_mean_Sv": 0.00297725770519119,
+     "V_net_removed_mean_Sv": -0.9067023043077479
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": -0.046907058545778785,
+     "F_ovS_annual_fields_mean_Sv": -0.04967654826604891,
+     "jensen_term_Sv": 0.002769489720270136,
+     "jensen_term_pct_of_F_ovS": -5.904206757213868,
+     "jensen_term_abs_mean_Sv": 0.002832232386720936,
+     "V_net_removed_mean_Sv": -0.8718026246418662
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "MPI-ESM1-2-LR",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -40.72998213410597,
+   "lat_north": -33.45164717717575,
+   "lon_west": -62.223508282247224,
+   "lon_east": 17.132195938541543,
+   "n_points": 62,
+   "lat_varies_along_row": true,
+   "grid_description": {
+    "n_longitude_points_global_i": 256,
+    "n_vertical_levels": 40,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.12388202070180608,
+     "F_ovS_annual_fields_mean_Sv": 0.12429106007571068,
+     "jensen_term_Sv": -0.00040903937390461645,
+     "jensen_term_pct_of_F_ovS": -0.330184615642658,
+     "jensen_term_abs_mean_Sv": 0.0009357195495543395,
+     "V_net_removed_mean_Sv": -1.185192353732399
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.10951853671388889,
+     "F_ovS_annual_fields_mean_Sv": 0.10972644058476021,
+     "jensen_term_Sv": -0.00020790387087128335,
+     "jensen_term_pct_of_F_ovS": -0.18983441261128306,
+     "jensen_term_abs_mean_Sv": 0.0009746198432364603,
+     "V_net_removed_mean_Sv": -1.0723234899747551
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.10088404010185198,
+     "F_ovS_annual_fields_mean_Sv": 0.10095475164096486,
+     "jensen_term_Sv": -7.071153911286082e-05,
+     "jensen_term_pct_of_F_ovS": -0.0700918986209026,
+     "jensen_term_abs_mean_Sv": 0.0011083874245343887,
+     "V_net_removed_mean_Sv": -1.099935700236257
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "MRI-ESM2-0",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.75,
+   "lat_north": -34.75,
+   "lon_west": -53.5,
+   "lon_east": 19.5,
+   "n_points": 74,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 360,
+    "n_vertical_levels": 61,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": -0.21468520947820136,
+     "F_ovS_annual_fields_mean_Sv": -0.2165628576510808,
+     "jensen_term_Sv": 0.0018776481728794766,
+     "jensen_term_pct_of_F_ovS": -0.8746052778592224,
+     "jensen_term_abs_mean_Sv": 0.0018776481728794766,
+     "V_net_removed_mean_Sv": 0.07086291545916575
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": -0.18702629539552904,
+     "F_ovS_annual_fields_mean_Sv": -0.18938668564624284,
+     "jensen_term_Sv": 0.0023603902507137843,
+     "jensen_term_pct_of_F_ovS": -1.2620633081150208,
+     "jensen_term_abs_mean_Sv": 0.0023603902507137843,
+     "V_net_removed_mean_Sv": 0.06322197003912107
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "NESM3",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.25550079345703,
+   "lat_north": -34.25550079345703,
+   "lon_west": -53.5,
+   "lon_east": 19.5,
+   "n_points": 74,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 362,
+    "n_vertical_levels": 46,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": -0.17883676893540953,
+     "F_ovS_annual_fields_mean_Sv": -0.18036317647099873,
+     "jensen_term_Sv": 0.0015264075355892024,
+     "jensen_term_pct_of_F_ovS": -0.8535199694535383,
+     "jensen_term_abs_mean_Sv": 0.0020912646541701944,
+     "V_net_removed_mean_Sv": 0.5116787417621844
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": -0.23245273866123284,
+     "F_ovS_annual_fields_mean_Sv": -0.23338729091981003,
+     "jensen_term_Sv": 0.000934552258577209,
+     "jensen_term_pct_of_F_ovS": -0.40203968512463406,
+     "jensen_term_abs_mean_Sv": 0.0015663117278512724,
+     "V_net_removed_mean_Sv": 0.2019178159768387
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": -0.19936638840443666,
+     "F_ovS_annual_fields_mean_Sv": -0.20099902630703312,
+     "jensen_term_Sv": 0.0016326379025964515,
+     "jensen_term_pct_of_F_ovS": -0.8189133161626352,
+     "jensen_term_abs_mean_Sv": 0.0020883018065292946,
+     "V_net_removed_mean_Sv": 0.5622378273400885
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "TaiESM1",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.61097385513808,
+   "lat_north": -34.61097385513808,
+   "lon_west": -52.37499143955455,
+   "lon_east": 19.625000546115302,
+   "n_points": 65,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 320,
+    "n_vertical_levels": 60,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.2998764954728872,
+     "F_ovS_annual_fields_mean_Sv": 0.29892088336457995,
+     "jensen_term_Sv": 0.0009556121083073433,
+     "jensen_term_pct_of_F_ovS": 0.3186685594682573,
+     "jensen_term_abs_mean_Sv": 0.0009556121083073433,
+     "V_net_removed_mean_Sv": -0.9087262477960236
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.356327258201087,
+     "F_ovS_annual_fields_mean_Sv": 0.35515897226561327,
+     "jensen_term_Sv": 0.0011682859354737627,
+     "jensen_term_pct_of_F_ovS": 0.32786880840153443,
+     "jensen_term_abs_mean_Sv": 0.0011682859354737627,
+     "V_net_removed_mean_Sv": -0.880863071466525
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.27122868274517364,
+     "F_ovS_annual_fields_mean_Sv": 0.2699325118250264,
+     "jensen_term_Sv": 0.0012961709201472042,
+     "jensen_term_pct_of_F_ovS": 0.47788858723507144,
+     "jensen_term_abs_mean_Sv": 0.0013072473373537173,
+     "V_net_removed_mean_Sv": -0.8648709840847679
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  },
+  {
+   "model": "UKESM1-0-LL",
+   "section_file_experiments": [
+    "historical",
+    "ssp585"
+   ],
+   "lat_south": -34.25550079345703,
+   "lat_north": -34.25550079345703,
+   "lon_west": -53.5,
+   "lon_east": 19.5,
+   "n_points": 74,
+   "lat_varies_along_row": false,
+   "grid_description": {
+    "n_longitude_points_global_i": 360,
+    "n_vertical_levels": 75,
+    "grid_label": null
+   },
+   "windows": {
+    "1950-1980": {
+     "n_years": 31,
+     "F_ovS_monthly_mean_Sv": 0.04767778289109431,
+     "F_ovS_annual_fields_mean_Sv": 0.04721895256345919,
+     "jensen_term_Sv": 0.0004588303276351133,
+     "jensen_term_pct_of_F_ovS": 0.9623566781265279,
+     "jensen_term_abs_mean_Sv": 0.000540276242648071,
+     "V_net_removed_mean_Sv": -1.7751819327892546
+    },
+    "1993-2014": {
+     "n_years": 22,
+     "F_ovS_monthly_mean_Sv": 0.08534980749693852,
+     "F_ovS_annual_fields_mean_Sv": 0.08468707680761887,
+     "jensen_term_Sv": 0.0006627306893196253,
+     "jensen_term_pct_of_F_ovS": 0.7764876204827964,
+     "jensen_term_abs_mean_Sv": 0.000794640162231006,
+     "V_net_removed_mean_Sv": -1.9475674876637619
+    },
+    "record": {
+     "n_years": 251,
+     "F_ovS_monthly_mean_Sv": 0.028980002368227814,
+     "F_ovS_annual_fields_mean_Sv": 0.028355577665238968,
+     "jensen_term_Sv": 0.0006244247029888437,
+     "jensen_term_pct_of_F_ovS": 2.154674437409401,
+     "jensen_term_abs_mean_Sv": 0.0007616832471106201,
+     "V_net_removed_mean_Sv": -1.6852928329182744
+    }
+   },
+   "validation_F_1993_2014_minus_r1_cmip6_Sv": 0.0,
+   "validation_lat_south_minus_r1_cmip6": 0.0,
+   "validation_lat_north_minus_r1_cmip6": 0.0,
+   "validation_lon_west_minus_r1_cmip6": 0.0,
+   "validation_lon_east_minus_r1_cmip6": 0.0,
+   "validation_n_points_minus_r1_cmip6": 0.0
+  }
+ ],
+ "summary": {
+  "1950-1980": {
+   "n": 25,
+   "jensen_term_Sv_median": 0.000910844257937798,
+   "jensen_term_Sv_min": -0.00040903937390461645,
+   "jensen_term_Sv_max": 0.002745674108671618,
+   "jensen_term_pct_median": 0.3448630240001877,
+   "jensen_term_pct_min": -6.569655930015665,
+   "jensen_term_pct_max": 3.456605846780444,
+   "V_net_removed_Sv_median": -0.9160981226893026,
+   "V_net_removed_Sv_min": -4.078423584945433,
+   "V_net_removed_Sv_max": 2.17750123941347
+  },
+  "1993-2014": {
+   "n": 25,
+   "jensen_term_Sv_median": 0.0010051666525997898,
+   "jensen_term_Sv_min": -0.00020790387087128335,
+   "jensen_term_Sv_max": 0.002928284139507552,
+   "jensen_term_pct_median": 0.23815845714895126,
+   "jensen_term_pct_min": -4.939267880388084,
+   "jensen_term_pct_max": 2.3613178513607442,
+   "V_net_removed_Sv_median": -0.9411070376412906,
+   "V_net_removed_Sv_min": -4.037471830297258,
+   "V_net_removed_Sv_max": 2.108588672144461
+  }
+ },
+ "max_abs_validation_F_1993_2014_Sv": 0.0
+}

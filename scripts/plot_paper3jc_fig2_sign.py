@@ -60,6 +60,14 @@ E_X, E_W = 4.10, 1.85
 E_LIM = (-10.0, 10.0)   # trend axis of e, mSv per yr
 
 
+def total_marker(significant: bool, ms: float) -> dict:
+    """Star marker for the total F_ovS (distinct from the overturning circle and
+    the azonal diamond). Filled when the trend is significant, open otherwise."""
+    colour = st.TERM_STYLE["total"]["colour"]
+    return dict(marker="*", mfc=colour if significant else "white", mec=colour,
+                mew=0.7, ms=ms * 1.45, ls="none")
+
+
 def num(v: float, nd: int = 2, signed: bool = False) -> str:
     """Format a number with a typographic minus sign."""
     s = f"{v:+.{nd}f}" if signed else f"{v:.{nd}f}"
@@ -226,15 +234,17 @@ def panel_d(fig, cw):
         fov, faz, ftot = w["mean_F_ov_Sv"], w["mean_F_az_Sv"], w["mean_F_total_Sv"]
         ax.barh(y, fov, height=bar_h, color=ov_c, lw=0, zorder=2)
         ax.barh(y, faz, height=bar_h, color=az_c, lw=0, zorder=2)
-        ax.plot([ftot], [y], **st.term_marker("total", True, ms=4.6), zorder=5)
+        ax.plot([ftot], [y], **total_marker(True, 4.6), zorder=5)
         ax.text(fov - 0.012, y, num(fov, 3, signed=True), ha="right", va="center",
                 fontsize=7)
         ax.text(faz + 0.012, y, num(faz, 3, signed=True), ha="left", va="center",
                 fontsize=7)
         ax.text(ftot, y + 0.25, num(ftot, 3, signed=True), ha="center", va="bottom",
                 fontsize=7)
-    for x, text in ((-0.09, "overturning"), (0.165, "azonal"), (0.31, "total")):
-        ax.text(x, 2.72, text, ha="center", va="bottom", fontsize=7, color="black")
+    # Headers sit over their own bars and marker, clear of the zero line.
+    ax.text(-0.04, 2.72, "overturning", ha="right", va="bottom", fontsize=7, color="black")
+    ax.text(0.16, 2.72, "azonal", ha="center", va="bottom", fontsize=7, color="black")
+    ax.text(0.36, 2.72, "total", ha="center", va="bottom", fontsize=7, color="black")
     ax.axvline(0, color="0.35", lw=0.5, zorder=1)
     ax.set_xlim(-0.36, 0.50)
     ax.set_ylim(-0.6, 3.1)
@@ -265,15 +275,22 @@ def _forest_interval(ax, y, lo, hi, term, sig, lim):
         ax.annotate("", xy=(lim[0], y), xytext=(lim[0] + 0.9, y),
                     arrowprops=dict(arrowstyle="-|>", color="black", lw=0.6,
                                     mutation_scale=5), zorder=4)
-        ax.text(lim[0] + 0.35, y, num(a, 1, signed=True), fontsize=7, ha="left",
-                va="center", color="black", zorder=6,
-                bbox=dict(fc="white", ec="none", pad=0.2))
+        ax.text(lim[0] + 0.15, y + 0.12, num(a, 1, signed=True), fontsize=7,
+                ha="left", va="bottom", color="black", zorder=6,
+                bbox=dict(fc="white", ec="none", pad=0.1))
     if b > lim[1]:
         ax.annotate("", xy=(lim[1], y), xytext=(lim[1] - 0.9, y),
                     arrowprops=dict(arrowstyle="-|>", color="black", lw=0.6,
                                     mutation_scale=5), zorder=4)
         ax.text(1.02, y, num(b, 1, signed=True), transform=ax.get_yaxis_transform(),
                 fontsize=7, ha="left", va="center", color="black", clip_on=False)
+
+
+def _trend_marker(term: str, sig: bool) -> dict:
+    """Trend marker: the total is a star, the other terms keep TERM_STYLE."""
+    if term == "total":
+        return total_marker(sig, 4.4)
+    return st.term_marker(term, sig, ms=4.4)
 
 
 def panel_e(fig, cw):
@@ -292,11 +309,20 @@ def panel_e(fig, cw):
             y = y0 - 1.0 - j
             t = w[f"trend_{comp}"]
             lo, hi = t["ci"]
+            if t.get("n_eff_at_floor"):
+                # effective sample size at its floor of three: point value only,
+                # open marker, dagger, no interval; not counted as resolved
+                ax.plot([t["trend"]], [y], **_trend_marker(term, False), zorder=5)
+                ax.text(t["trend"] + 0.6, y, "\u2020", fontsize=7, ha="left",
+                        va="center", color="black", zorder=6)
+                ticks.append(y)
+                labels.append(term)
+                continue
             sig = not (lo <= 0.0 <= hi)
             if sig != bool(t["significant"]):
                 mismatches.append((key, comp))
             _forest_interval(ax, y, lo, hi, term, sig, E_LIM)
-            ax.plot([t["trend"]], [y], **st.term_marker(term, sig, ms=4.4), zorder=5)
+            ax.plot([t["trend"]], [y], **_trend_marker(term, sig), zorder=5)
             ticks.append(y)
             labels.append(term)
     if mismatches:

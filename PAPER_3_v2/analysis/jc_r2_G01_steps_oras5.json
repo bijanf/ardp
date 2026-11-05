@@ -1,0 +1,292 @@
+{
+ "meta": {
+  "id": "jc_r2_G01_steps_oras5",
+  "date": "2026-11-05",
+  "script": "scripts/analysis_paper3jc_r2_G01_steps_oras5.py",
+  "action_ids": [
+   "A11",
+   "A65"
+  ],
+  "cluster_ids": [
+   "C02",
+   "C23"
+  ],
+  "inputs": [
+   "data/results/paper3r1_section_oras5.nc",
+   "scripts/analysis_paper3v2_attribution.py (S0, annual)",
+   "scripts/paper3r1_stats.py (regression_test, sieve_coefficients, ratio_summary)"
+  ],
+  "record": [
+   1958,
+   2025
+  ],
+  "years_in_record": 68,
+  "seed": 20261104,
+  "n_boot_sieve": 10000,
+  "units": {
+   "F, F_T, F_S, R": "Sv internally; trends reported in mSv per year",
+   "shares": "dimensionless fraction, and percent",
+   "steps": "Sv",
+   "n_eff": "effective sample size (bias-corrected lag-one)"
+  },
+  "interval_definition": "sieve bootstrap 2.5 and 97.5 percentiles (share_ci_sieve_2.5_97.5, ci_sieve_2.5_97.5); analytic t interval from regression_test as ci_analytic",
+  "p_values": "present in JSON only, from regression_test with corrected N_eff",
+  "S0_PSU": 35.0
+ },
+ "A11_transport_share": {
+  "unstepped": {
+   "share_point": 0.0747874098316596,
+   "share_ci_sieve_2.5_97.5": [
+    0.03354584842933732,
+    0.13478821959097131
+   ],
+   "share_percent_point": 7.47874098316596,
+   "share_percent_ci": [
+    3.3545848429337317,
+    13.478821959097132
+   ],
+   "prob_share_below_0p25": 0.9997,
+   "prob_opposite_sign": 1.0,
+   "F_trend": {
+    "value": -1.4207059824989183,
+    "ci_analytic": [
+     -1.8502821485172987,
+     -0.991129816480538
+    ],
+    "n_eff": 20.49011289138592,
+    "n_eff_at_floor": false,
+    "p": 1.5174647555478277e-06,
+    "unit": "mSv/yr"
+   },
+   "FT_trend": {
+    "value": 0.10625092056343721,
+    "ci_analytic": [
+     0.041927413237051854,
+     0.17057442788982258
+    ],
+    "n_eff": 13.848188430140455,
+    "n_eff_at_floor": false,
+    "p": 0.003689616505581531,
+    "unit": "mSv/yr"
+   },
+   "n_boot": 10000,
+   "window": [
+    1958,
+    2025
+   ],
+   "steps": []
+  },
+  "2015_only": {
+   "share_point": 0.07591297696617143,
+   "share_ci_sieve_2.5_97.5": [
+    0.016310472852741908,
+    0.1758453221078491
+   ],
+   "share_percent_point": 7.591297696617143,
+   "share_percent_ci": [
+    1.6310472852741909,
+    17.584532210784907
+   ],
+   "prob_share_below_0p25": 0.9971,
+   "prob_opposite_sign": 0.9946,
+   "F_trend": {
+    "value": -1.2155080971725796,
+    "ci_analytic": [
+     -1.7310578838484911,
+     -0.6999583104966681
+    ],
+    "n_eff": 22.755158507341275,
+    "n_eff_at_floor": false,
+    "p": 8.506010520905471e-05,
+    "unit": "mSv/yr"
+   },
+   "FT_trend": {
+    "value": 0.0922728381828569,
+    "ci_analytic": [
+     0.0016038607213524861,
+     0.18294181564436132
+    ],
+    "n_eff": 13.15283093437932,
+    "n_eff_at_floor": false,
+    "p": 0.04675531477606456,
+    "unit": "mSv/yr"
+   },
+   "n_boot": 10000,
+   "window": [
+    1958,
+    2025
+   ],
+   "steps": [
+    2015
+   ],
+   "F_step_2015_Sv": {
+    "value": -0.01714695056425568,
+    "ci_analytic": [
+     -0.044626972652900415,
+     0.010333071524389056
+    ],
+    "n_eff": 22.755158507341275,
+    "n_eff_at_floor": false,
+    "p": 0.20768204728651732,
+    "unit": "Sv"
+   }
+  },
+  "joint_2004_2015": {
+   "share_point": 0.02310784725440018,
+   "share_ci_sieve_2.5_97.5": [
+    0.0011646231753527749,
+    0.10814059128334687
+   ],
+   "share_percent_point": 2.310784725440018,
+   "share_percent_ci": [
+    0.11646231753527748,
+    10.814059128334687
+   ],
+   "prob_share_below_0p25": 0.9982,
+   "prob_opposite_sign": 0.8096,
+   "F_trend": {
+    "value": -1.2834360371660105,
+    "ci_analytic": [
+     -2.049740263232024,
+     -0.5171318110999968
+    ],
+    "n_eff": 20.969828864328058,
+    "n_eff_at_floor": false,
+    "p": 0.0025543854734067315,
+    "unit": "mSv/yr"
+   },
+   "FT_trend": {
+    "value": 0.029657443907624842,
+    "ci_analytic": [
+     -0.05153349826581318,
+     0.11084838608106286
+    ],
+    "n_eff": 19.75309641788079,
+    "n_eff_at_floor": false,
+    "p": 0.4496179424556427,
+    "unit": "mSv/yr"
+   },
+   "n_boot": 10000,
+   "window": [
+    1958,
+    2025
+   ],
+   "steps": [
+    2004,
+    2015
+   ],
+   "F_step_2004_Sv": {
+    "value": 0.004171795777145822,
+    "ci_analytic": [
+     -0.02788801454760383,
+     0.03623160610189548
+    ],
+    "n_eff": 20.969828864328058,
+    "n_eff_at_floor": false,
+    "p": 0.7869553344789888,
+    "unit": "Sv"
+   },
+   "F_step_2015_Sv": {
+    "value": -0.018204112986035387,
+    "ci_analytic": [
+     -0.04919058788546525,
+     0.012782361913394477
+    ],
+    "n_eff": 20.969828864328058,
+    "n_eff_at_floor": false,
+    "p": 0.23197330280269146,
+    "unit": "Sv"
+   },
+   "T_term_step_2004_Sv": {
+    "value": 0.003845525676871682,
+    "ci_analytic": [
+     0.0004487465418654417,
+     0.007242304811877922
+    ],
+    "n_eff": 19.75309641788079,
+    "n_eff_at_floor": false,
+    "p": 0.02895736469771706,
+    "unit": "Sv"
+   },
+   "T_term_step_2015_Sv": {
+    "value": 0.00019356719443450868,
+    "ci_analytic": [
+     -0.0030894906383975027,
+     0.0034766250272665203
+    ],
+    "n_eff": 19.75309641788079,
+    "n_eff_at_floor": false,
+    "p": 0.9019896953338723,
+    "unit": "Sv"
+   }
+  }
+ },
+ "A65_stepped_residual": {
+  "specification": "2015_only: a + b t + c I(t >= 2015), window 1958-2025",
+  "window": [
+   1958,
+   2025
+  ],
+  "steps": [
+   2015
+  ],
+  "residual_trend": {
+   "point_mSv_per_yr": -0.05586032257107838,
+   "ci_sieve_2.5_97.5_mSv_per_yr": [
+    -0.13572113985744075,
+    0.0203569731502375
+   ],
+   "ci_analytic_on_R_mSv_per_yr": [
+    -0.11587089323375437,
+    0.004150248091601935
+   ],
+   "n_eff_on_R": 36.07444878521775,
+   "p_on_R": 0.06704665708483536
+  },
+  "component_trends": {
+   "F": {
+    "value": -1.2155080971725796,
+    "ci_analytic": [
+     -1.7310578838484911,
+     -0.6999583104966681
+    ],
+    "n_eff": 22.755158507341275,
+    "n_eff_at_floor": false,
+    "p": 8.506010520905471e-05,
+    "unit": "mSv/yr"
+   },
+   "transport_term_F_T": {
+    "value": 0.0922728381828569,
+    "ci_analytic": [
+     0.0016038607213524861,
+     0.18294181564436132
+    ],
+    "n_eff": 13.15283093437932,
+    "n_eff_at_floor": false,
+    "p": 0.04675531477606456,
+    "unit": "mSv/yr"
+   },
+   "salinity_term_F_S": {
+    "value": -1.251920612784358,
+    "ci_analytic": [
+     -1.7207070642958002,
+     -0.783134161272916
+    ],
+    "n_eff": 24.06812557750023,
+    "n_eff_at_floor": false,
+    "p": 1.6272574141763706e-05,
+    "unit": "mSv/yr"
+   }
+  },
+  "residual_over_transport_term": {
+   "definition": "|R| / |F_T| (absolute values)",
+   "point": 0.6053820785308466,
+   "ci_sieve_2.5_97.5": [
+    0.035636093419807675,
+    2.5618611594944776
+   ]
+  },
+  "n_boot": 10000,
+  "paired": "R, F_T and F_S trend draws come from one sieve call on the same innovation indices"
+ }
+}

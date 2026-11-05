@@ -1,0 +1,271 @@
+{
+ "meta": {
+  "date": "2026-11-05",
+  "script": "scripts/analysis_paper3jc_r2_G04_removal_soda.py",
+  "action": "A33 (cluster C09, optional)",
+  "snapshot_months": [
+   1,
+   4,
+   7,
+   10
+  ],
+  "inputs": [
+   "data/results/paper3r1_section_{oras5,glorys12,ecco}.nc (monthly F_ov, corrected)",
+   "data/results/checkpoints/fovs_soda.json",
+   "data/results/checkpoints/fovs_soda.json.preBT"
+  ],
+  "kernel_history": {
+   "10bf794": "SODA v3 catalogue-driven downloads (SODA script)",
+   "c962ff3": "2026-04-20, barotropic subtraction in ardp/physics/fovs.py; message says SODA re-run follows"
+  },
+  "seeds": null,
+  "replicates": null,
+  "sign_convention": "northward-positive, Sv; F < 0 is a northward salt-flux deficit",
+  "units": {
+   "F": "Sv",
+   "trend": "mSv per yr"
+  },
+  "tests": "paper3r1_stats.mean_test for intervals; analysis_paper3v2_attribution.trend_stats for trends"
+ },
+ "products_four_month_sampling": {
+  "oras5": {
+   "product": "ORAS5",
+   "own_record": {
+    "window": [
+     1958,
+     2025
+    ],
+    "n_months_full": 816,
+    "n_years_sampled": 68,
+    "n_snapshots_per_year": 4,
+    "record_mean_full_monthly_Sv": -0.043271790581535706,
+    "record_mean_four_month_Sv": -0.0389606282608596,
+    "difference_four_minus_full_Sv": 0.004311162320676104,
+    "mean_test_four_month": {
+     "ci_Sv": [
+      -0.05718890757804687,
+      -0.02073234894367232
+     ],
+     "n_eff": 16.007558195615065,
+     "n_eff_at_floor": false
+    },
+    "sign_four_month_mean": "negative",
+    "sign_full_monthly_mean": "negative",
+    "sign_unchanged": true,
+    "annual_negative_years_four_month": 60,
+    "trend_four_month_paper_test": {
+     "trend_mSv_per_yr": -1.2025370362439423,
+     "ci_mSv_per_yr": [
+      -1.5534876633478893,
+      -0.8515864091399953
+     ],
+     "p_paper_test": 1.2814270025676439e-08,
+     "n_eff": 48.15412910363805
+    }
+   },
+   "window_1980_2022": {
+    "window": [
+     1980,
+     2022
+    ],
+    "n_months_full": 516,
+    "n_years_sampled": 43,
+    "n_snapshots_per_year": 4,
+    "record_mean_full_monthly_Sv": -0.056775883095354904,
+    "record_mean_four_month_Sv": -0.05272413611906046,
+    "difference_four_minus_full_Sv": 0.004051746976294443,
+    "mean_test_four_month": {
+     "ci_Sv": [
+      -0.06686648122361952,
+      -0.038581791014501425
+     ],
+     "n_eff": 19.566433255250395,
+     "n_eff_at_floor": false
+    },
+    "sign_four_month_mean": "negative",
+    "sign_full_monthly_mean": "negative",
+    "sign_unchanged": true,
+    "annual_negative_years_four_month": 42,
+    "trend_four_month_paper_test": {
+     "trend_mSv_per_yr": -1.4407374192921532,
+     "ci_mSv_per_yr": [
+      -2.0232614726160305,
+      -0.8582133659682757
+     ],
+     "p_paper_test": 1.1403027481828125e-05,
+     "n_eff": 43.0
+    }
+   }
+  },
+  "glorys12": {
+   "product": "GLORYS12V1",
+   "own_record": {
+    "window": [
+     1993,
+     2025
+    ],
+    "n_months_full": 396,
+    "n_years_sampled": 33,
+    "n_snapshots_per_year": 4,
+    "record_mean_full_monthly_Sv": -0.09525066564029849,
+    "record_mean_four_month_Sv": -0.09177192810676617,
+    "difference_four_minus_full_Sv": 0.003478737533532325,
+    "mean_test_four_month": {
+     "ci_Sv": [
+      -0.7966087712756658,
+      0.6130649150621335
+     ],
+     "n_eff": 2.0,
+     "n_eff_at_floor": true
+    },
+    "sign_four_month_mean": "negative",
+    "sign_full_monthly_mean": "negative",
+    "sign_unchanged": true,
+    "annual_negative_years_four_month": 31,
+    "trend_four_month_paper_test": {
+     "trend_mSv_per_yr": -4.439911867610751,
+     "ci_mSv_per_yr": [
+      -10.999059556440903,
+      2.1192358212194002
+     ],
+     "p_paper_test": 0.12273639245492514,
+     "n_eff": 5.161838924723922
+    }
+   },
+   "window_1980_2022": {
+    "window": [
+     1993,
+     2022
+    ],
+    "n_months_full": 360,
+    "n_years_sampled": 30,
+    "n_snapshots_per_year": 4,
+    "record_mean_full_monthly_Sv": -0.09001173376626444,
+    "record_mean_four_month_Sv": -0.08708500377378098,
+    "difference_four_minus_full_Sv": 0.0029267299924834594,
+    "mean_test_four_month": {
+     "ci_Sv": [
+      -0.7989847224297137,
+      0.6248147148821517
+     ],
+     "n_eff": 2.0,
+     "n_eff_at_floor": true
+    },
+    "sign_four_month_mean": "negative",
+    "sign_full_monthly_mean": "negative",
+    "sign_unchanged": true,
+    "annual_negative_years_four_month": 28,
+    "trend_four_month_paper_test": {
+     "trend_mSv_per_yr": -4.8809281653395304,
+     "ci_mSv_per_yr": [
+      -14.060063229324037,
+      4.298206898644974
+     ],
+     "p_paper_test": 0.17541663344160682,
+     "n_eff": 4.598160411095185
+    }
+   }
+  },
+  "ecco": {
+   "product": "ECCO-V4r4",
+   "own_record": {
+    "window": [
+     1992,
+     2017
+    ],
+    "n_months_full": 312,
+    "n_years_sampled": 26,
+    "n_snapshots_per_year": 4,
+    "record_mean_full_monthly_Sv": -0.13213557055807046,
+    "record_mean_four_month_Sv": -0.1276841343582547,
+    "difference_four_minus_full_Sv": 0.00445143619981575,
+    "mean_test_four_month": {
+     "ci_Sv": [
+      -0.13711925493645657,
+      -0.11824901378005273
+     ],
+     "n_eff": 24.21475066746537,
+     "n_eff_at_floor": false
+    },
+    "sign_four_month_mean": "negative",
+    "sign_full_monthly_mean": "negative",
+    "sign_unchanged": true,
+    "annual_negative_years_four_month": 26,
+    "trend_four_month_paper_test": {
+     "trend_mSv_per_yr": 0.17714496983460792,
+     "ci_mSv_per_yr": [
+      -1.1985072128947183,
+      1.5527971525639341
+     ],
+     "p_paper_test": 0.790834018881646,
+     "n_eff": 21.723823632811726
+    }
+   },
+   "window_1980_2022": {
+    "window": [
+     1992,
+     2017
+    ],
+    "n_months_full": 312,
+    "n_years_sampled": 26,
+    "n_snapshots_per_year": 4,
+    "record_mean_full_monthly_Sv": -0.13213557055807046,
+    "record_mean_four_month_Sv": -0.1276841343582547,
+    "difference_four_minus_full_Sv": 0.00445143619981575,
+    "mean_test_four_month": {
+     "ci_Sv": [
+      -0.13711925493645657,
+      -0.11824901378005273
+     ],
+     "n_eff": 24.21475066746537,
+     "n_eff_at_floor": false
+    },
+    "sign_four_month_mean": "negative",
+    "sign_full_monthly_mean": "negative",
+    "sign_unchanged": true,
+    "annual_negative_years_four_month": 26,
+    "trend_four_month_paper_test": {
+     "trend_mSv_per_yr": 0.17714496983460792,
+     "ci_mSv_per_yr": [
+      -1.1985072128947183,
+      1.5527971525639341
+     ],
+     "p_paper_test": 0.790834018881646,
+     "n_eff": 21.723823632811726
+    }
+   }
+  }
+ },
+ "soda_stored_annual_values": {
+  "current_kernel_commit_c962ff3": {
+   "file": "data/results/checkpoints/fovs_soda.json",
+   "window": [
+    1980,
+    2022
+   ],
+   "n_years": 43,
+   "record_mean_Sv": -0.009066669629534948,
+   "mean_ci_Sv": [
+    -0.020625845075745483,
+    0.002492505816675584
+   ],
+   "n_eff": 36.21486261059216,
+   "n_negative_years": 27
+  },
+  "pre_fix_backup_commit_10bf794_kernel": {
+   "file": "data/results/checkpoints/fovs_soda.json.preBT",
+   "window": [
+    1980,
+    2022
+   ],
+   "n_years": 43,
+   "record_mean_Sv": -0.07636643446696191,
+   "mean_ci_Sv": [
+    -0.16106428197588615,
+    0.008331413041962304
+   ],
+   "n_eff": 40.44797304209902,
+   "n_negative_years": 38
+  }
+ }
+}

@@ -1,0 +1,224 @@
+{
+  "oras5": {
+    "label": "ORAS5",
+    "record": [
+      1958,
+      2025
+    ],
+    "n_sign_runs_min": 3,
+    "n_sign_runs_max": 7,
+    "n_sign_runs_modal": 4,
+    "n_northward_sublimbs_min": 2,
+    "n_northward_sublimbs_max": 4,
+    "n_northward_sublimbs_modal": 2,
+    "years_with_deep_northward_limb": 68,
+    "upper_limb": {
+      "mean_T_Sv": 15.614183558718159,
+      "mean_S": 34.93964108636759,
+      "mean_weight": 0.8551266813349477,
+      "base_depth_mean_m": 1312.3232601390166,
+      "trend_T_Sv_per_decade": -0.6091168899895765,
+      "p_T": 0.0007185202526433207,
+      "trend_S_per_decade": 0.03539064535264824,
+      "p_S": 2.6904607062463298e-06
+    },
+    "deep_northward_limb": {
+      "mean_T_Sv": 2.616153020157049,
+      "mean_S": 34.71698522824023,
+      "mean_weight": 0.1448733186650522,
+      "top_depth_mean_m": 4044.364501953125,
+      "trend_T_Sv_per_decade": 0.05168788965056023,
+      "p_T": 0.12607279034584276
+    },
+    "salinity_gap_upper_minus_deep": 0.22265585812735367,
+    "composition": {
+      "trend_total": 0.02810075600502108,
+      "p_total": 2.7110120136161615e-07,
+      "n_eff_total": 21.40215939908502,
+      "ci_total": [
+        0.02044374313498628,
+        0.03575776887505587
+      ],
+      "trend_A": 0.030266437409093485,
+      "p_A": 2.766360991198865e-06,
+      "n_eff_A": 17.50120828249496,
+      "ci_A": [
+        0.021269085906101763,
+        0.03926378891208521
+      ],
+      "trend_B": -0.0016984237236065598,
+      "p_B": 0.0008726553580874324,
+      "n_eff_B": 56.68246737958016,
+      "ci_B": [
+        -0.002664949523063249,
+        -0.00073189792414987
+      ],
+      "residual_per_decade": -0.00046725768046584866,
+      "partition_share_point": 0.060440499298420415,
+      "partition_share_ci": [
+        0.02597731947362396,
+        0.10738567443400181
+      ]
+    },
+    "upper_cell_only": {
+      "mean_F_ov_Sv": -0.04593615553270692,
+      "mean_T_Sv": 16.454561277282835,
+      "mean_dS_PSU": 0.10311634030759353,
+      "trend_F_ov_mSv_per_yr": -1.4426516020223894,
+      "p_F_ov": 2.444881449685022e-06,
+      "trend_S_north_per_decade": 0.03327111177202454,
+      "p_S_north": 2.5978674182553194e-06,
+      "transport_term_mSv_per_yr": 0.17243471394032936,
+      "salinity_term_mSv_per_yr": -1.67016487767828,
+      "share_T": 0.11952623467689688
+    }
+  },
+  "glorys12": {
+    "label": "GLORYS12V1",
+    "record": [
+      1993,
+      2025
+    ],
+    "n_sign_runs_min": 3,
+    "n_sign_runs_max": 4,
+    "n_sign_runs_modal": 4,
+    "n_northward_sublimbs_min": 2,
+    "n_northward_sublimbs_max": 2,
+    "n_northward_sublimbs_modal": 2,
+    "years_with_deep_northward_limb": 33,
+    "upper_limb": {
+      "mean_T_Sv": 18.295189073996784,
+      "mean_S": 35.0116653712067,
+      "mean_weight": 0.8456107133966557,
+      "base_depth_mean_m": 1245.291015625,
+      "trend_T_Sv_per_decade": -0.18390372511599568,
+      "p_T": 0.6126804674253399,
+      "trend_S_per_decade": 0.08938392981344677,
+      "p_S": 0.36677417694255215
+    },
+    "deep_northward_limb": {
+      "mean_T_Sv": 3.3551993045916157,
+      "mean_S": 34.71500186913856,
+      "mean_weight": 0.15438928660334433,
+      "top_depth_mean_m": 4405.22412109375,
+      "trend_T_Sv_per_decade": -0.01737846959050331,
+      "p_T": 0.9110916527097165
+    },
+    "salinity_gap_upper_minus_deep": 0.2966635020681423,
+    "composition": {
+      "trend_total": 0.07595791115717451,
+      "p_total": 0.36146187658838747,
+      "n_eff_total": 3.0,
+      "ci_total": [
+        -0.5396498819164673,
+        0.6915657042308164
+      ],
+      "trend_A": 0.07583508671652832,
+      "p_A": 0.3658713029227119,
+      "n_eff_A": 3.0,
+      "ci_A": [
+        -0.5482084132865411,
+        0.6998785867195978
+      ],
+      "trend_B": -0.00017415033308194454,
+      "p_B": 0.9274503609783146,
+      "n_eff_B": 33.0,
+      "ci_B": [
+        -0.004043381906895178,
+        0.003695081240731289
+      ],
+      "residual_per_decade": 0.00029697477372813476,
+      "partition_share_point": 0.002292721461515538,
+      "partition_share_ci": [
+        0.0006969262300291479,
+        0.12153446486063424
+      ]
+    },
+    "upper_cell_only": {
+      "mean_F_ov_Sv": -0.10046935142065085,
+      "mean_T_Sv": 19.353893952548436,
+      "mean_dS_PSU": 0.18311995426676733,
+      "trend_F_ov_mSv_per_yr": -4.8425263167203,
+      "p_F_ov": 0.36607377882411746,
+      "trend_S_north_per_decade": 0.08725921541565676,
+      "p_S_north": 0.3615787844400643,
+      "transport_term_mSv_per_yr": 0.09506137328894475,
+      "salinity_term_mSv_per_yr": -4.870593599795746,
+      "share_T": 0.019630533129105843
+    }
+  },
+  "ecco": {
+    "label": "ECCO-V4r4",
+    "record": [
+      1992,
+      2017
+    ],
+    "n_sign_runs_min": 3,
+    "n_sign_runs_max": 5,
+    "n_sign_runs_modal": 3,
+    "n_northward_sublimbs_min": 2,
+    "n_northward_sublimbs_max": 3,
+    "n_northward_sublimbs_modal": 2,
+    "years_with_deep_northward_limb": 26,
+    "upper_limb": {
+      "mean_T_Sv": 12.767509094457758,
+      "mean_S": 35.19912558926948,
+      "mean_weight": 0.888171635707725,
+      "base_depth_mean_m": 1318.083233173077,
+      "trend_T_Sv_per_decade": -0.5556745085860664,
+      "p_T": 0.12660478217233154,
+      "trend_S_per_decade": 0.018027370292987305,
+      "p_S": 0.3420508613244452
+    },
+    "deep_northward_limb": {
+      "mean_T_Sv": 1.599099188949353,
+      "mean_S": 34.706421110183506,
+      "mean_weight": 0.11182836429227504,
+      "top_depth_mean_m": 4264.25,
+      "trend_T_Sv_per_decade": 0.33289301721108505,
+      "p_T": 0.06257955434645199
+    },
+    "salinity_gap_upper_minus_deep": 0.4927044790859725,
+    "composition": {
+      "trend_total": 0.0027630669116832686,
+      "p_total": 0.8204868105558003,
+      "n_eff_total": 9.866809367007834,
+      "ci_total": [
+        -0.024473228420139423,
+        0.02999936224350596
+      ],
+      "trend_A": 0.015712787014366902,
+      "p_A": 0.3499083390802324,
+      "n_eff_A": 6.841320534530349,
+      "ci_A": [
+        -0.023730451899633978,
+        0.055156025928367776
+      ],
+      "trend_B": -0.012701988899663973,
+      "p_B": 0.06669758959774695,
+      "n_eff_B": 9.188890226202762,
+      "ci_B": [
+        -0.0265403321839678,
+        0.0011363543846398534
+      ],
+      "residual_per_decade": -0.0002477312030196616,
+      "partition_share_point": 4.597061636819313,
+      "partition_share_ci": [
+        0.19789759848439034,
+        37.35153304673203
+      ]
+    },
+    "upper_cell_only": {
+      "mean_F_ov_Sv": -0.13584028301589468,
+      "mean_T_Sv": 13.34125985444034,
+      "mean_dS_PSU": 0.3565982579155054,
+      "trend_F_ov_mSv_per_yr": 0.047006828254781086,
+      "p_F_ov": 0.9102547957891249,
+      "trend_S_north_per_decade": 0.012561131091309541,
+      "p_S_north": 0.42382320246704797,
+      "transport_term_mSv_per_yr": 0.45378004283334133,
+      "salinity_term_mSv_per_yr": -0.4029080950647902,
+      "share_T": 9.653492049576588
+    }
+  }
+}

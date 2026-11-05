@@ -1,0 +1,409 @@
+{
+ "en4": {
+  "window": [
+   2005,
+   2024
+  ],
+  "frozen": {
+   "oras5": {
+    "S_north_frozen_trend_sum_of_cells": 0.026326372940997513,
+    "northward_by_band": {
+     "western boundary (west of 45 W)": 0.00037976176975867276,
+     "western interior (45 W to 20 W)": 0.008290005367487155,
+     "eastern interior (20 W to 0)": 0.011773752377844515,
+     "Cape Basin (east of 0)": 0.005882853425907174
+    },
+    "northward_by_layer": {
+     "0-100 m": 0.015214112522231708,
+     "100-500 m": 0.00860245340124752,
+     "500-1300 m": 0.0024382843510834824,
+     "below 1300 m": 7.152266643480377e-05
+    },
+    "northward_by_band_and_layer": {
+     "western boundary (west of 45 W) | 0-100 m": 0.001035951515697034,
+     "western boundary (west of 45 W) | 100-500 m": -0.0005685129383552718,
+     "western boundary (west of 45 W) | 500-1300 m": -8.12655992643443e-05,
+     "western boundary (west of 45 W) | below 1300 m": -6.41120831874513e-06,
+     "western interior (45 W to 20 W) | 0-100 m": 0.0044030217344362054,
+     "western interior (45 W to 20 W) | 100-500 m": 0.0033346783261445183,
+     "western interior (45 W to 20 W) | 500-1300 m": 0.0005313636010651115,
+     "western interior (45 W to 20 W) | below 1300 m": 2.0941705841319673e-05,
+     "eastern interior (20 W to 0) | 0-100 m": 0.0058119626110356565,
+     "eastern interior (20 W to 0) | 100-500 m": 0.004037294153951724,
+     "eastern interior (20 W to 0) | 500-1300 m": 0.0019015049703224713,
+     "eastern interior (20 W to 0) | below 1300 m": 2.2990642534661455e-05,
+     "Cape Basin (east of 0) | 0-100 m": 0.003963176661062811,
+     "Cape Basin (east of 0) | 100-500 m": 0.001798993859506551,
+     "Cape Basin (east of 0) | 500-1300 m": 8.668137896024402e-05,
+     "Cape Basin (east of 0) | below 1300 m": 3.400152637756777e-05
+    }
+   },
+   "glorys12": {
+    "S_north_frozen_trend_sum_of_cells": 0.027679818759250994,
+    "northward_by_band": {
+     "western boundary (west of 45 W)": 0.0001550810162194294,
+     "western interior (45 W to 20 W)": 0.008943876794240137,
+     "eastern interior (20 W to 0)": 0.01239332848237584,
+     "Cape Basin (east of 0)": 0.006187532466415589
+    },
+    "northward_by_layer": {
+     "0-100 m": 0.014361240759137538,
+     "100-500 m": 0.011063261737456148,
+     "500-1300 m": 0.0022630658692716237,
+     "below 1300 m": -7.749606614316855e-06
+    },
+    "northward_by_band_and_layer": {
+     "western boundary (west of 45 W) | 0-100 m": 0.0009878220291237045,
+     "western boundary (west of 45 W) | 100-500 m": -0.0007299050200768166,
+     "western boundary (west of 45 W) | 500-1300 m": -0.00010010695186105743,
+     "western boundary (west of 45 W) | below 1300 m": -2.729040966401248e-06,
+     "western interior (45 W to 20 W) | 0-100 m": 0.004154586967161153,
+     "western interior (45 W to 20 W) | 100-500 m": 0.004257779222136794,
+     "western interior (45 W to 20 W) | 500-1300 m": 0.0005173289087353573,
+     "western interior (45 W to 20 W) | below 1300 m": 1.4181696206832113e-05,
+     "eastern interior (20 W to 0) | 0-100 m": 0.005484285612456197,
+     "eastern interior (20 W to 0) | 100-500 m": 0.005165477582582501,
+     "eastern interior (20 W to 0) | 500-1300 m": 0.0017435095535196419,
+     "eastern interior (20 W to 0) | below 1300 m": 5.573381749910388e-08,
+     "Cape Basin (east of 0) | 0-100 m": 0.003734546150396484,
+     "Cape Basin (east of 0) | 100-500 m": 0.0023699099528136703,
+     "Cape Basin (east of 0) | 500-1300 m": 0.00010233435887768184,
+     "Cape Basin (east of 0) | below 1300 m": -1.9257995672246825e-05
+    }
+   }
+  },
+  "band_width_fraction": {
+   "western boundary (west of 45 W)": 0.12162162162162161,
+   "western interior (45 W to 20 W)": 0.3378378378378379,
+   "eastern interior (20 W to 0)": 0.27027027027027034,
+   "Cape Basin (east of 0)": 0.27027027027027034
+  }
+ },
+ "oras5": {
+  "product": "ORAS5",
+  "windows": {
+   "own": {
+    "window": [
+     1958,
+     2025
+    ],
+    "S_north_frozen_trend_sum_of_cells": 0.016893774971628226,
+    "S_north_frozen_trend_direct": 0.016893774971629093,
+    "S_south_frozen_trend_sum_of_cells": -0.0015332669649547597,
+    "S_south_frozen_trend_direct": -0.0015332669649537958,
+    "northward_by_band": {
+     "western boundary (west of 45 W)": 0.001917058932811636,
+     "western interior (45 W to 20 W)": 0.004231505438069637,
+     "eastern interior (20 W to 0)": 0.007180199755085513,
+     "Cape Basin (east of 0)": 0.0035650108456614397
+    },
+    "northward_by_layer": {
+     "0-100 m": 0.009991115918377893,
+     "100-500 m": 0.005226121202129917,
+     "500-1300 m": 0.0017369177056945496,
+     "below 1300 m": -6.0379854574133835e-05
+    },
+    "northward_by_band_and_layer": {
+     "western boundary (west of 45 W) | 0-100 m": 0.0010596760330172509,
+     "western boundary (west of 45 W) | 100-500 m": 0.0006566461367795509,
+     "western boundary (west of 45 W) | 500-1300 m": 0.0002035716048880307,
+     "western boundary (west of 45 W) | below 1300 m": -2.8348418731963847e-06,
+     "western interior (45 W to 20 W) | 0-100 m": 0.002249387405769353,
+     "western interior (45 W to 20 W) | 100-500 m": 0.0015583241422301975,
+     "western interior (45 W to 20 W) | 500-1300 m": 0.00044420619576003486,
+     "western interior (45 W to 20 W) | below 1300 m": -2.0412305689948137e-05,
+     "eastern interior (20 W to 0) | 0-100 m": 0.004050218103906917,
+     "eastern interior (20 W to 0) | 100-500 m": 0.0019617735590728934,
+     "eastern interior (20 W to 0) | 500-1300 m": 0.0011735596965683234,
+     "eastern interior (20 W to 0) | below 1300 m": -5.3516044626207125e-06,
+     "Cape Basin (east of 0) | 0-100 m": 0.002631834375684372,
+     "Cape Basin (east of 0) | 100-500 m": 0.0010493773640472756,
+     "Cape Basin (east of 0) | 500-1300 m": -8.441979152183936e-05,
+     "Cape Basin (east of 0) | below 1300 m": -3.17811025483686e-05
+    },
+    "southward_by_band": {
+     "western boundary (west of 45 W)": -0.0001226224308213065,
+     "western interior (45 W to 20 W)": -0.0006086529510711193,
+     "eastern interior (20 W to 0)": -0.0005444023810111555,
+     "Cape Basin (east of 0)": -0.0002575892020511784
+    },
+    "band_width_fraction": {
+     "western boundary (west of 45 W)": 0.1258503794670105,
+     "western interior (45 W to 20 W)": 0.33673468232154846,
+     "eastern interior (20 W to 0)": 0.27551019191741943,
+     "Cape Basin (east of 0)": 0.261904776096344
+    }
+   },
+   "1993-2025": {
+    "window": [
+     1993,
+     2025
+    ],
+    "S_north_frozen_trend_sum_of_cells": 0.007435787588532462,
+    "S_north_frozen_trend_direct": 0.007435787588527172,
+    "S_south_frozen_trend_sum_of_cells": -0.0010817624193258507,
+    "S_south_frozen_trend_direct": -0.001081762419330118,
+    "northward_by_band": {
+     "western boundary (west of 45 W)": 0.002839224272868813,
+     "western interior (45 W to 20 W)": -0.000949642128458414,
+     "eastern interior (20 W to 0)": 0.0047243065164035,
+     "Cape Basin (east of 0)": 0.0008218989277185637
+    },
+    "northward_by_layer": {
+     "0-100 m": 0.0034175837322639336,
+     "100-500 m": 0.0006971106450246686,
+     "500-1300 m": 0.0036068345865174576,
+     "below 1300 m": -0.00028574137527359735
+    },
+    "northward_by_band_and_layer": {
+     "western boundary (west of 45 W) | 0-100 m": 0.001134561929294874,
+     "western boundary (west of 45 W) | 100-500 m": 0.0012250941355023972,
+     "western boundary (west of 45 W) | 500-1300 m": 0.00047860324671071774,
+     "western boundary (west of 45 W) | below 1300 m": 9.649613608241712e-07,
+     "western interior (45 W to 20 W) | 0-100 m": -0.0010069256151967825,
+     "western interior (45 W to 20 W) | 100-500 m": -0.0006792660121250418,
+     "western interior (45 W to 20 W) | 500-1300 m": 0.0007523654000620635,
+     "western interior (45 W to 20 W) | below 1300 m": -1.5815901198653206e-05,
+     "eastern interior (20 W to 0) | 0-100 m": 0.0023664636203144028,
+     "eastern interior (20 W to 0) | 100-500 m": -0.0001085896319376825,
+     "eastern interior (20 W to 0) | 500-1300 m": 0.002488140356009704,
+     "eastern interior (20 W to 0) | below 1300 m": -2.1707827982924818e-05,
+     "Cape Basin (east of 0) | 0-100 m": 0.0009234837978514393,
+     "Cape Basin (east of 0) | 100-500 m": 0.0002598721535849957,
+     "Cape Basin (east of 0) | 500-1300 m": -0.00011227441626502786,
+     "Cape Basin (east of 0) | below 1300 m": -0.0002491826074528435
+    },
+    "southward_by_band": {
+     "western boundary (west of 45 W)": 0.00012571276704963295,
+     "western interior (45 W to 20 W)": 0.0003358122038332149,
+     "eastern interior (20 W to 0)": -0.0008863595325574124,
+     "Cape Basin (east of 0)": -0.0006569278576512864
+    },
+    "band_width_fraction": {
+     "western boundary (west of 45 W)": 0.1258503794670105,
+     "western interior (45 W to 20 W)": 0.33673468232154846,
+     "eastern interior (20 W to 0)": 0.27551019191741943,
+     "Cape Basin (east of 0)": 0.261904776096344
+    }
+   },
+   "2005-2024": {
+    "window": [
+     2005,
+     2024
+    ],
+    "S_north_frozen_trend_sum_of_cells": 0.03090064413194663,
+    "S_north_frozen_trend_direct": 0.030900644131943135,
+    "S_south_frozen_trend_sum_of_cells": 0.0014034524381989362,
+    "S_south_frozen_trend_direct": 0.001403452438198653,
+    "northward_by_band": {
+     "western boundary (west of 45 W)": 0.0019701015139050905,
+     "western interior (45 W to 20 W)": 0.007875486543227103,
+     "eastern interior (20 W to 0)": 0.014831622796629489,
+     "Cape Basin (east of 0)": 0.006223433278184943
+    },
+    "northward_by_layer": {
+     "0-100 m": 0.014551090476700116,
+     "100-500 m": 0.011177675537614302,
+     "500-1300 m": 0.005385477397550545,
+     "below 1300 m": -0.0002135992799183367
+    },
+    "northward_by_band_and_layer": {
+     "western boundary (west of 45 W) | 0-100 m": 0.0007487785142500953,
+     "western boundary (west of 45 W) | 100-500 m": 0.0007944178604006862,
+     "western boundary (west of 45 W) | 500-1300 m": 0.0004296144223307724,
+     "western boundary (west of 45 W) | below 1300 m": -2.709283076463442e-06,
+     "western interior (45 W to 20 W) | 0-100 m": 0.003865458477407489,
+     "western interior (45 W to 20 W) | 100-500 m": 0.0034566773302074244,
+     "western interior (45 W to 20 W) | 500-1300 m": 0.0005434375711574138,
+     "western interior (45 W to 20 W) | below 1300 m": 9.913164454775713e-06,
+     "eastern interior (20 W to 0) | 0-100 m": 0.006750094204675611,
+     "eastern interior (20 W to 0) | 100-500 m": 0.005057314965070108,
+     "eastern interior (20 W to 0) | 500-1300 m": 0.0030369345723998903,
+     "eastern interior (20 W to 0) | below 1300 m": -1.2720945516120626e-05,
+     "Cape Basin (east of 0) | 0-100 m": 0.0031867592803669206,
+     "Cape Basin (east of 0) | 100-500 m": 0.001869265381936083,
+     "Cape Basin (east of 0) | 500-1300 m": 0.0013754908316624683,
+     "Cape Basin (east of 0) | below 1300 m": -0.00020808221578052832
+    },
+    "southward_by_band": {
+     "western boundary (west of 45 W)": 0.000661991940651497,
+     "western interior (45 W to 20 W)": 0.001382103491678942,
+     "eastern interior (20 W to 0)": -0.00033564945446598913,
+     "Cape Basin (east of 0)": -0.0003049935396655138
+    },
+    "band_width_fraction": {
+     "western boundary (west of 45 W)": 0.1258503794670105,
+     "western interior (45 W to 20 W)": 0.33673468232154846,
+     "eastern interior (20 W to 0)": 0.27551019191741943,
+     "Cape Basin (east of 0)": 0.261904776096344
+    }
+   }
+  }
+ },
+ "glorys12": {
+  "product": "GLORYS12V1",
+  "windows": {
+   "own": {
+    "window": [
+     1993,
+     2025
+    ],
+    "S_north_frozen_trend_sum_of_cells": 0.06864139966280197,
+    "S_north_frozen_trend_direct": 0.06864139966279845,
+    "S_south_frozen_trend_sum_of_cells": -0.0004723101868014339,
+    "S_south_frozen_trend_direct": -0.00047231018680563323,
+    "northward_by_band": {
+     "western boundary (west of 45 W)": 0.011514655791093028,
+     "western interior (45 W to 20 W)": 0.0324304898389582,
+     "eastern interior (20 W to 0)": 0.01698126985220019,
+     "Cape Basin (east of 0)": 0.007714984180550546
+    },
+    "northward_by_layer": {
+     "0-100 m": 0.029039802564228917,
+     "100-500 m": 0.031129195387334,
+     "500-1300 m": 0.008211393234488565,
+     "below 1300 m": 0.000261008476750485
+    },
+    "northward_by_band_and_layer": {
+     "western boundary (west of 45 W) | 0-100 m": 0.0048289000031280505,
+     "western boundary (west of 45 W) | 100-500 m": 0.005324487573081548,
+     "western boundary (west of 45 W) | 500-1300 m": 0.0013602507887459426,
+     "western boundary (west of 45 W) | below 1300 m": 1.017426137488318e-06,
+     "western interior (45 W to 20 W) | 0-100 m": 0.014003427773299682,
+     "western interior (45 W to 20 W) | 100-500 m": 0.014667971763970463,
+     "western interior (45 W to 20 W) | 500-1300 m": 0.003607565787968555,
+     "western interior (45 W to 20 W) | below 1300 m": 0.00015152451371950326,
+     "eastern interior (20 W to 0) | 0-100 m": 0.007869350628614186,
+     "eastern interior (20 W to 0) | 100-500 m": 0.007453356208903776,
+     "eastern interior (20 W to 0) | 500-1300 m": 0.0016622354874200628,
+     "eastern interior (20 W to 0) | below 1300 m": -3.6724727378344377e-06,
+     "Cape Basin (east of 0) | 0-100 m": 0.002338124159186999,
+     "Cape Basin (east of 0) | 100-500 m": 0.003683379841378214,
+     "Cape Basin (east of 0) | 500-1300 m": 0.0015813411703540048,
+     "Cape Basin (east of 0) | below 1300 m": 0.0001121390096313278
+    },
+    "southward_by_band": {
+     "western boundary (west of 45 W)": -3.876863685018831e-05,
+     "western interior (45 W to 20 W)": -0.00045802697397774757,
+     "eastern interior (20 W to 0)": -0.00014538913429726027,
+     "Cape Basin (east of 0)": 0.00016987455832376226
+    },
+    "band_width_fraction": {
+     "western boundary (west of 45 W)": 0.12258796406547998,
+     "western interior (45 W to 20 W)": 0.34052212240411106,
+     "eastern interior (20 W to 0)": 0.2724177061918796,
+     "Cape Basin (east of 0)": 0.2644722073385293
+    }
+   },
+   "2005-2024": {
+    "window": [
+     2005,
+     2024
+    ],
+    "S_north_frozen_trend_sum_of_cells": 0.04211606222704671,
+    "S_north_frozen_trend_direct": 0.04211606222704067,
+    "S_south_frozen_trend_sum_of_cells": 0.00030713771595268816,
+    "S_south_frozen_trend_direct": 0.00030713771595706764,
+    "northward_by_band": {
+     "western boundary (west of 45 W)": 0.00431902896564015,
+     "western interior (45 W to 20 W)": 0.015774626375888383,
+     "eastern interior (20 W to 0)": 0.015869595580592515,
+     "Cape Basin (east of 0)": 0.006152811304925663
+    },
+    "northward_by_layer": {
+     "0-100 m": 0.017693444392172117,
+     "100-500 m": 0.019477713823545812,
+     "500-1300 m": 0.004923530222094865,
+     "below 1300 m": 2.1373789233915973e-05
+    },
+    "northward_by_band_and_layer": {
+     "western boundary (west of 45 W) | 0-100 m": 0.0013201718603379673,
+     "western boundary (west of 45 W) | 100-500 m": 0.0023619501972843926,
+     "western boundary (west of 45 W) | 500-1300 m": 0.000640198596743637,
+     "western boundary (west of 45 W) | below 1300 m": -3.2916887258466677e-06,
+     "western interior (45 W to 20 W) | 0-100 m": 0.006939945896873596,
+     "western interior (45 W to 20 W) | 100-500 m": 0.007268446603358215,
+     "western interior (45 W to 20 W) | 500-1300 m": 0.001661471412740725,
+     "western interior (45 W to 20 W) | below 1300 m": -9.523753708415475e-05,
+     "eastern interior (20 W to 0) | 0-100 m": 0.006858885364933725,
+     "eastern interior (20 W to 0) | 100-500 m": 0.006795432491008873,
+     "eastern interior (20 W to 0) | 500-1300 m": 0.0022254079885863213,
+     "eastern interior (20 W to 0) | below 1300 m": -1.0130263936402542e-05,
+     "Cape Basin (east of 0) | 0-100 m": 0.00257444127002683,
+     "Cape Basin (east of 0) | 100-500 m": 0.003051884531894332,
+     "Cape Basin (east of 0) | 500-1300 m": 0.0003964522240241813,
+     "Cape Basin (east of 0) | below 1300 m": 0.00013003327898031993
+    },
+    "southward_by_band": {
+     "western boundary (west of 45 W)": -0.00016145009607751128,
+     "western interior (45 W to 20 W)": 0.0008215282155463016,
+     "eastern interior (20 W to 0)": -0.0005443229662802874,
+     "Cape Basin (east of 0)": 0.00019138256276418527
+    },
+    "band_width_fraction": {
+     "western boundary (west of 45 W)": 0.12258796406547998,
+     "western interior (45 W to 20 W)": 0.34052212240411106,
+     "eastern interior (20 W to 0)": 0.2724177061918796,
+     "Cape Basin (east of 0)": 0.2644722073385293
+    }
+   }
+  }
+ },
+ "ecco": {
+  "product": "ECCO-V4r4",
+  "windows": {
+   "own": {
+    "window": [
+     1992,
+     2017
+    ],
+    "S_north_frozen_trend_sum_of_cells": -0.00376444189747075,
+    "S_north_frozen_trend_direct": -0.0037644418974690686,
+    "S_south_frozen_trend_sum_of_cells": 0.0019626158212175974,
+    "S_south_frozen_trend_direct": 0.001962615821216597,
+    "northward_by_band": {
+     "western boundary (west of 45 W)": 0.00042943090423849724,
+     "western interior (45 W to 20 W)": -0.005261533761491821,
+     "eastern interior (20 W to 0)": 0.0007143863163635977,
+     "Cape Basin (east of 0)": 0.000353274643418976
+    },
+    "northward_by_layer": {
+     "0-100 m": -0.0029364142020964225,
+     "100-500 m": -0.0005436153645604324,
+     "500-1300 m": 3.5911886188166444e-06,
+     "below 1300 m": -0.0002880035194327112
+    },
+    "northward_by_band_and_layer": {
+     "western boundary (west of 45 W) | 0-100 m": 0.0004717437187062299,
+     "western boundary (west of 45 W) | 100-500 m": 8.099052483834788e-06,
+     "western boundary (west of 45 W) | 500-1300 m": -5.968795354939398e-05,
+     "western boundary (west of 45 W) | below 1300 m": 9.27608659782656e-06,
+     "western interior (45 W to 20 W) | 0-100 m": -0.0032878307791569944,
+     "western interior (45 W to 20 W) | 100-500 m": -0.0016710567609222785,
+     "western interior (45 W to 20 W) | 500-1300 m": -0.0003194921144626526,
+     "western interior (45 W to 20 W) | below 1300 m": 1.6845893050105138e-05,
+     "eastern interior (20 W to 0) | 0-100 m": -0.00019066922280213977,
+     "eastern interior (20 W to 0) | 100-500 m": 0.0006714150069230019,
+     "eastern interior (20 W to 0) | 500-1300 m": 0.0002310956890727136,
+     "eastern interior (20 W to 0) | below 1300 m": 2.5448431700220143e-06,
+     "Cape Basin (east of 0) | 0-100 m": 7.034208115648183e-05,
+     "Cape Basin (east of 0) | 100-500 m": 0.00044792733695500945,
+     "Cape Basin (east of 0) | 500-1300 m": 0.00015167556755814963,
+     "Cape Basin (east of 0) | below 1300 m": -0.0003166703422506649
+    },
+    "southward_by_band": {
+     "western boundary (west of 45 W)": 0.00022523906030635774,
+     "western interior (45 W to 20 W)": 0.0008658967210343169,
+     "eastern interior (20 W to 0)": 0.0005123844246307753,
+     "Cape Basin (east of 0)": 0.0003590956152461474
+    },
+    "band_width_fraction": {
+     "western boundary (west of 45 W)": 0.1232876712328767,
+     "western interior (45 W to 20 W)": 0.3424657534246575,
+     "eastern interior (20 W to 0)": 0.273972602739726,
+     "Cape Basin (east of 0)": 0.2602739726027396
+    }
+   }
+  }
+ }
+}

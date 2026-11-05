@@ -1,0 +1,670 @@
+{
+  "meta": {
+    "id": "jc_r2_G10_obs26n_samba",
+    "group": "G10_obs26n",
+    "actions": [
+      "A106 item 3"
+    ],
+    "cluster": "C54",
+    "date": "2026-11-05",
+    "script": "scripts/analysis_paper3jc_r2_G10_obs26n_samba.py",
+    "inputs": [
+      "data/external/samba_moc_monthly.nc",
+      "data/external/samba_moc_daily.nc",
+      "PAPER_3_v2/analysis/jc_n10_samba.json (reanalysis_only_common_window, pairs)",
+      "ftp://ftp.aoml.noaa.gov/phod/pub/SAM/2020_Kersale_etal_ScienceAdvances/Upper_Abyssal_Transport_Anomalies.txt (one attempt)"
+    ],
+    "seeds": "none (no random draws)",
+    "replicates": "none",
+    "units": "Sv; correlations dimensionless; n_eff in months",
+    "record": "September 2013 to July 2017, 47 months (common window)"
+  },
+  "download_attempt": {
+    "attempted": true,
+    "host": "ftp.aoml.noaa.gov",
+    "directory": "/phod/pub/SAM/2020_Kersale_etal_ScienceAdvances/",
+    "outcome": "failed",
+    "error": "TimeoutError: timed out",
+    "note": "No SAMBA data retrieved; the repository files are used as they are."
+  },
+  "samba_files": {
+    "monthly_span": [
+      "2013-09",
+      "2017-07"
+    ],
+    "monthly_attrs_description": "MOC volume transport (NOT freshwater transport)",
+    "upper_cell_monthly": {
+      "n": 47,
+      "mean_Sv": 0.05632567380957998,
+      "std_Sv": 11.47457022584187,
+      "min_Sv": -24.836951612903228,
+      "max_Sv": 19.189545161290322
+    },
+    "abyssal_cell_monthly": {
+      "n": 47,
+      "mean_Sv": -0.043605562848171804,
+      "std_Sv": 4.832418981120615,
+      "min_Sv": -9.84611935483871,
+      "max_Sv": 11.49797
+    },
+    "upper_cell_daily": {
+      "n": 1405,
+      "mean_Sv": -4.270462637234937e-07,
+      "std_Sv": 15.509157863271536,
+      "min_Sv": -50.2792,
+      "max_Sv": 52.6923
+    },
+    "abyssal_cell_daily": {
+      "n": 1405,
+      "mean_Sv": 2.405693950191041e-05,
+      "std_Sv": 6.159245574934914,
+      "min_Sv": -19.085,
+      "max_Sv": 24.0047
+    },
+    "is_anomaly_file": true,
+    "interpretation": "Time means of the stored SAMBA series are near zero, so the files hold transport anomalies, not absolute layer transports. A SAMBA layer mean is therefore not available in the repository."
+  },
+  "reanalysis_layer_means_common_window_Sv": {
+    "ORAS5": {
+      "up_cell": {
+        "raw_mean_Sv": 14.287288561511472,
+        "raw_std_Sv": 2.7097874391621284
+      },
+      "ab_cell": {
+        "raw_mean_Sv": 2.512753908993626,
+        "raw_std_Sv": 1.830562782366803
+      },
+      "tlimb": {
+        "raw_mean_Sv": 17.91486159403369,
+        "raw_std_Sv": 1.8865388338592437
+      },
+      "up_layer": {
+        "raw_mean_Sv": 14.219095944204076,
+        "raw_std_Sv": 2.7093952297186297
+      },
+      "nadw_layer": {
+        "raw_mean_Sv": 12.154190099424603,
+        "raw_std_Sv": 1.431843086574784
+      },
+      "ab_layer": {
+        "raw_mean_Sv": 3.4271178126841266,
+        "raw_std_Sv": 2.0074286091167215
+      },
+      "up_layer_vint": {
+        "raw_mean_Sv": 14.025360177827144,
+        "raw_std_Sv": 2.6223818137017685
+      },
+      "nadw_layer_vint": {
+        "raw_mean_Sv": 12.414067468332565,
+        "raw_std_Sv": 1.5443548351932126
+      },
+      "ab_layer_vint": {
+        "raw_mean_Sv": 3.5528525582413875,
+        "raw_std_Sv": 2.0433530347977467
+      }
+    },
+    "GLORYS12V1": {
+      "up_cell": {
+        "raw_mean_Sv": 17.52117324725922,
+        "raw_std_Sv": 2.8923106410620787
+      },
+      "ab_cell": {
+        "raw_mean_Sv": 3.2744343720960223,
+        "raw_std_Sv": 2.3911826288343274
+      },
+      "tlimb": {
+        "raw_mean_Sv": 21.389337177641693,
+        "raw_std_Sv": 2.896587169021058
+      },
+      "up_layer": {
+        "raw_mean_Sv": 17.36459245678845,
+        "raw_std_Sv": 2.889577243366953
+      },
+      "nadw_layer": {
+        "raw_mean_Sv": 13.42641579778558,
+        "raw_std_Sv": 2.4165882653853914
+      },
+      "ab_layer": {
+        "raw_mean_Sv": 6.771764511314479,
+        "raw_std_Sv": 2.3479831609560984
+      },
+      "up_layer_vint": {
+        "raw_mean_Sv": 17.312107791017848,
+        "raw_std_Sv": 2.8377659839195792
+      },
+      "nadw_layer_vint": {
+        "raw_mean_Sv": 13.496096441955476,
+        "raw_std_Sv": 2.6489459325868427
+      },
+      "ab_layer_vint": {
+        "raw_mean_Sv": 6.806115568173986,
+        "raw_std_Sv": 2.382941844299562
+      }
+    },
+    "ECCO-V4r4": {
+      "up_cell": {
+        "raw_mean_Sv": 11.979041106296778,
+        "raw_std_Sv": 2.82578325880692
+      },
+      "ab_cell": {
+        "raw_mean_Sv": 2.124558639952135,
+        "raw_std_Sv": 1.2884007397322903
+      },
+      "tlimb": {
+        "raw_mean_Sv": 14.194360785612153,
+        "raw_std_Sv": 1.7039747655640791
+      },
+      "up_layer": {
+        "raw_mean_Sv": 11.940939925879007,
+        "raw_std_Sv": 2.8218782736503893
+      },
+      "nadw_layer": {
+        "raw_mean_Sv": 9.622056602542362,
+        "raw_std_Sv": 0.7441450601191859
+      },
+      "ab_layer": {
+        "raw_mean_Sv": 3.902372937990703,
+        "raw_std_Sv": 1.3931263817643684
+      },
+      "up_layer_vint": {
+        "raw_mean_Sv": 11.680569491550335,
+        "raw_std_Sv": 2.7950020414135577
+      },
+      "nadw_layer_vint": {
+        "raw_mean_Sv": 9.970897874092852,
+        "raw_std_Sv": 0.8076433677538538
+      },
+      "ab_layer_vint": {
+        "raw_mean_Sv": 4.077055956380369,
+        "raw_std_Sv": 1.4261608165395507
+      }
+    }
+  },
+  "samba_vs_reanalysis_means": {
+    "ORAS5": {
+      "up_cell__samba_up": {
+        "reanalysis_mean_Sv": 14.287288561511472,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.20472146927647672,
+        "std_ratio_ci_95": [
+          0.12438076793352529,
+          0.3056950261258511
+        ],
+        "r": -0.16070916728769194,
+        "n_eff": 47.0
+      },
+      "up_layer__samba_up": {
+        "reanalysis_mean_Sv": 14.219095944204076,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.20443469201446518,
+        "std_ratio_ci_95": [
+          0.12409352783635183,
+          0.3059719415403149
+        ],
+        "r": -0.16922202321464214,
+        "n_eff": 47.0
+      },
+      "ab_cell__samba_ab": {
+        "reanalysis_mean_Sv": 2.512753908993626,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.3625174104974924,
+        "std_ratio_ci_95": [
+          0.19352198748327407,
+          0.5960320398201254
+        ],
+        "r": 0.11029896327966957,
+        "n_eff": 42.26145048519519
+      },
+      "ab_layer__samba_ab": {
+        "reanalysis_mean_Sv": 3.4271178126841266,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.33886137409093753,
+        "std_ratio_ci_95": [
+          0.18337617205656628,
+          0.5337890284322969
+        ],
+        "r": -0.07263194633525501,
+        "n_eff": 47.0
+      }
+    },
+    "GLORYS12V1": {
+      "up_cell__samba_up": {
+        "reanalysis_mean_Sv": 17.52117324725922,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.24663168892055776,
+        "std_ratio_ci_95": [
+          0.15004181675992792,
+          0.3670502519657583
+        ],
+        "r": 0.019802317154728192,
+        "n_eff": 47.0
+      },
+      "up_layer__samba_up": {
+        "reanalysis_mean_Sv": 17.36459245678845,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.2455774511531445,
+        "std_ratio_ci_95": [
+          0.14940045655754708,
+          0.36548127986872375
+        ],
+        "r": -0.0033208559585855254,
+        "n_eff": 47.0
+      },
+      "ab_cell__samba_ab": {
+        "reanalysis_mean_Sv": 3.2744343720960223,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.5009096870396015,
+        "std_ratio_ci_95": [
+          0.27187823040281467,
+          0.7819423143762494
+        ],
+        "r": -0.014516275553993898,
+        "n_eff": 47.0
+      },
+      "ab_layer__samba_ab": {
+        "reanalysis_mean_Sv": 6.771764511314479,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.4875108326956166,
+        "std_ratio_ci_95": [
+          0.2646471898357076,
+          0.7606663072753892
+        ],
+        "r": -0.1342780669480697,
+        "n_eff": 47.0
+      }
+    },
+    "ECCO-V4r4": {
+      "up_cell__samba_up": {
+        "reanalysis_mean_Sv": 11.979041106296778,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.18795740310083922,
+        "std_ratio_ci_95": [
+          0.1143464992603281,
+          0.2797280936158
+        ],
+        "r": -0.011587750197552722,
+        "n_eff": 47.0
+      },
+      "up_layer__samba_up": {
+        "reanalysis_mean_Sv": 11.940939925879007,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.18783488516312877,
+        "std_ratio_ci_95": [
+          0.11427196376961232,
+          0.2795457559766111
+        ],
+        "r": -0.011447027968577956,
+        "n_eff": 47.0
+      },
+      "ab_cell__samba_ab": {
+        "reanalysis_mean_Sv": 2.124558639952135,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.2003087613946175,
+        "std_ratio_ci_95": [
+          0.10841728642745518,
+          0.31536243492348953
+        ],
+        "r": -0.03988248298933076,
+        "n_eff": 47.0
+      },
+      "ab_layer__samba_ab": {
+        "reanalysis_mean_Sv": 3.902372937990703,
+        "samba_mean_Sv": null,
+        "samba_minus_reanalysis_mean_Sv": null,
+        "reason_null": "The repository holds SAMBA anomalies only (time mean of the stored series is near zero); an absolute SAMBA layer mean cannot be formed.",
+        "std_ratio_reanalysis_over_samba": 0.22251704252365662,
+        "std_ratio_ci_95": [
+          0.12096534073089271,
+          0.3457187007816034
+        ],
+        "r": 0.05976974920433943,
+        "n_eff": 47.0
+      }
+    }
+  },
+  "anomaly_std_comparison_from_jc_n10": {
+    "ORAS5": {
+      "up_cell__samba_up": {
+        "label": "upper cell psi_max (cell definition) vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 14.287288561511472,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 2.2509215228639077,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.20472146927647672,
+        "std_ratio_ci_95": [
+          0.12438076793352529,
+          0.3056950261258511
+        ],
+        "r": -0.16070916728769194,
+        "n_eff": 47.0,
+        "p": 0.2805289565646902
+      },
+      "up_layer__samba_up": {
+        "label": "upper layer 0 to 1315 dbar (V_bc) vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 14.219095944204076,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 2.2477683943053295,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.20443469201446518,
+        "std_ratio_ci_95": [
+          0.12409352783635183,
+          0.3059719415403149
+        ],
+        "r": -0.16922202321464214,
+        "n_eff": 47.0,
+        "p": 0.25549133031054494
+      },
+      "up_layer_vint__samba_up": {
+        "label": "upper layer 0 to 1315 dbar (V_int) vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 14.025360177827144,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 2.2124845502782753,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.20122562394275822,
+        "std_ratio_ci_95": [
+          0.12194036110387463,
+          0.3024613478464761
+        ],
+        "r": -0.17867972099650378,
+        "n_eff": 47.0,
+        "p": 0.22948740347079097
+      },
+      "tlimb__samba_up": {
+        "label": "northward-limb transport T_limb vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 17.91486159403369,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 1.7324674319988824,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.15756803360305313,
+        "std_ratio_ci_95": [
+          0.09585870383714841,
+          0.23450103548688347
+        ],
+        "r": 0.013028890398811385,
+        "n_eff": 47.0,
+        "p": 0.9307351198461682
+      },
+      "ab_cell__samba_ab": {
+        "label": "abyssal cell -psi_min (cell definition) vs SAMBA abyssal cell",
+        "raw_mean_reanalysis_Sv": 2.512753908993626,
+        "raw_mean_samba_stored_Sv": -0.043605562848171804,
+        "std_reanalysis_anomaly_Sv": 1.7638595470695637,
+        "std_samba_anomaly_Sv": 4.865585751175293,
+        "std_ratio_reanalysis_over_samba": 0.3625174104974924,
+        "std_ratio_ci_95": [
+          0.19352198748327407,
+          0.5960320398201254
+        ],
+        "r": 0.11029896327966957,
+        "n_eff": 42.26145048519519,
+        "p": 0.4853835191134146
+      },
+      "ab_layer__samba_ab": {
+        "label": "abyssal layer 3155 to 4295 dbar (V_bc) vs SAMBA abyssal cell",
+        "raw_mean_reanalysis_Sv": 3.4271178126841266,
+        "raw_mean_samba_stored_Sv": -0.043605562848171804,
+        "std_reanalysis_anomaly_Sv": 1.6487590734005462,
+        "std_samba_anomaly_Sv": 4.865585751175293,
+        "std_ratio_reanalysis_over_samba": 0.33886137409093753,
+        "std_ratio_ci_95": [
+          0.18337617205656628,
+          0.5337890284322969
+        ],
+        "r": -0.07263194633525501,
+        "n_eff": 47.0,
+        "p": 0.6275537330400788
+      },
+      "ab_layer_vint__samba_ab": {
+        "label": "abyssal layer 3155 to 4295 dbar (V_int) vs SAMBA abyssal cell",
+        "raw_mean_reanalysis_Sv": 3.5528525582413875,
+        "raw_mean_samba_stored_Sv": -0.043605562848171804,
+        "std_reanalysis_anomaly_Sv": 1.6722923437143642,
+        "std_samba_anomaly_Sv": 4.865585751175293,
+        "std_ratio_reanalysis_over_samba": 0.3436980518348522,
+        "std_ratio_ci_95": [
+          0.18644232181267312,
+          0.5374536460726433
+        ],
+        "r": -0.05600312925683732,
+        "n_eff": 47.0,
+        "p": 0.7084837467391156
+      }
+    },
+    "GLORYS12V1": {
+      "up_cell__samba_up": {
+        "label": "upper cell psi_max (cell definition) vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 17.52117324725922,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 2.7117262237983955,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.24663168892055776,
+        "std_ratio_ci_95": [
+          0.15004181675992792,
+          0.3670502519657583
+        ],
+        "r": 0.019802317154728192,
+        "n_eff": 47.0,
+        "p": 0.8948932707809623
+      },
+      "up_layer__samba_up": {
+        "label": "upper layer 0 to 1315 dbar (V_bc) vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 17.36459245678845,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 2.700134833363024,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.2455774511531445,
+        "std_ratio_ci_95": [
+          0.14940045655754708,
+          0.36548127986872375
+        ],
+        "r": -0.0033208559585855254,
+        "n_eff": 47.0,
+        "p": 0.9823254044336288
+      },
+      "up_layer_vint__samba_up": {
+        "label": "upper layer 0 to 1315 dbar (V_int) vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 17.312107791017848,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 2.6268697217745935,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.23891398415141404,
+        "std_ratio_ci_95": [
+          0.14534664376797685,
+          0.35556435778683143
+        ],
+        "r": -0.05216772969485394,
+        "n_eff": 47.0,
+        "p": 0.7276519047660576
+      },
+      "tlimb__samba_up": {
+        "label": "northward-limb transport T_limb vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 21.389337177641693,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 2.6187987509834234,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.23817992879583078,
+        "std_ratio_ci_95": [
+          0.14490007098717922,
+          0.35447189799627127
+        ],
+        "r": 0.06037192060794987,
+        "n_eff": 47.0,
+        "p": 0.6868658030198891
+      },
+      "ab_cell__samba_ab": {
+        "label": "abyssal cell -psi_min (cell definition) vs SAMBA abyssal cell",
+        "raw_mean_reanalysis_Sv": 3.2744343720960223,
+        "raw_mean_samba_stored_Sv": -0.043605562848171804,
+        "std_reanalysis_anomaly_Sv": 2.43721903588556,
+        "std_samba_anomaly_Sv": 4.865585751175293,
+        "std_ratio_reanalysis_over_samba": 0.5009096870396015,
+        "std_ratio_ci_95": [
+          0.27187823040281467,
+          0.7819423143762494
+        ],
+        "r": -0.014516275553993898,
+        "n_eff": 47.0,
+        "p": 0.9228504376468109
+      },
+      "ab_layer__samba_ab": {
+        "label": "abyssal layer 3155 to 4295 dbar (V_bc) vs SAMBA abyssal cell",
+        "raw_mean_reanalysis_Sv": 6.771764511314479,
+        "raw_mean_samba_stored_Sv": -0.043605562848171804,
+        "std_reanalysis_anomaly_Sv": 2.3720257611073943,
+        "std_samba_anomaly_Sv": 4.865585751175293,
+        "std_ratio_reanalysis_over_samba": 0.4875108326956166,
+        "std_ratio_ci_95": [
+          0.2646471898357076,
+          0.7606663072753892
+        ],
+        "r": -0.1342780669480697,
+        "n_eff": 47.0,
+        "p": 0.3681946978275712
+      },
+      "ab_layer_vint__samba_ab": {
+        "label": "abyssal layer 3155 to 4295 dbar (V_int) vs SAMBA abyssal cell",
+        "raw_mean_reanalysis_Sv": 6.806115568173986,
+        "raw_mean_samba_stored_Sv": -0.043605562848171804,
+        "std_reanalysis_anomaly_Sv": 2.409961116961432,
+        "std_samba_anomaly_Sv": 4.865585751175293,
+        "std_ratio_reanalysis_over_samba": 0.49530750051610967,
+        "std_ratio_ci_95": [
+          0.2684507192675386,
+          0.7765768968534263
+        ],
+        "r": -0.1814197275638821,
+        "n_eff": 47.0,
+        "p": 0.22230655362975726
+      }
+    },
+    "ECCO-V4r4": {
+      "up_cell__samba_up": {
+        "label": "upper cell psi_max (cell definition) vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 11.979041106296778,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 2.0665998808845965,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.18795740310083922,
+        "std_ratio_ci_95": [
+          0.1143464992603281,
+          0.2797280936158
+        ],
+        "r": -0.011587750197552722,
+        "n_eff": 47.0,
+        "p": 0.9383809339185684
+      },
+      "up_layer__samba_up": {
+        "label": "upper layer 0 to 1315 dbar (V_bc) vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 11.940939925879007,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 2.0652527907923655,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.18783488516312877,
+        "std_ratio_ci_95": [
+          0.11427196376961232,
+          0.2795457559766111
+        ],
+        "r": -0.011447027968577956,
+        "n_eff": 47.0,
+        "p": 0.939127825868165
+      },
+      "up_layer_vint__samba_up": {
+        "label": "upper layer 0 to 1315 dbar (V_int) vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 11.680569491550335,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 2.0792879568374487,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.18911138449244924,
+        "std_ratio_ci_95": [
+          0.11504853988317802,
+          0.2814455094207523
+        ],
+        "r": -0.020453030097547346,
+        "n_eff": 47.0,
+        "p": 0.8914597525779487
+      },
+      "tlimb__samba_up": {
+        "label": "northward-limb transport T_limb vs SAMBA upper cell",
+        "raw_mean_reanalysis_Sv": 14.194360785612153,
+        "raw_mean_samba_stored_Sv": 0.05632567380957998,
+        "std_reanalysis_anomaly_Sv": 1.351255550769214,
+        "std_samba_anomaly_Sv": 10.99504380668563,
+        "std_ratio_reanalysis_over_samba": 0.12289678645459982,
+        "std_ratio_ci_95": [
+          0.0747659686162415,
+          0.18290146181690772
+        ],
+        "r": 0.09724200866577809,
+        "n_eff": 47.0,
+        "p": 0.5155308056153308
+      },
+      "ab_cell__samba_ab": {
+        "label": "abyssal cell -psi_min (cell definition) vs SAMBA abyssal cell",
+        "raw_mean_reanalysis_Sv": 2.124558639952135,
+        "raw_mean_samba_stored_Sv": -0.043605562848171804,
+        "std_reanalysis_anomaly_Sv": 0.9746194552772226,
+        "std_samba_anomaly_Sv": 4.865585751175293,
+        "std_ratio_reanalysis_over_samba": 0.2003087613946175,
+        "std_ratio_ci_95": [
+          0.10841728642745518,
+          0.31536243492348953
+        ],
+        "r": -0.03988248298933076,
+        "n_eff": 47.0,
+        "p": 0.7901130397631292
+      },
+      "ab_layer__samba_ab": {
+        "label": "abyssal layer 3155 to 4295 dbar (V_bc) vs SAMBA abyssal cell",
+        "raw_mean_reanalysis_Sv": 3.902372937990703,
+        "raw_mean_samba_stored_Sv": -0.043605562848171804,
+        "std_reanalysis_anomaly_Sv": 1.0826757514967704,
+        "std_samba_anomaly_Sv": 4.865585751175293,
+        "std_ratio_reanalysis_over_samba": 0.22251704252365662,
+        "std_ratio_ci_95": [
+          0.12096534073089271,
+          0.3457187007816034
+        ],
+        "r": 0.05976974920433943,
+        "n_eff": 47.0,
+        "p": 0.6898313097126849
+      },
+      "ab_layer_vint__samba_ab": {
+        "label": "abyssal layer 3155 to 4295 dbar (V_int) vs SAMBA abyssal cell",
+        "raw_mean_reanalysis_Sv": 4.077055956380369,
+        "raw_mean_samba_stored_Sv": -0.043605562848171804,
+        "std_reanalysis_anomaly_Sv": 1.0933430278841672,
+        "std_samba_anomaly_Sv": 4.865585751175293,
+        "std_ratio_reanalysis_over_samba": 0.22470943557413775,
+        "std_ratio_ci_95": [
+          0.1221035694284827,
+          0.349585679909321
+        ],
+        "r": 0.04850601175071133,
+        "n_eff": 47.0,
+        "p": 0.7461071715780546
+      }
+    }
+  }
+}

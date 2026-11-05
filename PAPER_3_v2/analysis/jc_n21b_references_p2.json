@@ -1,0 +1,4864 @@
+{
+ "scope": "Results, Discussion, data statement and Supplement citations",
+ "n_keys_in_scope": 40,
+ "entries": {
+  "ArumiPlanas2024": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 196,
+     "sentence": "Estimates from 49 sections of expendable bathythermographs along this latitude give \\(-0.15\\pm0.09\\)~Sv over 2002--2019 \\citep{ArumiPlanas2024}, against \\(-0.068\\) and \\(-0.113\\)~Sv in ORAS5 and GLORYS12V1 over the same years."
+    },
+    {
+     "where": "Main.tex Discussion",
+     "line": 309,
+     "sentence": "The three reanalyses agree on a negative \\(\\Fovs\\) at 34.5\\degS{}, the sign that the southern-boundary criterion associates with a self-reinforcing feedback, and observations along this latitude give the same sign \\citep{ArumiPlanas2024}; the full criterion adds the transport at the northern boundary of the basin \\citep{Huisman2010,Dijkstra2007}."
+    },
+    {
+     "where": "Main.tex DataStatement",
+     "line": 327,
+     "sentence": "ORAS5 is distributed by the Copernicus Climate Data Store (reanalysis-oras5, monthly means of the consolidated and operational streams); GLORYS12V1 by the Copernicus Marine Service (GLOBAL\\_\\allowbreak MULTIYEAR\\_\\allowbreak PHY\\_\\allowbreak 001\\_\\allowbreak 030, monthly means); ECCO-V4r4 by NASA PO.DAAC (ECCO\\_\\allowbreak L4\\_\\allowbreak OCEAN\\_\\allowbreak VEL\\_\\allowbreak 05DEG\\_\\allowbreak MONTHLY\\_\\allowbreak V4R4 and ECCO\\_\\allowbreak L4\\_\\allowbreak TEMP\\_\\allowbreak SALINITY\\_\\allowbreak 05DEG\\_\\allowbreak MONTHLY\\_\\allowbreak V4R4); SODA 3.15.2 by the University of Maryland (\\url{https://www2.atmos.umd.edu/~ocean/}); EN4.2.2 with g10 corrections by the Met Office Hadley Centre (\\url{"
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Arum{\\'i}-Planas, C. and Dong, S. and Perez, R. and Harrison, M. J. and Farneti, R. and Hern{\\'a}ndez-Guerra, A.",
+    "title": "A multi-data set analysis of the freshwater transport by the {Atlantic} meridional overturning circulation at nominally 34.5\\textdegree{}S",
+    "journal": "Journal of Geophysical Research: Oceans",
+    "year": "2024",
+    "volume": "129",
+    "number": null,
+    "pages": "e2023JC020558",
+    "doi": "10.1029/2023JC020558"
+   },
+   "crossref": {
+    "doi": "10.1029/2023jc020558",
+    "title": "A Multi‐Data Set Analysis of the Freshwater Transport by the Atlantic Meridional Overturning Circulation at Nominally 34.5°S",
+    "authors": [
+     "Arumí‐Planas",
+     "Dong",
+     "Perez",
+     "Harrison",
+     "Farneti",
+     "Hernández‐Guerra"
+    ],
+    "n_authors": 6,
+    "container": "Journal of Geophysical Research: Oceans",
+    "type": "journal-article",
+    "year_print": 2024,
+    "year_online": 2024,
+    "year_issued": 2024,
+    "volume": "129",
+    "issue": "6",
+    "page": "e2023JC020558",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract The freshwater transport ( M ov ) by the Atlantic Meridional Overturning Circulation (AMOC) across 34.5°S is computed using observations from 49 eXpendable BathyThermograph (XBT) transects between 2002 and 2019. The M ov at 34.5°S serves as a possible indicator of the AMOC stability, with a negative (southward) freshwater transport indicating a possible bistable AMOC regime and positive (northward) transport indicating a monostable regime. A negative M ov mean of −0.15 ± 0.09 Sv is estimated from the repeated XBT transects, suggesting a bistable AMOC regime. Results are complemented with two data sets derived from Argo float observations, numerical ocean models, and coupled climate models. More than half of the coupled models examined, 20 out of 32, present positive M ov mean values. To investigate the causes of the differing signs of the M ov across the models, we examine the s"
+   },
+   "compare": {
+    "title_similarity": 0.996,
+    "first_author_bib": "arum i planas",
+    "first_author_crossref": "arumplanas",
+    "first_author_match": false,
+    "n_authors_bib": 6,
+    "n_authors_crossref": 6,
+    "year_bib": "2024",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2024
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "129",
+    "volume_crossref": "129",
+    "volume_match": true,
+    "pages_bib": "e2023JC020558",
+    "pages_crossref": "e2023JC020558",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Beal2011": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 249,
+     "sentence": "The Cape Basin, where Agulhas leakage enters the Atlantic \\citep{Beal2011}, supplies 15\\% to 22\\% with 26\\%, and the western boundary region of the Brazil Current supplies 1\\% to 10\\%."
+    },
+    {
+     "where": "Main.tex Discussion",
+     "line": 313,
+     "sentence": "Increased Agulhas leakage adds warm and salty Indian Ocean water in the Cape Basin \\citep{Biastoch2009,Beal2011}, and Agulhas rings drift westward into the interior, so part of the eastern-interior signal may be of Indian Ocean origin."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Beal, L. M. and De Ruijter, W. P. M. and Biastoch, A. and Zahn, R. and Cronin, M. and Hermes, J. and Lutjeharms, J. and Quartly, G. and Tozuka, T. and Baker-Yeboah, S. and Bornman, T. and Cipollini, P. and Dijkstra, H. and Hall, I. and Park, W. and Peeters, F. and Penven, P. and Ridderinkhof, H. and Zinke, J.",
+    "title": "On the role of the {Agulhas} system in ocean circulation and climate",
+    "journal": "Nature",
+    "year": "2011",
+    "volume": "472",
+    "number": "7344",
+    "pages": "429--436",
+    "doi": "10.1038/nature09983"
+   },
+   "crossref": {
+    "doi": "10.1038/nature09983",
+    "title": "On the role of the Agulhas system in ocean circulation and climate",
+    "authors": [
+     "Beal",
+     "De Ruijter",
+     "Biastoch",
+     "Zahn",
+     "SCOR/WCRP/IAPSO Working Group 136",
+     "Cronin",
+     "Hermes",
+     "Lutjeharms",
+     "Quartly",
+     "Tozuka",
+     "Baker-Yeboah",
+     "Bornman",
+     "Cipollini",
+     "Dijkstra",
+     "Hall",
+     "Park",
+     "Peeters",
+     "Penven",
+     "Ridderinkhof",
+     "Zinke"
+    ],
+    "n_authors": 20,
+    "container": "Nature",
+    "type": "journal-article",
+    "year_print": 2011,
+    "year_online": 2011,
+    "year_issued": 2011,
+    "volume": "472",
+    "issue": "7344",
+    "page": "429-436",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "beal",
+    "first_author_crossref": "beal",
+    "first_author_match": true,
+    "n_authors_bib": 19,
+    "n_authors_crossref": 20,
+    "year_bib": "2011",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2011
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "472",
+    "volume_crossref": "472",
+    "volume_match": true,
+    "pages_bib": "429-436",
+    "pages_crossref": "429-436",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Biastoch2009": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 313,
+     "sentence": "Increased Agulhas leakage adds warm and salty Indian Ocean water in the Cape Basin \\citep{Biastoch2009,Beal2011}, and Agulhas rings drift westward into the interior, so part of the eastern-interior signal may be of Indian Ocean origin."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Biastoch, A. and B{\\\"o}ning, C. W. and Schwarzkopf, F. U. and Lutjeharms, J. R. E.",
+    "title": "Increase in {Agulhas} leakage due to poleward shift of {Southern Hemisphere} westerlies",
+    "journal": "Nature",
+    "year": "2009",
+    "volume": "462",
+    "number": "7272",
+    "pages": "495--498",
+    "doi": "10.1038/nature08519"
+   },
+   "crossref": {
+    "doi": "10.1038/nature08519",
+    "title": "Increase in Agulhas leakage due to poleward shift of Southern Hemisphere westerlies",
+    "authors": [
+     "Biastoch",
+     "Böning",
+     "Schwarzkopf",
+     "Lutjeharms"
+    ],
+    "n_authors": 4,
+    "container": "Nature",
+    "type": "journal-article",
+    "year_print": 2009,
+    "year_online": null,
+    "year_issued": 2009,
+    "volume": "462",
+    "issue": "7272",
+    "page": "495-498",
+    "relation": {
+     "has-review": [
+      "10.3410/f.1325978.796083"
+     ]
+    },
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "biastoch",
+    "first_author_crossref": "biastoch",
+    "first_author_match": true,
+    "n_authors_bib": 4,
+    "n_authors_crossref": 4,
+    "year_bib": "2009",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2009
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "462",
+    "volume_crossref": "462",
+    "volume_match": true,
+    "pages_bib": "495-498",
+    "pages_crossref": "495-498",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Boers2021": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Boers, N.",
+    "title": "Observation-based early-warning signals for a collapse of the {Atlantic} meridional overturning circulation",
+    "journal": "Nature Climate Change",
+    "year": "2021",
+    "volume": "11",
+    "number": null,
+    "pages": "680--688",
+    "doi": "10.1038/s41558-021-01097-4"
+   },
+   "crossref": {
+    "doi": "10.1038/s41558-021-01097-4",
+    "title": "Observation-based early-warning signals for a collapse of the Atlantic Meridional Overturning Circulation",
+    "authors": [
+     "Boers"
+    ],
+    "n_authors": 1,
+    "container": "Nature Climate Change",
+    "type": "journal-article",
+    "year_print": 2021,
+    "year_online": 2021,
+    "year_issued": 2021,
+    "volume": "11",
+    "issue": "8",
+    "page": "680-688",
+    "relation": {},
+    "updated_by": [
+     {
+      "type": "correction",
+      "doi": "10.1038/s41558-021-01184-6"
+     }
+    ],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "boers",
+    "first_author_crossref": "boers",
+    "first_author_match": true,
+    "n_authors_bib": 1,
+    "n_authors_crossref": 1,
+    "year_bib": "2021",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2021
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "11",
+    "volume_crossref": "11",
+    "volume_match": true,
+    "pages_bib": "680-688",
+    "pages_crossref": "680-688",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Bretherton1999": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Supplement.tex",
+     "line": 106,
+     "sentence": "Surface salinity trends (Fig.~\\ref{fig:si_sss_trends}) are least-squares fits at each grid cell to deseasonalized monthly GLORYS12V1 surface salinity over 1993--2025, with the intervals of the zonal-mean profile adjusted for spatial autocorrelation by the effective number of spatial degrees of freedom \\citep{Bretherton1999}."
+    },
+    {
+     "where": "Supplement.tex",
+     "line": 261,
+     "sentence": "(b) Atlantic zonal-mean trend profile with 95\\% intervals adjusted for spatial autocorrelation by the effective number of spatial degrees of freedom \\citep{Bretherton1999}; solid segments are significant and dashed segments are not."
+    },
+    {
+     "where": "supplement_texts.tex",
+     "line": 42,
+     "sentence": "Surface salinity trends (Fig.~\\ref{fig:si_sss_trends}) are least-squares fits at each grid cell to deseasonalized monthly GLORYS12V1 surface salinity over 1993--2025, with the intervals of the zonal-mean profile adjusted for spatial autocorrelation by the effective number of spatial degrees of freedom \\citep{Bretherton1999}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "Bretherton, C. S. and Widmann, M. and Dymnikov, V. P. and Wallace, J. M. and Blad{\\'e}, I.",
+    "title": "The effective number of spatial degrees of freedom of a time-varying field",
+    "journal": "Journal of Climate",
+    "year": "1999",
+    "volume": "12",
+    "number": "7",
+    "pages": "1990--2009",
+    "doi": "10.1175/1520-0442(1999)012<1990:TENOSD>2.0.CO;2"
+   },
+   "crossref": {
+    "doi": "10.1175/1520-0442(1999)012<1990:tenosd>2.0.co;2",
+    "title": "The Effective Number of Spatial Degrees of Freedom of a Time-Varying Field",
+    "authors": [
+     "Bretherton",
+     "Widmann",
+     "Dymnikov",
+     "Wallace",
+     "Bladé"
+    ],
+    "n_authors": 5,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 1999,
+    "year_online": null,
+    "year_issued": 1999,
+    "volume": "12",
+    "issue": "7",
+    "page": "1990-2009",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "bretherton",
+    "first_author_crossref": "bretherton",
+    "first_author_match": true,
+    "n_authors_bib": 5,
+    "n_authors_crossref": 5,
+    "year_bib": "1999",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     1999
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "12",
+    "volume_crossref": "12",
+    "volume_match": true,
+    "pages_bib": "1990-2009",
+    "pages_crossref": "1990-2009",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Bryden2011": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Bryden, H. L. and King, B. A. and McCarthy, G. D.",
+    "title": "{South Atlantic} overturning circulation at 24\\textdegree{}S",
+    "journal": "Journal of Marine Research",
+    "year": "2011",
+    "volume": "69",
+    "number": "1",
+    "pages": "38--55",
+    "doi": "10.1357/002224011798147633"
+   },
+   "crossref": {
+    "doi": "10.1357/002224011798147633",
+    "title": "South Atlantic overturning circulation at 24°S",
+    "authors": [
+     "Bryden",
+     "King",
+     "McCarthy"
+    ],
+    "n_authors": 3,
+    "container": "Journal of Marine Research",
+    "type": "journal-article",
+    "year_print": 2011,
+    "year_online": null,
+    "year_issued": 2011,
+    "volume": "69",
+    "issue": "1",
+    "page": "38-55",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 0.989,
+    "first_author_bib": "bryden",
+    "first_author_crossref": "bryden",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2011",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2011
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "69",
+    "volume_crossref": "69",
+    "volume_match": true,
+    "pages_bib": "38-55",
+    "pages_crossref": "38-55",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Buhlmann1997": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "B{\\\"u}hlmann, P.",
+    "title": "Sieve bootstrap for time series",
+    "journal": "Bernoulli",
+    "year": "1997",
+    "volume": "3",
+    "number": "2",
+    "pages": "123--148",
+    "doi": "10.2307/3318584"
+   },
+   "crossref": {
+    "doi": "10.2307/3318584",
+    "title": "Sieve Bootstrap for Time Series",
+    "authors": [
+     "Bühlmann",
+     "Buhlmann"
+    ],
+    "n_authors": 2,
+    "container": "Bernoulli",
+    "type": "journal-article",
+    "year_print": 1997,
+    "year_online": null,
+    "year_issued": 1997,
+    "volume": "3",
+    "issue": "2",
+    "page": "123",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "b u hlmann",
+    "first_author_crossref": "bhlmann",
+    "first_author_match": false,
+    "n_authors_bib": 1,
+    "n_authors_crossref": 2,
+    "year_bib": "1997",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     1997
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "3",
+    "volume_crossref": "3",
+    "volume_match": true,
+    "pages_bib": "123-148",
+    "pages_crossref": "123",
+    "pages_match": false
+   },
+   "status": "resolved"
+  },
+  "Caesar2018": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Caesar, L. and Rahmstorf, S. and Robinson, A. and Feulner, G. and Saba, V.",
+    "title": "Observed fingerprint of a weakening {Atlantic Ocean} overturning circulation",
+    "journal": "Nature",
+    "year": "2018",
+    "volume": "556",
+    "number": null,
+    "pages": "191--196",
+    "doi": "10.1038/s41586-018-0006-5"
+   },
+   "crossref": {
+    "doi": "10.1038/s41586-018-0006-5",
+    "title": "Observed fingerprint of a weakening Atlantic Ocean overturning circulation",
+    "authors": [
+     "Caesar",
+     "Rahmstorf",
+     "Robinson",
+     "Feulner",
+     "Saba"
+    ],
+    "n_authors": 5,
+    "container": "Nature",
+    "type": "journal-article",
+    "year_print": 2018,
+    "year_online": 2018,
+    "year_issued": 2018,
+    "volume": "556",
+    "issue": "7700",
+    "page": "191-196",
+    "relation": {
+     "has-review": [
+      "10.3410/f.733024413.793571211"
+     ]
+    },
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "caesar",
+    "first_author_crossref": "caesar",
+    "first_author_match": true,
+    "n_authors_bib": 5,
+    "n_authors_crossref": 5,
+    "year_bib": "2018",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2018
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "556",
+    "volume_crossref": "556",
+    "volume_match": true,
+    "pages_bib": "191-196",
+    "pages_crossref": "191-196",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Carton2018": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Supplement.tex",
+     "line": 68,
+     "sentence": "SODA 3.15.2 \\citep{Carton2018} appears in Fig.~\\ref{fig:si_soda}."
+    },
+    {
+     "where": "supplement_texts.tex",
+     "line": 4,
+     "sentence": "SODA 3.15.2 \\citep{Carton2018} appears in Fig.~\\ref{fig:si_soda}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "Carton, J. A. and Chepurin, G. A. and Chen, L.",
+    "title": "{SODA3}: A new ocean climate reanalysis",
+    "journal": "Journal of Climate",
+    "year": "2018",
+    "volume": "31",
+    "number": "17",
+    "pages": "6967--6983",
+    "doi": "10.1175/JCLI-D-18-0149.1"
+   },
+   "crossref": {
+    "doi": "10.1175/jcli-d-18-0149.1",
+    "title": "SODA3: A New Ocean Climate Reanalysis",
+    "authors": [
+     "Carton",
+     "Chepurin",
+     "Chen"
+    ],
+    "n_authors": 3,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2018,
+    "year_online": null,
+    "year_issued": 2018,
+    "volume": "31",
+    "issue": "17",
+    "page": "6967-6983",
+    "relation": {
+     "has-part": [
+      "10.5194/gmd-15-995-2022"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "This paper describes version 3 of the Simple Ocean Data Assimilation (SODA3) ocean reanalysis with enhancements to model resolution, observation, and forcing datasets, and the addition of active sea ice. SODA3 relies on the ocean component of the NOAA/Geophysical Fluid Dynamics Laboratory CM2.5 coupled model with nominal ¼° resolution. A scheme has also been implemented to reduce bias in the surface fluxes. A 37-yr-long ocean reanalysis, SODA3.4.2, created using this new SODA3 system is compared to the previous generation of SODA (SODA2.2.4) as well as to the Hadley Centre EN4.1.1 no-model statistical objective analysis. The comparison is carried out in the tropics, the midlatitudes, and the Arctic and includes examinations of the meridional overturning circulation in the Atlantic. The comparison shows that SODA3.4.2 has reduced systematic errors to a level comparable to those of the no-"
+   },
+   "compare": {
+    "title_similarity": 0.986,
+    "first_author_bib": "carton",
+    "first_author_crossref": "carton",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2018",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2018
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "31",
+    "volume_crossref": "31",
+    "volume_match": true,
+    "pages_bib": "6967-6983",
+    "pages_crossref": "6967-6983",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Carton2019": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 317,
+     "sentence": "The salinity of the reanalyses differs most where observations are sparse \\citep{Carton2019}."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Carton, J. A. and Penny, S. G. and Kalnay, E.",
+    "title": "Temperature and salinity variability in the {SODA3}, {ECCO4r3}, and {ORAS5} ocean reanalyses, 1993--2015",
+    "journal": "Journal of Climate",
+    "year": "2019",
+    "volume": "32",
+    "number": null,
+    "pages": "2277--2293",
+    "doi": "10.1175/JCLI-D-18-0605.1"
+   },
+   "crossref": {
+    "doi": "10.1175/jcli-d-18-0605.1",
+    "title": "Temperature and Salinity Variability in the SODA3, ECCO4r3, and ORAS5 Ocean Reanalyses, 1993–2015",
+    "authors": [
+     "Carton",
+     "Penny",
+     "Kalnay"
+    ],
+    "n_authors": 3,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2019,
+    "year_online": 2019,
+    "year_issued": 2019,
+    "volume": "32",
+    "issue": "8",
+    "page": "2277-2293",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract This study extends recent ocean reanalysis comparisons to explore improvements to several next-generation products, the Simple Ocean Data Assimilation, version 3 (SODA3); the Estimating the Circulation and Climate of the Ocean, version 4, release 3 (ECCO4r3); and the Ocean Reanalysis System 5 (ORAS5), during their 23-yr period of overlap (1993–2015). The three reanalyses share similar historical hydrographic data, but the forcings, forward models, estimation algorithms, and bias correction methods are different. The study begins by comparing the reanalyses to independent analyses of historical SST, heat, and salt content, as well as examining the analysis-minus-observation misfits. While the misfits are generally small, they still reveal some systematic biases that are not present in the reference Hadley Center EN4 objective analysis. We next explore global trends in temperature"
+   },
+   "compare": {
+    "title_similarity": 0.989,
+    "first_author_bib": "carton",
+    "first_author_crossref": "carton",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2019",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2019
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "32",
+    "volume_crossref": "32",
+    "volume_match": true,
+    "pages_bib": "2277-2293",
+    "pages_crossref": "2277-2293",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Cheng2018": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Cheng, W. and Weijer, W. and Kim, W. M. and Danabasoglu, G. and Yeager, S. G. and Gent, P. R. and Zhang, D. and Chiang, J. C. H. and Zhang, J.",
+    "title": "Can the salt-advection feedback be detected in internal variability of the {Atlantic} meridional overturning circulation?",
+    "journal": "Journal of Climate",
+    "year": "2018",
+    "volume": "31",
+    "number": null,
+    "pages": "6649--6667",
+    "doi": "10.1175/JCLI-D-17-0825.1"
+   },
+   "crossref": {
+    "doi": "10.1175/jcli-d-17-0825.1",
+    "title": "Can the Salt-Advection Feedback Be Detected in Internal Variability of the Atlantic Meridional Overturning Circulation?",
+    "authors": [
+     "Cheng",
+     "Weijer",
+     "Kim",
+     "Danabasoglu",
+     "Yeager",
+     "Gent",
+     "Zhang",
+     "Chiang",
+     "Zhang"
+    ],
+    "n_authors": 9,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2018,
+    "year_online": null,
+    "year_issued": 2018,
+    "volume": "31",
+    "issue": "16",
+    "page": "6649-6667",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract Evidence for the assumptions of the salt-advection feedback in box models is sought by studying the Atlantic meridional overturning circulation (AMOC) internal variability in the long preindustrial control runs of two Earth system models. The first assumption is that AMOC strength is proportional to the meridional density difference between the North Atlantic and the Southern Oceans. The model simulations support this assumption, with the caveat that nearly all the long time-scale variability occurs in the North Atlantic density. The second assumption is that the freshwater transport variability by the overturning at the Atlantic southern boundary is controlled by the strength of AMOC. Only one of the models shows some evidence that AMOC variability at 45°N leads variability in the overturning freshwater transport at the southern boundary by about 30 years, but the other model s"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "cheng",
+    "first_author_crossref": "cheng",
+    "first_author_match": true,
+    "n_authors_bib": 9,
+    "n_authors_crossref": 9,
+    "year_bib": "2018",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2018
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "31",
+    "volume_crossref": "31",
+    "volume_match": true,
+    "pages_bib": "6649-6667",
+    "pages_crossref": "6649-6667",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Cimatoribus2014": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 212,
+     "sentence": "Stability theory specifies \\(\\Fovs\\) for the salt-advection feedback \\citep{deVries2005,Huisman2010}; the azonal transport enters the salt balance of the basin, and its response to a change of the overturning also affects the stability of box models \\citep{Cimatoribus2014}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Cimatoribus, A. A. and Drijfhout, S. S. and Dijkstra, H. A.",
+    "title": "Meridional overturning circulation: stability and ocean feedbacks in a box model",
+    "journal": "Climate Dynamics",
+    "year": "2014",
+    "volume": "42",
+    "number": null,
+    "pages": "311--328",
+    "doi": "10.1007/s00382-012-1576-9"
+   },
+   "crossref": {
+    "doi": "10.1007/s00382-012-1576-9",
+    "title": "Meridional overturning circulation: stability and ocean feedbacks in a box model",
+    "authors": [
+     "Cimatoribus",
+     "Drijfhout",
+     "Dijkstra"
+    ],
+    "n_authors": 3,
+    "container": "Climate Dynamics",
+    "type": "journal-article",
+    "year_print": 2014,
+    "year_online": 2012,
+    "year_issued": 2012,
+    "volume": "42",
+    "issue": "1-2",
+    "page": "311-328",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "cimatoribus",
+    "first_author_crossref": "cimatoribus",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2014",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2012,
+     2014
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "42",
+    "volume_crossref": "42",
+    "volume_match": true,
+    "pages_bib": "311-328",
+    "pages_crossref": "311-328",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Combes2014": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 313,
+     "sentence": "A poleward shift of the subtropical gyres and of the Brazil-Malvinas Confluence moves subtropical water south across 34.5\\degS{} \\citep{Yang2020,Combes2014,Lumpkin2011,Goni2011}."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Combes, V. and Matano, R. P.",
+    "title": "Trends in the {Brazil/Malvinas} {Confluence} region",
+    "journal": "Geophysical Research Letters",
+    "year": "2014",
+    "volume": "41",
+    "number": "24",
+    "pages": "8971--8977",
+    "doi": "10.1002/2014GL062523"
+   },
+   "crossref": {
+    "doi": "10.1002/2014gl062523",
+    "title": "Trends in the Brazil/Malvinas Confluence region",
+    "authors": [
+     "Combes",
+     "Matano"
+    ],
+    "n_authors": 2,
+    "container": "Geophysical Research Letters",
+    "type": "journal-article",
+    "year_print": 2014,
+    "year_online": 2014,
+    "year_issued": 2014,
+    "volume": "41",
+    "issue": "24",
+    "page": "8971-8977",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract Observations show abrupt changes in the oceanic circulation of the southwestern Atlantic. These studies report a southward drift of the Brazil/Malvinas Confluence (BMC) and a change in the spectral characteristics of the Malvinas Current (MC) transport. We address the cause of these changes using the result of a high‐resolution numerical experiment. The experiment, which is consistent with observations, shows a southward BMC displacement at a rate of 0.62°/decade between 1993 and 2008, and a shift of the spectral characteristics of the MC transport after 1999. We find that these changes are driven by a weakening of the northern branch of the Antarctic Circumpolar Current, which translates to a weakening of the MC transport and a southward BMC drift. The drift changes the spectral characteristics of the MC transport, which becomes more influenced by annual and semiannual variatio"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "combes",
+    "first_author_crossref": "combes",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2014",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2014
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "41",
+    "volume_crossref": "41",
+    "volume_match": true,
+    "pages_bib": "8971-8977",
+    "pages_crossref": "8971-8977",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Cunningham2007": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 305,
+     "sentence": "The RAPID array gives a weakening of 0.9~Sv per decade over 2005--2023 that the autocorrelation of the record leaves unresolved \\citep{Cunningham2007,Jackson2022,Terhaar2025}, and the trends of the reanalyses at this latitude are unresolved as well (Fig.~\\ref{SI-fig:si_amoc_anomalies})."
+    },
+    {
+     "where": "Main.tex Discussion",
+     "line": 321,
+     "sentence": "Sustained full-depth hydrography along 34.5\\degS{}, which began with a section in 2017 \\citep{Manta2021}, would measure the limb salinities, and transport monitoring of the length RAPID has reached at 26.5\\degN{} \\citep{Cunningham2007,FrajkaWilliams2019} would constrain both factors of Eq.~\\eqref{eq:factorization}."
+    },
+    {
+     "where": "Supplement.tex",
+     "line": 106,
+     "sentence": "The RAPID array \\citep{Cunningham2007} gives \\(-0.87\\) [\\(-3.17\\), \\(+1.43\\)]~Sv per decade at 26.5\\degN{} over 2005--2023 from the annual means of its monthly transports (\\(p=0.38\\), \\(N_{\\mathrm{eff}}=7.2\\))."
+    },
+    {
+     "where": "supplement_texts.tex",
+     "line": 42,
+     "sentence": "The RAPID array \\citep{Cunningham2007} gives \\(-0.87\\) [\\(-3.17\\), \\(+1.43\\)]~Sv per decade at 26.5\\degN{} over 2005--2023 from the annual means of its monthly transports (\\(p=0.38\\), \\(N_{\\mathrm{eff}}=7.2\\))."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Cunningham, S. A. and Kanzow, T. and Rayner, D. and Baringer, M. O. and Johns, W. E. and Marotzke, J. and Longworth, H. R. and Grant, E. M. and Hirschi, J. J.-M. and Beal, L. M. and Meinen, C. S. and Bryden, H. L.",
+    "title": "Temporal variability of the {Atlantic} meridional overturning circulation at {26.5\\textdegree N}",
+    "journal": "Science",
+    "year": "2007",
+    "volume": "317",
+    "number": "5840",
+    "pages": "935--938",
+    "doi": "10.1126/science.1141304"
+   },
+   "crossref": {
+    "doi": "10.1126/science.1141304",
+    "title": "Temporal Variability of the Atlantic Meridional Overturning Circulation at 26.5°N",
+    "authors": [
+     "Cunningham",
+     "Kanzow",
+     "Rayner",
+     "Baringer",
+     "Johns",
+     "Marotzke",
+     "Longworth",
+     "Grant",
+     "Hirschi",
+     "Beal",
+     "Meinen",
+     "Bryden"
+    ],
+    "n_authors": 12,
+    "container": "Science",
+    "type": "journal-article",
+    "year_print": 2007,
+    "year_online": null,
+    "year_issued": 2007,
+    "volume": "317",
+    "issue": "5840",
+    "page": "935-938",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "The vigor of Atlantic meridional overturning circulation (MOC) is thought to be vulnerable to global warming, but its short-term temporal variability is unknown so changes inferred from sparse observations on the decadal time scale of recent climate change are uncertain. We combine continuous measurements of the MOC (beginning in 2004) using the purposefully designed transatlantic Rapid Climate Change array of moored instruments deployed along 26.5°N, with time series of Gulf Stream transport and surface-layer Ekman transport to quantify its intra-annual variability. The year-long average overturning is 18.7 ± 5.6 sverdrups (Sv) (range: 4.0 to 34.9 Sv, where 1 Sv = a flow of ocean water of 10 6 cubic meters per second). Interannual changes in the overturning can be monitored with a resolution of 1.5 Sv."
+   },
+   "compare": {
+    "title_similarity": 0.994,
+    "first_author_bib": "cunningham",
+    "first_author_crossref": "cunningham",
+    "first_author_match": true,
+    "n_authors_bib": 12,
+    "n_authors_crossref": 12,
+    "year_bib": "2007",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2007
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "317",
+    "volume_crossref": "317",
+    "volume_match": true,
+    "pages_bib": "935-938",
+    "pages_crossref": "935-938",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Dijkstra2007": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 309,
+     "sentence": "The three reanalyses agree on a negative \\(\\Fovs\\) at 34.5\\degS{}, the sign that the southern-boundary criterion associates with a self-reinforcing feedback, and observations along this latitude give the same sign \\citep{ArumiPlanas2024}; the full criterion adds the transport at the northern boundary of the basin \\citep{Huisman2010,Dijkstra2007}."
+    },
+    {
+     "where": "Main.tex Discussion",
+     "line": 315,
+     "sentence": "In the theory of multiple equilibria, the salt-advection feedback acts through the overturning cell fed by North Atlantic Deep Water \\citep{Rahmstorf1996,deVries2005,Dijkstra2007}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Dijkstra, H. A.",
+    "title": "Characterization of the multiple equilibria regime in a global ocean model",
+    "journal": "Tellus A: Dynamic Meteorology and Oceanography",
+    "year": "2007",
+    "volume": "59",
+    "number": "5",
+    "pages": "695--705",
+    "doi": "10.1111/j.1600-0870.2007.00267.x"
+   },
+   "crossref": {
+    "doi": "10.1111/j.1600-0870.2007.00267.x",
+    "title": "Characterization of the multiple equilibria regime in a global ocean model",
+    "authors": [
+     "Dijkstra"
+    ],
+    "n_authors": 1,
+    "container": "Tellus A: Dynamic Meteorology and Oceanography",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2007,
+    "year_issued": 2007,
+    "volume": "59",
+    "issue": "5",
+    "page": "695",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "dijkstra",
+    "first_author_crossref": "dijkstra",
+    "first_author_match": true,
+    "n_authors_bib": 1,
+    "n_authors_crossref": 1,
+    "year_bib": "2007",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2007
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "59",
+    "volume_crossref": "59",
+    "volume_match": true,
+    "pages_bib": "695-705",
+    "pages_crossref": "695",
+    "pages_match": false
+   },
+   "status": "resolved"
+  },
+  "Dong2009": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 198,
+     "sentence": "Expendable bathythermograph sections give an overturning of 17.9 \\(\\pm\\) 2.2~Sv at this latitude over 2002--2007 \\citep{Dong2009}, within the range of \\(T\\) and of the streamfunction maximum of the three products, 12.8 to 18.3~Sv."
+    },
+    {
+     "where": "Main.tex DataStatement",
+     "line": 327,
+     "sentence": "ORAS5 is distributed by the Copernicus Climate Data Store (reanalysis-oras5, monthly means of the consolidated and operational streams); GLORYS12V1 by the Copernicus Marine Service (GLOBAL\\_\\allowbreak MULTIYEAR\\_\\allowbreak PHY\\_\\allowbreak 001\\_\\allowbreak 030, monthly means); ECCO-V4r4 by NASA PO.DAAC (ECCO\\_\\allowbreak L4\\_\\allowbreak OCEAN\\_\\allowbreak VEL\\_\\allowbreak 05DEG\\_\\allowbreak MONTHLY\\_\\allowbreak V4R4 and ECCO\\_\\allowbreak L4\\_\\allowbreak TEMP\\_\\allowbreak SALINITY\\_\\allowbreak 05DEG\\_\\allowbreak MONTHLY\\_\\allowbreak V4R4); SODA 3.15.2 by the University of Maryland (\\url{https://www2.atmos.umd.edu/~ocean/}); EN4.2.2 with g10 corrections by the Met Office Hadley Centre (\\url{"
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Dong, S. and Garzoli, S. and Baringer, M. and Meinen, C. and Goni, G.",
+    "title": "Interannual variations in the {Atlantic} meridional overturning circulation and its relationship with the net northward heat transport in the {South Atlantic}",
+    "journal": "Geophysical Research Letters",
+    "year": "2009",
+    "volume": "36",
+    "number": null,
+    "pages": "L20606",
+    "doi": "10.1029/2009GL039356"
+   },
+   "crossref": {
+    "doi": "10.1029/2009gl039356",
+    "title": "Interannual variations in the Atlantic meridional overturning circulation and its relationship with the net northward heat transport in the South Atlantic",
+    "authors": [
+     "Dong",
+     "Garzoli",
+     "Baringer",
+     "Meinen",
+     "Goni"
+    ],
+    "n_authors": 5,
+    "container": "Geophysical Research Letters",
+    "type": "journal-article",
+    "year_print": 2009,
+    "year_online": 2009,
+    "year_issued": 2009,
+    "volume": "36",
+    "issue": "20",
+    "page": "2009GL039356",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Variability of the Atlantic Meridional Overturning Circulation (AMOC) and its effect on the net northward heat transport (NHT) in the South Atlantic are examined using a trans‐basin expendable bathythermograph (XBT) high‐density line at 35°S (AX18). The time‐mean AMOC is 17.9 ± 2.2 Sv during 2002–2007. Although the geostrophic transport dominates the time‐mean AMOC, both geostrophic and Ekman transports are important in explaining the AMOC variability. The contributions of geostrophic and Ekman transports to the AMOC show annual cycles, but they are out of phase, resulting in weak seasonal variability of the AMOC. The NHT variability is significantly correlated with the AMOC, where a 1 Sv increase in the AMOC would yield a 0.05 ± 0.01 PW increase in the NHT. Partition of transport into the western and eastern boundaries and interior suggests that, to quantify changes in the AMOC and NHT,"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "dong",
+    "first_author_crossref": "dong",
+    "first_author_match": true,
+    "n_authors_bib": 5,
+    "n_authors_crossref": 5,
+    "year_bib": "2009",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2009
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "36",
+    "volume_crossref": "36",
+    "volume_match": true,
+    "pages_bib": "L20606",
+    "pages_crossref": "2009GL039356",
+    "pages_match": false
+   },
+   "status": "resolved"
+  },
+  "Dong2015": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Supplement.tex",
+     "line": 88,
+     "sentence": "Absolute geostrophic velocities from EN4 density would require a reference velocity at each longitude and an Ekman component, which at this latitude come from the reanalyses or from expendable bathythermograph sections with their own reference choices \\citep{GarzoliBaringer2007,Dong2015}; holding the reanalysis circulation fixed keeps the test independent of such a choice."
+    },
+    {
+     "where": "supplement_texts.tex",
+     "line": 24,
+     "sentence": "Absolute geostrophic velocities from EN4 density would require a reference velocity at each longitude and an Ekman component, which at this latitude come from the reanalyses or from expendable bathythermograph sections with their own reference choices \\citep{GarzoliBaringer2007,Dong2015}; holding the reanalysis circulation fixed keeps the test independent of such a choice."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Dong, S. and Goni, G. and Bringas, F.",
+    "title": "Temporal variability of the {South Atlantic} {Meridional Overturning Circulation} between 20\\textdegree{}S and 35\\textdegree{}S",
+    "journal": "Geophysical Research Letters",
+    "year": "2015",
+    "volume": "42",
+    "number": "18",
+    "pages": "7655--7662",
+    "doi": "10.1002/2015GL065603"
+   },
+   "crossref": {
+    "doi": "10.1002/2015gl065603",
+    "title": "Temporal variability of the South Atlantic Meridional Overturning Circulation between 20°S and 35°S",
+    "authors": [
+     "Dong",
+     "Goni",
+     "Bringas"
+    ],
+    "n_authors": 3,
+    "container": "Geophysical Research Letters",
+    "type": "journal-article",
+    "year_print": 2015,
+    "year_online": 2015,
+    "year_issued": 2015,
+    "volume": "42",
+    "issue": "18",
+    "page": "7655-7662",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract Altimetry‐derived synthetic temperature and salinity profiles between 20°S and 34.5°S are used to estimate the Meridional Overturning Circulation (MOC) and meridional heat transport (MHT), which are assessed against estimates obtained from expendable bathythermograph (XBT) measurements. Consistent with studies from XBTs and Argo data, both the geostrophic and Ekman contributions to the MOC exhibit annual cycles and play an equal role in the MOC seasonal variations. The strongest variations on seasonal and interannual time scales in our study region are found at 34.5°S. The dominance of the geostrophic and Ekman components on the interannual variations in the MOC and MHT varies with time and latitude, with the geostrophic component being dominant during 1993–2006 and the Ekman component dominant between 2006 and 2011 at 34.5°S."
+   },
+   "compare": {
+    "title_similarity": 0.99,
+    "first_author_bib": "dong",
+    "first_author_crossref": "dong",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2015",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2015
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "42",
+    "volume_crossref": "42",
+    "volume_match": true,
+    "pages_bib": "7655-7662",
+    "pages_crossref": "7655-7662",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Durack2012": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 313,
+     "sentence": "Enhanced net evaporation over the subtropical gyre amplifies the surface salinity maximum, a pattern documented as the intensification of salinity contrasts with warming \\citep{DurackWijffels2010,Durack2012} and shaped regionally also by ocean transports \\citep{VinogradovaPonte2017}, and subduction carries the surface signal into the thermocline."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Durack, P. J. and Wijffels, S. E. and Matear, R. J.",
+    "title": "Ocean salinities reveal strong global water cycle intensification during 1950 to 2000",
+    "journal": "Science",
+    "year": "2012",
+    "volume": "336",
+    "number": "6080",
+    "pages": "455--458",
+    "doi": "10.1126/science.1212222"
+   },
+   "crossref": {
+    "doi": "10.1126/science.1212222",
+    "title": "Ocean Salinities Reveal Strong Global Water Cycle Intensification During 1950 to 2000",
+    "authors": [
+     "Durack",
+     "Wijffels",
+     "Matear"
+    ],
+    "n_authors": 3,
+    "container": "Science",
+    "type": "journal-article",
+    "year_print": 2012,
+    "year_online": null,
+    "year_issued": 2012,
+    "volume": "336",
+    "issue": "6080",
+    "page": "455-458",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Getting Wetter Faster Theoretical projections, based on the relationship between temperature and the amount of water vapor the atmosphere can hold, suggest that global warming should intensify the strength of the atmospheric water cycle by about twice the rate as the thermodynamics and climate models predict. Durack et al. (p. 455) examined 50 years of observations of sea surface salinities and conclude that the patterns of change in the salinity data are consistent with the theoretical projections, rather than with those of the models. Thus, the global water cycle should intensify by 16 to 24% for a future increase of a global average temperature of 2 to 3°C."
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "durack",
+    "first_author_crossref": "durack",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2012",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2012
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "336",
+    "volume_crossref": "336",
+    "volume_match": true,
+    "pages_bib": "455-458",
+    "pages_crossref": "455-458",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "DurackWijffels2010": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 313,
+     "sentence": "Enhanced net evaporation over the subtropical gyre amplifies the surface salinity maximum, a pattern documented as the intensification of salinity contrasts with warming \\citep{DurackWijffels2010,Durack2012} and shaped regionally also by ocean transports \\citep{VinogradovaPonte2017}, and subduction carries the surface signal into the thermocline."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Durack, P. J. and Wijffels, S. E.",
+    "title": "Fifty-year trends in global ocean salinities and their relationship to broad-scale warming",
+    "journal": "Journal of Climate",
+    "year": "2010",
+    "volume": "23",
+    "number": "16",
+    "pages": "4342--4362",
+    "doi": "10.1175/2010JCLI3377.1"
+   },
+   "crossref": {
+    "doi": "10.1175/2010jcli3377.1",
+    "title": "Fifty-Year Trends in Global Ocean Salinities and Their Relationship to Broad-Scale Warming",
+    "authors": [
+     "Durack",
+     "Wijffels"
+    ],
+    "n_authors": 2,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2010,
+    "year_online": 2010,
+    "year_issued": 2010,
+    "volume": "23",
+    "issue": "16",
+    "page": "4342-4362",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract Using over 1.6 million profiles of salinity, potential temperature, and neutral density from historical archives and the international Argo Program, this study develops the three-dimensional field of multidecadal linear change for ocean-state properties. The period of analysis extends from 1950 to 2008, taking care to minimize the aliasing associated with the seasonal and major global El Niño–Southern Oscillation modes. Large, robust, and spatially coherent multidecadal linear trends in salinity to 2000-dbar depth are found. Salinity increases at the sea surface are found in evaporation-dominated regions and freshening in precipitation-dominated regions, with the spatial pattern of change strongly resembling that of the mean salinity field, consistent with an amplification of the global hydrological cycle. Subsurface salinity changes on pressure surfaces are attributable to both"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "durack",
+    "first_author_crossref": "durack",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2010",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2010
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "23",
+    "volume_crossref": "23",
+    "volume_match": true,
+    "pages_bib": "4342-4362",
+    "pages_crossref": "4342-4362",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Eyring2016": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "Eyring, V. and Bony, S. and Meehl, G. A. and Senior, C. A. and Stevens, B. and Stouffer, R. J. and Taylor, K. E.",
+    "title": "Overview of the {Coupled Model Intercomparison Project Phase 6 (CMIP6)} experimental design and organization",
+    "journal": "Geoscientific Model Development",
+    "year": "2016",
+    "volume": "9",
+    "number": "5",
+    "pages": "1937--1958",
+    "doi": "10.5194/gmd-9-1937-2016"
+   },
+   "crossref": {
+    "doi": "10.5194/gmd-9-1937-2016",
+    "title": "Overview of the Coupled Model Intercomparison Project Phase 6 (CMIP6)  experimental design and organization",
+    "authors": [
+     "Eyring",
+     "Bony",
+     "Meehl",
+     "Senior",
+     "Stevens",
+     "Stouffer",
+     "Taylor"
+    ],
+    "n_authors": 7,
+    "container": "Geoscientific Model Development",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2016,
+    "year_issued": 2016,
+    "volume": "9",
+    "issue": "5",
+    "page": "1937-1958",
+    "relation": {
+     "has-preprint": [
+      "10.5194/gmdd-8-10539-2015",
+      "10.5194/gmdd-8-10539-2015"
+     ],
+     "has-part": [
+      "10.5194/tc-18-995-2024",
+      "10.5194/acp-24-11275-2024",
+      "10.5194/hess-25-2279-2021",
+      "10.5194/acp-23-8169-2023",
+      "10.5194/nhess-23-1699-2023",
+      "10.5194/gmd-17-6903-2024",
+      "10.5194/bg-20-451-2023",
+      "10.5194/acp-24-13371-2024",
+      "10.5194/gmd-18-3941-2025",
+      "10.5194/gmd-18-2587-2025",
+      "10.5194/wcd-3-337-2022"
+     ],
+     "is-referenced-by": [
+      "10.1007/s44292-025-00051-9"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "Abstract. By coordinating the design and distribution of global climate model simulations of the past, current, and future climate, the Coupled Model Intercomparison Project (CMIP) has become one of the foundational elements of climate science. However, the need to address an ever-expanding range of scientific questions arising from more and more research communities has made it necessary to revise the organization of CMIP. After a long and wide community consultation, a new and more federated structure has been put in place. It consists of three major elements: (1) a handful of common experiments, the DECK (Diagnostic, Evaluation and Characterization of Klima) and CMIP historical simulations (1850–near present) that will maintain continuity and help document basic characteristics of models across different phases of CMIP; (2) common standards, coordination, infrastructure, and documenta"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "eyring",
+    "first_author_crossref": "eyring",
+    "first_author_match": true,
+    "n_authors_bib": 7,
+    "n_authors_crossref": 7,
+    "year_bib": "2016",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2016
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "9",
+    "volume_crossref": "9",
+    "volume_match": true,
+    "pages_bib": "1937-1958",
+    "pages_crossref": "1937-1958",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Forget2015": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "Forget, G. and Campin, J.-M. and Heimbach, P. and Hill, C. N. and Ponte, R. M. and Wunsch, C.",
+    "title": "{ECCO} version 4: an integrated framework for non-linear inverse modeling and global ocean state estimation",
+    "journal": "Geoscientific Model Development",
+    "year": "2015",
+    "volume": "8",
+    "number": "10",
+    "pages": "3071--3104",
+    "doi": "10.5194/gmd-8-3071-2015"
+   },
+   "crossref": {
+    "doi": "10.5194/gmd-8-3071-2015",
+    "title": "ECCO version 4: an integrated framework for non-linear inverse modeling and global ocean state estimation",
+    "authors": [
+     "Forget",
+     "Campin",
+     "Heimbach",
+     "Hill",
+     "Ponte",
+     "Wunsch"
+    ],
+    "n_authors": 6,
+    "container": "Geoscientific Model Development",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2015,
+    "year_issued": 2015,
+    "volume": "8",
+    "issue": "10",
+    "page": "3071-3104",
+    "relation": {
+     "has-preprint": [
+      "10.5194/gmdd-8-3653-2015",
+      "10.5194/gmdd-8-3653-2015"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "Abstract. This paper presents the ECCO v4 non-linear inverse modeling framework and its baseline solution for the evolving ocean state over the period 1992–2011. Both components are publicly available and subjected to regular, automated regression tests. The modeling framework includes sets of global conformal grids, a global model setup, implementations of data constraints and control parameters, an interface to algorithmic differentiation, as well as a grid-independent, fully capable Matlab toolbox. The baseline ECCO v4 solution is a dynamically consistent ocean state estimate without unidentified sources of heat and buoyancy, which any interested user will be able to reproduce accurately. The solution is an acceptable fit to most data and has been found to be physically plausible in many respects, as documented here and in related publications. Users are being provided with capabiliti"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "forget",
+    "first_author_crossref": "forget",
+    "first_author_match": true,
+    "n_authors_bib": 6,
+    "n_authors_crossref": 6,
+    "year_bib": "2015",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2015
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "8",
+    "volume_crossref": "8",
+    "volume_match": true,
+    "pages_bib": "3071-3104",
+    "pages_crossref": "3071-3104",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "FrajkaWilliams2019": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 321,
+     "sentence": "Sustained full-depth hydrography along 34.5\\degS{}, which began with a section in 2017 \\citep{Manta2021}, would measure the limb salinities, and transport monitoring of the length RAPID has reached at 26.5\\degN{} \\citep{Cunningham2007,FrajkaWilliams2019} would constrain both factors of Eq.~\\eqref{eq:factorization}."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Frajka-Williams, E. and Ansorge, I. J. and Baehr, J. and Bryden, H. L. and Chidichimo, M. P. and Cunningham, S. A. and Danabasoglu, G. and Dong, S. and Donohue, K. A. and Elipot, S. and others",
+    "title": "{Atlantic Meridional Overturning Circulation}: Observed transport and variability",
+    "journal": "Frontiers in Marine Science",
+    "year": "2019",
+    "volume": "6",
+    "number": null,
+    "pages": "260",
+    "doi": "10.3389/fmars.2019.00260"
+   },
+   "crossref": {
+    "doi": "10.3389/fmars.2019.00260",
+    "title": "Atlantic Meridional Overturning Circulation: Observed Transport and Variability",
+    "authors": [
+     "Frajka-Williams",
+     "Ansorge",
+     "Baehr",
+     "Bryden",
+     "Chidichimo",
+     "Cunningham",
+     "Danabasoglu",
+     "Dong",
+     "Donohue",
+     "Elipot",
+     "Heimbach",
+     "Holliday",
+     "Hummels",
+     "Jackson",
+     "Karstensen",
+     "Lankhorst",
+     "Le Bras",
+     "Lozier",
+     "McDonagh",
+     "Meinen",
+     "Mercier",
+     "Moat",
+     "Perez",
+     "Piecuch",
+     "Rhein",
+     "Srokosz",
+     "Trenberth",
+     "Bacon",
+     "Forget",
+     "Goni",
+     "Kieke",
+     "Koelling",
+     "Lamont",
+     "McCarthy",
+     "Mertens",
+     "Send",
+     "Smeed",
+     "Speich",
+     "van den Berg",
+     "Volkov",
+     "Wilson"
+    ],
+    "n_authors": 41,
+    "container": "Frontiers in Marine Science",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2019,
+    "year_issued": 2019,
+    "volume": "6",
+    "issue": null,
+    "page": "260",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 0.994,
+    "first_author_bib": "frajkawilliams",
+    "first_author_crossref": "frajkawilliams",
+    "first_author_match": true,
+    "n_authors_bib": 11,
+    "n_authors_crossref": 41,
+    "year_bib": "2019",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2019
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "6",
+    "volume_crossref": "6",
+    "volume_match": true,
+    "pages_bib": "260",
+    "pages_crossref": "260",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "GarzoliBaringer2007": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Supplement.tex",
+     "line": 88,
+     "sentence": "Absolute geostrophic velocities from EN4 density would require a reference velocity at each longitude and an Ekman component, which at this latitude come from the reanalyses or from expendable bathythermograph sections with their own reference choices \\citep{GarzoliBaringer2007,Dong2015}; holding the reanalysis circulation fixed keeps the test independent of such a choice."
+    },
+    {
+     "where": "supplement_texts.tex",
+     "line": 24,
+     "sentence": "Absolute geostrophic velocities from EN4 density would require a reference velocity at each longitude and an Ekman component, which at this latitude come from the reanalyses or from expendable bathythermograph sections with their own reference choices \\citep{GarzoliBaringer2007,Dong2015}; holding the reanalysis circulation fixed keeps the test independent of such a choice."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Garzoli, S. L. and Baringer, M. O.",
+    "title": "Meridional heat transport determined with expendable bathythermographs, {Part II}: {South Atlantic} transport",
+    "journal": "Deep Sea Research Part I: Oceanographic Research Papers",
+    "year": "2007",
+    "volume": "54",
+    "number": "8",
+    "pages": "1402--1420",
+    "doi": "10.1016/j.dsr.2007.04.013"
+   },
+   "crossref": {
+    "doi": "10.1016/j.dsr.2007.04.013",
+    "title": "Meridional heat transport determined with expandable bathythermographs—Part II: South Atlantic transport",
+    "authors": [
+     "Garzoli",
+     "Baringer"
+    ],
+    "n_authors": 2,
+    "container": "Deep Sea Research Part I: Oceanographic Research Papers",
+    "type": "journal-article",
+    "year_print": 2007,
+    "year_online": null,
+    "year_issued": 2007,
+    "volume": "54",
+    "issue": "8",
+    "page": "1402-1420",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 0.981,
+    "first_author_bib": "garzoli",
+    "first_author_crossref": "garzoli",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2007",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2007
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "54",
+    "volume_crossref": "54",
+    "volume_match": true,
+    "pages_bib": "1402-1420",
+    "pages_crossref": "1402-1420",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Goni2011": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 313,
+     "sentence": "A poleward shift of the subtropical gyres and of the Brazil-Malvinas Confluence moves subtropical water south across 34.5\\degS{} \\citep{Yang2020,Combes2014,Lumpkin2011,Goni2011}."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Goni, G. J. and Bringas, F. and DiNezio, P. N.",
+    "title": "Observed low frequency variability of the {Brazil Current} front",
+    "journal": "Journal of Geophysical Research: Oceans",
+    "year": "2011",
+    "volume": "116",
+    "number": "C10",
+    "pages": "C10037",
+    "doi": "10.1029/2011JC007198"
+   },
+   "crossref": {
+    "doi": "10.1029/2011jc007198",
+    "title": "Observed low frequency variability of the Brazil Current front",
+    "authors": [
+     "Goni",
+     "Bringas",
+     "DiNezio"
+    ],
+    "n_authors": 3,
+    "container": "Journal of Geophysical Research",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2011,
+    "year_issued": 2011,
+    "volume": "116",
+    "issue": "C10",
+    "page": "C10037",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "goni",
+    "first_author_crossref": "goni",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2011",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2011
+    ],
+    "journal_similarity": 0.899,
+    "volume_bib": "116",
+    "volume_crossref": "116",
+    "volume_match": true,
+    "pages_bib": "C10037",
+    "pages_crossref": "C10037",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Good2013": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 253,
+     "sentence": "We hold the circulation at the record-mean profile of each reanalysis and let the salinity of the EN4.2.2 objective analysis of profile observations \\citep{Good2013} vary over 2005--2024 (section~\\ref{sec:en4})."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "Good, S. A. and Martin, M. J. and Rayner, N. A.",
+    "title": "{EN4}: Quality controlled ocean temperature and salinity profiles and monthly objective analyses with uncertainty estimates",
+    "journal": "Journal of Geophysical Research: Oceans",
+    "year": "2013",
+    "volume": "118",
+    "number": "12",
+    "pages": "6704--6716",
+    "doi": "10.1002/2013JC009067"
+   },
+   "crossref": {
+    "doi": "10.1002/2013jc009067",
+    "title": "EN4: Quality controlled ocean temperature and salinity profiles and monthly objective analyses with uncertainty estimates",
+    "authors": [
+     "Good",
+     "Martin",
+     "Rayner"
+    ],
+    "n_authors": 3,
+    "container": "Journal of Geophysical Research: Oceans",
+    "type": "journal-article",
+    "year_print": 2013,
+    "year_online": 2013,
+    "year_issued": 2013,
+    "volume": "118",
+    "issue": "12",
+    "page": "6704-6716",
+    "relation": {
+     "has-part": [
+      "10.5194/os-13-315-2017",
+      "10.5194/gmd-18-9451-2025",
+      "10.5194/gmd-18-4789-2025",
+      "10.5194/essd-16-3517-2024",
+      "10.5194/essd-15-2081-2023",
+      "10.5194/bg-18-4389-2021",
+      "10.5194/gmd-16-1569-2023",
+      "10.5194/bg-14-4545-2017",
+      "10.5194/gmd-15-1129-2022",
+      "10.5194/esd-14-399-2023",
+      "10.5194/os-18-67-2022",
+      "10.5194/os-16-99-2020",
+      "10.5194/gmd-18-2443-2025",
+      "10.5194/tc-17-5219-2023"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "We present version 4 of the Met Office Hadley Centre “EN” series of data sets of global quality controlled ocean temperature and salinity profiles and monthly objective analyses, which covers the period 1900 to present. We briefly describe the EN4 data sources, processing, quality control procedures, and the method of generating the analyses. In particular, we highlight improvements relative to previous versions, which include a new duplicate profile removal procedure and the inclusion of three new quality control checks. We discuss in detail a novel method for providing uncertainty estimates for the objective analyses and improving the background error variance estimates used by the analysis system. These were calculated using an iterative method that is relatively robust to initial misspecification of background error variances. We also show how the method can be used to identify issue"
+   },
+   "compare": {
+    "title_similarity": 0.996,
+    "first_author_bib": "good",
+    "first_author_crossref": "good",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2013",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2013
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "118",
+    "volume_crossref": "118",
+    "volume_match": true,
+    "pages_bib": "6704-6716",
+    "pages_crossref": "6704-6716",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Gouretski2010": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "Gouretski, V. and Reseghetti, F.",
+    "title": "On depth and temperature biases in bathythermograph data: Development of a new correction scheme based on analysis of a global ocean database",
+    "journal": "Deep Sea Research Part I: Oceanographic Research Papers",
+    "year": "2010",
+    "volume": "57",
+    "number": "6",
+    "pages": "812--833",
+    "doi": "10.1016/j.dsr.2010.03.011"
+   },
+   "crossref": {
+    "doi": "10.1016/j.dsr.2010.03.011",
+    "title": "On depth and temperature biases in bathythermograph data: Development of a new correction scheme based on analysis of a global ocean database",
+    "authors": [
+     "Gouretski",
+     "Reseghetti"
+    ],
+    "n_authors": 2,
+    "container": "Deep Sea Research Part I: Oceanographic Research Papers",
+    "type": "journal-article",
+    "year_print": 2010,
+    "year_online": null,
+    "year_issued": 2010,
+    "volume": "57",
+    "issue": "6",
+    "page": "812-833",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "gouretski",
+    "first_author_crossref": "gouretski",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2010",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2010
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "57",
+    "volume_crossref": "57",
+    "volume_match": true,
+    "pages_bib": "812-833",
+    "pages_crossref": "812-833",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "HallBryden1982": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Hall, M. M. and Bryden, H. L.",
+    "title": "Direct estimates and mechanisms of ocean heat transport",
+    "journal": "Deep Sea Research Part A. Oceanographic Research Papers",
+    "year": "1982",
+    "volume": "29",
+    "number": "3",
+    "pages": "339--359",
+    "doi": "10.1016/0198-0149(82)90099-1"
+   },
+   "crossref": {
+    "doi": "10.1016/0198-0149(82)90099-1",
+    "title": "Direct estimates and mechanisms of ocean heat transport",
+    "authors": [
+     "Hall",
+     "Bryden"
+    ],
+    "n_authors": 2,
+    "container": "Deep Sea Research Part A. Oceanographic Research Papers",
+    "type": "journal-article",
+    "year_print": 1982,
+    "year_online": null,
+    "year_issued": 1982,
+    "volume": "29",
+    "issue": "3",
+    "page": "339-359",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "hall",
+    "first_author_crossref": "hall",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "1982",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     1982
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "29",
+    "volume_crossref": "29",
+    "volume_match": true,
+    "pages_bib": "339-359",
+    "pages_crossref": "339-359",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Hawkins2011": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Hawkins, E. and Smith, R. S. and Allison, L. C. and Gregory, J. M. and Woollings, T. J. and Pohlmann, H. and de Cuevas, B.",
+    "title": "Bistability of the {Atlantic} overturning circulation in a global climate model and links to ocean freshwater transport",
+    "journal": "Geophysical Research Letters",
+    "year": "2011",
+    "volume": "38",
+    "number": null,
+    "pages": "L10605",
+    "doi": "10.1029/2011GL047208"
+   },
+   "crossref": {
+    "doi": "10.1029/2011gl047208",
+    "title": "Bistability of the Atlantic overturning circulation in a global climate model and links to ocean freshwater transport",
+    "authors": [
+     "Hawkins",
+     "Smith",
+     "Allison",
+     "Gregory",
+     "Woollings",
+     "Pohlmann",
+     "de Cuevas"
+    ],
+    "n_authors": 7,
+    "container": "Geophysical Research Letters",
+    "type": "journal-article",
+    "year_print": 2011,
+    "year_online": 2011,
+    "year_issued": 2011,
+    "volume": "38",
+    "issue": "10",
+    "page": "n/a-n/a",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "hawkins",
+    "first_author_crossref": "hawkins",
+    "first_author_match": true,
+    "n_authors_bib": 7,
+    "n_authors_crossref": 7,
+    "year_bib": "2011",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2011
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "38",
+    "volume_crossref": "38",
+    "volume_match": true,
+    "pages_bib": "L10605",
+    "pages_crossref": "n/a-n/a",
+    "pages_match": false
+   },
+   "status": "resolved"
+  },
+  "Huisman2010": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 212,
+     "sentence": "Stability theory specifies \\(\\Fovs\\) for the salt-advection feedback \\citep{deVries2005,Huisman2010}; the azonal transport enters the salt balance of the basin, and its response to a change of the overturning also affects the stability of box models \\citep{Cimatoribus2014}."
+    },
+    {
+     "where": "Main.tex Discussion",
+     "line": 309,
+     "sentence": "The three reanalyses agree on a negative \\(\\Fovs\\) at 34.5\\degS{}, the sign that the southern-boundary criterion associates with a self-reinforcing feedback, and observations along this latitude give the same sign \\citep{ArumiPlanas2024}; the full criterion adds the transport at the northern boundary of the basin \\citep{Huisman2010,Dijkstra2007}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Huisman, S. E. and den Toom, M. and Dijkstra, H. A. and Drijfhout, S.",
+    "title": "An indicator of the multiple equilibria regime of the {Atlantic Meridional Overturning Circulation}",
+    "journal": "Journal of Physical Oceanography",
+    "year": "2010",
+    "volume": "40",
+    "number": "3",
+    "pages": "551--567",
+    "doi": "10.1175/2009JPO4215.1"
+   },
+   "crossref": {
+    "doi": "10.1175/2009jpo4215.1",
+    "title": "An Indicator of the Multiple Equilibria Regime of the Atlantic Meridional Overturning Circulation",
+    "authors": [
+     "Huisman",
+     "den Toom",
+     "Dijkstra",
+     "Drijfhout"
+    ],
+    "n_authors": 4,
+    "container": "Journal of Physical Oceanography",
+    "type": "journal-article",
+    "year_print": 2010,
+    "year_online": 2010,
+    "year_issued": 2010,
+    "volume": "40",
+    "issue": "3",
+    "page": "551-567",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract Recent model results have suggested that there may be a scalar indicator Σ monitoring whether the Atlantic meridional overturning circulation (MOC) is in a multiple equilibrium regime. The quantity Σ is based on the net freshwater transport by the MOC into the Atlantic basin. It changes sign as soon as the steady Atlantic MOC enters the multiple equilibrium regime because of an increased freshwater input in the northern North Atlantic. This paper addresses the issue of why the sign of Σ is such a good indicator for the multiple equilibrium regime. Changes in the Atlantic freshwater budget over a complete bifurcation diagram and in finite amplitude perturbation experiments are analyzed in a global ocean circulation model. The authors show that the net anomalous freshwater transport into or out of the Atlantic, resulting from the interactions of the velocity perturbations and sali"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "huisman",
+    "first_author_crossref": "huisman",
+    "first_author_match": true,
+    "n_authors_bib": 4,
+    "n_authors_crossref": 4,
+    "year_bib": "2010",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2010
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "40",
+    "volume_crossref": "40",
+    "volume_match": true,
+    "pages_bib": "551-567",
+    "pages_crossref": "551-567",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Jackson2022": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 305,
+     "sentence": "The RAPID array gives a weakening of 0.9~Sv per decade over 2005--2023 that the autocorrelation of the record leaves unresolved \\citep{Cunningham2007,Jackson2022,Terhaar2025}, and the trends of the reanalyses at this latitude are unresolved as well (Fig.~\\ref{SI-fig:si_amoc_anomalies})."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Jackson, L. C. and Biastoch, A. and Buckley, M. W. and Desbruy{\\`e}res, D. G. and Frajka-Williams, E. and Moat, B. and Robson, J.",
+    "title": "The evolution of the {North Atlantic Meridional Overturning Circulation} since 1980",
+    "journal": "Nature Reviews Earth \\& Environment",
+    "year": "2022",
+    "volume": "3",
+    "number": "4",
+    "pages": "241--254",
+    "doi": "10.1038/s43017-022-00263-2"
+   },
+   "crossref": {
+    "doi": "10.1038/s43017-022-00263-2",
+    "title": "The evolution of the North Atlantic Meridional Overturning Circulation since 1980",
+    "authors": [
+     "Jackson",
+     "Biastoch",
+     "Buckley",
+     "Desbruyères",
+     "Frajka-Williams",
+     "Moat",
+     "Robson"
+    ],
+    "n_authors": 7,
+    "container": "Nature Reviews Earth &amp; Environment",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2022,
+    "year_issued": 2022,
+    "volume": "3",
+    "issue": "4",
+    "page": "241-254",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "jackson",
+    "first_author_crossref": "jackson",
+    "first_author_match": true,
+    "n_authors_bib": 7,
+    "n_authors_crossref": 7,
+    "year_bib": "2022",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2022
+    ],
+    "journal_similarity": 0.957,
+    "volume_bib": "3",
+    "volume_crossref": "3",
+    "volume_match": true,
+    "pages_bib": "241-254",
+    "pages_crossref": "241-254",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Kersale2020": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 284,
+     "sentence": "The SAMBA array at 34.5\\degS{} \\citep{Meinen2018,Kersale2020} records monthly anomalies of the transport above 1315~dbar and between 3155 and 4295~dbar over 2013--2017."
+    },
+    {
+     "where": "Main.tex Discussion",
+     "line": 317,
+     "sentence": "Their northward-limb transports, 14.6 to 22.5~Sv, and their cell variability, smaller than that observed by SAMBA, leave the mean transports to be arbitrated by longer observation at this latitude \\citep{Meinen2018,Kersale2020}."
+    },
+    {
+     "where": "Main.tex DataStatement",
+     "line": 327,
+     "sentence": "ORAS5 is distributed by the Copernicus Climate Data Store (reanalysis-oras5, monthly means of the consolidated and operational streams); GLORYS12V1 by the Copernicus Marine Service (GLOBAL\\_\\allowbreak MULTIYEAR\\_\\allowbreak PHY\\_\\allowbreak 001\\_\\allowbreak 030, monthly means); ECCO-V4r4 by NASA PO.DAAC (ECCO\\_\\allowbreak L4\\_\\allowbreak OCEAN\\_\\allowbreak VEL\\_\\allowbreak 05DEG\\_\\allowbreak MONTHLY\\_\\allowbreak V4R4 and ECCO\\_\\allowbreak L4\\_\\allowbreak TEMP\\_\\allowbreak SALINITY\\_\\allowbreak 05DEG\\_\\allowbreak MONTHLY\\_\\allowbreak V4R4); SODA 3.15.2 by the University of Maryland (\\url{https://www2.atmos.umd.edu/~ocean/}); EN4.2.2 with g10 corrections by the Met Office Hadley Centre (\\url{"
+    },
+    {
+     "where": "Supplement.tex",
+     "line": 86,
+     "sentence": "The SAMBA record available to us consists of monthly anomalies over September 2013 to July 2017 (47 months) of the transport from the surface to 1315~dbar, northward positive, and from 3155 to 4295~dbar, southward positive \\citep{Kersale2020}, so the comparison concerns variability."
+    },
+    {
+     "where": "Supplement.tex",
+     "line": 275,
+     "sentence": "Monthly anomalies over September 2013 to July 2017 of (a) the transport from the surface to 1315~dbar, northward positive, and (b) the transport between 3155 and 4295~dbar, southward positive, in the SAMBA array \\citep{Kersale2020} and in the three reanalyses over the same layers (1301~m, and 3109 to 4222~m)."
+    },
+    {
+     "where": "supplement_texts.tex",
+     "line": 22,
+     "sentence": "The SAMBA record available to us consists of monthly anomalies over September 2013 to July 2017 (47 months) of the transport from the surface to 1315~dbar, northward positive, and from 3155 to 4295~dbar, southward positive \\citep{Kersale2020}, so the comparison concerns variability."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "Kersal{\\'e}, M. and Meinen, C. S. and Perez, R. C. and Le H{\\'e}naff, M. and Valla, D. and Lamont, T. and Sato, O. T. and Dong, S. and Terre, T. and van Caspel, M. and Chidichimo, M. P. and van den Berg, M. and Speich, S. and Piola, A. R. and Campos, E. J. D. and Ansorge, I. and Volkov, D. L. and Lumpkin, R. and Garzoli, S. L.",
+    "title": "Highly variable upper and abyssal overturning cells in the {South Atlantic}",
+    "journal": "Science Advances",
+    "year": "2020",
+    "volume": "6",
+    "number": "32",
+    "pages": "eaba7573",
+    "doi": "10.1126/sciadv.aba7573"
+   },
+   "crossref": {
+    "doi": "10.1126/sciadv.aba7573",
+    "title": "Highly variable upper and abyssal overturning cells in the South Atlantic",
+    "authors": [
+     "Kersalé",
+     "Meinen",
+     "Perez",
+     "Le Hénaff",
+     "Valla",
+     "Lamont",
+     "Sato",
+     "Dong",
+     "Terre",
+     "van Caspel",
+     "Chidichimo",
+     "van den Berg",
+     "Speich",
+     "Piola",
+     "Campos",
+     "Ansorge",
+     "Volkov",
+     "Lumpkin",
+     "Garzoli"
+    ],
+    "n_authors": 19,
+    "container": "Science Advances",
+    "type": "journal-article",
+    "year_print": 2020,
+    "year_online": null,
+    "year_issued": 2020,
+    "volume": "6",
+    "issue": "32",
+    "page": "eaba7573",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "We present the first-ever daily time series of the full-depth volume transports by the overturning circulation cells at 34.5°S."
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "kersal e",
+    "first_author_crossref": "kersal",
+    "first_author_match": true,
+    "n_authors_bib": 19,
+    "n_authors_crossref": 19,
+    "year_bib": "2020",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2020
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "6",
+    "volume_crossref": "6",
+    "volume_match": true,
+    "pages_bib": "eaba7573",
+    "pages_crossref": "eaba7573",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Lellouche2021": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "Lellouche, J.-M. and Greiner, E. and Bourdall{\\'e}-Badie, R. and Garric, G. and Melet, A. and Dr{\\'e}villon, M. and Bricaud, C. and Hamon, M. and Le Galloudec, O. and Regnier, C. and Candela, T. and Testut, C.-E. and Gasparin, F. and Ruggiero, G. and Benkiran, M. and Drillet, Y. and Le Traon, P.-Y.",
+    "title": "The {Copernicus} global 1/12{\\textdegree} oceanic and sea ice {GLORYS12} reanalysis",
+    "journal": "Frontiers in Earth Science",
+    "year": "2021",
+    "volume": "9",
+    "number": null,
+    "pages": "698876",
+    "doi": "10.3389/feart.2021.698876"
+   },
+   "crossref": {
+    "doi": "10.3389/feart.2021.698876",
+    "title": "The Copernicus Global 1/12° Oceanic and Sea Ice GLORYS12 Reanalysis",
+    "authors": [
+     "Jean-Michel",
+     "Eric",
+     "Romain",
+     "Gilles",
+     "Angélique",
+     "Marie",
+     "Clément",
+     "Mathieu",
+     "Olivier",
+     "Charly",
+     "Tony",
+     "Charles-Emmanuel",
+     "Florent",
+     "Giovanni",
+     "Mounir",
+     "Yann",
+     "Pierre-Yves"
+    ],
+    "n_authors": 17,
+    "container": "Frontiers in Earth Science",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2021,
+    "year_issued": 2021,
+    "volume": "9",
+    "issue": null,
+    "page": "698876",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "GLORYS12 is a global eddy-resolving physical ocean and sea ice reanalysis at 1/12° horizontal resolution covering the 1993-present altimetry period, designed and implemented in the framework of the Copernicus Marine Environment Monitoring Service (CMEMS). The model component is the NEMO platform driven at the surface by atmospheric conditions from the ECMWF ERA-Interim reanalysis. Ocean observations are assimilated by means of a reduced-order Kalman filter. Along track altimeter sea level anomaly, satellite sea surface temperature and sea ice concentration, as well as in situ temperature and salinity vertical profiles are jointly assimilated. A 3D-VAR scheme provides an additional correction for the slowly-evolving large-scale biases in temperature and salinity. The performance of the reanalysis shows a clear dependency on the time-dependent in situ observation system. The general assess"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "lellouche",
+    "first_author_crossref": "jeanmichel",
+    "first_author_match": false,
+    "n_authors_bib": 17,
+    "n_authors_crossref": 17,
+    "year_bib": "2021",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2021
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "9",
+    "volume_crossref": "9",
+    "volume_match": true,
+    "pages_bib": "698876",
+    "pages_crossref": "698876",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "LiuLiu2013": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Liu, W. and Liu, Z.",
+    "title": "A diagnostic indicator of the stability of the {Atlantic} meridional overturning circulation in {CCSM3}",
+    "journal": "Journal of Climate",
+    "year": "2013",
+    "volume": "26",
+    "number": null,
+    "pages": "1926--1938",
+    "doi": "10.1175/JCLI-D-11-00681.1"
+   },
+   "crossref": {
+    "doi": "10.1175/jcli-d-11-00681.1",
+    "title": "A Diagnostic Indicator of the Stability of the Atlantic Meridional Overturning Circulation in CCSM3",
+    "authors": [
+     "Liu",
+     "Liu"
+    ],
+    "n_authors": 2,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2013,
+    "year_online": null,
+    "year_issued": 2013,
+    "volume": "26",
+    "issue": "6",
+    "page": "1926-1938",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract A diagnostic indicator Δ M ov is proposed in this paper to monitor the stability of the Atlantic meridional overturning circulation (AMOC). The Δ M ov is a diagnostic for a basinwide salt-advection feedback and defined as the difference between the freshwater transport induced by the AMOC across the southern border of the Atlantic Ocean and the overturning liquid freshwater transport from the Arctic Ocean to the North Atlantic. As validated in the Community Climate System Model, version 3 (CCSM3), for an AMOC in the conveyor state, a positive Δ M ov (freshwater convergence) in the Atlantic basin indicates a monostable AMOC and a negative Δ M ov (freshwater divergence) indicates a bistable AMOC. Based on Δ M ov , the authors investigate the AMOC stability in the Last Glacial Maximum (LGM) and analyze the modulation of the AMOC stability by an open/closed Bering Strait. Moreover, "
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "liu",
+    "first_author_crossref": "liu",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2013",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2013
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "26",
+    "volume_crossref": "26",
+    "volume_match": true,
+    "pages_bib": "1926-1938",
+    "pages_crossref": "1926-1938",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Lumpkin2011": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 313,
+     "sentence": "A poleward shift of the subtropical gyres and of the Brazil-Malvinas Confluence moves subtropical water south across 34.5\\degS{} \\citep{Yang2020,Combes2014,Lumpkin2011,Goni2011}."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Lumpkin, R. and Garzoli, S.",
+    "title": "Interannual to decadal changes in the western {South Atlantic}'s surface circulation",
+    "journal": "Journal of Geophysical Research: Oceans",
+    "year": "2011",
+    "volume": "116",
+    "number": "C1",
+    "pages": "C01014",
+    "doi": "10.1029/2010JC006285"
+   },
+   "crossref": {
+    "doi": "10.1029/2010jc006285",
+    "title": "Interannual to decadal changes in the western South Atlantic's surface circulation",
+    "authors": [
+     "Lumpkin",
+     "Garzoli"
+    ],
+    "n_authors": 2,
+    "container": "Journal of Geophysical Research",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2011,
+    "year_issued": 2011,
+    "volume": "116",
+    "issue": "C1",
+    "page": "C01014",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 0.994,
+    "first_author_bib": "lumpkin",
+    "first_author_crossref": "lumpkin",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2011",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2011
+    ],
+    "journal_similarity": 0.899,
+    "volume_bib": "116",
+    "volume_crossref": "116",
+    "volume_match": true,
+    "pages_bib": "C01014",
+    "pages_crossref": "C01014",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Manta2021": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 321,
+     "sentence": "Sustained full-depth hydrography along 34.5\\degS{}, which began with a section in 2017 \\citep{Manta2021}, would measure the limb salinities, and transport monitoring of the length RAPID has reached at 26.5\\degN{} \\citep{Cunningham2007,FrajkaWilliams2019} would constrain both factors of Eq.~\\eqref{eq:factorization}."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Manta, G. and Speich, S. and Karstensen, J. and Hummels, R. and Kersal{\\'e}, M. and Laxenaire, R. and Piola, A. and Chidichimo, M. P. and Sato, O. T. and Cotrim da Cunha, L. and Ansorge, I. and Lamont, T. and van den Berg, M. A. and Schuster, U. and Tanhua, T. and Kerr, R. and Guerrero, R. and Campos, E. and Meinen, C. S.",
+    "title": "The {South Atlantic} meridional overturning circulation and mesoscale eddies in the first {GO-SHIP} section at 34.5\\textdegree{}S",
+    "journal": "Journal of Geophysical Research: Oceans",
+    "year": "2021",
+    "volume": "126",
+    "number": null,
+    "pages": "e2020JC016962",
+    "doi": "10.1029/2020JC016962"
+   },
+   "crossref": {
+    "doi": "10.1029/2020jc016962",
+    "title": "The South Atlantic Meridional Overturning Circulation and Mesoscale Eddies in the First GO‐SHIP Section at 34.5°S",
+    "authors": [
+     "Manta",
+     "Speich",
+     "Karstensen",
+     "Hummels",
+     "Kersalé",
+     "Laxenaire",
+     "Piola",
+     "Chidichimo",
+     "Sato",
+     "Cotrim da Cunha",
+     "Ansorge",
+     "Lamont",
+     "van den Berg",
+     "Schuster",
+     "Tanhua",
+     "Kerr",
+     "Guerrero",
+     "Campos",
+     "Meinen"
+    ],
+    "n_authors": 19,
+    "container": "Journal of Geophysical Research: Oceans",
+    "type": "journal-article",
+    "year_print": 2021,
+    "year_online": 2021,
+    "year_issued": 2021,
+    "volume": "126",
+    "issue": "2",
+    "page": "e2020JC016962",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract The variability of the Atlantic meridional overturning circulation (AMOC) has considerable impacts on the global climate system. Past studies have shown that changes in the South Atlantic control the stability of the AMOC and drive an important part of its variability. That is why significant resources have been invested in a South (S)AMOC observing system. In January 2017, the RV Maria S. Merian conducted the first GO‐SHIP hydrographic transect along the SAMOC‐Basin Wide Array (SAMBA) line at 34.5°S in the South Atlantic. This paper presents estimates of meridional volume, freshwater (MFT), and heat (MHT) transports through the line using the slow varying geostrophic density field and direct velocity observations. An upper and an abyssal overturning cell are identified with a strength of 15.64 ± 1.39 Sv and 2.4 ± 1.6 Sv, respectively. The net northward MHT is 0.27 ± 0.10 PW, in"
+   },
+   "compare": {
+    "title_similarity": 0.995,
+    "first_author_bib": "manta",
+    "first_author_crossref": "manta",
+    "first_author_match": true,
+    "n_authors_bib": 19,
+    "n_authors_crossref": 19,
+    "year_bib": "2021",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2021
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "126",
+    "volume_crossref": "126",
+    "volume_match": true,
+    "pages_bib": "e2020JC016962",
+    "pages_crossref": "e2020JC016962",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "McDonagh2015": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 315,
+     "sentence": "The azonal component is larger than \\(\\Fovs\\) at this latitude and, in ORAS5, trends the other way, as the overturning and gyre components of the freshwater transport differ in the North Atlantic \\citep{McDonagh2015,Xu2016}; the convergence of the overturning freshwater transport between the southern and northern boundaries and the response of the azonal transport are the next steps for an assessment of where the basin lies relative to the bistable regime."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "McDonagh, E. L. and King, B. A. and Bryden, H. L. and Courtois, P. and Szuts, Z. and Baringer, M. and Cunningham, S. A. and Atkinson, C. and McCarthy, G.",
+    "title": "Continuous estimate of {Atlantic} oceanic freshwater flux at 26.5\\textdegree{}N",
+    "journal": "Journal of Climate",
+    "year": "2015",
+    "volume": "28",
+    "number": "22",
+    "pages": "8888--8906",
+    "doi": "10.1175/JCLI-D-14-00519.1"
+   },
+   "crossref": {
+    "doi": "10.1175/jcli-d-14-00519.1",
+    "title": "Continuous Estimate of Atlantic Oceanic Freshwater Flux at 26.5°N",
+    "authors": [
+     "McDonagh",
+     "King",
+     "Bryden",
+     "Courtois",
+     "Szuts",
+     "Baringer",
+     "Cunningham",
+     "Atkinson",
+     "McCarthy"
+    ],
+    "n_authors": 9,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2015,
+    "year_online": 2015,
+    "year_issued": 2015,
+    "volume": "28",
+    "issue": "22",
+    "page": "8888-8906",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract The first continuous estimates of freshwater flux across 26.5°N are calculated using observations from the RAPID–MOCHA–Western Boundary Time Series (WBTS) and Argo floats every 10 days between April 2004 and October 2012. The mean plus or minus the standard deviation of the freshwater flux (FW) is −1.17 ± 0.20 Sv (1 Sv ≡ 106 m3 s−1; negative flux is southward), implying a freshwater divergence of −0.37 ± 0.20 Sv between the Bering Strait and 26.5°N. This is in the sense of an input of 0.37 Sv of freshwater into the ocean, consistent with a region where precipitation dominates over evaporation. The sign and the variability of the freshwater divergence are dominated by the overturning component (−0.78 ± 0.21 Sv). The horizontal component of the freshwater divergence is smaller, associated with little variability and positive (0.35 ± 0.04 Sv). A linear relationship, describing 91% "
+   },
+   "compare": {
+    "title_similarity": 0.992,
+    "first_author_bib": "mcdonagh",
+    "first_author_crossref": "mcdonagh",
+    "first_author_match": true,
+    "n_authors_bib": 9,
+    "n_authors_crossref": 9,
+    "year_bib": "2015",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2015
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "28",
+    "volume_crossref": "28",
+    "volume_match": true,
+    "pages_bib": "8888-8906",
+    "pages_crossref": "8888-8906",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Mecking2017": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 288,
+     "sentence": "Once close relatives are grouped, 9 or 10 of 18 independent models are positive, depending on which member represents a family, a number consistent with an even split (Text~\\ref{SI-text:s4}), so the comparison concerns the position of the model distribution relative to the reanalyses, a bias documented in earlier work \\citep{Mecking2017,vanWestenDijkstra2024,Weijer2019}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Mecking, J. V. and Drijfhout, S. S. and Jackson, L. C. and Andrews, M. B.",
+    "title": "The effect of model bias on {Atlantic} freshwater transport and implications for {AMOC} bi-stability",
+    "journal": "Tellus A: Dynamic Meteorology and Oceanography",
+    "year": "2017",
+    "volume": "69",
+    "number": "1",
+    "pages": "1299910",
+    "doi": "10.1080/16000870.2017.1299910"
+   },
+   "crossref": {
+    "doi": "10.1080/16000870.2017.1299910",
+    "title": "The effect of model bias on Atlantic freshwater transport and\n                        implications for AMOC bi-stability",
+    "authors": [
+     "Mecking",
+     "Drijfhout",
+     "Jackson",
+     "Andrews"
+    ],
+    "n_authors": 4,
+    "container": "Tellus A: Dynamic Meteorology and Oceanography",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2017,
+    "year_issued": 2017,
+    "volume": "69",
+    "issue": "1",
+    "page": "1299910",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "mecking",
+    "first_author_crossref": "mecking",
+    "first_author_match": true,
+    "n_authors_bib": 4,
+    "n_authors_crossref": 4,
+    "year_bib": "2017",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2017
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "69",
+    "volume_crossref": "69",
+    "volume_match": true,
+    "pages_bib": "1299910",
+    "pages_crossref": "1299910",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Meinen2018": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 284,
+     "sentence": "The SAMBA array at 34.5\\degS{} \\citep{Meinen2018,Kersale2020} records monthly anomalies of the transport above 1315~dbar and between 3155 and 4295~dbar over 2013--2017."
+    },
+    {
+     "where": "Main.tex Discussion",
+     "line": 317,
+     "sentence": "Their northward-limb transports, 14.6 to 22.5~Sv, and their cell variability, smaller than that observed by SAMBA, leave the mean transports to be arbitrated by longer observation at this latitude \\citep{Meinen2018,Kersale2020}."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Meinen, C. S. and Speich, S. and Piola, A. R. and Ansorge, I. and Campos, E. and Kersal{\\'e}, M. and Terre, T. and Chidichimo, M. P. and Lamont, T. and Sato, O. T. and Perez, R. C. and Valla, D. and van den Berg, M. and Le H{\\'e}naff, M. and Dong, S. and Garzoli, S. L.",
+    "title": "Meridional overturning circulation transport variability at {34.5\\textdegree S} during 2009--2017: Baroclinic and barotropic flows and the dueling influence of the boundaries",
+    "journal": "Geophysical Research Letters",
+    "year": "2018",
+    "volume": "45",
+    "number": "9",
+    "pages": "4180--4188",
+    "doi": "10.1029/2018GL077408"
+   },
+   "crossref": {
+    "doi": "10.1029/2018gl077408",
+    "title": "Meridional Overturning Circulation Transport Variability at 34.5°S During 2009–2017: Baroclinic and Barotropic Flows and the Dueling Influence of the Boundaries",
+    "authors": [
+     "Meinen",
+     "Speich",
+     "Piola",
+     "Ansorge",
+     "Campos",
+     "Kersalé",
+     "Terre",
+     "Chidichimo",
+     "Lamont",
+     "Sato",
+     "Perez",
+     "Valla",
+     "van den Berg",
+     "Le Hénaff",
+     "Dong",
+     "Garzoli"
+    ],
+    "n_authors": 16,
+    "container": "Geophysical Research Letters",
+    "type": "journal-article",
+    "year_print": 2018,
+    "year_online": 2018,
+    "year_issued": 2018,
+    "volume": "45",
+    "issue": "9",
+    "page": "4180-4188",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract Six years of simultaneous moored observations near the western and eastern boundaries of the South Atlantic are combined with satellite winds to produce a daily time series of the basin‐wide meridional overturning circulation (MOC) volume transport at 34.5°S. The results demonstrate that barotropic and baroclinic signals at both boundaries cause significant transport variations, and as such must be concurrently observed. The data, spanning ~20 months during 2009–2010 and ~4 years during 2013–2017, reveal a highly energetic MOC record with a temporal standard deviation of 8.3 Sv, and strong variations at time scales ranging from a few days to years (peak‐to‐peak range = 54.6 Sv). Seasonal transport variations are found to have both semiannual (baroclinic) and annual (Ekman and barotropic) timescales. Interannual MOC variations result from both barotropic and baroclinic changes, w"
+   },
+   "compare": {
+    "title_similarity": 0.997,
+    "first_author_bib": "meinen",
+    "first_author_crossref": "meinen",
+    "first_author_match": true,
+    "n_authors_bib": 16,
+    "n_authors_crossref": 16,
+    "year_bib": "2018",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2018
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "45",
+    "volume_crossref": "45",
+    "volume_match": true,
+    "pages_bib": "4180-4188",
+    "pages_crossref": "4180-4188",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Raganato2026": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 309,
+     "sentence": "Across the three products the 1993 to 2014 contrast differs by a factor of 2.9, and the northward-limb transport by a factor of 1.5 \\citep{Raganato2026}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Raganato, A. and Bracco, A. and Van Roekel, L. and Iovino, D.",
+    "title": "{AMOC} discrepancies across reanalyses and models limit dynamical understanding",
+    "journal": "Journal of Climate",
+    "year": "2026",
+    "volume": "39",
+    "number": null,
+    "pages": "5695--5716",
+    "doi": "10.1175/JCLI-D-25-0618.1"
+   },
+   "crossref": {
+    "doi": "10.1175/jcli-d-25-0618.1",
+    "title": "AMOC Discrepancies across Reanalyses and Models Limit Dynamical Understanding",
+    "authors": [
+     "Raganato",
+     "Bracco",
+     "Van Roekel",
+     "Iovino"
+    ],
+    "n_authors": 4,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2026,
+    "year_online": null,
+    "year_issued": 2026,
+    "volume": "39",
+    "issue": "19",
+    "page": "5695-5716",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract The Atlantic meridional overturning circulation (AMOC) influences global climate, yet its multiscale variability and the processes governing it remain uncertain across models and observations. Using four ocean reanalyses and forced ocean–sea ice simulations from three model families [Energy Exascale Earth System Model Model for Prediction Across Scales (MPAS), Parallel Ocean Program (POP), and Nucleus for European Modelling of the Ocean (NEMO)], each run in both a coarse [low resolution (LR)] and a mesoscale-permitting or eddy-resolving [high resolution (HR)] configuration, we assess the consistency of their representation of AMOC strength, overturning freshwater transport, salt-advection feedback, and gyre circulation around 58°N, 26°N, and 34°S over the past 50–70 years. Across the three model families, two LR–HR pairs simulate a stronger mean overturning at higher resolution,"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "raganato",
+    "first_author_crossref": "raganato",
+    "first_author_match": true,
+    "n_authors_bib": 4,
+    "n_authors_crossref": 4,
+    "year_bib": "2026",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2026
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "39",
+    "volume_crossref": "39",
+    "volume_match": true,
+    "pages_bib": "5695-5716",
+    "pages_crossref": "5695-5716",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Rahmstorf1996": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 315,
+     "sentence": "In the theory of multiple equilibria, the salt-advection feedback acts through the overturning cell fed by North Atlantic Deep Water \\citep{Rahmstorf1996,deVries2005,Dijkstra2007}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Rahmstorf, S.",
+    "title": "On the freshwater forcing and transport of the {Atlantic} thermohaline circulation",
+    "journal": "Climate Dynamics",
+    "year": "1996",
+    "volume": "12",
+    "number": "12",
+    "pages": "799--811",
+    "doi": "10.1007/s003820050144"
+   },
+   "crossref": {
+    "doi": "10.1007/s003820050144",
+    "title": "On the freshwater forcing and transport of the Atlantic thermohaline circulation",
+    "authors": [
+     "Rahmstorf"
+    ],
+    "n_authors": 1,
+    "container": "Climate Dynamics",
+    "type": "journal-article",
+    "year_print": 1996,
+    "year_online": null,
+    "year_issued": 1996,
+    "volume": "12",
+    "issue": "12",
+    "page": "799-811",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "rahmstorf",
+    "first_author_crossref": "rahmstorf",
+    "first_author_match": true,
+    "n_authors_bib": 1,
+    "n_authors_crossref": 1,
+    "year_bib": "1996",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     1996
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "12",
+    "volume_crossref": "12",
+    "volume_match": true,
+    "pages_bib": "799-811",
+    "pages_crossref": "799-811",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Rahmstorf2002": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Rahmstorf, S.",
+    "title": "Ocean circulation and climate during the past 120,000 years",
+    "journal": "Nature",
+    "year": "2002",
+    "volume": "419",
+    "number": "6903",
+    "pages": "207--214",
+    "doi": "10.1038/nature01090"
+   },
+   "crossref": {
+    "doi": "10.1038/nature01090",
+    "title": "Ocean circulation and climate during the past 120,000 years",
+    "authors": [
+     "Rahmstorf"
+    ],
+    "n_authors": 1,
+    "container": "Nature",
+    "type": "journal-article",
+    "year_print": 2002,
+    "year_online": null,
+    "year_issued": 2002,
+    "volume": "419",
+    "issue": "6903",
+    "page": "207-214",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "rahmstorf",
+    "first_author_crossref": "rahmstorf",
+    "first_author_match": true,
+    "n_authors_bib": 1,
+    "n_authors_crossref": 1,
+    "year_bib": "2002",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2002
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "419",
+    "volume_crossref": "419",
+    "volume_match": true,
+    "pages_bib": "207-214",
+    "pages_crossref": "207-214",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Santer2000": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "Santer, B. D. and Wigley, T. M. L. and Boyle, J. S. and Gaffen, D. J. and Hnilo, J. J. and Nychka, D. and Parker, D. E. and Taylor, K. E.",
+    "title": "Statistical significance of trends and trend differences in layer-average atmospheric temperature time series",
+    "journal": "Journal of Geophysical Research: Atmospheres",
+    "year": "2000",
+    "volume": "105",
+    "number": "D6",
+    "pages": "7337--7356",
+    "doi": "10.1029/1999JD901105"
+   },
+   "crossref": {
+    "doi": "10.1029/1999jd901105",
+    "title": "Statistical significance of trends and trend differences in layer‐average atmospheric temperature time series",
+    "authors": [
+     "Santer",
+     "Wigley",
+     "Boyle",
+     "Gaffen",
+     "Hnilo",
+     "Nychka",
+     "Parker",
+     "Taylor"
+    ],
+    "n_authors": 8,
+    "container": "Journal of Geophysical Research: Atmospheres",
+    "type": "journal-article",
+    "year_print": 2000,
+    "year_online": 2000,
+    "year_issued": 2000,
+    "volume": "105",
+    "issue": "D6",
+    "page": "7337-7356",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "This paper examines trend uncertainties in layer‐average free atmosphere temperatures arising from the use of different trend estimation methods. It also considers statistical issues that arise in assessing the significance of individual trends and of trend differences between data sets. Possible causes of these trends are not addressed. We use data from satellite and radiosonde measurements and from two reanalysis projects. To facilitate intercomparison, we compute from reanalyses and radiosonde data temperatures equivalent to those from the satellite‐based Microwave Sounding Unit (MSU). We compare linear trends based on minimization of absolute deviations (LA) and minimization of squared deviations (LS). Differences are generally less than 0.05°C/decade over 1959–1996. Over 1979–1993, they exceed 0.10°C/decade for lower tropospheric time series and 0.15°C/decade for the lower stratosph"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "santer",
+    "first_author_crossref": "santer",
+    "first_author_match": true,
+    "n_authors_bib": 8,
+    "n_authors_crossref": 8,
+    "year_bib": "2000",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2000
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "105",
+    "volume_crossref": "105",
+    "volume_match": true,
+    "pages_bib": "7337-7356",
+    "pages_crossref": "7337-7356",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "SmithHeimbach2019": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 317,
+     "sentence": "ECCO-V4r4 is a state estimate without assimilation increments, in which the variability of the South Atlantic overturning responds to atmospheric forcing \\citep{SmithHeimbach2019}; its \\(\\Fovs\\) has no resolved trend over 1992--2017."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Smith, T. and Heimbach, P.",
+    "title": "Atmospheric origins of variability in the {South Atlantic} meridional overturning circulation",
+    "journal": "Journal of Climate",
+    "year": "2019",
+    "volume": "32",
+    "number": null,
+    "pages": "1483--1500",
+    "doi": "10.1175/JCLI-D-18-0311.1"
+   },
+   "crossref": {
+    "doi": "10.1175/jcli-d-18-0311.1",
+    "title": "Atmospheric Origins of Variability in the South Atlantic Meridional Overturning Circulation",
+    "authors": [
+     "Smith",
+     "Heimbach"
+    ],
+    "n_authors": 2,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2019,
+    "year_online": 2019,
+    "year_issued": 2019,
+    "volume": "32",
+    "issue": "5",
+    "page": "1483-1500",
+    "relation": {
+     "has-preprint": [
+      "10.1002/essoar.10502256.1"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "Abstract Insights from the RAPID–MOCHA observation network in the North Atlantic have motivated a recent focus on the South Atlantic, where water masses are exchanged with neighboring ocean basins. In this study, variability in the South Atlantic meridional overturning circulation (SAMOC) at 34°S is attributed to global atmospheric forcing using an inverse modeling approach. The sensitivity of the SAMOC to atmospheric state variables is computed with the adjoint of the Massachusetts Institute of Technology general circulation model, which is fit to 20 years of observational data in a dynamically consistent framework. The dynamical pathways highlighted by these sensitivity patterns show that the domain of influence for the SAMOC is broad, covering neighboring ocean basins even on short time scales. This result differs from what has previously been shown in the North Atlantic, where Atlant"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "smith",
+    "first_author_crossref": "smith",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2019",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2019
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "32",
+    "volume_crossref": "32",
+    "volume_match": true,
+    "pages_bib": "1483-1500",
+    "pages_crossref": "1483-1500",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Stommel1961": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Stommel, H.",
+    "title": "Thermohaline convection with two stable regimes of flow",
+    "journal": "Tellus",
+    "year": "1961",
+    "volume": "13",
+    "number": "2",
+    "pages": "224--230",
+    "doi": "10.3402/tellusa.v13i2.9491"
+   },
+   "crossref": {
+    "doi": "10.3402/tellusa.v13i2.9491",
+    "title": "Thermohaline Convection with Two Stable Regimes of Flow",
+    "authors": [
+     "Stommel"
+    ],
+    "n_authors": 1,
+    "container": "Tellus A: Dynamic Meteorology and Oceanography",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 1961,
+    "year_issued": 1961,
+    "volume": "13",
+    "issue": "2",
+    "page": "224-230",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Free convection between two interconnected reservoirs, due to density differences maintained by heat and salt transfer to the reservoirs, is shown to occur sometimes in two different stable regimes, and may possibly be analogous to certain features of the oseanic circulation."
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "stommel",
+    "first_author_crossref": "stommel",
+    "first_author_match": true,
+    "n_authors_bib": 1,
+    "n_authors_crossref": 1,
+    "year_bib": "1961",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     1961
+    ],
+    "journal_similarity": 0.235,
+    "volume_bib": "13",
+    "volume_crossref": "13",
+    "volume_match": true,
+    "pages_bib": "224-230",
+    "pages_crossref": "224-230",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Terhaar2025": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 305,
+     "sentence": "The RAPID array gives a weakening of 0.9~Sv per decade over 2005--2023 that the autocorrelation of the record leaves unresolved \\citep{Cunningham2007,Jackson2022,Terhaar2025}, and the trends of the reanalyses at this latitude are unresolved as well (Fig.~\\ref{SI-fig:si_amoc_anomalies})."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Terhaar, J. and Vogt, L. and Foukal, N. P.",
+    "title": "Atlantic overturning inferred from air--sea heat fluxes indicates no decline since the 1960s",
+    "journal": "Nature Communications",
+    "year": "2025",
+    "volume": "16",
+    "number": "1",
+    "pages": "943",
+    "doi": "10.1038/s41467-024-55297-5"
+   },
+   "crossref": {
+    "doi": "10.1038/s41467-024-55297-5",
+    "title": "Atlantic overturning inferred from air-sea heat fluxes indicates no decline since the 1960s",
+    "authors": [
+     "Terhaar",
+     "Vogt",
+     "Foukal"
+    ],
+    "n_authors": 3,
+    "container": "Nature Communications",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2025,
+    "year_issued": 2025,
+    "volume": "16",
+    "issue": "1",
+    "page": "222",
+    "relation": {
+     "has-preprint": [
+      "10.21203/rs.3.rs-4672609/v1"
+     ]
+    },
+    "updated_by": [],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "terhaar",
+    "first_author_crossref": "terhaar",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2025",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2025
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "16",
+    "volume_crossref": "16",
+    "volume_match": true,
+    "pages_bib": "943",
+    "pages_crossref": "222",
+    "pages_match": false
+   },
+   "status": "resolved"
+  },
+  "Vanderborght2025": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 311,
+     "sentence": "This is the reading under which a declining \\(\\Fovs\\) can serve as a warning, consistent with the role of the salt-advection feedback in the collapse simulated by \\citet{Vanderborght2025}, and in ORAS5 it applies at an overturning transport that weakens."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Vanderborght, E. and van Westen, R. M. and Dijkstra, H. A.",
+    "title": "Feedback processes causing an {AMOC} collapse in the {Community Earth System Model}",
+    "journal": "Journal of Climate",
+    "year": "2025",
+    "volume": "38",
+    "number": "19",
+    "pages": "5083--5102",
+    "doi": "10.1175/JCLI-D-24-0570.1"
+   },
+   "crossref": {
+    "doi": "10.1175/jcli-d-24-0570.1",
+    "title": "Feedback Processes Causing an AMOC Collapse in the Community Earth System Model",
+    "authors": [
+     "Vanderborght",
+     "van Westen",
+     "Dijkstra"
+    ],
+    "n_authors": 3,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2025,
+    "year_online": null,
+    "year_issued": 2025,
+    "volume": "38",
+    "issue": "19",
+    "page": "5083-5102",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract The Atlantic meridional overturning circulation (AMOC) is recognized as a tipping element within the global climate system. Central to its tipping behavior is the salt-advection feedback mechanism, which has been extensively studied in box models and models of intermediate complexity. However, in contemporary, highly complex climate models, the importance and functioning of this feedback mechanism is less clear due to the intricate interplay of numerous ocean–atmosphere–sea ice feedbacks. In this study, we conduct a detailed mechanistic analysis of an AMOC collapse under quasi-equilibrium forcing conditions using the Community Earth System Model (CESM). By reconstructing the AMOC strength from the meridional density contrast across the Atlantic Ocean, we demonstrate that AMOC stability can be related to the Atlantic freshwater budget, revealing several important feedbacks. The d"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "vanderborght",
+    "first_author_crossref": "vanderborght",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2025",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2025
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "38",
+    "volume_crossref": "38",
+    "volume_match": true,
+    "pages_bib": "5083-5102",
+    "pages_crossref": "5083-5102",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "VinogradovaPonte2017": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 313,
+     "sentence": "Enhanced net evaporation over the subtropical gyre amplifies the surface salinity maximum, a pattern documented as the intensification of salinity contrasts with warming \\citep{DurackWijffels2010,Durack2012} and shaped regionally also by ocean transports \\citep{VinogradovaPonte2017}, and subduction carries the surface signal into the thermocline."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Vinogradova, N. T. and Ponte, R. M.",
+    "title": "In search of fingerprints of the recent intensification of the ocean water cycle",
+    "journal": "Journal of Climate",
+    "year": "2017",
+    "volume": "30",
+    "number": null,
+    "pages": "5513--5528",
+    "doi": "10.1175/JCLI-D-16-0626.1"
+   },
+   "crossref": {
+    "doi": "10.1175/jcli-d-16-0626.1",
+    "title": "In Search of Fingerprints of the Recent Intensification of the Ocean Water Cycle",
+    "authors": [
+     "Vinogradova",
+     "Ponte"
+    ],
+    "n_authors": 2,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2017,
+    "year_online": null,
+    "year_issued": 2017,
+    "volume": "30",
+    "issue": "14",
+    "page": "5513-5528",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Unprecedented changes in Earth’s water budget and a recent boom in salinity observations prompted the use of long-term salinity trends to fingerprint the amount of freshwater entering and leaving the oceans (the ocean water cycle). Here changes in the ocean water cycle in the past two decades are examined to evaluate whether the rain-gauge notion can be extended to shorter time scales. Using a novel framework it is demonstrated that there have been persistent changes (defined as significant trends) in both salinity and the ocean water cycle in many ocean regions, including the subtropical gyres in both hemispheres, low latitudes of the tropical Pacific, the North Atlantic Subpolar Gyre, and the Arctic Ocean. On average, the ocean water cycle has amplified by approximately 5% since 1993, but strong regional variations exist (as well as dependency on the surface freshwater flux products ch"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "vinogradova",
+    "first_author_crossref": "vinogradova",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2017",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2017
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "30",
+    "volume_crossref": "30",
+    "volume_match": true,
+    "pages_bib": "5513-5528",
+    "pages_crossref": "5513-5528",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Weijer2019": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 288,
+     "sentence": "Once close relatives are grouped, 9 or 10 of 18 independent models are positive, depending on which member represents a family, a number consistent with an even split (Text~\\ref{SI-text:s4}), so the comparison concerns the position of the model distribution relative to the reanalyses, a bias documented in earlier work \\citep{Mecking2017,vanWestenDijkstra2024,Weijer2019}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Weijer, W. and Cheng, W. and Drijfhout, S. S. and Fedorov, A. V. and Hu, A. and Jackson, L. C. and Liu, W. and McDonagh, E. L. and Mecking, J. V. and Zhang, J.",
+    "title": "Stability of the {Atlantic Meridional Overturning Circulation}: A review and synthesis",
+    "journal": "Journal of Geophysical Research: Oceans",
+    "year": "2019",
+    "volume": "124",
+    "number": "8",
+    "pages": "5336--5375",
+    "doi": "10.1029/2019JC015083"
+   },
+   "crossref": {
+    "doi": "10.1029/2019jc015083",
+    "title": "Stability of the Atlantic Meridional Overturning Circulation: A Review and Synthesis",
+    "authors": [
+     "Weijer",
+     "Cheng",
+     "Drijfhout",
+     "Fedorov",
+     "Hu",
+     "Jackson",
+     "Liu",
+     "McDonagh",
+     "Mecking",
+     "Zhang"
+    ],
+    "n_authors": 10,
+    "container": "Journal of Geophysical Research: Oceans",
+    "type": "journal-article",
+    "year_print": 2019,
+    "year_online": 2019,
+    "year_issued": 2019,
+    "volume": "124",
+    "issue": "8",
+    "page": "5336-5375",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract The notion that the Atlantic Meridional Overturning Circulation (AMOC) can have more than one stable equilibrium emerged in the 1980s as a powerful hypothesis to explain rapid climate variability during the Pleistocene. Ever since, the idea that a temporary perturbation of the AMOC—or a permanent change in its forcing—could trigger an irreversible collapse has remained a reason for concern. Here we review literature on the equilibrium stability of the AMOC and present a synthesis that puts our understanding of past and future AMOC behavior in a unifying framework. This framework is based on concepts from Dynamical Systems Theory, which has proven to be an important tool in interpreting a wide range of model behavior. We conclude that it cannot be ruled out that the AMOC in our current climate is in, or close to, a regime of multiple equilibria. But there is considerable uncertai"
+   },
+   "compare": {
+    "title_similarity": 0.994,
+    "first_author_bib": "weijer",
+    "first_author_crossref": "weijer",
+    "first_author_match": true,
+    "n_authors_bib": 10,
+    "n_authors_crossref": 10,
+    "year_bib": "2019",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2019
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "124",
+    "volume_crossref": "124",
+    "volume_match": true,
+    "pages_bib": "5336-5375",
+    "pages_crossref": "5336-5375",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Xu2016": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 315,
+     "sentence": "The azonal component is larger than \\(\\Fovs\\) at this latitude and, in ORAS5, trends the other way, as the overturning and gyre components of the freshwater transport differ in the North Atlantic \\citep{McDonagh2015,Xu2016}; the convergence of the overturning freshwater transport between the southern and northern boundaries and the response of the azonal transport are the next steps for an assessment of where the basin lies relative to the bistable regime."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Xu, X. and Rhines, P. B. and Chassignet, E. P.",
+    "title": "Temperature--salinity structure of the {North Atlantic} circulation and associated heat and freshwater transports",
+    "journal": "Journal of Climate",
+    "year": "2016",
+    "volume": "29",
+    "number": null,
+    "pages": "7723--7742",
+    "doi": "10.1175/JCLI-D-15-0798.1"
+   },
+   "crossref": {
+    "doi": "10.1175/jcli-d-15-0798.1",
+    "title": "Temperature–Salinity Structure of the North Atlantic Circulation and Associated Heat and Freshwater Transports",
+    "authors": [
+     "Xu",
+     "Rhines",
+     "Chassignet"
+    ],
+    "n_authors": 3,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2016,
+    "year_online": 2016,
+    "year_issued": 2016,
+    "volume": "29",
+    "issue": "21",
+    "page": "7723-7742",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract This study investigates the circulation structure and relative contribution of circulation components to the time-mean meridional heat and freshwater transports in the North Atlantic, using numerical results of a high-resolution ocean model that are shown to be in excellent agreement with the observations. The North Atlantic circulation can be separated into the large-scale Atlantic meridional overturning circulation (AMOC) that is diapycnal and the subtropical and subpolar gyres that largely flow along isopycnal surfaces but also include prominent gyre-scale diapycnal overturning in the Subtropical Mode Water and Labrador Sea Water. Integrals of the meridional volume transport as a function of potential temperature θ and salinity S yield streamfunctions with respect to θ and to S, and heat functions. These argue for a significant contribution to the heat transport by the southw"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "xu",
+    "first_author_crossref": "xu",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2016",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2016
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "29",
+    "volume_crossref": "29",
+    "volume_match": true,
+    "pages_bib": "7723-7742",
+    "pages_crossref": "7723-7742",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Yang2020": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 313,
+     "sentence": "A poleward shift of the subtropical gyres and of the Brazil-Malvinas Confluence moves subtropical water south across 34.5\\degS{} \\citep{Yang2020,Combes2014,Lumpkin2011,Goni2011}."
+    }
+   ],
+   "also_cited_in_main_regions": [],
+   "bib": {
+    "author": "Yang, H. and Lohmann, G. and Krebs-Kanzow, U. and Ionita, M. and Shi, X. and Sidorenko, D. and Gong, X. and Chen, X. and Gowan, E. J.",
+    "title": "Poleward shift of the major ocean gyres detected in a warming climate",
+    "journal": "Geophysical Research Letters",
+    "year": "2020",
+    "volume": "47",
+    "number": "5",
+    "pages": "e2019GL085868",
+    "doi": "10.1029/2019GL085868"
+   },
+   "crossref": {
+    "doi": "10.1029/2019gl085868",
+    "title": "Poleward Shift of the Major Ocean Gyres Detected in a Warming Climate",
+    "authors": [
+     "Yang",
+     "Lohmann",
+     "Krebs‐Kanzow",
+     "Ionita",
+     "Shi",
+     "Sidorenko",
+     "Gong",
+     "Chen",
+     "Gowan"
+    ],
+    "n_authors": 9,
+    "container": "Geophysical Research Letters",
+    "type": "journal-article",
+    "year_print": 2020,
+    "year_online": 2020,
+    "year_issued": 2020,
+    "volume": "47",
+    "issue": "5",
+    "page": "e2019GL085868",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract Recent evidence shows that wind‐driven ocean currents, like the western boundary currents, are strongly affected by global warming. However, due to insufficient observations both on temporal and spatial scales, the impact of climate change on large‐scale ocean gyres is still not clear. Here, based on satellite observations of sea surface height and sea surface temperature, we find a consistent poleward shift of the major ocean gyres. Due to strong natural variability, most of the observed ocean gyre shifts are not statistically significant, implying that natural variations may contribute to the observed trends. However, climate model simulations forced with increasing greenhouse gases suggest that the observed shift is most likely to be a response of global warming. The displacement of ocean gyres, which is coupled with the poleward shift of extratropical atmospheric circulation"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "yang",
+    "first_author_crossref": "yang",
+    "first_author_match": true,
+    "n_authors_bib": 9,
+    "n_authors_crossref": 9,
+    "year_bib": "2020",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2020
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "47",
+    "volume_crossref": "47",
+    "volume_match": true,
+    "pages_bib": "e2019GL085868",
+    "pages_crossref": "e2019GL085868",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Zhu2020": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 249,
+     "sentence": "Surface salinity rises across the subtropical South Atlantic over 1993--2025, and the salinity pile-up index proposed as a fingerprint of a weakening overturning \\citep{Zhu2020,Zhu2023} rises with it and shares its trend with \\(\\Fovs\\); once the trends are removed, their variations from year to year are unrelated (Figs.~\\ref{SI-fig:si_sss_trends} and~\\ref{SI-fig:si_pileup}; section~\\ref{sec:cmip6})."
+    },
+    {
+     "where": "Supplement.tex",
+     "line": 268,
+     "sentence": "(a) Annual pile-up index, the area-weighted mean surface salinity of the subtropical South Atlantic minus that of the subtropical South Indo-Pacific \\citep{Zhu2020}, in ORAS5 and GLORYS12V1."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction",
+    "Methods"
+   ],
+   "bib": {
+    "author": "Zhu, C. and Liu, Z.",
+    "title": "Weakening {Atlantic} overturning circulation causes {South Atlantic} salinity pile-up",
+    "journal": "Nature Climate Change",
+    "year": "2020",
+    "volume": "10",
+    "number": "11",
+    "pages": "998--1003",
+    "doi": "10.1038/s41558-020-0897-7"
+   },
+   "crossref": {
+    "doi": "10.1038/s41558-020-0897-7",
+    "title": "Weakening Atlantic overturning circulation causes South Atlantic salinity pile-up",
+    "authors": [
+     "Zhu",
+     "Liu"
+    ],
+    "n_authors": 2,
+    "container": "Nature Climate Change",
+    "type": "journal-article",
+    "year_print": 2020,
+    "year_online": 2020,
+    "year_issued": 2020,
+    "volume": "10",
+    "issue": "11",
+    "page": "998-1003",
+    "relation": {
+     "correction": [
+      "10.1038/s41558-020-00951-1"
+     ]
+    },
+    "updated_by": [
+     {
+      "type": "correction",
+      "doi": "10.1038/s41558-020-00951-1"
+     }
+    ],
+    "abstract": ""
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "zhu",
+    "first_author_crossref": "zhu",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2020",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2020
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "10",
+    "volume_crossref": "10",
+    "volume_match": true,
+    "pages_bib": "998-1003",
+    "pages_crossref": "998-1003",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Zhu2023": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 249,
+     "sentence": "Surface salinity rises across the subtropical South Atlantic over 1993--2025, and the salinity pile-up index proposed as a fingerprint of a weakening overturning \\citep{Zhu2020,Zhu2023} rises with it and shares its trend with \\(\\Fovs\\); once the trends are removed, their variations from year to year are unrelated (Figs.~\\ref{SI-fig:si_sss_trends} and~\\ref{SI-fig:si_pileup}; section~\\ref{sec:cmip6})."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "Zhu, C. and Liu, Z. and Zhang, S. and Wu, L.",
+    "title": "Likely accelerated weakening of {Atlantic} overturning circulation emerges in optimal salinity fingerprint",
+    "journal": "Nature Communications",
+    "year": "2023",
+    "volume": "14",
+    "number": "1",
+    "pages": "1245",
+    "doi": "10.1038/s41467-023-36288-4"
+   },
+   "crossref": {
+    "doi": "10.1038/s41467-023-36288-4",
+    "title": "Likely accelerated weakening of Atlantic overturning circulation emerges in optimal salinity fingerprint",
+    "authors": [
+     "Zhu",
+     "Liu",
+     "Zhang",
+     "Wu"
+    ],
+    "n_authors": 4,
+    "container": "Nature Communications",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2023,
+    "year_issued": 2023,
+    "volume": "14",
+    "issue": "1",
+    "page": "1245",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract The long-term response of the Atlantic meridional overturning circulation (AMOC) to anthropogenic forcing has been difficult to detect from the short direct measurements available due to strong interdecadal variability. Here, we present observational and modeling evidence for a likely accelerated weakening of the AMOC since the 1980s under the combined forcing of anthropogenic greenhouse gases and aerosols. This likely accelerated AMOC weakening signal can be detected in the AMOC fingerprint of salinity pileup remotely in the South Atlantic, but not in the classic warming hole fingerprint locally in the North Atlantic, because the latter is contaminated by the “noise” of interdecadal variability. Our optimal salinity fingerprint retains much of the signal of the long-term AMOC trend response to anthropogenic forcing, while dynamically filtering out shorter climate variability. G"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "zhu",
+    "first_author_crossref": "zhu",
+    "first_author_match": true,
+    "n_authors_bib": 4,
+    "n_authors_crossref": 4,
+    "year_bib": "2023",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2023
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "14",
+    "volume_crossref": "14",
+    "volume_match": true,
+    "pages_bib": "1245",
+    "pages_crossref": "1245",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "Zuo2019": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Methods"
+   ],
+   "bib": {
+    "author": "Zuo, H. and Balmaseda, M. A. and Tietsche, S. and Mogensen, K. and Mayer, M.",
+    "title": "The {ECMWF} operational ensemble reanalysis--analysis system for ocean and sea ice: a description of the system and assessment",
+    "journal": "Ocean Science",
+    "year": "2019",
+    "volume": "15",
+    "number": "3",
+    "pages": "779--808",
+    "doi": "10.5194/os-15-779-2019"
+   },
+   "crossref": {
+    "doi": "10.5194/os-15-779-2019",
+    "title": "The ECMWF operational ensemble reanalysis–analysis system for ocean and sea ice: a description of the system and assessment",
+    "authors": [
+     "Zuo",
+     "Balmaseda",
+     "Tietsche",
+     "Mogensen",
+     "Mayer"
+    ],
+    "n_authors": 5,
+    "container": "Ocean Science",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2019,
+    "year_issued": 2019,
+    "volume": "15",
+    "issue": "3",
+    "page": "779-808",
+    "relation": {
+     "has-preprint": [
+      "10.5194/os-2018-154",
+      "10.5194/os-2018-154"
+     ],
+     "has-review": [
+      "10.5194/os-2018-154-RC1",
+      "10.5194/os-2018-154-AC1",
+      "10.5194/os-2018-154-RC2",
+      "10.5194/os-2018-154-AC2",
+      "10.5194/os-2018-154-AC2",
+      "10.5194/os-2018-154-AC1",
+      "10.5194/os-2018-154-RC1",
+      "10.5194/os-2018-154-RC2"
+     ],
+     "has-part": [
+      "10.5194/esd-13-1097-2022"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "The ECMWF OCEAN5 system is a global ocean and sea-ice ensemble of reanalysis and real-time analysis. This paper gives a full description of the OCEAN5 system, with the focus on upgrades of system components with respect to its predecessors, ORAS4 and ORAP5. An important novelty in OCEAN5 is the ensemble generation strategy that includes perturbation of initial conditions and a generic perturbation scheme for observations and forcing fields. Other upgrades include revisions to the a priori bias correction scheme, observation quality control and assimilation method for sea-level anomalies. The OCEAN5 historical reconstruction of the ocean and sea-ice state is the ORAS5 reanalysis, which includes five ensemble members and covers the period from 1979 onwards. Updated versions of observation data sets are used in ORAS5 production, with special attention devoted to the consistency of sea surfa"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "zuo",
+    "first_author_crossref": "zuo",
+    "first_author_match": true,
+    "n_authors_bib": 5,
+    "n_authors_crossref": 5,
+    "year_bib": "2019",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2019
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "15",
+    "volume_crossref": "15",
+    "volume_match": true,
+    "pages_bib": "779-808",
+    "pages_crossref": "779-808",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "deVries2005": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 212,
+     "sentence": "Stability theory specifies \\(\\Fovs\\) for the salt-advection feedback \\citep{deVries2005,Huisman2010}; the azonal transport enters the salt balance of the basin, and its response to a change of the overturning also affects the stability of box models \\citep{Cimatoribus2014}."
+    },
+    {
+     "where": "Main.tex Discussion",
+     "line": 315,
+     "sentence": "In the theory of multiple equilibria, the salt-advection feedback acts through the overturning cell fed by North Atlantic Deep Water \\citep{Rahmstorf1996,deVries2005,Dijkstra2007}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "de Vries, P. and Weber, S. L.",
+    "title": "The {Atlantic} freshwater budget as a diagnostic for the existence of a stable shut down of the meridional overturning circulation",
+    "journal": "Geophysical Research Letters",
+    "year": "2005",
+    "volume": "32",
+    "number": "9",
+    "pages": "L09606",
+    "doi": "10.1029/2004GL021450"
+   },
+   "crossref": {
+    "doi": "10.1029/2004gl021450",
+    "title": "The Atlantic freshwater budget as a diagnostic for the existence of a stable shut down of the meridional overturning circulation",
+    "authors": [
+     "de Vries",
+     "Weber"
+    ],
+    "n_authors": 2,
+    "container": "Geophysical Research Letters",
+    "type": "journal-article",
+    "year_print": 2005,
+    "year_online": 2005,
+    "year_issued": 2005,
+    "volume": "32",
+    "issue": "9",
+    "page": "2004GL021450",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Which physical processes effectively determine the stability regime of the Atlantic meridional overturning circulation (MOC) is not yet fully understood. We investigate the role of the oceanic freshwater transport into the basin, employing a coupled model of intermediate complexity. By modifying the longitudinal variation of surface salinities near the southern border at 33°S, the amount of salt flowing out of the Atlantic via the Brazil Current can be regulated. In turn, this will influence whether the MOC exports or imports salt water. The latter is associated with a basin‐scale salinity‐overturning feedback, which can be either positive or negative. Pulse experiments strongly suggest that its sign determines the existence of a monostable or bistable regime in our model."
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "de vries",
+    "first_author_crossref": "de vries",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2005",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2005
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "32",
+    "volume_crossref": "32",
+    "volume_match": true,
+    "pages_bib": "L09606",
+    "pages_crossref": "2004GL021450",
+    "pages_match": false
+   },
+   "status": "resolved"
+  },
+  "vanWesten2024": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Discussion",
+     "line": 311,
+     "sentence": "Reading the decline as a measure of the overturning strength assigns to the transport a change that arises from the salinity of the water masses, for the decline itself and for arguments built on the time at which \\(\\Fovs\\) reaches its most negative value \\citep{vanWesten2024}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "van Westen, R. M. and Kliphuis, M. and Dijkstra, H. A.",
+    "title": "Physics-based early warning signal shows that {AMOC} is on tipping course",
+    "journal": "Science Advances",
+    "year": "2024",
+    "volume": "10",
+    "number": "6",
+    "pages": "eadk1189",
+    "doi": "10.1126/sciadv.adk1189"
+   },
+   "crossref": {
+    "doi": "10.1126/sciadv.adk1189",
+    "title": "Physics-based early warning signal shows that AMOC is on tipping course",
+    "authors": [
+     "van Westen",
+     "Kliphuis",
+     "Dijkstra"
+    ],
+    "n_authors": 3,
+    "container": "Science Advances",
+    "type": "journal-article",
+    "year_print": 2024,
+    "year_online": null,
+    "year_issued": 2024,
+    "volume": "10",
+    "issue": "6",
+    "page": "eadk1189",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "One of the most prominent climate tipping elements is the Atlantic meridional overturning circulation (AMOC), which can potentially collapse because of the input of fresh water in the North Atlantic. Although AMOC collapses have been induced in complex global climate models by strong freshwater forcing, the processes of an AMOC tipping event have so far not been investigated. Here, we show results of the first tipping event in the Community Earth System Model, including the large climate impacts of the collapse. Using these results, we develop a physics-based and observable early warning signal of AMOC tipping: the minimum of the AMOC-induced freshwater transport at the southern boundary of the Atlantic. Reanalysis products indicate that the present-day AMOC is on route to tipping. The early warning signal is a useful alternative to classical statistical ones, which, when applied to our "
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "van westen",
+    "first_author_crossref": "van westen",
+    "first_author_match": true,
+    "n_authors_bib": 3,
+    "n_authors_crossref": 3,
+    "year_bib": "2024",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2024
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "10",
+    "volume_crossref": "10",
+    "volume_match": true,
+    "pages_bib": "eadk1189",
+    "pages_crossref": "eadk1189",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "vanWesten2025": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "van Westen, R. M. and Vanderborght, E. and Kliphuis, M. and Dijkstra, H. A.",
+    "title": "Physics-based indicators for the onset of an {AMOC} collapse under climate change",
+    "journal": "Journal of Geophysical Research: Oceans",
+    "year": "2025",
+    "volume": "130",
+    "number": "8",
+    "pages": "e2025JC022651",
+    "doi": "10.1029/2025JC022651"
+   },
+   "crossref": {
+    "doi": "10.1029/2025jc022651",
+    "title": "Physics‐Based Indicators for the Onset of an AMOC Collapse Under Climate Change",
+    "authors": [
+     "van Westen",
+     "Vanderborght",
+     "Kliphuis",
+     "Dijkstra"
+    ],
+    "n_authors": 4,
+    "container": "Journal of Geophysical Research: Oceans",
+    "type": "journal-article",
+    "year_print": 2025,
+    "year_online": 2025,
+    "year_issued": 2025,
+    "volume": "130",
+    "issue": "8",
+    "page": "e2025JC022651",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract The Atlantic meridional overturning circulation (AMOC) is an important tipping element in the climate system. There is a large uncertainty whether the AMOC will start to collapse during the century under future climate change, as this requires long climate model simulations which are not always available. Here, we analyze targeted climate model simulations done with the Community Earth System Model (CESM) with the aim to develop a physics‐based indicator for the onset of an AMOC tipping event. This indicator is diagnosed from the surface buoyancy fluxes over the North Atlantic Ocean and is performing successfully under quasi‐equilibrium freshwater forcing, freshwater pulse forcing, climate change scenarios, and for different climate models. An analysis consisting of 25 different climate models shows that the AMOC could begin to collapse by 2063 (from 2026 to 2095, to percentiles"
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "van westen",
+    "first_author_crossref": "van westen",
+    "first_author_match": true,
+    "n_authors_bib": 4,
+    "n_authors_crossref": 4,
+    "year_bib": "2025",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2025
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "130",
+    "volume_crossref": "130",
+    "volume_match": true,
+    "pages_bib": "e2025JC022651",
+    "pages_crossref": "e2025JC022651",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "vanWestenDijkstra2023": {
+   "in_scope": false,
+   "citations": [],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "van Westen, R. M. and Dijkstra, H. A.",
+    "title": "Asymmetry of {AMOC} hysteresis in a state-of-the-art global climate model",
+    "journal": "Geophysical Research Letters",
+    "year": "2023",
+    "volume": "50",
+    "number": "22",
+    "pages": "e2023GL106088",
+    "doi": "10.1029/2023GL106088"
+   },
+   "crossref": {
+    "doi": "10.1029/2023gl106088",
+    "title": "Asymmetry of AMOC Hysteresis in a State‐Of‐The‐Art Global Climate Model",
+    "authors": [
+     "van Westen",
+     "Dijkstra"
+    ],
+    "n_authors": 2,
+    "container": "Geophysical Research Letters",
+    "type": "journal-article",
+    "year_print": 2023,
+    "year_online": 2023,
+    "year_issued": 2023,
+    "volume": "50",
+    "issue": "22",
+    "page": "e2023GL106088",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract We study hysteresis properties of the Atlantic Meridional Overturning Circulation (AMOC) under a slowly‐varying North Atlantic (20°N–50°N) freshwater flux forcing in state‐of‐the‐art global climate model (GCM), the Community Earth System Model. Results are presented of a full hysteresis simulation (4,400 model years) and show that there is a hysteresis width of about 0.4 Sv. This demonstrates that an AMOC collapse and recovery do not only occur in conceptual and idealized climate models, but also in a state‐of‐the‐art GCM. The AMOC recovery is about a factor six faster than the AMOC collapse and this asymmetry is due to the major effect of the North Atlantic sea‐ice distribution on the AMOC recovery. The results have implications for projections of possible future AMOC behavior and for explaining relatively rapid climate transitions in the geological past."
+   },
+   "compare": {
+    "title_similarity": 1.0,
+    "first_author_bib": "van westen",
+    "first_author_crossref": "van westen",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2023",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2023
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "50",
+    "volume_crossref": "50",
+    "volume_match": true,
+    "pages_bib": "e2023GL106088",
+    "pages_crossref": "e2023GL106088",
+    "pages_match": true
+   },
+   "status": "resolved"
+  },
+  "vanWestenDijkstra2024": {
+   "in_scope": true,
+   "citations": [
+    {
+     "where": "Main.tex Results",
+     "line": 288,
+     "sentence": "Once close relatives are grouped, 9 or 10 of 18 independent models are positive, depending on which member represents a family, a number consistent with an even split (Text~\\ref{SI-text:s4}), so the comparison concerns the position of the model distribution relative to the reanalyses, a bias documented in earlier work \\citep{Mecking2017,vanWestenDijkstra2024,Weijer2019}."
+    }
+   ],
+   "also_cited_in_main_regions": [
+    "Introduction"
+   ],
+   "bib": {
+    "author": "van Westen, R. M. and Dijkstra, H. A.",
+    "title": "Persistent climate model biases in the {Atlantic Ocean}'s freshwater transport",
+    "journal": "Ocean Science",
+    "year": "2024",
+    "volume": "20",
+    "number": null,
+    "pages": "549--567",
+    "doi": "10.5194/os-20-549-2024"
+   },
+   "crossref": {
+    "doi": "10.5194/os-20-549-2024",
+    "title": "Persistent climate model biases in the Atlantic Ocean's freshwater transport",
+    "authors": [
+     "van Westen",
+     "Dijkstra"
+    ],
+    "n_authors": 2,
+    "container": "Ocean Science",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2024,
+    "year_issued": 2024,
+    "volume": "20",
+    "issue": "2",
+    "page": "549-567",
+    "relation": {
+     "has-preprint": [
+      "10.5194/egusphere-2023-1502",
+      "10.5194/egusphere-2023-1502"
+     ],
+     "has-review": [
+      "10.5194/egusphere-2023-1502-RC1",
+      "10.5194/egusphere-2023-1502-AC1",
+      "10.5194/egusphere-2023-1502-RC2",
+      "10.5194/egusphere-2023-1502-AC2",
+      "10.5194/egusphere-2023-1502-EC1",
+      "10.5194/egusphere-2023-1502-EC2",
+      "10.5194/egusphere-2023-1502-RC1",
+      "10.5194/egusphere-2023-1502-RC2",
+      "10.5194/egusphere-2023-1502-AC2",
+      "10.5194/egusphere-2023-1502-AC1",
+      "10.5194/egusphere-2023-1502-EC1",
+      "10.5194/egusphere-2023-1502-EC2"
+     ],
+     "is-part-of": [
+      "10.5281/zenodo.10684732"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "The Atlantic Meridional Overturning Circulation (AMOC) is considered to be one of the most dangerous climate tipping elements. The salt–advection feedback plays an important role in AMOC tipping behaviour, and its strength is strongly connected to the freshwater transport carried by the AMOC at 34° S, below indicated by F ovS . Available observations have indicated that F ovS has a negative sign for the present-day AMOC. However, most climate models of the Coupled Model Intercomparison Project (CMIP, phase 3 and phase 5) have an incorrect F ovS sign. Here, we analyse a high-resolution and a low-resolution version of the Community Earth System Model (CESM) to identify the origin of these F ovS biases. Both CESM versions are initialised from an observed ocean state, and F ovS biases quickly develop under fixed pre-industrial forcing conditions. The most important model bias is a too fresh "
+   },
+   "compare": {
+    "title_similarity": 0.993,
+    "first_author_bib": "van westen",
+    "first_author_crossref": "van westen",
+    "first_author_match": true,
+    "n_authors_bib": 2,
+    "n_authors_crossref": 2,
+    "year_bib": "2024",
+    "year_in_crossref_dates": true,
+    "crossref_years": [
+     2024
+    ],
+    "journal_similarity": 1.0,
+    "volume_bib": "20",
+    "volume_crossref": "20",
+    "volume_match": true,
+    "pages_bib": "549-567",
+    "pages_crossref": "549-567",
+    "pages_match": true
+   },
+   "status": "resolved"
+  }
+ },
+ "extra_works": {
+  "DitlevsenDitlevsen2023": {
+   "claimed_doi": "10.1038/s41467-023-39810-w",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.1038/s41467-023-39810-w",
+    "title": "Warning of a forthcoming collapse of the Atlantic meridional overturning circulation",
+    "authors": [
+     "Ditlevsen",
+     "Ditlevsen"
+    ],
+    "n_authors": 2,
+    "container": "Nature Communications",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2023,
+    "year_issued": 2023,
+    "volume": "14",
+    "issue": "1",
+    "page": "4254",
+    "relation": {
+     "correction": [
+      "10.1038/s41467-025-63201-y"
+     ]
+    },
+    "updated_by": [
+     {
+      "type": "correction",
+      "doi": "10.1038/s41467-025-63201-y"
+     }
+    ],
+    "abstract": "Abstract The Atlantic meridional overturning circulation (AMOC) is a major tipping element in the climate system and a future collapse would have severe impacts on the climate in the North Atlantic region. In recent years weakening in circulation has been reported, but assessments by the Intergovernmental Panel on Climate Change (IPCC), based on the Climate Model Intercomparison Project (CMIP) model simulations suggest that a full collapse is unlikely within the 21st century. Tipping to an undesired state in the climate is, however, a growing concern with increasing greenhouse gas concentrations. Predictions based on observations rely on detecting early-warning signals, primarily an increase in variance (loss of resilience) and increased autocorrelation (critical slowing down), which have recently been reported for the AMOC. Here we provide statistical significance and data-driven estima"
+   }
+  },
+  "Caesar2021": {
+   "claimed_doi": "10.1038/s41561-021-00699-z",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.1038/s41561-021-00699-z",
+    "title": "Current Atlantic Meridional Overturning Circulation weakest in last millennium",
+    "authors": [
+     "Caesar",
+     "McCarthy",
+     "Thornalley",
+     "Cahill",
+     "Rahmstorf"
+    ],
+    "n_authors": 5,
+    "container": "Nature Geoscience",
+    "type": "journal-article",
+    "year_print": 2021,
+    "year_online": 2021,
+    "year_issued": 2021,
+    "volume": "14",
+    "issue": "3",
+    "page": "118-120",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   }
+  },
+  "Pita2024": {
+   "claimed_doi": "10.3389/fmars.2024.1474133",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.3389/fmars.2024.1474133",
+    "title": "South Atlantic meridional overturning circulation and its respective heat and freshwater transports from sustained observations near 34.5°S",
+    "authors": [
+     "Pita",
+     "Goes",
+     "Volkov",
+     "Dong",
+     "Schmid"
+    ],
+    "n_authors": 5,
+    "container": "Frontiers in Marine Science",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2024,
+    "year_issued": 2024,
+    "volume": "11",
+    "issue": null,
+    "page": "1474133",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "The Atlantic Meridional Overturning Circulation (AMOC) drives northward Meridional Heat Transport (MHT) and affects climate and weather patterns, regional sea levels, and ecosystems. This study uses a methodology recently applied in 22.5°S to estimate the strength and structure of the AMOC, MHT and freshwater (FWT) transports at 34.5°S since 2005. For this, temperature and salinity profiles from sustained observations were used in conjunction with satellite and reanalysis data under two mapping methodologies: (i) an optimized mapping and (ii) a two-layer feed-forward neural network approach. There is strong agreement between both methods for AMOC, MHT and FWT estimates, thus showing the mapping methodologies are robust. In addition, the AMOC variability estimate is significantly correlated with the monthly SAMBA array data (correlation of 0.41). The mean AMOC transport of 17.0 ± 1.6 Sv, "
+   }
+  },
+  "Smeed2018": {
+   "claimed_doi": "10.1002/2017GL076350",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.1002/2017gl076350",
+    "title": "The North Atlantic Ocean Is in a State of Reduced Overturning",
+    "authors": [
+     "Smeed",
+     "Josey",
+     "Beaulieu",
+     "Johns",
+     "Moat",
+     "Frajka‐Williams",
+     "Rayner",
+     "Meinen",
+     "Baringer",
+     "Bryden",
+     "McCarthy"
+    ],
+    "n_authors": 11,
+    "container": "Geophysical Research Letters",
+    "type": "journal-article",
+    "year_print": 2018,
+    "year_online": 2018,
+    "year_issued": 2018,
+    "volume": "45",
+    "issue": "3",
+    "page": "1527-1533",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract The Atlantic Meridional Overturning Circulation (AMOC) is responsible for a variable and climatically important northward transport of heat. Using data from an array of instruments that span the Atlantic at 26°N, we show that the AMOC has been in a state of reduced overturning since 2008 as compared to 2004–2008. This change of AMOC state is concurrent with other changes in the North Atlantic such as a northward shift and broadening of the Gulf Stream and altered patterns of heat content and sea surface temperature. These changes resemble the response to a declining AMOC predicted by coupled climate models. Concurrent changes in air‐sea fluxes close to the western boundary reveal that the changes in ocean heat transport and sea surface temperature have altered the pattern of ocean‐atmosphere heat exchange over the North Atlantic. These results provide strong observational eviden"
+   }
+  },
+  "Moat2020": {
+   "claimed_doi": "10.5194/os-16-863-2020",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.5194/os-16-863-2020",
+    "title": "Pending recovery in the strength of the meridional overturning circulation at 26° N",
+    "authors": [
+     "Moat",
+     "Smeed",
+     "Frajka-Williams",
+     "Desbruyères",
+     "Beaulieu",
+     "Johns",
+     "Rayner",
+     "Sanchez-Franks",
+     "Baringer",
+     "Volkov",
+     "Jackson",
+     "Bryden"
+    ],
+    "n_authors": 12,
+    "container": "Ocean Science",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2020,
+    "year_issued": 2020,
+    "volume": "16",
+    "issue": "4",
+    "page": "863-874",
+    "relation": {
+     "has-preprint": [
+      "10.5194/os-2019-134",
+      "10.5194/os-2019-134"
+     ],
+     "has-review": [
+      "10.5194/os-2019-134-RC1",
+      "10.5194/os-2019-134-AC1",
+      "10.5194/os-2019-134-RC2",
+      "10.5194/os-2019-134-AC2",
+      "10.5194/os-2019-134-AC1",
+      "10.5194/os-2019-134-RC1",
+      "10.5194/os-2019-134-RC2",
+      "10.5194/os-2019-134-AC2"
+     ],
+     "is-part-of": [
+      "10.5285/8cd7e7bb-9a20-05d8-e053-6c86abc012c2"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "The strength of the Atlantic meridional overturning circulation (AMOC) at 26 ∘ N has now been continuously measured by the RAPID array over the period April 2004–September 2018. This record provides unique insight into the variability of the large-scale ocean circulation, previously only measured by sporadic snapshots of basin-wide transport from hydrographic sections. The continuous measurements have unveiled striking variability on timescales of days to a decade, driven largely by wind forcing, contrasting with previous expectations about a slowly varying buoyancy-forced large-scale ocean circulation. However, these measurements were primarily observed during a warm state of the Atlantic multidecadal variability (AMV) which has been steadily declining since a peak in 2008–2010. In 2013–2015, a period of strong buoyancy forcing by the atmosphere drove intense water-mass transformation i"
+   }
+  },
+  "Worthington2021": {
+   "claimed_doi": "10.5194/os-17-285-2021",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.5194/os-17-285-2021",
+    "title": "A 30-year reconstruction of the Atlantic meridional overturning circulation shows no decline",
+    "authors": [
+     "Worthington",
+     "Moat",
+     "Smeed",
+     "Mecking",
+     "Marsh",
+     "McCarthy"
+    ],
+    "n_authors": 6,
+    "container": "Ocean Science",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2021,
+    "year_issued": 2021,
+    "volume": "17",
+    "issue": "1",
+    "page": "285-299",
+    "relation": {
+     "has-preprint": [
+      "10.5194/os-2020-71",
+      "10.5194/os-2020-71"
+     ],
+     "has-review": [
+      "10.5194/os-2020-71-RC1",
+      "10.5194/os-2020-71-AC1",
+      "10.5194/os-2020-71-RC2",
+      "10.5194/os-2020-71-AC2",
+      "10.5194/os-2020-71-RC2",
+      "10.5194/os-2020-71-RC1",
+      "10.5194/os-2020-71-AC2",
+      "10.5194/os-2020-71-AC1"
+     ],
+     "is-part-of": [
+      "10.5285/5ACFD143-1104-7B58-E053-6C86ABC0D94B",
+      "10.5285/8CD7E7BB-9A20-05D8-E053-6C86ABC012C2"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "A decline in Atlantic meridional overturning circulation (AMOC) strength has been observed between 2004 and 2012 by the RAPID-MOCHA-WBTS (RAPID – Meridional Overturning Circulation and Heatflux Array – Western Boundary Time Series, hereafter RAPID array) with this weakened state of the AMOC persisting until 2017. Climate model and paleo-oceanographic research suggests that the AMOC may have been declining for decades or even centuries before this; however direct observations are sparse prior to 2004, giving only “snapshots” of the overturning circulation. Previous studies have used linear models based on upper-layer temperature anomalies to extend AMOC estimates back in time; however these ignore changes in the deep circulation that are beginning to emerge in the observations of AMOC decline. Here we develop a higher-fidelity empirical model of AMOC variability based on RAPID data and as"
+   }
+  },
+  "Garzoli2013": {
+   "claimed_doi": "10.1016/j.dsr.2012.09.003",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.1016/j.dsr.2012.09.003",
+    "title": "South Atlantic meridional fluxes",
+    "authors": [
+     "Garzoli",
+     "Baringer",
+     "Dong",
+     "Perez",
+     "Yao"
+    ],
+    "n_authors": 5,
+    "container": "Deep Sea Research Part I: Oceanographic Research Papers",
+    "type": "journal-article",
+    "year_print": 2013,
+    "year_online": null,
+    "year_issued": 2013,
+    "volume": "71",
+    "issue": null,
+    "page": "21-32",
+    "relation": {},
+    "updated_by": [],
+    "abstract": ""
+   }
+  },
+  "Haines2022": {
+   "claimed_doi": "10.3389/fmars.2022.830821",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.3389/fmars.2022.830821",
+    "title": "Variability and Feedbacks in the Atlantic Freshwater Budget of CMIP5 Models With Reference to Atlantic Meridional Overturning Circulation Stability",
+    "authors": [
+     "Haines",
+     "Ferreira",
+     "Mignac"
+    ],
+    "n_authors": 3,
+    "container": "Frontiers in Marine Science",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2022,
+    "year_issued": 2022,
+    "volume": "9",
+    "issue": null,
+    "page": "830821",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "It has been suggested that freshwater transports by the Atlantic Meridional Overturning Circulation (AMOC) in the South Atlantic may be a useful metric for determining the stability of the AMOC because it can lead to feedbacks onto North Atlantic salinities and hence deep water formation. In this manuscript we investigate feedbacks between South Atlantic Freshwater transports, Freshwater content and AMOC transport contributions across different Atlantic latitudes, and at different timescales in centennial runs of 10 CMIP5 climate models, with both northward and southward AMOC freshwater transports in the South Atlantic. In all models, salinity variations are more important than AMOC variations in determining South Atlantic freshwater transports, especially on longer timescales &amp;gt;10 years. Only in the North Atlantic do AMOC variations become important in changing the meridional fres"
+   }
+  },
+  "Michel2022": {
+   "claimed_doi": "10.1038/s41467-022-32704-3",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.1038/s41467-022-32704-3",
+    "title": "Early warning signal for a tipping point suggested by a millennial Atlantic Multidecadal Variability reconstruction",
+    "authors": [
+     "Michel",
+     "Swingedouw",
+     "Ortega",
+     "Gastineau",
+     "Mignot",
+     "McCarthy",
+     "Khodri"
+    ],
+    "n_authors": 7,
+    "container": "Nature Communications",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2022,
+    "year_issued": 2022,
+    "volume": "13",
+    "issue": "1",
+    "page": "5176",
+    "relation": {
+     "has-preprint": [
+      "10.21203/rs.3.rs-588180/v1"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "Abstract Atlantic multidecadal variability is a coherent mode of natural climate variability occurring in the North Atlantic Ocean, with strong impacts on human societies and ecosystems worldwide. However, its periodicity and drivers are widely debated due to the short temporal extent of instrumental observations and competing effects of both internal and external climate factors acting on North Atlantic surface temperature variability. Here, we use a paleoclimate database and an advanced statistical framework to generate, evaluate, and compare 312 reconstructions of the Atlantic multidecadal variability over the past millennium, based on different indices and regression methods. From this process, the best reconstruction is obtained with the random forest method, and its robustness is checked using climate model outputs and independent oceanic paleoclimate data. This reconstruction show"
+   }
+  },
+  "Mignac2019": {
+   "claimed_doi": "10.1029/2018GL081328",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.1029/2018gl081328",
+    "title": "Decoupled Freshwater Transport and Meridional Overturning in the South Atlantic",
+    "authors": [
+     "Mignac",
+     "Ferreira",
+     "Haines"
+    ],
+    "n_authors": 3,
+    "container": "Geophysical Research Letters",
+    "type": "journal-article",
+    "year_print": 2019,
+    "year_online": 2019,
+    "year_issued": 2019,
+    "volume": "46",
+    "issue": "4",
+    "page": "2178-2186",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract Freshwater transports ( F ov ) by the Atlantic meridional overturning circulation (AMOC) are sensitive to salinity distributions and may determine AMOC stability. However, climate models show large salinity biases, distorting the relation between F ov and the AMOC. Using free‐running models and ocean reanalyses with realistic salinities but quite different AMOCs, we show that the fresh Antarctic Intermediate Water layer eliminates salinity differences across the AMOC branches at ~1,200 m, ∆ S 1200 m , which decouples F ov from the AMOC south of ~10°N. As the Antarctic Intermediate Water disappears north of ~10°N, a large ∆ S 1200 m allows the AMOC to drive substantial southward F ov in the North Atlantic. In the South Atlantic the 0–300 m zonal salinity contrasts control the gyre freshwater transports F gyre , which also determine the total freshwater transports. This decoupling"
+   }
+  },
+  "Lubbecke2015": {
+   "claimed_doi": "10.1175/JCLI-D-15-0258.1",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.1175/jcli-d-15-0258.1",
+    "title": "Contribution of Increased Agulhas Leakage to Tropical Atlantic Warming",
+    "authors": [
+     "Lübbecke",
+     "Durgadoo",
+     "Biastoch"
+    ],
+    "n_authors": 3,
+    "container": "Journal of Climate",
+    "type": "journal-article",
+    "year_print": 2015,
+    "year_online": 2015,
+    "year_issued": 2015,
+    "volume": "28",
+    "issue": "24",
+    "page": "9697-9706",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "Abstract The upper tropical Atlantic Ocean has markedly warmed since the 1960s. It has been shown that this warming was not due to local heat fluxes and that the trade winds that drive the coastal and equatorial upwelling have intensified rather than weakened. Remote forcing might thus have played an important role. Here, model experiments are used to investigate the contribution from an increased inflow of warm Indian Ocean water through Agulhas leakage. A high-resolution hindcast experiment with interannually varying forcing for the time period 1948–2007, in which Agulhas leakage increases by about 45% from the 1960s to the early 2000s, reproduces the observed warming trend. To tease out the role of Agulhas leakage, a sensitivity experiment designed to only increase Agulhas leakage is used. Compared to a control simulation, it shows a pronounced warming in the upper tropical Atlantic O"
+   }
+  },
+  "BenYami2024": {
+   "claimed_doi": "10.1126/sciadv.adl4841",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.1126/sciadv.adl4841",
+    "title": "Uncertainties too large to predict tipping times of major Earth system components from historical data",
+    "authors": [
+     "Ben-Yami",
+     "Morr",
+     "Bathiany",
+     "Boers"
+    ],
+    "n_authors": 4,
+    "container": "Science Advances",
+    "type": "journal-article",
+    "year_print": 2024,
+    "year_online": null,
+    "year_issued": 2024,
+    "volume": "10",
+    "issue": "31",
+    "page": "eadl4841",
+    "relation": {},
+    "updated_by": [],
+    "abstract": "One way to warn of forthcoming critical transitions in Earth system components is using observations to detect declining system stability. It has also been suggested to extrapolate such stability changes into the future and predict tipping times. Here, we argue that the involved uncertainties are too high to robustly predict tipping times. We raise concerns regarding (i) the modeling assumptions underlying any extrapolation of historical results into the future, (ii) the representativeness of individual Earth system component time series, and (iii) the impact of uncertainties and preprocessing of used observational datasets, with focus on nonstationary observational coverage and gap filling. We explore these uncertainties in general and specifically for the example of the Atlantic Meridional Overturning Circulation. We argue that even under the assumption that a given Earth system compon"
+   }
+  },
+  "vanWestenVanderborght2025_ESD": {
+   "claimed_doi": "10.5194/esd-16-2063-2025",
+   "status": "resolved",
+   "crossref": {
+    "doi": "10.5194/esd-16-2063-2025",
+    "title": "A saddle-node bifurcation may be causing the AMOC collapse in the Community Earth System Model",
+    "authors": [
+     "van Westen",
+     "Vanderborght",
+     "Dijkstra"
+    ],
+    "n_authors": 3,
+    "container": "Earth System Dynamics",
+    "type": "journal-article",
+    "year_print": null,
+    "year_online": 2025,
+    "year_issued": 2025,
+    "volume": "16",
+    "issue": "6",
+    "page": "2063-2085",
+    "relation": {
+     "has-preprint": [
+      "10.5194/egusphere-2025-14",
+      "10.5194/egusphere-2025-14"
+     ],
+     "has-review": [
+      "10.5194/egusphere-2025-14-RC1",
+      "10.5194/egusphere-2025-14-AC1",
+      "10.5194/egusphere-2025-14-RC2",
+      "10.5194/egusphere-2025-14-AC2"
+     ],
+     "is-part-of": [
+      "10.5281/zenodo.17123475"
+     ]
+    },
+    "updated_by": [],
+    "abstract": "Recently, a collapse of the Atlantic Meridional Overturning Circulation (AMOC) was found in the Community Earth System Model (CESM) under constant pre-industrial greenhouse gas forcing conditions. To determine the stability changes of the AMOC with changing (freshwater) parameters in models, it is important to determine the origin of the collapse behavior. In this paper, we argue that the classical picture of a saddle-node bifurcation holds for the AMOC collapse in the CESM. We provide specific supporting arguments by showing results of additional pre-industrial CESM simulations. The CESM results are compared with those of a five-box AMOC model, which is known to have saddle-node bifurcations, and with which many sensitivity experiments can be performed. Theoretical arguments are also provided showing that the essential dynamics of the CESM can be reduced to a low-dimensional model in wh"
+   }
+  }
+ },
+ "searches": {
+  "Michel_search_1": {
+   "query": "Michel Atlantic meridional overturning circulation freshwater transport early warning",
+   "top5": [
+    {
+     "doi": "10.21203/rs.3.rs-2034845/v1",
+     "title": "Warning of a forthcoming collapse of the Atlantic meridional overturning circulation",
+     "authors": [
+      "Ditlevsen",
+      "Ditlevsen"
+     ],
+     "year": 2022,
+     "container": ""
+    },
+    {
+     "doi": "10.1038/s41558-021-01097-4",
+     "title": "Observation-based early-warning signals for a collapse of the Atlantic Meridional Overturning Circulation",
+     "authors": [
+      "Boers"
+     ],
+     "year": 2021,
+     "container": "Nature Climate Change"
+    },
+    {
+     "doi": "10.1038/ncomms6752",
+     "title": "Early warning signals of Atlantic Meridional Overturning Circulation collapse in a fully coupled climate model",
+     "authors": [
+      "Boulton",
+      "Allison",
+      "Lenton"
+     ],
+     "year": 2014,
+     "container": "Nature Communications"
+    },
+    {
+     "doi": "10.1038/s41467-023-39810-w",
+     "title": "Warning of a forthcoming collapse of the Atlantic meridional overturning circulation",
+     "authors": [
+      "Ditlevsen",
+      "Ditlevsen"
+     ],
+     "year": 2023,
+     "container": "Nature Communications"
+    },
+    {
+     "doi": "10.23860/thesis-2439",
+     "title": "LINKING TEMPERATURE OF THE NORTHWEST ATLANTIC AND ATLANTIC MERIDIONAL OVERTURNING CIRCULATION (AMOC)",
+     "authors": [
+      "",
+      "Hanifah"
+     ],
+     "year": null,
+     "container": ""
+    }
+   ]
+  },
+  "Michel_search_2": {
+   "query": "Michel AMOC collapse early warning signal",
+   "top5": [
+    {
+     "doi": "10.5194/egusphere-egu24-6116",
+     "title": "Early warning signals of AMOC collapse from North Atlantic array observations",
+     "authors": [
+      "Smolders",
+      "van Westen",
+      "Dijkstra"
+     ],
+     "year": 2025,
+     "container": ""
+    },
+    {
+     "doi": "10.5194/egusphere-egu26-5816",
+     "title": "Defining an early warning method for an AMOC collapse based on ensemble statistics",
+     "authors": [
+      "Jánosi",
+      "Divinszki",
+      "Börner",
+      "Herein"
+     ],
+     "year": 2026,
+     "container": ""
+    },
+    {
+     "doi": "10.28924/ada/stat.4.2",
+     "title": "Improved Monitoring of Early-Warning Signs of an AMOC Collapse",
+     "authors": [
+      "Reschenhofer"
+     ],
+     "year": 2024,
+     "container": "European Journal of Statistics"
+    },
+    {
+     "doi": "10.1126/sciadv.adk1189",
+     "title": "Physics-based early warning signal shows that AMOC is on tipping course",
+     "authors": [
+      "van Westen",
+      "Kliphuis",
+      "Dijkstra"
+     ],
+     "year": 2024,
+     "container": "Science Advances"
+    },
+    {
+     "doi": "10.1029/2025gl116242",
+     "title": "Optimal Observation Locations for Early Warning of the Onset of an AMOC Collapse",
+     "authors": [
+      "Smolders",
+      "van Westen",
+      "Dijkstra"
+     ],
+     "year": 2025,
+     "container": "Geophysical Research Letters"
+    }
+   ]
+  },
+  "Michel_search_3": {
+   "query": "Michel Atlantic overturning salt-advection feedback",
+   "top5": [
+    {
+     "doi": "10.1175/jcli-d-17-0825.1",
+     "title": "Can the Salt-Advection Feedback Be Detected in Internal Variability of the Atlantic Meridional Overturning Circulation?",
+     "authors": [
+      "Cheng",
+      "Weijer",
+      "Kim",
+      "Danabasoglu"
+     ],
+     "year": 2018,
+     "container": "Journal of Climate"
+    },
+    {
+     "doi": "10.21203/rs.3.rs-5411392/v1",
+     "title": "Future Atlantic Meridional Overturning Circulation weakening driven by Labrador Sea warming and salt transport feedback",
+     "authors": [
+      "Park",
+      "Lim",
+      "Stewart"
+     ],
+     "year": 2024,
+     "container": ""
+    },
+    {
+     "doi": "10.21203/rs.3.rs-4717335/v1",
+     "title": "Future weakening of the Atlantic Meridional Overturning Circulation shaped by reduced Labrador Sea winds and salt transport feedback",
+     "authors": [
+      "Park",
+      "Lim",
+      "Stewart"
+     ],
+     "year": 2024,
+     "container": ""
+    },
+    {
+     "doi": "10.22541/essoar.174366417.78705174/v1",
+     "title": "AMOC - salt advection feedback depends on the forcing rate",
+     "authors": [
+      "Nummelin",
+      "Gjermundsen"
+     ],
+     "year": 2025,
+     "container": ""
+    },
+    {
+     "doi": "10.1175/jcli-d-25-0487.1",
+     "title": "Atlantic Meridional Overturning Circulation Weakening in CMIP6: Labrador Sea Surface Fluxes and Salt Transport Feedback",
+     "authors": [
+      "Lim",
+      "Park",
+      "Stewart",
+      "Kim"
+     ],
+     "year": 2026,
+     "container": "Journal of Climate"
+    }
+   ]
+  },
+  "Michel2022_AMV_search": {
+   "query": "Michel Swingedouw early warning signal tipping point Atlantic Multidecadal Variability reconstruction",
+   "top5": [
+    {
+     "doi": "10.1038/s41467-022-32704-3",
+     "title": "Early warning signal for a tipping point suggested by a millennial Atlantic Multidecadal Variability reconstruction",
+     "authors": [
+      "Michel",
+      "Swingedouw",
+      "Ortega",
+      "Gastineau"
+     ],
+     "year": 2022,
+     "container": "Nature Communications"
+    },
+    {
+     "doi": "10.21203/rs.3.rs-588180/v1",
+     "title": "A 1150-year-long AMV reconstruction suggests early warning for a North Atlantic climate tipping point",
+     "authors": [
+      "Michel",
+      "Swingedouw",
+      "Mignot",
+      "Gastineau"
+     ],
+     "year": 2021,
+     "container": ""
+    },
+    {
+     "doi": "10.5194/egusphere-egu25-3514",
+     "title": "Critical Salinity as an early warning of Tipping Point in the North Atlantic Subpolar Gyre",
+     "authors": [
+      "Almeida",
+      "Swingedouw"
+     ],
+     "year": 2025,
+     "container": ""
+    },
+    {
+     "doi": "10.5194/egusphere-egu2020-5439",
+     "title": "A Global-scale Multidecadal Variability Driven by  Atlantic Multidecadal Oscillation",
+     "authors": [
+      "Yang"
+     ],
+     "year": 2020,
+     "container": ""
+    },
+    {
+     "doi": "10.5194/egusphere-egu2020-7369",
+     "title": "Observed early-warning signals for a Greenland-ice-sheet tipping point",
+     "authors": [
+      "Rypdal",
+      "Boers"
+     ],
+     "year": 2020,
+     "container": ""
+    }
+   ]
+  },
+  "Lubbecke2015_search": {
+   "query": "Lubbecke Durgadoo Biastoch contribution of increased Agulhas leakage to tropical Atlantic warming",
+   "top5": [
+    {
+     "doi": "10.1175/jcli-d-15-0258.1",
+     "title": "Contribution of Increased Agulhas Leakage to Tropical Atlantic Warming",
+     "authors": [
+      "Lübbecke",
+      "Durgadoo",
+      "Biastoch"
+     ],
+     "year": 2015,
+     "container": "Journal of Climate"
+    },
+    {
+     "doi": "10.1038/ncomms10082",
+     "title": "Atlantic multi-decadal oscillation covaries with Agulhas leakage",
+     "authors": [
+      "Biastoch",
+      "Durgadoo",
+      "Morrison",
+      "van Sebille"
+     ],
+     "year": 2015,
+     "container": "Nature Communications"
+    },
+    {
+     "doi": "10.1175/jpo-d-13-093.1",
+     "title": "Decoupling of the Agulhas Leakage from the Agulhas Current",
+     "authors": [
+      "Loveday",
+      "Durgadoo",
+      "Reason",
+      "Biastoch"
+     ],
+     "year": 2014,
+     "container": "Journal of Physical Oceanography"
+    },
+    {
+     "doi": "10.1002/grl.50782",
+     "title": "Advective timescales and pathways of Agulhas leakage",
+     "authors": [
+      "Rühs",
+      "Durgadoo",
+      "Behrens",
+      "Biastoch"
+     ],
+     "year": 2013,
+     "container": "Geophysical Research Letters"
+    },
+    {
+     "doi": "10.1002/2016jc012676",
+     "title": "Indian Ocean sources of Agulhas leakage",
+     "authors": [
+      "Durgadoo",
+      "Rühs",
+      "Biastoch",
+      "Böning"
+     ],
+     "year": 2017,
+     "container": "Journal of Geophysical Research: Oceans"
+    }
+   ]
+  },
+  "Mignac2019_search": {
+   "query": "Mignac Ferreira Haines South Atlantic meridional transports freshwater overturning reanalyses",
+   "top5": [
+    {
+     "doi": "10.5194/os-2017-69",
+     "title": "South Atlantic meridional transports from NEMO-based simulations and reanalyses",
+     "authors": [
+      "Mignac",
+      "Ferreira",
+      "Haines"
+     ],
+     "year": 2017,
+     "container": ""
+    },
+    {
+     "doi": "10.5194/os-14-53-2018",
+     "title": "South Atlantic meridional transports from NEMO-based simulations and reanalyses",
+     "authors": [
+      "Mignac",
+      "Ferreira",
+      "Haines"
+     ],
+     "year": 2018,
+     "container": "Ocean Science"
+    },
+    {
+     "doi": "10.1029/2018gl081328",
+     "title": "Decoupled Freshwater Transport and Meridional Overturning in the South Atlantic",
+     "authors": [
+      "Mignac",
+      "Ferreira",
+      "Haines"
+     ],
+     "year": 2019,
+     "container": "Geophysical Research Letters"
+    },
+    {
+     "doi": "10.5194/os-2017-69-rc2",
+     "title": "Review of &amp;amp;#8220;South Atlantic meridional transports from NEMO-based simulations and reanalyses&amp;amp;#8221; by Mignac et al",
+     "authors": [],
+     "year": 2017,
+     "container": ""
+    },
+    {
+     "doi": "10.3389/fmars.2022.830821",
+     "title": "Variability and Feedbacks in the Atlantic Freshwater Budget of CMIP5 Models With Reference to Atlantic Meridional Overturning Circulation Stability",
+     "authors": [
+      "Haines",
+      "Ferreira",
+      "Mignac"
+     ],
+     "year": 2022,
+     "container": "Frontiers in Marine Science"
+    }
+   ]
+  }
+ },
+ "uncited_but_defined": [],
+ "data_statement_links": [
+  {
+   "url": "https://www2.atmos.umd.edu/~ocean/",
+   "http": 404
+  },
+  {
+   "url": "https://dsrs.atmos.umd.edu/DATA/soda3.15.2/",
+   "http": 200,
+   "final_url": "https://dsrs.atmos.umd.edu/DATA/soda3.15.2/",
+   "cmr_hits": null
+  },
+  {
+   "url": "https://api.github.com/users/bijanf/repos?per_page=100",
+   "http": 200,
+   "final_url": "https://api.github.com/users/bijanf/repos?per_page=100",
+   "cmr_hits": null,
+   "repo_ardp_listed_publicly": false
+  },
+  {
+   "url": "https://www.metoffice.gov.uk/hadobs/en4/",
+   "http": 200,
+   "final_url": "https://www.metoffice.gov.uk/hadobs/en4/",
+   "cmr_hits": null
+  },
+  {
+   "url": "https://rapid.ac.uk/rapidmoc",
+   "http": 200,
+   "final_url": "https://rapid.ac.uk/about-us/history",
+   "cmr_hits": null
+  },
+  {
+   "url": "https://www.aoml.noaa.gov/phod/SAMOC_international/",
+   "http": 403
+  },
+  {
+   "url": "https://esgf.llnl.gov/",
+   "http": 200,
+   "final_url": "https://esgf.github.io/",
+   "cmr_hits": null
+  },
+  {
+   "url": "https://github.com/bijanf/ardp",
+   "http": 404
+  },
+  {
+   "url": "https://api.github.com/repos/bijanf/ardp/commits/764918b",
+   "http": 404
+  },
+  {
+   "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-oras5",
+   "http": 200,
+   "final_url": "https://cds.climate.copernicus.eu/datasets/reanalysis-oras5?tab=overview",
+   "cmr_hits": null
+  },
+  {
+   "url": "https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/description",
+   "http": 200,
+   "final_url": "https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/description",
+   "cmr_hits": null
+  },
+  {
+   "url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=ECCO_L4_OCEAN_VEL_05DEG_MONTHLY_V4R4",
+   "http": 200,
+   "final_url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=ECCO_L4_OCEAN_VEL_05DEG_MONTHLY_V4R4",
+   "cmr_hits": 1
+  },
+  {
+   "url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=ECCO_L4_TEMP_SALINITY_05DEG_MONTHLY_V4R4",
+   "http": 200,
+   "final_url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=ECCO_L4_TEMP_SALINITY_05DEG_MONTHLY_V4R4",
+   "cmr_hits": 1
+  }
+ ]
+}

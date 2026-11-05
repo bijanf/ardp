@@ -1,0 +1,212 @@
+{
+ "meta": {
+  "id": "jc_r2_G11_tables_residual",
+  "date": "2026-11-05",
+  "script": "scripts/analysis_paper3jc_r2_G11_tables_residual.py",
+  "inputs": [
+   "data/results/paper3r1_cells_oras5.nc",
+   "PAPER_3_v2/analysis/jc_n10_samba.json"
+  ],
+  "seeds": {
+   "residual_sieve": 20261104
+  },
+  "replicates": {
+   "residual_sieve_resamples": 10000
+  },
+  "units": "mSv per year for trends; dimensionless for shares and correlations; Sv for SAMBA standard deviations",
+  "method": "continuous() decomposition of the ORAS5 upper cell; joint AR(1) sieve (paper3r1_stats.sieve_coefficients) for the bootstrap"
+ },
+ "upper_cell_residual_ORAS5": {
+  "own": {
+   "n_years": 68,
+   "window": [
+    1958,
+    2025
+   ],
+   "trend_total_mSv_per_yr": -1.459863406897962,
+   "trend_T_term_mSv_per_yr": 0.17928891459535917,
+   "trend_S_term_mSv_per_yr": -1.646644510689779,
+   "residual_mSv_per_yr": 0.007492189196457765,
+   "residual_ci95_bootstrap_mSv_per_yr": [
+    -0.11776120494782158,
+    0.13362137810460759
+   ],
+   "residual_bootstrap_median_mSv_per_yr": 0.006448139257205854,
+   "residual_bootstrap_sd_mSv_per_yr": 0.06422999703459426,
+   "residual_ci_contains_zero": true,
+   "total_ci95_bootstrap_mSv_per_yr": [
+    -1.8513883746423314,
+    -1.075907960115582
+   ],
+   "T_term_ci95_bootstrap_mSv_per_yr": [
+    0.10202744699256812,
+    0.2600600981081434
+   ],
+   "S_term_ci95_bootstrap_mSv_per_yr": [
+    -2.079691040188269,
+    -1.22038457832921
+   ],
+   "T_term_ci95_from_test_mSv_per_yr": [
+    0.08621240853836008,
+    0.2723654206523583
+   ],
+   "S_term_ci95_from_test_mSv_per_yr": [
+    -2.135267402594018,
+    -1.15802161878554
+   ],
+   "total_ci95_from_test_mSv_per_yr": [
+    -1.8991144992249798,
+    -1.020612314570944
+   ],
+   "n_eff_total": 19.714345973285376,
+   "n_eff_T": 16.919662223692715,
+   "n_eff_S": 17.64265268666794,
+   "residual_share_of_total_point": -0.005132116580946286,
+   "residual_share_of_total_ci95_bootstrap": [
+    -0.0886643544862408,
+    0.08898063912217151
+   ],
+   "sieve_resamples": 10000
+  },
+  "argo": {
+   "n_years": 22,
+   "window": [
+    2004,
+    2025
+   ],
+   "trend_total_mSv_per_yr": -2.6509802688928543,
+   "trend_T_term_mSv_per_yr": 0.25097333554703977,
+   "trend_S_term_mSv_per_yr": -2.8976318685023728,
+   "residual_mSv_per_yr": -0.004321735937521266,
+   "residual_ci95_bootstrap_mSv_per_yr": [
+    -0.5318036360012075,
+    0.5087565225332097
+   ],
+   "residual_bootstrap_median_mSv_per_yr": -0.0022805730737454795,
+   "residual_bootstrap_sd_mSv_per_yr": 0.2640230360676751,
+   "residual_ci_contains_zero": true,
+   "total_ci95_bootstrap_mSv_per_yr": [
+    -4.910867887385876,
+    -0.39977038015019584
+   ],
+   "T_term_ci95_bootstrap_mSv_per_yr": [
+    -0.3370220810665012,
+    0.839087732851587
+   ],
+   "S_term_ci95_bootstrap_mSv_per_yr": [
+    -4.694188137598828,
+    -1.1501999332536552
+   ],
+   "T_term_ci95_from_test_mSv_per_yr": [
+    -0.6651825680285179,
+    1.1671292391225974
+   ],
+   "S_term_ci95_from_test_mSv_per_yr": [
+    -5.243879116432558,
+    -0.5513846205721867
+   ],
+   "total_ci95_from_test_mSv_per_yr": [
+    -6.055483736411739,
+    0.7535231986260309
+   ],
+   "n_eff_total": 6.550790198214846,
+   "n_eff_T": 6.966241883612761,
+   "n_eff_S": 8.746940939675643,
+   "residual_share_of_total_point": 0.0016302407031215586,
+   "residual_share_of_total_ci95_bootstrap": [
+    -0.6023529539124426,
+    0.15561577857396167
+   ],
+   "sieve_resamples": 10000
+  },
+  "common": {
+   "n_years": 25,
+   "window": [
+    1993,
+    2017
+   ],
+   "trend_total_mSv_per_yr": -0.767889979365151,
+   "trend_T_term_mSv_per_yr": 0.3979298906792436,
+   "trend_S_term_mSv_per_yr": -1.307652246387044,
+   "residual_mSv_per_yr": 0.14183237634264925,
+   "residual_ci95_bootstrap_mSv_per_yr": [
+    -0.14033638563050047,
+    0.4258729400644112
+   ],
+   "residual_bootstrap_median_mSv_per_yr": 0.14250280968565615,
+   "residual_bootstrap_sd_mSv_per_yr": 0.14410165987691925,
+   "residual_ci_contains_zero": true,
+   "total_ci95_bootstrap_mSv_per_yr": [
+    -2.1020772200670184,
+    0.5389038940840215
+   ],
+   "T_term_ci95_bootstrap_mSv_per_yr": [
+    -0.07938595751364595,
+    0.8682705608186755
+   ],
+   "S_term_ci95_bootstrap_mSv_per_yr": [
+    -2.4036853979246886,
+    -0.21596766914249121
+   ],
+   "T_term_ci95_from_test_mSv_per_yr": [
+    -0.34642899868483973,
+    1.142288780043327
+   ],
+   "S_term_ci95_from_test_mSv_per_yr": [
+    -2.567808415857316,
+    -0.04749607691677195
+   ],
+   "total_ci95_from_test_mSv_per_yr": [
+    -2.3746106711079618,
+    0.8388307123776596
+   ],
+   "n_eff_total": 12.97374442140742,
+   "n_eff_T": 6.593503022506044,
+   "n_eff_S": 16.190398095413173,
+   "residual_share_of_total_point": -0.1847040333302805,
+   "residual_share_of_total_ci95_bootstrap": [
+    -2.5064640580838127,
+    1.7799299247002884
+   ],
+   "sieve_resamples": 10000
+  }
+ },
+ "samba_table_S7d": {
+  "source_key": "pairs/ORAS5/up_cell__samba_up and pairs/ORAS5/ab_cell__samba_ab",
+  "period": "Sep 2013 to Jul 2017 (SAMBA record in the repository)",
+  "upper_cell_psi_max_vs_SAMBA_upper": {
+   "n_months": 47,
+   "std_ratio_ORAS5_over_SAMBA": 0.20472146927647672,
+   "std_ratio_ci95_approx_F": [
+    0.12438076793352529,
+    0.3056950261258511
+   ],
+   "correlation": -0.16070916728769194,
+   "p_value_bretherton_neff": 0.2805289565646902,
+   "n_eff_bretherton": 47.0,
+   "correlation_ci95_fisher_approx": [
+    -0.42812261408048935,
+    0.13258140926506978
+   ]
+  },
+  "abyssal_cell_vs_SAMBA_abyssal": {
+   "n_months": 47,
+   "std_ratio_ORAS5_over_SAMBA": 0.3625174104974924,
+   "std_ratio_ci95_approx_F": [
+    0.19352198748327407,
+    0.5960320398201254
+   ],
+   "correlation": 0.11029896327966957,
+   "p_value_bretherton_neff": 0.4853835191134146,
+   "n_eff_bretherton": 42.26145048519519,
+   "correlation_ci95_fisher_approx": [
+    -0.1993493482530828,
+    0.3999202433501569
+   ]
+  },
+  "table_S7d_packed_row_check": {
+   "upper": "std ratio 0.20; correlation -0.16; p 0.281",
+   "abyssal": "std ratio 0.36; correlation 0.11; p 0.485"
+  }
+ }
+}

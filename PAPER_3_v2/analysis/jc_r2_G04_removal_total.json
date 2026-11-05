@@ -1,0 +1,641 @@
+{
+ "meta": {
+  "date": "2026-11-05",
+  "script": "scripts/analysis_paper3jc_r2_G04_removal_total.py",
+  "actions": [
+   "A101 (cluster C50)",
+   "A43 (cluster C13, optional)"
+  ],
+  "inputs": [
+   "data/results/paper3r1_section_{oras5,glorys12,ecco}.nc"
+  ],
+  "seeds": null,
+  "replicates": null,
+  "sign_convention": "northward-positive freshwater transport, Sv; F < 0 is a northward salt-flux deficit",
+  "units": {
+   "F": "Sv",
+   "trend": "mSv per yr",
+   "step": "mSv"
+  },
+  "trend_test": "analysis_paper3v2_attribution.trend_stats (paper test); A43 uses paper3r1_stats.step_test (regression with corrected N_eff)",
+  "aggregation": "annual means of monthly values"
+ },
+ "A101_uncorrected_total": {
+  "oras5": {
+   "product": "ORAS5",
+   "record": [
+    1958,
+    2025
+   ],
+   "means_Sv": {
+    "F_ov_corrected": -0.043271790581535706,
+    "F_ov_uncorrected": -0.04806597117355112,
+    "F_az": 0.321007684005222,
+    "total_uncorrected_F_raw_plus_F_az": 0.2729417128316709,
+    "total_corrected_F_ov_plus_F_az": 0.27773589342368626,
+    "total_difference_uncorrected_minus_corrected": -0.004794180592015405,
+    "total_proportional_to_absV_F_ov_plus_F_az": 0.27564642278511614
+   },
+   "mass_budget": {
+    "identity": "F_ov - F_raw = V_net (S-bar_area - S0) / S0 (monthly)",
+    "mean_correction_Sv": 0.004794180592015406,
+    "mean_predicted_correction_Sv": 0.004794180592015471,
+    "max_abs_residual_Sv": 8.326672684688674e-16,
+    "mean_V_net_Sv": -0.6761623617772126,
+    "mean_S_area_PSU": 34.753578885417504
+   },
+   "windows": {
+    "own": {
+     "uncorrected_total": {
+      "trend_mSv_per_yr": 0.5884927918959986,
+      "ci_mSv_per_yr": [
+       -0.09605703564116741,
+       1.2730426194331645
+      ],
+      "p_paper_test": 0.0891153399016284,
+      "n_eff": 29.53059994585186,
+      "n_eff_at_floor": false,
+      "window": [
+       1958,
+       2025
+      ],
+      "n_years": 68
+     },
+     "corrected_total": {
+      "trend_mSv_per_yr": 0.5082381858970938,
+      "ci_mSv_per_yr": [
+       -0.17064962743796902,
+       1.1871259992321566
+      ],
+      "p_paper_test": 0.13630274045604227,
+      "n_eff": 29.661789727145614,
+      "n_eff_at_floor": false,
+      "window": [
+       1958,
+       2025
+      ],
+      "n_years": 68
+     },
+     "uncorrected_F_ov": {
+      "trend_mSv_per_yr": -1.3404513765000137,
+      "ci_mSv_per_yr": [
+       -1.7668328444075385,
+       -0.9140699085924892
+      ],
+      "p_paper_test": 2.4591931140530746e-06,
+      "n_eff": 21.40036270206154,
+      "n_eff_at_floor": false,
+      "window": [
+       1958,
+       2025
+      ],
+      "n_years": 68
+     },
+     "corrected_F_ov": {
+      "trend_mSv_per_yr": -1.4207059824989183,
+      "ci_mSv_per_yr": [
+       -1.8502821485172987,
+       -0.991129816480538
+      ],
+      "p_paper_test": 1.5174647555478277e-06,
+      "n_eff": 20.49011289138592,
+      "n_eff_at_floor": false,
+      "window": [
+       1958,
+       2025
+      ],
+      "n_years": 68
+     },
+     "total_proportional_to_absV": {
+      "trend_mSv_per_yr": 0.5240983578811178,
+      "ci_mSv_per_yr": [
+       -0.15471456302845213,
+       1.2029112787906877
+      ],
+      "p_paper_test": 0.12494529803087738,
+      "n_eff": 29.77273987414559,
+      "n_eff_at_floor": false,
+      "window": [
+       1958,
+       2025
+      ],
+      "n_years": 68
+     },
+     "mean_uncorrected_total_Sv": 0.2729417128316709,
+     "mean_corrected_total_Sv": 0.2777358934236862,
+     "mean_total_difference_Sv": -0.0047941805920154006,
+     "sign_of_uncorrected_total_changes": false,
+     "resolved_status_changes": false
+    },
+    "common_1993_2017": {
+     "uncorrected_total": {
+      "trend_mSv_per_yr": 1.2228984275455514,
+      "ci_mSv_per_yr": [
+       -4.505486085252107,
+       6.9512829403432095
+      ],
+      "p_paper_test": 0.6244319646835542,
+      "n_eff": 8.430721449601652,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "corrected_total": {
+      "trend_mSv_per_yr": 1.2652043784483766,
+      "ci_mSv_per_yr": [
+       -4.437859714563336,
+       6.96826847146009
+      ],
+      "p_paper_test": 0.6116649306397849,
+      "n_eff": 8.480912299034598,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "uncorrected_F_ov": {
+      "trend_mSv_per_yr": -0.8255656240891284,
+      "ci_mSv_per_yr": [
+       -2.589083475872298,
+       0.9379522276940413
+      ],
+      "p_paper_test": 0.3227857403386588,
+      "n_eff": 12.353088746799266,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "corrected_F_ov": {
+      "trend_mSv_per_yr": -0.7832596731863029,
+      "ci_mSv_per_yr": [
+       -2.427862902275868,
+       0.8613435559032623
+      ],
+      "p_paper_test": 0.31654551986779494,
+      "n_eff": 12.852554343740938,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "total_proportional_to_absV": {
+      "trend_mSv_per_yr": 1.2242898491197167,
+      "ci_mSv_per_yr": [
+       -4.503780700255016,
+       6.952360398494449
+      ],
+      "p_paper_test": 0.6241771223310104,
+      "n_eff": 8.447053098784929,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "mean_uncorrected_total_Sv": 0.279569163989457,
+     "mean_corrected_total_Sv": 0.28368041901863317,
+     "mean_total_difference_Sv": -0.004111255029176149,
+     "sign_of_uncorrected_total_changes": false,
+     "resolved_status_changes": false
+    }
+   }
+  },
+  "glorys12": {
+   "product": "GLORYS12V1",
+   "record": [
+    1993,
+    2025
+   ],
+   "means_Sv": {
+    "F_ov_corrected": -0.09525066564029849,
+    "F_ov_uncorrected": -0.0982628992565333,
+    "F_az": 0.3289774385238098,
+    "total_uncorrected_F_raw_plus_F_az": 0.23071453926727645,
+    "total_corrected_F_ov_plus_F_az": 0.23372677288351124,
+    "total_difference_uncorrected_minus_corrected": -0.0030122336162347967,
+    "total_proportional_to_absV_F_ov_plus_F_az": 0.23189271474814188
+   },
+   "mass_budget": {
+    "identity": "F_ov - F_raw = V_net (S-bar_area - S0) / S0 (monthly)",
+    "mean_correction_Sv": 0.003012233616234797,
+    "mean_predicted_correction_Sv": 0.0030122336162347494,
+    "max_abs_residual_Sv": 1.5334955527634975e-15,
+    "mean_V_net_Sv": -0.41794974779963406,
+    "mean_S_area_PSU": 34.75325348395544
+   },
+   "windows": {
+    "own": {
+     "uncorrected_total": {
+      "trend_mSv_per_yr": 2.7226171339792473,
+      "ci_mSv_per_yr": [
+       -3.3459538155396022,
+       8.791188083498097
+      ],
+      "p_paper_test": 0.31707864585914375,
+      "n_eff": 8.25028428323462,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2025
+      ],
+      "n_years": 33
+     },
+     "corrected_total": {
+      "trend_mSv_per_yr": 2.5934703038602644,
+      "ci_mSv_per_yr": [
+       -3.8809807939101977,
+       9.067921401630727
+      ],
+      "p_paper_test": 0.36116571543673004,
+      "n_eff": 7.707667768882979,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2025
+      ],
+      "n_years": 33
+     },
+     "uncorrected_F_ov": {
+      "trend_mSv_per_yr": -4.596730262395759,
+      "ci_mSv_per_yr": [
+       -44.54511764855212,
+       35.35165712376061
+      ],
+      "p_paper_test": 0.3818976976068242,
+      "n_eff": 3.0,
+      "n_eff_at_floor": true,
+      "window": [
+       1993,
+       2025
+      ],
+      "n_years": 33
+     },
+     "corrected_F_ov": {
+      "trend_mSv_per_yr": -4.725877092514741,
+      "ci_mSv_per_yr": [
+       -44.08188291253224,
+       34.63012872750276
+      ],
+      "p_paper_test": 0.3693468344614078,
+      "n_eff": 3.0,
+      "n_eff_at_floor": true,
+      "window": [
+       1993,
+       2025
+      ],
+      "n_years": 33
+     },
+     "total_proportional_to_absV": {
+      "trend_mSv_per_yr": 2.6323489290233275,
+      "ci_mSv_per_yr": [
+       -3.8526326592583535,
+       9.117330517305009
+      ],
+      "p_paper_test": 0.35493364628435836,
+      "n_eff": 7.682036285822975,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2025
+      ],
+      "n_years": 33
+     },
+     "mean_uncorrected_total_Sv": 0.23071453926727645,
+     "mean_corrected_total_Sv": 0.23372677288351126,
+     "mean_total_difference_Sv": -0.0030122336162347945,
+     "sign_of_uncorrected_total_changes": false,
+     "resolved_status_changes": false
+    },
+    "common_1993_2017": {
+     "uncorrected_total": {
+      "trend_mSv_per_yr": 4.399661038209019,
+      "ci_mSv_per_yr": [
+       -20.00204084261787,
+       28.801362919035906
+      ],
+      "p_paper_test": 0.5315955073485737,
+      "n_eff": 4.093204746853217,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "corrected_total": {
+      "trend_mSv_per_yr": 4.382576199657167,
+      "ci_mSv_per_yr": [
+       -27.20534401551431,
+       35.97049641482864
+      ],
+      "p_paper_test": 0.5742873127536915,
+      "n_eff": 3.7629860583566757,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "uncorrected_F_ov": {
+      "trend_mSv_per_yr": -5.128594533392367,
+      "ci_mSv_per_yr": [
+       -61.43926529692836,
+       51.182076230143636
+      ],
+      "p_paper_test": 0.45367900669681627,
+      "n_eff": 3.0,
+      "n_eff_at_floor": true,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "corrected_F_ov": {
+      "trend_mSv_per_yr": -5.145679371944216,
+      "ci_mSv_per_yr": [
+       -61.17389370466295,
+       50.882534960774514
+      ],
+      "p_paper_test": 0.4510494448602468,
+      "n_eff": 3.0,
+      "n_eff_at_floor": true,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "total_proportional_to_absV": {
+      "trend_mSv_per_yr": 4.31742544157127,
+      "ci_mSv_per_yr": [
+       -31.83060711708355,
+       40.46545800022609
+      ],
+      "p_paper_test": 0.5976590176588106,
+      "n_eff": 3.6262907625428706,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "mean_uncorrected_total_Sv": 0.22582464876864664,
+     "mean_corrected_total_Sv": 0.22958323183565166,
+     "mean_total_difference_Sv": -0.003758583067005017,
+     "sign_of_uncorrected_total_changes": false,
+     "resolved_status_changes": false
+    }
+   }
+  },
+  "ecco": {
+   "product": "ECCO-V4r4",
+   "record": [
+    1992,
+    2017
+   ],
+   "means_Sv": {
+    "F_ov_corrected": -0.13213557055807046,
+    "F_ov_uncorrected": -0.13871950114941256,
+    "F_az": 0.15488001273630483,
+    "total_uncorrected_F_raw_plus_F_az": 0.01616051158689227,
+    "total_corrected_F_ov_plus_F_az": 0.022744442178234375,
+    "total_difference_uncorrected_minus_corrected": -0.006583930591342106,
+    "total_proportional_to_absV_F_ov_plus_F_az": 0.01655747988963461
+   },
+   "mass_budget": {
+    "identity": "F_ov - F_raw = V_net (S-bar_area - S0) / S0 (monthly)",
+    "mean_correction_Sv": 0.006583930591342106,
+    "mean_predicted_correction_Sv": 0.0065839305913420925,
+    "max_abs_residual_Sv": 3.95516952522712e-16,
+    "mean_V_net_Sv": -0.9766203898186421,
+    "mean_S_area_PSU": 34.764067110245975
+   },
+   "windows": {
+    "own": {
+     "uncorrected_total": {
+      "trend_mSv_per_yr": 0.3688449856174385,
+      "ci_mSv_per_yr": [
+       -5.7577549054775865,
+       6.4954448767124635
+      ],
+      "p_paper_test": 0.8533149363298077,
+      "n_eff": 4.724706085766397,
+      "n_eff_at_floor": false,
+      "window": [
+       1992,
+       2017
+      ],
+      "n_years": 26
+     },
+     "corrected_total": {
+      "trend_mSv_per_yr": 0.30533668339730613,
+      "ci_mSv_per_yr": [
+       -8.683704663192957,
+       9.294378029987568
+      ],
+      "p_paper_test": 0.898719130224438,
+      "n_eff": 4.036450798512127,
+      "n_eff_at_floor": false,
+      "window": [
+       1992,
+       2017
+      ],
+      "n_years": 26
+     },
+     "uncorrected_F_ov": {
+      "trend_mSv_per_yr": 0.17490887964776328,
+      "ci_mSv_per_yr": [
+       -0.7355467898854989,
+       1.0853645491810253
+      ],
+      "p_paper_test": 0.6888650840239208,
+      "n_eff": 17.70275373187681,
+      "n_eff_at_floor": false,
+      "window": [
+       1992,
+       2017
+      ],
+      "n_years": 26
+     },
+     "corrected_F_ov": {
+      "trend_mSv_per_yr": 0.1114005774276295,
+      "ci_mSv_per_yr": [
+       -0.7515419245369683,
+       0.9743430793922273
+      ],
+      "p_paper_test": 0.7882555764105318,
+      "n_eff": 18.51368642806058,
+      "n_eff_at_floor": false,
+      "window": [
+       1992,
+       2017
+      ],
+      "n_years": 26
+     },
+     "total_proportional_to_absV": {
+      "trend_mSv_per_yr": 0.35121756814957056,
+      "ci_mSv_per_yr": [
+       -5.52249634423155,
+       6.224931480530692
+      ],
+      "p_paper_test": 0.8573127956641154,
+      "n_eff": 4.835498988979826,
+      "n_eff_at_floor": false,
+      "window": [
+       1992,
+       2017
+      ],
+      "n_years": 26
+     },
+     "mean_uncorrected_total_Sv": 0.01616051158689227,
+     "mean_corrected_total_Sv": 0.022744442178234372,
+     "mean_total_difference_Sv": -0.0065839305913421055,
+     "sign_of_uncorrected_total_changes": false,
+     "resolved_status_changes": false
+    },
+    "common_1993_2017": {
+     "uncorrected_total": {
+      "trend_mSv_per_yr": 0.6465956050501175,
+      "ci_mSv_per_yr": [
+       -4.285309184434902,
+       5.578500394535136
+      ],
+      "p_paper_test": 0.7198284292702242,
+      "n_eff": 5.421330559277121,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "corrected_total": {
+      "trend_mSv_per_yr": 0.5946499958018657,
+      "ci_mSv_per_yr": [
+       -5.895126885577215,
+       7.084426877180946
+      ],
+      "p_paper_test": 0.7768455299707577,
+      "n_eff": 4.665539648758309,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "uncorrected_F_ov": {
+      "trend_mSv_per_yr": 0.17956260465038432,
+      "ci_mSv_per_yr": [
+       -0.8140829792908882,
+       1.1732081885916568
+      ],
+      "p_paper_test": 0.705455790335549,
+      "n_eff": 16.95435929960237,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "corrected_F_ov": {
+      "trend_mSv_per_yr": 0.1276169954021331,
+      "ci_mSv_per_yr": [
+       -0.8147082508755304,
+       1.0699422416797966
+      ],
+      "p_paper_test": 0.7774555715650301,
+      "n_eff": 17.69596786136069,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "total_proportional_to_absV": {
+      "trend_mSv_per_yr": 0.6252497369738038,
+      "ci_mSv_per_yr": [
+       -4.189846607975803,
+       5.44034608192341
+      ],
+      "p_paper_test": 0.7252382821579118,
+      "n_eff": 5.520678215935589,
+      "n_eff_at_floor": false,
+      "window": [
+       1993,
+       2017
+      ],
+      "n_years": 25
+     },
+     "mean_uncorrected_total_Sv": 0.015233931601970271,
+     "mean_corrected_total_Sv": 0.021739857270314786,
+     "mean_total_difference_Sv": -0.006505925668344517,
+     "sign_of_uncorrected_total_changes": false,
+     "resolved_status_changes": false
+    }
+   }
+  }
+ },
+ "A43_step_test_ORAS5_2002": {
+  "record": [
+   1958,
+   2025
+  ],
+  "results": {
+   "F_az": {
+    "step_year": 2002,
+    "trend_mSv_per_yr": 1.1902472440736902,
+    "trend_ci_mSv_per_yr": [
+     -0.5770890976711871,
+     2.957583585818568
+    ],
+    "trend_p": 0.17209574722060544,
+    "trend_n_eff": 18.43359922515012,
+    "step_mSv": 36.65083963346935,
+    "step_ci_mSv": [
+     -35.937604073630574,
+     109.23928334056927
+    ],
+    "step_p": 0.2995153425286315,
+    "step_n_eff": 18.43359922515012,
+    "n_years": 68,
+    "n_eff_at_floor": false
+   },
+   "F_ovS_plus_F_az": {
+    "step_year": 2002,
+    "trend_mSv_per_yr": -0.1708406977048993,
+    "trend_ci_mSv_per_yr": [
+     -1.2941428328886913,
+     0.9524614374788927
+    ],
+    "trend_p": 0.7581655748028058,
+    "trend_n_eff": 32.67830949186317,
+    "step_mSv": 33.69285892750286,
+    "step_ci_mSv": [
+     -12.443664087324786,
+     79.8293819423305
+    ],
+    "step_p": 0.14622196954359382,
+    "step_n_eff": 32.67830949186317,
+    "n_years": 68,
+    "n_eff_at_floor": false
+   }
+  }
+ }
+}

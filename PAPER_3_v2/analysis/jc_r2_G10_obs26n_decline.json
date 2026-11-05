@@ -1,0 +1,258 @@
+{
+  "meta": {
+    "id": "jc_r2_G10_obs26n_decline",
+    "group": "G10_obs26n",
+    "action": "A15",
+    "cluster": "C02",
+    "date": "2026-11-05",
+    "script": "scripts/analysis_paper3jc_r2_G10_obs26n_decline.py",
+    "inputs": [
+      "data/results/yearly_amoc26n_oras5.npz (keys years, amoc)",
+      "data/external/rapid_moc_monthly.nc (time)",
+      "PAPER_3_v2/analysis/jc_n16_forcing.json (switch_dates)",
+      "PAPER_3_v2/analysis/jc_n03_steps.json (a_step_scans.oras5.variables.T.families)"
+    ],
+    "seeds": "none (no random draws)",
+    "replicates": "none (analytic trend tests with the bias-corrected n_eff of paper3r1_stats)",
+    "units": "Sv for overturning; Sv per decade for trends; years for dates"
+  },
+  "oras5_annual_1993_2005": {
+    "rows": [
+      {
+        "year": 1993,
+        "amoc_Sv": 22.479873525254458,
+        "change_from_previous_Sv": null
+      },
+      {
+        "year": 1994,
+        "amoc_Sv": 23.766287319486736,
+        "change_from_previous_Sv": 1.2864137942322778
+      },
+      {
+        "year": 1995,
+        "amoc_Sv": 23.418730879299044,
+        "change_from_previous_Sv": -0.3475564401876916
+      },
+      {
+        "year": 1996,
+        "amoc_Sv": 24.18387541887735,
+        "change_from_previous_Sv": 0.765144539578305
+      },
+      {
+        "year": 1997,
+        "amoc_Sv": 21.14567867132493,
+        "change_from_previous_Sv": -3.038196747552419
+      },
+      {
+        "year": 1998,
+        "amoc_Sv": 19.845775999539487,
+        "change_from_previous_Sv": -1.2999026717854427
+      },
+      {
+        "year": 1999,
+        "amoc_Sv": 17.29751680118636,
+        "change_from_previous_Sv": -2.5482591983531258
+      },
+      {
+        "year": 2000,
+        "amoc_Sv": 14.667667381975628,
+        "change_from_previous_Sv": -2.629849419210734
+      },
+      {
+        "year": 2001,
+        "amoc_Sv": 15.205293640263305,
+        "change_from_previous_Sv": 0.537626258287677
+      },
+      {
+        "year": 2002,
+        "amoc_Sv": 14.794968491080482,
+        "change_from_previous_Sv": -0.4103251491828228
+      },
+      {
+        "year": 2003,
+        "amoc_Sv": 16.019974506688886,
+        "change_from_previous_Sv": 1.225006015608404
+      },
+      {
+        "year": 2004,
+        "amoc_Sv": 16.274266225905926,
+        "change_from_previous_Sv": 0.25429171921703997
+      },
+      {
+        "year": 2005,
+        "amoc_Sv": 15.68189338618932,
+        "change_from_previous_Sv": -0.5923728397166066
+      }
+    ],
+    "largest_one_year_fall": {
+      "from_year": 1996,
+      "to_year": 1997,
+      "change_Sv": -3.038196747552419
+    },
+    "epoch_means": {
+      "1993_1995": {
+        "window": [
+          1993,
+          1995
+        ],
+        "mean_Sv": 23.22163057468008,
+        "n_years": 3
+      },
+      "1996_2000": {
+        "window": [
+          1996,
+          2000
+        ],
+        "mean_Sv": 19.42810285458075,
+        "n_years": 5
+      },
+      "2001_2004": {
+        "window": [
+          2001,
+          2004
+        ],
+        "mean_Sv": 15.57362571598465,
+        "n_years": 4
+      },
+      "2005_2008": {
+        "window": [
+          2005,
+          2008
+        ],
+        "mean_Sv": 15.77887995408518,
+        "n_years": 4
+      }
+    },
+    "value_2000_Sv": 14.667667381975628,
+    "mean_1993_1995_Sv": 23.22163057468008
+  },
+  "trends_bias_corrected": {
+    "1993_2000": {
+      "window": [
+        1993,
+        2000
+      ],
+      "n": 8,
+      "trend_Sv_per_decade": -11.998375831105326,
+      "ci_Sv_per_decade": [
+        -100.43895732452344,
+        76.4422056623128
+      ],
+      "p": 0.3346512955043642,
+      "n_eff": 3.0,
+      "n_eff_at_floor": true,
+      "lag1_residual_corrected": 0.98
+    },
+    "1996_2004": {
+      "window": [
+        1996,
+        2004
+      ],
+      "n": 9,
+      "trend_Sv_per_decade": -9.868231240605809,
+      "ci_Sv_per_decade": [
+        -98.14585180743224,
+        78.40938932622062
+      ],
+      "p": 0.3905217883728923,
+      "n_eff": 3.0,
+      "n_eff_at_floor": true,
+      "lag1_residual_corrected": 0.98
+    },
+    "1958_2025_reference": {
+      "window": [
+        1958,
+        2025
+      ],
+      "n": 68,
+      "trend_Sv_per_decade": -1.4402095504871264,
+      "ci_Sv_per_decade": [
+        -15.990294874848951,
+        13.1098757738747
+      ],
+      "p": 0.42764838528750493,
+      "n_eff": 3.0,
+      "n_eff_at_floor": true,
+      "lag1_residual_corrected": 0.9695332462255091
+    }
+  },
+  "observing_system_and_forcing_dates": {
+    "forcing_switch_dates_from_jc_n16": [
+      {
+        "product": "ORAS5",
+        "date": "1979 (January)",
+        "from": "ERA-40",
+        "to": "ERA-Interim",
+        "status": "confirmed"
+      },
+      {
+        "product": "ORAS5",
+        "date": "2015 (calendar year; consolidated stream ends 2014)",
+        "from": "ERA-Interim",
+        "to": "ECMWF operational analysis / NWP",
+        "status": "confirmed; boundary year ambiguous between 2014 and 2015 in the sources"
+      },
+      {
+        "product": "ORAS5",
+        "date": "none",
+        "from": "ERA-Interim",
+        "to": "ERA5",
+        "status": "not supported by any source read; S04 wording needs correction"
+      },
+      {
+        "product": "GLORYS12V1",
+        "date": "early 2019 (January 2019 in QUID Table 2)",
+        "from": "ERA-Interim",
+        "to": "ERA5",
+        "status": "confirmed (QUID issue 1.6, footnote 1)"
+      },
+      {
+        "product": "ECCO-V4r4",
+        "date": "none in 1992-2017",
+        "from": "ERA-Interim",
+        "to": "ERA-Interim",
+        "status": "no switch found; 2016-2017 coverage not confirmed"
+      },
+      {
+        "product": "SODA3.15.2",
+        "date": "none stated",
+        "from": "ERA5",
+        "to": "ERA5",
+        "status": "single forcing per the readme table"
+      }
+    ],
+    "rapid_monthly_record_first_month": "2004-04",
+    "rapid_monthly_record_last_month": "2024-03",
+    "argo_era_start_used_in_manuscript": 2004,
+    "note": "The repository documents no observing-system or forcing change between 1996 and 2000 in ORAS5. The documented changes are the ERA-40 to ERA-Interim switch in 1979, the ERA-Interim to operational switch in 2015, and the start of the RAPID record (April 2004) and of the Argo era (2004)."
+  },
+  "transport_step_2002_selection_from_jc_n03": {
+    "T_family_scans": {
+      "1995-2015": {
+        "sup_abs_t_obs": 3.585594317181983,
+        "best_break_year": 2002,
+        "best_break_step": -2.0109094030900008,
+        "sup_crit95": 3.099030617100922,
+        "p_sup": 0.022297770222977704,
+        "resolved_at_5pct": true
+      },
+      "1975-1985": {
+        "sup_abs_t_obs": 1.7004536678469027,
+        "best_break_year": 1975,
+        "best_break_step": 1.365101831415455,
+        "sup_crit95": 2.753509650579416,
+        "p_sup": 0.22727727227277272,
+        "resolved_at_5pct": false
+      },
+      "1975-1985 and 1995-2015": {
+        "sup_abs_t_obs": 3.585594317181983,
+        "best_break_year": 2002,
+        "best_break_step": -2.0109094030900008,
+        "sup_crit95": 3.3842861795881722,
+        "p_sup": 0.03519648035196481,
+        "resolved_at_5pct": true
+      }
+    },
+    "note": "Single-step supremum scan of the northward-limb transport T in ORAS5, as stored in jc_n03_steps.json; scalar entries only."
+  }
+}

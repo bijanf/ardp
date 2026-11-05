@@ -1,0 +1,1634 @@
+{
+  "meta": {
+    "date": "2026-11-05",
+    "script": "scripts/analysis_paper3jc_r2_G05_en4_table.py",
+    "group": "G05_en4",
+    "actions": [
+      "A48",
+      "A49",
+      "A75"
+    ],
+    "inputs": [
+      "data/en4/EN.4.2.2.f.analysis.g10.*.nc",
+      "data/results/paper3r1_section_oras5.nc",
+      "data/results/paper3r1_section_glorys12.nc",
+      "data/results/paper3r1_section3d_oras5.nc",
+      "data/results/paper3r1_section3d_glorys12.nc",
+      "PAPER_3_v2/analysis/jc_n02_ratio.json (reproduction only)",
+      "PAPER_3_v2/analysis/en4.json (reproduction only)",
+      "PAPER_3_v2/analysis/jc_n01_en4_window.json (reproduction only)",
+      "PAPER_3_v2/analysis/r1_salinification_structure.json (reproduction only)"
+    ],
+    "seeds": "none; trend_test is analytic",
+    "replicate_counts": "none",
+    "window": [
+      2005,
+      2024
+    ],
+    "n_years": 20,
+    "n_en4_months": 240,
+    "units": {
+      "salinity trends": "PSU per decade",
+      "F_ov trends": "Sv per decade (slope_per_year in Sv per year)",
+      "F_ov means": "Sv",
+      "intervals": "95% of paper3r1_stats.trend_test",
+      "p": "two-sided p of trend_test"
+    },
+    "sign_convention": "F_ov = -(1/S0) T dS / 1e6 with S0 = 35 (analysis_paper3v2_en4.limb_quantities)",
+    "S0": 35.0,
+    "description": "printed-number checks, Fig. 1c, 4e, 5d, Table S6, S7 and S-L144 to S-L147"
+  },
+  "id": "G05_en4_fig_checks",
+  "checks": [
+    {
+      "where": "L432-433",
+      "quantity": "EN4 own-circulation dS trend oras5",
+      "printed": 0.055,
+      "printed_decimals": 3,
+      "regenerated": 0.054658996991722955,
+      "source": "jc_r2_G05_en4_table.json table/oras5/EN4 salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "L432-433",
+      "quantity": "EN4 own-circulation dS interval lower oras5",
+      "printed": -0.048,
+      "printed_decimals": 3,
+      "regenerated": -0.04827081432021665,
+      "source": "jc_r2_G05_en4_table.json table/oras5/EN4 salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "L432-433",
+      "quantity": "EN4 own-circulation dS interval upper oras5",
+      "printed": 0.158,
+      "printed_decimals": 3,
+      "regenerated": 0.15758880830366254,
+      "source": "jc_r2_G05_en4_table.json table/oras5/EN4 salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "L432-433",
+      "quantity": "EN4 own-circulation dS p oras5",
+      "printed": 0.195,
+      "printed_decimals": 3,
+      "regenerated": 0.19455953344427324,
+      "source": "jc_r2_G05_en4_table.json table/oras5/EN4 salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "L432-433",
+      "quantity": "EN4 own-circulation dS trend glorys12",
+      "printed": 0.018,
+      "printed_decimals": 3,
+      "regenerated": 0.018387804897868905,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/EN4 salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "L432-433",
+      "quantity": "EN4 own-circulation dS interval lower glorys12",
+      "printed": -0.025,
+      "printed_decimals": 3,
+      "regenerated": -0.02450847629871921,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/EN4 salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "L432-433",
+      "quantity": "EN4 own-circulation dS interval upper glorys12",
+      "printed": 0.061,
+      "printed_decimals": 3,
+      "regenerated": 0.06128408609445703,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/EN4 salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "L432-433",
+      "quantity": "EN4 own-circulation dS p glorys12",
+      "printed": 0.345,
+      "printed_decimals": 3,
+      "regenerated": 0.3451468323029219,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/EN4 salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(c)",
+      "quantity": "reanalysis own dS trend oras5",
+      "printed": 0.058,
+      "printed_decimals": 3,
+      "regenerated": 0.05798516714149199,
+      "source": "jc_r2_G05_en4_table.json table/oras5/reanalysis salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(c)",
+      "quantity": "reanalysis own dS lower oras5",
+      "printed": -0.011,
+      "printed_decimals": 3,
+      "regenerated": -0.010924919654369926,
+      "source": "jc_r2_G05_en4_table.json table/oras5/reanalysis salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(c)",
+      "quantity": "reanalysis own dS upper oras5",
+      "printed": 0.127,
+      "printed_decimals": 3,
+      "regenerated": 0.1268952539373539,
+      "source": "jc_r2_G05_en4_table.json table/oras5/reanalysis salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Table S7(c)",
+      "quantity": "reanalysis own dS p oras5",
+      "printed": 0.081,
+      "printed_decimals": 3,
+      "regenerated": 0.08135614729009163,
+      "source": "jc_r2_G05_en4_table.json table/oras5/reanalysis salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(c)",
+      "quantity": "reanalysis own dS trend glorys12",
+      "printed": 0.035,
+      "printed_decimals": 3,
+      "regenerated": 0.03540920377238405,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/reanalysis salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(c)",
+      "quantity": "reanalysis own dS lower glorys12",
+      "printed": -0.003,
+      "printed_decimals": 3,
+      "regenerated": -0.002859985305334006,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/reanalysis salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(c)",
+      "quantity": "reanalysis own dS upper glorys12",
+      "printed": 0.074,
+      "printed_decimals": 3,
+      "regenerated": 0.07367839285010211,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/reanalysis salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Table S7(c)",
+      "quantity": "reanalysis own dS p glorys12",
+      "printed": 0.065,
+      "printed_decimals": 3,
+      "regenerated": 0.06541550136881183,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/reanalysis salinity, own circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d",
+      "quantity": "reanalysis fixed dS trend oras5",
+      "printed": 0.029,
+      "printed_decimals": 3,
+      "regenerated": 0.029497191693750147,
+      "source": "jc_r2_G05_en4_table.json table/oras5/reanalysis salinity, fixed circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d",
+      "quantity": "reanalysis fixed dS lower oras5",
+      "printed": -0.298,
+      "printed_decimals": 3,
+      "regenerated": -0.29687190460006213,
+      "source": "jc_r2_G05_en4_table.json table/oras5/reanalysis salinity, fixed circulation/dS",
+      "match": false
+    },
+    {
+      "where": "Fig. 5d",
+      "quantity": "reanalysis fixed dS upper oras5",
+      "printed": 0.356,
+      "printed_decimals": 3,
+      "regenerated": 0.3558662879875624,
+      "source": "jc_r2_G05_en4_table.json table/oras5/reanalysis salinity, fixed circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Table S7(c)",
+      "quantity": "reanalysis fixed dS p oras5",
+      "printed": 0.456,
+      "printed_decimals": 3,
+      "regenerated": 0.45609957751960645,
+      "source": "jc_r2_G05_en4_table.json table/oras5/reanalysis salinity, fixed circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d",
+      "quantity": "reanalysis fixed dS trend glorys12",
+      "printed": 0.042,
+      "printed_decimals": 3,
+      "regenerated": 0.04180892451109605,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/reanalysis salinity, fixed circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d",
+      "quantity": "reanalysis fixed dS lower glorys12",
+      "printed": -0.327,
+      "printed_decimals": 3,
+      "regenerated": -0.3271416854468614,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/reanalysis salinity, fixed circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d",
+      "quantity": "reanalysis fixed dS upper glorys12",
+      "printed": 0.411,
+      "printed_decimals": 3,
+      "regenerated": 0.4107595344690535,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/reanalysis salinity, fixed circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Table S7(c)",
+      "quantity": "reanalysis fixed dS p glorys12",
+      "printed": 0.386,
+      "printed_decimals": 3,
+      "regenerated": 0.38645185803652315,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/reanalysis salinity, fixed circulation/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; L428-429",
+      "quantity": "EN4 fixed full-column dS oras5",
+      "printed": 0.024,
+      "printed_decimals": 3,
+      "regenerated": 0.024261427130168756,
+      "source": "jc_r2_G05_en4_table.json table/oras5/EN4 salinity, fixed circulation (record-mean V_bc)/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; L428-429",
+      "quantity": "EN4 fixed full-column lower oras5",
+      "printed": 0.011,
+      "printed_decimals": 3,
+      "regenerated": 0.011376670015594491,
+      "source": "jc_r2_G05_en4_table.json table/oras5/EN4 salinity, fixed circulation (record-mean V_bc)/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; L428-429",
+      "quantity": "EN4 fixed full-column upper oras5",
+      "printed": 0.037,
+      "printed_decimals": 3,
+      "regenerated": 0.03714618424474302,
+      "source": "jc_r2_G05_en4_table.json table/oras5/EN4 salinity, fixed circulation (record-mean V_bc)/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; L428-429",
+      "quantity": "EN4 fixed full-column dS glorys12",
+      "printed": 0.026,
+      "printed_decimals": 3,
+      "regenerated": 0.025675226530711644,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/EN4 salinity, fixed circulation (record-mean V_bc)/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; L428-429",
+      "quantity": "EN4 fixed full-column lower glorys12",
+      "printed": 0.013,
+      "printed_decimals": 3,
+      "regenerated": 0.01291315902613945,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/EN4 salinity, fixed circulation (record-mean V_bc)/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; L428-429",
+      "quantity": "EN4 fixed full-column upper glorys12",
+      "printed": 0.038,
+      "printed_decimals": 3,
+      "regenerated": 0.03843729403528384,
+      "source": "jc_r2_G05_en4_table.json table/glorys12/EN4 salinity, fixed circulation (record-mean V_bc)/dS",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(a)",
+      "quantity": "EN4 fixed upper-2000 m dS oras5",
+      "printed": 0.035,
+      "printed_decimals": 3,
+      "regenerated": 0.03496207912136668,
+      "source": "jc_n01_en4_window.json series/oras5_upper_2000m/dS/full_2005_2024",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(a)",
+      "quantity": "EN4 fixed upper-2000 m lower oras5",
+      "printed": 0.015,
+      "printed_decimals": 3,
+      "regenerated": 0.015178996555810734,
+      "source": "jc_n01_en4_window.json series/oras5_upper_2000m/dS/full_2005_2024",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(a)",
+      "quantity": "EN4 fixed upper-2000 m upper oras5",
+      "printed": 0.055,
+      "printed_decimals": 3,
+      "regenerated": 0.05474516168692263,
+      "source": "jc_n01_en4_window.json series/oras5_upper_2000m/dS/full_2005_2024",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(a)",
+      "quantity": "EN4 fixed upper-2000 m dS glorys12",
+      "printed": 0.038,
+      "printed_decimals": 3,
+      "regenerated": 0.03787451324347275,
+      "source": "jc_n01_en4_window.json series/glorys12_upper_2000m/dS/full_2005_2024",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(a)",
+      "quantity": "EN4 fixed upper-2000 m lower glorys12",
+      "printed": 0.017,
+      "printed_decimals": 3,
+      "regenerated": 0.016945334435421067,
+      "source": "jc_n01_en4_window.json series/glorys12_upper_2000m/dS/full_2005_2024",
+      "match": true
+    },
+    {
+      "where": "Fig. 5d; Table S7(a)",
+      "quantity": "EN4 fixed upper-2000 m upper glorys12",
+      "printed": 0.059,
+      "printed_decimals": 3,
+      "regenerated": 0.058803692051524435,
+      "source": "jc_n01_en4_window.json series/glorys12_upper_2000m/dS/full_2005_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2005-2024",
+      "quantity": "dS estimate",
+      "printed": 0.024,
+      "printed_decimals": 3,
+      "regenerated": 0.024261427130168756,
+      "source": "table_S6_recomputed dS_start_2005_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2005-2024",
+      "quantity": "dS lower",
+      "printed": 0.011,
+      "printed_decimals": 3,
+      "regenerated": 0.011376670015594491,
+      "source": "table_S6_recomputed dS_start_2005_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2005-2024",
+      "quantity": "dS upper",
+      "printed": 0.037,
+      "printed_decimals": 3,
+      "regenerated": 0.03714618424474302,
+      "source": "table_S6_recomputed dS_start_2005_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2005-2024",
+      "quantity": "dS n_eff",
+      "printed": 13.2,
+      "printed_decimals": 1,
+      "regenerated": 13.16000744980503,
+      "source": "table_S6_recomputed dS_start_2005_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2005-2024",
+      "quantity": "dS p",
+      "printed": 0.002,
+      "printed_decimals": 3,
+      "regenerated": 0.0016027631186680718,
+      "source": "table_S6_recomputed dS_start_2005_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2006-2024",
+      "quantity": "dS estimate",
+      "printed": 0.026,
+      "printed_decimals": 3,
+      "regenerated": 0.0263112049954305,
+      "source": "table_S6_recomputed dS_start_2006_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2006-2024",
+      "quantity": "dS lower",
+      "printed": 0.016,
+      "printed_decimals": 3,
+      "regenerated": 0.015777596337005182,
+      "source": "table_S6_recomputed dS_start_2006_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2006-2024",
+      "quantity": "dS upper",
+      "printed": 0.037,
+      "printed_decimals": 3,
+      "regenerated": 0.03684481365385582,
+      "source": "table_S6_recomputed dS_start_2006_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2006-2024",
+      "quantity": "dS n_eff",
+      "printed": 18.8,
+      "printed_decimals": 1,
+      "regenerated": 18.81189067608666,
+      "source": "table_S6_recomputed dS_start_2006_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2006-2024",
+      "quantity": "dS p < 0.001",
+      "printed": "<0.001",
+      "printed_decimals": null,
+      "regenerated": 6.425290770952458e-05,
+      "source": "table_S6_recomputed dS_start_2006_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2007-2024",
+      "quantity": "dS estimate",
+      "printed": 0.031,
+      "printed_decimals": 3,
+      "regenerated": 0.031119327522127444,
+      "source": "table_S6_recomputed dS_start_2007_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2007-2024",
+      "quantity": "dS lower",
+      "printed": 0.021,
+      "printed_decimals": 3,
+      "regenerated": 0.02137499625035745,
+      "source": "table_S6_recomputed dS_start_2007_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2007-2024",
+      "quantity": "dS upper",
+      "printed": 0.041,
+      "printed_decimals": 3,
+      "regenerated": 0.04086365879389743,
+      "source": "table_S6_recomputed dS_start_2007_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2007-2024",
+      "quantity": "dS n_eff",
+      "printed": 18.0,
+      "printed_decimals": 1,
+      "regenerated": 18.0,
+      "source": "table_S6_recomputed dS_start_2007_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2007-2024",
+      "quantity": "dS p < 0.001",
+      "printed": "<0.001",
+      "printed_decimals": null,
+      "regenerated": 4.4994803726731e-06,
+      "source": "table_S6_recomputed dS_start_2007_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2008-2024",
+      "quantity": "dS estimate",
+      "printed": 0.031,
+      "printed_decimals": 3,
+      "regenerated": 0.03136929390303431,
+      "source": "table_S6_recomputed dS_start_2008_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2008-2024",
+      "quantity": "dS lower",
+      "printed": 0.02,
+      "printed_decimals": 3,
+      "regenerated": 0.020348125289652838,
+      "source": "table_S6_recomputed dS_start_2008_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2008-2024",
+      "quantity": "dS upper",
+      "printed": 0.042,
+      "printed_decimals": 3,
+      "regenerated": 0.042390462516415775,
+      "source": "table_S6_recomputed dS_start_2008_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2008-2024",
+      "quantity": "dS n_eff",
+      "printed": 17.0,
+      "printed_decimals": 1,
+      "regenerated": 17.0,
+      "source": "table_S6_recomputed dS_start_2008_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2008-2024",
+      "quantity": "dS p < 0.001",
+      "printed": "<0.001",
+      "printed_decimals": null,
+      "regenerated": 2.1572110814310916e-05,
+      "source": "table_S6_recomputed dS_start_2008_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2009-2024",
+      "quantity": "dS estimate",
+      "printed": 0.036,
+      "printed_decimals": 3,
+      "regenerated": 0.03638535794633439,
+      "source": "table_S6_recomputed dS_start_2009_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2009-2024",
+      "quantity": "dS lower",
+      "printed": 0.026,
+      "printed_decimals": 3,
+      "regenerated": 0.02596771870859082,
+      "source": "table_S6_recomputed dS_start_2009_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2009-2024",
+      "quantity": "dS upper",
+      "printed": 0.047,
+      "printed_decimals": 3,
+      "regenerated": 0.04680299718407796,
+      "source": "table_S6_recomputed dS_start_2009_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2009-2024",
+      "quantity": "dS n_eff",
+      "printed": 16.0,
+      "printed_decimals": 1,
+      "regenerated": 16.0,
+      "source": "table_S6_recomputed dS_start_2009_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2009-2024",
+      "quantity": "dS p < 0.001",
+      "printed": "<0.001",
+      "printed_decimals": null,
+      "regenerated": 2.9183329238858154e-06,
+      "source": "table_S6_recomputed dS_start_2009_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2010-2024",
+      "quantity": "dS estimate",
+      "printed": 0.037,
+      "printed_decimals": 3,
+      "regenerated": 0.036568895371843504,
+      "source": "table_S6_recomputed dS_start_2010_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2010-2024",
+      "quantity": "dS lower",
+      "printed": 0.025,
+      "printed_decimals": 3,
+      "regenerated": 0.024572176394463484,
+      "source": "table_S6_recomputed dS_start_2010_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2010-2024",
+      "quantity": "dS upper",
+      "printed": 0.049,
+      "printed_decimals": 3,
+      "regenerated": 0.04856561434922353,
+      "source": "table_S6_recomputed dS_start_2010_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2010-2024",
+      "quantity": "dS n_eff",
+      "printed": 15.0,
+      "printed_decimals": 1,
+      "regenerated": 15.0,
+      "source": "table_S6_recomputed dS_start_2010_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(a) 2010-2024",
+      "quantity": "dS p < 0.001",
+      "printed": "<0.001",
+      "printed_decimals": null,
+      "regenerated": 1.7547693653578207e-05,
+      "source": "table_S6_recomputed dS_start_2010_end_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2015",
+      "quantity": "dS estimate",
+      "printed": 0.003,
+      "printed_decimals": 3,
+      "regenerated": 0.0026733454702501966,
+      "source": "table_S6_recomputed dS_start_2005_end_2015",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2015",
+      "quantity": "dS lower",
+      "printed": -0.019,
+      "printed_decimals": 3,
+      "regenerated": -0.01857573154310548,
+      "source": "table_S6_recomputed dS_start_2005_end_2015",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2015",
+      "quantity": "dS upper",
+      "printed": 0.024,
+      "printed_decimals": 3,
+      "regenerated": 0.02392242248360587,
+      "source": "table_S6_recomputed dS_start_2005_end_2015",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2015",
+      "quantity": "dS p",
+      "printed": 0.782,
+      "printed_decimals": 3,
+      "regenerated": 0.7823891752123808,
+      "source": "table_S6_recomputed dS_start_2005_end_2015",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2015",
+      "quantity": "dS n_eff",
+      "printed": 11.0,
+      "printed_decimals": 1,
+      "regenerated": 11.0,
+      "source": "table_S6_recomputed dS_start_2005_end_2015",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2016",
+      "quantity": "dS estimate",
+      "printed": 0.002,
+      "printed_decimals": 3,
+      "regenerated": 0.0019251396514937368,
+      "source": "table_S6_recomputed dS_start_2005_end_2016",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2016",
+      "quantity": "dS lower",
+      "printed": -0.016,
+      "printed_decimals": 3,
+      "regenerated": -0.015515863612973997,
+      "source": "table_S6_recomputed dS_start_2005_end_2016",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2016",
+      "quantity": "dS upper",
+      "printed": 0.019,
+      "printed_decimals": 3,
+      "regenerated": 0.01936614291596147,
+      "source": "table_S6_recomputed dS_start_2005_end_2016",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2016",
+      "quantity": "dS p",
+      "printed": 0.811,
+      "printed_decimals": 3,
+      "regenerated": 0.8107013684413897,
+      "source": "table_S6_recomputed dS_start_2005_end_2016",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2016",
+      "quantity": "dS n_eff",
+      "printed": 12.0,
+      "printed_decimals": 1,
+      "regenerated": 12.0,
+      "source": "table_S6_recomputed dS_start_2005_end_2016",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2017",
+      "quantity": "dS estimate",
+      "printed": 0.005,
+      "printed_decimals": 3,
+      "regenerated": 0.004632271149704628,
+      "source": "table_S6_recomputed dS_start_2005_end_2017",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2017",
+      "quantity": "dS lower",
+      "printed": -0.01,
+      "printed_decimals": 3,
+      "regenerated": -0.010329280932399185,
+      "source": "table_S6_recomputed dS_start_2005_end_2017",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2017",
+      "quantity": "dS upper",
+      "printed": 0.02,
+      "printed_decimals": 3,
+      "regenerated": 0.019593823231808444,
+      "source": "table_S6_recomputed dS_start_2005_end_2017",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2017",
+      "quantity": "dS p",
+      "printed": 0.51,
+      "printed_decimals": 3,
+      "regenerated": 0.5096787329703184,
+      "source": "table_S6_recomputed dS_start_2005_end_2017",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2017",
+      "quantity": "dS n_eff",
+      "printed": 13.0,
+      "printed_decimals": 1,
+      "regenerated": 13.0,
+      "source": "table_S6_recomputed dS_start_2005_end_2017",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2018",
+      "quantity": "dS estimate",
+      "printed": 0.013,
+      "printed_decimals": 3,
+      "regenerated": 0.01292415871541991,
+      "source": "table_S6_recomputed dS_start_2005_end_2018",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2018",
+      "quantity": "dS lower",
+      "printed": -0.003,
+      "printed_decimals": 3,
+      "regenerated": -0.003497280708832603,
+      "source": "table_S6_recomputed dS_start_2005_end_2018",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2018",
+      "quantity": "dS upper",
+      "printed": 0.029,
+      "printed_decimals": 3,
+      "regenerated": 0.029345598139672423,
+      "source": "table_S6_recomputed dS_start_2005_end_2018",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2018",
+      "quantity": "dS p",
+      "printed": 0.112,
+      "printed_decimals": 3,
+      "regenerated": 0.1120681472128572,
+      "source": "table_S6_recomputed dS_start_2005_end_2018",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2018",
+      "quantity": "dS n_eff",
+      "printed": 14.0,
+      "printed_decimals": 1,
+      "regenerated": 14.0,
+      "source": "table_S6_recomputed dS_start_2005_end_2018",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2019",
+      "quantity": "dS estimate",
+      "printed": 0.018,
+      "printed_decimals": 3,
+      "regenerated": 0.01798021187830881,
+      "source": "table_S6_recomputed dS_start_2005_end_2019",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2019",
+      "quantity": "dS lower",
+      "printed": -0.011,
+      "printed_decimals": 3,
+      "regenerated": -0.010540138768165504,
+      "source": "table_S6_recomputed dS_start_2005_end_2019",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2019",
+      "quantity": "dS upper",
+      "printed": 0.047,
+      "printed_decimals": 3,
+      "regenerated": 0.04650056252478313,
+      "source": "table_S6_recomputed dS_start_2005_end_2019",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2019",
+      "quantity": "dS p",
+      "printed": 0.168,
+      "printed_decimals": 3,
+      "regenerated": 0.16822277415671716,
+      "source": "table_S6_recomputed dS_start_2005_end_2019",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2019",
+      "quantity": "dS n_eff",
+      "printed": 7.2,
+      "printed_decimals": 1,
+      "regenerated": 7.248340808726253,
+      "source": "table_S6_recomputed dS_start_2005_end_2019",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2020",
+      "quantity": "dS estimate",
+      "printed": 0.019,
+      "printed_decimals": 3,
+      "regenerated": 0.018959351875718247,
+      "source": "table_S6_recomputed dS_start_2005_end_2020",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2020",
+      "quantity": "dS lower",
+      "printed": -0.007,
+      "printed_decimals": 3,
+      "regenerated": -0.006749597238058451,
+      "source": "table_S6_recomputed dS_start_2005_end_2020",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2020",
+      "quantity": "dS upper",
+      "printed": 0.045,
+      "printed_decimals": 3,
+      "regenerated": 0.04466830098949494,
+      "source": "table_S6_recomputed dS_start_2005_end_2020",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2020",
+      "quantity": "dS p",
+      "printed": 0.118,
+      "printed_decimals": 3,
+      "regenerated": 0.11817021577678319,
+      "source": "table_S6_recomputed dS_start_2005_end_2020",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2020",
+      "quantity": "dS n_eff",
+      "printed": 7.3,
+      "printed_decimals": 1,
+      "regenerated": 7.321172552287094,
+      "source": "table_S6_recomputed dS_start_2005_end_2020",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2021",
+      "quantity": "dS estimate",
+      "printed": 0.023,
+      "printed_decimals": 3,
+      "regenerated": 0.02321681603782274,
+      "source": "table_S6_recomputed dS_start_2005_end_2021",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2021",
+      "quantity": "dS lower",
+      "printed": -0.0,
+      "printed_decimals": 3,
+      "regenerated": -0.00018630294533803111,
+      "source": "table_S6_recomputed dS_start_2005_end_2021",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2021",
+      "quantity": "dS upper",
+      "printed": 0.047,
+      "printed_decimals": 3,
+      "regenerated": 0.046619935020983515,
+      "source": "table_S6_recomputed dS_start_2005_end_2021",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2021",
+      "quantity": "dS p",
+      "printed": 0.051,
+      "printed_decimals": 3,
+      "regenerated": 0.05134219629028888,
+      "source": "table_S6_recomputed dS_start_2005_end_2021",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2021",
+      "quantity": "dS n_eff",
+      "printed": 8.0,
+      "printed_decimals": 1,
+      "regenerated": 8.011846422730368,
+      "source": "table_S6_recomputed dS_start_2005_end_2021",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2022",
+      "quantity": "dS estimate",
+      "printed": 0.022,
+      "printed_decimals": 3,
+      "regenerated": 0.02186630587667344,
+      "source": "table_S6_recomputed dS_start_2005_end_2022",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2022",
+      "quantity": "dS lower",
+      "printed": 0.005,
+      "printed_decimals": 3,
+      "regenerated": 0.00516703156432425,
+      "source": "table_S6_recomputed dS_start_2005_end_2022",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2022",
+      "quantity": "dS upper",
+      "printed": 0.039,
+      "printed_decimals": 3,
+      "regenerated": 0.03856558018902263,
+      "source": "table_S6_recomputed dS_start_2005_end_2022",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2022",
+      "quantity": "dS p",
+      "printed": 0.016,
+      "printed_decimals": 3,
+      "regenerated": 0.01605297373399034,
+      "source": "table_S6_recomputed dS_start_2005_end_2022",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2022",
+      "quantity": "dS n_eff",
+      "printed": 10.8,
+      "printed_decimals": 1,
+      "regenerated": 10.75844517314437,
+      "source": "table_S6_recomputed dS_start_2005_end_2022",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2023",
+      "quantity": "dS estimate",
+      "printed": 0.022,
+      "printed_decimals": 3,
+      "regenerated": 0.02171622936045047,
+      "source": "table_S6_recomputed dS_start_2005_end_2023",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2023",
+      "quantity": "dS lower",
+      "printed": 0.007,
+      "printed_decimals": 3,
+      "regenerated": 0.007199003587922885,
+      "source": "table_S6_recomputed dS_start_2005_end_2023",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2023",
+      "quantity": "dS upper",
+      "printed": 0.036,
+      "printed_decimals": 3,
+      "regenerated": 0.036233455132978064,
+      "source": "table_S6_recomputed dS_start_2005_end_2023",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2023",
+      "quantity": "dS p",
+      "printed": 0.008,
+      "printed_decimals": 3,
+      "regenerated": 0.007769684472673058,
+      "source": "table_S6_recomputed dS_start_2005_end_2023",
+      "match": true
+    },
+    {
+      "where": "Table S6(b) 2005-2023",
+      "quantity": "dS n_eff",
+      "printed": 11.6,
+      "printed_decimals": 1,
+      "regenerated": 11.590336677200444,
+      "source": "table_S6_recomputed dS_start_2005_end_2023",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "dS 2005-2017 estimate",
+      "printed": 0.005,
+      "printed_decimals": 3,
+      "regenerated": 0.004632271149704628,
+      "source": "table_S6_recomputed dS_window_2005_2017",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "dS 2005-2017 lower",
+      "printed": -0.01,
+      "printed_decimals": 3,
+      "regenerated": -0.010329280932399185,
+      "source": "table_S6_recomputed dS_window_2005_2017",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "dS 2005-2017 upper",
+      "printed": 0.02,
+      "printed_decimals": 3,
+      "regenerated": 0.019593823231808444,
+      "source": "table_S6_recomputed dS_window_2005_2017",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "dS 2005-2017 p",
+      "printed": 0.51,
+      "printed_decimals": 3,
+      "regenerated": 0.5096787329703184,
+      "source": "table_S6_recomputed dS_window_2005_2017",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "dS 2018-2024 estimate",
+      "printed": 0.014,
+      "printed_decimals": 3,
+      "regenerated": 0.014314892312690638,
+      "source": "table_S6_recomputed dS_window_2018_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "dS 2018-2024 lower",
+      "printed": -0.038,
+      "printed_decimals": 3,
+      "regenerated": -0.03765667033817936,
+      "source": "table_S6_recomputed dS_window_2018_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "dS 2018-2024 upper",
+      "printed": 0.066,
+      "printed_decimals": 3,
+      "regenerated": 0.06628645496356064,
+      "source": "table_S6_recomputed dS_window_2018_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "dS 2018-2024 p",
+      "printed": 0.511,
+      "printed_decimals": 3,
+      "regenerated": 0.5105557188740437,
+      "source": "table_S6_recomputed dS_window_2018_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "dS 2018-2024 n_eff",
+      "printed": 7.0,
+      "printed_decimals": 1,
+      "regenerated": 7.0,
+      "source": "table_S6_recomputed dS_window_2018_2024",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "change of slope at 2017 estimate",
+      "printed": 0.037,
+      "printed_decimals": 3,
+      "regenerated": 0.03659358156049887,
+      "source": "jc_n01 hinge_2017/change_of_slope",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "change of slope at 2017 lower",
+      "printed": -0.012,
+      "printed_decimals": 3,
+      "regenerated": -0.01164175907605659,
+      "source": "jc_n01 hinge_2017/change_of_slope",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "change of slope at 2017 upper",
+      "printed": 0.085,
+      "printed_decimals": 3,
+      "regenerated": 0.08482892219705433,
+      "source": "jc_n01 hinge_2017/change_of_slope",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "change of slope at 2017 p",
+      "printed": 0.125,
+      "printed_decimals": 3,
+      "regenerated": 0.12454380674580987,
+      "source": "jc_n01 hinge_2017/change_of_slope",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "change of slope at 2017 n_eff",
+      "printed": 15.3,
+      "printed_decimals": 1,
+      "regenerated": 15.30189067474521,
+      "source": "jc_n01 hinge_2017/change_of_slope",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "slope after 2017 estimate",
+      "printed": 0.049,
+      "printed_decimals": 3,
+      "regenerated": 0.049299140829457425,
+      "source": "jc_n01 hinge_2017/slope_post_2017_within_model",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "slope after 2017 lower",
+      "printed": 0.015,
+      "printed_decimals": 3,
+      "regenerated": 0.014516142038542915,
+      "source": "jc_n01 hinge_2017/slope_post_2017_within_model",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "slope after 2017 upper",
+      "printed": 0.084,
+      "printed_decimals": 3,
+      "regenerated": 0.08408213962037195,
+      "source": "jc_n01 hinge_2017/slope_post_2017_within_model",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "slope after 2017 p",
+      "printed": 0.009,
+      "printed_decimals": 3,
+      "regenerated": 0.009297378645406404,
+      "source": "jc_n01 hinge_2017/slope_post_2017_within_model",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "post minus pre split estimate",
+      "printed": 0.01,
+      "printed_decimals": 3,
+      "regenerated": 0.009682621162985768,
+      "source": "jc_n01 subperiod_split_2017/difference_post_minus_pre",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "post minus pre split p",
+      "printed": 0.629,
+      "printed_decimals": 3,
+      "regenerated": 0.6286716136463414,
+      "source": "jc_n01 subperiod_split_2017/difference_post_minus_pre",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "trend with both limb weights estimate",
+      "printed": 0.031,
+      "printed_decimals": 3,
+      "regenerated": 0.030714605622191842,
+      "source": "jc_n01 covariate/time_plus_both_weights (interval not stored)",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "trend with both limb weights p",
+      "printed": 0.013,
+      "printed_decimals": 3,
+      "regenerated": 0.012802920047193604,
+      "source": "jc_n01 covariate/time_plus_both_weights",
+      "match": true
+    },
+    {
+      "where": "Table S6(c)",
+      "quantity": "trend with both limb weights n_eff",
+      "printed": 16.0,
+      "printed_decimals": 1,
+      "regenerated": 16.00248189950715,
+      "source": "jc_n01 covariate/time_plus_both_weights",
+      "match": true
+    },
+    {
+      "where": "Table S6 footnote",
+      "quantity": "both-weight coefficient north",
+      "printed": -0.27,
+      "printed_decimals": 2,
+      "regenerated": -0.2734892394078848,
+      "source": "jc_n01 covariate/time_plus_both_weights",
+      "match": true
+    },
+    {
+      "where": "Table S6 footnote",
+      "quantity": "both-weight p north",
+      "printed": 0.26,
+      "printed_decimals": 2,
+      "regenerated": 0.2551936570545815,
+      "source": "jc_n01 covariate/time_plus_both_weights",
+      "match": true
+    },
+    {
+      "where": "Table S6 footnote (not printed in text)",
+      "quantity": "both-weight coefficient south",
+      "printed": 0.035,
+      "printed_decimals": 3,
+      "regenerated": 0.03521768171406641,
+      "source": "jc_n01 covariate/time_plus_both_weights",
+      "match": true
+    },
+    {
+      "where": "S-L143-144",
+      "quantity": "EN4 northward-limb p oras5",
+      "printed": 0.006,
+      "printed_decimals": 3,
+      "regenerated": 0.00566537860766323,
+      "source": "table/oras5/EN4 salinity, fixed circulation (record-mean V_bc)/S_north",
+      "match": true
+    },
+    {
+      "where": "S-L143-144",
+      "quantity": "EN4 southward-limb p oras5",
+      "printed": 0.2,
+      "printed_decimals": 2,
+      "regenerated": 0.19541931283983618,
+      "source": "table/oras5/EN4 salinity, fixed circulation (record-mean V_bc)/S_south",
+      "match": true
+    },
+    {
+      "where": "S-L143-144",
+      "quantity": "EN4 contrast p oras5",
+      "printed": 0.002,
+      "printed_decimals": 3,
+      "regenerated": 0.0016027631186680718,
+      "source": "table/oras5/EN4 salinity, fixed circulation (record-mean V_bc)/dS",
+      "match": true
+    },
+    {
+      "where": "S-L143-144",
+      "quantity": "EN4 northward-limb p glorys12",
+      "printed": 0.003,
+      "printed_decimals": 3,
+      "regenerated": 0.0034939764364282713,
+      "source": "table/glorys12/EN4 salinity, fixed circulation (record-mean V_bc)/S_north",
+      "match": true
+    },
+    {
+      "where": "S-L143-144",
+      "quantity": "EN4 southward-limb p glorys12",
+      "printed": 0.19,
+      "printed_decimals": 2,
+      "regenerated": 0.18934867471958466,
+      "source": "table/glorys12/EN4 salinity, fixed circulation (record-mean V_bc)/S_south",
+      "match": true
+    },
+    {
+      "where": "S-L143-144",
+      "quantity": "EN4 contrast p glorys12",
+      "printed": 0.0009,
+      "printed_decimals": 4,
+      "regenerated": 0.0008781130721352149,
+      "source": "table/glorys12/EN4 salinity, fixed circulation (record-mean V_bc)/dS",
+      "match": true
+    },
+    {
+      "where": "S-L144-145",
+      "quantity": "EN4 (ORAS5 circulation) northward-limb 2005-2017 trend",
+      "printed": 0.005,
+      "printed_decimals": 3,
+      "regenerated": 0.004759422697155525,
+      "source": "jc_r2_G05_en4_table northward_limb_2005_2017_S_north_and_dS/oras5/S_north",
+      "match": true
+    },
+    {
+      "where": "S-L144-145",
+      "quantity": "EN4 (ORAS5 circulation) northward-limb 2005-2017 p",
+      "printed": 0.51,
+      "printed_decimals": 2,
+      "regenerated": 0.507853467586847,
+      "source": "jc_r2_G05_en4_table northward_limb_2005_2017_S_north_and_dS/oras5/S_north",
+      "match": true
+    },
+    {
+      "where": "S-L145-147",
+      "quantity": "ORAS5 own-salinity contrast p",
+      "printed": 0.081,
+      "printed_decimals": 3,
+      "regenerated": 0.08135614729009163,
+      "source": "table/oras5/reanalysis own/dS",
+      "match": true
+    },
+    {
+      "where": "S-L145-147",
+      "quantity": "GLORYS12V1 own-salinity contrast p",
+      "printed": 0.065,
+      "printed_decimals": 3,
+      "regenerated": 0.06541550136881183,
+      "source": "table/glorys12/reanalysis own/dS",
+      "match": true
+    },
+    {
+      "where": "S-L147",
+      "quantity": "ORAS5 fixed-circulation contrast p",
+      "printed": 0.46,
+      "printed_decimals": 2,
+      "regenerated": 0.45609957751960645,
+      "source": "table/oras5/reanalysis fixed/dS",
+      "match": true
+    },
+    {
+      "where": "S-L147",
+      "quantity": "GLORYS12V1 fixed-circulation contrast p",
+      "printed": 0.39,
+      "printed_decimals": 2,
+      "regenerated": 0.38645185803652315,
+      "source": "table/glorys12/reanalysis fixed/dS",
+      "match": true
+    },
+    {
+      "where": "L427",
+      "quantity": "EN4 fixed northward-limb trend oras5",
+      "printed": 0.026,
+      "printed_decimals": 3,
+      "regenerated": 0.026326372941001153,
+      "source": "table/oras5/EN4 salinity, fixed circulation (record-mean V_bc)/S_north",
+      "match": true
+    },
+    {
+      "where": "L427",
+      "quantity": "EN4 fixed southward-limb trend oras5",
+      "printed": 0.002,
+      "printed_decimals": 3,
+      "regenerated": 0.0020649458108281237,
+      "source": "table/oras5/EN4 salinity, fixed circulation (record-mean V_bc)/S_south",
+      "match": true
+    },
+    {
+      "where": "L427",
+      "quantity": "EN4 fixed northward-limb trend glorys12",
+      "printed": 0.028,
+      "printed_decimals": 3,
+      "regenerated": 0.02767981875925346,
+      "source": "table/glorys12/EN4 salinity, fixed circulation (record-mean V_bc)/S_north",
+      "match": true
+    },
+    {
+      "where": "L427",
+      "quantity": "EN4 fixed southward-limb trend glorys12",
+      "printed": 0.002,
+      "printed_decimals": 3,
+      "regenerated": 0.0020045922285386046,
+      "source": "table/glorys12/EN4 salinity, fixed circulation (record-mean V_bc)/S_south",
+      "match": true
+    },
+    {
+      "where": "Fig. 1c",
+      "quantity": "S-up (northward limb) GLORYS12V1 1993-2025",
+      "printed": 34.97,
+      "printed_decimals": 2,
+      "regenerated": 34.965176794752246,
+      "source": "jc_r2_G05_en4_table fig1c_record_mean_limbs/glorys12_1993_2025",
+      "match": true
+    },
+    {
+      "where": "Fig. 1c",
+      "quantity": "S-down (southward limb) GLORYS12V1 1993-2025",
+      "printed": 34.81,
+      "printed_decimals": 2,
+      "regenerated": 34.80789433951864,
+      "source": "jc_r2_G05_en4_table fig1c_record_mean_limbs/glorys12_1993_2025",
+      "match": true
+    },
+    {
+      "where": "Table S4(a) GLORYS12V1 (monthly mean construction)",
+      "quantity": "northward limb GLORYS12V1 1993-2025",
+      "printed": 34.951,
+      "printed_decimals": 3,
+      "regenerated": 34.95106141815675,
+      "source": "jc_r2_G05_en4_table fig1c_record_mean_limbs/glorys12_1993_2025",
+      "match": true
+    },
+    {
+      "where": "Table S4(a) GLORYS12V1 (monthly mean construction)",
+      "quantity": "southward limb GLORYS12V1 1993-2025",
+      "printed": 34.805,
+      "printed_decimals": 3,
+      "regenerated": 34.80487454676289,
+      "source": "jc_r2_G05_en4_table fig1c_record_mean_limbs/glorys12_1993_2025",
+      "match": true
+    },
+    {
+      "where": "Fig. 4e; L413",
+      "quantity": "upper 500 m share range, 4 cases (printed 83% to 92%)",
+      "printed": [
+        83,
+        92
+      ],
+      "printed_decimals": 0,
+      "regenerated": [
+        83.26287926054829,
+        91.8521277820739
+      ],
+      "source": "jc_r2_G05_en4_table fig4e_shares (from r1_salinification_structure.json)",
+      "match": true
+    },
+    {
+      "where": "L414",
+      "quantity": "upper 100 m share range, 4 cases (printed 42% to 58%)",
+      "printed": [
+        42,
+        58
+      ],
+      "printed_decimals": 0,
+      "regenerated": [
+        42.01115549879087,
+        57.790385923383646
+      ],
+      "source": "jc_r2_G05_en4_table fig4e_shares (from r1_salinification_structure.json)",
+      "match": true
+    },
+    {
+      "where": "L414-415",
+      "quantity": "eastern interior share range, 4 cases (printed 38% to 48%)",
+      "printed": [
+        38,
+        48
+      ],
+      "printed_decimals": 0,
+      "regenerated": [
+        37.680625256558635,
+        47.99777873010685
+      ],
+      "source": "jc_r2_G05_en4_table fig4e_shares (from r1_salinification_structure.json)",
+      "match": true
+    },
+    {
+      "where": "L416",
+      "quantity": "Cape Basin share range, 4 cases (printed 15% to 22%)",
+      "printed": [
+        15,
+        22
+      ],
+      "printed_decimals": 0,
+      "regenerated": [
+        14.609179917524104,
+        22.353948630345084
+      ],
+      "source": "jc_r2_G05_en4_table fig4e_shares (from r1_salinification_structure.json)",
+      "match": true
+    },
+    {
+      "where": "L417",
+      "quantity": "western boundary share range, 4 cases (printed 1% to 10%)",
+      "printed": [
+        1,
+        10
+      ],
+      "printed_decimals": 0,
+      "regenerated": [
+        0.5602674553914812,
+        10.255063596298168
+      ],
+      "source": "jc_r2_G05_en4_table fig4e_shares (from r1_salinification_structure.json)",
+      "match": true
+    },
+    {
+      "where": "Fig. 4e",
+      "quantity": "upper 500 m share, EN4 frozen, ORAS5 circulation (printed 90)",
+      "printed": 90,
+      "printed_decimals": 0,
+      "regenerated": 90.46656741077379,
+      "source": "jc_r2_G05_en4_table fig4e_shares (from r1_salinification_structure.json)",
+      "match": true
+    },
+    {
+      "where": "Fig. 4e",
+      "quantity": "upper 500 m share, ORAS5 own (printed 83)",
+      "printed": 83,
+      "printed_decimals": 0,
+      "regenerated": 83.26287926054829,
+      "source": "jc_r2_G05_en4_table fig4e_shares (from r1_salinification_structure.json)",
+      "match": true
+    },
+    {
+      "where": "Fig. 4e",
+      "quantity": "upper 500 m share, GLORYS12V1 own (printed 88)",
+      "printed": 88,
+      "printed_decimals": 0,
+      "regenerated": 88.25886431482857,
+      "source": "jc_r2_G05_en4_table fig4e_shares (from r1_salinification_structure.json)",
+      "match": true
+    },
+    {
+      "where": "Fig. 4e",
+      "quantity": "upper 500 m share, EN4 frozen, GLORYS12V1 circulation (printed 92)",
+      "printed": 92,
+      "printed_decimals": 0,
+      "regenerated": 91.8521277820739,
+      "source": "jc_r2_G05_en4_table fig4e_shares (from r1_salinification_structure.json)",
+      "match": true
+    },
+    {
+      "where": "L429-431",
+      "quantity": "EN4 implied F_ovS mean within 5% of oras5 reanalysis 2005-2024 mean",
+      "printed": -0.08,
+      "printed_decimals": 3,
+      "regenerated": -0.08042360813204431,
+      "source": "jc_r2_G05_en4_table F_ov_means_2005_2024/oras5; reanalysis mean -0.0770 Sv, relative difference 4.44 %",
+      "match": true
+    },
+    {
+      "where": "L429-431",
+      "quantity": "EN4 implied F_ovS mean within 1% of glorys12 reanalysis 2005-2024 mean",
+      "printed": -0.128,
+      "printed_decimals": 3,
+      "regenerated": -0.12842323864706268,
+      "source": "jc_r2_G05_en4_table F_ov_means_2005_2024/glorys12; reanalysis mean -0.1295 Sv, relative difference 0.83 %",
+      "match": true
+    }
+  ],
+  "fig4e_shares": {
+    "EN4 frozen, ORAS5 circulation": {
+      "upper_500m_share_pct": 90.46656741077379,
+      "upper_100m_share_pct": 57.790385923383646,
+      "total_northward_trend_PSU_per_decade": 0.026326372940997513,
+      "band_share_pct": {
+        "western boundary (west of 45 W)": 1.442514586455917,
+        "western interior (45 W to 20 W)": 31.489356266686098,
+        "eastern interior (20 W to 0)": 44.722273000658944,
+        "Cape Basin (east of 0)": 22.34585614619904
+      }
+    },
+    "EN4 frozen, GLORYS12V1 circulation": {
+      "upper_500m_share_pct": 91.8521277820739,
+      "upper_100m_share_pct": 51.88343494603918,
+      "total_northward_trend_PSU_per_decade": 0.027679818759250994,
+      "band_share_pct": {
+        "western boundary (west of 45 W)": 0.5602674553914812,
+        "western interior (45 W to 20 W)": 32.31190518995348,
+        "eastern interior (20 W to 0)": 44.77387872430996,
+        "Cape Basin (east of 0)": 22.353948630345084
+      }
+    },
+    "ORAS5 own, 2005-2024": {
+      "upper_500m_share_pct": 83.26287926054829,
+      "upper_100m_share_pct": 47.08992606939373,
+      "total_northward_trend_PSU_per_decade": 0.030900644131946625,
+      "band_share_pct": {
+        "western boundary (west of 45 W)": 6.3756001508988005,
+        "western interior (45 W to 20 W)": 25.48648018338567,
+        "eastern interior (20 W to 0)": 47.99777873010685,
+        "Cape Basin (east of 0)": 20.140140935608677
+      }
+    },
+    "GLORYS12V1 own, 2005-2024": {
+      "upper_500m_share_pct": 88.25886431482857,
+      "upper_100m_share_pct": 42.01115549879087,
+      "total_northward_trend_PSU_per_decade": 0.04211606222704671,
+      "band_share_pct": {
+        "western boundary (west of 45 W)": 10.255063596298168,
+        "western interior (45 W to 20 W)": 37.45513122961909,
+        "eastern interior (20 W to 0)": 37.680625256558635,
+        "Cape Basin (east of 0)": 14.609179917524104
+      }
+    }
+  },
+  "n_checks": 168,
+  "n_mismatch": 1
+}

@@ -13,13 +13,14 @@ Panel letters keep their meaning from the manuscript:
   c  Change at 34.5 S against change at 26.5 N, 1850-1900 to 2081-2100 (17 models).
   d  Mean F_ovS over 1950-1980 against the change at 26.5 N (21 models), with the
      least-squares line and its 95 per cent band of the mean, coloured by the
-     1850-1900 overturning strength at 26.5 N. The panel prints the Spearman rank
-     correlation (computed here from the plotted values, with a permutation p),
-     and the partial correlation of the JSON that holds that strength fixed.
+     1850-1900 overturning strength at 26.5 N, drawn in added-variable form: both
+     variables are residualised on that strength, the line is the slope through the
+     residuals (the partial regression coefficient), and the printed partial r with
+     its family-bootstrap interval is the one stored in the JSON.
 
 Every number written in the figure is read from the JSON at run time, except the
-Spearman correlation, the permutation p and the least-squares band of (d), which are
-computed here from the same plotted values. Writes
+residual line and its band of (d), which are computed here from the same plotted
+values. Writes
 PAPER_3_v2/figures_jclim/Fig7_models.{pdf,png} at final print size.
 Optional: --preview writes a 200 dpi check render to the figwork folder, and
 the numbers written into the figure go to a JSON log there for verification.
@@ -47,6 +48,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 from matplotlib.text import Text  # noqa: E402
 from matplotlib.transforms import Bbox  # noqa: E402
+from matplotlib.ticker import FuncFormatter, MaxNLocator  # noqa: E402
 
 import paper3jc_style as st  # noqa: E402
 
@@ -396,16 +398,20 @@ def main() -> None:
     ax.set_ylabel("Change at 34.5°S (Sv)")
     st.panel_label_pt(ax, "c")
     # Slope and correlation, from the same 17 models (JSON summary checks r).
-    r_c = float(np.corrcoef(x, yv)[0, 1])
+    # Printed slope and r are the stored fit of the plotted line (y on x, 17 models).
+    qfit = json.loads((AN / "jc_r2_Q3_fig7c_fit.json").read_text())["plotted_fit"]
+    r_c = float(qfit["r"])
+    slope_c = float(qfit["slope_ols_y_on_x"])
     summ_r = d["summary"]["dpsi34_vs_damoc26"]["r"]
     summ_n = d["summary"]["dpsi34_vs_damoc26"]["n"]
     LOG_NUMBERS["c_n"] = len(sub)
-    LOG_NUMBERS["c_slope"] = float(coef[0])
+    LOG_NUMBERS["c_slope"] = slope_c
+    LOG_NUMBERS["c_slope_check_polyfit"] = float(coef[0])
     LOG_NUMBERS["c_r"] = r_c
     LOG_NUMBERS["c_summary_r"] = summ_r
     LOG_NUMBERS["c_summary_n"] = summ_n
     # Upper-left corner is empty: the fit runs from lower left to upper right.
-    ax.text(-13.6, 4.6, f"slope {coef[0]:.2f}\nr = {sgn(r_c, 2)}",
+    ax.text(-13.6, 4.6, f"slope {slope_c:.2f}\nr = {sgn(r_c, 2)}",
             fontsize=7, ha="left", va="top", zorder=5)
     ax.text(1.9, 2.4, "1:1", fontsize=7, ha="right", va="bottom", color="0.35")
 
@@ -418,48 +424,50 @@ def main() -> None:
     cd = [r["amoc26_1850-1900"] for r in sub_d]
     n_d = len(xd)
     lo_c, hi_c = 5.0, 24.0       # colour range covers the data (5.93 to 23.98 Sv)
+    # Added-variable form: both variables with the 1850-1900 overturning at 26.5 N
+    # regressed out (intercept and slope). The slope of the residuals is the partial
+    # regression coefficient and their correlation is the partial r printed in the panel.
+    base_d = np.c_[np.ones(n_d), np.array(cd, dtype=float)]
+    xr = xd - base_d @ np.linalg.lstsq(base_d, xd, rcond=None)[0]
+    yr = yd - base_d @ np.linalg.lstsq(base_d, yd, rcond=None)[0]
     ax.axhline(0, color="black", lw=0.4, zorder=2)
-    # Least-squares line with the 95 per cent band of the fitted mean (t, n - 2 df).
-    b1, b0 = np.polyfit(xd, yd, 1)
-    xl = np.linspace(xd.min(), xd.max(), 100)
-    resid = yd - (b0 + b1 * xd)
-    s_res = np.sqrt(np.sum(resid ** 2) / (n_d - 2))
-    sxx = np.sum((xd - xd.mean()) ** 2)
-    se_mean = s_res * np.sqrt(1.0 / n_d + (xl - xd.mean()) ** 2 / sxx)
-    t_crit = stats.t.ppf(0.975, n_d - 2)
-    yl = b0 + b1 * xl
+    # Regression line through the residuals, with the 95 per cent band of the fitted
+    # mean (t with n - 3 df: two base terms and the slope are estimated).
+    b1 = float(np.sum(xr * yr) / np.sum(xr ** 2))
+    xl = np.linspace(xr.min(), xr.max(), 100)
+    resid = yr - b1 * xr
+    s_res = np.sqrt(np.sum(resid ** 2) / (n_d - 3))
+    sxx = np.sum(xr ** 2)
+    se_mean = s_res * np.sqrt(1.0 / n_d + xl ** 2 / sxx)
+    t_crit = stats.t.ppf(0.975, n_d - 3)
+    yl = b1 * xl
     ax.fill_between(xl, yl - t_crit * se_mean, yl + t_crit * se_mean,
                     color="0.45", alpha=0.25, lw=0, zorder=1)
     ax.plot(xl, yl, color="black", lw=0.8, zorder=2.5)
-    sc = ax.scatter(xd, yd, c=cd, cmap="cividis", s=11, edgecolors="black",
+    sc = ax.scatter(xr, yr, c=cd, cmap="cividis", s=11, edgecolors="black",
                     linewidths=0.4, zorder=3, vmin=lo_c, vmax=hi_c)
-    # Rank statistics: Spearman rho from the plotted values, permutation p (seeded).
-    rho, p_t = stats.spearmanr(xd, yd)
-    rng = np.random.default_rng(20261104)
-    rx, ry = stats.rankdata(xd), stats.rankdata(yd)
-    perm_rho = np.array([np.corrcoef(rx, rng.permutation(ry))[0, 1] for _ in range(20000)])
-    perm_p = float(np.mean(np.abs(perm_rho) >= abs(rho) - 1e-12))
     part = d["summary"]["partial_F_vs_damoc26_given_base"]
     n11 = json.loads((AN / "jc_n11_cmip6_relation.json").read_text())
     pb = n11["sets"]["26.5N_21"]["bootstrap_family_cluster"]["partial_r"]
     pr_pt, (pr_lo, pr_hi) = float(pb["point"]), [float(v) for v in pb["ci95"]]
-    ax.set_xlim(-14, 2)
-    ax.set_ylim(-0.3, 0.9)
-    ax.set_xticks([-12, -8, -4, 0])
-    ax.set_yticks([-0.2, 0, 0.2, 0.4])
-    ax.set_yticklabels([sgn(v, 1) if v else "0" for v in [-0.2, 0, 0.2, 0.4]])
-    ax.set_xlabel("Change at 26.5°N (Sv)")
-    ax.set_ylabel("$F_{\\mathrm{ovS}}$, 1950–1980 (Sv)")
+    xpad = 0.10 * (xr.max() - xr.min())
+    ypad = 0.10 * (yr.max() - yr.min())
+    ax.set_xlim(xr.min() - xpad, xr.max() + xpad)
+    ax.set_ylim(yr.min() - ypad, yr.max() + 3.2 * ypad)   # headroom for the statistic
+    ax.xaxis.set_major_locator(MaxNLocator(4))
+    ax.yaxis.set_major_locator(MaxNLocator(5))
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _p: sgn(v, 0) if abs(v) > 1e-9 else "0"))
+    ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _p: sgn(v, 1) if abs(v) > 1e-9 else "0"))
+    ax.set_xlabel("Residual change at 26.5°N (Sv)")
+    ax.set_ylabel("Residual $F_{\\mathrm{ovS}}$ (Sv)")
     st.panel_label_pt(ax, "d")
-    ax.text(1.9, 0.87, f"Spearman ρ = {sgn(rho, 2)}, n = {n_d}\n"
-            f"partial r = {sgn(pr_pt, 2)}, family bootstrap [{sgn(pr_lo, 2)}, {sgn(pr_hi, 2)}]",
-            fontsize=7, ha="right", va="top", linespacing=1.25, zorder=6)
+    ax.text(0.03, 0.97, f"partial r = {sgn(pr_pt, 2)}, n = {n_d}\n"
+            f"family bootstrap [{sgn(pr_lo, 2)}, {sgn(pr_hi, 2)}]",
+            transform=ax.transAxes, fontsize=7, ha="left", va="top",
+            linespacing=1.25, zorder=6)
     LOG_NUMBERS["d_n"] = n_d
-    LOG_NUMBERS["d_spearman_rho"] = float(rho)
-    LOG_NUMBERS["d_spearman_p_t"] = float(p_t)
-    LOG_NUMBERS["d_permutation_p"] = perm_p
-    LOG_NUMBERS["d_ls_slope"] = float(b1)
-    LOG_NUMBERS["d_ls_intercept"] = float(b0)
+    LOG_NUMBERS["d_partial_slope_residual"] = b1
+    LOG_NUMBERS["d_residual_check_r"] = float(np.corrcoef(xr, yr)[0, 1])
     LOG_NUMBERS["d_partial_family_bootstrap"] = [pr_pt, pr_lo, pr_hi]
     LOG_NUMBERS["d_partial_r_json"] = float(part["r"])
     LOG_NUMBERS["d_partial_p_json"] = float(part["p"])

@@ -1,0 +1,199 @@
+PAPER_3_v2 manifest
+===================
+
+Paper: "A widening limb salinity contrast accompanies the decline of the Atlantic
+overturning freshwater transport in ORAS5" (Rostami, Fallah, Hariri, Fu), revised
+for the Journal of Climate. Status of this file: 2026-11-05, round-2 revision.
+
+Repository: github.com/bijanf/ardp (public). Paths below are relative to the
+repository root. Checksums: PAPER_3_v2/analysis/checksums.sha256 (SHA-256 of every
+JSON and CSV file in PAPER_3_v2/analysis; check with
+"sha256sum -c PAPER_3_v2/analysis/checksums.sha256" from the repository root).
+Python packages: requirements-paper3.txt.
+
+Inputs
+------
+Input data are not in the repository; the data directory (data/, git-ignored) holds
+them. Inputs and access: see the data statement in the manuscript (Table S9).
+Stored intermediate fields are in data/results/ (paper3r1_section_*.nc and related).
+
+
+1. Main figures (generator outputs in figures_jclim/; the copies that Main.tex includes are in jclim/figures/)
+------------------------------------------------------
+
+Fig. 1  figures_jclim/Fig1_schematic.pdf (+ .png)
+        script:  scripts/plot_paper3jc_fig1_schematic.py
+        data:    data/results/paper3r1_section3d_glorys12.nc, paper3r1_section_glorys12.nc,
+                 EN4.2.2 monthly files (path set in the script)
+        JSON:    PAPER_3_v2/analysis/attribution.json
+
+Fig. 2  figures_jclim/Fig2_sign.pdf (+ .png)
+        script:  scripts/plot_paper3jc_fig2_sign.py
+        JSON:    PAPER_3_v2/analysis/attribution.json,
+                 PAPER_3_v2/analysis/latitude_sensitivity.json,
+                 PAPER_3_v2/analysis/r1_common_window.json
+
+Fig. 3  figures_jclim/Fig3_attribution.pdf (+ .png)
+        script:  scripts/plot_paper3jc_fig3_attribution.py
+        JSON:    PAPER_3_v2/analysis/attribution.json, stepfit.json, r1_cells.json,
+                 r1_grid_sensitivity.json, r1_step_adjusted.json
+
+Fig. 4  figures_jclim/Fig4_salinification.pdf (+ .png)
+        script:  scripts/plot_paper3jc_fig4_salinification.py
+        JSON:    PAPER_3_v2/analysis/r1_salinification_structure.json
+        data:    data/results/paper3r1_section_*.nc
+
+Fig. 5  figures_jclim/Fig5_en4.pdf (+ .png)
+        script:  scripts/plot_paper3jc_fig5_en4.py
+        JSON:    PAPER_3_v2/analysis/en4_depth_test.json, attribution.json,
+                 jc_r2_G05_en4_table.json (all EN4 rows and cases),
+                 jc_r2_G05_en4_fig_checks.json (printed-value checks)
+
+Fig. 6  figures_jclim/Fig6_cells.pdf (+ .png)
+        script:  scripts/plot_paper3jc_fig6_cells.py
+        JSON:    PAPER_3_v2/analysis/r1_cells.json
+        data:    data/results/paper3r1_cells_*.nc, paper3r1_section_*.nc
+
+Fig. 7  figures_jclim/Fig7_models.pdf (+ .png)
+        script:  scripts/plot_paper3jc_fig7_models.py
+        JSON:    PAPER_3_v2/analysis/r1_cmip6.json (per_model, reanalysis_windows, summary)
+        note:    the script writes figures_jclim/checks/fig7_numbers.json (not tracked)
+
+The figures_r1/ folder holds the earlier (round-1) versions of Figs. 1 to 7 and of the
+supplementary figures. They are made by scripts/plot_paper3r1_fig*.py and
+scripts/plot_paper3r1_si_figures.py and are kept for reference only.
+
+
+2. Supplement figures
+---------------------
+
+Supplement figure labels follow Supplement.tex. Generator outputs are in figures_jclim/
+(for the figures the paper cites) and figures_r1/ (earlier files).
+
+fig:si_sss_trends   FigS_sss_a, FigS_sss_b, FigS_sss_c
+        script:  NOT LOCATED. No script in the repository writes these names.
+                 scripts/plot_sss_trend_map.py writes figures/grl/fig_sss_trend_map*
+                 (a different folder). The panels need a script before regeneration.
+        data:    data/glorys12_global_sss, data/oras5 (SSS fields)
+        JSON:    none
+
+fig:si_pileup       FigS_pileup
+        script:  scripts/plot_paper3r1_si_figures.py
+        data:    data/results/pileup_wrapped_*.nc
+        JSON:    none read by the script (stored summaries: r1_pileup.json, pileup.json)
+
+fig:si_samba        FigS_samba
+        script:  scripts/plot_paper3r1_si_figures.py
+        data:    data/external/samba_moc_monthly.nc
+        JSON:    jc_r2_G10_obs26n_samba.json (numbers quoted in the text),
+                 jc_n10_samba.json (pair statistics)
+
+fig:si_amoc_anomalies   FigS_amoc26_anomalies
+        script:  scripts/plot_paper3r1_si_figures.py
+        data:    data/results/yearly_amoc26n_*.npz, data/external/rapid_moc_monthly.nc
+        JSON:    jc_r2_G10_obs26n_decline.json (quoted numbers)
+
+fig:si_rapid        FigS_rapid (Fig. S5)
+        script:  scripts/plot_paper3jc_figS_rapid.py (writes figures_r1/FigS_rapid.pdf and .png)
+        data:    data/external/rapid_moc_monthly.nc, data/results/oras5_moc_26N.nc,
+                 data/results/glorys12_moc_26N.nc
+        JSON:    jc_r2_figS_rapid_numbers.json (numbers printed in the figure and caption;
+                 written by the script); jc_r2_G10_obs26n_overlap_corr.json (overlap offsets,
+                 correlations, produced by scripts/analysis_paper3jc_r2_G10_obs26n_overlap_corr.py)
+
+fig:si_amoc_strength   FigS_amoc_strength
+        script:  NOT LOCATED. scripts/plot_amoc_strength_comparison.py writes
+                 figures/grl/fig_amoc_strength_26N (a different name and folder). Confirm before use.
+        JSON:    none located
+
+fig:si_trajectory   FigS_cmip6_trajectories
+        script:  scripts/plot_paper3r1_si_figures.py
+        JSON:    r1_cmip6.json
+
+fig:si_soda         FigS_soda
+        script:  scripts/plot_paper3r1_si_figures.py (writes figures_r1/FigS_soda)
+        data:    data/results/soda_f_ovs.nc
+        JSON:    jc_r2_figS_soda_numbers.json (written by the script); jc_r2_G04_removal_soda.json
+                 (the SODA interval and the four-month sampling; produced by
+                 scripts/analysis_paper3jc_r2_G04_removal_soda.py)
+
+fig:si_trend_sections   FigS_trend_sections
+        script:  scripts/plot_paper3r1_si_figures.py
+        data:    data/results/paper3r1_salinity_trend_section_*.nc
+        JSON:    none
+
+Extended Data (extended_data/, git-ignored by the new rules in .gitignore; not tracked):
+        ED2_section.pdf/.png    scripts/plot_paper3v2_ed2_section.py
+        ED1a_sss_trend_oras5.pdf, ED1b_sss_trend_glorys12.pdf
+                                script not located in the repository
+        These files are not tracked. Track them by adding a rule to .gitignore if they are
+        to be published with the repository.
+
+
+3. Supplement tables
+--------------------
+
+Generated tables (written by tools/jc_si_tables.py, which lives outside this repository
+in the manuscript working folder (outside this repository) and reads PAPER_3_v2/analysis/*.json;
+it is NOT committed. The generated .tex files are in jclim/ of the manuscript folder):
+
+tab:si_size          si_size.tex            JSON: jc_n04_ar_recalibration.json
+tab:si_steps         si_steps.tex           JSON: jc_n03_steps.json, jc_n15_oras5_early.json,
+                                                  jc_n23_argo_era.json
+tab:si_en4_timing    si_en4_timing.tex      JSON: jc_n01_en4_window.json
+tab:si_obs_compare   si_obs_compare.tex     JSON: jc_n01_en4_window.json, jc_n05_limb_levels_rg09.json,
+                                                  jc_n02_ratio.json, jc_n10_samba.json
+tab:si_cmip6_relation si_cmip6_relation.tex JSON: jc_n11_cmip6_relation.json, jc_n12_cmip6_forced.json
+
+Typed by hand (no generator):
+
+tab:si_trends        si_trends.tex          record means and trends at 34.5 S (hand-written)
+tab:si_products      Supplement.tex         ocean reanalyses used (hand-written)
+tab:si_sensitivity   Supplement.tex         sensitivity of section diagnostics (hand-written;
+                                            values from the JSON files named in CANONICAL_FACTS.md)
+
+Tables added by the round-2 revision (S2c, S3c, S3d, S4, S5f, S6, S7, S8, S9): the values are
+in the jc_r2_*.json files listed in PAPER_3_v2/CANONICAL_FACTS.md (addendum 7, sections 39 to 47)
+and in the note of each file (meta.script, meta.inputs). The map from each table to its JSON
+will be completed when the tables are in Supplement.tex.
+
+
+4. Stored analysis files (PAPER_3_v2/analysis/)
+-----------------------------------------------
+
+Every JSON file is listed with checksums in analysis/checksums.sha256.
+Producing scripts: each jc_r2_G*.json and jc_n*.json has meta.script (repository-relative)
+or the script name in its file name, scripts/analysis_paper3jc_<name>.py.
+
+Corrected or superseded stored files (see final_checks_keymap.json):
+  final_checks.json          not overwritten; key window_1993_2025 is the 1993 to 2017 ECCO record
+  r1_vertical_grid.json      no producing script; keys used/alternative mean centres/bounds by product
+  jc_n04_ar_recalibration.json  summary coverage and inflation are for the stylised configuration only
+  en4.json                   key reanalysis_same_window holds reanalysis salinity (pair B)
+  r1_stats_calibration.json  from the superseded calibration() in scripts/paper3r1_stats.py
+
+
+5. Known gaps
+-------------
+
+- data/rapid_moc.csv (in data/, not tracked) was an HTML page. It was replaced by a note.
+  The usable files are data/external/rapid_moc_monthly.nc and data/rapid_12month_mean.csv.
+  No script reads the old name.
+- Figure scripts not located: FigS_sss_a/b/c, FigS_amoc_strength, ED1a, ED1b.
+- Round-1 scripts that write to revision/ (a folder archived outside this repository):
+  scripts/analysis_obs_hybrid_dfs.py, analysis_paper3_r2_section_salinity_trend.py,
+  analysis_paper3_r2_decomposition_table.py, analysis_paper3_r2_quick_robustness.py,
+  analysis_paper3_r2_sss_trend_map.py, analysis_paper3_r2_pileup_trends.py,
+  analysis_paper3_r2_fig1b_diagnostics.py, analysis_r1_salinity_amoc_coupling.py,
+  analysis_r1_coupling_robustness.py, compute_cmip6_gsat_warming.py,
+  compute_leadlag_by_class.py, make_revision_trend_table.py, plot_obs_hybrid_dfs.py,
+  plot_paper3_r2_amoc_rate_scatter.py, plot_paper3v2_fig3_saltredist.py,
+  plot_paper3v2_fig4_cmip6.py, robustness_drop2005.py.
+  Their outputs are not in the repository. analysis_paper3_r2_number_audit.py and
+  analysis_paper3_r2_gate_checks.py were repointed to PAPER_3_v2/analysis.
+- Generator tools/jc_si_tables.py is outside the repository (see section 3).
+- RAPID DOI: the download used by scripts/download_rapid.py is release 48d0bf43-0598-ceb2-e063-7086abc062f1
+  (v2024.1a, covers 2004 to 2023), which is downloaded and cited (Moat2025RAPID, Table S11).
+  10.5285/33826d6e-801c-b0a7-e063-7086abc0b9db is v2023.1a and is unused.
+- Version strings and access dates for the input products are in Table S9 and must be
+  supplied by the authors.

@@ -37,7 +37,28 @@ PAPER_3_v2/sections/
 PAPER_3_v2/*submission*.zip
 paper3/
 
-PAPER_3_v2/
+# Paper 3 (revision): ignore the folder by default, track the analysis outputs, the figure
+# PDFs and PNGs and the manifest. Working notes, logs and caption sources stay ignored.
+PAPER_3_v2/*
+!PAPER_3_v2/analysis/
+!PAPER_3_v2/tables/
+!PAPER_3_v2/figures_jclim/
+!PAPER_3_v2/figures_r1/
+!PAPER_3_v2/MANIFEST.txt
+PAPER_3_v2/analysis/*
+!PAPER_3_v2/analysis/*.json
+!PAPER_3_v2/analysis/*.csv
+PAPER_3_v2/tables/*
+!PAPER_3_v2/tables/*.tex
+!PAPER_3_v2/analysis/checksums.sha256
+PAPER_3_v2/figures_jclim/*
+!PAPER_3_v2/figures_jclim/*.pdf
+!PAPER_3_v2/figures_jclim/*.png
+PAPER_3_v2/figures_jclim/contact_sheet.png
+PAPER_3_v2/figures_jclim/style_swatch.png
+PAPER_3_v2/figures_r1/*
+!PAPER_3_v2/figures_r1/*.pdf
+!PAPER_3_v2/figures_r1/*.png
 
 
 # data symlink in worktrees

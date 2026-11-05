@@ -40,6 +40,7 @@ from paper3v2_style import (  # noqa: E402
     panel_letter,
     set_style,
 )  # noqa: E402
+import paper3jc_style as jc  # noqa: E402
 
 RES = REPO / "data" / "results"
 AN = REPO / "PAPER_3_v2" / "analysis"
@@ -58,16 +59,46 @@ def save(fig, name):
     print("wrote", name)
 
 
+def fmt_sv(x: float) -> str:
+    """Signed value with a typographic minus sign, three decimals."""
+    return f"{x:+.3f}".replace("-", "−")
+
+
 def soda():
-    fig, ax = plt.subplots(figsize=(TWO_COL * 0.6, 2.2))
+    """SODA 3.15.2 annual F_ovS at 34.5 S over 1980 to 2022, with the record
+    mean and its interval from the paper's N_eff test (jc_r2_G04_removal_soda.json)
+    and the 1980 to 2021 sensitivity mean. The numbers are written to
+    PAPER_3_v2/analysis/jc_r2_figS_soda_numbers.json."""
+    g04 = json.loads((AN / "jc_r2_G04_removal_soda.json").read_text())
+    st = g04["soda_stored_annual_values"]["current_kernel_commit_c962ff3"]
+    lo, hi = st["mean_ci_Sv"]
+    mean = st["record_mean_Sv"]
     with xr.open_dataset(RES / "soda_f_ovs.nc") as ds:
-        ax.plot(
-            ds["year"],
-            ds["F_ovS"],
-            color=C_SODA,
-            lw=0.9,
-            label="SODA 3.15.2, annual fields",
-        )
+        f = ds["F_ovS"].to_series()
+    sens = float(f.loc[1980:2021].mean())
+    numbers = {
+        "window": [1980, 2022],
+        "n_years": int(f.loc[1980:2022].size),
+        "record_mean_Sv": mean,
+        "mean_ci_Sv_N_eff_test": [lo, hi],
+        "n_negative_years": int((f.loc[1980:2022] < 0).sum()),
+        "sensitivity_1980_2021_mean_Sv": sens,
+        "source": "data/results/soda_f_ovs.nc; jc_r2_G04_removal_soda.json",
+    }
+    (AN / "jc_r2_figS_soda_numbers.json").write_text(json.dumps(numbers, indent=1))
+
+    fig, ax = plt.subplots(figsize=(jc.TWO_COL, 2.7))
+    ax.plot(
+        f.index,
+        f.values,
+        color=C_SODA,
+        lw=1.0,
+        label=(
+            "SODA 3.15.2, annual fields, 1980–2022: mean "
+            f"{fmt_sv(mean)} Sv [{fmt_sv(lo)}, {fmt_sv(hi)}]\n"
+            f"1980–2021 sensitivity mean {fmt_sv(sens)} Sv"
+        ),
+    )
     for key, label, col in PROD:
         a = (
             xr.open_dataset(RES / f"paper3r1_section_{key}.nc")["F_ov"]
@@ -77,10 +108,14 @@ def soda():
         ax.plot(a["year"], a, color=col, lw=0.9, label=f"{label}, monthly fields")
     ax.axhline(0, color="0.5", lw=0.5)
     ax.set_xlim(1958, 2026)
+    ax.set_ylim(-0.18, 0.12)
     ax.set_xlabel("Year")
     ax.set_ylabel("$F_{\\mathrm{ovS}}$ (Sv)")
-    ax.legend(loc="lower left", fontsize=5.3, ncol=2)
-    save(fig, "FigS_soda")
+    ax.legend(loc="upper left", ncol=1, fontsize=7)
+    fig.savefig(FIG / "FigS_soda.pdf", bbox_inches="tight")
+    fig.savefig(FIG / "FigS_soda.png", bbox_inches="tight", dpi=600)
+    plt.close(fig)
+    print("wrote FigS_soda")
 
 
 def depth_fwd(z):
@@ -159,7 +194,7 @@ def amoc26_anomalies():
 
     oras5 = series["oras5"][2]
     ref = float(oras5.loc[1958:2009].mean())
-    fig, ax = plt.subplots(figsize=(TWO_COL * 0.7, 2.6))
+    fig, ax = plt.subplots(figsize=(jc.TWO_COL, 3.0))
     trends = {"reference_ORAS5_1958_2009_Sv": ref}
     handles = []
     for key, (label, col, s) in series.items():
@@ -199,9 +234,7 @@ def amoc26_anomalies():
     ax.axhline(0, color="0.5", lw=0.4)
     ax.set_xlabel("Year")
     ax.set_ylabel("Overturning anomaly at 26.5°N (Sv)")
-    ax.legend(
-        [h for h, _ in handles], [t for _, t in handles], loc="lower left", fontsize=5.2
-    )
+    ax.legend([h for h, _ in handles], [t for _, t in handles], loc="lower left", fontsize=7)
     save(fig, "FigS_amoc26_anomalies")
     (AN / "r1_amoc26_trends.json").write_text(json.dumps(trends, indent=1))
     print(json.dumps(trends, indent=1))
@@ -250,7 +283,7 @@ def samba():
 
 def cmip6_trajectories():
     d = json.loads((AN / "r1_cmip6.json").read_text())
-    fig, ax = plt.subplots(figsize=(TWO_COL * 0.7, 2.6))
+    fig, ax = plt.subplots(figsize=(jc.TWO_COL, 3.0))
     for r in d["per_model"]:
         f = RES / f"paper3r1_cmip6_{r['model']}.nc"
         if not f.exists():
@@ -276,7 +309,7 @@ def cmip6_trajectories():
         handles=[plt.Line2D([], [], color="0.55", lw=0.5, label="CMIP6 model")]
         + [plt.Line2D([], [], color=c, lw=1.4, label=lab) for _, lab, c in PROD],
         loc="lower left",
-        fontsize=5.3,
+        fontsize=7,
         ncol=2,
     )
     save(fig, "FigS_cmip6_trajectories")
@@ -334,13 +367,17 @@ def pileup():
 
 
 def main() -> None:
+    # Figures not revised in this pass keep the earlier style.
     set_style()
     FIG.mkdir(parents=True, exist_ok=True)
-    soda()
     trend_sections()
     samba()
-    cmip6_trajectories()
     pileup()
+    # Revised figures (FigS_soda, FigS_amoc26_anomalies, FigS_cmip6_trajectories)
+    # use the final-size journal style, with annotations of at least 7 pt.
+    jc.set_style()
+    soda()
+    cmip6_trajectories()
     amoc26_anomalies()
 
 

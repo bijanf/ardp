@@ -1,0 +1,197 @@
+{
+ "meta": {
+  "date": "2026-11-05",
+  "script": "scripts/analysis_paper3jc_r2_G04_removal_a68.py",
+  "action": "A68 (cluster C24)",
+  "inputs": [
+   "data/results/paper3r1_section3d_oras5.nc (velocity, stored salinity, grid)",
+   "data/results/paper3r1_section_{oras5,glorys12,ecco}.nc",
+   "data/oras5/vosaline_control_monthly_highres_3D_<yyyymm>_{CONS,OPER}_v0.1.nc (63 months, tracer rows j and j+1)",
+   "PAPER_3_v2/analysis/final_checks.json (read only, previous annual-mean estimator)"
+  ],
+  "seeds": null,
+  "replicates": null,
+  "sign_convention": "F_ovS northward-positive freshwater transport in Sv; F < 0 is a northward salt-flux deficit",
+  "units": {
+   "F": "Sv",
+   "T": "Sv",
+   "dS": "PSU",
+   "trend": "mSv per yr",
+   "pct": "percent of |F_base|"
+  },
+  "trend_test": "analysis_paper3v2_attribution.trend_stats (OLS, corrected N_eff, interval = inverse of the test)",
+  "removal": "uniform removal (baseline) for the placement test; proportional-to-|V| for the alternative block"
+ },
+ "placement_test_oras5": {
+  "velocity_row_index_j": 350,
+  "velocity_row_lat_deg": -34.56488037109375,
+  "tracer_row_j_lat_deg": -34.66775131225586,
+  "tracer_row_j1_lat_deg": -34.46187973022461,
+  "variants_63_months": {
+   "baseline": {
+    "mean_F_ov_Sv": -0.035194326527871106,
+    "mean_T_limb_Sv": 18.801096280040735,
+    "mean_dS_limb_PSU": 0.06105077797522134,
+    "mean_F_az_Sv": 0.33012479010549955,
+    "wet_cells_lost_vs_baseline_total": 0
+   },
+   "velocity_row_average": {
+    "mean_F_ov_Sv": -0.036037189397298316,
+    "mean_T_limb_Sv": 18.801096280040735,
+    "mean_dS_limb_PSU": 0.0625889330458881,
+    "mean_F_az_Sv": 0.3052906247737005,
+    "wet_cells_lost_vs_baseline_total": 0,
+    "change_vs_baseline": {
+     "mean_F_ov_difference_Sv": -0.0008428628694272106,
+     "mean_F_ov_signed_pct": -2.3948827910081762,
+     "mean_F_ov_magnitude_pct": 2.3948827910081762
+    }
+   },
+   "next_row": {
+    "mean_F_ov_Sv": -0.03688005226672554,
+    "mean_T_limb_Sv": 18.801096280040735,
+    "mean_dS_limb_PSU": 0.06412708811655372,
+    "mean_F_az_Sv": 0.28045645944190123,
+    "wet_cells_lost_vs_baseline_total": 0,
+    "change_vs_baseline": {
+     "mean_F_ov_difference_Sv": -0.001685725738854435,
+     "mean_F_ov_signed_pct": -4.7897655820163925,
+     "mean_F_ov_magnitude_pct": 4.7897655820163925
+    }
+   }
+  },
+  "subsample_summary": {
+   "design": "63 months, indices 0, 13, ..., 806 of the 816-month record (every 13th month)",
+   "n_months": 63,
+   "stored_full_record_baseline_mean_F_ov_Sv": -0.043271790581535706,
+   "stored_subsample_baseline_mean_F_ov_Sv": -0.035194326527871106,
+   "reconstructed_baseline_mean_F_ov_Sv": -0.035194326527871106,
+   "reconstructed_baseline_check_max_abs_diff_salinity_PSU": 0.0,
+   "velocity_row_average_mean_F_ov_Sv": -0.036037189397298316,
+   "signed_pct_of_mean": -2.3948827910081762,
+   "magnitude_pct_of_mean": 2.3948827910081762,
+   "monthly_change_pct_median": -2.525138531724023,
+   "monthly_change_pct_min": -102.61819109034029,
+   "monthly_change_pct_max": 0.8068252557108457,
+   "note": "trend change cannot be formed from 63 unevenly spaced months; the Supplement's trend change (about 1%) is not reproduced here"
+  }
+ },
+ "alternative_removal": {
+  "oras5": {
+   "product": "ORAS5",
+   "scheme": "net transport removed in proportion to |V_int(z)| (monthly estimator, Table S2(a))",
+   "estimator": "F = -(1/S0) sum_z q'_k (S_k - S0) on each monthly profile; annual means for trends",
+   "mean_T_Sv": 19.29539437858104,
+   "mean_dS_PSU": 0.07744353535418876,
+   "mean_F_ov_Sv": -0.045361261220105885,
+   "F_ov_trend_mSv_per_yr": -1.4048458105148947,
+   "F_ov_trend_ci_mSv_per_yr": [
+    -1.8321861957958758,
+    -0.9775054252339135
+   ],
+   "F_ov_trend_n_eff": 21.21199302857527,
+   "F_ov_trend_p_paper_test": 1.3852021843098186e-06,
+   "F_ov_trend_summarise_variant_mSv_per_yr": -1.4048458105148947,
+   "F_ov_trend_p_summarise_variant": 1.3852021843098186e-06,
+   "transport_share_T_term": 0.08011064577275587,
+   "transport_share_T_term_ci": [
+    0.035727217699927614,
+    0.14690309308742858
+   ],
+   "max_abs_c": 0.11135554550493278,
+   "uniform_removal_baseline": {
+    "mean_F_ov_Sv": -0.043271790581535706,
+    "F_ov_trend_mSv_per_yr": -1.4207059824989183,
+    "transport_share_T_term": 0.0747874098316596
+   }
+  },
+  "glorys12": {
+   "product": "GLORYS12V1",
+   "scheme": "net transport removed in proportion to |V_int(z)| (monthly estimator, Table S2(a))",
+   "estimator": "F = -(1/S0) sum_z q'_k (S_k - S0) on each monthly profile; annual means for trends",
+   "mean_T_Sv": 22.514462558440123,
+   "mean_dS_PSU": 0.14903004759565133,
+   "mean_F_ov_Sv": -0.09708472377566787,
+   "F_ov_trend_mSv_per_yr": -4.686998467351679,
+   "F_ov_trend_ci_mSv_per_yr": [
+    -44.50506556260346,
+    35.131068627900106
+   ],
+   "F_ov_trend_n_eff": 3.0,
+   "F_ov_trend_p_paper_test": 0.3751875422587102,
+   "F_ov_trend_summarise_variant_mSv_per_yr": -4.686998467351679,
+   "F_ov_trend_p_summarise_variant": 0.3751875422587102,
+   "transport_share_T_term": 0.01309572697214556,
+   "transport_share_T_term_ci": [
+    0.0009157582430390595,
+    0.24767941099072768
+   ],
+   "max_abs_c": 0.1879229891108055,
+   "uniform_removal_baseline": {
+    "mean_F_ov_Sv": -0.09525066564029849,
+    "F_ov_trend_mSv_per_yr": -4.725877092514741,
+    "transport_share_T_term": 0.012237406576092324
+   }
+  },
+  "ecco": {
+   "product": "ECCO-V4r4",
+   "scheme": "net transport removed in proportion to |V_int(z)| (monthly estimator, Table S2(a))",
+   "estimator": "F = -(1/S0) sum_z q'_k (S_k - S0) on each monthly profile; annual means for trends",
+   "mean_T_Sv": 14.658787040664073,
+   "mean_dS_PSU": 0.3191183964731299,
+   "mean_F_ov_Sv": -0.1383225328466702,
+   "F_ov_trend_mSv_per_yr": 0.1572814621798945,
+   "F_ov_trend_ci_mSv_per_yr": [
+    -0.7652244978228584,
+    1.0797874221826473
+   ],
+   "F_ov_trend_n_eff": 17.794630127296347,
+   "F_ov_trend_p_paper_test": 0.7222868119888299,
+   "F_ov_trend_summarise_variant_mSv_per_yr": 0.1572814621798945,
+   "F_ov_trend_p_summarise_variant": 0.7222868119888299,
+   "transport_share_T_term": 1.47560304181826,
+   "transport_share_T_term_ci": [
+    0.042008734547076376,
+    14.385864117376398
+   ],
+   "max_abs_c": 0.1122895648258405,
+   "uniform_removal_baseline": {
+    "mean_F_ov_Sv": -0.13213557055807046,
+    "F_ov_trend_mSv_per_yr": 0.1114005774276295,
+    "transport_share_T_term": 1.9142223420827853
+   }
+  }
+ },
+ "alternative_removal_previous_annual_mean_estimator": {
+  "oras5": {
+   "scheme": "net transport removed in proportion to |V| rather than area",
+   "mean_T_Sv": 19.29539437858104,
+   "mean_dS_PSU": 0.07744353535418912,
+   "mean_F_ov_Sv": -0.04106917313996599,
+   "T_trend_per_decade": -0.5086297597581728,
+   "dS_trend_per_decade": 0.027523672666749825,
+   "F_ov_trend_mSv_per_yr": -1.3731509411303304,
+   "transport_share": 0.08195974799307769
+  },
+  "glorys12": {
+   "scheme": "net transport removed in proportion to |V| rather than area",
+   "mean_T_Sv": 22.514462558440126,
+   "mean_dS_PSU": 0.14903004759565158,
+   "mean_F_ov_Sv": -0.09540820861696098,
+   "T_trend_per_decade": -0.14415132138213693,
+   "dS_trend_per_decade": 0.07283250475145517,
+   "F_ov_trend_mSv_per_yr": -4.663007665096383,
+   "transport_share": 0.013163103442171583
+  },
+  "ecco": {
+   "scheme": "net transport removed in proportion to |V| rather than area",
+   "mean_T_Sv": 14.658787040664075,
+   "mean_dS_PSU": 0.3191183964731295,
+   "mean_F_ov_Sv": -0.1336978785727112,
+   "T_trend_per_decade": -0.2545442453419842,
+   "dS_trend_per_decade": 0.002494869768383133,
+   "F_ov_trend_mSv_per_yr": 0.10731535631578804,
+   "transport_share": 2.162644862598596
+  }
+ }
+}

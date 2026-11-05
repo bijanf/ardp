@@ -1,0 +1,38 @@
+{
+ "id": "Q3_fig7c_fit",
+ "script": "scripts/analysis_paper3jc_r2_Q3_fig7c_fit.py",
+ "source": "PAPER_3_v2/analysis/r1_cmip6.json (per_model)",
+ "n_models": 17,
+ "models": [
+  "ACCESS-CM2",
+  "ACCESS-ESM1-5",
+  "CESM2",
+  "CMCC-CM2-SR5",
+  "CNRM-CM6-1",
+  "CanESM5",
+  "FGOALS-g3",
+  "FIO-ESM-2-0",
+  "GFDL-CM4",
+  "GISS-E2-1-G",
+  "HadGEM3-GC31-LL",
+  "IPSL-CM6A-LR",
+  "MIROC6",
+  "MPI-ESM1-2-HR",
+  "MPI-ESM1-2-LR",
+  "NESM3",
+  "UKESM1-0-LL"
+ ],
+ "units": {
+  "slope": "Sv per Sv",
+  "r": "dimensionless"
+ },
+ "plotted_fit": {
+  "x": "damoc26 (change at 26.5 N)",
+  "y": "dpsi34 (change at 34.5 S)",
+  "slope_ols_y_on_x": 0.9148774975512178,
+  "r": 0.9195322312805415
+ },
+ "reverse_fit_not_plotted": {
+  "slope_ols_x_on_y": 0.9242106474658763
+ }
+}

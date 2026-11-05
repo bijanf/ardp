@@ -1,0 +1,361 @@
+{
+ "meta": {
+  "date": "2026-11-05",
+  "script": "scripts/analysis_paper3jc_r2_G02_calibration_bootstrap.py",
+  "action": "A16 (cluster C03)",
+  "inputs": [
+   "PAPER_3_v2/analysis/jc_n04_ar_recalibration.json (series[*].fitted_ar2, fitted_arma11, paper_trend_test)",
+   "scripts/paper3r1_stats.py (trend_test_many, bias-corrected N_eff)",
+   "scripts/analysis_paper3jc_n04_ar_recalibration.py (Model, burn-in)"
+  ],
+  "seed": 20261104,
+  "seed_scheme": "SeedSequence(20261104).spawn(6), one child per (series, noise model); each child spawns one stream per 5,000-replicate chunk",
+  "replicates_per_case_and_version": 20000,
+  "n": 68,
+  "alpha": 0.05,
+  "null": "zero trend",
+  "units": "p-values dimensionless; noise coefficients of the stored ARMA convention, unit stationary variance",
+  "versions": {
+   "fixed": "noise coefficients fixed at the stored fit",
+   "refit": "two-stage parametric bootstrap with ARIMA refit of the same order on the OLS residuals of stage 1; non-stationary refits fall back to the stored fit"
+  },
+  "runtime_s": 1592.2
+ },
+ "cases": [
+  {
+   "variable": "F_ovS",
+   "window": [
+    1958,
+    2025
+   ],
+   "n": 68,
+   "noise_model": "AR(2)",
+   "stored_noise_ar": [
+    0.4023249104231823,
+    0.1423890075982222
+   ],
+   "stored_noise_ma": [],
+   "headline_value": -1.4207059824989183,
+   "headline_unit": "mSv per yr",
+   "headline_n_eff": 20.49011289138592,
+   "fixed_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.019299499944774316,
+    "size_at_nominal_5pct": 0.0924,
+    "size_mc_se": 0.0020477089636957687,
+    "headline_p": 1.5174647555478277e-06,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 7.862715406565279e-05
+   },
+   "refitted_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.024886990601742407,
+    "size_at_nominal_5pct": 0.08315,
+    "size_mc_se": 0.0019523841514927332,
+    "headline_p": 1.5174647555478277e-06,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 6.09742166030145e-05
+   },
+   "refit_fallbacks": 0,
+   "refit_fallback_fraction": 0.0,
+   "refit_ar_mean": [
+    0.35779743266557223,
+    0.08456530831823549
+   ],
+   "refit_ar_sd_across_replicates": [
+    0.12948056470012914,
+    0.1200890839609716
+   ],
+   "refit_ma_mean": [],
+   "refit_ma_sd_across_replicates": []
+  },
+  {
+   "variable": "F_ovS",
+   "window": [
+    1958,
+    2025
+   ],
+   "n": 68,
+   "noise_model": "ARMA(1,1)",
+   "stored_noise_ar": [
+    0.7349559372100395
+   ],
+   "stored_noise_ma": [
+    -0.3505258375877286
+   ],
+   "headline_value": -1.4207059824989183,
+   "headline_unit": "mSv per yr",
+   "headline_n_eff": 20.49011289138592,
+   "fixed_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.009057935037297586,
+    "size_at_nominal_5pct": 0.12755,
+    "size_mc_se": 0.0023588238329726955,
+    "headline_p": 1.5174647555478277e-06,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 0.0001675287744170618
+   },
+   "refitted_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.01892817893736349,
+    "size_at_nominal_5pct": 0.0886,
+    "size_mc_se": 0.002009353627413552,
+    "headline_p": 1.5174647555478277e-06,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 8.016961169742596e-05
+   },
+   "refit_fallbacks": 0,
+   "refit_fallback_fraction": 0.0,
+   "refit_ar_mean": [
+    0.5158122929974289
+   ],
+   "refit_ar_sd_across_replicates": [
+    0.3053345826169699
+   ],
+   "refit_ma_mean": [
+    -0.16854689707609521
+   ],
+   "refit_ma_sd_across_replicates": [
+    0.3128772465472822
+   ]
+  },
+  {
+   "variable": "T",
+   "window": [
+    1958,
+    2025
+   ],
+   "n": 68,
+   "noise_model": "AR(2)",
+   "stored_noise_ar": [
+    0.6948309219686507,
+    -0.15936782069715608
+   ],
+   "stored_noise_ma": [],
+   "headline_value": -0.05014478840073208,
+   "headline_unit": "Sv per yr",
+   "headline_n_eff": 13.84818843014048,
+   "fixed_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.1129359399693737,
+    "size_at_nominal_5pct": 0.01885,
+    "size_mc_se": 0.0009616308413315371,
+    "headline_p": 0.0036896165055814896,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 0.032669994216031235
+   },
+   "refitted_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.11280031844801687,
+    "size_at_nominal_5pct": 0.021,
+    "size_mc_se": 0.0010138786909685005,
+    "headline_p": 0.0036896165055814896,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 0.03270927384200444
+   },
+   "refit_fallbacks": 0,
+   "refit_fallback_fraction": 0.0,
+   "refit_ar_mean": [
+    0.6562446779476688,
+    -0.19372612663084504
+   ],
+   "refit_ar_sd_across_replicates": [
+    0.1265781946315836,
+    0.11761188569128582
+   ],
+   "refit_ma_mean": [],
+   "refit_ma_sd_across_replicates": []
+  },
+  {
+   "variable": "T",
+   "window": [
+    1958,
+    2025
+   ],
+   "n": 68,
+   "noise_model": "ARMA(1,1)",
+   "stored_noise_ar": [
+    0.23332237759436317
+   ],
+   "stored_noise_ma": [
+    0.5918320192536848
+   ],
+   "headline_value": -0.05014478840073208,
+   "headline_unit": "Sv per yr",
+   "headline_n_eff": 13.84818843014048,
+   "fixed_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.12846197523661246,
+    "size_at_nominal_5pct": 0.014,
+    "size_mc_se": 0.0008307827634225448,
+    "headline_p": 0.0036896165055814896,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 0.02872146795801351
+   },
+   "refitted_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.11622156740899536,
+    "size_at_nominal_5pct": 0.01725,
+    "size_mc_se": 0.000920663823010332,
+    "headline_p": 0.0036896165055814896,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 0.03174640118728875
+   },
+   "refit_fallbacks": 0,
+   "refit_fallback_fraction": 0.0,
+   "refit_ar_mean": [
+    0.17153936384125618
+   ],
+   "refit_ar_sd_across_replicates": [
+    0.17122490364126247
+   ],
+   "refit_ma_mean": [
+    0.626357664591912
+   ],
+   "refit_ma_sd_across_replicates": [
+    0.15119765268474522
+   ]
+  },
+  {
+   "variable": "dS",
+   "window": [
+    1958,
+    2025
+   ],
+   "n": 68,
+   "noise_model": "AR(2)",
+   "stored_noise_ar": [
+    0.4147040231357269,
+    0.17393069952557813
+   ],
+   "stored_noise_ma": [],
+   "headline_value": 0.0027756432993461546,
+   "headline_unit": "PSU per yr",
+   "headline_n_eff": 18.783384723496738,
+   "fixed_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.015328258436834982,
+    "size_at_nominal_5pct": 0.10255,
+    "size_mc_se": 0.0021451514806651766,
+    "headline_p": 1.476812587431182e-06,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 9.634575209681277e-05
+   },
+   "refitted_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.018914881676767394,
+    "size_at_nominal_5pct": 0.0921,
+    "size_mc_se": 0.0020447199074689914,
+    "headline_p": 1.476812587431182e-06,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 7.807675525906718e-05
+   },
+   "refit_fallbacks": 0,
+   "refit_fallback_fraction": 0.0,
+   "refit_ar_mean": [
+    0.36868771355651975,
+    0.11159013225016005
+   ],
+   "refit_ar_sd_across_replicates": [
+    0.12960879139228576,
+    0.12089283591753064
+   ],
+   "refit_ma_mean": [],
+   "refit_ma_sd_across_replicates": []
+  },
+  {
+   "variable": "dS",
+   "window": [
+    1958,
+    2025
+   ],
+   "n": 68,
+   "noise_model": "ARMA(1,1)",
+   "stored_noise_ar": [
+    0.7980932662363228
+   ],
+   "stored_noise_ma": [
+    -0.41194900053284994
+   ],
+   "headline_value": 0.0027756432993461546,
+   "headline_unit": "PSU per yr",
+   "headline_n_eff": 18.783384723496738,
+   "fixed_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.0038160089220489095,
+    "size_at_nominal_5pct": 0.16315,
+    "size_mc_se": 0.002612777042726761,
+    "headline_p": 1.476812587431182e-06,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 0.0003870044901882055
+   },
+   "refitted_coefficients": {
+    "n_valid": 20000,
+    "critical_p_5pct": 0.011828586348936467,
+    "size_at_nominal_5pct": 0.10845,
+    "size_mc_se": 0.002198733698063501,
+    "headline_p": 1.476812587431182e-06,
+    "headline_passes_calibrated_threshold": true,
+    "headline_p_over_critical": 0.00012485114821552326
+   },
+   "refit_fallbacks": 0,
+   "refit_fallback_fraction": 0.0,
+   "refit_ar_mean": [
+    0.5750085626928548
+   ],
+   "refit_ar_sd_across_replicates": [
+    0.2932630136907106
+   ],
+   "refit_ma_mean": [
+    -0.22546693304827653
+   ],
+   "refit_ma_sd_across_replicates": [
+    0.29899121020319847
+   ]
+  }
+ ],
+ "summary": {
+  "F_ovS AR(2)": {
+   "critical_p_5pct_refit": 0.024886990601742407,
+   "critical_p_5pct_fixed": 0.019299499944774316,
+   "headline_p": 1.5174647555478277e-06,
+   "headline_passes_refit": true,
+   "headline_passes_fixed": true
+  },
+  "F_ovS ARMA(1,1)": {
+   "critical_p_5pct_refit": 0.01892817893736349,
+   "critical_p_5pct_fixed": 0.009057935037297586,
+   "headline_p": 1.5174647555478277e-06,
+   "headline_passes_refit": true,
+   "headline_passes_fixed": true
+  },
+  "T AR(2)": {
+   "critical_p_5pct_refit": 0.11280031844801687,
+   "critical_p_5pct_fixed": 0.1129359399693737,
+   "headline_p": 0.0036896165055814896,
+   "headline_passes_refit": true,
+   "headline_passes_fixed": true
+  },
+  "T ARMA(1,1)": {
+   "critical_p_5pct_refit": 0.11622156740899536,
+   "critical_p_5pct_fixed": 0.12846197523661246,
+   "headline_p": 0.0036896165055814896,
+   "headline_passes_refit": true,
+   "headline_passes_fixed": true
+  },
+  "dS AR(2)": {
+   "critical_p_5pct_refit": 0.018914881676767394,
+   "critical_p_5pct_fixed": 0.015328258436834982,
+   "headline_p": 1.476812587431182e-06,
+   "headline_passes_refit": true,
+   "headline_passes_fixed": true
+  },
+  "dS ARMA(1,1)": {
+   "critical_p_5pct_refit": 0.011828586348936467,
+   "critical_p_5pct_fixed": 0.0038160089220489095,
+   "headline_p": 1.476812587431182e-06,
+   "headline_passes_refit": true,
+   "headline_passes_fixed": true
+  }
+ }
+}

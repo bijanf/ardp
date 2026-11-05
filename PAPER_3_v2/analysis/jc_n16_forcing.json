@@ -1,0 +1,269 @@
+{
+  "id": "N16",
+  "title": "Atmospheric forcing by period for ORAS5, GLORYS12V1, ECCO-V4r4 and SODA3.15.2",
+  "date_checked": "2026-11-04",
+  "method": "Literature and documentation check with WebSearch and WebFetch. A saved copy of the Zuo et al. (2019) PDF and of the CMEMS GLORYS12V1 Quality Information Document (issue 1.6) was read with pdftotext. No new numerical analysis was run, so no statistics are reported.",
+  "table": [
+    {
+      "product": "ORAS5",
+      "period": "1958-1978 (backward extension, spin-up)",
+      "forcing": "ERA-40",
+      "switch_year": 1979,
+      "status": "confirmed",
+      "sources": [
+        {
+          "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-oras5",
+          "quote": "consolidated product: uses reanalysis atmospheric forcing (ERA-40 until 1978 and ERA-Interim from 1979 to 2014)"
+        },
+        {
+          "url": "https://www.ecmwf.int/node/21039",
+          "quote": "Prior to 1979, the surface forcing fluxes are from the ERA-40 atmospheric reanalysis."
+        },
+        {
+          "url": "https://www.geo.uni-hamburg.de/service/icdc/data/ocean/easy-init-ocean/ecmwf-oras5-backward-extension.html",
+          "quote": "The first spin-up covers the 1958 to 1974 period, in a configuration similar to ORAP5 (ORAP5 initialization; ERA40 forcing without wave effects"
+        },
+        {
+          "url": "https://os.copernicus.org/articles/15/779/2019/os-15-779-2019.pdf",
+          "quote": "reanalyses for the period 1958-1979, conducted using either ERA40 (Uppala et al., 2005) or ERA20C (Poli et al., 2016) forcing (Sect. 2.2.1); Table 1: Forcing ERA-40 (before 1979)"
+        }
+      ],
+      "notes": "Zuo et al. Table 2 lists ERA20C only for the spin-up ensemble member INI2. The control member is initialised from INI1, which uses ERA40. ICDC (first spin-up) says ERA-40 forcing without wave effects, while Zuo Table 1 gives bulk formula plus wave forcing for the ORAS5 column. The wave-forcing status before 1979 is therefore unresolved between the sources. The 1975-1978 spin-up forcing is not named on the ICDC page."
+    },
+    {
+      "product": "ORAS5",
+      "period": "1979-2014 (Zuo: 1979-2015)",
+      "forcing": "ERA-Interim (Dee et al. 2011), bulk formula plus wave forcing",
+      "switch_year": 1979,
+      "status": "confirmed",
+      "sources": [
+        {
+          "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-oras5",
+          "quote": "consolidated product: uses reanalysis atmospheric forcing (ERA-40 until 1978 and ERA-Interim from 1979 to 2014)"
+        },
+        {
+          "url": "https://os.copernicus.org/articles/15/779/2019/os-15-779-2019.pdf",
+          "quote": "Forcing fields for ORAS5 are derived from the atmospheric reanalysis ERA-Interim (Dee et al., 2011) until 2015 and from the ECMWF operational NWP thereafter (Sect. 2.2.2); Table 1: ERA-Interim (1979-2015)"
+        },
+        {
+          "url": "https://www.ecmwf.int/node/21039",
+          "quote": "From the period 1979-2014, the surface forcing fluxes are from ERA-Interim reanalysis."
+        }
+      ],
+      "notes": "The end of the ERA-Interim period is 2014 in the CDS and ECMWF pages and 2015 in Zuo et al. (ambiguous for calendar 2015). The CDS consolidated stream ends in 2014. ERA5 is not named as an ORAS5 forcing in any source read, so the action-plan wording of S04 (ERA-Interim to ERA5) is not supported."
+    },
+    {
+      "product": "ORAS5",
+      "period": "2015-2025 (operational stream)",
+      "forcing": "ECMWF operational analysis / NWP (not an ERA reanalysis)",
+      "switch_year": 2015,
+      "status": "confirmed",
+      "sources": [
+        {
+          "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-oras5",
+          "quote": "It uses ECMWF operational atmospheric forcing and near real time observations. Operational product: 2015 to present"
+        },
+        {
+          "url": "https://www.ecmwf.int/node/21039",
+          "quote": "From 2015 onwards, OCEAN5 started to use surface forcing fluxes derived from the ECMWF operational NWP."
+        },
+        {
+          "url": "https://os.copernicus.org/articles/15/779/2019/os-15-779-2019.pdf",
+          "quote": "from the ECMWF operational NWP thereafter (Sect. 2.2.2); Table 1: ECMWF NWP (2015-present)"
+        }
+      ],
+      "notes": "The CDS entry gives an operational-analysis forcing for the operational product. Zuo et al. write that ORAS5 will be reprocessed with ERA-Interim forcing from 2015 onward (a plan in 2019). No source read confirms that this reprocessing has happened, so the operational stream is treated as ECMWF operational forcing."
+    },
+    {
+      "product": "GLORYS12V1",
+      "period": "1993 to end of 2018 (run from December 1991)",
+      "forcing": "ECMWF ERA-Interim reanalysis (3-hourly, Large and Yeager 2009 bulk formulae, satellite-corrected precipitation and radiation)",
+      "switch_year": 2019,
+      "status": "confirmed",
+      "sources": [
+        {
+          "url": "https://documentation.marine.copernicus.eu/QUID/CMEMS-GLO-QUID-001-030.pdf",
+          "quote": "The physical model component is the NEMO platform (v3.1) driven at the surface by ECMWF ERA-Interim reanalysis until end of 2018 and ERA5 reanalysis thereafter"
+        },
+        {
+          "url": "https://documentation.marine.copernicus.eu/QUID/CMEMS-GLO-QUID-001-030.pdf",
+          "quote": "footnote 1: In early 2019, the atmospheric forcing flux in GLORYS12V1 reanalysis was changed from ERAinterim to ERA5."
+        },
+        {
+          "url": "https://www.frontiersin.org/journals/earth-science/articles/10.3389/feart.2021.698876/full",
+          "quote": "driven at the surface by atmospheric conditions from the ECMWF ERA-Interim reanalysis (abstract); The ocean model is driven at the surface by the European Centre for Medium-Range Weather Forecasts (ECMWF) ERA-Interim atmospheric reanalysis (Dee et al., 2011)"
+        }
+      ],
+      "notes": "Lellouche et al. (2021) describe only ERA-Interim and do not mention the 2019 switch. The QUID (issue 1.6, November 2023, page 10 of 53) gives the switch. The QUID Table 2 forcing row for GLORYS12V1 reads 'identical to GLORYS2V4', and the GLORYS2V4 column carries 'ERA5 after January 2019'. The switch date is therefore early 2019 (January 2019 in Table 2)."
+    },
+    {
+      "product": "GLORYS12V1",
+      "period": "2019 onward (up to 2025 in the manuscript)",
+      "forcing": "ERA5 reanalysis",
+      "switch_year": 2019,
+      "status": "confirmed",
+      "sources": [
+        {
+          "url": "https://documentation.marine.copernicus.eu/QUID/CMEMS-GLO-QUID-001-030.pdf",
+          "quote": "ERA5 reanalysis thereafter; Table 2: ERA5 after January 2019; ERA5 without correction after 2019"
+        },
+        {
+          "url": "https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/description",
+          "quote": "The model component is the NEMO platform driven at surface by ECMWF ERA-Interim then ERA5 reanalyses for recent years. Temporal extent: 1 Jan 1993 to 22 Sep 2026"
+        }
+      ],
+      "notes": "The product page and the QUID disagree on the product identifier (GLOBAL_MULTIYEAR_PHY_001_030 on the product page; GLOBAL_REANALYSIS_PHY_001_030 in the QUID title; GLOBAL_ANALYSIS_FORECAST_001_030 in the QUID body text for GLORYS12V1). The product page metadata was last updated 30 November 2023, yet its temporal extent runs to 22 September 2026. The ERA5 period is not dated beyond 'recent years' on the product page. The QUID (line 171 of its text, issue 1.6) states the altimetry era as 1 January 1993 to 31 December 2022, which does not cover the manuscript window to 2025."
+    },
+    {
+      "product": "ECCO-V4r4",
+      "period": "1992-2017",
+      "forcing": "ERA-Interim (atmospheric pressure forcing and ERA-Interim based forcing with control adjustments)",
+      "switch_year": null,
+      "status": "partly confirmed",
+      "sources": [
+        {
+          "url": "https://ecco-group.org/docs/v4r4_user_guide.pdf (also https://ecco.jpl.nasa.gov/docs/v4r4_user_guide.pdf)",
+          "quote": "ECCO v4r4 is forced with high-frequency atmosphere pressure ... The atmosphere pressure is from ERA-Interim, filtered with a 3-year running mean (Sect. 4.4.1). The release covers 1992 through 2017 (Sect. 1)."
+        },
+        {
+          "url": "https://web.corral.tacc.utexas.edu/OceanProjects/ECCO/ECCOv4/Release3/other/input_forcing_unadjusted/README",
+          "quote": "the ERA-Interim forcing interpolated onto model grid ... YYYY is for a particular year from 1992 to 2015 (release 3 directory)"
+        }
+      ],
+      "notes": "The v4r4 user guide confirms ERA-Interim for the pressure forcing. The v4r4 ancillary forcing README (archive.podaac.earthdata.nasa.gov) redirected and its body could not be read, so the ERA-Interim source for winds and heat fluxes over 1992-2017 rests on the release-3 README and on search snippets. No ERA5 or JRA switch was found. The release-3 forcing directory covers 1992 to 2015, so 2016 to 2017 coverage in the release-4 forcing is not confirmed. The Forget et al. (2015) GMD citation was not read in full."
+    },
+    {
+      "product": "SODA3.15.2",
+      "period": "1980-2024+",
+      "forcing": "ERA5 (run code 3.15), COARE3.5 bulk formula, data assimilation version 2",
+      "switch_year": null,
+      "status": "confirmed from the SODA3 readme table; citation to Carton et al. (2018) not supported for this run",
+      "sources": [
+        {
+          "url": "https://www.soda.umd.edu/soda3/soda3_readme.htm",
+          "quote": "SODA3.15.2 | YES | ERA5 | COARE3.5 | 1980-2024+; '3.15' indicates ERA5 atmospheric forcing; '2' indicates data assimilation implemented with the COARE3.5 bulk formula"
+        },
+        {
+          "url": "https://www.geo.uni-hamburg.de/en/icdc/data/ocean/easy-init-ocean/soda-3x.html",
+          "quote": "SODA3.4.x (ERA-Int forcing) ... Period: 1980-2015 (ERA5 not mentioned on this page)"
+        },
+        {
+          "url": "https://doi.org/10.1175/jcli-d-18-0149.1",
+          "quote": "Carton, Chepurin and Chen (2018), SODA3: A New Ocean Climate Reanalysis, J. Climate 31, 6967-6983 (search snippet only; the forcing experiments described in its AGU abstract are MERRA2, ERA-Interim and ERA-20)"
+        }
+      ],
+      "notes": "A search snippet gave 1980-2021+ and COARE4 for the same row. The fetched page says 1980-2024+ and COARE3.5, so the fetched version is used. The readme cells were reassembled from a line-by-line rendering and should be checked against the page. SODA3.15.2 is not documented in the 2018 paper. The manuscript (Main.tex line 75) cites Carton2018 for SODA 3.15.2, so the citation needs the SODA3 ensemble documentation (NCAR dataset DOI 10.5065/HBTB-R521, from a search snippet) instead."
+    }
+  ],
+  "switch_dates": [
+    {
+      "product": "ORAS5",
+      "date": "1979 (January)",
+      "from": "ERA-40",
+      "to": "ERA-Interim",
+      "status": "confirmed"
+    },
+    {
+      "product": "ORAS5",
+      "date": "2015 (calendar year; consolidated stream ends 2014)",
+      "from": "ERA-Interim",
+      "to": "ECMWF operational analysis / NWP",
+      "status": "confirmed; boundary year ambiguous between 2014 and 2015 in the sources"
+    },
+    {
+      "product": "ORAS5",
+      "date": "none",
+      "from": "ERA-Interim",
+      "to": "ERA5",
+      "status": "not supported by any source read; S04 wording needs correction"
+    },
+    {
+      "product": "GLORYS12V1",
+      "date": "early 2019 (January 2019 in QUID Table 2)",
+      "from": "ERA-Interim",
+      "to": "ERA5",
+      "status": "confirmed (QUID issue 1.6, footnote 1)"
+    },
+    {
+      "product": "ECCO-V4r4",
+      "date": "none in 1992-2017",
+      "from": "ERA-Interim",
+      "to": "ERA-Interim",
+      "status": "no switch found; 2016-2017 coverage not confirmed"
+    },
+    {
+      "product": "SODA3.15.2",
+      "date": "none stated",
+      "from": "ERA5",
+      "to": "ERA5",
+      "status": "single forcing per the readme table"
+    }
+  ],
+  "manuscript_claims": [
+    {
+      "claim": "The three products share ERA atmospheric forcing, which links their errors (Main.tex line 198; PDF L573 to 575; Supplement line 63 says the forcing comes from the ERA reanalyses of ECMWF).",
+      "verdict": "Partly supported. ERA-Interim or ERA5 drives ORAS5 (1979-2014), GLORYS12V1 (1993-2018 ERA-Interim, 2019 onward ERA5) and ECCO-V4r4 (ERA-Interim) over 1993-2014. ORAS5 uses ECMWF operational analysis from 2015, so the shared ERA window in the 25-year overlap (1993-2017) is 1993-2014. The claim needs the qualifier 'over 1993 to 2014' and must not describe the ORAS5 2015 onward forcing as ERA.",
+      "action_items": [
+        "A43",
+        "A42"
+      ]
+    },
+    {
+      "claim": "In ORAS5 the decline is present in the consolidated stream alone (PDF L568 to 569).",
+      "verdict": "The consolidated stream spans 1958-2014 (CDS) and the forcing switches from ERA-40 to ERA-Interim in 1979 inside that stream. The forcing switch is a candidate contaminant of the 1979 break and of the early-versus-late comparison (RB18). The forcing change therefore must be considered in N15 (break scan 1962 to 1996 and the 1958-1978 and 1979-2025 split).",
+      "action_items": [
+        "N15",
+        "RB18"
+      ]
+    },
+    {
+      "claim": "Early segment dilutes the decline (RB18, action plan line 396).",
+      "verdict": "The 1958-1978 segment is ERA-40 forced (CDS, ECMWF, ICDC) and was built with a spin-up that the ICDC page describes as having no wave effects for 1958-1974. The forcing and physics difference is therefore confounded with the early-period effect. The RB18 rebuttal should state this. It does not change the RB18 numbers."
+    },
+    {
+      "claim": "Table S1 forcing switch dates (S04) 'ERA-40 to ERA-Interim and ERA-Interim to ERA5' (action plan line 285).",
+      "verdict": "Correction needed. For ORAS5 the second switch is ERA-Interim to ECMWF operational analysis/NWP in 2015, not ERA5. ERA5 applies to GLORYS12V1 from 2019 and to SODA3.15.2 throughout."
+    },
+    {
+      "claim": "Joined ORAS5 record: consolidated stream ends in 2014 (PDF L118 to 120); ts = 2015 treated as the operational start (PDF L267).",
+      "verdict": "Consistent with the CDS (consolidated 1958-2014, operational 2015 onward) and with the ECMWF page (operational NWP from 2015)."
+    },
+    {
+      "claim": "The SODA 3.15.2 citation Carton et al. (2018) (Main.tex line 75).",
+      "verdict": "The 2018 paper describes SODA3 ERA-Interim, MERRA2 and ERA-20 experiments, not an ERA5 run. The citation should be the SODA3 ensemble documentation. SODA is used only in Text S1 and enters no quantitative statement, so this is a citation fix."
+    },
+    {
+      "claim": "GLORYS12V1 (1993-2025) cited to Lellouche et al. (2021) (PDF L114 to 115).",
+      "verdict": "Lellouche et al. (2021) gives ERA-Interim only. The 2019 change to ERA5 is documented only in the CMEMS QUID. The GLORYS record therefore carries a forcing change at 2019 inside the Argo-era windows (2004 to 2024), which the step and trend scans do not currently test. Recommend the 2019 date as an extra candidate in the GLORYS step scan (N03) and the N01 end-year matrix."
+    }
+  ],
+  "unresolved": [
+    "Whether ORAS5 wave forcing was active in the ERA-40 period (1958-1978): the ICDC page says no wave effects in the first spin-up; Zuo Table 1 says bulk formula plus wave forcing for the ORAS5 column.",
+    "Calendar 2015 in ORAS5: ERA-Interim (Zuo, 'until 2015') or ECMWF operational (CDS, consolidated to 2014 and operational from 2015).",
+    "Whether ORAS5 2015 onward has been reprocessed with ERA-Interim forcing (planned in Zuo et al., 2019; not documented in the sources read).",
+    "GLORYS12V1 product identifier and the period to which the ERA5 forcing applies: the product page gives 1993 to 22 September 2026 with a metadata update in November 2023.",
+    "ECCO-V4r4 forcing for 2016-2017 and the wind and heat forcing source (ancillary README body not read).",
+    "SODA3.15.2 end year (2024 on the readme table versus 2021 in a search snippet) and the correct primary citation for the run.",
+    "Forget et al. (2015) and the Lellouche et al. (2021) full texts were read only in part; the statements quoted above come from the abstract and the QUID."
+  ],
+  "sources_read": [
+    "https://cds.climate.copernicus.eu/datasets/reanalysis-oras5 (CDS ORAS5 entry, DOI 10.24381/cds.67e8eeb7)",
+    "https://www.ecmwf.int/node/21039 (ECMWF OCEAN5 background page)",
+    "https://os.copernicus.org/articles/15/779/2019/os-15-779-2019.pdf (Zuo et al. 2019, Ocean Sci. 15, 779-808; Table 1 p. 781, Sect. 2.2.1-2.2.2 p. 782, Table 2 p. 783)",
+    "https://www.geo.uni-hamburg.de/service/icdc/data/ocean/easy-init-ocean/ecmwf-oras5-backward-extension.html (ICDC ORAS5 backward extension; redirected from cen.uni-hamburg.de)",
+    "https://documentation.marine.copernicus.eu/QUID/CMEMS-GLO-QUID-001-030.pdf (CMEMS QUID, issue 1.6, November 2023; saved copy read with pdftotext)",
+    "https://data.marine.copernicus.eu/product/GLOBAL_MULTIYEAR_PHY_001_030/description (CMEMS product page)",
+    "https://www.frontiersin.org/journals/earth-science/articles/10.3389/feart.2021.698876/full (Lellouche et al. 2021, Front. Earth Sci. 9, 698876)",
+    "https://ecco-group.org/docs/v4r4_user_guide.pdf (ECCO v4r4 user guide, 22 October 2020; saved copy read with pdftotext)",
+    "https://web.corral.tacc.utexas.edu/OceanProjects/ECCO/ECCOv4/Release3/other/input_forcing_unadjusted/README (ECCO release-3 unadjusted forcing README)",
+    "https://www.soda.umd.edu/soda3/soda3_readme.htm (SODA3 readme table)",
+    "https://www.geo.uni-hamburg.de/en/icdc/data/ocean/easy-init-ocean/soda-3x.html (ICDC SODA3 page)",
+    "https://doi.org/10.1175/jcli-d-18-0149.1 (Carton et al. 2018; search snippet only)"
+  ],
+  "not_retrieved": [
+    "https://documentation.marine.copernicus.eu/PUM/CMEMS-GLO-PUM-001-030.pdf (HTTP 404)",
+    "https://archive.podaac.earthdata.nasa.gov/.../README_ancillary_data_input_forcing_ECCO_V4r4.pdf (redirected; body not read)",
+    "https://www.soda.umd.edu/soda4/soda4_readme.htm (SODA4 only; not SODA3)",
+    "https://www.ecmwf.int ORAS5 documentation tab on CDS (not reachable as a text page)"
+  ]
+}

@@ -1,0 +1,382 @@
+{
+  "oras5": {
+    "label": "ORAS5",
+    "record": [
+      1958,
+      2025
+    ],
+    "frozen_field": {
+      "full": {
+        "dS_trend_per_decade": 0.027756432993461606,
+        "dS_p": 1.476812587429731e-06,
+        "dS_n_eff": 18.78338472349801,
+        "dS_min_detectable": 0.008090661682963851,
+        "dS_lag1": 0.5023382423497659,
+        "S_north_trend_per_decade": 0.025377203976033387,
+        "S_north_p": 3.510631011685738e-07,
+        "S_north_n_eff": 20.648351881730537,
+        "n_eff": 18.78338472349801,
+        "n_eff_at_floor": false,
+        "window_2005_2024": {
+          "dS_trend_per_decade": 0.05798516714149063,
+          "dS_ci_per_decade": [
+            -0.010924919654385305,
+            0.12689525393736656
+          ],
+          "dS_p": 0.08135614729013742,
+          "S_north_trend_per_decade": 0.05683739008745785,
+          "S_north_p": 0.09871196060939208
+        }
+      },
+      "salinity_only": {
+        "dS_trend_per_decade": 0.018505855921331582,
+        "dS_p": 0.45265681307260014,
+        "dS_n_eff": 3.0,
+        "dS_min_detectable": 0.20253105390393672,
+        "dS_lag1": 0.9274045491728833,
+        "S_north_trend_per_decade": 0.016977748160884515,
+        "S_north_p": 0.45649612228181835,
+        "S_north_n_eff": 3.0,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "window_2005_2024": {
+          "dS_trend_per_decade": 0.029461447175011944,
+          "dS_ci_per_decade": [
+            -0.29752493883023845,
+            0.35644783318026235
+          ],
+          "dS_p": 0.4570778462407144,
+          "S_north_trend_per_decade": 0.030881622612875578,
+          "S_north_p": 0.4402692609962469
+        }
+      },
+      "velocity_only": {
+        "dS_trend_per_decade": 0.010638293739482775,
+        "dS_p": 0.0006270604785919495,
+        "dS_n_eff": 28.35164688236274,
+        "dS_min_detectable": 0.005631964904672447,
+        "dS_lag1": 0.3577295896988649,
+        "S_north_trend_per_decade": 0.00965925716887905,
+        "S_north_p": 0.001640883573025851,
+        "S_north_n_eff": 26.699292347421018,
+        "n_eff": 28.35164688236274,
+        "n_eff_at_floor": false,
+        "window_2005_2024": {
+          "dS_trend_per_decade": 0.030435336611615,
+          "dS_ci_per_decade": [
+            -0.01657030353919677,
+            0.07744097676242677
+          ],
+          "dS_p": 0.17112117261067084,
+          "S_north_trend_per_decade": 0.027546371720878017,
+          "S_north_p": 0.20622344823592703
+        }
+      },
+      "salinity_share_of_dS": 0.6667231313797014,
+      "velocity_share_of_dS": 0.3832730863504243,
+      "share_residual": -0.04999621773012569
+    },
+    "composition_monthly": {
+      "sublimb_T_sum_Sv": 19.25597930806607,
+      "T_limb_Sv": 19.25597930806607,
+      "closure_gap_Sv": 0.0,
+      "S_north_trend_per_decade": 0.027105107260579027,
+      "water_mass_trend_per_decade": 0.03083552410421104,
+      "partition_trend_per_decade": -0.0031412519550365232,
+      "partition_share": 0.11589151538260391,
+      "residual_per_decade": -0.0005891648885954893,
+      "upper_T_trend_per_decade": -0.6716037968608185,
+      "upper_T_p": 0.0009745857244949912,
+      "abyssal_T_trend_per_decade": 0.1701559128534982,
+      "abyssal_T_p": 0.0006063338307894027,
+      "upper_S_trend_per_decade": 0.03830089783293224,
+      "upper_S_p": 2.6707801921210143e-09,
+      "mean_upper_T_Sv": 15.497115765389841,
+      "mean_abyssal_T_Sv": 3.7588635426762265,
+      "abyssal_frac_of_T": 0.19520500528901635
+    },
+    "alternative_removal": {
+      "scheme": "net transport removed in proportion to |V| rather than area",
+      "mean_T_Sv": 19.29539437858104,
+      "mean_dS_PSU": 0.07744353535418912,
+      "mean_F_ov_Sv": -0.04106917313996599,
+      "T_trend_per_decade": -0.5086297597581728,
+      "dS_trend_per_decade": 0.027523672666749825,
+      "F_ov_trend_mSv_per_yr": -1.3731509411303304,
+      "transport_share": 0.08195974799307769
+    },
+    "window_1993_2025": {
+      "S_north_trend_per_decade": 0.03101854680110304,
+      "S_north_p": 0.018595813389535303,
+      "S_north_n_eff": 10.677911033987607,
+      "dS_trend_per_decade": 0.0333017086150008,
+      "dS_p": 0.007670732965866303,
+      "F_ov_trend_mSv_per_yr": -1.4562047139460343,
+      "F_ov_p": 0.026635898048901235,
+      "transport_share": 0.19263040249990032
+    }
+  },
+  "glorys12": {
+    "label": "GLORYS12V1",
+    "record": [
+      1993,
+      2025
+    ],
+    "frozen_field": {
+      "full": {
+        "dS_trend_per_decade": 0.07330259717760634,
+        "dS_p": 0.33810617597772596,
+        "dS_n_eff": 3.0938024159716333,
+        "dS_min_detectable": 0.4736428942349096,
+        "dS_lag1": 0.6284859909726607,
+        "S_north_trend_per_decade": 0.07254219776010083,
+        "S_north_p": 0.35931898521243827,
+        "S_north_n_eff": 3.0,
+        "n_eff": 3.0938024159716333,
+        "n_eff_at_floor": false,
+        "window_2005_2024": {
+          "dS_trend_per_decade": 0.03540920377238377,
+          "dS_ci_per_decade": [
+            -0.002859985305329418,
+            0.07367839285009696
+          ],
+          "dS_p": 0.06541550136878685,
+          "S_north_trend_per_decade": 0.035132163008063995,
+          "S_north_p": 0.05858636465463308
+        }
+      },
+      "salinity_only": {
+        "dS_trend_per_decade": 0.06910977417092645,
+        "dS_p": 0.290783253565933,
+        "dS_n_eff": 3.0,
+        "dS_min_detectable": 0.4315284692298727,
+        "dS_lag1": 0.7462478310495578,
+        "S_north_trend_per_decade": 0.0686374710470602,
+        "S_north_p": 0.28712252752853074,
+        "S_north_n_eff": 3.0,
+        "n_eff": 3.0,
+        "n_eff_at_floor": true,
+        "window_2005_2024": {
+          "dS_trend_per_decade": 0.0418141409286151,
+          "dS_ci_per_decade": [
+            -0.3270645487883298,
+            0.41069283064556006
+          ],
+          "dS_p": 0.38635650273893113,
+          "S_north_trend_per_decade": 0.04212125710147555,
+          "S_north_p": 0.3788270861724542
+        }
+      },
+      "velocity_only": {
+        "dS_trend_per_decade": 0.007075696870536681,
+        "dS_p": 0.2813603747647247,
+        "dS_n_eff": 17.21312371267864,
+        "dS_min_detectable": 0.0134863410082749,
+        "dS_lag1": 0.20892577696752063,
+        "S_north_trend_per_decade": 0.0066347606228893885,
+        "S_north_p": 0.3092164828615136,
+        "S_north_n_eff": 15.336811385556718,
+        "n_eff": 17.21312371267864,
+        "n_eff_at_floor": false,
+        "window_2005_2024": {
+          "dS_trend_per_decade": -0.004382309407428413,
+          "dS_ci_per_decade": [
+            -0.03125225240969929,
+            0.022487633594842467
+          ],
+          "dS_p": 0.7251227926257395,
+          "S_north_trend_per_decade": -0.004896241247085088,
+          "S_north_p": 0.6950863049658818
+        }
+      },
+      "salinity_share_of_dS": 0.9428011671057027,
+      "velocity_share_of_dS": 0.09652723290817149,
+      "share_residual": -0.03932840001387421
+    },
+    "composition_monthly": {
+      "sublimb_T_sum_Sv": 22.532573385078486,
+      "T_limb_Sv": 22.53257338507849,
+      "closure_gap_Sv": -3.552713678800501e-15,
+      "S_north_trend_per_decade": 0.0734404531234646,
+      "water_mass_trend_per_decade": 0.07500018466187318,
+      "partition_trend_per_decade": -0.0024532026476036467,
+      "partition_share": 0.03340396938291542,
+      "residual_per_decade": 0.0008934711091950685,
+      "upper_T_trend_per_decade": -0.3023723614033947,
+      "upper_T_p": 0.5597577924684216,
+      "abyssal_T_trend_per_decade": 0.16391007952805844,
+      "abyssal_T_p": 0.6681342726261592,
+      "upper_S_trend_per_decade": 0.09430647691222396,
+      "upper_S_p": 0.10315196524908982,
+      "mean_upper_T_Sv": 17.686049879756798,
+      "mean_abyssal_T_Sv": 4.846523505321694,
+      "abyssal_frac_of_T": 0.21508965809165662
+    },
+    "alternative_removal": {
+      "scheme": "net transport removed in proportion to |V| rather than area",
+      "mean_T_Sv": 22.514462558440126,
+      "mean_dS_PSU": 0.14903004759565158,
+      "mean_F_ov_Sv": -0.09540820861696098,
+      "T_trend_per_decade": -0.14415132138213693,
+      "dS_trend_per_decade": 0.07283250475145517,
+      "F_ov_trend_mSv_per_yr": -4.663007665096383,
+      "transport_share": 0.013163103442171583
+    },
+    "window_1993_2025": {
+      "S_north_trend_per_decade": 0.07254219776010043,
+      "S_north_p": 0.35931898521243744,
+      "S_north_n_eff": 3.0,
+      "dS_trend_per_decade": 0.07330259717760576,
+      "dS_p": 0.33810617597782944,
+      "F_ov_trend_mSv_per_yr": -4.725877092514741,
+      "F_ov_p": 0.3693468344614078,
+      "transport_share": 0.012237406576092272
+    },
+    "step_fits_2004": {
+      "F_ov": {
+        "trend_mSv_per_yr": -2.0585820448279364,
+        "trend_se": 1.5831394424688625,
+        "trend_ci_mSv_per_yr": [
+          -5.776038518924638,
+          1.6588744292687663
+        ],
+        "trend_p": 0.23329755777152866,
+        "step_Sv": -0.06595493208825538,
+        "step_se": 0.03197784923466013,
+        "step_ci_Sv": [
+          -0.14104387212482683,
+          0.009134007948316064
+        ],
+        "step_p": 0.07668974919698672,
+        "n": 33,
+        "n_eff": 10.250635157403826,
+        "dof": 7.250635157403826
+      },
+      "dS_limb": {
+        "trend_mSv_per_yr": 2.9899282171444024,
+        "trend_se": 1.9729069283452128,
+        "trend_ci_mSv_per_yr": [
+          -1.3905836333575434,
+          7.370440067646348
+        ],
+        "trend_p": 0.1598144063914093,
+        "step_Sv": 0.10732456074250897,
+        "step_se": 0.03985076653150247,
+        "step_ci_Sv": [
+          0.018842558609112964,
+          0.19580656287590498
+        ],
+        "step_p": 0.02209742580827781,
+        "n": 33,
+        "n_eff": 13.266148832805992,
+        "dof": 10.266148832805992
+      },
+      "S_north": {
+        "trend_mSv_per_yr": 2.905266875503576,
+        "trend_se": 1.9106974833840973,
+        "trend_ci_mSv_per_yr": [
+          -1.3760905475880774,
+          7.1866242985952296
+        ],
+        "trend_p": 0.16060151548945323,
+        "step_Sv": 0.10753774444889283,
+        "step_se": 0.03859419733830738,
+        "step_ci_Sv": [
+          0.021058563574078232,
+          0.19401692532370743
+        ],
+        "step_p": 0.019955865748168065,
+        "n": 33,
+        "n_eff": 12.60173027589553,
+        "dof": 9.60173027589553
+      }
+    }
+  },
+  "ecco": {
+    "label": "ECCO-V4r4",
+    "record": [
+      1992,
+      2017
+    ],
+    "frozen_field": {
+      "full": {
+        "dS_trend_per_decade": 0.00313610078427745,
+        "dS_p": 0.7938683867604955,
+        "dS_n_eff": 10.488730994147293,
+        "dS_min_detectable": 0.026552919900560083,
+        "dS_lag1": 0.26881734312324185,
+        "S_north_trend_per_decade": 0.00506820045270812,
+        "S_north_p": 0.6370678571059231,
+        "S_north_n_eff": 10.370788082831968,
+        "n_eff": 10.488730994147293,
+        "n_eff_at_floor": false
+      },
+      "salinity_only": {
+        "dS_trend_per_decade": -0.005727011470056786,
+        "dS_p": 0.4160051103643822,
+        "dS_n_eff": 6.089799861404796,
+        "dS_min_detectable": 0.017435459331822514,
+        "dS_lag1": 0.42968860659836594,
+        "S_north_trend_per_decade": -0.00376442156508302,
+        "S_north_p": 0.5680116870662161,
+        "S_north_n_eff": 6.328696077647015,
+        "n_eff": 6.089799861404796,
+        "n_eff_at_floor": false
+      },
+      "velocity_only": {
+        "dS_trend_per_decade": 0.008813562529588563,
+        "dS_p": 0.590370739031219,
+        "dS_n_eff": 8.435410960139698,
+        "dS_min_detectable": 0.03746543091405421,
+        "dS_lag1": 0.3391688382698496,
+        "S_north_trend_per_decade": 0.008894744414143958,
+        "S_north_p": 0.5677002549692992,
+        "S_north_n_eff": 7.93378748895615,
+        "n_eff": 8.435410960139698,
+        "n_eff_at_floor": false
+      },
+      "salinity_share_of_dS": 1.8261567034990156,
+      "velocity_share_of_dS": 2.8103569163894666,
+      "share_residual": -3.636513619888482
+    },
+    "composition_monthly": {
+      "sublimb_T_sum_Sv": 14.583886096037334,
+      "T_limb_Sv": 14.58388609603734,
+      "closure_gap_Sv": -5.329070518200751e-15,
+      "S_north_trend_per_decade": 0.0052719493044025185,
+      "water_mass_trend_per_decade": 0.01875946283833793,
+      "partition_trend_per_decade": -0.01371927177295848,
+      "partition_share": 2.6023148138965864,
+      "residual_per_decade": 0.00023175823902306684,
+      "upper_T_trend_per_decade": -0.600640332534779,
+      "upper_T_p": 0.02206298447911081,
+      "abyssal_T_trend_per_decade": 0.3571883580501168,
+      "abyssal_T_p": 0.07385783983976144,
+      "upper_S_trend_per_decade": 0.02214146948518969,
+      "upper_S_p": 0.0511938668959182,
+      "mean_upper_T_Sv": 12.429895768008581,
+      "mean_abyssal_T_Sv": 2.1539903280287525,
+      "abyssal_frac_of_T": 0.1476965956703422
+    },
+    "alternative_removal": {
+      "scheme": "net transport removed in proportion to |V| rather than area",
+      "mean_T_Sv": 14.658787040664075,
+      "mean_dS_PSU": 0.3191183964731295,
+      "mean_F_ov_Sv": -0.1336978785727112,
+      "T_trend_per_decade": -0.2545442453419842,
+      "dS_trend_per_decade": 0.002494869768383133,
+      "F_ov_trend_mSv_per_yr": 0.10731535631578804,
+      "transport_share": 2.162644862598596
+    },
+    "window_1993_2025": {
+      "S_north_trend_per_decade": 0.0061040067040237615,
+      "S_north_p": 0.6038165934265717,
+      "S_north_n_eff": 9.84222800555241,
+      "dS_trend_per_decade": 0.0046508910163799684,
+      "dS_p": 0.7205370912284852,
+      "F_ov_trend_mSv_per_yr": 0.1276169954021331,
+      "F_ov_p": 0.7774555715650301,
+      "transport_share": 2.3759253849946464
+    }
+  }
+}

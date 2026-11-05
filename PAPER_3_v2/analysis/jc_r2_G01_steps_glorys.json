@@ -1,0 +1,134 @@
+{
+ "meta": {
+  "id": "jc_r2_G01_steps_glorys",
+  "date": "2026-11-05",
+  "script": "scripts/analysis_paper3jc_r2_G01_steps_glorys.py",
+  "action_ids": [
+   "A89"
+  ],
+  "cluster_ids": [
+   "C38"
+  ],
+  "inputs": [
+   "data/results/paper3r1_section_glorys12.nc",
+   "scripts/analysis_paper3v2_attribution.py (annual)",
+   "scripts/paper3r1_stats.py (regression_test, sieve_coefficients, step_design)"
+  ],
+  "specification": "y = a + b (t - mean t) + c I(t >= 2004), GLORYS12V1",
+  "window": [
+   1993,
+   2025
+  ],
+  "years_in_record": 33,
+  "steps": [
+   2004
+  ],
+  "span_years": 32.0,
+  "seed": 20261104,
+  "n_boot_sieve": 10000,
+  "units": {
+   "F_ovS trend": "mSv/yr",
+   "F_ovS step": "Sv",
+   "dS_limb trend": "PSU/decade",
+   "dS_limb step": "PSU",
+   "shares": "dimensionless fraction",
+   "n_eff": "effective sample size (bias-corrected lag-one)"
+  },
+  "share_definition": "step / (step + trend * span)",
+  "interval_definition": "sieve bootstrap 2.5 and 97.5 percentiles; analytic t intervals as ci_analytic",
+  "p_values": "present in JSON only, from regression_test with corrected N_eff"
+ },
+ "fits_OLS": {
+  "F_ovS": {
+   "trend": {
+    "value": -2.0585820448279364,
+    "ci_analytic": [
+     -5.776038518924638,
+     1.6588744292687663
+    ],
+    "unit": "mSv/yr",
+    "n_eff": 10.250635157403826,
+    "n_eff_at_floor": false,
+    "p": 0.23329755777152866
+   },
+   "step": {
+    "value": -0.06595493208825538,
+    "ci_analytic": [
+     -0.14104387212482683,
+     0.009134007948316064
+    ],
+    "unit": "Sv",
+    "n_eff": 10.250635157403826,
+    "n_eff_at_floor": false,
+    "p": 0.07668974919698672
+   },
+   "trend_change_over_record": -0.06587462543449396,
+   "step_share_point": 0.5003045851600753
+  },
+  "dS_limb": {
+   "trend": {
+    "value": 0.029899282171444025,
+    "ci_analytic": [
+     -0.013905836333575434,
+     0.07370440067646349
+    ],
+    "unit": "PSU/decade",
+    "n_eff": 13.266148832805992,
+    "n_eff_at_floor": false,
+    "p": 0.1598144063914093
+   },
+   "step": {
+    "value": 0.10732456074250897,
+    "ci_analytic": [
+     0.018842558609112964,
+     0.19580656287590498
+    ],
+    "unit": "PSU",
+    "n_eff": 13.266148832805992,
+    "n_eff_at_floor": false,
+    "p": 0.02209742580827781
+   },
+   "trend_change_over_record": 0.09567770294862088,
+   "step_share_point": 0.5286865219680725
+  }
+ },
+ "step_share_sieve": {
+  "F_ovS": {
+   "ci_sieve_2.5_97.5": [
+    0.12136099073603507,
+    1.1582483534645
+   ],
+   "median_of_draws": 0.5056943172568154,
+   "prob_outside_0_1": 0.0594,
+   "frac_draws_finite": 1.0,
+   "point": 0.5003045851600753,
+   "step_draws_ci_Sv_or_PSU": [
+    -0.11683832487559012,
+    -0.01728341401249409
+   ],
+   "trend_draws_ci_per_yr_native": [
+    -0.004571129687521564,
+    0.00045938872341688887
+   ]
+  },
+  "dS_limb": {
+   "ci_sieve_2.5_97.5": [
+    0.19797502652890708,
+    1.0630762966049006
+   ],
+   "median_of_draws": 0.5321019100899153,
+   "prob_outside_0_1": 0.0382,
+   "frac_draws_finite": 1.0,
+   "point": 0.5286865219680725,
+   "step_draws_ci_Sv_or_PSU": [
+    0.044346580224591474,
+    0.17403062930490606
+   ],
+   "trend_draws_ci_per_yr_native": [
+    -0.00028088305223148677,
+    0.006258641547922902
+   ]
+  }
+ },
+ "reproduction_note": "F_ovS step_share_point should equal step_fraction_of_fitted_change = 0.5003 in PAPER_3_v2/analysis/r1_step_adjusted.json (glorys12)"
+}
