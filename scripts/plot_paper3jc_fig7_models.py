@@ -478,6 +478,7 @@ def main() -> None:
     cax = ax_in(fig, 5.85, BOT_Y0, 0.08, BOT_H)
     cb = fig.colorbar(sc, cax=cax, ticks=[10, 15, 20])
     cb.ax.tick_params(labelsize=7, length=2)
+    cb.solids.set_rasterized(False)  # keep the colour bar a vector object in the PDF
     cb.outline.set_linewidth(0.4)
     # Colour-bar label horizontal, above the bar (7 pt).
     text_in(fig, 5.89, BOT_Y0 + BOT_H + 0.07, "Overturning at 26.5°N,\n1850–1900 (Sv)",
