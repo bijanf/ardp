@@ -6,6 +6,7 @@
 \label{tab:si_size}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tabular}{lrrrrr}
 \toprule
 Setting & Size, corrected (\%) & Size, uncorrected (\%) & Power, 0.5 MDT (\%) & Power, 1 MDT (\%) \\
@@ -47,6 +48,7 @@ Unstepped, correlation fixed at 0.5 (stylised; share, unitless) & 97.9 (0.2) & 0
 \(\Delta S\), ARMA(1,1), \(n_{\mathrm{eff}}=18.8\) & 0.0038 & 0.0118 & 16.3 & 10.8 & $1.5\times10^{-6}$ \\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \par\smallskip
 \begin{minipage}{0.95\linewidth}\footnotesize Size is the rejection rate of the trend test at the 5\% level under noise with no trend, in per cent, from 20{,}000 replicates per case. Corrected: the lag-one coefficient is bias-corrected (the paper's test); uncorrected: the raw lag-one coefficient. Ranges are the minimum and maximum over the grid or over the models stated. Power is the rejection rate when the trend equals 0.5 or 1 times the minimum detectable trend (MDT). Fitted noise models are chosen per series by the minimum AIC of the candidates on the trend residuals where marked (AIC). Panel (c): coverage is the share of the sieve bootstrap intervals (10,000 resamples per dataset, 5,000 datasets) that contain the true transport share, with its Monte Carlo standard error in brackets; the stylised row fixes the innovation correlation at 0.5 and is not a fitted noise model. The column of medians gives the median of the point estimates over the simulated datasets; the data values of the transport share are in Table~\ref{tab:si_sensitivity}(b). Panel (d): the critical p value is the 5\% quantile of the p values under zero trend (20,000 replicates per case, seed 20261104), with the noise coefficients fixed at the stored fit or refitted in a two-stage parametric bootstrap; size is the rejection rate at the nominal 5\% level; every headline p value lies below its calibrated threshold in both versions.\end{minipage}
 \end{table}
