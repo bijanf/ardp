@@ -156,6 +156,7 @@ def table_block(label, caption, header, rows, note, colspec, stretch=None):
              f"\\caption{{{caption}}}", f"\\label{{{label}}}", "\\footnotesize",
              "\\setlength{\\tabcolsep}{3pt}",
              *([f"\\renewcommand{{\\arraystretch}}{{{stretch}}}"] if stretch else []),
+             "\\begin{adjustbox}{max width=\\linewidth}",  # shrinks the table only when it is wider than the text
              f"\\begin{{tabular}}{{{colspec}}}", "\\toprule",
              header + " \\\\", "\\midrule"]
     ncols = len(colspec)
@@ -164,7 +165,7 @@ def table_block(label, caption, header, rows, note, colspec, stretch=None):
             lines.append(r)
         else:
             lines.append(tex_row(list(r) + [""] * (ncols - len(r))))
-    lines += ["\\bottomrule", "\\end{tabular}", "\\par\\smallskip",
+    lines += ["\\bottomrule", "\\end{tabular}", "\\end{adjustbox}", "\\par\\smallskip",
               f"\\begin{{minipage}}{{0.95\\linewidth}}\\footnotesize {note}\\end{{minipage}}",
               "\\end{table}", ""]
     return "\n".join(lines)
