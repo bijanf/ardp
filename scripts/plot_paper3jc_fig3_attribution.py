@@ -12,7 +12,7 @@ r1_step_adjusted.json).
     label (a). The table in the lower axes gives the own-record fractional rates
     per decade of F_ovS and of T.
 (b) Trend of F_ovS (total, circle) with its transport term (diamond) and
-    salinity term (square), 95 per cent intervals, by window and product. Terms
+    contrast term (square), 95 per cent intervals, by window and product. Terms
     use the TERM_STYLE greys; product group labels are black. Filled marker and
     solid interval: the interval excludes zero. Open marker and dotted interval:
     it includes zero. A pale marker with no interval: the effective sample size
@@ -20,9 +20,12 @@ r1_step_adjusted.json).
 (c) Transport share of the change over all non-overlapping epoch pairs, one
     horizontal strip per product on a 0 to 1.05 axis: median (dot), 90th and
     95th percentiles (ticks), maximum (cross). Pair count and share below 0.25
-    are printed under each strip.
-(d) Transport share of the trend with 95 per cent intervals under each
-    robustness test (unchanged in content).
+    are printed under each strip. The GLORYS12V1 strip is grey and not
+    interpreted.
+(d) Transport share of the F_ovS trend with 95 per cent intervals under each
+    robustness test. ORAS5 carries the unstepped record, the 2015-only and the
+    joint 2004 and 2015 step specifications, with sieve intervals (jc_r2_G01).
+    GLORYS12V1 shares are grey and not interpreted.
 
 Writes PAPER_3_v2/figures_jclim/Fig3_attribution.{pdf,png} at 6.5 in wide.
 """
@@ -57,9 +60,10 @@ PM_ORAS = st.PRODUCT_MARKERS["ORAS5"]
 PM_GLO = st.PRODUCT_MARKERS["GLORYS12V1"]
 TERM_OF = {"total": "total", "T": "transport", "S": "salinity"}
 
-# An interval whose effective sample size is below this value sits at the floor
-# of the fit (n_eff = 3, two parameters); such intervals are not drawn.
-NEFF_FLOOR = 3.5
+# An interval whose effective sample size is at this floor (n_eff = 3, one
+# degree of freedom) is not drawn; values above the floor keep their interval.
+NEFF_FLOOR = 3.0
+GREY_NI = "0.62"          # GLORYS12V1 shares in (c) and (d): not interpreted
 
 # Layout, inches from the top-left corner of the figure.
 KEY_H = 0.52
@@ -69,7 +73,7 @@ C_LEFT, C_W, C_H = 5.10, 1.30, 2.00
 B_TOP, B_LEFT, B_W = 3.30, 1.45, 4.85
 B_PITCH, B_GROUP = 0.215, 0.10
 D_TOP, D_LEFT, D_W = 6.07, 2.45, 3.85
-D_PITCH = 0.135
+D_PITCH = 0.125
 
 YLO_A, YHI_A = -150.0, 200.0
 
@@ -109,7 +113,8 @@ def load():
     grid = json.loads((AN / "r1_grid_sensitivity.json").read_text())
     step = json.loads((AN / "r1_step_adjusted.json").read_text())
     rates = json.loads((AN / "stepfit.json").read_text())
-    return d, cells, grid, step, rates
+    steps_oras5 = json.loads((AN / "jc_r2_G01_steps_oras5.json").read_text())
+    return d, cells, grid, step, rates, steps_oras5
 
 
 # ------------------------------------------------------------------ key
@@ -134,7 +139,7 @@ def draw_key(fig) -> None:
     txt(1.88, y1, "GLORYS12V1")
     txt(2.80, y1, "Terms (b)")
     for term, x, label in (("total", 3.45, "total $F_{\\mathrm{ovS}}$"),
-                           ("salinity", 4.62, "salinity $\\Delta S$"),
+                           ("salinity", 4.62, "contrast $\\Delta S$"),
                            ("transport", 5.64, "transport $T$")):
         mk(x, y1, **st.term_marker(term, True, ms=3.8))
         txt(x + 0.11, y1, label)
@@ -158,7 +163,7 @@ def draw_key(fig) -> None:
     txt(2.60, y3, "maximum")
     ax.plot([3.30, 3.54], [y3, y3], color="0.35", lw=0.7, ls=st.LS_REFERENCE, clip_on=False)
     txt(3.64, y3, "one quarter")
-    txt(4.55, y3, "colour: product, as in (a) and (d)")
+    txt(4.55, y3, "grey: GLORYS12V1, not interpreted")
 
 
 # ------------------------------------------------------------------ panel (a)
@@ -233,7 +238,7 @@ def panel_c(fig, d):
     ax.axvline(0.25, color="0.35", lw=0.7, ls=st.LS_REFERENCE, zorder=1)
     ax.text(0.25, C_H + 0.05, "one quarter", fontsize=7, ha="center", va="bottom",
             color="0.25")
-    strips = (("oras5", "ORAS5", C_ORAS, 1.60), ("glorys12", "GLORYS12V1", C_GLO, 0.62))
+    strips = (("oras5", "ORAS5", C_ORAS, 1.60), ("glorys12", "GLORYS12V1", GREY_NI, 0.62))
     for key, name, colour, y in strips:
         c = d[key]["census"]
         med = c["share_T_sym_median"]
@@ -243,8 +248,8 @@ def panel_c(fig, d):
         n = int(c["n_pairs_usable"])
         share_below = float(c["frac_share_below_0p25"])
         ax.plot([0, 1.05], [y, y], color="0.85", lw=0.6, zorder=1)
-        ax.text(0.0, y + 0.28, name, fontsize=7, fontweight="bold", color="black",
-                ha="left", va="bottom")
+        ax.text(0.0, y + 0.28, name, fontsize=7, fontweight="bold",
+                color="black" if key == "oras5" else "0.4", ha="left", va="bottom")
         ax.plot([med], [y], marker="o", ms=4.2, mfc=colour, mec=colour, mew=0.6, ls="none",
                 zorder=4)
         for p in (p90, p95):
@@ -268,7 +273,7 @@ def panel_c(fig, d):
 def interval_resolved(c: dict, term: str) -> bool:
     """A term has a usable interval when its effective sample size is above the floor."""
     key = {"total": "n_eff_total", "T": "n_eff_T", "S": "n_eff_S"}[term]
-    return float(c[key]) >= NEFF_FLOOR
+    return float(c[key]) > NEFF_FLOOR + 1e-9
 
 
 def draw_interval(ax, yy, est, lo, hi, term_key, sig, xl, xr):
@@ -350,8 +355,11 @@ def panel_b(fig, d):
                 sig = not (lo <= 0.0 <= hi)
             if lo < xl or hi > xr:
                 outside.append((name, c["window"], term, lo, hi))
-                ax.text(xr + 0.12, yy, f"{sgn(lo, 0)} to {sgn(hi, 0)}", fontsize=7,
-                        ha="left", va="center", clip_on=False)
+                # Printed inside the right end of the axis, on a white halo, so that
+                # the label stays within the figure width.
+                ax.text(xr - 0.10, yy, f"{sgn(lo, 0)} to {sgn(hi, 0)}", fontsize=7,
+                        ha="right", va="center", zorder=6,
+                        bbox=dict(fc="white", ec="none", pad=0.4))
             draw_interval(ax, yy, est, lo, hi, term_key, sig, xl, xr)
 
     # Key numbers of the full ORAS5 record, printed beside the zero line.
@@ -383,13 +391,25 @@ def panel_b(fig, d):
 
 
 # ------------------------------------------------------------------ panel (d)
-def panel_d(fig, d, cells, grid, step):
+def g01_share(entry: dict) -> dict:
+    """Share of an ORAS5 specification from jc_r2_G01 (sieve interval)."""
+    return {
+        "share_T_point": entry["share_point"],
+        "share_T_ci": entry["share_ci_sieve_2.5_97.5"],
+        "total_resolved": bool(entry["F_trend"]["p"] < 0.05),
+    }
+
+
+def panel_d(fig, d, cells, grid, steps_oras5):
+    spec = steps_oras5["A11_transport_share"]
     scan = d["oras5"]["start_year_scan"]
     resolved_starts = [s for s in scan if s["p_total"] < 0.05]
     smin = min(s["start"] for s in resolved_starts)
     smax = max(s["start"] for s in resolved_starts)
     tests = [
-        ("baseline, own record", lambda k: d[k]["continuous"]["own record"]),
+        ("unstepped, own record",
+         lambda k: g01_share(spec["unstepped"]) if k == "oras5"
+         else d[k]["continuous"]["own record"]),
         ("Argo era", lambda k: d[k]["continuous"]["argo"]),
         ("upper cell only", lambda k: cells[k]["windows"]["own"]["upper_cell_attribution"]),
         ("$\\Psi_{\\max}$ from surface",
@@ -399,7 +419,10 @@ def panel_d(fig, d, cells, grid, step):
         ("removal in proportion to $|V|$", lambda k: grid[k]["_absV"]),
         ("thickness from level centres", lambda k: grid[k]["_centres"]),
         ("bottom cells at one fifth", lambda k: grid[k]["_bottom0p2"]),
-        ("observing-system step fitted", lambda k: step[k]),
+        ("2015 step only",
+         lambda k: g01_share(spec["2015_only"]) if k == "oras5" else None),
+        ("2004 and 2015 steps, joint",
+         lambda k: g01_share(spec["joint_2004_2015"]) if k == "oras5" else None),
         ("consolidated stream only",
          lambda k: d[k]["consolidated_only"]["continuous"] if k == "oras5" else None),
         (f"start years {smin}–{smax}", lambda k: "scan" if k == "oras5" else None),
@@ -426,6 +449,8 @@ def panel_d(fig, d, cells, grid, step):
                                               ("glorys12", C_GLO, "GLORYS12V1"))):
         off = -0.035 if j == 0 else 0.035
         pm = st.PRODUCT_MARKERS[label]
+        if key == "glorys12":
+            colour = GREY_NI
         for y0, (name, getter) in zip(yy, tests, strict=False):
             try:
                 r = getter(key)
@@ -474,7 +499,7 @@ def panel_d(fig, d, cells, grid, step):
 
 def main() -> None:
     st.set_style()
-    d, cells, grid, step, rates = load()
+    d, cells, grid, step, rates, steps_oras5 = load()
 
     fig = plt.figure(figsize=(W, H))
     draw_key(fig)
@@ -488,7 +513,7 @@ def main() -> None:
     ax_b, incons, unresolved, outside = panel_b(fig, d)
     st.panel_label_pt(ax_b, "b")
 
-    ax_d, resolved_starts = panel_d(fig, d, cells, grid, step)
+    ax_d, resolved_starts = panel_d(fig, d, cells, grid, steps_oras5)
     st.panel_label_pt(ax_d, "d")
 
     small = st.check_min_fontsize(fig)
@@ -498,7 +523,7 @@ def main() -> None:
     print("panel (b) significance rule mismatches (total: p<0.05 vs CI excludes 0):")
     for row in incons:
         print("  ", row)
-    print(f"panel (b) rows without interval (n_eff below {NEFF_FLOOR}):")
+    print(f"panel (b) rows without interval (n_eff at or below {NEFF_FLOOR}):")
     for row in unresolved:
         print("  ", row)
     print("panel (b) bounds printed beyond the axis:")

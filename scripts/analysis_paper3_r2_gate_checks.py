@@ -34,7 +34,9 @@ from plot_amoc_rate_comparison import compute_rate, load_cmip6  # noqa: E402
 from ardp.models import models_sorted_by_fovs  # noqa: E402
 
 RESULTS_DIR = REPO / "data" / "results"
-OUT_DIR = REPO / "revision" / "rev_papaer3_02" / "results"
+# Repointed 2026-11-05: the former revision/rev_papaer3_02 folder is archived outside this
+# worktree; outputs (JSON and GATE_CHECKS.md) go to PAPER_3_v2/analysis.
+OUT_DIR = REPO / "PAPER_3_v2" / "analysis"
 
 RNG = np.random.default_rng(20260804)
 N_BOOT = 10_000

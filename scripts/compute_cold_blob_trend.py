@@ -5,12 +5,13 @@ Cold-Blob panel of Figure 1.
 
 Data source: HadISST monthly SST, Rayner et al. (2003), public Met Office
 Hadley Centre product.  The file is staged at
-/home/bijanf/Documents/NEW_Theory/data/external/hadisst/HadISST_sst.nc;
-this script reads from there directly (no copy required).
+data/external/hadisst/HadISST_sst.nc (or the path in the HADISST_SST environment
+variable); this script reads the file directly (no copy required).
 """
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import numpy as np
@@ -19,7 +20,9 @@ from scipy import stats
 
 REPO = Path(__file__).resolve().parents[1]
 HADISST = Path(
-    "/home/bijanf/Documents/NEW_Theory/data/external/hadisst/HadISST_sst.nc"
+    os.environ.get(
+        "HADISST_SST", str(REPO / "data" / "external" / "hadisst" / "HadISST_sst.nc")
+    )
 )
 OUT = REPO / "data" / "results" / "cold_blob_trend_hadisst.nc"
 

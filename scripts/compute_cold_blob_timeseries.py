@@ -6,6 +6,7 @@ HadISST monthly SST (Rayner et al. 2003).
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import numpy as np
@@ -13,7 +14,9 @@ import xarray as xr
 
 REPO = Path(__file__).resolve().parents[1]
 HADISST = Path(
-    "/home/bijanf/Documents/NEW_Theory/data/external/hadisst/HadISST_sst.nc"
+    os.environ.get(
+        "HADISST_SST", str(REPO / "data" / "external" / "hadisst" / "HadISST_sst.nc")
+    )
 )
 OUT = REPO / "data" / "results" / "cold_blob_timeseries_hadisst.nc"
 

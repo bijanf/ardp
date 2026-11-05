@@ -27,7 +27,9 @@ from analysis_paper3_r2_gate_checks import ols_santer  # noqa: E402
 from plot_amoc_rate_comparison import compute_rate  # noqa: E402
 
 RESULTS = REPO / "data" / "results"
-OUT = REPO / "revision" / "rev_papaer3_02" / "results"
+# Repointed 2026-11-05: the former revision/rev_papaer3_02 folder is archived outside this
+# worktree. Outputs now go to PAPER_3_v2/analysis (the inputs in data/results are unchanged).
+OUT = REPO / "PAPER_3_v2" / "analysis"
 
 
 def annual(path: Path, var: str = "F_ovS") -> tuple[np.ndarray, np.ndarray]:

@@ -250,16 +250,6 @@ def main() -> None:
     axs.set_xticks([-50, -40, -30, -20, -10, 0, 10])
     axs.set_facecolor("#4d4d4d")
     axs.set_xlabel("Longitude (degrees east)")
-    for name, x, z, c in (
-        ("SACW", -25, 160, "black"),
-        ("AAIW", -25, 800, "white"),
-        ("NADW", -25, 2450, "black"),
-        ("AABW", -38, 4700, "white"),
-    ):
-        axs.text(x, z, name, ha="center", va="center", fontsize=7, color=c,
-                 fontweight="bold",
-                 path_effects=[pe.withStroke(linewidth=1.6,
-                                             foreground="white" if c == "black" else "black")])
     axs.text(8.0, z0 - 380, "upper cell above", ha="center", va="center", fontsize=7,
              color="white", style="italic", path_effects=DARK_HALO)
     axs.text(8.0, z0 + 420, "abyssal cell below", ha="center", va="center", fontsize=7,
@@ -305,10 +295,11 @@ def main() -> None:
     # The two vertical lines, labelled at their top ends: S-up (red, solid) is the
     # transport-weighted salinity of the northward limb, S-down (blue, dashed) of the
     # southward limb. Values are the section values computed above.
-    ax3.annotate(f"S↑ {s_n:.2f}", xy=(s_n, 1.0), xycoords=("data", "axes fraction"),
+    att_g12 = json.loads((ANALYSIS / "attribution.json").read_text())["glorys12"]
+    ax3.annotate(f"S↑ {att_g12['mean_S_north']:.2f}", xy=(s_n, 1.0), xycoords=("data", "axes fraction"),
                  xytext=(1.5, 2.0), textcoords="offset points", ha="left", va="bottom",
                  fontsize=7, color=st.C_NORTH, annotation_clip=False)
-    ax3.annotate(f"S↓ {s_s:.2f}", xy=(s_s, 1.0), xycoords=("data", "axes fraction"),
+    ax3.annotate(f"S↓ {att_g12['mean_S_south']:.2f}", xy=(s_s, 1.0), xycoords=("data", "axes fraction"),
                  xytext=(-1.5, 2.0), textcoords="offset points", ha="right", va="bottom",
                  fontsize=7, color=st.C_SOUTH, annotation_clip=False)
     for k, ax in enumerate((ax1, ax2, ax3)):

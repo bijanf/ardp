@@ -20,12 +20,19 @@ annotations differ.
      labels; bold where p < 0.05. The grey shading gives the EN4 observation
      weight averaged along the section (upper axis), cut at the same depth.
 (d)  Hero: trend of the limb salinity contrast over 2005-2024 with 95 per cent
-     intervals, grouped into EN4 under each reanalysis circulation and the
-     reanalysis salinities with fixed and with own circulation. Markers follow
-     PRODUCT_MARKERS. Open markers and dotted intervals mark intervals that
-     include zero (equivalently p >= 0.05; checked at run time). Arrows mark
-     intervals beyond the axis. The ratio of fixed-circulation to EN4 trends is
-     not shown: its intervals are too wide to resolve it (see the text).
+     intervals, grouped into EN4 under each reanalysis circulation, EN4 under
+     each reanalysis's own monthly circulation, and the reanalysis salinities
+     with fixed and with own circulation. Markers follow PRODUCT_MARKERS. Open
+     markers and dotted intervals mark intervals that include zero (equivalently
+     p >= 0.05; checked at run time). Arrows mark intervals beyond the axis. A
+     dagger marks a row whose effective sample size is at its floor of 3
+     (uninformative): such a row shows its point value only, with no interval. The
+     ratio of fixed-circulation to EN4 trends is not shown: its intervals are too
+     wide to resolve it (see the text).
+
+All numbers of (d) for the EN4 own-circulation rows and the reanalysis
+fixed-circulation rows are read from jc_r2_G05_en4_table.json, the one table
+that holds every printed value of Fig. 5d and Table S7.
 
 Writes PAPER_3_v2/figures_jclim/Fig5_en4.{pdf,png} at its printed size.
 """
@@ -63,6 +70,7 @@ VALUE_X = 1.035     # axes fraction of (d) where the trend column starts
 DATA_ALPHA = 0.45   # the raw limb series are drawn lighter than their trends
 REANALYSIS_ALPHA = 0.6  # lighter intervals for the reanalysis rows of (d)
 MARKER_MS = {"P": 4.6, "o": 3.5, "s": 3.2, "^": 3.6, "D": 3.2}  # filled glyphs look alike at equal size
+DAGGER = "†"   # floor marker: effective sample size at its floor of 3
 PROFILES = {        # key in the profile file: (colour, product name for its marker)
     "en4": (st.C_EN4, "EN4.2.2"),
     "oras5": (st.C_ORAS5, "ORAS5"),
@@ -169,7 +177,7 @@ def main() -> None:
     st.set_style()
     dt = json.loads((AN / "en4_depth_test.json").read_text())
     attr = json.loads((AN / "attribution.json").read_text())
-    fc = json.loads((AN / "final_checks.json").read_text())
+    g05 = json.loads((AN / "jc_r2_G05_en4_table.json").read_text())["table"]
     prof = xr.open_dataset(RES / "paper3r1_salinity_trend_profiles.nc")
 
     fig = plt.figure(figsize=(W_IN, H_IN))
@@ -243,20 +251,19 @@ def main() -> None:
     axd = ax_in(fig, 2.05, 0.60, 3.20, 2.30)
     xl = (-0.06, 0.15)
 
-    fixed = {}
-    for key in ("oras5", "glorys12"):
-        fixed[key] = fc[key]["frozen_field"]["salinity_only"]["window_2005_2024"]
-
-    def row(label, est, lo, hi, p, colour, marker):
+    def row(label, est, lo, hi, p, colour, marker, floor=False):
         # significance is the interval excluding zero; the p-value must agree
         sig = (lo > 0) or (hi < 0)
         if sig != (p < 0.05):
             print(f"CHECK: interval and p disagree for {label}: [{lo:+.4f}, {hi:+.4f}] p={p:.3g}")
         return dict(kind="row", label=label, est=est, lo=lo, hi=hi, p=p,
-                    colour=colour, marker=marker, sig=sig)
+                    colour=colour, marker=marker, sig=sig, floor=floor)
 
     def hdr(label):
         return dict(kind="hdr", label=label)
+
+    def g05_dS(product: str, key: str) -> dict:
+        return g05[product][key]["dS"]
 
     rows = [hdr("EN4 salinity under reanalysis circulation")]
     for blk, bl in (("full_column", "full column"), ("upper_2000m", "upper 2000 m")):
@@ -265,13 +272,20 @@ def main() -> None:
             est, lo, hi, p = trend_ci(b["years"], b["dS"]["series"])
             rows.append(row(f"{bl.capitalize()}, {lab} circulation",
                             est, lo, hi, p, st.C_EN4, st.PRODUCT_MARKERS["EN4.2.2"]))
+    # pair A: EN4 with each reanalysis's own monthly circulation (table of record)
+    rows.append(hdr("EN4 salinity, own circulation"))
+    for key, lab in (("oras5", "ORAS5 circulation"), ("glorys12", "GLORYS12V1 circulation")):
+        d = g05_dS(key, "EN4 salinity, own circulation")
+        lo, hi = d["ci_per_decade"]
+        rows.append(row(lab, d["value_per_decade"], lo, hi, d["p"], st.C_EN4,
+                        st.PRODUCT_MARKERS["EN4.2.2"], floor=d["n_eff_at_floor"]))
     rows.append(hdr("Reanalysis salinity, fixed circulation"))
     for key, lab, col in (("oras5", "ORAS5", st.C_ORAS5),
                           ("glorys12", "GLORYS12V1", st.C_GLORYS)):
-        f = fixed[key]
-        lo, hi = f["dS_ci_per_decade"]
-        rows.append(row(lab, f["dS_trend_per_decade"], lo, hi, f["dS_p"], col,
-                        st.PRODUCT_MARKERS[lab]))
+        d = g05_dS(key, "reanalysis salinity, fixed circulation")
+        lo, hi = d["ci_per_decade"]
+        rows.append(row(lab, d["value_per_decade"], lo, hi, d["p"], col,
+                        st.PRODUCT_MARKERS[lab], floor=d["n_eff_at_floor"]))
     rows.append(hdr("Reanalysis salinity and circulation, own"))
     for key, lab, col in (("oras5", "ORAS5", st.C_ORAS5),
                           ("glorys12", "GLORYS12V1", st.C_GLORYS)):
@@ -290,10 +304,12 @@ def main() -> None:
     en4_idx = [i for i, r in enumerate(rows) if r["kind"] == "row" and r["colour"] == st.C_EN4]
     axd.axhspan(ypos[max(en4_idx)] - 0.5, ypos[min(en4_idx)] + 0.5,
                 color=st.C_EN4, alpha=0.07, lw=0, zorder=0)
-    # computed message for the EN4 block, true only if every lower bound is above zero
-    en4_all_exclude = all(rows[i]["lo"] > 0 for i in en4_idx)
+    # computed message for the four EN4 rows under the reanalysis circulations,
+    # true only if every lower bound is above zero
+    msg_idx = [i for i in en4_idx if rows[i]["label"].startswith(("Full column", "Upper"))]
+    en4_all_exclude = len(msg_idx) == 4 and all(rows[i]["lo"] > 0 for i in msg_idx)
     if en4_all_exclude:
-        y_mid = float(np.mean(ypos[en4_idx]))
+        y_mid = float(np.mean(ypos[msg_idx]))
         axd.text(0.066, y_mid, "all four EN4 intervals\nexclude zero", color=st.C_EN4,
                  fontsize=7, ha="left", va="center", linespacing=1.3, zorder=6)
     ticks, labels = [], []
@@ -308,10 +324,11 @@ def main() -> None:
         alpha = 1.0 if col == st.C_EN4 else REANALYSIS_ALPHA
         lcol = mcolors.to_rgba(col, alpha)
         a, b = max(lo, xl[0]), min(hi, xl[1])
-        axd.plot([a, b], [yy, yy], color=lcol, lw=1.3 if sig else 0.9,
-                 ls="-" if sig else (0, (1.0, 1.1)), solid_capstyle="butt", zorder=3)
+        if not r["floor"]:  # uninformative rows: point value only, no interval drawn
+            axd.plot([a, b], [yy, yy], color=lcol, lw=1.3 if sig else 0.9,
+                     ls="-" if sig else (0, (1.0, 1.1)), solid_capstyle="butt", zorder=3)
         for edge, flag, sign in ((xl[0], lo < xl[0], -1), (xl[1], hi > xl[1], +1)):
-            if flag:
+            if flag and not r["floor"]:
                 axd.annotate(
                     "", xy=(edge, yy), xytext=(edge - sign * 0.012, yy),
                     arrowprops=dict(arrowstyle="-|>", color=lcol, lw=0.6, mutation_scale=5),
@@ -319,7 +336,10 @@ def main() -> None:
                 )
         axd.plot([est], [yy], marker=r["marker"], ms=MARKER_MS[r["marker"]], mec=col, mew=0.8,
                  mfc=col if sig else "white", ls="none", zorder=5)
-        value = f"{signed(est)} [{signed(lo)}, {signed(hi)}]"
+        if r["floor"]:
+            value = f"{signed(est)}{DAGGER}"
+        else:
+            value = f"{signed(est)} [{signed(lo)}, {signed(hi)}]"
         axd.text(VALUE_X, yy, value, transform=trans_v, fontsize=7, ha="left", va="center")
     axd.set_yticks(ticks)
     axd.set_yticklabels(labels, fontsize=7)

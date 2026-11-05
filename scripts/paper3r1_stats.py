@@ -296,6 +296,15 @@ def ratio_summary(num: np.ndarray, den: np.ndarray, point: float) -> dict:
 def calibration(
     lengths=(22, 25, 26, 33, 68), phis=(0.0, 0.3, 0.5, 0.65, 0.8), n_sims=2000
 ) -> dict:
+    """SUPERSEDED (2026-11-05): use the n04 recalibration instead.
+
+    This stylised calibration (AR(1) noise, 2000 simulations per case) is superseded by
+    scripts/analysis_paper3jc_n04_ar_recalibration.py (output
+    PAPER_3_v2/analysis/jc_n04_ar_recalibration.json; seed 20261104; 20,000 replicates)
+    and by the ORAS5 calibration in scripts/analysis_paper3jc_r2_G02_calibration_*.py
+    (jc_r2_G02_calibration_bootstrap.json and jc_r2_G02_calibration_sieve.json).
+    Its stored output is PAPER_3_v2/analysis/r1_stats_calibration.json; cite the n04 files instead.
+    """
     rng = np.random.default_rng(42)
     rows = []
     for n in lengths:
