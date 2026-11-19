@@ -38,3 +38,11 @@ PAPER_3_v2/*submission*.zip
 paper3/
 
 PAPER_3_v2/
+
+# Figures and other outputs are not published in this repository (code only)
+figures/
+*.pdf
+*.png
+*.jpg
+*.gif
+*.mp4
