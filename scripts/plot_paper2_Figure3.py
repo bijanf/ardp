@@ -57,7 +57,7 @@ def _load_data(results_dir: Path):
     bistable_weak = df[(df["class"] != "increasing") & df["bistable"]]
 
     def _pct_weakening(model_list):
-        out = []
+        out, names = [], []
         for m in model_list:
             if m not in amoc_models:
                 continue
@@ -67,14 +67,15 @@ def _load_data(results_dir: Path):
             end = np.nanmean(a[(y >= 2081) & (y <= 2100)])
             if np.isfinite(base) and np.isfinite(end) and base > 0:
                 out.append(100 * (1 - end / base))
-        return out
+                names.append(m)
+        return out, names
 
     _ = full  # full-ensemble panel removed (duplicated the previous figure)
-    bis_data = [
+    pairs = [
         _pct_weakening(bistable_weak[bistable_weak["class"] == c]["model"].tolist())
         for c in ("v-dominant", "s-dominant", "mixed")]
-    bis_models = [bistable_weak[bistable_weak["class"] == c]["model"].tolist()
-                  for c in ("v-dominant", "s-dominant", "mixed")]
+    bis_data = [p[0] for p in pairs]
+    bis_models = [p[1] for p in pairs]
     return bis_data, bis_models
 
 
@@ -106,9 +107,8 @@ def _draw_panel_b(ax, bis_data, bis_models, *, ylim=(None, 95)):
 
     bis_texts = []
     for pos, vals, models in zip(positions, bis_data, bis_models, strict=True):
-        # vals may be shorter than models when a model lacks AMOC data,
-        # so this zip is deliberately non-strict.
-        for v, m in zip(vals, models, strict=False):
+        # values and names are collected together, so each label sits on its own model
+        for v, m in zip(vals, models, strict=True):
             short = (m.replace("-CM6-1", "")
                      .replace("-0-LL", "")
                      .replace("-GC31-LL", ""))
