@@ -46,3 +46,10 @@ figures/
 *.jpg
 *.gif
 *.mp4
+# Manuscript files stay local (not published in this repository)
+*.tex
+*.bib
+*.bbl
+*.cls
+*.bst
+*.sty
