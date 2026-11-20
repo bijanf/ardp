@@ -39,14 +39,14 @@ paper3/
 
 PAPER_3_v2/
 
-# Figures and other outputs are not published in this repository (code only)
+# Figures, manuscript files and paper outputs stay local (this repository holds code only)
 figures/
+PAPER_3_v2/
 *.pdf
 *.png
 *.jpg
 *.gif
 *.mp4
-# Manuscript files stay local (not published in this repository)
 *.tex
 *.bib
 *.bbl
