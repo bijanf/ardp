@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """Two AMOC estimators at 26.5N, exact Hodges-Lehmann interval and SODA 1998 sensitivity (paper 2, Table S5).
 
+The AMOC series of the analysis (yearly_amoc26n_cmip6.npz) is the published Atlantic streamfunction for every model
+that provides it; yearly_amoc26n_cmip6_velocity_based.npz keeps the series integrated from the meridional velocity.
+
 1. Optionally retrieves the published Atlantic streamfunction (msftmz or msftyz) for the original-ensemble models
    that have it for both experiments, with the functions of compute_amoc26n_expansion.py; a file that cannot be
    retrieved from any replica is skipped (MPI-ESM1-2-HR: year 2100).
-2. Compares baseline strength (1950-1980) and weakening (2081-2100) with the velocity-based series of
-   yearly_amoc26n_cmip6.npz (Table S5).
+2. Compares baseline strength (1950-1980) and weakening (2081-2100) of the published streamfunction with the
+   velocity-based series (Table S5). compute_amoc26n_published.py retrieves the published series of all models.
 3. Class medians, gap, Hodges-Lehmann estimate with its exact 95% interval and the exact Mann-Whitney p-value for
    the velocity-dominant and salinity-dominant classes, for the velocity-based series and with the published values
    substituted where they exist; Spearman and Pearson relations of the weakening with f_v and with dF_s (17 models).
@@ -124,7 +127,8 @@ def main() -> None:
     pub_npz = res / "amoc26n_published_streamfunction_check.npz"
     if a.download:
         retrieve(pub_npz, res / "tmp_amoc26n_published")
-    vo = np.load(res / "yearly_amoc26n_cmip6.npz", allow_pickle=True)
+    vo_file = res / "yearly_amoc26n_cmip6_velocity_based.npz"
+    vo = np.load(vo_file if vo_file.exists() else res / "yearly_amoc26n_cmip6.npz", allow_pickle=True)
     pub = np.load(pub_npz, allow_pickle=True)
     pub_models = sorted(k[:-6] for k in pub.files if k.endswith("_years"))
     table = {}
@@ -134,13 +138,13 @@ def main() -> None:
         table[m] = {"psi1_velocity_based": b_vo, "weakening_velocity_based": w_vo,
                     "psi1_published": b_pub, "weakening_published": w_pub}
     models = V_CLASS + S_CLASS + MIXED
-    w_main = {m: _base_weak(vo, m)[1] for m in models}
-    w_alt = {m: (table[m]["weakening_published"] if m in table else w_main[m]) for m in models}
+    w_vel = {m: _base_weak(vo, m)[1] for m in models}
+    w_pub = {m: (table[m]["weakening_published"] if m in table else w_vel[m]) for m in models}
     summ = pd.read_csv(res / "fovs_decomposition_cmip6_summary.csv").set_index("model")
     fv = summ.loc[models, "velocity_share_pct"].values
     dfs = 1e3 * summ.loc[models, "delta_s"].values
     out = {"table_S5": table}
-    for name, w in (("velocity_based", w_main), ("published_where_available", w_alt)):
+    for name, w in (("velocity_based", w_vel), ("published_where_available", w_pub)):
         ws = [w[m] for m in models]
         out[name] = class_stats(w)
         out[name]["spearman_fv_weakening"] = list(map(float, spearmanr(fv, ws)))
