@@ -29,6 +29,9 @@ import numpy as np
 import requests
 import xarray as xr
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from amoc26n_basin import atlantic_basin  # noqa: E402
+
 warnings.filterwarnings("ignore")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -139,7 +142,8 @@ def _extract_amoc(ds: xr.Dataset) -> tuple[np.ndarray, np.ndarray]:
     # If basin index is present (msftmz often has 'basin' dim), pick the
     # Atlantic-Arctic basin (basin index 0 in MPI's convention).
     if "basin" in sec_deep.dims:
-        sec_deep = sec_deep.isel(basin=0)
+        # The basin order differs between models (MPI-ESM1-2 stores the global ocean first): select by label.
+        sec_deep, _, _ = atlantic_basin(ds, sec_deep)
     # AMOC = max of streamfunction over depth (in Sv = 1e9 kg/s
     # for MPI-OM convention, OR already in Sv depending on file)
     psi_max = sec_deep.max(dim=lev_name)
