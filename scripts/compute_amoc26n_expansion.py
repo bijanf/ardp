@@ -36,6 +36,9 @@ import numpy as np
 import requests
 import xarray as xr
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from amoc26n_basin import atlantic_basin  # noqa: E402
+
 warnings.filterwarnings("ignore")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -204,9 +207,8 @@ def _extract_amoc(ds: xr.Dataset, var: str) -> tuple[np.ndarray, np.ndarray]:
     deep_idx = np.where(depth >= DEPTH_MIN)[0]
     sec_deep = sec.isel({lev_name: deep_idx})
     if "basin" in sec_deep.dims:
-        # Some models stack Atl/Pac/Indo basins; pick Atlantic-Arctic (0).
-        # CMIP6 convention: basin=0 atlantic_arctic_ocean.
-        sec_deep = sec_deep.isel(basin=0)
+        # The basin order differs between models (MPI-ESM1-2 stores the global ocean first): select by label.
+        sec_deep, _, _ = atlantic_basin(ds, sec_deep)
     psi_max = sec_deep.max(dim=lev_name)
     psi_annual = psi_max.groupby("time.year").mean(dim="time")
     years = psi_annual["year"].values.astype(float)

@@ -42,9 +42,9 @@ PRODUCTS = [
 ]
 
 DIRECT_HYDRO = [
-    (-0.10, 0.10, "Garzoli & Matano 2011", 2005),
-    (-0.09, 0.05, "Meinen et al. 2018",    2015),
-    (-0.17, 0.07, "Kersalé et al. 2020",   2015),
+    (-0.15, 0.09, "Arumí-Planas et al. 2024", 2011),
+    (-0.09, 0.02, "Ramos-Fernández et al. 2026", 2017),
+    (-0.21, 0.02, "Ramos-Fernández et al. 2026", 2022),
 ]
 
 OUTLIER_THRESHOLD = 0.30

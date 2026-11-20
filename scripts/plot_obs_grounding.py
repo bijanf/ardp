@@ -70,14 +70,21 @@ COLR = {
     "SAMBA-Volkov2024": "#9467bd",   # purple
 }
 
-# Literature trend values for the reanalysis comparison bar chart (Panel C).
-# Sources: project MEMORY.md (1993-2025 trends), to be replaced with locally
-# recomputed 2005-2024 values once the corresponding reanalysis trend scripts
-# are run on the same window.
-LIT_TRENDS = {
-    "GLORYS12V1": (0.084, 0.025, "MEMORY.md, 1993-2025"),
-    "ORAS5":      (-0.014, 0.020, "MEMORY.md, 1993-2025"),
-}
+# Reanalysis basin-mean trends over the Argo-based window (2005-2024), written by
+# scripts/compute_reanalysis_box_salinity_trend.py with the procedure of the
+# Argo-based products.
+REANALYSIS_TRENDS_FILE = "reanalysis_box_salinity_trends.json"
+REANALYSIS_PERIOD = "2005-2024"
+
+
+def _reanalysis_trends() -> dict[str, tuple[float, float]]:
+    with open(RESULTS / REANALYSIS_TRENDS_FILE) as f:
+        d = json.load(f)
+    out = {}
+    for prod in ("GLORYS12V1", "ORAS5"):
+        t = d[prod][REANALYSIS_PERIOD]["level_mean"]
+        out[prod] = (t["trend_psu_per_decade"], t["ci95_half_psu_per_decade"])
+    return out
 
 
 # -------------------------------------------------------------------------
@@ -146,8 +153,9 @@ def _panel_c(ax: plt.Axes) -> None:
     if "RG09" in trends and np.isfinite(trends["RG09"].get("slope_psu_per_dec", np.nan)):
         t = trends["RG09"]
         rows.append(("RG09", t["slope_psu_per_dec"], t["ci95_half_psu_per_dec"]))
-    rows.append(("GLORYS12V1", LIT_TRENDS["GLORYS12V1"][0], LIT_TRENDS["GLORYS12V1"][1]))
-    rows.append(("ORAS5",      LIT_TRENDS["ORAS5"][0],      LIT_TRENDS["ORAS5"][1]))
+    rean = _reanalysis_trends()
+    rows.append(("GLORYS12V1", *rean["GLORYS12V1"]))
+    rows.append(("ORAS5", *rean["ORAS5"]))
 
     samba_value = trends["SAMBA-Volkov2024"]["slope_psu_per_dec"]
     samba_ci = trends["SAMBA-Volkov2024"]["ci95_half_psu_per_dec"]
@@ -170,7 +178,9 @@ def _panel_c(ax: plt.Axes) -> None:
     ax.set_yticklabels(names, fontsize=6)
     ax.invert_yaxis()
     ax.set_xlabel("Salinity trend (PSU / decade)")
-    ax.set_xlim(-0.07, 0.13)
+    hi = max(v + e for v, e in zip(vals, errs))
+    lo = min(v - e for v, e in zip(vals, errs))
+    ax.set_xlim(min(-0.05, lo - 0.02), max(0.13, hi + 0.02))
     ax.spines[["top", "right"]].set_visible(False)
 
 

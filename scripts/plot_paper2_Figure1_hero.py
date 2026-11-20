@@ -71,10 +71,9 @@ PROD_COLOR = {
 # Direct-hydrography anchors from published in-situ studies
 HYDROGRAPHY = [
     # (year, F_ovS Sv, ±err Sv, source)
-    (2005, -0.10, 0.10, "Garzoli & Matano 2011"),
-    (2015, -0.09, 0.05, "Meinen et al. 2018"),
-    (2015, -0.17, 0.07, "Kersalé et al. 2020"),
-    (2018, -0.15, 0.09, "Arumí-Planas 2024"),
+    (2011, -0.15, 0.09, "Arumí-Planas et al. 2024"),     # AX18 XBT, 2002-2019
+    (2017, -0.09, 0.02, "Ramos-Fernández et al. 2026"),  # hydrographic section, 2017
+    (2022, -0.21, 0.02, "Ramos-Fernández et al. 2026"),  # hydrographic section, 2022
 ]
 
 # Observation point styles. Marker: * stars cluster in salinity quadrant;
