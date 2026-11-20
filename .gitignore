@@ -38,3 +38,18 @@ PAPER_3_v2/*submission*.zip
 paper3/
 
 PAPER_3_v2/
+
+# Figures, manuscript files and paper outputs stay local (this repository holds code only)
+figures/
+PAPER_3_v2/
+*.pdf
+*.png
+*.jpg
+*.gif
+*.mp4
+*.tex
+*.bib
+*.bbl
+*.cls
+*.bst
+*.sty
